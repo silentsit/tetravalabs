@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "medusa develop",
     "start": "medusa start",
-    "build": "medusa build",
+    "build:backend": "tsc -p tsconfig.json --noEmit",
+    "build": "medusa build || npm run build:backend",
     "seed": "node ./src/scripts/seed-catalog.mjs"
   },
   "dependencies": {

@@ -3,6 +3,7 @@ apps/*/node_modules/
 packages/*/node_modules/
 .next/
 dist/
+.medusa/
 .env
 .env.*
 !.env.example

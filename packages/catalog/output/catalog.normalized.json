@@ -1,0 +1,2389 @@
+{
+  "generated_at": "2026-06-07T22:13:59.208Z",
+  "products": [
+    {
+      "id": "supplies-reconstitution-acetic-acid-water",
+      "title": "Acetic Acid Water",
+      "category": "Supplies & Reconstitution",
+      "handle": "acetic-acid-water",
+      "visual_type": "water_solution",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "acetic-acid-water-3ml",
+          "title": "3ml",
+          "sku": "ACETIC_ACID_WATER_3ML",
+          "handle": "acetic-acid-water-3ml",
+          "amount_usd": 10.99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "3ml",
+            "catalog_slug": "acetic-acid-water-3ml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplies-reconstitution-bacteriostatic-water",
+      "title": "Bacteriostatic Water",
+      "category": "Supplies & Reconstitution",
+      "handle": "bacteriostatic-water",
+      "visual_type": "water_solution",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "bacteriostatic-water-3ml",
+          "title": "3ml",
+          "sku": "BACTERIOSTATIC_WATER_3ML",
+          "handle": "bacteriostatic-water-3ml",
+          "amount_usd": 8.99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "3ml",
+            "catalog_slug": "bacteriostatic-water-3ml"
+          }
+        },
+        {
+          "id": "bacteriostatic-water-10ml",
+          "title": "10ml",
+          "sku": "BACTERIOSTATIC_WATER_10ML",
+          "handle": "bacteriostatic-water-10ml",
+          "amount_usd": 10.99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10ml",
+            "catalog_slug": "bacteriostatic-water-10ml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "supplies-reconstitution-benzyl-alcohol",
+      "title": "Benzyl Alcohol",
+      "category": "Supplies & Reconstitution",
+      "handle": "benzyl-alcohol",
+      "visual_type": "water_solution",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "benzyl-alcohol-3ml",
+          "title": "3ml",
+          "sku": "BENZYL_ALCOHOL_3ML",
+          "handle": "benzyl-alcohol-3ml",
+          "amount_usd": 7.99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "3ml",
+            "catalog_slug": "benzyl-alcohol-3ml"
+          }
+        },
+        {
+          "id": "benzyl-alcohol-10ml",
+          "title": "10ml",
+          "sku": "BENZYL_ALCOHOL_10ML",
+          "handle": "benzyl-alcohol-10ml",
+          "amount_usd": 9.99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10ml",
+            "catalog_slug": "benzyl-alcohol-10ml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-5-amino-1mq",
+      "title": "5-Amino-1MQ",
+      "category": "GLP-1 / Incretin",
+      "handle": "5-amino-1mq",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "5-amino-1mq-5mg",
+          "title": "5mg",
+          "sku": "5_AMINO_1MQ_5MG",
+          "handle": "5-amino-1mq-5mg",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "5-amino-1mq-5mg"
+          }
+        },
+        {
+          "id": "5-amino-1mq-10mg",
+          "title": "10mg",
+          "sku": "5_AMINO_1MQ_10MG",
+          "handle": "5-amino-1mq-10mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "5-amino-1mq-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-aod-9604",
+      "title": "AOD-9604",
+      "category": "GLP-1 / Incretin",
+      "handle": "aod-9604",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "aod-9604-5mg",
+          "title": "5mg",
+          "sku": "AOD_9604_5MG",
+          "handle": "aod-9604-5mg",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "aod-9604-5mg"
+          }
+        },
+        {
+          "id": "aod-9604-10mg",
+          "title": "10mg",
+          "sku": "AOD_9604_10MG",
+          "handle": "aod-9604-10mg",
+          "amount_usd": 95,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "aod-9604-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-cagrilintide",
+      "title": "Cagrilintide",
+      "category": "GLP-1 / Incretin",
+      "handle": "cagrilintide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "cagrilintide-5mg",
+          "title": "5mg",
+          "sku": "CAGRILINTIDE_5MG",
+          "handle": "cagrilintide-5mg",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "cagrilintide-5mg"
+          }
+        },
+        {
+          "id": "cagrilintide-10mg",
+          "title": "10mg",
+          "sku": "CAGRILINTIDE_10MG",
+          "handle": "cagrilintide-10mg",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "cagrilintide-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-cagrilintide-semaglutide",
+      "title": "Cagrilintide + Semaglutide",
+      "category": "GLP-1 / Incretin",
+      "handle": "cagrilintide-semaglutide",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "cagrilintide-semaglutide-5mg",
+          "title": "5mg",
+          "sku": "CAGRILINTIDE_SEMAGLUTIDE_5MG",
+          "handle": "cagrilintide-semaglutide-5mg",
+          "amount_usd": 159,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "cagrilintide-semaglutide-5mg"
+          }
+        },
+        {
+          "id": "cagrilintide-semaglutide-10mg",
+          "title": "10mg",
+          "sku": "CAGRILINTIDE_SEMAGLUTIDE_10MG",
+          "handle": "cagrilintide-semaglutide-10mg",
+          "amount_usd": 299,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "cagrilintide-semaglutide-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-mazdutide",
+      "title": "Mazdutide",
+      "category": "GLP-1 / Incretin",
+      "handle": "mazdutide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "mazdutide-5mg",
+          "title": "5mg",
+          "sku": "MAZDUTIDE_5MG",
+          "handle": "mazdutide-5mg",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "mazdutide-5mg"
+          }
+        },
+        {
+          "id": "mazdutide-10mg",
+          "title": "10mg",
+          "sku": "MAZDUTIDE_10MG",
+          "handle": "mazdutide-10mg",
+          "amount_usd": 119,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "mazdutide-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-retatrutide",
+      "title": "Retatrutide",
+      "category": "GLP-1 / Incretin",
+      "handle": "retatrutide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "retatrutide-5mg",
+          "title": "5mg",
+          "sku": "RETATRUTIDE_5MG",
+          "handle": "retatrutide-5mg",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "retatrutide-5mg"
+          }
+        },
+        {
+          "id": "retatrutide-10mg",
+          "title": "10mg",
+          "sku": "RETATRUTIDE_10MG",
+          "handle": "retatrutide-10mg",
+          "amount_usd": 129,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "retatrutide-10mg"
+          }
+        },
+        {
+          "id": "retatrutide-20mg",
+          "title": "20mg",
+          "sku": "RETATRUTIDE_20MG",
+          "handle": "retatrutide-20mg",
+          "amount_usd": 209,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "20mg",
+            "catalog_slug": "retatrutide-20mg"
+          }
+        },
+        {
+          "id": "retatrutide-50mg",
+          "title": "50mg",
+          "sku": "RETATRUTIDE_50MG",
+          "handle": "retatrutide-50mg",
+          "amount_usd": 469,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "50mg",
+            "catalog_slug": "retatrutide-50mg"
+          }
+        },
+        {
+          "id": "retatrutide-100mg",
+          "title": "100mg",
+          "sku": "RETATRUTIDE_100MG",
+          "handle": "retatrutide-100mg",
+          "amount_usd": 929,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "100mg",
+            "catalog_slug": "retatrutide-100mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-semaglutide",
+      "title": "Semaglutide",
+      "category": "GLP-1 / Incretin",
+      "handle": "semaglutide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "semaglutide-5mg",
+          "title": "5mg",
+          "sku": "SEMAGLUTIDE_5MG",
+          "handle": "semaglutide-5mg",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "semaglutide-5mg"
+          }
+        },
+        {
+          "id": "semaglutide-10mg",
+          "title": "10mg",
+          "sku": "SEMAGLUTIDE_10MG",
+          "handle": "semaglutide-10mg",
+          "amount_usd": 129,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "semaglutide-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-sermorelin",
+      "title": "Sermorelin",
+      "category": "GLP-1 / Incretin",
+      "handle": "sermorelin",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "sermorelin-5mg",
+          "title": "5mg",
+          "sku": "SERMORELIN_5MG",
+          "handle": "sermorelin-5mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "sermorelin-5mg"
+          }
+        },
+        {
+          "id": "sermorelin-10mg",
+          "title": "10mg",
+          "sku": "SERMORELIN_10MG",
+          "handle": "sermorelin-10mg",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "sermorelin-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-survodutide",
+      "title": "Survodutide",
+      "category": "GLP-1 / Incretin",
+      "handle": "survodutide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "survodutide-10mg",
+          "title": "10mg",
+          "sku": "SURVODUTIDE_10MG",
+          "handle": "survodutide-10mg",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "survodutide-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-tesamorelin",
+      "title": "Tesamorelin",
+      "category": "GLP-1 / Incretin",
+      "handle": "tesamorelin",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "tesamorelin-5mg",
+          "title": "5mg",
+          "sku": "TESAMORELIN_5MG",
+          "handle": "tesamorelin-5mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "tesamorelin-5mg"
+          }
+        },
+        {
+          "id": "tesamorelin-10mg",
+          "title": "10mg",
+          "sku": "TESAMORELIN_10MG",
+          "handle": "tesamorelin-10mg",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "tesamorelin-10mg"
+          }
+        },
+        {
+          "id": "tesamorelin-20mg",
+          "title": "20mg",
+          "sku": "TESAMORELIN_20MG",
+          "handle": "tesamorelin-20mg",
+          "amount_usd": 119,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "20mg",
+            "catalog_slug": "tesamorelin-20mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "glp-1-incretin-tirzepatide",
+      "title": "Tirzepatide",
+      "category": "GLP-1 / Incretin",
+      "handle": "tirzepatide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "tirzepatide-5mg",
+          "title": "5mg",
+          "sku": "TIRZEPATIDE_5MG",
+          "handle": "tirzepatide-5mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "tirzepatide-5mg"
+          }
+        },
+        {
+          "id": "tirzepatide-10mg",
+          "title": "10mg",
+          "sku": "TIRZEPATIDE_10MG",
+          "handle": "tirzepatide-10mg",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "tirzepatide-10mg"
+          }
+        },
+        {
+          "id": "tirzepatide-20mg",
+          "title": "20mg",
+          "sku": "TIRZEPATIDE_20MG",
+          "handle": "tirzepatide-20mg",
+          "amount_usd": 179,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "20mg",
+            "catalog_slug": "tirzepatide-20mg"
+          }
+        },
+        {
+          "id": "tirzepatide-50mg",
+          "title": "50mg",
+          "sku": "TIRZEPATIDE_50MG",
+          "handle": "tirzepatide-50mg",
+          "amount_usd": 429,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "50mg",
+            "catalog_slug": "tirzepatide-50mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpc-157-tb500-bpc-157",
+      "title": "BPC-157",
+      "category": "BPC-157 / TB500",
+      "handle": "bpc-157",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "bpc-157-5mg",
+          "title": "5mg",
+          "sku": "BPC_157_5MG",
+          "handle": "bpc-157-5mg",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "bpc-157-5mg"
+          }
+        },
+        {
+          "id": "bpc-157-10mg",
+          "title": "10mg",
+          "sku": "BPC_157_10MG",
+          "handle": "bpc-157-10mg",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "bpc-157-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpc-157-tb500-bpc-157-capsules",
+      "title": "BPC-157 (Capsules)",
+      "category": "BPC-157 / TB500",
+      "handle": "bpc-157-capsules",
+      "visual_type": "capsule",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "bpc-157-capsules-100-count-500mcg",
+          "title": "100 count (500mcg)",
+          "sku": "BPC_157_CAPSULES_100CT",
+          "handle": "bpc-157-capsules-100ct",
+          "amount_usd": 85,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "100 count (500mcg)",
+            "catalog_slug": "bpc-157-capsules-100ct"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpc-157-tb500-tb500",
+      "title": "TB500",
+      "category": "BPC-157 / TB500",
+      "handle": "tb500",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "tb500-5mg",
+          "title": "5mg",
+          "sku": "TB500_5MG",
+          "handle": "tb500-5mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "tb500-5mg"
+          }
+        },
+        {
+          "id": "tb500-10mg",
+          "title": "10mg",
+          "sku": "TB500_10MG",
+          "handle": "tb500-10mg",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "tb500-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "blends-bpc-157-5mg-tb500-5mg",
+      "title": "BPC-157 5mg + TB500 5mg",
+      "category": "Blends",
+      "handle": "bpc-157-5mg-tb500-5mg",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "bpc-157-5mg-tb500-5mg-10mg",
+          "title": "10mg",
+          "sku": "BPC_157_TB500_BLEND_10MG",
+          "handle": "bpc-157-tb500-blend-10mg",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "bpc-157-tb500-blend-10mg"
+          }
+        },
+        {
+          "id": "bpc-157-5mg-tb500-5mg-20mg",
+          "title": "20mg",
+          "sku": "BPC_157_TB500_BLEND_20MG",
+          "handle": "bpc-157-tb500-blend-20mg",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "20mg",
+            "catalog_slug": "bpc-157-tb500-blend-20mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "blends-cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg",
+      "title": "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
+      "category": "Blends",
+      "handle": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+          "title": "80mg",
+          "sku": "CU_TB500_BPC_157_KPV_BLEND_80MG",
+          "handle": "cu-tb500-bpc-157-kpv-blend-80mg",
+          "amount_usd": 229,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "80mg",
+            "catalog_slug": "cu-tb500-bpc-157-kpv-blend-80mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "blends-glow-bpc-157-tb500-ghk-cu",
+      "title": "Glow BPC-157 + TB500 + GHK-Cu",
+      "category": "Blends",
+      "handle": "glow-bpc-157-tb500-ghk-cu",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "glow-bpc-157-tb500-ghk-cu-30mg",
+          "title": "30mg",
+          "sku": "GLOW_BLEND_30MG",
+          "handle": "glow-blend-30mg",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "30mg",
+            "catalog_slug": "glow-blend-30mg"
+          }
+        },
+        {
+          "id": "glow-bpc-157-tb500-ghk-cu-85mg",
+          "title": "85mg",
+          "sku": "GLOW_BLEND_85MG",
+          "handle": "glow-blend-85mg",
+          "amount_usd": 179,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "85mg",
+            "catalog_slug": "glow-blend-85mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "blends-glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg",
+      "title": "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg",
+      "category": "Blends",
+      "handle": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+          "title": "70mg",
+          "sku": "GLOW_TB500_BPC_157_GHK_CU_70MG",
+          "handle": "glow-tb500-bpc-157-ghk-cu-70mg",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "70mg",
+            "catalog_slug": "glow-tb500-bpc-157-ghk-cu-70mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-cjc-1295-with-dac",
+      "title": "CJC-1295 with DAC",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "cjc-1295-with-dac",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "cjc-1295-with-dac-5mg",
+          "title": "5mg",
+          "sku": "CJC_1295_WITH_DAC_5MG",
+          "handle": "cjc-1295-with-dac-5mg",
+          "amount_usd": 139,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "cjc-1295-with-dac-5mg"
+          }
+        },
+        {
+          "id": "cjc-1295-with-dac-10mg",
+          "title": "10mg",
+          "sku": "CJC_1295_WITH_DAC_10MG",
+          "handle": "cjc-1295-with-dac-10mg",
+          "amount_usd": 279,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "cjc-1295-with-dac-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-cjc-1295-without-dac",
+      "title": "CJC-1295 without DAC",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "cjc-1295-without-dac",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "cjc-1295-without-dac-5mg",
+          "title": "5mg",
+          "sku": "CJC_1295_WITHOUT_DAC_5MG",
+          "handle": "cjc-1295-without-dac-5mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "cjc-1295-without-dac-5mg"
+          }
+        },
+        {
+          "id": "cjc-1295-without-dac-10mg",
+          "title": "10mg",
+          "sku": "CJC_1295_WITHOUT_DAC_10MG",
+          "handle": "cjc-1295-without-dac-10mg",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "cjc-1295-without-dac-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-cjc-1295-without-dac-ipamorelin-blend",
+      "title": "CJC-1295 without DAC / Ipamorelin Blend",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "cjc-1295-without-dac-ipamorelin-blend",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+          "title": "10mg",
+          "sku": "CJC_1295_IPAMORELIN_BLEND_10MG",
+          "handle": "cjc-1295-ipamorelin-blend-10mg",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "cjc-1295-ipamorelin-blend-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-cjc-1295-without-dac-sermorelin-ipamorelin-blend",
+      "title": "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "cjc-1295-without-dac-sermorelin-ipamorelin-blend",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
+          "title": "5mg",
+          "sku": "CJC_1295_SERMORELIN_IPAMORELIN_BLEND_5MG",
+          "handle": "cjc-1295-sermorelin-ipamorelin-blend-5mg",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "cjc-1295-sermorelin-ipamorelin-blend-5mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-ghrp-2-acetate",
+      "title": "GHRP-2 Acetate",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "ghrp-2-acetate",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "ghrp-2-acetate-5mg",
+          "title": "5mg",
+          "sku": "GHRP_2_ACETATE_5MG",
+          "handle": "ghrp-2-acetate-5mg",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "ghrp-2-acetate-5mg"
+          }
+        },
+        {
+          "id": "ghrp-2-acetate-10mg",
+          "title": "10mg",
+          "sku": "GHRP_2_ACETATE_10MG",
+          "handle": "ghrp-2-acetate-10mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "ghrp-2-acetate-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-ghrp-6-acetate",
+      "title": "GHRP-6 Acetate",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "ghrp-6-acetate",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "ghrp-6-acetate-5mg",
+          "title": "5mg",
+          "sku": "GHRP_6_ACETATE_5MG",
+          "handle": "ghrp-6-acetate-5mg",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "ghrp-6-acetate-5mg"
+          }
+        },
+        {
+          "id": "ghrp-6-acetate-10mg",
+          "title": "10mg",
+          "sku": "GHRP_6_ACETATE_10MG",
+          "handle": "ghrp-6-acetate-10mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "ghrp-6-acetate-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-hexarelin-acetate",
+      "title": "Hexarelin Acetate",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "hexarelin-acetate",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "hexarelin-acetate-2mg",
+          "title": "2mg",
+          "sku": "HEXARELIN_ACETATE_2MG",
+          "handle": "hexarelin-acetate-2mg",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "2mg",
+            "catalog_slug": "hexarelin-acetate-2mg"
+          }
+        },
+        {
+          "id": "hexarelin-acetate-5mg",
+          "title": "5mg",
+          "sku": "HEXARELIN_ACETATE_5MG",
+          "handle": "hexarelin-acetate-5mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "hexarelin-acetate-5mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cjc-ipamorelin-ghrp-ipamorelin",
+      "title": "Ipamorelin",
+      "category": "CJC / Ipamorelin / GHRP",
+      "handle": "ipamorelin",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "ipamorelin-5mg",
+          "title": "5mg",
+          "sku": "IPAMORELIN_5MG",
+          "handle": "ipamorelin-5mg",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "ipamorelin-5mg"
+          }
+        },
+        {
+          "id": "ipamorelin-10mg",
+          "title": "10mg",
+          "sku": "IPAMORELIN_10MG",
+          "handle": "ipamorelin-10mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "ipamorelin-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "growth-hormone-axis-gonadorelin",
+      "title": "Gonadorelin",
+      "category": "Growth Hormone Axis",
+      "handle": "gonadorelin",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "gonadorelin-2mg",
+          "title": "2mg",
+          "sku": "GONADORELIN_2MG",
+          "handle": "gonadorelin-2mg",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "2mg",
+            "catalog_slug": "gonadorelin-2mg"
+          }
+        },
+        {
+          "id": "gonadorelin-10mg",
+          "title": "10mg",
+          "sku": "GONADORELIN_10MG",
+          "handle": "gonadorelin-10mg",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "gonadorelin-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "growth-hormone-axis-hcg",
+      "title": "HCG",
+      "category": "Growth Hormone Axis",
+      "handle": "hcg",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "hcg-5000-iu",
+          "title": "5000 IU",
+          "sku": "HCG_5000_IU",
+          "handle": "hcg-5000-iu",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5000 IU",
+            "catalog_slug": "hcg-5000-iu"
+          }
+        },
+        {
+          "id": "hcg-10000-iu",
+          "title": "10000 IU",
+          "sku": "HCG_10000_IU",
+          "handle": "hcg-10000-iu",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10000 IU",
+            "catalog_slug": "hcg-10000-iu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "growth-hormone-axis-hgh-191aa",
+      "title": "HGH 191aa",
+      "category": "Growth Hormone Axis",
+      "handle": "hgh-191aa",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "hgh-191aa-10-iu",
+          "title": "10 IU",
+          "sku": "HGH_191AA_10_IU",
+          "handle": "hgh-191aa-10-iu",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10 IU",
+            "catalog_slug": "hgh-191aa-10-iu"
+          }
+        },
+        {
+          "id": "hgh-191aa-12-iu",
+          "title": "12 IU",
+          "sku": "HGH_191AA_12_IU",
+          "handle": "hgh-191aa-12-iu",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "12 IU",
+            "catalog_slug": "hgh-191aa-12-iu"
+          }
+        },
+        {
+          "id": "hgh-191aa-15-iu",
+          "title": "15 IU",
+          "sku": "HGH_191AA_15_IU",
+          "handle": "hgh-191aa-15-iu",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "15 IU",
+            "catalog_slug": "hgh-191aa-15-iu"
+          }
+        },
+        {
+          "id": "hgh-191aa-24-iu",
+          "title": "24 IU",
+          "sku": "HGH_191AA_24_IU",
+          "handle": "hgh-191aa-24-iu",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "24 IU",
+            "catalog_slug": "hgh-191aa-24-iu"
+          }
+        },
+        {
+          "id": "hgh-191aa-36-iu",
+          "title": "36 IU",
+          "sku": "HGH_191AA_36_IU",
+          "handle": "hgh-191aa-36-iu",
+          "amount_usd": 85,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "36 IU",
+            "catalog_slug": "hgh-191aa-36-iu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "growth-hormone-axis-hmg",
+      "title": "HMG",
+      "category": "Growth Hormone Axis",
+      "handle": "hmg",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "hmg-75-iu",
+          "title": "75 IU",
+          "sku": "HMG_75_IU",
+          "handle": "hmg-75-iu",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "75 IU",
+            "catalog_slug": "hmg-75-iu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "growth-hormone-axis-igf-1-lr3",
+      "title": "IGF-1 LR3",
+      "category": "Growth Hormone Axis",
+      "handle": "igf-1-lr3",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "igf-1-lr3-0-1mg",
+          "title": "0.1mg",
+          "sku": "IGF_1_LR3_0_1MG",
+          "handle": "igf-1-lr3-0-1mg",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "0.1mg",
+            "catalog_slug": "igf-1-lr3-0-1mg"
+          }
+        },
+        {
+          "id": "igf-1-lr3-1mg",
+          "title": "1mg",
+          "sku": "IGF_1_LR3_1MG",
+          "handle": "igf-1-lr3-1mg",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "1mg",
+            "catalog_slug": "igf-1-lr3-1mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "growth-hormone-axis-mgf",
+      "title": "MGF",
+      "category": "Growth Hormone Axis",
+      "handle": "mgf",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "mgf-2mg",
+          "title": "2mg",
+          "sku": "MGF_2MG",
+          "handle": "mgf-2mg",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "2mg",
+            "catalog_slug": "mgf-2mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "growth-hormone-axis-peg-mgf",
+      "title": "PEG-MGF",
+      "category": "Growth Hormone Axis",
+      "handle": "peg-mgf",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "peg-mgf-2mg",
+          "title": "2mg",
+          "sku": "PEG_MGF_2MG",
+          "handle": "peg-mgf-2mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "2mg",
+            "catalog_slug": "peg-mgf-2mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mitochondrial-metabolic-other-adipotide",
+      "title": "Adipotide",
+      "category": "Mitochondrial / Metabolic Other",
+      "handle": "adipotide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "adipotide-2mg",
+          "title": "2mg",
+          "sku": "ADIPOTIDE_2MG",
+          "handle": "adipotide-2mg",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "2mg",
+            "catalog_slug": "adipotide-2mg"
+          }
+        },
+        {
+          "id": "adipotide-5mg",
+          "title": "5mg",
+          "sku": "ADIPOTIDE_5MG",
+          "handle": "adipotide-5mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "adipotide-5mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mitochondrial-metabolic-other-aicar",
+      "title": "AICAR",
+      "category": "Mitochondrial / Metabolic Other",
+      "handle": "aicar",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "aicar-50mg",
+          "title": "50mg",
+          "sku": "AICAR_50MG",
+          "handle": "aicar-50mg",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "50mg",
+            "catalog_slug": "aicar-50mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mitochondrial-metabolic-other-mots-c",
+      "title": "MOTS-c",
+      "category": "Mitochondrial / Metabolic Other",
+      "handle": "mots-c",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "mots-c-5mg",
+          "title": "5mg",
+          "sku": "MOTS_C_5MG",
+          "handle": "mots-c-5mg",
+          "amount_usd": 50,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "mots-c-5mg"
+          }
+        },
+        {
+          "id": "mots-c-10mg",
+          "title": "10mg",
+          "sku": "MOTS_C_10MG",
+          "handle": "mots-c-10mg",
+          "amount_usd": 70,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "mots-c-10mg"
+          }
+        },
+        {
+          "id": "mots-c-20mg",
+          "title": "20mg",
+          "sku": "MOTS_C_20MG",
+          "handle": "mots-c-20mg",
+          "amount_usd": 80,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "20mg",
+            "catalog_slug": "mots-c-20mg"
+          }
+        },
+        {
+          "id": "mots-c-40mg",
+          "title": "40mg",
+          "sku": "MOTS_C_40MG",
+          "handle": "mots-c-40mg",
+          "amount_usd": 140,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "40mg",
+            "catalog_slug": "mots-c-40mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mitochondrial-metabolic-other-ss-31",
+      "title": "SS-31",
+      "category": "Mitochondrial / Metabolic Other",
+      "handle": "ss-31",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "ss-31-10mg",
+          "title": "10mg",
+          "sku": "SS_31_10MG",
+          "handle": "ss-31-10mg",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "ss-31-10mg"
+          }
+        },
+        {
+          "id": "ss-31-25mg",
+          "title": "25mg",
+          "sku": "SS_31_25MG",
+          "handle": "ss-31-25mg",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "25mg",
+            "catalog_slug": "ss-31-25mg"
+          }
+        },
+        {
+          "id": "ss-31-50mg",
+          "title": "50mg",
+          "sku": "SS_31_50MG",
+          "handle": "ss-31-50mg",
+          "amount_usd": 179,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "50mg",
+            "catalog_slug": "ss-31-50mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cosmetic-copper-tanning-ghk-cu",
+      "title": "GHK-Cu",
+      "category": "Cosmetic / Copper / Tanning",
+      "handle": "ghk-cu",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "ghk-cu-50mg",
+          "title": "50mg",
+          "sku": "GHK_CU_50MG",
+          "handle": "ghk-cu-50mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "50mg",
+            "catalog_slug": "ghk-cu-50mg"
+          }
+        },
+        {
+          "id": "ghk-cu-100mg",
+          "title": "100mg",
+          "sku": "GHK_CU_100MG",
+          "handle": "ghk-cu-100mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "100mg",
+            "catalog_slug": "ghk-cu-100mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cosmetic-copper-tanning-melanotan-1",
+      "title": "Melanotan 1",
+      "category": "Cosmetic / Copper / Tanning",
+      "handle": "melanotan-1",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "melanotan-1-10mg",
+          "title": "10mg",
+          "sku": "MELANOTAN_1_10MG",
+          "handle": "melanotan-1-10mg",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "melanotan-1-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cosmetic-copper-tanning-melanotan-2",
+      "title": "Melanotan 2",
+      "category": "Cosmetic / Copper / Tanning",
+      "handle": "melanotan-2",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "melanotan-2-10mg",
+          "title": "10mg",
+          "sku": "MELANOTAN_2_10MG",
+          "handle": "melanotan-2-10mg",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "melanotan-2-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cosmetic-copper-tanning-snap-8",
+      "title": "Snap-8",
+      "category": "Cosmetic / Copper / Tanning",
+      "handle": "snap-8",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "snap-8-10mg",
+          "title": "10mg",
+          "sku": "SNAP_8_10MG",
+          "handle": "snap-8-10mg",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "snap-8-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-ara-290",
+      "title": "ARA-290",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "ara-290",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "ara-290-10mg",
+          "title": "10mg",
+          "sku": "ARA_290_10MG",
+          "handle": "ara-290-10mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "ara-290-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-bremelanotide",
+      "title": "Bremelanotide",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "bremelanotide",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "bremelanotide-5mg",
+          "title": "5mg",
+          "sku": "BREMELANOTIDE_5MG",
+          "handle": "bremelanotide-5mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "bremelanotide-5mg"
+          }
+        },
+        {
+          "id": "bremelanotide-10mg",
+          "title": "10mg",
+          "sku": "BREMELANOTIDE_10MG",
+          "handle": "bremelanotide-10mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "bremelanotide-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-dermorphin",
+      "title": "Dermorphin",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "dermorphin",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "dermorphin-5mg",
+          "title": "5mg",
+          "sku": "DERMORPHIN_5MG",
+          "handle": "dermorphin-5mg",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "dermorphin-5mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-dsip",
+      "title": "DSIP",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "dsip",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "dsip-5mg",
+          "title": "5mg",
+          "sku": "DSIP_5MG",
+          "handle": "dsip-5mg",
+          "amount_usd": 30,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "dsip-5mg"
+          }
+        },
+        {
+          "id": "dsip-10mg",
+          "title": "10mg",
+          "sku": "DSIP_10MG",
+          "handle": "dsip-10mg",
+          "amount_usd": 45,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "dsip-10mg"
+          }
+        },
+        {
+          "id": "dsip-15mg",
+          "title": "15mg",
+          "sku": "DSIP_15MG",
+          "handle": "dsip-15mg",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "15mg",
+            "catalog_slug": "dsip-15mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-epithalon",
+      "title": "Epithalon",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "epithalon",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "epithalon-10mg",
+          "title": "10mg",
+          "sku": "EPITHALON_10MG",
+          "handle": "epithalon-10mg",
+          "amount_usd": 45,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "epithalon-10mg"
+          }
+        },
+        {
+          "id": "epithalon-20mg",
+          "title": "20mg",
+          "sku": "EPITHALON_20MG",
+          "handle": "epithalon-20mg",
+          "amount_usd": 70,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "20mg",
+            "catalog_slug": "epithalon-20mg"
+          }
+        },
+        {
+          "id": "epithalon-50mg",
+          "title": "50mg",
+          "sku": "EPITHALON_50MG",
+          "handle": "epithalon-50mg",
+          "amount_usd": 120,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "50mg",
+            "catalog_slug": "epithalon-50mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-foxo4-dri",
+      "title": "FOXO4-DRI",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "foxo4-dri",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "foxo4-dri-10mg",
+          "title": "10mg",
+          "sku": "FOXO4_DRI_10MG",
+          "handle": "foxo4-dri-10mg",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "foxo4-dri-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-kisspeptin-10",
+      "title": "Kisspeptin-10",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "kisspeptin-10",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "kisspeptin-10-5mg",
+          "title": "5mg",
+          "sku": "KISSPEPTIN_10_5MG",
+          "handle": "kisspeptin-10-5mg",
+          "amount_usd": 25,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "kisspeptin-10-5mg"
+          }
+        },
+        {
+          "id": "kisspeptin-10-10mg",
+          "title": "10mg",
+          "sku": "KISSPEPTIN_10_10MG",
+          "handle": "kisspeptin-10-10mg",
+          "amount_usd": 65,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "kisspeptin-10-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-kpv",
+      "title": "KPV",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "kpv",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "kpv-5mg",
+          "title": "5mg",
+          "sku": "KPV_5MG",
+          "handle": "kpv-5mg",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "kpv-5mg"
+          }
+        },
+        {
+          "id": "kpv-10mg",
+          "title": "10mg",
+          "sku": "KPV_10MG",
+          "handle": "kpv-10mg",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "kpv-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-ll-37",
+      "title": "LL-37",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "ll-37",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "ll-37-5mg",
+          "title": "5mg",
+          "sku": "LL_37_5MG",
+          "handle": "ll-37-5mg",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "ll-37-5mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-nad",
+      "title": "NAD+",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "nad",
+      "visual_type": "blend",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "nad-100mg",
+          "title": "100mg",
+          "sku": "NAD_PLUS_100MG",
+          "handle": "nad-plus-100mg",
+          "amount_usd": 40,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "100mg",
+            "catalog_slug": "nad-plus-100mg"
+          }
+        },
+        {
+          "id": "nad-500mg",
+          "title": "500mg",
+          "sku": "NAD_PLUS_500MG",
+          "handle": "nad-plus-500mg",
+          "amount_usd": 75,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "500mg",
+            "catalog_slug": "nad-plus-500mg"
+          }
+        },
+        {
+          "id": "nad-1000mg",
+          "title": "1000mg",
+          "sku": "NAD_PLUS_1000MG",
+          "handle": "nad-plus-1000mg",
+          "amount_usd": 150,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "1000mg",
+            "catalog_slug": "nad-plus-1000mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-oxytocin-acetate",
+      "title": "Oxytocin Acetate",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "oxytocin-acetate",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "oxytocin-acetate-2mg",
+          "title": "2mg",
+          "sku": "OXYTOCIN_ACETATE_2MG",
+          "handle": "oxytocin-acetate-2mg",
+          "amount_usd": 25,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "2mg",
+            "catalog_slug": "oxytocin-acetate-2mg"
+          }
+        },
+        {
+          "id": "oxytocin-acetate-5mg",
+          "title": "5mg",
+          "sku": "OXYTOCIN_ACETATE_5MG",
+          "handle": "oxytocin-acetate-5mg",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "oxytocin-acetate-5mg"
+          }
+        },
+        {
+          "id": "oxytocin-acetate-10mg",
+          "title": "10mg",
+          "sku": "OXYTOCIN_ACETATE_10MG",
+          "handle": "oxytocin-acetate-10mg",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "oxytocin-acetate-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-selank",
+      "title": "Selank",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "selank",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "selank-5mg",
+          "title": "5mg",
+          "sku": "SELANK_5MG",
+          "handle": "selank-5mg",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "selank-5mg"
+          }
+        },
+        {
+          "id": "selank-10mg",
+          "title": "10mg",
+          "sku": "SELANK_10MG",
+          "handle": "selank-10mg",
+          "amount_usd": 50,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "selank-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-semax",
+      "title": "Semax",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "semax",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "semax-5mg",
+          "title": "5mg",
+          "sku": "SEMAX_5MG",
+          "handle": "semax-5mg",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "semax-5mg"
+          }
+        },
+        {
+          "id": "semax-10mg",
+          "title": "10mg",
+          "sku": "SEMAX_10MG",
+          "handle": "semax-10mg",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "semax-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-thymalin",
+      "title": "Thymalin",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "thymalin",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "thymalin-10mg",
+          "title": "10mg",
+          "sku": "THYMALIN_10MG",
+          "handle": "thymalin-10mg",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "thymalin-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-thymosin-alpha-1",
+      "title": "Thymosin Alpha-1",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "thymosin-alpha-1",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "thymosin-alpha-1-5mg",
+          "title": "5mg",
+          "sku": "THYMOSIN_ALPHA_1_5MG",
+          "handle": "thymosin-alpha-1-5mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "thymosin-alpha-1-5mg"
+          }
+        },
+        {
+          "id": "thymosin-alpha-1-10mg",
+          "title": "10mg",
+          "sku": "THYMOSIN_ALPHA_1_10MG",
+          "handle": "thymosin-alpha-1-10mg",
+          "amount_usd": 119,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "thymosin-alpha-1-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "longevity-thymic-neuropeptides-vip",
+      "title": "VIP",
+      "category": "Longevity / Thymic / Neuropeptides",
+      "handle": "vip",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "vip-10mg",
+          "title": "10mg",
+          "sku": "VIP_10MG",
+          "handle": "vip-10mg",
+          "amount_usd": 99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "vip-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "vitamins-injectables-b-12",
+      "title": "B-12",
+      "category": "Vitamins & Injectables",
+      "handle": "b-12",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "b-12-10mg",
+          "title": "10mg",
+          "sku": "B_12_10MG",
+          "handle": "b-12-10mg",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10mg",
+            "catalog_slug": "b-12-10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "vitamins-injectables-glutathione",
+      "title": "Glutathione",
+      "category": "Vitamins & Injectables",
+      "handle": "glutathione",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "glutathione-600mg",
+          "title": "600mg",
+          "sku": "GLUTATHIONE_600MG",
+          "handle": "glutathione-600mg",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "600mg",
+            "catalog_slug": "glutathione-600mg"
+          }
+        },
+        {
+          "id": "glutathione-1500mg",
+          "title": "1500mg",
+          "sku": "GLUTATHIONE_1500MG",
+          "handle": "glutathione-1500mg",
+          "amount_usd": 99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "1500mg",
+            "catalog_slug": "glutathione-1500mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "vitamins-injectables-l-carnitine",
+      "title": "L-Carnitine",
+      "category": "Vitamins & Injectables",
+      "handle": "l-carnitine",
+      "visual_type": "water_solution",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "l-carnitine-600mg-10ml",
+          "title": "600mg (10ml)",
+          "sku": "L_CARNITINE_600MG_10ML",
+          "handle": "l-carnitine-600mg-10ml",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "600mg (10ml)",
+            "catalog_slug": "l-carnitine-600mg-10ml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "vitamins-injectables-lemon-bottle",
+      "title": "Lemon Bottle",
+      "category": "Vitamins & Injectables",
+      "handle": "lemon-bottle",
+      "visual_type": "water_solution",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "lemon-bottle-10ml",
+          "title": "10ml",
+          "sku": "LEMON_BOTTLE_10ML",
+          "handle": "lemon-bottle-10ml",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10ml",
+            "catalog_slug": "lemon-bottle-10ml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "vitamins-injectables-lipo-c",
+      "title": "Lipo-C",
+      "category": "Vitamins & Injectables",
+      "handle": "lipo-c",
+      "visual_type": "water_solution",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "lipo-c-10ml",
+          "title": "10ml",
+          "sku": "LIPO_C_10ML",
+          "handle": "lipo-c-10ml",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "10ml",
+            "catalog_slug": "lipo-c-10ml"
+          }
+        }
+      ]
+    },
+    {
+      "id": "vitamins-injectables-mk-677",
+      "title": "MK-677",
+      "category": "Vitamins & Injectables",
+      "handle": "mk-677",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "mk-677-5mg",
+          "title": "5mg",
+          "sku": "MK_677_5MG",
+          "handle": "mk-677-5mg",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "5mg",
+            "catalog_slug": "mk-677-5mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "legacy-catalog-l-glu",
+      "title": "L-Glu",
+      "category": "Legacy Catalog",
+      "handle": "l-glu",
+      "visual_type": "vial",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "l-glu-100mg",
+          "title": "100mg",
+          "sku": "L_GLU_100MG",
+          "handle": "l-glu-100mg",
+          "amount_usd": 40,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "100mg",
+            "catalog_slug": "l-glu-100mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "legacy-catalog-pinealon-capsules",
+      "title": "Pinealon (Capsules)",
+      "category": "Legacy Catalog",
+      "handle": "pinealon-capsules",
+      "visual_type": "capsule",
+      "metadata": {
+        "source": "USD-PRICING.xlsx",
+        "ruo": true
+      },
+      "variants": [
+        {
+          "id": "pinealon-capsules-100-count",
+          "title": "100 count",
+          "sku": "PINEALON_CAPSULES_100CT",
+          "handle": "pinealon-capsules-100ct",
+          "amount_usd": 99,
+          "currency_code": "usd",
+          "metadata": {
+            "strength": "100 count",
+            "catalog_slug": "pinealon-capsules-100ct"
+          }
+        }
+      ]
+    }
+  ]
+}

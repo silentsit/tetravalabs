@@ -1,0 +1,22 @@
+{
+  "name": "@tetrava/medusa",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "medusa develop",
+    "start": "medusa start",
+    "build": "medusa build",
+    "seed": "node ./src/scripts/seed-catalog.mjs"
+  },
+  "dependencies": {
+    "@medusajs/framework": "^2.11.2",
+    "@medusajs/medusa": "^2.11.2",
+    "@medusajs/payment": "^2.11.2",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

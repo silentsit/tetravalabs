@@ -1,0 +1,13 @@
+{
+  "name": "@tetrava/catalog",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "normalize": "node scripts/normalize-catalog.mjs",
+    "import:medusa": "node scripts/import-to-medusa.mjs"
+  },
+  "dependencies": {
+    "axios": "^1.8.4"
+  }
+}

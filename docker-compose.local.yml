@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: tetrava-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tetrava_medusa
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: tetrava-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  typesense:
+    image: typesense/typesense:0.25.2
+    container_name: tetrava-typesense
+    restart: unless-stopped
+    ports:
+      - "8108:8108"
+    command:
+      - "--data-dir=/data"
+      - "--api-key=xyz"
+      - "--enable-cors"
+    volumes:
+      - typesense_data:/data
+
+volumes:
+  postgres_data:
+  typesense_data:

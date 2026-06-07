@@ -2,12 +2,25 @@
   "name": "tetravalabs-root",
   "private": true,
   "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "build": "cd app && npm install --include=dev && npm run build && cd .. && node scripts/sync-next-output.mjs",
-    "dev": "npm --prefix app run dev",
-    "start": "npm --prefix app run start"
+    "dev": "npm --prefix apps/storefront run dev",
+    "build": "npm --prefix apps/storefront run build",
+    "start": "npm --prefix apps/storefront run start",
+    "dev:legacy": "npm --prefix app run dev",
+    "build:legacy": "npm --prefix app run build",
+    "medusa:dev": "npm --prefix apps/medusa run dev",
+    "medusa:start": "npm --prefix apps/medusa run start",
+    "catalog:normalize": "npm --prefix packages/catalog run normalize",
+    "catalog:import": "npm --prefix packages/catalog run import:medusa"
   },
-  "dependencies": {
-    "next": "^16.0.0"
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
   }
 }

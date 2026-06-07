@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "npm --prefix app run build",
+    "build": "cd app && npm install --include=dev && npm run build",
     "dev": "npm --prefix app run dev",
     "start": "npm --prefix app run start"
   },

@@ -1,0 +1,13 @@
+{
+  "name": "tetravalabs-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm --prefix app run build",
+    "dev": "npm --prefix app run dev",
+    "start": "npm --prefix app run start"
+  },
+  "dependencies": {
+    "next": "^16.0.0"
+  }
+}

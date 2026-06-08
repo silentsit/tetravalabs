@@ -56,7 +56,7 @@ Create separate env sets for:
 Without this, Vercel builds from the monorepo root and fails with "No Next.js version detected".
 
 - Root directory: `apps/storefront` (dashboard setting)
-- Install command: `cd ../.. && npm ci` (configured in `apps/storefront/vercel.json`)
+- Install command: `cd .. && npm ci` (one level up to monorepo root — **not** `../..`)
 - **Do not set Output Directory** in Vercel dashboard — leave it empty so the Next.js builder manages `.next` automatically
 - Node version: `20.x` (`.nvmrc` + `engines` in package.json)
 - Required env: see `apps/storefront/.env.example`

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "coa_semaglutide_5mg_batch_a001",
+    "variant_id": "semaglutide-5mg",
+    "batch_number": "A001",
+    "purity_percent": 99.2,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "coa",
+    "document_url": "https://example.com/coa/semaglutide-5mg-a001.pdf",
+    "metadata": {
+      "compound": "Semaglutide"
+    }
+  },
+  {
+    "id": "hplc_semaglutide_5mg_batch_a001",
+    "variant_id": "semaglutide-5mg",
+    "batch_number": "A001",
+    "purity_percent": 99.2,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "hplc",
+    "document_url": "https://example.com/hplc/semaglutide-5mg-a001.pdf",
+    "metadata": {
+      "compound": "Semaglutide"
+    }
+  }
+]

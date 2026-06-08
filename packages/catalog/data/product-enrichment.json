@@ -1,0 +1,91 @@
+{
+  "Semaglutide": {
+    "cas_number": "910463-68-2",
+    "molecular_formula": "C187H291N45O59",
+    "molecular_weight": "4113.58",
+    "storage": "-20C lyophilized",
+    "appearance": "White to off-white lyophilized powder"
+  },
+  "Tirzepatide": {
+    "cas_number": "2023788-19-2",
+    "molecular_formula": "C225H348N48O68",
+    "molecular_weight": "4813.45",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "Retatrutide": {
+    "cas_number": "2381089-83-2",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "Cagrilintide": {
+    "cas_number": "1415456-99-3",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "Tesamorelin": {
+    "cas_number": "218949-48-5",
+    "molecular_formula": "C221H366N72O67S",
+    "molecular_weight": "5135.90",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "BPC-157": {
+    "cas_number": "137525-51-0",
+    "molecular_formula": "C62H98N16O22",
+    "molecular_weight": "1419.53",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "TB500": {
+    "cas_number": "77591-33-4",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "Ipamorelin": {
+    "cas_number": "170851-70-4",
+    "molecular_formula": "C38H49N9O5",
+    "molecular_weight": "711.85",
+    "storage": "-20C lyophilized",
+    "appearance": "White powder"
+  },
+  "CJC-1295 with DAC": {
+    "cas_number": "863288-34-0",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "CJC-1295 without DAC": {
+    "cas_number": "446262-90-4",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "GHK-CU": {
+    "cas_number": "89030-95-5",
+    "molecular_formula": "C14H24CuN6O4",
+    "molecular_weight": "400.92",
+    "storage": "2-8C",
+    "appearance": "Blue lyophilized powder"
+  },
+  "Melanotan-2": {
+    "cas_number": "121062-08-6",
+    "molecular_formula": "C50H69N15O9",
+    "molecular_weight": "1024.20",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "MOTS-C": {
+    "cas_number": "1627580-64-6",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "AOD-9604": {
+    "cas_number": "221231-10-3",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder"
+  },
+  "5-Amino-1MQ": {
+    "cas_number": "42437-96-7",
+    "storage": "Room temperature, dry",
+    "appearance": "White powder"
+  }
+}

@@ -8,6 +8,7 @@ const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
 const sourcePath = path.join(workspaceRoot, "product_catalog_usd.json")
 const outputDir = path.join(workspaceRoot, "packages", "catalog", "output")
 const outputPath = path.join(outputDir, "catalog.normalized.json")
+const enrichmentPath = path.join(workspaceRoot, "packages", "catalog", "data", "product-enrichment.json")
 
 const slugify = (value) =>
   value
@@ -38,6 +39,7 @@ const toVariantId = (name, strength) => slugify(`${name}-${strength}`)
 
 const run = async () => {
   const raw = JSON.parse(await fs.readFile(sourcePath, "utf8"))
+  const enrichment = JSON.parse(await fs.readFile(enrichmentPath, "utf8"))
   const grouped = new Map()
 
   for (const row of raw) {
@@ -51,7 +53,18 @@ const run = async () => {
         visual_type: visualType(row.name, row.strength),
         metadata: {
           source: "USD-PRICING.xlsx",
-          ruo: true
+          ruo: true,
+          cas_number: enrichment[row.name]?.cas_number || null,
+          molecular_formula: enrichment[row.name]?.molecular_formula || null,
+          molecular_weight: enrichment[row.name]?.molecular_weight || null,
+          storage: enrichment[row.name]?.storage || "-20C lyophilized",
+          appearance:
+            enrichment[row.name]?.appearance ||
+            (isCapsule(row.name, row.strength)
+              ? "White capsule"
+              : isWaterSolution(row.name, row.strength)
+                ? "Clear solution"
+                : "White lyophilized powder")
         },
         variants: []
       })
@@ -66,7 +79,8 @@ const run = async () => {
       currency_code: "usd",
       metadata: {
         strength: row.strength,
-        catalog_slug: row.slug
+        catalog_slug: row.slug,
+        dosage_mg: Number((row.strength.match(/(\d+)\s*mg/i) || [])[1] || 0)
       }
     })
   }

@@ -76,3 +76,17 @@ export async function listCoasByVariant(variantId: string) {
     return []
   }
 }
+
+export async function listRecentCoas(limit = 50) {
+  try {
+    const response = await fetch(`${MEDUSA_URL}/store/coas?limit=${limit}`, {
+      headers: withHeaders(),
+      next: { revalidate: 300, tags: ["coas:recent"] }
+    })
+    if (!response.ok) throw new Error("Failed COA request")
+    const data = await response.json()
+    return (data.items || []) as StoreCoaDocument[]
+  } catch {
+    return []
+  }
+}

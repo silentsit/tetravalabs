@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { useCart } from "@/components/cart-provider"
 
 const links = [
   { href: "/shop", label: "Shop" },
@@ -8,6 +11,8 @@ const links = [
 ]
 
 export function SiteHeader() {
+  const { totalItems } = useCart()
+
   return (
     <header className="border-b border-white/10 bg-[#0A0A10]/80">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
@@ -20,6 +25,9 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <Link href="/cart" className="hover:text-[#E8E8F0]">
+            Cart ({totalItems})
+          </Link>
         </nav>
       </div>
     </header>

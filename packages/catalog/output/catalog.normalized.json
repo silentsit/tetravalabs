@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T04:18:42.364Z",
+  "generated_at": "2026-06-08T08:35:54.516Z",
   "products": [
     {
       "id": "supplies-reconstitution-acetic-acid-water",
@@ -9,7 +9,12 @@
       "visual_type": "water_solution",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "Clear solution"
       },
       "variants": [
         {
@@ -21,7 +26,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "3ml",
-            "catalog_slug": "acetic-acid-water-3ml"
+            "catalog_slug": "acetic-acid-water-3ml",
+            "dosage_mg": 0
           }
         }
       ]
@@ -34,7 +40,12 @@
       "visual_type": "water_solution",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "Clear solution"
       },
       "variants": [
         {
@@ -46,7 +57,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "3ml",
-            "catalog_slug": "bacteriostatic-water-3ml"
+            "catalog_slug": "bacteriostatic-water-3ml",
+            "dosage_mg": 0
           }
         },
         {
@@ -58,7 +70,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10ml",
-            "catalog_slug": "bacteriostatic-water-10ml"
+            "catalog_slug": "bacteriostatic-water-10ml",
+            "dosage_mg": 0
           }
         }
       ]
@@ -71,7 +84,12 @@
       "visual_type": "water_solution",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "Clear solution"
       },
       "variants": [
         {
@@ -83,7 +101,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "3ml",
-            "catalog_slug": "benzyl-alcohol-3ml"
+            "catalog_slug": "benzyl-alcohol-3ml",
+            "dosage_mg": 0
           }
         },
         {
@@ -95,7 +114,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10ml",
-            "catalog_slug": "benzyl-alcohol-10ml"
+            "catalog_slug": "benzyl-alcohol-10ml",
+            "dosage_mg": 0
           }
         }
       ]
@@ -108,7 +128,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "42437-96-7",
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "Room temperature, dry",
+        "appearance": "White powder"
       },
       "variants": [
         {
@@ -120,7 +145,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "5-amino-1mq-5mg"
+            "catalog_slug": "5-amino-1mq-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -132,7 +158,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "5-amino-1mq-10mg"
+            "catalog_slug": "5-amino-1mq-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -145,7 +172,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "221231-10-3",
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -157,7 +189,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "aod-9604-5mg"
+            "catalog_slug": "aod-9604-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -169,7 +202,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "aod-9604-10mg"
+            "catalog_slug": "aod-9604-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -182,7 +216,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "1415456-99-3",
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -194,7 +233,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "cagrilintide-5mg"
+            "catalog_slug": "cagrilintide-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -206,7 +246,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "cagrilintide-10mg"
+            "catalog_slug": "cagrilintide-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -219,7 +260,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -231,7 +277,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "cagrilintide-semaglutide-5mg"
+            "catalog_slug": "cagrilintide-semaglutide-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -243,7 +290,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "cagrilintide-semaglutide-10mg"
+            "catalog_slug": "cagrilintide-semaglutide-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -256,7 +304,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -268,7 +321,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "mazdutide-5mg"
+            "catalog_slug": "mazdutide-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -280,7 +334,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "mazdutide-10mg"
+            "catalog_slug": "mazdutide-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -293,7 +348,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "2381089-83-2",
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -305,7 +365,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "retatrutide-5mg"
+            "catalog_slug": "retatrutide-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -317,7 +378,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "retatrutide-10mg"
+            "catalog_slug": "retatrutide-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -329,7 +391,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "20mg",
-            "catalog_slug": "retatrutide-20mg"
+            "catalog_slug": "retatrutide-20mg",
+            "dosage_mg": 20
           }
         },
         {
@@ -341,7 +404,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "50mg",
-            "catalog_slug": "retatrutide-50mg"
+            "catalog_slug": "retatrutide-50mg",
+            "dosage_mg": 50
           }
         },
         {
@@ -353,7 +417,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "100mg",
-            "catalog_slug": "retatrutide-100mg"
+            "catalog_slug": "retatrutide-100mg",
+            "dosage_mg": 100
           }
         }
       ]
@@ -366,7 +431,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "910463-68-2",
+        "molecular_formula": "C187H291N45O59",
+        "molecular_weight": "4113.58",
+        "storage": "-20C lyophilized",
+        "appearance": "White to off-white lyophilized powder"
       },
       "variants": [
         {
@@ -378,7 +448,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "semaglutide-5mg"
+            "catalog_slug": "semaglutide-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -390,7 +461,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "semaglutide-10mg"
+            "catalog_slug": "semaglutide-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -403,7 +475,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -415,7 +492,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "sermorelin-5mg"
+            "catalog_slug": "sermorelin-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -427,7 +505,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "sermorelin-10mg"
+            "catalog_slug": "sermorelin-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -440,7 +519,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -452,7 +536,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "survodutide-10mg"
+            "catalog_slug": "survodutide-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -465,7 +550,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "218949-48-5",
+        "molecular_formula": "C221H366N72O67S",
+        "molecular_weight": "5135.90",
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -477,7 +567,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "tesamorelin-5mg"
+            "catalog_slug": "tesamorelin-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -489,7 +580,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "tesamorelin-10mg"
+            "catalog_slug": "tesamorelin-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -501,7 +593,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "20mg",
-            "catalog_slug": "tesamorelin-20mg"
+            "catalog_slug": "tesamorelin-20mg",
+            "dosage_mg": 20
           }
         }
       ]
@@ -514,7 +607,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "2023788-19-2",
+        "molecular_formula": "C225H348N48O68",
+        "molecular_weight": "4813.45",
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -526,7 +624,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "tirzepatide-5mg"
+            "catalog_slug": "tirzepatide-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -538,7 +637,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "tirzepatide-10mg"
+            "catalog_slug": "tirzepatide-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -550,7 +650,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "20mg",
-            "catalog_slug": "tirzepatide-20mg"
+            "catalog_slug": "tirzepatide-20mg",
+            "dosage_mg": 20
           }
         },
         {
@@ -562,7 +663,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "50mg",
-            "catalog_slug": "tirzepatide-50mg"
+            "catalog_slug": "tirzepatide-50mg",
+            "dosage_mg": 50
           }
         }
       ]
@@ -575,7 +677,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "137525-51-0",
+        "molecular_formula": "C62H98N16O22",
+        "molecular_weight": "1419.53",
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -587,7 +694,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "bpc-157-5mg"
+            "catalog_slug": "bpc-157-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -599,7 +707,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "bpc-157-10mg"
+            "catalog_slug": "bpc-157-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -612,7 +721,12 @@
       "visual_type": "capsule",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White capsule"
       },
       "variants": [
         {
@@ -624,7 +738,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "100 count (500mcg)",
-            "catalog_slug": "bpc-157-capsules-100ct"
+            "catalog_slug": "bpc-157-capsules-100ct",
+            "dosage_mg": 0
           }
         }
       ]
@@ -637,7 +752,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "77591-33-4",
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -649,7 +769,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "tb500-5mg"
+            "catalog_slug": "tb500-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -661,7 +782,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "tb500-10mg"
+            "catalog_slug": "tb500-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -674,7 +796,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -686,7 +813,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "bpc-157-tb500-blend-10mg"
+            "catalog_slug": "bpc-157-tb500-blend-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -698,7 +826,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "20mg",
-            "catalog_slug": "bpc-157-tb500-blend-20mg"
+            "catalog_slug": "bpc-157-tb500-blend-20mg",
+            "dosage_mg": 20
           }
         }
       ]
@@ -711,7 +840,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -723,7 +857,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "80mg",
-            "catalog_slug": "cu-tb500-bpc-157-kpv-blend-80mg"
+            "catalog_slug": "cu-tb500-bpc-157-kpv-blend-80mg",
+            "dosage_mg": 80
           }
         }
       ]
@@ -736,7 +871,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -748,7 +888,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "30mg",
-            "catalog_slug": "glow-blend-30mg"
+            "catalog_slug": "glow-blend-30mg",
+            "dosage_mg": 30
           }
         },
         {
@@ -760,7 +901,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "85mg",
-            "catalog_slug": "glow-blend-85mg"
+            "catalog_slug": "glow-blend-85mg",
+            "dosage_mg": 85
           }
         }
       ]
@@ -773,7 +915,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -785,7 +932,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "70mg",
-            "catalog_slug": "glow-tb500-bpc-157-ghk-cu-70mg"
+            "catalog_slug": "glow-tb500-bpc-157-ghk-cu-70mg",
+            "dosage_mg": 70
           }
         }
       ]
@@ -798,7 +946,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "863288-34-0",
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -810,7 +963,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "cjc-1295-with-dac-5mg"
+            "catalog_slug": "cjc-1295-with-dac-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -822,7 +976,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "cjc-1295-with-dac-10mg"
+            "catalog_slug": "cjc-1295-with-dac-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -835,7 +990,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "446262-90-4",
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -847,7 +1007,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "cjc-1295-without-dac-5mg"
+            "catalog_slug": "cjc-1295-without-dac-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -859,7 +1020,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "cjc-1295-without-dac-10mg"
+            "catalog_slug": "cjc-1295-without-dac-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -872,7 +1034,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -884,7 +1051,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "cjc-1295-ipamorelin-blend-10mg"
+            "catalog_slug": "cjc-1295-ipamorelin-blend-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -897,7 +1065,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -909,7 +1082,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "cjc-1295-sermorelin-ipamorelin-blend-5mg"
+            "catalog_slug": "cjc-1295-sermorelin-ipamorelin-blend-5mg",
+            "dosage_mg": 5
           }
         }
       ]
@@ -922,7 +1096,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -934,7 +1113,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "ghrp-2-acetate-5mg"
+            "catalog_slug": "ghrp-2-acetate-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -946,7 +1126,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "ghrp-2-acetate-10mg"
+            "catalog_slug": "ghrp-2-acetate-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -959,7 +1140,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -971,7 +1157,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "ghrp-6-acetate-5mg"
+            "catalog_slug": "ghrp-6-acetate-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -983,7 +1170,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "ghrp-6-acetate-10mg"
+            "catalog_slug": "ghrp-6-acetate-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -996,7 +1184,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1008,7 +1201,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "2mg",
-            "catalog_slug": "hexarelin-acetate-2mg"
+            "catalog_slug": "hexarelin-acetate-2mg",
+            "dosage_mg": 2
           }
         },
         {
@@ -1020,7 +1214,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "hexarelin-acetate-5mg"
+            "catalog_slug": "hexarelin-acetate-5mg",
+            "dosage_mg": 5
           }
         }
       ]
@@ -1033,7 +1228,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": "170851-70-4",
+        "molecular_formula": "C38H49N9O5",
+        "molecular_weight": "711.85",
+        "storage": "-20C lyophilized",
+        "appearance": "White powder"
       },
       "variants": [
         {
@@ -1045,7 +1245,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "ipamorelin-5mg"
+            "catalog_slug": "ipamorelin-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -1057,7 +1258,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "ipamorelin-10mg"
+            "catalog_slug": "ipamorelin-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1070,7 +1272,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1082,7 +1289,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "2mg",
-            "catalog_slug": "gonadorelin-2mg"
+            "catalog_slug": "gonadorelin-2mg",
+            "dosage_mg": 2
           }
         },
         {
@@ -1094,7 +1302,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "gonadorelin-10mg"
+            "catalog_slug": "gonadorelin-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1107,7 +1316,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1119,7 +1333,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5000 IU",
-            "catalog_slug": "hcg-5000-iu"
+            "catalog_slug": "hcg-5000-iu",
+            "dosage_mg": 0
           }
         },
         {
@@ -1131,7 +1346,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10000 IU",
-            "catalog_slug": "hcg-10000-iu"
+            "catalog_slug": "hcg-10000-iu",
+            "dosage_mg": 0
           }
         }
       ]
@@ -1144,7 +1360,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1156,7 +1377,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10 IU",
-            "catalog_slug": "hgh-191aa-10-iu"
+            "catalog_slug": "hgh-191aa-10-iu",
+            "dosage_mg": 0
           }
         },
         {
@@ -1168,7 +1390,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "12 IU",
-            "catalog_slug": "hgh-191aa-12-iu"
+            "catalog_slug": "hgh-191aa-12-iu",
+            "dosage_mg": 0
           }
         },
         {
@@ -1180,7 +1403,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "15 IU",
-            "catalog_slug": "hgh-191aa-15-iu"
+            "catalog_slug": "hgh-191aa-15-iu",
+            "dosage_mg": 0
           }
         },
         {
@@ -1192,7 +1416,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "24 IU",
-            "catalog_slug": "hgh-191aa-24-iu"
+            "catalog_slug": "hgh-191aa-24-iu",
+            "dosage_mg": 0
           }
         },
         {
@@ -1204,7 +1429,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "36 IU",
-            "catalog_slug": "hgh-191aa-36-iu"
+            "catalog_slug": "hgh-191aa-36-iu",
+            "dosage_mg": 0
           }
         }
       ]
@@ -1217,7 +1443,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1229,7 +1460,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "75 IU",
-            "catalog_slug": "hmg-75-iu"
+            "catalog_slug": "hmg-75-iu",
+            "dosage_mg": 0
           }
         }
       ]
@@ -1242,7 +1474,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1254,7 +1491,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "0.1mg",
-            "catalog_slug": "igf-1-lr3-0-1mg"
+            "catalog_slug": "igf-1-lr3-0-1mg",
+            "dosage_mg": 1
           }
         },
         {
@@ -1266,7 +1504,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "1mg",
-            "catalog_slug": "igf-1-lr3-1mg"
+            "catalog_slug": "igf-1-lr3-1mg",
+            "dosage_mg": 1
           }
         }
       ]
@@ -1279,7 +1518,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1291,7 +1535,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "2mg",
-            "catalog_slug": "mgf-2mg"
+            "catalog_slug": "mgf-2mg",
+            "dosage_mg": 2
           }
         }
       ]
@@ -1304,7 +1549,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1316,7 +1566,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "2mg",
-            "catalog_slug": "peg-mgf-2mg"
+            "catalog_slug": "peg-mgf-2mg",
+            "dosage_mg": 2
           }
         }
       ]
@@ -1329,7 +1580,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1341,7 +1597,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "2mg",
-            "catalog_slug": "adipotide-2mg"
+            "catalog_slug": "adipotide-2mg",
+            "dosage_mg": 2
           }
         },
         {
@@ -1353,7 +1610,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "adipotide-5mg"
+            "catalog_slug": "adipotide-5mg",
+            "dosage_mg": 5
           }
         }
       ]
@@ -1366,7 +1624,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1378,7 +1641,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "50mg",
-            "catalog_slug": "aicar-50mg"
+            "catalog_slug": "aicar-50mg",
+            "dosage_mg": 50
           }
         }
       ]
@@ -1391,7 +1655,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1403,7 +1672,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "mots-c-5mg"
+            "catalog_slug": "mots-c-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -1415,7 +1685,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "mots-c-10mg"
+            "catalog_slug": "mots-c-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -1427,7 +1698,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "20mg",
-            "catalog_slug": "mots-c-20mg"
+            "catalog_slug": "mots-c-20mg",
+            "dosage_mg": 20
           }
         },
         {
@@ -1439,7 +1711,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "40mg",
-            "catalog_slug": "mots-c-40mg"
+            "catalog_slug": "mots-c-40mg",
+            "dosage_mg": 40
           }
         }
       ]
@@ -1452,7 +1725,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1464,7 +1742,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "ss-31-10mg"
+            "catalog_slug": "ss-31-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -1476,7 +1755,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "25mg",
-            "catalog_slug": "ss-31-25mg"
+            "catalog_slug": "ss-31-25mg",
+            "dosage_mg": 25
           }
         },
         {
@@ -1488,7 +1768,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "50mg",
-            "catalog_slug": "ss-31-50mg"
+            "catalog_slug": "ss-31-50mg",
+            "dosage_mg": 50
           }
         }
       ]
@@ -1501,7 +1782,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1513,7 +1799,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "50mg",
-            "catalog_slug": "ghk-cu-50mg"
+            "catalog_slug": "ghk-cu-50mg",
+            "dosage_mg": 50
           }
         },
         {
@@ -1525,7 +1812,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "100mg",
-            "catalog_slug": "ghk-cu-100mg"
+            "catalog_slug": "ghk-cu-100mg",
+            "dosage_mg": 100
           }
         }
       ]
@@ -1538,7 +1826,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1550,7 +1843,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "melanotan-1-10mg"
+            "catalog_slug": "melanotan-1-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1563,7 +1857,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1575,7 +1874,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "melanotan-2-10mg"
+            "catalog_slug": "melanotan-2-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1588,7 +1888,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1600,7 +1905,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "snap-8-10mg"
+            "catalog_slug": "snap-8-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1613,7 +1919,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1625,7 +1936,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "ara-290-10mg"
+            "catalog_slug": "ara-290-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1638,7 +1950,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1650,7 +1967,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "bremelanotide-5mg"
+            "catalog_slug": "bremelanotide-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -1662,7 +1980,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "bremelanotide-10mg"
+            "catalog_slug": "bremelanotide-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1675,7 +1994,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1687,7 +2011,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "dermorphin-5mg"
+            "catalog_slug": "dermorphin-5mg",
+            "dosage_mg": 5
           }
         }
       ]
@@ -1700,7 +2025,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1712,7 +2042,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "dsip-5mg"
+            "catalog_slug": "dsip-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -1724,7 +2055,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "dsip-10mg"
+            "catalog_slug": "dsip-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -1736,7 +2068,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "15mg",
-            "catalog_slug": "dsip-15mg"
+            "catalog_slug": "dsip-15mg",
+            "dosage_mg": 15
           }
         }
       ]
@@ -1749,7 +2082,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1761,7 +2099,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "epithalon-10mg"
+            "catalog_slug": "epithalon-10mg",
+            "dosage_mg": 10
           }
         },
         {
@@ -1773,7 +2112,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "20mg",
-            "catalog_slug": "epithalon-20mg"
+            "catalog_slug": "epithalon-20mg",
+            "dosage_mg": 20
           }
         },
         {
@@ -1785,7 +2125,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "50mg",
-            "catalog_slug": "epithalon-50mg"
+            "catalog_slug": "epithalon-50mg",
+            "dosage_mg": 50
           }
         }
       ]
@@ -1798,7 +2139,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1810,7 +2156,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "foxo4-dri-10mg"
+            "catalog_slug": "foxo4-dri-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1823,7 +2170,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1835,7 +2187,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "kisspeptin-10-5mg"
+            "catalog_slug": "kisspeptin-10-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -1847,7 +2200,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "kisspeptin-10-10mg"
+            "catalog_slug": "kisspeptin-10-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1860,7 +2214,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1872,7 +2231,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "kpv-5mg"
+            "catalog_slug": "kpv-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -1884,7 +2244,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "kpv-10mg"
+            "catalog_slug": "kpv-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -1897,7 +2258,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1909,7 +2275,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "ll-37-5mg"
+            "catalog_slug": "ll-37-5mg",
+            "dosage_mg": 5
           }
         }
       ]
@@ -1922,7 +2289,12 @@
       "visual_type": "blend",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1934,7 +2306,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "100mg",
-            "catalog_slug": "nad-plus-100mg"
+            "catalog_slug": "nad-plus-100mg",
+            "dosage_mg": 100
           }
         },
         {
@@ -1946,7 +2319,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "500mg",
-            "catalog_slug": "nad-plus-500mg"
+            "catalog_slug": "nad-plus-500mg",
+            "dosage_mg": 500
           }
         },
         {
@@ -1958,7 +2332,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "1000mg",
-            "catalog_slug": "nad-plus-1000mg"
+            "catalog_slug": "nad-plus-1000mg",
+            "dosage_mg": 1000
           }
         }
       ]
@@ -1971,7 +2346,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -1983,7 +2363,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "2mg",
-            "catalog_slug": "oxytocin-acetate-2mg"
+            "catalog_slug": "oxytocin-acetate-2mg",
+            "dosage_mg": 2
           }
         },
         {
@@ -1995,7 +2376,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "oxytocin-acetate-5mg"
+            "catalog_slug": "oxytocin-acetate-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -2007,7 +2389,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "oxytocin-acetate-10mg"
+            "catalog_slug": "oxytocin-acetate-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -2020,7 +2403,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2032,7 +2420,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "selank-5mg"
+            "catalog_slug": "selank-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -2044,7 +2433,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "selank-10mg"
+            "catalog_slug": "selank-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -2057,7 +2447,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2069,7 +2464,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "semax-5mg"
+            "catalog_slug": "semax-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -2081,7 +2477,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "semax-10mg"
+            "catalog_slug": "semax-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -2094,7 +2491,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2106,7 +2508,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "thymalin-10mg"
+            "catalog_slug": "thymalin-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -2119,7 +2522,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2131,7 +2539,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "thymosin-alpha-1-5mg"
+            "catalog_slug": "thymosin-alpha-1-5mg",
+            "dosage_mg": 5
           }
         },
         {
@@ -2143,7 +2552,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "thymosin-alpha-1-10mg"
+            "catalog_slug": "thymosin-alpha-1-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -2156,7 +2566,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2168,7 +2583,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "vip-10mg"
+            "catalog_slug": "vip-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -2181,7 +2597,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2193,7 +2614,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10mg",
-            "catalog_slug": "b-12-10mg"
+            "catalog_slug": "b-12-10mg",
+            "dosage_mg": 10
           }
         }
       ]
@@ -2206,7 +2628,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2218,7 +2645,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "600mg",
-            "catalog_slug": "glutathione-600mg"
+            "catalog_slug": "glutathione-600mg",
+            "dosage_mg": 600
           }
         },
         {
@@ -2230,7 +2658,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "1500mg",
-            "catalog_slug": "glutathione-1500mg"
+            "catalog_slug": "glutathione-1500mg",
+            "dosage_mg": 1500
           }
         }
       ]
@@ -2243,7 +2672,12 @@
       "visual_type": "water_solution",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "Clear solution"
       },
       "variants": [
         {
@@ -2255,7 +2689,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "600mg (10ml)",
-            "catalog_slug": "l-carnitine-600mg-10ml"
+            "catalog_slug": "l-carnitine-600mg-10ml",
+            "dosage_mg": 600
           }
         }
       ]
@@ -2268,7 +2703,12 @@
       "visual_type": "water_solution",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "Clear solution"
       },
       "variants": [
         {
@@ -2280,7 +2720,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10ml",
-            "catalog_slug": "lemon-bottle-10ml"
+            "catalog_slug": "lemon-bottle-10ml",
+            "dosage_mg": 0
           }
         }
       ]
@@ -2293,7 +2734,12 @@
       "visual_type": "water_solution",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "Clear solution"
       },
       "variants": [
         {
@@ -2305,7 +2751,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "10ml",
-            "catalog_slug": "lipo-c-10ml"
+            "catalog_slug": "lipo-c-10ml",
+            "dosage_mg": 0
           }
         }
       ]
@@ -2318,7 +2765,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2330,7 +2782,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "5mg",
-            "catalog_slug": "mk-677-5mg"
+            "catalog_slug": "mk-677-5mg",
+            "dosage_mg": 5
           }
         }
       ]
@@ -2343,7 +2796,12 @@
       "visual_type": "vial",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White lyophilized powder"
       },
       "variants": [
         {
@@ -2355,7 +2813,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "100mg",
-            "catalog_slug": "l-glu-100mg"
+            "catalog_slug": "l-glu-100mg",
+            "dosage_mg": 100
           }
         }
       ]
@@ -2368,7 +2827,12 @@
       "visual_type": "capsule",
       "metadata": {
         "source": "USD-PRICING.xlsx",
-        "ruo": true
+        "ruo": true,
+        "cas_number": null,
+        "molecular_formula": null,
+        "molecular_weight": null,
+        "storage": "-20C lyophilized",
+        "appearance": "White capsule"
       },
       "variants": [
         {
@@ -2380,7 +2844,8 @@
           "currency_code": "usd",
           "metadata": {
             "strength": "100 count",
-            "catalog_slug": "pinealon-capsules-100ct"
+            "catalog_slug": "pinealon-capsules-100ct",
+            "dosage_mg": 0
           }
         }
       ]

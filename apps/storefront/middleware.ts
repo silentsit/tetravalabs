@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-const restrictedCountries = new Set(["US-XX-BLOCKLIST"])
+const restrictedCountries = new Set(
+  (process.env.RESTRICTED_COUNTRIES || "")
+    .split(",")
+    .map((item) => item.trim().toUpperCase())
+    .filter(Boolean)
+)
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl

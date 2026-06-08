@@ -14,9 +14,6 @@ module.exports = defineConfig({
   projectConfig: {
     databaseUrl: DATABASE_URL,
     redisUrl: REDIS_URL,
-    admin: {
-      disable: true
-    },
     http: {
       storeCors: STORE_CORS,
       adminCors: ADMIN_CORS,

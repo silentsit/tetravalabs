@@ -8,7 +8,8 @@
     "build:backend": "tsc -p tsconfig.json --noEmit",
     "build": "medusa build || npm run build:backend",
     "seed": "node ./src/scripts/seed-catalog.mjs",
-    "db:lab-schema": "node ./src/scripts/apply-lab-schema.mjs"
+    "db:lab-schema": "node ./src/scripts/apply-lab-schema.mjs",
+    "bootstrap:admin": "medusa exec ./src/scripts/bootstrap-admin.ts"
   },
   "dependencies": {
     "@medusajs/framework": "^2.11.2",

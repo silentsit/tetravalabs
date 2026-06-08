@@ -57,8 +57,8 @@ Without this, Vercel builds from the monorepo root and fails with "No Next.js ve
 
 - Root directory: `apps/storefront` (dashboard setting)
 - Install command: `cd ../.. && npm ci` (configured in `apps/storefront/vercel.json`)
+- **Do not set Output Directory** in Vercel dashboard — leave it empty so the Next.js builder manages `.next` automatically
 - Node version: `20.x` (`.nvmrc` + `engines` in package.json)
-- Fallback root `vercel.json` exists if the project is linked at repo root
 - Required env: see `apps/storefront/.env.example`
 
 ## Render (Medusa)

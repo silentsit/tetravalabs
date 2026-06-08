@@ -51,8 +51,14 @@ Create separate env sets for:
 
 ## Vercel (Storefront)
 
-- Root directory: `apps/storefront`
+**Required:** In Vercel Project Settings → General → **Root Directory**, set `apps/storefront`.
+
+Without this, Vercel builds from the monorepo root and fails with "No Next.js version detected".
+
+- Root directory: `apps/storefront` (dashboard setting)
 - Install command: `cd ../.. && npm ci` (configured in `apps/storefront/vercel.json`)
+- Node version: `20.x` (`.nvmrc` + `engines` in package.json)
+- Fallback root `vercel.json` exists if the project is linked at repo root
 - Required env: see `apps/storefront/.env.example`
 
 ## Render (Medusa)

@@ -23,9 +23,10 @@
     "deploy:env": "node scripts/print-deploy-env.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": "20.x"
   },
   "devDependencies": {
+    "next": "^15.5.19",
     "ts-node": "^10.9.2"
   }
 }

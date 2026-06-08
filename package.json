@@ -15,7 +15,12 @@
     "medusa:dev": "npm --prefix apps/medusa run dev",
     "medusa:start": "npm --prefix apps/medusa run start",
     "catalog:normalize": "npm --prefix packages/catalog run normalize",
-    "catalog:import": "npm --prefix packages/catalog run import:medusa"
+    "catalog:import": "npm --prefix packages/catalog run import:medusa",
+    "typesense:index": "npm --prefix packages/catalog run typesense:index",
+    "smoke:local": "node scripts/smoke-local.mjs",
+    "smoke:production": "node scripts/smoke-production.mjs",
+    "env:validate": "node scripts/validate-env.mjs",
+    "deploy:env": "node scripts/print-deploy-env.mjs"
   },
   "engines": {
     "node": ">=20"

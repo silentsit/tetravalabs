@@ -35,3 +35,14 @@ CREATE TABLE IF NOT EXISTS payment_webhook_events (
   payload JSONB NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS crypto_payment_intents (
+  id BIGSERIAL PRIMARY KEY,
+  order_id TEXT NOT NULL UNIQUE,
+  email TEXT NOT NULL,
+  amount_usd NUMERIC(12,2) NOT NULL,
+  currency TEXT NOT NULL,
+  provider_url TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

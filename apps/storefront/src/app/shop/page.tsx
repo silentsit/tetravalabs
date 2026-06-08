@@ -4,9 +4,26 @@ import { AddToCartButton } from "@/components/add-to-cart-button"
 
 export const revalidate = 300
 
-export default async function ShopPage() {
+type Props = { searchParams: Promise<{ q?: string }> }
+
+export default async function ShopPage({ searchParams }: Props) {
+  const { q = "" } = await searchParams
   const products = await listProducts()
-  const byCategory = products.reduce<Record<string, typeof products>>((acc, p) => {
+  const qLower = q.toLowerCase()
+  const filteredProducts = q
+    ? products.filter((product) => {
+        const haystack = [
+          product.title,
+          product.handle,
+          String(product.metadata?.cas_number || ""),
+          String(product.metadata?.molecular_formula || "")
+        ]
+          .join(" ")
+          .toLowerCase()
+        return haystack.includes(qLower)
+      })
+    : products
+  const byCategory = filteredProducts.reduce<Record<string, typeof filteredProducts>>((acc, p) => {
     const key = String(p.metadata?.source_category || "Research Product")
     if (!acc[key]) acc[key] = []
     acc[key].push(p)
@@ -20,6 +37,14 @@ export default async function ShopPage() {
         Browse the live catalog synced from Medusa. All products are sold strictly for
         laboratory research use.
       </p>
+      <form action="/shop" className="max-w-xl">
+        <input
+          name="q"
+          defaultValue={q}
+          placeholder="Filter by name, CAS, formula..."
+          className="w-full rounded border border-white/20 bg-[#0A0A10] px-3 py-2"
+        />
+      </form>
       <div className="flex flex-wrap gap-2 text-xs text-[#8A8AA0]">
         {Object.keys(byCategory).map((category) => (
           <span key={category} className="rounded-full border border-white/10 px-3 py-1">
@@ -28,7 +53,7 @@ export default async function ShopPage() {
         ))}
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => {
+        {filteredProducts.map((product) => {
           const firstVariant = product.variants?.[0]
           const firstPrice = firstVariant?.prices?.[0]?.amount
           return (
@@ -61,7 +86,7 @@ export default async function ShopPage() {
           )
         })}
       </div>
-      {products.length === 0 && (
+      {filteredProducts.length === 0 && (
         <p className="rounded-md border border-white/10 bg-[#0A0A10] p-4 text-[#8A8AA0]">
           No products found. Run catalog normalization and Medusa import, then connect
           `NEXT_PUBLIC_MEDUSA_URL` and publishable key.

@@ -25,6 +25,7 @@ export function CheckoutForm() {
   const [country, setCountry] = useState("")
   const [ruoAck, setRuoAck] = useState(false)
   const [status, setStatus] = useState("")
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
@@ -37,7 +38,29 @@ export function CheckoutForm() {
       return
     }
 
-    const orderId = `draft_${Date.now()}`
+    let orderId = `draft_${Date.now()}`
+
+    try {
+      const checkoutResponse = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email,
+          country,
+          items: items.map((item) => ({
+            variantId: item.variantId,
+            quantity: item.quantity
+          }))
+        })
+      })
+      const checkoutJson = await checkoutResponse.json()
+      if (checkoutJson?.ok && checkoutJson.order_id) {
+        orderId = checkoutJson.order_id
+      }
+    } catch {
+      // Fall back to draft order id when Medusa cart creation is unavailable.
+    }
+
     const payload = {
       order_id: orderId,
       disclaimer_version: "v1",
@@ -59,6 +82,28 @@ export function CheckoutForm() {
       // Keep checkout resilient in development when Medusa is offline.
     }
 
+    try {
+      const intentResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"}/store/payments/crypto-intent`,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            order_id: orderId,
+            email,
+            amount_usd: subtotal,
+            currency: "USD"
+          })
+        }
+      )
+      const intentJson = await intentResponse.json()
+      if (intentJson?.provider_url) {
+        setCheckoutUrl(intentJson.provider_url)
+      }
+    } catch {
+      // Keep checkout resilient if crypto intent API is unavailable.
+    }
+
     const order: CheckoutOrder = {
       id: orderId,
       created_at: new Date().toISOString(),
@@ -77,6 +122,17 @@ export function CheckoutForm() {
     const parsed = raw ? (JSON.parse(raw) as CheckoutOrder[]) : []
     parsed.unshift(order)
     window.localStorage.setItem(ORDERS_KEY, JSON.stringify(parsed))
+
+    try {
+      await fetch("/api/orders/notify", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, orderId, total: subtotal })
+      })
+    } catch {
+      // Keep checkout resilient if email service is unavailable.
+    }
+
     clear()
     setStatus(`Order recorded: ${orderId}`)
   }
@@ -117,6 +173,11 @@ export function CheckoutForm() {
         Place Research Order
       </button>
       {status ? <p className="text-xs text-[#8A8AA0]">{status}</p> : null}
+      {checkoutUrl ? (
+        <a href={checkoutUrl} target="_blank" rel="noreferrer" className="block text-xs text-[#5EEAD4]">
+          Continue to crypto payment
+        </a>
+      ) : null}
     </form>
   )
 }

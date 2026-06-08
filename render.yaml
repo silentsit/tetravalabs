@@ -1,0 +1,47 @@
+# Tetrava Labs — Render Blueprint
+# Storefront deploys on Vercel; this Blueprint covers the Medusa commerce API.
+# External services: Neon Postgres, Upstash Redis, Cloudflare R2, Typesense Cloud (optional).
+
+envVarGroups:
+  - name: tetrava-medusa-shared
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: USE_REDIS
+        value: "true"
+
+services:
+  - type: web
+    name: tetrava-medusa
+    runtime: node
+    region: oregon
+    plan: starter
+    rootDir: .
+    buildCommand: npm ci && npm run build --workspace=@tetrava/medusa
+    preDeployCommand: npm run db:migrate --workspace=@tetrava/medusa && npm run db:lab-schema --workspace=@tetrava/medusa
+    startCommand: npm run medusa:start
+    healthCheckPath: /health
+    envVars:
+      - fromGroup: tetrava-medusa-shared
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: COOKIE_SECRET
+        generateValue: true
+      - key: STORE_CORS
+        sync: false
+      - key: ADMIN_CORS
+        sync: false
+      - key: AUTH_CORS
+        sync: false
+      - key: CRYPTO_PROVIDER
+        value: btcpay
+      - key: CRYPTO_WEBHOOK_SECRET
+        sync: false
+      - key: CRYPTO_CHECKOUT_BASE_URL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false

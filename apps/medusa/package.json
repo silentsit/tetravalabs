@@ -8,6 +8,7 @@
     "build:backend": "tsc -p tsconfig.json --noEmit",
     "build": "medusa build || npm run build:backend",
     "seed": "node ./src/scripts/seed-catalog.mjs",
+    "db:migrate": "medusa db:migrate",
     "db:lab-schema": "node ./src/scripts/apply-lab-schema.mjs",
     "bootstrap:admin": "medusa exec ./src/scripts/bootstrap-admin.ts",
     "coa:import-sample": "node ./src/scripts/import-coa-docs.mjs"

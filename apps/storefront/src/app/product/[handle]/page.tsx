@@ -83,8 +83,21 @@ export default async function ProductPage({ params }: Props) {
           <ul className="mt-3 space-y-2 text-sm text-[#8A8AA0]">
             {coas.map((doc) => (
               <li key={doc.id}>
-                Batch {doc.batch_number} - {doc.document_type.toUpperCase()}{" "}
-                {doc.document_url ? `(${doc.document_url})` : ""}
+                Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
+                {doc.purity_percent != null ? ` (${doc.purity_percent}% purity)` : ""}
+                {doc.document_url ? (
+                  <>
+                    {" "}
+                    <a
+                      href={doc.document_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[#5EEAD4] underline"
+                    >
+                      View document
+                    </a>
+                  </>
+                ) : null}
               </li>
             ))}
           </ul>

@@ -40,9 +40,29 @@ Create separate env sets for:
 
 ## Rollout Order
 
-1. Deploy Medusa first.
-2. Run DB migration/SQL for lab tables.
-3. Normalize + import catalog.
-4. Deploy storefront against Medusa endpoint.
-5. Enable payment webhook and revalidation webhook.
-6. Put Cloudflare in front and verify WAF + bot rules.
+1. Deploy Medusa on Render using `render.yaml` (Blueprint sync).
+2. Set Neon `DATABASE_URL`, Upstash `REDIS_URL`, and CORS env vars on Render.
+3. Run DB migration + lab schema (handled by Render `preDeployCommand`).
+4. Bootstrap admin and import catalog (`catalog:import`, optional `typesense:index`).
+5. Deploy storefront on Vercel with root directory `apps/storefront`.
+6. Set storefront env vars pointing at the Render Medusa URL + publishable key.
+7. Enable payment webhook and revalidation webhook.
+8. Put Cloudflare in front and verify WAF + bot rules.
+
+## Vercel (Storefront)
+
+- Root directory: `apps/storefront`
+- Install command: `cd ../.. && npm ci` (configured in `apps/storefront/vercel.json`)
+- Required env: see `apps/storefront/.env.example`
+
+## Render (Medusa)
+
+- Blueprint: `render.yaml` at repo root
+- `preDeployCommand` runs `db:migrate` + `db:lab-schema`
+- Required env: see `apps/medusa/.env.example`
+- Print full mapping: `npm run deploy:env`
+
+## Smoke Tests
+
+- Local: `npm run smoke:local`
+- Production: `SMOKE_STOREFRONT_URL=... SMOKE_MEDUSA_URL=... npm run smoke:production`

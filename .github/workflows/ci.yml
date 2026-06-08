@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Normalize catalog
+        run: npm run catalog:normalize
+
+      - name: Build storefront
+        run: npm run build --workspace=@tetrava/storefront
+        env:
+          NEXT_PUBLIC_SITE_URL: http://localhost:3000
+          NEXT_PUBLIC_MEDUSA_URL: http://localhost:9000
+
+      - name: Type-check Medusa backend
+        run: npm run build:backend --workspace=@tetrava/medusa

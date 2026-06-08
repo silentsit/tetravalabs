@@ -5,6 +5,7 @@ import { useCart } from "@/components/cart-provider"
 
 const links = [
   { href: "/shop", label: "Shop" },
+  { href: "/search", label: "Search" },
   { href: "/coa-library", label: "COA Library" },
   { href: "/blog", label: "Research" },
   { href: "/checkout", label: "Checkout" }

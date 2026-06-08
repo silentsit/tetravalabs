@@ -3,7 +3,7 @@ import { defineConfig } from "@medusajs/framework/utils"
 const DATABASE_URL =
   process.env.DATABASE_URL ||
   "postgres://postgres:postgres@localhost:5432/tetrava_medusa"
-const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379"
+const REDIS_URL = process.env.USE_REDIS === "true" ? process.env.REDIS_URL : undefined
 const STORE_CORS = process.env.STORE_CORS || "http://localhost:3000"
 const ADMIN_CORS = process.env.ADMIN_CORS || "http://localhost:7001"
 const AUTH_CORS = process.env.AUTH_CORS || "http://localhost:3000"
@@ -22,12 +22,14 @@ export default defineConfig({
       cookieSecret: COOKIE_SECRET
     }
   },
-  modules: [
-    {
-      resolve: "@medusajs/medusa/cache-redis",
-      options: {
-        redisUrl: REDIS_URL
-      }
-    }
-  ]
+  modules: REDIS_URL
+    ? [
+        {
+          resolve: "@medusajs/medusa/cache-redis",
+          options: {
+            redisUrl: REDIS_URL
+          }
+        }
+      ]
+    : []
 })

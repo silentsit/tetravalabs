@@ -7,13 +7,15 @@
     "start": "medusa start",
     "build:backend": "tsc -p tsconfig.json --noEmit",
     "build": "medusa build || npm run build:backend",
-    "seed": "node ./src/scripts/seed-catalog.mjs"
+    "seed": "node ./src/scripts/seed-catalog.mjs",
+    "db:lab-schema": "node ./src/scripts/apply-lab-schema.mjs"
   },
   "dependencies": {
     "@medusajs/framework": "^2.11.2",
     "@medusajs/medusa": "^2.11.2",
     "@medusajs/payment": "^2.11.2",
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "pg": "^8.16.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.30",

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getProductByHandle } from "@/lib/medusa"
+import { getProductByHandle, listCoasByVariant } from "@/lib/medusa"
 
 type Props = { params: Promise<{ handle: string }> }
 
@@ -18,6 +18,8 @@ export default async function ProductPage({ params }: Props) {
   const { handle } = await params
   const product = await getProductByHandle(handle)
   if (!product) notFound()
+  const primaryVariantId = product.variants?.[0]?.id
+  const coas = primaryVariantId ? await listCoasByVariant(primaryVariantId) : []
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -48,6 +50,24 @@ export default async function ProductPage({ params }: Props) {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="rounded-lg border border-white/10 bg-[#0A0A10] p-5">
+        <h2 className="text-lg font-medium">COA / HPLC Documents</h2>
+        {coas.length === 0 ? (
+          <p className="mt-2 text-sm text-[#8A8AA0]">
+            No batch documents published yet for this variant.
+          </p>
+        ) : (
+          <ul className="mt-3 space-y-2 text-sm text-[#8A8AA0]">
+            {coas.map((doc) => (
+              <li key={doc.id}>
+                Batch {doc.batch_number} - {doc.document_type.toUpperCase()}{" "}
+                {doc.document_url ? `(${doc.document_url})` : ""}
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <script

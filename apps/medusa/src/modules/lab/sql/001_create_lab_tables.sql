@@ -25,3 +25,13 @@ CREATE TABLE IF NOT EXISTS order_compliance_records (
   ip_country TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS payment_webhook_events (
+  id BIGSERIAL PRIMARY KEY,
+  event_name TEXT NOT NULL,
+  mapped_status TEXT NOT NULL,
+  order_id TEXT,
+  payment_id TEXT,
+  payload JSONB NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

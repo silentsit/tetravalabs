@@ -11,7 +11,8 @@ const steps = [
   "Set Vercel NEXT_PUBLIC_MEDUSA_URL to Render Medusa URL",
   "Configure BTCPAY_URL, BTCPAY_API_KEY, BTCPAY_STORE_ID on Render",
   "Point BTCPay webhook to https://<medusa>/webhooks/payments/btcpay",
-  "Run: SMOKE_STOREFRONT_URL=... SMOKE_MEDUSA_URL=... npm run smoke:production"
+  "Run: SMOKE_STOREFRONT_URL=... SMOKE_MEDUSA_URL=... npm run smoke:production",
+  "Remote bootstrap: MEDUSA_ADMIN_URL=https://<medusa> npm run bootstrap:remote -- --run"
 ]
 
 async function run() {

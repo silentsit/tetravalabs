@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "medusa develop",
     "start": "medusa start",
-    "build:backend": "tsc -p tsconfig.json --noEmit",
+    "build:backend": "tsc -p tsconfig.json",
     "build": "medusa build || npm run build:backend",
     "seed": "node ./src/scripts/seed-catalog.mjs",
     "db:migrate": "medusa db:migrate",

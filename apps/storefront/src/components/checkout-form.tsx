@@ -40,6 +40,20 @@ export function CheckoutForm() {
   const [error, setError] = useState("")
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [restrictedCountries, setRestrictedCountries] = useState<string[]>([])
+
+  useEffect(() => {
+    void fetch("/api/compliance/restricted-countries")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data?.ok && Array.isArray(data.countries)) {
+          setRestrictedCountries(data.countries)
+        }
+      })
+      .catch(() => {
+        // Server-side checkout still enforces restrictions.
+      })
+  }, [])
 
   useEffect(() => {
     void retrieveCustomer().then((customer) => {
@@ -61,6 +75,12 @@ export function CheckoutForm() {
     }
     if (!items.length) {
       setError("Cart is empty.")
+      return
+    }
+
+    const normalizedCountry = country.trim().toUpperCase()
+    if (restrictedCountries.includes(normalizedCountry)) {
+      setError(`Shipping to ${normalizedCountry} is restricted under our compliance policy.`)
       return
     }
 
@@ -94,6 +114,11 @@ export function CheckoutForm() {
       })
       const checkoutJson = await checkoutResponse.json()
       if (!checkoutJson?.ok) {
+        if (checkoutJson?.code === "shipping_restricted") {
+          router.push("/shipping-restricted")
+          setLoading(false)
+          return
+        }
         setError(checkoutJson?.message || "Checkout failed. Is Medusa running and bootstrapped?")
         setLoading(false)
         return

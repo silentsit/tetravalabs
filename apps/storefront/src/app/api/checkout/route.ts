@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import Medusa from "@medusajs/js-sdk"
+import { isRestrictedCountry } from "@/lib/shipping-compliance"
 
 type CheckoutItem = {
   variantId: string
@@ -44,6 +45,17 @@ export async function POST(req: Request) {
     return NextResponse.json(
       { ok: false, message: "email, country, and items are required" },
       { status: 400 }
+    )
+  }
+
+  if (isRestrictedCountry(country)) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `Shipping to ${country} is restricted under our research compliance policy.`,
+        code: "shipping_restricted"
+      },
+      { status: 403 }
     )
   }
 

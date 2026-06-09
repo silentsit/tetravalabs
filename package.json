@@ -22,7 +22,8 @@
     "smoke:production": "node scripts/smoke-production.mjs",
     "env:validate": "node scripts/validate-env.mjs",
     "deploy:env": "node scripts/print-deploy-env.mjs",
-    "production:checklist": "node scripts/production-checklist.mjs"
+    "production:checklist": "node scripts/production-checklist.mjs",
+    "bootstrap:remote": "node scripts/remote-bootstrap.mjs"
   },
   "engines": {
     "node": "20.x"

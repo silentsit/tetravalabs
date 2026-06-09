@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
-
-const restrictedCountries = new Set(
-  (process.env.RESTRICTED_COUNTRIES || "")
-    .split(",")
-    .map((item) => item.trim().toUpperCase())
-    .filter(Boolean)
-)
+import { isRestrictedCountry } from "@/lib/shipping-compliance"
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
@@ -29,7 +23,7 @@ export function middleware(req: NextRequest) {
       req.headers.get("x-vercel-ip-country") ||
       req.headers.get("cf-ipcountry") ||
       null
-    if (country && restrictedCountries.has(country)) {
+    if (country && isRestrictedCountry(country)) {
       const url = req.nextUrl.clone()
       url.pathname = "/shipping-restricted"
       return withSecurityHeaders(NextResponse.redirect(url))

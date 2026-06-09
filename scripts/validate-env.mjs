@@ -22,7 +22,8 @@ const recommendedProduction = [
   { key: "STOREFRONT_URL", file: "medusa", label: "Public storefront URL for BTCPay redirects" },
   { key: "NEXT_PUBLIC_SITE_URL", file: "storefront", label: "Canonical site URL" },
   { key: "RESEND_API_KEY", file: "storefront", label: "Resend API key (order confirmation emails)" },
-  { key: "RESEND_FROM", file: "storefront", label: "Verified Resend sender address" }
+  { key: "RESEND_FROM", file: "storefront", label: "Verified Resend sender address" },
+  { key: "RESTRICTED_COUNTRIES", file: "storefront", label: "ISO country codes blocked at checkout" }
 ]
 
 function parseEnv(content) {

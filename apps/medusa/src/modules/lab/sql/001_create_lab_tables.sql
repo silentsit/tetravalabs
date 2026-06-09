@@ -46,3 +46,9 @@ CREATE TABLE IF NOT EXISTS crypto_payment_intents (
   status TEXT NOT NULL DEFAULT 'pending',
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE crypto_payment_intents ADD COLUMN IF NOT EXISTS provider_payment_id TEXT;
+ALTER TABLE crypto_payment_intents ADD COLUMN IF NOT EXISTS provider TEXT NOT NULL DEFAULT 'placeholder';
+
+CREATE INDEX IF NOT EXISTS crypto_payment_intents_provider_payment_idx
+  ON crypto_payment_intents (provider_payment_id);

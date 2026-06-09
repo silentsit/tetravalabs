@@ -1,12 +1,23 @@
 "use client"
 
 import { FormEvent, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { FetchError } from "@medusajs/js-sdk"
 import { sdk } from "@/lib/medusa-client"
 
-export function LoginForm() {
+function safeReturnUrl(url: string) {
+  if (!url.startsWith("/") || url.startsWith("//")) return "/account"
+  return url
+}
+
+type Props = {
+  returnUrl?: string
+}
+
+export function LoginForm({ returnUrl = "/account" }: Props) {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get("returnUrl") || returnUrl
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [status, setStatus] = useState("")
@@ -23,7 +34,7 @@ export function LoginForm() {
         setStatus("Additional authentication steps are required.")
         return
       }
-      router.push("/account")
+      router.push(safeReturnUrl(redirectTo))
     } catch (error) {
       const fetchError = error as FetchError
       setStatus(fetchError.message || "Unable to sign in. Check your credentials.")

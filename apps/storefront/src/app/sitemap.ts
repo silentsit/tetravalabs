@@ -6,8 +6,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/shop",
+    "/categories",
     "/coa-library",
     "/blog",
+    "/about",
+    "/contact",
+    "/faq",
+    "/shipping",
     "/terms",
     "/privacy",
     "/refund",

@@ -43,5 +43,15 @@ services:
         sync: false
       - key: CRYPTO_CHECKOUT_BASE_URL
         sync: false
+      - key: BTCPAY_URL
+        sync: false
+      - key: BTCPAY_API_KEY
+        sync: false
+      - key: BTCPAY_STORE_ID
+        sync: false
+      - key: BTCPAY_WEBHOOK_SECRET
+        sync: false
+      - key: STOREFRONT_URL
+        sync: false
       - key: RESEND_API_KEY
         sync: false

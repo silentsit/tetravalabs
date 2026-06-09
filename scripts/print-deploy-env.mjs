@@ -28,7 +28,12 @@ Medusa (Render, render.yaml)
   ADMIN_CORS=https://<medusa-service>.onrender.com
   AUTH_CORS=https://tetravalabs.com,https://www.tetravalabs.com
   CRYPTO_WEBHOOK_SECRET=<provider webhook secret>
-  CRYPTO_CHECKOUT_BASE_URL=<BTCPay/NOWPayments checkout URL>
+  BTCPAY_URL=https://<your-btcpay-host>
+  BTCPAY_API_KEY=<greenfield api key>
+  BTCPAY_STORE_ID=<store id>
+  BTCPAY_WEBHOOK_SECRET=<btcpay webhook secret>
+  STOREFRONT_URL=https://tetravalabs.com
+  CRYPTO_CHECKOUT_BASE_URL=<fallback checkout URL if BTCPay not used>
   RESEND_API_KEY=<resend key>
 
 Post-deploy commands (Render preDeployCommand in render.yaml)

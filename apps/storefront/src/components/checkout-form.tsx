@@ -1,8 +1,11 @@
 "use client"
 
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useCart } from "@/components/cart-provider"
+import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
+import { getMedusaStoreHeaders, getMedusaStoreUrl } from "@/lib/medusa-headers"
+import { storePaymentUrl } from "@/components/payment-confirmation"
 
 type CheckoutOrder = {
   id: string
@@ -20,6 +23,7 @@ type CheckoutOrder = {
 }
 
 const ORDERS_KEY = "tetrava_orders_v1"
+const DEFAULT_SHIPPING_USD = 15
 
 export function CheckoutForm() {
   const router = useRouter()
@@ -36,6 +40,15 @@ export function CheckoutForm() {
   const [error, setError] = useState("")
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    void retrieveCustomer().then((customer) => {
+      if (!customer) return
+      if (customer.email) setEmail(customer.email)
+      if (customer.first_name) setFirstName(customer.first_name)
+      if (customer.last_name) setLastName(customer.last_name)
+    })
+  }, [])
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
@@ -54,12 +67,17 @@ export function CheckoutForm() {
     setLoading(true)
     let orderId = `draft_${Date.now()}`
     let displayId: number | undefined
-    let orderTotal = subtotal
+    let orderTotal = subtotal + DEFAULT_SHIPPING_USD
+    let paymentUrl: string | null = null
 
     try {
+      const authToken = readAuthToken()
       const checkoutResponse = await fetch("/api/checkout", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          ...(authToken ? { authorization: `Bearer ${authToken}` } : {})
+        },
         body: JSON.stringify({
           email,
           firstName,
@@ -113,21 +131,19 @@ export function CheckoutForm() {
     }
 
     try {
-      const intentResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"}/store/payments/crypto-intent`,
-        {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            order_id: orderId,
-            email,
-            amount_usd: orderTotal,
-            currency: "USD"
-          })
-        }
-      )
+      const intentResponse = await fetch(getMedusaStoreUrl("/store/payments/crypto-intent"), {
+        method: "POST",
+        headers: getMedusaStoreHeaders({ "content-type": "application/json" }),
+        body: JSON.stringify({
+          order_id: orderId,
+          email,
+          amount_usd: orderTotal,
+          currency: "USD"
+        })
+      })
       const intentJson = await intentResponse.json()
       if (intentJson?.provider_url) {
+        paymentUrl = intentJson.provider_url
         setCheckoutUrl(intentJson.provider_url)
       }
     } catch {
@@ -172,10 +188,19 @@ export function CheckoutForm() {
     }
 
     clear()
-    const label = displayId ? `#${displayId}` : orderId
-    setStatus(`Order placed: ${label}`)
     setLoading(false)
-    router.push("/orders")
+
+    if (paymentUrl) {
+      storePaymentUrl(orderId, paymentUrl)
+    }
+
+    const params = new URLSearchParams({
+      order_id: orderId,
+      total: orderTotal.toFixed(2)
+    })
+    if (displayId) params.set("display_id", String(displayId))
+
+    router.push(`/checkout/payment?${params.toString()}`)
   }
 
   return (
@@ -259,6 +284,10 @@ export function CheckoutForm() {
         I confirm these compounds are for research use only and not for human consumption.
       </label>
       <p className="text-sm text-[#E8E8F0]">Subtotal: ${subtotal.toFixed(2)}</p>
+      <p className="text-sm text-[#8A8AA0]">Estimated shipping: ${DEFAULT_SHIPPING_USD.toFixed(2)}</p>
+      <p className="text-sm font-medium text-[#E8E8F0]">
+        Estimated total: ${(subtotal + DEFAULT_SHIPPING_USD).toFixed(2)}
+      </p>
       <button
         disabled={loading}
         className="rounded bg-[#5EEAD4] px-4 py-2 text-sm font-medium text-[#050508] disabled:opacity-60"

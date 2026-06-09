@@ -20,14 +20,16 @@ type CheckoutBody = {
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
 
-function createSdk() {
+function createSdk(authToken?: string | null) {
   return new Medusa({
     baseUrl: MEDUSA_URL,
-    publishableKey: PUBLISHABLE_KEY
+    publishableKey: PUBLISHABLE_KEY,
+    globalHeaders: authToken ? { Authorization: `Bearer ${authToken}` } : {}
   })
 }
 
 export async function POST(req: Request) {
+  const authToken = req.headers.get("authorization")?.replace(/^Bearer\s+/i, "") || null
   const body = (await req.json()) as CheckoutBody
   const email = body.email?.trim()
   const firstName = body.firstName?.trim() || "Research"
@@ -46,7 +48,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const sdk = createSdk()
+    const sdk = createSdk(authToken)
     const { regions } = await sdk.store.region.list()
     const regionId = regions?.[0]?.id
 
@@ -99,6 +101,12 @@ export async function POST(req: Request) {
       option_id: shippingOption.id
     })
 
+    const shippingTotal =
+      cartWithShipping.shipping_total ??
+      shippingOption.amount ??
+      shippingOption.prices?.[0]?.amount ??
+      1500
+
     const { payment_providers } = await sdk.store.payment.listPaymentProviders({
       region_id: regionId
     })
@@ -123,6 +131,7 @@ export async function POST(req: Request) {
 
     const order = completion.order
     const total = order.total ?? order.subtotal ?? 0
+    const shippingUsd = typeof shippingTotal === "number" ? shippingTotal / 100 : 15
 
     return NextResponse.json({
       ok: true,
@@ -130,6 +139,7 @@ export async function POST(req: Request) {
       display_id: order.display_id,
       cart_id: cart.id,
       total: typeof total === "number" ? total / 100 : 0,
+      shipping: shippingUsd,
       source: "medusa"
     })
   } catch (error) {

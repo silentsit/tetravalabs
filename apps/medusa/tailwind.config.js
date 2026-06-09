@@ -1,6 +1,16 @@
-/** @type {import('tailwindcss').Config} */
+const path = require("path")
+
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("@medusajs/ui-preset")],
+  content: [
+    "./src/admin/**/*.{js,jsx,ts,tsx}",
+    path.join(
+      path.dirname(require.resolve("@medusajs/ui")),
+      "../..",
+      "**/*.{js,jsx,ts,tsx}"
+    )
+  ],
+  darkMode: "class",
   theme: {
     extend: {}
   },

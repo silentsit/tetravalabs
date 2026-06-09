@@ -61,7 +61,20 @@ const AUTH_CORS = process.env.AUTH_CORS || "http://localhost:3000"
 const JWT_SECRET = process.env.JWT_SECRET || "supersecret"
 const COOKIE_SECRET = process.env.COOKIE_SECRET || "supersecret"
 
+function isAdminDisabled() {
+  if (process.env.ENABLE_MEDUSA_ADMIN === "true") {
+    return false
+  }
+  if (process.env.DISABLE_MEDUSA_ADMIN === "true") {
+    return true
+  }
+  return process.env.NODE_ENV === "production"
+}
+
 module.exports = defineConfig({
+  admin: {
+    disable: isAdminDisabled()
+  },
   projectConfig: {
     databaseUrl: DATABASE_URL,
     redisUrl: REDIS_URL,

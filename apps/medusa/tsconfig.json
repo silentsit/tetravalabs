@@ -7,15 +7,21 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "outDir": "dist",
-    "types": [
-      "node"
-    ]
+    "declaration": false,
+    "sourceMap": false,
+    "outDir": ".medusa/server",
+    "rootDir": ".",
+    "types": ["node"]
   },
   "include": [
     "medusa-config.ts",
     "src/**/*.ts",
-    "src/**/*.mts",
-    "src/**/*.mjs"
+    "src/**/*.mts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".medusa/server",
+    ".medusa/admin",
+    "src/admin"
   ]
 }

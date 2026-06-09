@@ -7,6 +7,8 @@ envVarGroups:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: DISABLE_MEDUSA_ADMIN
+        value: "true"
       - key: USE_REDIS
         value: "true"
 

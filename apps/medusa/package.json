@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "medusa develop",
-    "start": "medusa start",
-    "build:backend": "tsc -p tsconfig.json",
-    "build": "medusa build || npm run build:backend",
+    "start": "node ./scripts/start.mjs",
+    "build": "medusa build",
+    "build:admin": "medusa build",
     "seed": "node ./src/scripts/seed-catalog.mjs",
     "db:migrate": "medusa db:migrate",
     "db:lab-schema": "node ./src/scripts/apply-lab-schema.mjs",
@@ -23,6 +23,8 @@
     "pg": "^8.16.0"
   },
   "devDependencies": {
+    "@medusajs/ui": "^4.1.15",
+    "@medusajs/ui-preset": "^2.15.5",
     "@types/node": "^22.15.30",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"

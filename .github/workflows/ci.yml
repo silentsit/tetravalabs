@@ -33,3 +33,9 @@ jobs:
         env:
           DISABLE_MEDUSA_ADMIN: "true"
           NODE_ENV: production
+
+      - name: Verify root Vercel build path
+        run: npm run build:vercel-root
+        env:
+          NEXT_PUBLIC_SITE_URL: http://localhost:3000
+          NEXT_PUBLIC_MEDUSA_URL: http://localhost:9000

@@ -6,6 +6,7 @@
     "dev": "medusa develop",
     "start": "node ./scripts/start.mjs",
     "build": "medusa build",
+    "build:backend": "npm run build",
     "build:admin": "medusa build",
     "seed": "node ./src/scripts/seed-catalog.mjs",
     "db:migrate": "medusa db:migrate",

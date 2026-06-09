@@ -18,7 +18,7 @@ services:
     plan: starter
     rootDir: .
     buildCommand: node scripts/render-build.mjs
-    preDeployCommand: npm run db:migrate --workspace=@tetrava/medusa && npm run db:lab-schema --workspace=@tetrava/medusa
+    preDeployCommand: npm run db:migrate --workspace=@tetrava/medusa -- --execute-all-links && npm run db:lab-schema --workspace=@tetrava/medusa
     startCommand: npm run medusa:start
     healthCheckPath: /health
     envVars:

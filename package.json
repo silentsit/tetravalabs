@@ -31,5 +31,8 @@
   "devDependencies": {
     "next": "^15.5.19",
     "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@medusajs/medusa": "2.15.5"
   }
 }

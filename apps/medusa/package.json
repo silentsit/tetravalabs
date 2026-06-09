@@ -15,9 +15,10 @@
     "coa:import-sample": "node ./src/scripts/import-coa-docs.mjs"
   },
   "dependencies": {
-    "@medusajs/framework": "^2.11.2",
-    "@medusajs/medusa": "^2.11.2",
-    "@medusajs/payment": "^2.11.2",
+    "@medusajs/framework": "2.15.5",
+    "@medusajs/link-modules": "2.15.5",
+    "@medusajs/medusa": "2.15.5",
+    "@medusajs/payment": "2.15.5",
     "dotenv": "^16.5.0",
     "pg": "^8.16.0"
   },

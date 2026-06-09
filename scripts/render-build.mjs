@@ -2,7 +2,7 @@ import { execSync } from "node:child_process"
 
 const maxAttempts = 3
 const retryDelaySeconds = 15
-// Medusa-only install — skip storefront/Kimi workspaces to reduce download size and network failures.
+// Medusa workspace + root (root lists @medusajs/medusa so link-modules resolve from hoisted framework).
 const installCmd = "npm ci --workspace=@tetrava/medusa --include-workspace-root"
 
 function sleep(seconds) {

@@ -28,8 +28,11 @@
   "engines": {
     "node": "20.x"
   },
+  "overrides": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
   "devDependencies": {
-    "next": "^15.5.19",
     "ts-node": "^10.9.2"
   },
   "dependencies": {

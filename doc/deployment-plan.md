@@ -53,13 +53,25 @@ Create separate env sets for:
 
 **Required:** In Vercel Project Settings → General → **Root Directory**, set `apps/storefront`.
 
-Without this, Vercel builds from the monorepo root and fails with "No Next.js version detected".
+Without this, Vercel builds from the monorepo root and fails with errors like:
+- `No Next.js version detected`
+- `The Next.js output directory ".next" was not found at "/vercel/path0/.next"`
 
-- Root directory: `apps/storefront` (dashboard setting)
-- Install command: `cd .. && npm ci` (one level up to monorepo root — **not** `../..`)
-- **Do not set Output Directory** in Vercel dashboard — leave it empty so the Next.js builder manages `.next` automatically
-- Node version: `20.x` (`.nvmrc` + `engines` in package.json)
-- Required env: see `apps/storefront/.env.example`
+That second error happens when the build writes to `apps/storefront/.next` but Vercel looks for `.next` at the repo root.
+
+### Vercel dashboard settings
+
+| Setting | Value |
+|---------|-------|
+| Root Directory | `apps/storefront` |
+| Framework Preset | Next.js |
+| Build Command | leave empty (uses `npm run build` from `vercel.json`) |
+| Output Directory | **leave empty** — do not set `.next` manually |
+| Install Command | leave empty (uses `cd .. && npm ci` from `vercel.json`) |
+| Include source files outside Root Directory | **Enabled** (needed for monorepo lockfile + workspace install) |
+| Node version | `20.x` (`.nvmrc` + `engines` in package.json) |
+
+Required env: see `apps/storefront/.env.example`
 
 ## Render (Medusa)
 

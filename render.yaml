@@ -17,7 +17,7 @@ services:
     region: oregon
     plan: starter
     rootDir: .
-    buildCommand: npm ci && npm run build --workspace=@tetrava/medusa
+    buildCommand: node scripts/render-build.mjs
     preDeployCommand: npm run db:migrate --workspace=@tetrava/medusa && npm run db:lab-schema --workspace=@tetrava/medusa
     startCommand: npm run medusa:start
     healthCheckPath: /health

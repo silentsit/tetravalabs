@@ -1,0 +1,30 @@
+import { execSync } from "node:child_process"
+
+const maxAttempts = 3
+const retryDelaySeconds = 15
+// Medusa-only install — skip storefront/Kimi workspaces to reduce download size and network failures.
+const installCmd = "npm ci --workspace=@tetrava/medusa --include-workspace-root"
+
+function sleep(seconds) {
+  execSync(`sleep ${seconds}`)
+}
+
+for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+  try {
+    console.log(`[render-build] npm ci attempt ${attempt}/${maxAttempts}`)
+    execSync(installCmd, { stdio: "inherit" })
+    break
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    if (attempt >= maxAttempts) {
+      console.error(`[render-build] npm ci failed after ${maxAttempts} attempts`)
+      throw error
+    }
+    console.warn(`[render-build] npm ci failed (${message}), retrying in ${retryDelaySeconds}s...`)
+    sleep(retryDelaySeconds)
+  }
+}
+
+console.log("[render-build] building @tetrava/medusa")
+execSync("npm run build --workspace=@tetrava/medusa", { stdio: "inherit" })
+console.log("[render-build] done")

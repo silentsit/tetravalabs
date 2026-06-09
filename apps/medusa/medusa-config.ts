@@ -6,6 +6,21 @@ const DATABASE_URL =
   process.env.DATABASE_URL ||
   "postgres://postgres:postgres@localhost:5432/tetrava_medusa"
 
+function normalizeRedisUrlInput(raw: string) {
+  let value = raw.trim()
+
+  const embedded = value.match(/rediss?:\/\/[^\s'"]+/i)
+  if (embedded) {
+    value = embedded[0]
+  }
+
+  if (value.includes("upstash.io") && value.startsWith("redis://")) {
+    value = `rediss://${value.slice("redis://".length)}`
+  }
+
+  return value
+}
+
 function resolveRedisUrl(): string | undefined {
   if (process.env.USE_REDIS !== "true") {
     return undefined
@@ -18,18 +33,20 @@ function resolveRedisUrl(): string | undefined {
     )
   }
 
+  const normalized = normalizeRedisUrlInput(raw)
+
   try {
-    const parsed = new URL(raw)
+    const parsed = new URL(normalized)
     if (parsed.protocol !== "redis:" && parsed.protocol !== "rediss:") {
       throw new Error(
         `REDIS_URL must use redis:// or rediss:// (got ${parsed.protocol}). Upstash requires rediss:// with the full connection string from the Redis tab.`
       )
     }
-    return raw
+    return normalized
   } catch (error) {
     if (error instanceof TypeError) {
       throw new Error(
-        `REDIS_URL is not a valid URL: "${raw}". Copy the full Redis URL from Upstash (Redis tab), not the REST URL or hostname alone.`
+        `REDIS_URL is not a valid URL: "${raw}". Set REDIS_URL to the connection string only, e.g. rediss://default:TOKEN@endpoint.upstash.io:6379 — not the redis-cli command or REST URL.`
       )
     }
     throw error

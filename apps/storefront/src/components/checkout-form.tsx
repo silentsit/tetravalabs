@@ -1,10 +1,12 @@
 "use client"
 
 import { FormEvent, useState } from "react"
+import { useRouter } from "next/navigation"
 import { useCart } from "@/components/cart-provider"
 
 type CheckoutOrder = {
   id: string
+  display_id?: number
   created_at: string
   email: string
   shipping_country: string
@@ -20,25 +22,39 @@ type CheckoutOrder = {
 const ORDERS_KEY = "tetrava_orders_v1"
 
 export function CheckoutForm() {
+  const router = useRouter()
   const { items, subtotal, clear } = useCart()
   const [email, setEmail] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [address1, setAddress1] = useState("")
+  const [city, setCity] = useState("")
+  const [postalCode, setPostalCode] = useState("")
   const [country, setCountry] = useState("")
   const [ruoAck, setRuoAck] = useState(false)
   const [status, setStatus] = useState("")
+  const [error, setError] = useState("")
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
+    setError("")
+    setStatus("")
+
     if (!ruoAck) {
-      setStatus("Please acknowledge RUO requirements before checkout.")
+      setError("Please acknowledge RUO requirements before checkout.")
       return
     }
     if (!items.length) {
-      setStatus("Cart is empty.")
+      setError("Cart is empty.")
       return
     }
 
+    setLoading(true)
     let orderId = `draft_${Date.now()}`
+    let displayId: number | undefined
+    let orderTotal = subtotal
 
     try {
       const checkoutResponse = await fetch("/api/checkout", {
@@ -46,6 +62,11 @@ export function CheckoutForm() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           email,
+          firstName,
+          lastName,
+          address1,
+          city,
+          postalCode,
           country,
           items: items.map((item) => ({
             variantId: item.variantId,
@@ -54,11 +75,20 @@ export function CheckoutForm() {
         })
       })
       const checkoutJson = await checkoutResponse.json()
-      if (checkoutJson?.ok && checkoutJson.order_id) {
-        orderId = checkoutJson.order_id
+      if (!checkoutJson?.ok) {
+        setError(checkoutJson?.message || "Checkout failed. Is Medusa running and bootstrapped?")
+        setLoading(false)
+        return
+      }
+      orderId = checkoutJson.order_id
+      displayId = checkoutJson.display_id
+      if (typeof checkoutJson.total === "number" && checkoutJson.total > 0) {
+        orderTotal = checkoutJson.total
       }
     } catch {
-      // Fall back to draft order id when Medusa cart creation is unavailable.
+      setError("Could not reach checkout API.")
+      setLoading(false)
+      return
     }
 
     const payload = {
@@ -79,7 +109,7 @@ export function CheckoutForm() {
         }
       )
     } catch {
-      // Keep checkout resilient in development when Medusa is offline.
+      // Non-blocking in development.
     }
 
     try {
@@ -91,7 +121,7 @@ export function CheckoutForm() {
           body: JSON.stringify({
             order_id: orderId,
             email,
-            amount_usd: subtotal,
+            amount_usd: orderTotal,
             currency: "USD"
           })
         }
@@ -101,15 +131,16 @@ export function CheckoutForm() {
         setCheckoutUrl(intentJson.provider_url)
       }
     } catch {
-      // Keep checkout resilient if crypto intent API is unavailable.
+      // Crypto intent is optional until BTCPay is configured.
     }
 
     const order: CheckoutOrder = {
       id: orderId,
+      display_id: displayId,
       created_at: new Date().toISOString(),
       email,
       shipping_country: country,
-      total: subtotal,
+      total: orderTotal,
       items: items.map((item) => ({
         title: item.title,
         variantTitle: item.variantTitle,
@@ -119,7 +150,14 @@ export function CheckoutForm() {
     }
 
     const raw = window.localStorage.getItem(ORDERS_KEY)
-    const parsed = raw ? (JSON.parse(raw) as CheckoutOrder[]) : []
+    let parsed: CheckoutOrder[] = []
+    if (raw) {
+      try {
+        parsed = JSON.parse(raw) as CheckoutOrder[]
+      } catch {
+        parsed = []
+      }
+    }
     parsed.unshift(order)
     window.localStorage.setItem(ORDERS_KEY, JSON.stringify(parsed))
 
@@ -127,18 +165,41 @@ export function CheckoutForm() {
       await fetch("/api/orders/notify", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, orderId, total: subtotal })
+        body: JSON.stringify({ email, orderId, total: orderTotal })
       })
     } catch {
-      // Keep checkout resilient if email service is unavailable.
+      // Email is optional until Resend is configured.
     }
 
     clear()
-    setStatus(`Order recorded: ${orderId}`)
+    const label = displayId ? `#${displayId}` : orderId
+    setStatus(`Order placed: ${label}`)
+    setLoading(false)
+    router.push("/orders")
   }
 
   return (
     <form onSubmit={onSubmit} className="space-y-4 rounded-lg border border-white/10 bg-[#0A0A10] p-5">
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div>
+          <label className="block text-xs text-[#8A8AA0]">First name</label>
+          <input
+            required
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          />
+        </div>
+        <div>
+          <label className="block text-xs text-[#8A8AA0]">Last name</label>
+          <input
+            required
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          />
+        </div>
+      </div>
       <div>
         <label className="block text-xs text-[#8A8AA0]">Email</label>
         <input
@@ -150,7 +211,36 @@ export function CheckoutForm() {
         />
       </div>
       <div>
-        <label className="block text-xs text-[#8A8AA0]">Shipping Country</label>
+        <label className="block text-xs text-[#8A8AA0]">Address</label>
+        <input
+          required
+          value={address1}
+          onChange={(event) => setAddress1(event.target.value)}
+          className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+        />
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div>
+          <label className="block text-xs text-[#8A8AA0]">City</label>
+          <input
+            required
+            value={city}
+            onChange={(event) => setCity(event.target.value)}
+            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          />
+        </div>
+        <div>
+          <label className="block text-xs text-[#8A8AA0]">Postal code</label>
+          <input
+            required
+            value={postalCode}
+            onChange={(event) => setPostalCode(event.target.value)}
+            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          />
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs text-[#8A8AA0]">Shipping country</label>
         <input
           required
           value={country}
@@ -169,9 +259,13 @@ export function CheckoutForm() {
         I confirm these compounds are for research use only and not for human consumption.
       </label>
       <p className="text-sm text-[#E8E8F0]">Subtotal: ${subtotal.toFixed(2)}</p>
-      <button className="rounded bg-[#5EEAD4] px-4 py-2 text-sm font-medium text-[#050508]">
-        Place Research Order
+      <button
+        disabled={loading}
+        className="rounded bg-[#5EEAD4] px-4 py-2 text-sm font-medium text-[#050508] disabled:opacity-60"
+      >
+        {loading ? "Placing order..." : "Place Research Order"}
       </button>
+      {error ? <p className="text-xs text-[#F87171]">{error}</p> : null}
       {status ? <p className="text-xs text-[#8A8AA0]">{status}</p> : null}
       {checkoutUrl ? (
         <a href={checkoutUrl} target="_blank" rel="noreferrer" className="block text-xs text-[#5EEAD4]">

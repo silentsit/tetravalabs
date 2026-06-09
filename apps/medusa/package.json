@@ -11,6 +11,7 @@
     "db:migrate": "medusa db:migrate",
     "db:lab-schema": "node ./src/scripts/apply-lab-schema.mjs",
     "bootstrap:admin": "medusa exec ./src/scripts/bootstrap-admin.ts",
+    "bootstrap:store": "node ./src/scripts/bootstrap-store.mjs",
     "coa:import-sample": "node ./src/scripts/import-coa-docs.mjs"
   },
   "dependencies": {

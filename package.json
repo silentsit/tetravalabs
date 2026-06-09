@@ -14,6 +14,7 @@
     "build:legacy": "npm --prefix app run build",
     "medusa:dev": "npm --prefix apps/medusa run dev",
     "medusa:start": "npm --prefix apps/medusa run start",
+    "medusa:bootstrap": "npm --prefix apps/medusa run bootstrap:store",
     "catalog:normalize": "npm --prefix packages/catalog run normalize",
     "catalog:import": "npm --prefix packages/catalog run import:medusa",
     "typesense:index": "npm --prefix packages/catalog run typesense:index",

@@ -8,7 +8,8 @@ const links = [
   { href: "/search", label: "Search" },
   { href: "/coa-library", label: "COA Library" },
   { href: "/blog", label: "Research" },
-  { href: "/checkout", label: "Checkout" }
+  { href: "/account", label: "Account" },
+  { href: "/login", label: "Sign In" }
 ]
 
 export function SiteHeader() {

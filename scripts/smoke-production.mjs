@@ -1,35 +1,58 @@
-const storefrontUrl = process.env.SMOKE_STOREFRONT_URL || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-const medusaUrl = process.env.SMOKE_MEDUSA_URL || process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
-const typesenseUrl = process.env.SMOKE_TYPESENSE_URL || "http://localhost:8108"
+import { loadDeployEnv } from "./load-env.mjs"
 
-const endpoints = [
-  { name: "Storefront", url: storefrontUrl, required: true },
-  { name: "Medusa Health", url: `${medusaUrl.replace(/\/$/, "")}/health`, required: true },
-  {
-    name: "Medusa Store Products",
-    url: `${medusaUrl.replace(/\/$/, "")}/store/products?limit=1`,
-    required: true
-  },
-  { name: "Storefront Search API", url: `${storefrontUrl.replace(/\/$/, "")}/api/search?q=semaglutide`, required: false },
-  { name: "Typesense Health", url: `${typesenseUrl.replace(/\/$/, "")}/health`, required: false }
-]
+const storefrontUrl = (process.env.SMOKE_STOREFRONT_URL || "").replace(/\/$/, "")
+const medusaUrl = (process.env.SMOKE_MEDUSA_URL || "").replace(/\/$/, "")
 
-async function checkEndpoint({ name, url, required }) {
+async function checkEndpoint({ name, url, headers = {}, optional = false }) {
   try {
-    const response = await fetch(url, { method: "GET" })
+    const response = await fetch(url, { method: "GET", headers })
     const ok = response.ok
-    console.log(`[${ok ? "ok" : "fail"}] ${name} -> ${response.status} (${url})`)
-    return ok || !required
+    console.log(`[${ok ? "ok" : optional ? "warn" : "fail"}] ${name} -> ${response.status}`)
+    return ok || optional
   } catch (error) {
-    console.log(`[down] ${name} -> ${error?.message || error} (${url})`)
-    return !required
+    console.log(`[${optional ? "warn" : "down"}] ${name} -> ${error?.message || error}`)
+    return optional
   }
 }
 
 async function run() {
-  console.log("Production smoke test")
-  console.log(`Storefront: ${storefrontUrl}`)
-  console.log(`Medusa: ${medusaUrl}`)
+  if (!storefrontUrl || !medusaUrl) {
+    console.error("Set SMOKE_STOREFRONT_URL and SMOKE_MEDUSA_URL before running production smoke.")
+    process.exit(1)
+  }
+
+  const { storefront } = await loadDeployEnv()
+  const publishableKey =
+    process.env.SMOKE_MEDUSA_PUBLISHABLE_KEY ||
+    storefront.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY ||
+    ""
+  const medusaHeaders = publishableKey
+    ? { "x-publishable-api-key": publishableKey }
+    : {}
+
+  if (!publishableKey) {
+    console.log("[warn] Publishable API key not set — Medusa store checks may fail")
+  }
+
+  const endpoints = [
+    { name: "Storefront", url: storefrontUrl },
+    { name: "Medusa Health", url: `${medusaUrl}/health` },
+    {
+      name: "Medusa Store Products",
+      url: `${medusaUrl}/store/products?limit=1`,
+      headers: medusaHeaders
+    },
+    {
+      name: "Storefront Checkout API",
+      url: `${storefrontUrl}/api/checkout`,
+      optional: true
+    },
+    {
+      name: "Storefront Payment Status API",
+      url: `${storefrontUrl}/api/payment-status?order_id=smoke-test`,
+      optional: true
+    }
+  ]
 
   let failed = 0
   for (const endpoint of endpoints) {
@@ -38,10 +61,10 @@ async function run() {
   }
 
   if (failed > 0) {
-    console.log(`Smoke test completed with ${failed} failing required check(s).`)
+    console.log(`Production smoke completed with ${failed} failing check(s).`)
     process.exit(1)
   }
-  console.log("Smoke test completed successfully.")
+  console.log("Production smoke completed successfully.")
 }
 
 run().catch((error) => {

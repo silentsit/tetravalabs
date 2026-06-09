@@ -15,6 +15,7 @@ Storefront (Vercel, root: apps/storefront)
   TYPESENSE_COLLECTION=products
   RESEND_API_KEY=<resend key>
   RESEND_FROM=Tetrava Labs <orders@tetravalabs.com>
+  CONTACT_TO_EMAIL=support@tetravalabs.com
   SANITY_PROJECT_ID=<optional>
   SANITY_DATASET=production
 
@@ -35,6 +36,7 @@ Medusa (Render, render.yaml)
   STOREFRONT_URL=https://tetravalabs.com
   CRYPTO_CHECKOUT_BASE_URL=<fallback checkout URL if BTCPay not used>
   RESEND_API_KEY=<resend key>
+  RESEND_FROM=Tetrava Labs <orders@tetravalabs.com>
 
 Post-deploy commands (Render preDeployCommand in render.yaml)
   npm run db:migrate --workspace=@tetrava/medusa

@@ -181,7 +181,14 @@ export function CheckoutForm() {
       await fetch("/api/orders/notify", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, orderId, total: orderTotal })
+        body: JSON.stringify({
+          email,
+          orderId,
+          displayId,
+          total: orderTotal,
+          paymentUrl,
+          items: order.items
+        })
       })
     } catch {
       // Email is optional until Resend is configured.

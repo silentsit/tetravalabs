@@ -2,8 +2,8 @@ import fs from "node:fs/promises"
 import path from "node:path"
 
 const root = process.cwd()
-const storefrontEnv = path.join(root, "apps", "storefront", ".env.local")
-const medusaEnv = path.join(root, "apps", "medusa", ".env")
+const storefrontEnvPath = path.join(root, "apps", "storefront", ".env.local")
+const medusaEnvPath = path.join(root, "apps", "medusa", ".env")
 
 const required = {
   storefront: [
@@ -14,6 +14,16 @@ const required = {
   ],
   medusa: ["DATABASE_URL", "JWT_SECRET", "COOKIE_SECRET", "STORE_CORS", "AUTH_CORS"]
 }
+
+const recommendedProduction = [
+  { key: "BTCPAY_URL", file: "medusa", label: "BTCPay Server URL (crypto payments)" },
+  { key: "BTCPAY_API_KEY", file: "medusa", label: "BTCPay API key" },
+  { key: "BTCPAY_STORE_ID", file: "medusa", label: "BTCPay store ID" },
+  { key: "STOREFRONT_URL", file: "medusa", label: "Public storefront URL for BTCPay redirects" },
+  { key: "NEXT_PUBLIC_SITE_URL", file: "storefront", label: "Canonical site URL" },
+  { key: "RESEND_API_KEY", file: "storefront", label: "Resend API key (order confirmation emails)" },
+  { key: "RESEND_FROM", file: "storefront", label: "Verified Resend sender address" }
+]
 
 function parseEnv(content) {
   const entries = content
@@ -28,28 +38,56 @@ function parseEnv(content) {
   return Object.fromEntries(entries)
 }
 
-async function checkFile(filePath, keys, label) {
+async function readEnv(filePath) {
   try {
     const content = await fs.readFile(filePath, "utf8")
-    const env = parseEnv(content)
-    const missing = keys.filter((key) => !env[key] || env[key] === "change-me")
-    if (missing.length) {
-      console.log(`[${label}] missing: ${missing.join(", ")}`)
-      return 1
-    }
-    console.log(`[${label}] ok`)
-    return 0
+    return parseEnv(content)
   } catch {
+    return null
+  }
+}
+
+async function checkFile(filePath, keys, label) {
+  const env = await readEnv(filePath)
+  if (!env) {
     console.log(`[${label}] file missing: ${filePath}`)
     return 1
   }
+
+  const missing = keys.filter((key) => !env[key] || env[key] === "change-me")
+  if (missing.length) {
+    console.log(`[${label}] missing: ${missing.join(", ")}`)
+    return 1
+  }
+  console.log(`[${label}] ok`)
+  return 0
 }
 
 async function run() {
   let failed = 0
-  failed += await checkFile(storefrontEnv, required.storefront, "storefront")
-  failed += await checkFile(medusaEnv, required.medusa, "medusa")
+  failed += await checkFile(storefrontEnvPath, required.storefront, "storefront")
+  failed += await checkFile(medusaEnvPath, required.medusa, "medusa")
+
+  const storefront = (await readEnv(storefrontEnvPath)) || {}
+  const medusa = (await readEnv(medusaEnvPath)) || {}
+  const warnings = []
+
+  for (const item of recommendedProduction) {
+    const env = item.file === "medusa" ? medusa : storefront
+    if (!env[item.key]) {
+      warnings.push(`${item.key} — ${item.label}`)
+    }
+  }
+
+  if (warnings.length > 0) {
+    console.log("Recommended for production (optional):")
+    for (const item of warnings) {
+      console.log(`- ${item}`)
+    }
+  }
+
   if (failed > 0) process.exit(1)
+  console.log("Environment validation passed.")
 }
 
 run().catch((error) => {

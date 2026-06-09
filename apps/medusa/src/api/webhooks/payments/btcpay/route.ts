@@ -6,6 +6,7 @@ import {
   mapBtcpayEventType,
   verifyBtcpayWebhookSignature
 } from "../../../../lib/btcpay"
+import { sendPaymentReceivedEmail } from "../../../../lib/resend"
 
 type BtcpayWebhookPayload = {
   type?: string
@@ -26,23 +27,52 @@ export const POST = async (req: MedusaRequest<BtcpayWebhookPayload>, res: Medusa
   const invoiceId = req.body?.invoiceId
   const mappedStatus = mapBtcpayEventType(eventType)
   let orderId: string | null = null
+  let intentEmail: string | null = null
+  let intentAmount: number | null = null
+  let previousStatus: string | null = null
 
   if (invoiceId) {
     const existing = await withDb(
       async (db) => {
         const result = await db.query(
-          `SELECT order_id FROM crypto_payment_intents WHERE provider_payment_id = $1 LIMIT 1`,
+          `SELECT order_id, email, amount_usd, status FROM crypto_payment_intents WHERE provider_payment_id = $1 LIMIT 1`,
           [invoiceId]
         )
-        return (result.rows[0]?.order_id as string | undefined) || null
+        return result.rows[0] || null
       },
       async () => null
     )
-    orderId = existing
+    orderId = (existing?.order_id as string | undefined) || null
+    intentEmail = (existing?.email as string | undefined) || null
+    intentAmount = existing?.amount_usd != null ? Number(existing.amount_usd) : null
+    previousStatus = (existing?.status as string | undefined) || null
 
     if (!orderId && isBtcpayConfigured()) {
       const invoice = await fetchBtcpayInvoice(invoiceId)
       orderId = invoice?.metadata?.orderId || null
+    }
+
+    if (orderId && (!intentEmail || intentAmount == null)) {
+      const byOrder = await withDb(
+        async (db) => {
+          const result = await db.query(
+            `SELECT email, amount_usd, status FROM crypto_payment_intents WHERE order_id = $1 LIMIT 1`,
+            [orderId]
+          )
+          return result.rows[0] || null
+        },
+        async () => null
+      )
+      if (byOrder) {
+        intentEmail = intentEmail || ((byOrder.email as string | undefined) || null)
+        intentAmount =
+          intentAmount != null
+            ? intentAmount
+            : byOrder.amount_usd != null
+              ? Number(byOrder.amount_usd)
+              : null
+        previousStatus = previousStatus || ((byOrder.status as string | undefined) || null)
+      }
     }
   }
 
@@ -70,6 +100,20 @@ export const POST = async (req: MedusaRequest<BtcpayWebhookPayload>, res: Medusa
     },
     async () => undefined
   )
+
+  if (
+    orderId &&
+    intentEmail &&
+    mappedStatus === "completed" &&
+    previousStatus !== "completed" &&
+    intentAmount != null
+  ) {
+    await sendPaymentReceivedEmail({
+      email: intentEmail,
+      orderId,
+      amountUsd: intentAmount
+    })
+  }
 
   return res.status(202).json({
     accepted: true,

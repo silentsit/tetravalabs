@@ -28,5 +28,8 @@ jobs:
           NEXT_PUBLIC_SITE_URL: http://localhost:3000
           NEXT_PUBLIC_MEDUSA_URL: http://localhost:9000
 
-      - name: Type-check Medusa backend
-        run: npm run build:backend --workspace=@tetrava/medusa
+      - name: Build Medusa backend
+        run: npm run build --workspace=@tetrava/medusa
+        env:
+          DISABLE_MEDUSA_ADMIN: "true"
+          NODE_ENV: production

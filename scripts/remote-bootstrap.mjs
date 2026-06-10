@@ -21,7 +21,11 @@ console.log(
 )
 
 const steps = [
-  { name: "Bootstrap store (region, shipping, API key)", command: "npm run medusa:bootstrap" },
+  { name: "Normalize catalog", command: "npm run catalog:normalize" },
+  {
+    name: "Bootstrap store (region, shipping, API key)",
+    command: "npm --prefix apps/medusa run bootstrap:store:rotate"
+  },
   { name: "Import catalog", command: "npm run catalog:import" },
   { name: "Index Typesense (optional)", command: "npm run typesense:index" }
 ]

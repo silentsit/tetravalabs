@@ -4,13 +4,15 @@ const steps = [
   "Deploy Medusa on Render (render.yaml) with Neon DATABASE_URL and Upstash REDIS_URL",
   "Set STORE_CORS, AUTH_CORS, ADMIN_CORS to your Vercel domain(s)",
   "Run db:migrate + db:lab-schema (Render preDeployCommand handles this on deploy)",
+  "Verify Render DATABASE_URL matches apps/medusa/.env Neon host: npm run production:verify",
   "Bootstrap admin: npm --prefix apps/medusa run bootstrap:admin",
   "Bootstrap store: npm run medusa:bootstrap (region, shipping, publishable key)",
   "Import catalog: npm run catalog:import",
   "Copy NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY into Vercel env",
   "Set Vercel NEXT_PUBLIC_MEDUSA_URL to Render Medusa URL",
-  "Configure BTCPAY_URL, BTCPAY_API_KEY, BTCPAY_STORE_ID on Render",
+  "BTCPay setup guide: npm run btcpay:setup (then add vars on Render and redeploy Medusa)",
   "Point BTCPay webhook to https://<medusa>/webhooks/payments/btcpay",
+  "Checkout smoke test: npm run smoke:checkout",
   "Run: SMOKE_STOREFRONT_URL=... SMOKE_MEDUSA_URL=... npm run smoke:production",
   "Remote bootstrap: MEDUSA_ADMIN_URL=https://<medusa> npm run bootstrap:remote -- --run"
 ]

@@ -4,6 +4,7 @@ import "./globals.css"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { CartProvider } from "@/components/cart-provider"
+import { SocialProofToast } from "@/components/social-proof-widget"
 
 export const metadata: Metadata = {
   title: "Tetrava Labs",
@@ -22,6 +23,7 @@ export default function RootLayout({
           <SiteHeader />
           <main className="mx-auto min-h-[70vh] w-full max-w-6xl px-4 py-8">{children}</main>
           <SiteFooter />
+          <SocialProofToast />
         </CartProvider>
         {plausibleDomain ? (
           <Script

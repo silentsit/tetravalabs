@@ -38,14 +38,43 @@ const request = async (token, method, route, body) => {
     try {
       data = JSON.parse(text)
     } catch {
-      throw new Error(`${method} ${route} failed: Invalid JSON response`)
+      throw new Error(`${method} ${route} failed: ${text.slice(0, 200)}`)
     }
   }
   if (!response.ok) {
-    const message = data?.message || data?.type || response.statusText
+    const message = data?.message || data?.type || text?.slice(0, 200) || response.statusText
     throw new Error(`${method} ${route} failed: ${message}`)
   }
   return data
+}
+
+const getStockLocationDetails = async (token, stockLocationId) => {
+  const response = await request(
+    token,
+    "GET",
+    `/admin/stock-locations/${stockLocationId}?fields=*fulfillment_sets,*fulfillment_sets.service_zones,*fulfillment_providers`
+  )
+  return response.stock_location
+}
+
+const ensureFulfillmentProvider = async (token, stockLocationId) => {
+  const stockLocation = await getStockLocationDetails(token, stockLocationId)
+  const hasManualProvider = stockLocation.fulfillment_providers?.some(
+    (provider) => provider.id === "manual_manual"
+  )
+
+  if (hasManualProvider) {
+    console.log("Fulfillment provider ready: manual_manual")
+    return
+  }
+
+  await request(
+    token,
+    "POST",
+    `/admin/stock-locations/${stockLocationId}/fulfillment-providers`,
+    { add: ["manual_manual"] }
+  )
+  console.log("Enabled fulfillment provider: manual_manual")
 }
 
 const login = async () => {
@@ -130,56 +159,81 @@ const ensureStockLocation = async (token, salesChannelId) => {
 }
 
 const ensureShippingOption = async (token, region, stockLocationId) => {
+  let stockLocation = await getStockLocationDetails(token, stockLocationId)
+  let fulfillmentSet = stockLocation.fulfillment_sets?.[0]
+
+  if (!fulfillmentSet) {
+    try {
+      const createdSet = await request(
+        token,
+        "POST",
+        `/admin/stock-locations/${stockLocationId}/fulfillment-sets`,
+        {
+          name: "US Shipping",
+          type: "shipping"
+        }
+      )
+      stockLocation = createdSet.stock_location || stockLocation
+    } catch (error) {
+      if (!String(error.message).toLowerCase().includes("already exists")) {
+        throw error
+      }
+      stockLocation = await getStockLocationDetails(token, stockLocationId)
+    }
+
+    if (!stockLocation.fulfillment_sets?.length) {
+      stockLocation = await getStockLocationDetails(token, stockLocationId)
+    }
+    fulfillmentSet = stockLocation.fulfillment_sets?.[0]
+    if (!fulfillmentSet) {
+      throw new Error("Failed to resolve fulfillment set for stock location.")
+    }
+    console.log(`Fulfillment set ready: ${fulfillmentSet.name}`)
+  } else {
+    console.log(`Fulfillment set ready: ${fulfillmentSet.name}`)
+  }
+
+  let serviceZone = fulfillmentSet.service_zones?.[0]
+  if (!serviceZone) {
+    try {
+      const createdZone = await request(
+        token,
+        "POST",
+        `/admin/fulfillment-sets/${fulfillmentSet.id}/service-zones`,
+        {
+          name: "United States",
+          geo_zones: [{ type: "country", country_code: "us" }]
+        }
+      )
+      serviceZone = createdZone.fulfillment_set?.service_zones?.[0]
+    } catch (error) {
+      if (!String(error.message).toLowerCase().includes("already exists")) {
+        throw error
+      }
+    }
+
+    if (!serviceZone) {
+      serviceZone = (await getStockLocationDetails(token, stockLocationId)).fulfillment_sets?.[0]
+        ?.service_zones?.[0]
+    }
+    if (!serviceZone) {
+      throw new Error("Failed to resolve service zone for fulfillment set.")
+    }
+    console.log(`Service zone ready: ${serviceZone.name}`)
+  } else {
+    console.log(`Service zone ready: ${serviceZone.name}`)
+  }
+
+  await ensureFulfillmentProvider(token, stockLocationId)
+
   const options = await request(
     token,
     "GET",
-    `/admin/shipping-options?region_id=${region.id}&limit=20`
+    `/admin/shipping-options?service_zone_id=${serviceZone.id}&limit=20`
   )
   if (options.shipping_options?.length) {
     console.log(`Shipping options ready (${options.shipping_options.length})`)
     return options.shipping_options[0]
-  }
-
-  const fulfillmentSets = await request(
-    token,
-    "GET",
-    `/admin/stock-locations/${stockLocationId}/fulfillment-sets?limit=20`
-  )
-  let fulfillmentSet = fulfillmentSets.fulfillment_sets?.[0]
-
-  if (!fulfillmentSet) {
-    const createdSet = await request(
-      token,
-      "POST",
-      `/admin/stock-locations/${stockLocationId}/fulfillment-sets`,
-      {
-        name: "US Shipping",
-        type: "shipping"
-      }
-    )
-    fulfillmentSet = createdSet.fulfillment_set
-    console.log(`Created fulfillment set: ${fulfillmentSet.name}`)
-  }
-
-  const serviceZones = await request(
-    token,
-    "GET",
-    `/admin/fulfillment-sets/${fulfillmentSet.id}/service-zones?limit=20`
-  )
-  let serviceZone = serviceZones.service_zones?.[0]
-
-  if (!serviceZone) {
-    const createdZone = await request(
-      token,
-      "POST",
-      `/admin/fulfillment-sets/${fulfillmentSet.id}/service-zones`,
-      {
-        name: "United States",
-        geo_zones: [{ type: "country", country_code: "us" }]
-      }
-    )
-    serviceZone = createdZone.service_zone
-    console.log(`Created service zone: ${serviceZone.name}`)
   }
 
   const profiles = await request(token, "GET", "/admin/shipping-profiles?limit=20")
@@ -210,13 +264,15 @@ const ensureShippingOption = async (token, region, stockLocationId) => {
 }
 
 const ensurePublishableKey = async (token, salesChannelId) => {
+  const rotate = process.argv.includes("--rotate-key")
   const keys = await request(token, "GET", "/admin/api-keys?type=publishable&limit=50")
   let key = keys.api_keys?.find((item) => item.title === "Tetrava Storefront")
   let publishableToken = null
 
-  if (!key) {
+  if (!key || rotate) {
+    const title = rotate && key ? "Tetrava Storefront (rotated)" : "Tetrava Storefront"
     const created = await request(token, "POST", "/admin/api-keys", {
-      title: "Tetrava Storefront",
+      title,
       type: "publishable"
     })
     key = created.api_key
@@ -232,9 +288,12 @@ const ensurePublishableKey = async (token, salesChannelId) => {
 
   if (publishableToken) {
     console.log("\nAdd to apps/storefront/.env.local and Vercel:")
+    console.log(`NEXT_PUBLIC_MEDUSA_URL=${MEDUSA_ADMIN_URL}`)
     console.log(`NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=${publishableToken}`)
   } else {
-    console.log("\nPublishable key already exists. Re-create in Admin if you lost the token.")
+    console.log("\nPublishable key exists but token is not returned by Medusa.")
+    console.log("Re-run with --rotate-key to create a new key and print the token:")
+    console.log("  npm run medusa:bootstrap -- --rotate-key")
   }
 
   return key

@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getProductByHandle, listCoasByVariant } from "@/lib/medusa"
+import { slugifyCategory } from "@/lib/categories"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 
 type Props = { params: Promise<{ handle: string }> }
 
@@ -34,8 +36,19 @@ export default async function ProductPage({ params }: Props) {
     }
   }
 
+  const categoryLabel = String(product.metadata?.source_category || "Research Product")
+  const categorySlug = slugifyCategory(categoryLabel)
+
   return (
     <article className="space-y-5">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Shop", href: "/shop" },
+          { label: categoryLabel, href: `/category/${categorySlug}` },
+          { label: product.title }
+        ]}
+      />
       <h1 className="text-3xl font-semibold">{product.title}</h1>
       <p className="text-sm text-[#FBBF24]">For Research Use Only. Not for human consumption.</p>
 

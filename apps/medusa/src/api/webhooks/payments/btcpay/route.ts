@@ -15,16 +15,32 @@ type BtcpayWebhookPayload = {
   timestamp?: number
 }
 
+function getRawBody(req: MedusaRequest): string {
+  const raw = (req as MedusaRequest & { rawBody?: Buffer | string }).rawBody
+  if (Buffer.isBuffer(raw)) return raw.toString("utf8")
+  if (typeof raw === "string" && raw.length) return raw
+  if (typeof req.body === "string") return req.body
+  return JSON.stringify(req.body ?? {})
+}
+
 export const POST = async (req: MedusaRequest<BtcpayWebhookPayload>, res: MedusaResponse) => {
-  const rawBody = JSON.stringify(req.body ?? {})
-  const signature = req.headers["btcpay-sig"] as string | undefined
+  try {
+    const rawBody = getRawBody(req)
+    const signature = req.headers["btcpay-sig"] as string | undefined
 
-  if (!verifyBtcpayWebhookSignature(rawBody, signature)) {
-    return res.status(401).json({ message: "Invalid BTCPay signature" })
-  }
+    if (!verifyBtcpayWebhookSignature(rawBody, signature)) {
+      return res.status(401).json({ message: "Invalid BTCPay signature" })
+    }
 
-  const eventType = req.body?.type || "unknown"
-  const invoiceId = req.body?.invoiceId
+    let payload: BtcpayWebhookPayload
+    try {
+      payload = JSON.parse(rawBody) as BtcpayWebhookPayload
+    } catch {
+      return res.status(400).json({ message: "Invalid JSON" })
+    }
+
+    const eventType = payload.type || "unknown"
+    const invoiceId = payload.invoiceId
   const mappedStatus = mapBtcpayEventType(eventType)
   let orderId: string | null = null
   let intentEmail: string | null = null
@@ -83,7 +99,7 @@ export const POST = async (req: MedusaRequest<BtcpayWebhookPayload>, res: Medusa
         INSERT INTO payment_webhook_events (event_name, mapped_status, order_id, payment_id, payload)
         VALUES ($1, $2, $3, $4, $5)
       `,
-        [eventType, mappedStatus, orderId, invoiceId ?? null, req.body ?? {}]
+        [eventType, mappedStatus, orderId, invoiceId ?? null, payload]
       )
 
       if (orderId) {
@@ -123,4 +139,8 @@ export const POST = async (req: MedusaRequest<BtcpayWebhookPayload>, res: Medusa
     order_id: orderId,
     invoice_id: invoiceId
   })
+  } catch (error) {
+    console.error("[btcpay] webhook handler failed:", error)
+    return res.status(500).json({ message: "BTCPay webhook processing failed" })
+  }
 }

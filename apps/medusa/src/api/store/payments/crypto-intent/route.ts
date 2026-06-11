@@ -1,12 +1,40 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
 import { createBtcpayInvoice, isBtcpayConfigured } from "../../../../lib/btcpay"
+import {
+  cryptoCheckoutMisconfigMessageForAsset,
+  getAvailableCheckoutCryptoAssets,
+  isAcceptedCryptoAsset,
+  resolveCryptoCheckoutProviderForAsset,
+  type CryptoAsset
+} from "../../../../lib/crypto-provider"
+import {
+  getPaymentoSpeedFromEnv,
+  isPaymentoConfigured,
+  paymentoCreatePaymentRequest,
+  paymentoGatewayUrl
+} from "../../../../lib/paymento"
 
 type Body = {
   order_id?: string
   email?: string
   amount_usd?: number
   currency?: string
+  crypto_asset?: string
+}
+
+function getReturnUrl() {
+  const storeOrigin =
+    process.env.STOREFRONT_URL ||
+    process.env.STORE_CORS?.split(",")[0]?.trim() ||
+    "http://localhost:3000"
+  return `${storeOrigin.replace(/\/$/, "")}/orders?payment=complete`
+}
+
+function normalizeAsset(value: string | undefined): CryptoAsset {
+  const asset = (value || "BTC").trim().toUpperCase()
+  if (isAcceptedCryptoAsset(asset)) return asset
+  return "BTC"
 }
 
 async function saveIntent(
@@ -79,12 +107,22 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   const email = req.body?.email
   const amountUsd = Number(req.body?.amount_usd || 0)
   const currency = (req.body?.currency || "USD").toUpperCase()
+  const asset = normalizeAsset(req.body?.crypto_asset)
 
   if (!orderId || !email || amountUsd <= 0) {
     return res.status(400).json({ message: "order_id, email, amount_usd are required" })
   }
 
-  if (isBtcpayConfigured()) {
+  const provider = resolveCryptoCheckoutProviderForAsset(asset)
+  if (!provider) {
+    return res.status(503).json({
+      ok: false,
+      message: cryptoCheckoutMisconfigMessageForAsset(asset),
+      crypto_asset: asset
+    })
+  }
+
+  if (provider === "btcpay" && isBtcpayConfigured()) {
     try {
       const invoice = await createBtcpayInvoice({
         orderId,
@@ -99,6 +137,7 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
         ok: true,
         order_id: orderId,
         provider: "btcpay",
+        crypto_asset: asset,
         provider_url: invoice.checkoutUrl,
         invoice_id: invoice.invoiceId,
         message: "BTCPay invoice created"
@@ -109,16 +148,38 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     }
   }
 
-  const checkoutBase = process.env.CRYPTO_CHECKOUT_BASE_URL || "https://example.com/crypto-checkout"
-  const checkoutUrl = `${checkoutBase}?order_id=${encodeURIComponent(orderId)}&amount=${amountUsd.toFixed(2)}&currency=${currency}`
+  if (provider === "paymento" && isPaymentoConfigured()) {
+    const paymentRequest = await paymentoCreatePaymentRequest({
+      fiatAmount: amountUsd.toFixed(2),
+      fiatCurrency: currency,
+      orderId,
+      returnUrl: getReturnUrl(),
+      speed: getPaymentoSpeedFromEnv(),
+      emailAddress: email,
+      additionalData: [{ key: "cryptoAsset", value: asset }]
+    })
 
-  await saveIntent(orderId, email, amountUsd, currency, checkoutUrl, "placeholder")
+    if (!paymentRequest.success) {
+      return res.status(502).json({ ok: false, message: `Paymento: ${paymentRequest.error}` })
+    }
 
-  return res.json({
-    ok: true,
-    order_id: orderId,
-    provider: "placeholder",
-    provider_url: checkoutUrl,
-    message: "Configure BTCPAY_URL, BTCPAY_API_KEY, and BTCPAY_STORE_ID for live crypto checkout"
+    const gatewayUrl = paymentoGatewayUrl(paymentRequest.token)
+    await saveIntent(orderId, email, amountUsd, currency, gatewayUrl, "paymento", paymentRequest.token)
+
+    return res.json({
+      ok: true,
+      order_id: orderId,
+      provider: "paymento",
+      crypto_asset: asset,
+      provider_url: gatewayUrl,
+      payment_token: paymentRequest.token,
+      message: "Paymento payment request created"
+    })
+  }
+
+  return res.status(503).json({
+    ok: false,
+    message: cryptoCheckoutMisconfigMessageForAsset(asset),
+    available_assets: getAvailableCheckoutCryptoAssets()
   })
 }

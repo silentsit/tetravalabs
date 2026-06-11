@@ -25,6 +25,12 @@ type CheckoutOrder = {
 const ORDERS_KEY = "tetrava_orders_v1"
 const DEFAULT_SHIPPING_USD = 15
 
+type CryptoOption = {
+  asset: string
+  label: string
+  provider: string
+}
+
 export function CheckoutForm() {
   const router = useRouter()
   const { items, subtotal, clear } = useCart()
@@ -41,6 +47,8 @@ export function CheckoutForm() {
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [restrictedCountries, setRestrictedCountries] = useState<string[]>([])
+  const [cryptoOptions, setCryptoOptions] = useState<CryptoOption[]>([])
+  const [selectedAsset, setSelectedAsset] = useState("BTC")
 
   useEffect(() => {
     void fetch("/api/compliance/restricted-countries")
@@ -52,6 +60,23 @@ export function CheckoutForm() {
       })
       .catch(() => {
         // Server-side checkout still enforces restrictions.
+      })
+  }, [])
+
+  useEffect(() => {
+    void fetch(getMedusaStoreUrl("/store/payments/crypto-options"), {
+      headers: getMedusaStoreHeaders()
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data?.ok && Array.isArray(data.assets) && data.assets.length) {
+          setCryptoOptions(data.assets)
+          const preferred = data.assets.find((item: CryptoOption) => item.asset === "BTC")
+          setSelectedAsset(preferred?.asset || data.assets[0].asset)
+        }
+      })
+      .catch(() => {
+        // Falls back to BTC-only when Medusa is unreachable.
       })
   }, [])
 
@@ -163,13 +188,21 @@ export function CheckoutForm() {
           order_id: orderId,
           email,
           amount_usd: orderTotal,
-          currency: "USD"
+          currency: "USD",
+          crypto_asset: selectedAsset
         })
       })
       const intentJson = await intentResponse.json()
       if (intentJson?.provider_url) {
         paymentUrl = intentJson.provider_url
         setCheckoutUrl(intentJson.provider_url)
+      }
+      if (intentJson?.provider === "paymento" && intentJson?.provider_url) {
+        storePaymentUrl(orderId, intentJson.provider_url)
+        clear()
+        setLoading(false)
+        window.location.assign(intentJson.provider_url)
+        return
       }
     } catch {
       // Crypto intent is optional until BTCPay is configured.
@@ -320,6 +353,23 @@ export function CheckoutForm() {
       <p className="text-sm font-medium text-[#E8E8F0]">
         Estimated total: ${(subtotal + DEFAULT_SHIPPING_USD).toFixed(2)}
       </p>
+      {cryptoOptions.length > 0 ? (
+        <div>
+          <label className="block text-xs text-[#8A8AA0]">Pay with cryptocurrency</label>
+          <select
+            value={selectedAsset}
+            onChange={(event) => setSelectedAsset(event.target.value)}
+            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2 text-sm text-[#E8E8F0]"
+          >
+            {cryptoOptions.map((option) => (
+              <option key={option.asset} value={option.asset}>
+                {option.label}
+                {option.provider === "btcpay" ? " (BTCPay)" : option.provider === "paymento" ? " (Paymento)" : ""}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : null}
       <button
         disabled={loading}
         className="rounded bg-[#5EEAD4] px-4 py-2 text-sm font-medium text-[#050508] disabled:opacity-60"

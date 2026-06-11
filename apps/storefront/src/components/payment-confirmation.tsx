@@ -9,6 +9,7 @@ const POLL_MS = 12_000
 
 type PaymentStatus = {
   status?: string
+  provider?: string
   provider_url?: string
   amount_usd?: number
 }
@@ -44,6 +45,7 @@ export function PaymentConfirmation() {
 
         const nextStatus: PaymentStatus = {
           status: data.status,
+          provider: data.provider,
           provider_url: data.provider_url,
           amount_usd: data.amount_usd
         }
@@ -93,6 +95,13 @@ export function PaymentConfirmation() {
     total || (paymentStatus?.amount_usd != null ? String(paymentStatus.amount_usd) : "")
   const isPaid = isPaidStatus(paymentStatus?.status)
   const isProcessing = paymentStatus?.status === "processing"
+  const provider = paymentStatus?.provider || ""
+  const payButtonLabel =
+    provider === "paymento"
+      ? "Open Paymento checkout"
+      : provider === "btcpay"
+        ? "Pay with Bitcoin (BTCPay)"
+        : "Pay with Crypto"
 
   return (
     <section className="mx-auto max-w-xl space-y-6">
@@ -128,11 +137,12 @@ export function PaymentConfirmation() {
             href={resolvedUrl}
             className="block w-full rounded-lg bg-[#5EEAD4] px-6 py-3 text-center text-sm font-medium text-[#050508]"
           >
-            Pay with Crypto (BTCPay)
+            {payButtonLabel}
           </a>
         ) : !isPaid ? (
           <p className="text-sm text-[#FBBF24]">
-            BTCPay is not configured yet. Your order is recorded; payment instructions will follow by email.
+            Crypto checkout is not fully configured yet. Your order is recorded; payment instructions will follow by
+            email.
           </p>
         ) : null}
         <Link href="/orders" className="block text-center text-sm text-[#5EEAD4]">

@@ -4,8 +4,17 @@ Tetrava uses BTCPay for crypto checkout. Medusa on Render creates invoices; BTCP
 
 ## Architecture
 
+Tetrava uses a **dual-provider** crypto stack (same pattern as Modempic):
+
+| Asset | Provider |
+|-------|----------|
+| BTC | BTCPay (on-chain / Lightning) |
+| USDT, ETH, SOL, etc. | Paymento |
+
+See [doc/paymento-setup.md](./paymento-setup.md) for Paymento configuration.
+
 ```
-Customer → tetravalabs.com checkout
+Customer → tetravalabs.com checkout (select crypto asset)
          → Medusa (Render) POST /store/payments/crypto-intent
          → BTCPay Server creates invoice
          → Customer pays on BTCPay checkout page

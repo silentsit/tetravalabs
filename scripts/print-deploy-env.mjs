@@ -33,8 +33,10 @@ Medusa (Render, render.yaml)
   BTCPAY_API_KEY=<greenfield api key>
   BTCPAY_STORE_ID=<store id>
   BTCPAY_WEBHOOK_SECRET=<btcpay webhook secret>
+  PAYMENTO_API_KEY=<paymento api key>
+  PAYMENTO_SECRET_KEY=<paymento secret key for IPN HMAC>
+  PAYMENTO_SPEED=1
   STOREFRONT_URL=https://tetravalabs.com
-  CRYPTO_CHECKOUT_BASE_URL=<fallback checkout URL if BTCPay not used>
   RESEND_API_KEY=<resend key>
   RESEND_FROM=Tetrava Labs <orders@tetravalabs.com>
 

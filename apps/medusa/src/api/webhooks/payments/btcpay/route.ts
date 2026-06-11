@@ -7,6 +7,7 @@ import {
   verifyBtcpayWebhookSignature
 } from "../../../../lib/btcpay"
 import { sendPaymentReceivedEmail } from "../../../../lib/resend"
+import { captureOrderPayment } from "../../../../lib/capture-order-payment"
 import { getHeaderValue, getWebhookRawBody } from "../../../../lib/webhook-raw-body"
 
 type BtcpayWebhookPayload = {
@@ -14,6 +15,15 @@ type BtcpayWebhookPayload = {
   invoiceId?: string
   storeId?: string
   timestamp?: number
+}
+
+/** BTCPay dashboard checks webhook reachability; unsigned POST still requires valid signature. */
+export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
+  return res.status(200).json({
+    ok: true,
+    provider: "btcpay",
+    message: "BTCPay webhook endpoint is reachable. POST signed invoice events here."
+  })
 }
 
 export const POST = async (req: MedusaRequest<BtcpayWebhookPayload>, res: MedusaResponse) => {
@@ -117,6 +127,11 @@ export const POST = async (req: MedusaRequest<BtcpayWebhookPayload>, res: Medusa
       previousStatus !== "completed" &&
       intentAmount != null
     ) {
+      const capture = await captureOrderPayment(orderId, req.scope)
+      if (!capture.ok && !capture.alreadyPaid) {
+        console.warn("[btcpay] Medusa capture failed:", capture.reason)
+      }
+
       await sendPaymentReceivedEmail({
         email: intentEmail,
         orderId,

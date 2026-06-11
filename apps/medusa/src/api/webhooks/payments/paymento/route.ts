@@ -10,6 +10,7 @@ import {
   type PaymentoIpnPayload
 } from "../../../../lib/paymento"
 import { sendPaymentReceivedEmail } from "../../../../lib/resend"
+import { captureOrderPayment } from "../../../../lib/capture-order-payment"
 import { getWebhookRawBody } from "../../../../lib/webhook-raw-body"
 
 function parsePayload(rawBody: string): PaymentoIpnPayload | null {
@@ -149,6 +150,11 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       previousStatus !== "completed" &&
       intentAmount != null
     ) {
+      const capture = await captureOrderPayment(orderId, req.scope)
+      if (!capture.ok && !capture.alreadyPaid) {
+        console.warn("[paymento] Medusa capture failed:", capture.reason)
+      }
+
       await sendPaymentReceivedEmail({
         email: intentEmail,
         orderId,

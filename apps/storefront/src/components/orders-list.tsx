@@ -39,10 +39,33 @@ async function fetchPaymentStatus(orderId: string): Promise<PaymentStatus | null
   }
 }
 
-function PaymentBadge({ status, payUrl }: { status?: string; payUrl?: string }) {
-  if (!status) return null
+function PaymentBadge({
+  status,
+  orderStatus,
+  payUrl
+}: {
+  status?: string
+  orderStatus?: string
+  payUrl?: string
+}) {
+  const normalizedOrderStatus = orderStatus?.toLowerCase()
+  const normalizedPaymentStatus = status?.toLowerCase()
+  const isPaid =
+    normalizedPaymentStatus === "completed" ||
+    normalizedPaymentStatus === "paid" ||
+    normalizedPaymentStatus === "settled" ||
+    normalizedOrderStatus === "completed"
 
-  const isPaid = status === "paid" || status === "settled" || status === "completed"
+  const label = isPaid
+    ? "Paid"
+    : status
+      ? `Payment: ${status}`
+      : orderStatus
+        ? `Order: ${orderStatus}`
+        : null
+
+  if (!label) return null
+
   return (
     <div className="mt-2 flex flex-wrap items-center gap-2">
       <span
@@ -50,7 +73,7 @@ function PaymentBadge({ status, payUrl }: { status?: string; payUrl?: string }) 
           isPaid ? "bg-[#5EEAD4]/20 text-[#5EEAD4]" : "bg-[#FBBF24]/20 text-[#FBBF24]"
         }`}
       >
-        Payment: {status}
+        {label}
       </span>
       {!isPaid && payUrl && !payUrl.includes("example.com") ? (
         <a href={payUrl} className="text-xs text-[#5EEAD4] underline">
@@ -138,7 +161,11 @@ export function OrdersList() {
               <p className="text-xs text-[#8A8AA0]">
                 Total: ${((order.total || 0) / 100).toFixed(2)} {order.currency_code?.toUpperCase()}
               </p>
-              <PaymentBadge status={payment?.status} payUrl={payment?.provider_url} />
+              <PaymentBadge
+                status={payment?.status}
+                orderStatus={order.status}
+                payUrl={payment?.provider_url}
+              />
             </li>
           )
         })}

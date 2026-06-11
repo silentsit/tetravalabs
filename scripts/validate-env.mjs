@@ -22,6 +22,8 @@ const recommendedProduction = [
   { key: "PAYMENTO_API_KEY", file: "medusa", label: "Paymento API key (USDT, ETH, etc.)" },
   { key: "PAYMENTO_SECRET_KEY", file: "medusa", label: "Paymento secret key (IPN HMAC)" },
   { key: "STOREFRONT_URL", file: "medusa", label: "Public storefront URL for payment redirects" },
+  { key: "RESEND_API_KEY", file: "medusa", label: "Resend API key (payment received emails)" },
+  { key: "RESEND_FROM", file: "medusa", label: "Verified Resend sender (Medusa webhooks)" },
   { key: "NEXT_PUBLIC_SITE_URL", file: "storefront", label: "Canonical site URL" },
   { key: "RESEND_API_KEY", file: "storefront", label: "Resend API key (order confirmation emails)" },
   { key: "RESEND_FROM", file: "storefront", label: "Verified Resend sender address" },

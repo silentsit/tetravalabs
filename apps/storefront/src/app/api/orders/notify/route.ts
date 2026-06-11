@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { buildOrderConfirmationEmail } from "@/lib/order-confirmation-email"
+import { sendOrderConfirmationEmail } from "@/lib/send-order-confirmation"
 
 type OrderItem = {
   title?: string
@@ -19,14 +19,6 @@ type Body = {
 
 const MEDUSA_URL = (process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(/\/$/, "")
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "")
-
-function buildPaymentPageUrl(orderId: string, displayId?: number, total?: number) {
-  const params = new URLSearchParams({ order_id: orderId })
-  if (displayId) params.set("display_id", String(displayId))
-  if (typeof total === "number" && total > 0) params.set("total", total.toFixed(2))
-  return `${SITE_URL}/checkout/payment?${params.toString()}`
-}
 
 async function resolvePaymentUrl(orderId: string, provided?: string) {
   if (provided && !provided.includes("example.com")) {
@@ -62,16 +54,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, message: "email and orderId are required" }, { status: 400 })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.RESEND_FROM || "Tetrava Labs <orders@tetravalabs.com>"
-  if (!apiKey) {
-    return NextResponse.json({ ok: true, skipped: "RESEND_API_KEY not configured" })
-  }
-
   const paymentUrl = await resolvePaymentUrl(orderId, payload.paymentUrl)
-  const paymentPageUrl = buildPaymentPageUrl(orderId, displayId, total)
-  const orderLabel = displayId ? `Order #${displayId}` : orderId
-
   const items = (payload.items || [])
     .filter((item) => item.title && item.quantity && item.unitPrice != null)
     .map((item) => ({
@@ -81,32 +64,22 @@ export async function POST(req: Request) {
       unitPrice: item.unitPrice!
     }))
 
-  const { subject, html } = buildOrderConfirmationEmail({
-    orderLabel,
+  const result = await sendOrderConfirmationEmail({
+    email,
+    orderId,
+    displayId,
     total,
     paymentUrl,
-    paymentPageUrl,
     items
   })
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      from,
-      to: [email],
-      subject,
-      html
-    })
-  })
-
-  if (!response.ok) {
-    const error = await response.text()
-    return NextResponse.json({ ok: false, error }, { status: 502 })
+  if (!result.ok) {
+    return NextResponse.json({ ok: false, error: result.error }, { status: 502 })
   }
 
-  return NextResponse.json({ ok: true, emailed: true })
+  if (result.skipped) {
+    return NextResponse.json({ ok: true, skipped: result.skipped })
+  }
+
+  return NextResponse.json({ ok: true, emailed: result.emailed })
 }

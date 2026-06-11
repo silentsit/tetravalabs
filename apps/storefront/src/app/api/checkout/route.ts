@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server"
 import Medusa from "@medusajs/js-sdk"
 import { isRestrictedCountry } from "@/lib/shipping-compliance"
+import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
+import { sendOrderConfirmationEmail, type OrderEmailItem } from "@/lib/send-order-confirmation"
 
 type CheckoutItem = {
   variantId: string
   quantity: number
+  title?: string
+  variantTitle?: string
+  unitPrice?: number
 }
 
 type CheckoutBody = {
@@ -15,6 +20,7 @@ type CheckoutBody = {
   city?: string
   postalCode?: string
   country?: string
+  crypto_asset?: string
   items?: CheckoutItem[]
 }
 
@@ -122,10 +128,10 @@ export async function POST(req: Request) {
     const { payment_providers } = await sdk.store.payment.listPaymentProviders({
       region_id: regionId
     })
-    const paymentProvider = payment_providers?.[0]?.id || "pp_system_default"
+    const medusaPaymentProviderId = payment_providers?.[0]?.id || "pp_system_default"
 
     await sdk.store.payment.initiatePaymentSession(cartWithShipping, {
-      provider_id: paymentProvider
+      provider_id: medusaPaymentProviderId
     })
 
     const completion = await sdk.store.cart.complete(cart.id)
@@ -144,15 +150,50 @@ export async function POST(req: Request) {
     const order = completion.order
     const total = order.total ?? order.subtotal ?? 0
     const shippingUsd = typeof shippingTotal === "number" ? shippingTotal / 100 : 15
+    const totalUsd = typeof total === "number" ? total / 100 : 0
+
+    const emailItems: OrderEmailItem[] = items
+      .filter((item) => item.title && item.unitPrice != null)
+      .map((item) => ({
+        title: item.title!,
+        variantTitle: item.variantTitle,
+        quantity: item.quantity,
+        unitPrice: item.unitPrice!
+      }))
+
+    const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "BTC"
+    const intent = await createCryptoPaymentIntent({
+      orderId: order.id,
+      email,
+      amountUsd: totalUsd,
+      cryptoAsset
+    })
+
+    const paymentUrl = intent?.provider_url || null
+    const cryptoProvider = intent?.provider || null
+
+    void sendOrderConfirmationEmail({
+      email,
+      orderId: order.id,
+      displayId: order.display_id,
+      total: totalUsd,
+      paymentUrl,
+      items: emailItems
+    }).catch(() => {
+      // Email failure must not block checkout.
+    })
 
     return NextResponse.json({
       ok: true,
       order_id: order.id,
       display_id: order.display_id,
       cart_id: cart.id,
-      total: typeof total === "number" ? total / 100 : 0,
+      total: totalUsd,
       shipping: shippingUsd,
-      source: "medusa"
+      source: "medusa",
+      payment_url: paymentUrl,
+      payment_provider: cryptoProvider,
+      crypto_asset: cryptoAsset
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : "Medusa checkout failed"

@@ -149,32 +149,38 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   }
 
   if (provider === "paymento" && isPaymentoConfigured()) {
-    const paymentRequest = await paymentoCreatePaymentRequest({
-      fiatAmount: amountUsd.toFixed(2),
-      fiatCurrency: currency,
-      orderId,
-      returnUrl: getReturnUrl(),
-      speed: getPaymentoSpeedFromEnv(),
-      emailAddress: email,
-      additionalData: [{ key: "cryptoAsset", value: asset }]
-    })
+    try {
+      const paymentRequest = await paymentoCreatePaymentRequest({
+        fiatAmount: amountUsd.toFixed(2),
+        fiatCurrency: currency,
+        orderId,
+        returnUrl: getReturnUrl(),
+        speed: getPaymentoSpeedFromEnv(),
+        emailAddress: email,
+        additionalData: [{ key: "cryptoAsset", value: asset }]
+      })
 
-    if (!paymentRequest.success) {
-      return res.status(502).json({ ok: false, message: `Paymento: ${paymentRequest.error}` })
+      if (!paymentRequest.success) {
+        return res.status(502).json({ ok: false, message: `Paymento: ${paymentRequest.error}` })
+      }
+
+      const gatewayUrl = paymentoGatewayUrl(paymentRequest.token)
+      await saveIntent(orderId, email, amountUsd, currency, gatewayUrl, "paymento", paymentRequest.token)
+
+      return res.json({
+        ok: true,
+        order_id: orderId,
+        provider: "paymento",
+        crypto_asset: asset,
+        provider_url: gatewayUrl,
+        payment_token: paymentRequest.token,
+        message: "Paymento payment request created"
+      })
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Paymento payment request failed"
+      console.error("[crypto-intent] Paymento failed:", error)
+      return res.status(502).json({ ok: false, message: `Paymento: ${message}` })
     }
-
-    const gatewayUrl = paymentoGatewayUrl(paymentRequest.token)
-    await saveIntent(orderId, email, amountUsd, currency, gatewayUrl, "paymento", paymentRequest.token)
-
-    return res.json({
-      ok: true,
-      order_id: orderId,
-      provider: "paymento",
-      crypto_asset: asset,
-      provider_url: gatewayUrl,
-      payment_token: paymentRequest.token,
-      message: "Paymento payment request created"
-    })
   }
 
   return res.status(503).json({

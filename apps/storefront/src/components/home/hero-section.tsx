@@ -23,6 +23,12 @@ export function HeroSection() {
             Shop Catalog
           </Link>
           <Link
+            href="/search"
+            className="rounded-lg border border-white/10 px-8 py-3 text-sm text-[#E8E8F0] transition hover:border-[#5EEAD4] hover:text-[#5EEAD4]"
+          >
+            Search Compounds
+          </Link>
+          <Link
             href="/coa-library"
             className="rounded-lg border border-white/10 px-8 py-3 text-sm text-[#E8E8F0] transition hover:border-[#5EEAD4] hover:text-[#5EEAD4]"
           >

@@ -114,6 +114,7 @@ export function CheckoutForm() {
     let displayId: number | undefined
     let orderTotal = subtotal + DEFAULT_SHIPPING_USD
     let paymentUrl: string | null = null
+    let paymentProvider: string | null = null
 
     try {
       const authToken = readAuthToken()
@@ -131,9 +132,13 @@ export function CheckoutForm() {
           city,
           postalCode,
           country,
+          crypto_asset: selectedAsset,
           items: items.map((item) => ({
             variantId: item.variantId,
-            quantity: item.quantity
+            quantity: item.quantity,
+            title: item.title,
+            variantTitle: item.variantTitle,
+            unitPrice: item.unitPrice
           }))
         })
       })
@@ -152,6 +157,12 @@ export function CheckoutForm() {
       displayId = checkoutJson.display_id
       if (typeof checkoutJson.total === "number" && checkoutJson.total > 0) {
         orderTotal = checkoutJson.total
+      }
+      if (checkoutJson.payment_url) {
+        paymentUrl = checkoutJson.payment_url
+      }
+      if (checkoutJson.payment_provider) {
+        paymentProvider = checkoutJson.payment_provider
       }
     } catch {
       setError("Could not reach checkout API.")
@@ -181,31 +192,39 @@ export function CheckoutForm() {
     }
 
     try {
-      const intentResponse = await fetch(getMedusaStoreUrl("/store/payments/crypto-intent"), {
-        method: "POST",
-        headers: getMedusaStoreHeaders({ "content-type": "application/json" }),
-        body: JSON.stringify({
-          order_id: orderId,
-          email,
-          amount_usd: orderTotal,
-          currency: "USD",
-          crypto_asset: selectedAsset
+      if (!paymentUrl) {
+        const intentResponse = await fetch(getMedusaStoreUrl("/store/payments/crypto-intent"), {
+          method: "POST",
+          headers: getMedusaStoreHeaders({ "content-type": "application/json" }),
+          body: JSON.stringify({
+            order_id: orderId,
+            email,
+            amount_usd: orderTotal,
+            currency: "USD",
+            crypto_asset: selectedAsset
+          })
         })
-      })
-      const intentJson = await intentResponse.json()
-      if (intentJson?.provider_url) {
-        paymentUrl = intentJson.provider_url
-        setCheckoutUrl(intentJson.provider_url)
-      }
-      if (intentJson?.provider === "paymento" && intentJson?.provider_url) {
-        storePaymentUrl(orderId, intentJson.provider_url)
+        const intentJson = await intentResponse.json()
+        if (intentJson?.provider_url) {
+          paymentUrl = intentJson.provider_url
+          setCheckoutUrl(intentJson.provider_url)
+        }
+        if (intentJson?.provider === "paymento" && intentJson?.provider_url) {
+          storePaymentUrl(orderId, intentJson.provider_url)
+          clear()
+          setLoading(false)
+          window.location.assign(intentJson.provider_url)
+          return
+        }
+      } else if (paymentProvider === "paymento" && paymentUrl) {
+        storePaymentUrl(orderId, paymentUrl)
         clear()
         setLoading(false)
-        window.location.assign(intentJson.provider_url)
+        window.location.assign(paymentUrl)
         return
       }
     } catch {
-      // Crypto intent is optional until BTCPay is configured.
+      // Crypto intent fallback when checkout API did not return a payment URL.
     }
 
     const order: CheckoutOrder = {
@@ -234,23 +253,6 @@ export function CheckoutForm() {
     }
     parsed.unshift(order)
     window.localStorage.setItem(ORDERS_KEY, JSON.stringify(parsed))
-
-    try {
-      await fetch("/api/orders/notify", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          email,
-          orderId,
-          displayId,
-          total: orderTotal,
-          paymentUrl,
-          items: order.items
-        })
-      })
-    } catch {
-      // Email is optional until Resend is configured.
-    }
 
     clear()
     setLoading(false)

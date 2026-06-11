@@ -7,6 +7,7 @@ const links = [
   { href: "/shipping", label: "Shipping" },
   { href: "/terms", label: "Terms" },
   { href: "/privacy", label: "Privacy" },
+  { href: "/refund", label: "Refunds" },
   { href: "/ruo", label: "RUO Policy" }
 ]
 

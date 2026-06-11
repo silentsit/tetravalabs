@@ -39,8 +39,6 @@ services:
         sync: false
       - key: AUTH_CORS
         sync: false
-      - key: CRYPTO_PROVIDER
-        value: btcpay
       - key: CRYPTO_WEBHOOK_SECRET
         sync: false
       - key: CRYPTO_CHECKOUT_BASE_URL
@@ -52,6 +50,12 @@ services:
       - key: BTCPAY_STORE_ID
         sync: false
       - key: BTCPAY_WEBHOOK_SECRET
+        sync: false
+      - key: PAYMENTO_API_KEY
+        sync: false
+      - key: PAYMENTO_SECRET_KEY
+        sync: false
+      - key: PAYMENTO_SPEED
         sync: false
       - key: STOREFRONT_URL
         sync: false

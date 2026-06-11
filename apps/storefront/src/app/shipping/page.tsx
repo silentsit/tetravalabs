@@ -1,10 +1,9 @@
+import Link from "next/link"
+import { LegalPageShell } from "@/components/legal-page-shell"
+
 export default function ShippingPage() {
   return (
-    <section className="mx-auto max-w-3xl space-y-6">
-      <div>
-        <p className="font-mono text-xs uppercase tracking-wider text-[#5EEAD4]">Shipping</p>
-        <h1 className="mt-4 font-serif text-4xl text-[#E8E8F0]">Shipping Information</h1>
-      </div>
+    <LegalPageShell eyebrow="Shipping" title="Shipping Information">
       <div className="space-y-4 text-sm leading-relaxed text-[#8A8AA0]">
         <p>
           Orders ship after payment confirmation. Lyophilized peptides are packed with cold packs when
@@ -16,7 +15,11 @@ export default function ShippingPage() {
         </p>
         <p>
           Shipping restrictions apply to certain regions. If checkout is blocked for your location, see
-          our shipping compliance policy.
+          our{" "}
+          <Link href="/shipping-restricted" className="text-[#5EEAD4] hover:underline">
+            shipping compliance policy
+          </Link>
+          .
         </p>
       </div>
       <ul className="space-y-2 rounded-xl border border-white/10 bg-[#0A0A10] p-6 text-sm text-[#E8E8F0]">
@@ -24,6 +27,6 @@ export default function ShippingPage() {
         <li>Tracking provided when carrier label is generated</li>
         <li>Import duties and customs fees are the recipient&apos;s responsibility</li>
       </ul>
-    </section>
+    </LegalPageShell>
   )
 }

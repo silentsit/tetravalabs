@@ -10,28 +10,43 @@ export type SearchResult = {
   visual_type: string
 }
 
-async function searchViaTypesense(query: string): Promise<SearchResult[]> {
+export type SearchSource = "typesense" | "catalog"
+
+export type SearchResponse = {
+  results: SearchResult[]
+  source: SearchSource
+}
+
+export function isTypesenseConfigured() {
+  return Boolean(process.env.TYPESENSE_HOST?.trim() && process.env.TYPESENSE_API_KEY?.trim())
+}
+
+async function searchViaTypesense(query: string): Promise<SearchResult[] | null> {
   const host = process.env.TYPESENSE_HOST
   const apiKey = process.env.TYPESENSE_API_KEY
   const protocol = process.env.TYPESENSE_PROTOCOL || "http"
   const port = process.env.TYPESENSE_PORT || "8108"
   const collection = process.env.TYPESENSE_COLLECTION || "products"
 
-  if (!host || !apiKey || !query.trim()) return []
+  if (!isTypesenseConfigured() || !query.trim()) return null
 
   const url = new URL(`${protocol}://${host}:${port}/collections/${collection}/documents/search`)
   url.searchParams.set("q", query)
   url.searchParams.set("query_by", "title,handle,cas_number,molecular_formula,sequence")
   url.searchParams.set("per_page", "24")
 
-  const response = await fetch(url.toString(), {
-    headers: { "X-TYPESENSE-API-KEY": apiKey },
-    cache: "no-store"
-  })
-  if (!response.ok) return []
-  const data = await response.json()
-  const hits = (data.hits || []) as Array<{ document: SearchResult }>
-  return hits.map((hit) => hit.document)
+  try {
+    const response = await fetch(url.toString(), {
+      headers: { "X-TYPESENSE-API-KEY": apiKey! },
+      cache: "no-store"
+    })
+    if (!response.ok) return null
+    const data = await response.json()
+    const hits = (data.hits || []) as Array<{ document: SearchResult }>
+    return hits.map((hit) => hit.document)
+  } catch {
+    return null
+  }
 }
 
 async function searchViaMedusaFallback(query: string): Promise<SearchResult[]> {
@@ -68,8 +83,14 @@ async function searchViaMedusaFallback(query: string): Promise<SearchResult[]> {
   })
 }
 
-export async function searchProducts(query: string) {
+export async function searchProducts(query: string): Promise<SearchResponse> {
   const typesenseResults = await searchViaTypesense(query)
-  if (typesenseResults.length > 0) return typesenseResults
-  return searchViaMedusaFallback(query)
+  if (typesenseResults !== null) {
+    if (typesenseResults.length > 0) {
+      return { results: typesenseResults, source: "typesense" }
+    }
+    const catalogResults = await searchViaMedusaFallback(query)
+    return { results: catalogResults, source: "catalog" }
+  }
+  return { results: await searchViaMedusaFallback(query), source: "catalog" }
 }

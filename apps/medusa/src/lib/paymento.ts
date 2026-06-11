@@ -32,6 +32,34 @@ export type PaymentoRequestInput = {
 
 export type PaymentoRequestResponse = { success: true; token: string } | { success: false; error: string }
 
+type PaymentoApiEnvelope = {
+  success?: boolean
+  body?: string | { orderId?: string; token?: string; additionalData?: unknown }
+  error?: string
+  message?: string
+}
+
+function parsePaymentoApiText(text: string): PaymentoApiEnvelope | null {
+  const trimmed = text.trim()
+  if (!trimmed) return null
+  try {
+    return JSON.parse(trimmed) as PaymentoApiEnvelope
+  } catch {
+    return null
+  }
+}
+
+function extractPaymentToken(data: PaymentoApiEnvelope | null, rawText: string): string | null {
+  if (data?.success && typeof data.body === "string" && data.body.trim()) {
+    return data.body.trim()
+  }
+  const plain = rawText.trim()
+  if (plain && !plain.startsWith("{")) {
+    return plain
+  }
+  return null
+}
+
 export async function paymentoCreatePaymentRequest(
   input: PaymentoRequestInput
 ): Promise<PaymentoRequestResponse> {
@@ -40,37 +68,48 @@ export async function paymentoCreatePaymentRequest(
     return { success: false, error: "PAYMENTO_API_KEY is not configured" }
   }
 
-  const response = await fetch(`${apiBase()}/v1/payment/request`, {
-    method: "POST",
-    headers: {
-      "Api-key": key,
-      "Content-Type": "application/json",
-      Accept: "text/plain"
-    },
-    body: JSON.stringify({
-      fiatAmount: input.fiatAmount,
-      fiatCurrency: input.fiatCurrency,
-      ReturnUrl: input.returnUrl,
-      orderId: input.orderId,
-      Speed: input.speed,
-      ...(input.emailAddress ? { EmailAddress: input.emailAddress } : {}),
-      ...(input.additionalData?.length ? { additionalData: input.additionalData } : {})
+  try {
+    const response = await fetch(`${apiBase()}/v1/payment/request`, {
+      method: "POST",
+      headers: {
+        "Api-key": key,
+        "Content-Type": "application/json",
+        Accept: "text/plain"
+      },
+      body: JSON.stringify({
+        fiatAmount: input.fiatAmount,
+        fiatCurrency: input.fiatCurrency,
+        ReturnUrl: input.returnUrl,
+        orderId: input.orderId,
+        Speed: input.speed,
+        ...(input.emailAddress ? { EmailAddress: input.emailAddress } : {}),
+        ...(input.additionalData?.length ? { additionalData: input.additionalData } : {})
+      })
     })
-  })
 
-  const data = (await response.json()) as {
-    success?: boolean
-    body?: string
-    error?: string
-    message?: string
+    const rawText = await response.text()
+    const data = parsePaymentoApiText(rawText)
+
+    if (!response.ok) {
+      return {
+        success: false,
+        error: data?.error ?? data?.message ?? rawText.slice(0, 200) || response.statusText
+      }
+    }
+
+    const token = extractPaymentToken(data, rawText)
+    if (token) {
+      return { success: true, token }
+    }
+
+    return {
+      success: false,
+      error: data?.error ?? data?.message ?? "Invalid Paymento response"
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Paymento request failed"
+    return { success: false, error: message }
   }
-  if (!response.ok) {
-    return { success: false, error: data.error ?? data.message ?? response.statusText }
-  }
-  if (data.success && typeof data.body === "string" && data.body.trim()) {
-    return { success: true, token: data.body.trim() }
-  }
-  return { success: false, error: data.error ?? data.message ?? "Invalid Paymento response" }
 }
 
 export async function paymentoVerifyToken(token: string): Promise<{
@@ -93,22 +132,24 @@ export async function paymentoVerifyToken(token: string): Promise<{
     body: JSON.stringify({ token })
   })
 
-  const data = (await response.json().catch(() => null)) as {
-    success?: boolean
-    body?: { orderId?: string; token?: string; additionalData?: unknown }
-    error?: string
-  } | null
+  const rawText = await response.text()
+  const data = parsePaymentoApiText(rawText)
 
   if (!data) {
-    return { ok: false, raw: { error: "invalid json from verify API" } }
+    return { ok: false, raw: { error: "invalid response from verify API", rawText: rawText.slice(0, 200) } }
   }
 
   if (!response.ok || !data.success) {
     return { ok: false, raw: data }
   }
+
+  const body = data.body
+  const orderId =
+    typeof body === "object" && body && "orderId" in body ? String(body.orderId || "") : undefined
+
   return {
     ok: true,
-    orderId: data.body?.orderId,
+    orderId,
     raw: data
   }
 }

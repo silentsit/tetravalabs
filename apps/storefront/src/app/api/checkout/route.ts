@@ -169,8 +169,9 @@ export async function POST(req: Request) {
       cryptoAsset
     })
 
-    const paymentUrl = intent?.provider_url || null
-    const cryptoProvider = intent?.provider || null
+    const paymentUrl = intent?.ok === false ? null : intent?.provider_url || null
+    const cryptoProvider = intent?.ok === false ? null : intent?.provider || null
+    const paymentError = intent?.ok === false ? intent.message || "Crypto payment setup failed" : null
 
     void sendOrderConfirmationEmail({
       email,
@@ -193,6 +194,7 @@ export async function POST(req: Request) {
       source: "medusa",
       payment_url: paymentUrl,
       payment_provider: cryptoProvider,
+      payment_error: paymentError,
       crypto_asset: cryptoAsset
     })
   } catch (error) {

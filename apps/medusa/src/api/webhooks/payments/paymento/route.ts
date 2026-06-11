@@ -10,14 +10,7 @@ import {
   type PaymentoIpnPayload
 } from "../../../../lib/paymento"
 import { sendPaymentReceivedEmail } from "../../../../lib/resend"
-
-function getRawBody(req: MedusaRequest): string {
-  const raw = (req as MedusaRequest & { rawBody?: Buffer | string }).rawBody
-  if (Buffer.isBuffer(raw)) return raw.toString("utf8")
-  if (typeof raw === "string" && raw.length) return raw
-  if (typeof req.body === "string") return req.body
-  return JSON.stringify(req.body ?? {})
-}
+import { getWebhookRawBody } from "../../../../lib/webhook-raw-body"
 
 function parsePayload(rawBody: string): PaymentoIpnPayload | null {
   try {
@@ -39,7 +32,7 @@ export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
 
 export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
   try {
-    const rawBody = getRawBody(req)
+    const rawBody = getWebhookRawBody(req)
     const secret = process.env.PAYMENTO_SECRET_KEY?.trim()
 
     if (!isPaymentoConfigured() || !secret) {

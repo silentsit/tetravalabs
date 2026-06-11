@@ -164,6 +164,9 @@ export function CheckoutForm() {
       if (checkoutJson.payment_provider) {
         paymentProvider = checkoutJson.payment_provider
       }
+      if (checkoutJson.payment_error && !checkoutJson.payment_url) {
+        setStatus(checkoutJson.payment_error)
+      }
     } catch {
       setError("Could not reach checkout API.")
       setLoading(false)

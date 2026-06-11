@@ -35,10 +35,24 @@ export async function createCryptoPaymentIntent(input: {
       cache: "no-store"
     })
 
-    const data = (await response.json()) as CryptoIntentResult
-    if (!response.ok || !data.ok) {
-      return { ok: false, message: data.message || `Crypto intent failed (${response.status})` }
+    const rawText = await response.text()
+    let data: CryptoIntentResult
+    try {
+      data = JSON.parse(rawText) as CryptoIntentResult
+    } catch {
+      return {
+        ok: false,
+        message: rawText.slice(0, 200) || `Crypto intent failed (${response.status})`
+      }
     }
+
+    if (!response.ok || data.ok === false) {
+      return {
+        ok: false,
+        message: data.message || `Crypto intent failed (${response.status})`
+      }
+    }
+
     return data
   } catch {
     return null

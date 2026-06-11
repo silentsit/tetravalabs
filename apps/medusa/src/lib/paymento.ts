@@ -53,6 +53,10 @@ function extractPaymentToken(data: PaymentoApiEnvelope | null, rawText: string):
   if (data?.success && typeof data.body === "string" && data.body.trim()) {
     return data.body.trim()
   }
+  if (data?.success && data.body && typeof data.body === "object" && "token" in data.body) {
+    const token = (data.body as { token?: string }).token
+    if (typeof token === "string" && token.trim()) return token.trim()
+  }
   const plain = rawText.trim()
   if (plain && !plain.startsWith("{")) {
     return plain
@@ -91,9 +95,10 @@ export async function paymentoCreatePaymentRequest(
     const data = parsePaymentoApiText(rawText)
 
     if (!response.ok) {
+      const detail = data?.error ?? data?.message ?? rawText.slice(0, 200)
       return {
         success: false,
-        error: data?.error ?? data?.message ?? rawText.slice(0, 200) || response.statusText
+        error: detail || response.statusText
       }
     }
 

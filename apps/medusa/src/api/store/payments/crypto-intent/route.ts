@@ -156,8 +156,7 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
         orderId,
         returnUrl: getReturnUrl(),
         speed: getPaymentoSpeedFromEnv(),
-        emailAddress: email,
-        additionalData: [{ key: "cryptoAsset", value: asset }]
+        emailAddress: email
       })
 
       if (!paymentRequest.success) {

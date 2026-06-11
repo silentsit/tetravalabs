@@ -12,6 +12,14 @@ export function paymentoGatewayUrl(token: string) {
   return `${base}?token=${encodeURIComponent(token)}`
 }
 
+export type PaymentoIpnPayload = {
+  Token?: string
+  PaymentId?: number
+  OrderId?: string
+  OrderStatus?: number
+  AdditionalData?: unknown
+}
+
 export type PaymentoRequestInput = {
   fiatAmount: string
   fiatCurrency: string
@@ -85,10 +93,14 @@ export async function paymentoVerifyToken(token: string): Promise<{
     body: JSON.stringify({ token })
   })
 
-  const data = (await response.json()) as {
+  const data = (await response.json().catch(() => null)) as {
     success?: boolean
     body?: { orderId?: string; token?: string; additionalData?: unknown }
     error?: string
+  } | null
+
+  if (!data) {
+    return { ok: false, raw: { error: "invalid json from verify API" } }
   }
 
   if (!response.ok || !data.success) {
@@ -113,8 +125,13 @@ const SIGNATURE_HEADER_CANDIDATES = ["x-hmac-sha256-signature", "hmac_sha256_sig
 
 export function getPaymentoIpnSignatureHeader(headers: Record<string, unknown>): string | null {
   for (const name of SIGNATURE_HEADER_CANDIDATES) {
-    const value = headers[name] ?? headers[name.toUpperCase()]
-    if (typeof value === "string" && value.trim()) return value
+    for (const [key, value] of Object.entries(headers)) {
+      if (key.toLowerCase() !== name.toLowerCase()) continue
+      if (typeof value === "string" && value.trim()) return value.trim()
+      if (Array.isArray(value) && typeof value[0] === "string" && value[0].trim()) {
+        return value[0].trim()
+      }
+    }
   }
   return null
 }

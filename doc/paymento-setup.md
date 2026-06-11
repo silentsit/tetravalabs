@@ -123,10 +123,11 @@ See also: [doc/btcpay-setup.md](./btcpay-setup.md) for Bitcoin-specific setup.
 
 | Response | Meaning | Fix |
 |----------|---------|-----|
-| **404 Not Found** | Medusa does not have the webhook route yet | Commit + push Paymento code, redeploy `tetrava-medusa` on Render |
-| **501 Not configured** | Route exists but `PAYMENTO_*` env vars missing on Render | Add `PAYMENTO_API_KEY` + `PAYMENTO_SECRET_KEY`, redeploy |
-| **401 Unauthorized** on POST | Expected for unsigned test pings — real IPNs include `X-Hmac-Sha256-Signature` | Normal; verify with a real checkout payment |
-| **200** on GET | Endpoint is live | Good — save IPN URL in Paymento |
+| **404 Not Found** | Webhook route not deployed yet | Push latest code and redeploy Medusa |
+| **501 Not configured** | `PAYMENTO_*` env vars missing on Render | Add keys and redeploy |
+| **401 Unauthorized** | HMAC signature missing or wrong secret | Ensure `PAYMENTO_SECRET_KEY` on Render matches Paymento dashboard exactly |
+| **500 Internal Server Error** | Usually raw-body HMAC mismatch (fixed in `src/api/middlewares.ts` with `preserveRawBody: true`) | Redeploy after latest fix |
+| **200** on GET or signed POST | Endpoint is live | Good — save IPN URL in Paymento |
 
 Quick check after deploy:
 

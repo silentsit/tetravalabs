@@ -1,4 +1,8 @@
 import { listProducts } from "@/lib/medusa"
+import {
+  buildTypesenseSearchUrl,
+  isTypesenseConfigured as isTypesenseEnvConfigured
+} from "@/lib/typesense-config"
 
 export type SearchResult = {
   id: string
@@ -18,26 +22,18 @@ export type SearchResponse = {
 }
 
 export function isTypesenseConfigured() {
-  return Boolean(process.env.TYPESENSE_HOST?.trim() && process.env.TYPESENSE_API_KEY?.trim())
+  return isTypesenseEnvConfigured()
 }
 
 async function searchViaTypesense(query: string): Promise<SearchResult[] | null> {
-  const host = process.env.TYPESENSE_HOST
   const apiKey = process.env.TYPESENSE_API_KEY
-  const protocol = process.env.TYPESENSE_PROTOCOL || "http"
-  const port = process.env.TYPESENSE_PORT || "8108"
-  const collection = process.env.TYPESENSE_COLLECTION || "products"
+  if (!isTypesenseConfigured() || !query.trim() || !apiKey) return null
 
-  if (!isTypesenseConfigured() || !query.trim()) return null
-
-  const url = new URL(`${protocol}://${host}:${port}/collections/${collection}/documents/search`)
-  url.searchParams.set("q", query)
-  url.searchParams.set("query_by", "title,handle,cas_number,molecular_formula,sequence")
-  url.searchParams.set("per_page", "24")
+  const url = buildTypesenseSearchUrl(query)
 
   try {
     const response = await fetch(url.toString(), {
-      headers: { "X-TYPESENSE-API-KEY": apiKey! },
+      headers: { "X-TYPESENSE-API-KEY": apiKey },
       cache: "no-store"
     })
     if (!response.ok) return null

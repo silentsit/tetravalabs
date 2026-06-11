@@ -63,3 +63,23 @@ services:
         sync: false
       - key: RESEND_FROM
         sync: false
+      - key: R2_BUCKET
+        sync: false
+      - key: R2_ENDPOINT
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_PUBLIC_BASE_URL
+        sync: false
+      - key: TYPESENSE_PROTOCOL
+        sync: false
+      - key: TYPESENSE_HOST
+        sync: false
+      - key: TYPESENSE_PORT
+        sync: false
+      - key: TYPESENSE_API_KEY
+        sync: false
+      - key: TYPESENSE_COLLECTION
+        sync: false

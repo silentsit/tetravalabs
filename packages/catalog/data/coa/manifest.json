@@ -1,0 +1,24 @@
+[
+  {
+    "id": "coa_acetic_acid_batch_a001",
+    "product_handle": "acetic-acid-water",
+    "batch_number": "A001",
+    "purity_percent": 99.5,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "coa",
+    "metadata": {
+      "compound": "Acetic Acid Water"
+    }
+  },
+  {
+    "id": "hplc_acetic_acid_batch_a001",
+    "product_handle": "acetic-acid-water",
+    "batch_number": "A001",
+    "purity_percent": 99.5,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "hplc",
+    "metadata": {
+      "compound": "Acetic Acid Water"
+    }
+  }
+]

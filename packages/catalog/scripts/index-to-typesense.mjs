@@ -3,6 +3,7 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import dotenv from "dotenv"
 import Typesense from "typesense"
+import { buildTypesenseBaseUrl, getTypesenseNodeConfig } from "../lib/typesense-config.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -11,15 +12,13 @@ dotenv.config({ path: path.join(workspaceRoot, "apps", "medusa", ".env") })
 
 const normalizedPath = path.join(workspaceRoot, "packages", "catalog", "output", "catalog.normalized.json")
 const collectionName = process.env.TYPESENSE_COLLECTION || "products"
-const host = process.env.TYPESENSE_HOST || "localhost"
-const port = Number(process.env.TYPESENSE_PORT || "8108")
-const protocol = process.env.TYPESENSE_PROTOCOL || "http"
+const { host, port, protocol } = getTypesenseNodeConfig()
 const apiKey = process.env.TYPESENSE_API_KEY || "xyz"
 
 const client = new Typesense.Client({
   nodes: [{ host, port, protocol }],
   apiKey,
-  connectionTimeoutSeconds: 5
+  connectionTimeoutSeconds: 10
 })
 
 const schema = {
@@ -81,6 +80,7 @@ async function run() {
     .import(payload, { action: "upsert" })
 
   console.log(`Indexed ${documents.length} products into Typesense collection "${collectionName}".`)
+  console.log(`Typesense host: ${buildTypesenseBaseUrl()}`)
   console.log(result.split("\n").slice(0, 3).join("\n"))
 }
 

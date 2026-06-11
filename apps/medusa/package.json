@@ -17,6 +17,8 @@
     "coa:import-sample": "node ./src/scripts/import-coa-docs.mjs"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.888.0",
+    "@aws-sdk/s3-request-presigner": "^3.888.0",
     "@medusajs/framework": "2.15.5",
     "@medusajs/link-modules": "2.15.5",
     "@medusajs/medusa": "2.15.5",

@@ -39,6 +39,16 @@ Medusa (Render, render.yaml)
   STOREFRONT_URL=https://tetravalabs.com
   RESEND_API_KEY=<resend key>
   RESEND_FROM=Tetrava Labs <orders@tetravalabs.com>
+  R2_BUCKET=<cloudflare r2 bucket>
+  R2_ENDPOINT=https://<account>.r2.cloudflarestorage.com
+  R2_ACCESS_KEY_ID=<r2 access key>
+  R2_SECRET_ACCESS_KEY=<r2 secret>
+  R2_PUBLIC_BASE_URL=https://coa.tetravalabs.com
+  TYPESENSE_PROTOCOL=https
+  TYPESENSE_HOST=<typesense host>
+  TYPESENSE_PORT=443
+  TYPESENSE_API_KEY=<typesense admin key for indexing>
+  TYPESENSE_COLLECTION=products
 
 Post-deploy commands (Render preDeployCommand in render.yaml)
   npm run db:migrate --workspace=@tetrava/medusa
@@ -47,9 +57,10 @@ Post-deploy commands (Render preDeployCommand in render.yaml)
 Manual one-time setup after Medusa deploy
   npm run catalog:import
   npm run typesense:index
-  npm --prefix apps/medusa run coa:import-sample
+  npm run coa:sync-r2
 
 Smoke checks
   npm run smoke:local
   SMOKE_STOREFRONT_URL=https://tetravalabs.com SMOKE_MEDUSA_URL=https://<medusa> npm run smoke:production
+  npm run smoke:search
 `)

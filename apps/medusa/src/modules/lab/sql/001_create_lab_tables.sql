@@ -50,5 +50,10 @@ CREATE TABLE IF NOT EXISTS crypto_payment_intents (
 ALTER TABLE crypto_payment_intents ADD COLUMN IF NOT EXISTS provider_payment_id TEXT;
 ALTER TABLE crypto_payment_intents ADD COLUMN IF NOT EXISTS provider TEXT NOT NULL DEFAULT 'placeholder';
 
+ALTER TABLE lab_batch_documents ADD COLUMN IF NOT EXISTS storage_key TEXT;
+
+CREATE INDEX IF NOT EXISTS lab_batch_documents_storage_key_idx
+  ON lab_batch_documents (storage_key);
+
 CREATE INDEX IF NOT EXISTS crypto_payment_intents_provider_payment_idx
   ON crypto_payment_intents (provider_payment_id);

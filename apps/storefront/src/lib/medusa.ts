@@ -24,7 +24,16 @@ export type StoreCoaDocument = {
   tested_at: string | null
   document_type: "coa" | "hplc"
   document_url: string
+  storage_key?: string | null
   metadata?: Record<string, unknown>
+}
+
+function normalizeCoaDocumentUrl(doc: StoreCoaDocument): StoreCoaDocument {
+  const url = doc.document_url
+  if (!url || url.includes("example.com") || url.startsWith("r2://")) {
+    return { ...doc, document_url: `${MEDUSA_URL}/store/coas/${doc.id}/file` }
+  }
+  return doc
 }
 
 const withHeaders = (headers: HeadersInit = {}) => ({
@@ -71,7 +80,7 @@ export async function listCoasByVariant(variantId: string) {
     )
     if (!response.ok) throw new Error("Failed COA request")
     const data = await response.json()
-    return (data.items || []) as StoreCoaDocument[]
+    return ((data.items || []) as StoreCoaDocument[]).map(normalizeCoaDocumentUrl)
   } catch {
     return []
   }
@@ -85,7 +94,7 @@ export async function listRecentCoas(limit = 50) {
     })
     if (!response.ok) throw new Error("Failed COA request")
     const data = await response.json()
-    return (data.items || []) as StoreCoaDocument[]
+    return ((data.items || []) as StoreCoaDocument[]).map(normalizeCoaDocumentUrl)
   } catch {
     return []
   }

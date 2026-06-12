@@ -70,13 +70,13 @@ function PaymentBadge({
     <div className="mt-2 flex flex-wrap items-center gap-2">
       <span
         className={`rounded px-2 py-0.5 text-xs ${
-          isPaid ? "bg-[#5EEAD4]/20 text-[#5EEAD4]" : "bg-[#FBBF24]/20 text-[#FBBF24]"
+          isPaid ? "bg-[#CCFBF1] text-[#0D9488]" : "bg-amber-100 text-amber-700"
         }`}
       >
         {label}
       </span>
       {!isPaid && payUrl && !payUrl.includes("example.com") ? (
-        <a href={payUrl} className="text-xs text-[#5EEAD4] underline">
+        <a href={payUrl} className="text-xs text-[#0D9488] underline">
           Pay now
         </a>
       ) : null}
@@ -141,7 +141,7 @@ export function OrdersList() {
   }, [])
 
   if (source === "loading") {
-    return <p className="text-sm text-[#8A8AA0]">Loading orders...</p>
+    return <p className="text-sm text-[#475569]">Loading orders...</p>
   }
 
   if (source === "medusa") {
@@ -150,15 +150,15 @@ export function OrdersList() {
         {medusaOrders.map((order) => {
           const payment = paymentByOrder[order.id]
           return (
-            <li key={order.id} className="rounded-lg border border-white/10 bg-[#0A0A10] p-4">
-              <p className="text-sm text-[#E8E8F0]">
+            <li key={order.id} className="card p-4">
+              <p className="text-sm text-[#0F172A]">
                 Order {order.display_id ? `#${order.display_id}` : order.id}
               </p>
-              <p className="text-xs text-[#8A8AA0]">
+              <p className="text-xs text-[#475569]">
                 {order.created_at ? new Date(order.created_at).toLocaleString() : "—"} ·{" "}
                 {order.status || "pending"}
               </p>
-              <p className="text-xs text-[#8A8AA0]">
+              <p className="text-xs text-[#475569]">
                 Total: ${((order.total || 0) / 100).toFixed(2)} {order.currency_code?.toUpperCase()}
               </p>
               <PaymentBadge
@@ -175,7 +175,7 @@ export function OrdersList() {
 
   if (localOrders.length === 0) {
     return (
-      <p className="text-sm text-[#8A8AA0]">
+      <p className="text-sm text-[#475569]">
         No orders found. Sign in to view Medusa order history, or place a checkout order first.
       </p>
     )
@@ -186,14 +186,14 @@ export function OrdersList() {
       {localOrders.map((order) => {
         const payment = paymentByOrder[order.id]
         return (
-          <li key={order.id} className="rounded-lg border border-white/10 bg-[#0A0A10] p-4">
-            <p className="text-sm text-[#E8E8F0]">
+          <li key={order.id} className="card p-4">
+            <p className="text-sm text-[#0F172A]">
               {order.display_id ? `Order #${order.display_id}` : order.id}
             </p>
-            <p className="text-xs text-[#8A8AA0]">
+            <p className="text-xs text-[#475569]">
               {new Date(order.created_at).toLocaleString()} · {order.shipping_country}
             </p>
-            <p className="text-xs text-[#8A8AA0]">Total: ${order.total.toFixed(2)}</p>
+            <p className="text-xs text-[#475569]">Total: ${order.total.toFixed(2)}</p>
             <PaymentBadge status={payment?.status} payUrl={payment?.provider_url} />
           </li>
         )

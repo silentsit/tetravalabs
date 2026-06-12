@@ -1,19 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
+@layer base {
+  :root {
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-dark: #0f172a;
+    --color-text: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-muted: #94a3b8;
+    --color-border: #e2e8f0;
+    --color-teal: #0d9488;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-[#E2E8F0];
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Playfair Display", serif;
+  }
+
+  code,
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
 }
 
-body {
-  margin: 0;
-  background: #050508;
-  color: #e8e8f0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-[#0D9488] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#0F766E] active:bg-[#115E59];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-[#E2E8F0] bg-white px-6 py-3 text-sm font-medium text-[#0F172A] transition-colors hover:border-[#0D9488] hover:text-[#0D9488];
+  }
+  .btn-cta {
+    @apply inline-flex items-center justify-center rounded-lg bg-[#D97706] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#B45309];
+  }
+  .card {
+    @apply rounded-xl border border-[#E2E8F0] bg-white transition-all duration-200;
+  }
+  .card-hover:hover {
+    @apply -translate-y-0.5 border-[#CBD5E1] shadow-[0_4px_20px_rgba(15,23,42,0.06)];
+  }
+  .section-label {
+    @apply font-mono text-xs font-medium uppercase tracking-widest text-[#0D9488];
+  }
+  .page-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-16;
+  }
+  .section-padding {
+    @apply py-16 lg:py-20;
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@keyframes mesh-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+}
+@keyframes mesh-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(1.05);
+  }
+}
+@keyframes mesh-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(15px, 15px) scale(0.95);
+  }
+}
+.animate-mesh-1 {
+  animation: mesh-drift-1 20s ease-in-out infinite;
+}
+.animate-mesh-2 {
+  animation: mesh-drift-2 25s ease-in-out infinite;
+}
+.animate-mesh-3 {
+  animation: mesh-drift-3 18s ease-in-out infinite;
 }

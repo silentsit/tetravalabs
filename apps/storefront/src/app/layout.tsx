@@ -1,10 +1,13 @@
 import type { Metadata } from "next"
 import Script from "next/script"
 import "./globals.css"
+import { CartDrawer } from "@/components/cart-drawer"
+import { CartProvider } from "@/components/cart-provider"
+import { ScrollToTop } from "@/components/scroll-to-top"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { CartProvider } from "@/components/cart-provider"
 import { SocialProofToast } from "@/components/social-proof-widget"
+import { TrustBar } from "@/components/trust-bar"
 
 export const metadata: Metadata = {
   title: "Tetrava Labs",
@@ -18,12 +21,15 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
         <CartProvider>
           <SiteHeader />
-          <main className="mx-auto min-h-[70vh] w-full max-w-6xl px-4 py-8">{children}</main>
+          <TrustBar />
+          <main>{children}</main>
           <SiteFooter />
+          <CartDrawer />
           <SocialProofToast />
+          <ScrollToTop />
         </CartProvider>
         {plausibleDomain ? (
           <Script

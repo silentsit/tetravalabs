@@ -1,5 +1,6 @@
 import Link from "next/link"
 import type { SearchResult } from "@/lib/search"
+import { getProductImageForHandle } from "@/lib/revamp/product-visual"
 
 type Props = {
   result: SearchResult
@@ -11,17 +12,28 @@ export function SearchResultCard({ result }: Props) {
       ? `$${(result.price_min / 100).toFixed(2)}`
       : `$${(result.price_min / 100).toFixed(2)} – $${(result.price_max / 100).toFixed(2)}`
 
+  const image = getProductImageForHandle(result.handle) || "/v2/vial-single.jpg"
+
   return (
     <Link
       href={`/product/${result.handle}`}
-      className="group flex flex-col rounded-xl border border-white/[0.06] bg-[#0A0A10] p-5 transition hover:border-[#5EEAD4]/30"
+      className="card card-hover group flex flex-col overflow-hidden"
     >
-      <p className="font-mono text-[10px] uppercase tracking-wide text-[#5EEAD4]">{result.category}</p>
-      <h2 className="mt-2 font-serif text-lg text-[#E8E8F0] transition group-hover:text-[#5EEAD4]">
-        {result.title}
-      </h2>
-      <p className="mt-1 text-xs capitalize text-[#8A8AA0]">{result.visual_type}</p>
-      <p className="mt-auto pt-4 text-sm font-medium text-[#E8E8F0]">{priceLabel}</p>
+      <div className="relative aspect-[3/4] bg-white">
+        <img
+          src={image}
+          alt={result.title}
+          className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.04]"
+          loading="lazy"
+        />
+      </div>
+      <div className="flex flex-1 flex-col border-t border-[#E2E8F0] p-4">
+        <p className="font-mono text-[10px] uppercase tracking-wide text-[#0D9488]">{result.category}</p>
+        <h2 className="mt-2 font-serif text-lg text-[#0F172A] transition group-hover:text-[#0D9488]">
+          {result.title}
+        </h2>
+        <p className="mt-auto pt-4 text-sm font-medium text-[#0F172A]">{priceLabel}</p>
+      </div>
     </Link>
   )
 }

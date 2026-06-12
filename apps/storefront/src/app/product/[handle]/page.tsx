@@ -2,8 +2,10 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getProductByHandle, listCoasByVariant } from "@/lib/medusa"
 import { slugifyCategory } from "@/lib/categories"
+import { getProductImage, getProductPurity } from "@/lib/revamp/product-visual"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { ComplianceNotice } from "@/components/compliance-notice"
 
 type Props = { params: Promise<{ handle: string }> }
 
@@ -23,24 +25,22 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound()
   const primaryVariantId = product.variants?.[0]?.id
   const coas = primaryVariantId ? await listCoasByVariant(primaryVariantId) : []
+  const image = getProductImage(product)
+  const categoryLabel = String(product.metadata?.source_category || "Research Product")
+  const categorySlug = slugifyCategory(categoryLabel)
 
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
+    image,
     sku: product.variants?.[0]?.id,
-    category: product.metadata?.source_category || "Research Peptides",
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "USD"
-    }
+    category: categoryLabel,
+    offers: { "@type": "Offer", priceCurrency: "USD" }
   }
 
-  const categoryLabel = String(product.metadata?.source_category || "Research Product")
-  const categorySlug = slugifyCategory(categoryLabel)
-
   return (
-    <article className="space-y-5">
+    <article className="page-container space-y-8 py-8">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -49,73 +49,75 @@ export default async function ProductPage({ params }: Props) {
           { label: product.title }
         ]}
       />
-      <h1 className="text-3xl font-semibold">{product.title}</h1>
-      <p className="text-sm text-[#FBBF24]">For Research Use Only. Not for human consumption.</p>
 
-      <ProductPurchaseBox
-        productId={product.id}
-        handle={product.handle}
-        title={product.title}
-        variants={product.variants || []}
-      />
+      <div className="grid gap-10 lg:grid-cols-2">
+        <div className="card overflow-hidden">
+          <div className="aspect-square bg-white p-6">
+            <img src={image} alt={product.title} className="h-full w-full object-contain" />
+          </div>
+        </div>
+        <div className="space-y-5">
+          <div>
+            <span className="section-label">{categoryLabel}</span>
+            <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">{product.title}</h1>
+            <p className="mt-2 text-sm text-[#D97706]">For Research Use Only. Not for human consumption.</p>
+            <p className="mt-3 inline-flex rounded-full bg-[#CCFBF1] px-3 py-1 font-mono text-xs text-[#0D9488]">
+              {getProductPurity(product)} purity
+            </p>
+          </div>
+          <ProductPurchaseBox
+            productId={product.id}
+            handle={product.handle}
+            title={product.title}
+            variants={product.variants || []}
+          />
+        </div>
+      </div>
 
-      <section className="rounded-lg border border-white/10 bg-[#0A0A10] p-5">
-        <h2 className="text-lg font-medium">Specifications</h2>
-        <div className="mt-3 grid gap-2 text-sm text-[#8A8AA0]">
-          <p>Category: {String(product.metadata?.source_category || "Research Product")}</p>
-          <p>Visual Type: {String(product.metadata?.visual_type || "vial")}</p>
+      <section className="card p-6">
+        <h2 className="font-serif text-xl text-[#0F172A]">Specifications</h2>
+        <div className="mt-4 grid gap-2 text-sm text-[#475569] sm:grid-cols-2">
           <p>CAS: {String(product.metadata?.cas_number || "N/A")}</p>
-          <p>Molecular Formula: {String(product.metadata?.molecular_formula || "N/A")}</p>
-          <p>Molecular Weight: {String(product.metadata?.molecular_weight || "N/A")}</p>
-          <p>Storage: {String(product.metadata?.storage || "-20C lyophilized")}</p>
+          <p>Formula: {String(product.metadata?.molecular_formula || "N/A")}</p>
+          <p>Weight: {String(product.metadata?.molecular_weight || "N/A")}</p>
+          <p>Storage: {String(product.metadata?.storage || "-20°C lyophilized")}</p>
           <p>Appearance: {String(product.metadata?.appearance || "Lyophilized powder")}</p>
+          <p>Sequence: {String(product.metadata?.sequence || "N/A")}</p>
         </div>
       </section>
 
-      <section className="rounded-lg border border-white/10 bg-[#0A0A10] p-5">
-        <h2 className="text-lg font-medium">Available Variants</h2>
-        <ul className="mt-3 space-y-2 text-sm text-[#8A8AA0]">
-          {(product.variants || []).map((variant) => (
-            <li key={variant.id}>
-              {variant.title} -{" "}
-              {variant.prices?.[0]
-                ? `$${(variant.prices[0].amount / 100).toFixed(2)}`
-                : "Price pending"}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="rounded-lg border border-white/10 bg-[#0A0A10] p-5">
-        <h2 className="text-lg font-medium">COA / HPLC Documents</h2>
+      <section className="card p-6">
+        <h2 className="font-serif text-xl text-[#0F172A]">COA / HPLC documents</h2>
         {coas.length === 0 ? (
-          <p className="mt-2 text-sm text-[#8A8AA0]">
-            No batch documents published yet for this variant.
-          </p>
+          <p className="mt-3 text-sm text-[#475569]">No batch documents published yet for this variant.</p>
         ) : (
-          <ul className="mt-3 space-y-2 text-sm text-[#8A8AA0]">
+          <ul className="mt-4 space-y-3">
             {coas.map((doc) => (
-              <li key={doc.id}>
-                Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
-                {doc.purity_percent != null ? ` (${doc.purity_percent}% purity)` : ""}
+              <li
+                key={doc.id}
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm"
+              >
+                <span className="text-[#0F172A]">
+                  Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
+                  {doc.purity_percent != null ? ` (${doc.purity_percent}%)` : ""}
+                </span>
                 {doc.document_url ? (
-                  <>
-                    {" "}
-                    <a
-                      href={doc.document_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[#5EEAD4] underline"
-                    >
-                      View document
-                    </a>
-                  </>
+                  <a
+                    href={doc.document_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#0D9488] hover:underline"
+                  >
+                    View document
+                  </a>
                 ) : null}
               </li>
             ))}
           </ul>
         )}
       </section>
+
+      <ComplianceNotice />
 
       <script
         type="application/ld+json"

@@ -14,7 +14,7 @@ export default async function CategoryPage({ params }: Props) {
   const label = categoryLabelFromSlug(slug, products)
 
   return (
-    <section className="space-y-8">
+    <section className="page-container space-y-8 py-8">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -23,16 +23,16 @@ export default async function CategoryPage({ params }: Props) {
         ]}
       />
       <div>
-        <p className="font-mono text-xs uppercase tracking-wider text-[#5EEAD4]">Category</p>
-        <h1 className="mt-2 font-serif text-4xl text-[#E8E8F0]">{label}</h1>
-        <p className="mt-2 text-sm text-[#8A8AA0]">
+        <span className="section-label">Category</span>
+        <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">{label}</h1>
+        <p className="mt-2 text-sm text-[#475569]">
           {filtered.length} {filtered.length === 1 ? "product" : "products"} in this category.
         </p>
       </div>
       {filtered.length === 0 ? (
-        <p className="text-sm text-[#8A8AA0]">No products in this category yet.</p>
+        <p className="text-sm text-[#475569]">No products in this category yet.</p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {filtered.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

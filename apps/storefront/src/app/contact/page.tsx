@@ -1,6 +1,7 @@
 "use client"
 
 import { FormEvent, useState } from "react"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 
 export default function ContactPage() {
   const [name, setName] = useState("")
@@ -41,11 +42,12 @@ export default function ContactPage() {
   }
 
   return (
-    <section className="mx-auto max-w-4xl space-y-8">
+    <section className="page-container mx-auto max-w-4xl space-y-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
       <div>
-        <p className="font-mono text-xs uppercase tracking-wider text-[#5EEAD4]">Contact</p>
-        <h1 className="mt-4 font-serif text-4xl text-[#E8E8F0]">Contact Us</h1>
-        <p className="mt-4 text-[#8A8AA0]">
+        <span className="section-label">Contact</span>
+        <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">Contact us</h1>
+        <p className="mt-4 text-[#475569]">
           Reach our research support team about products, orders, COA documents, or compliance questions.
         </p>
       </div>
@@ -57,7 +59,7 @@ export default function ContactPage() {
               value={name}
               onChange={(event) => setName(event.target.value)}
               placeholder="Your name"
-              className="rounded-lg border border-white/[0.06] bg-[#0A0A10] px-4 py-3 text-sm text-[#E8E8F0] outline-none focus:border-[#5EEAD4]"
+              className="input-field"
             />
             <input
               required
@@ -65,7 +67,7 @@ export default function ContactPage() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               placeholder="Email address"
-              className="rounded-lg border border-white/[0.06] bg-[#0A0A10] px-4 py-3 text-sm text-[#E8E8F0] outline-none focus:border-[#5EEAD4]"
+              className="input-field"
             />
           </div>
           <input
@@ -73,7 +75,7 @@ export default function ContactPage() {
             value={subject}
             onChange={(event) => setSubject(event.target.value)}
             placeholder="Subject"
-            className="w-full rounded-lg border border-white/[0.06] bg-[#0A0A10] px-4 py-3 text-sm text-[#E8E8F0] outline-none focus:border-[#5EEAD4]"
+            className="input-field w-full"
           />
           <textarea
             required
@@ -81,25 +83,21 @@ export default function ContactPage() {
             onChange={(event) => setMessage(event.target.value)}
             placeholder="How can we help?"
             rows={6}
-            className="w-full resize-none rounded-lg border border-white/[0.06] bg-[#0A0A10] px-4 py-3 text-sm text-[#E8E8F0] outline-none focus:border-[#5EEAD4]"
+            className="input-field w-full resize-none"
           />
-          <button
-            type="submit"
-            disabled={loading}
-            className="rounded-lg bg-[#5EEAD4] px-6 py-2.5 text-sm font-medium text-[#050508] disabled:opacity-60"
-          >
-            {loading ? "Sending..." : "Send Message"}
+          <button type="submit" disabled={loading} className="btn-primary disabled:opacity-60">
+            {loading ? "Sending..." : "Send message"}
           </button>
-          {error ? <p className="text-xs text-[#F87171]">{error}</p> : null}
-          {status ? <p className="text-xs text-[#8A8AA0]">{status}</p> : null}
+          {error ? <p className="text-xs text-red-600">{error}</p> : null}
+          {status ? <p className="text-xs text-[#475569]">{status}</p> : null}
         </form>
-        <aside className="space-y-4 text-sm text-[#8A8AA0]">
-          <div className="rounded-lg border border-white/10 bg-[#0A0A10] p-4">
-            <p className="text-[#E8E8F0]">Research Support</p>
+        <aside className="space-y-4 text-sm text-[#475569]">
+          <div className="card p-4">
+            <p className="font-medium text-[#0F172A]">Research support</p>
             <p className="mt-2">Typical response within 1–2 business days.</p>
           </div>
-          <div className="rounded-lg border border-white/10 bg-[#0A0A10] p-4">
-            <p className="text-[#E8E8F0]">Order Questions</p>
+          <div className="card p-4">
+            <p className="font-medium text-[#0F172A]">Order questions</p>
             <p className="mt-2">Include your order ID or display number for faster lookup.</p>
           </div>
         </aside>

@@ -4,22 +4,23 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
-      colors: {
-        bg: "#050508",
-        surface: "#0A0A10",
-        text: {
-          primary: "#E8E8F0",
-          secondary: "#8A8AA0"
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" }
         },
-        accent: {
-          teal: "#5EEAD4",
-          purple: "#A78BFA",
-          warning: "#FBBF24"
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" }
         }
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out"
       }
     }
   },
-  plugins: []
+  plugins: [require("tailwindcss-animate")]
 }
 
 export default config

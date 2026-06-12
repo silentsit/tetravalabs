@@ -27,7 +27,7 @@ export function AccountDashboard() {
   }
 
   if (loading) {
-    return <p className="text-sm text-[#8A8AA0]">Loading account...</p>
+    return <p className="text-sm text-[#475569]">Loading account...</p>
   }
 
   if (!customer) return null
@@ -36,26 +36,22 @@ export function AccountDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-lg border border-white/10 bg-[#0A0A10] p-5">
-        <p className="text-xs uppercase tracking-wide text-[#5EEAD4]">Signed in</p>
-        <h2 className="mt-2 text-xl font-medium text-[#E8E8F0]">{name}</h2>
-        <p className="mt-1 text-sm text-[#8A8AA0]">{customer.email}</p>
-        <button
-          type="button"
-          onClick={onSignOut}
-          className="mt-4 rounded border border-white/20 px-4 py-2 text-sm text-[#E8E8F0] hover:border-[#5EEAD4]"
-        >
+      <div className="card p-5">
+        <p className="text-xs uppercase tracking-wide text-[#0D9488]">Signed in</p>
+        <h2 className="mt-2 text-xl font-medium text-[#0F172A]">{name}</h2>
+        <p className="mt-1 text-sm text-[#475569]">{customer.email}</p>
+        <button type="button" onClick={onSignOut} className="btn-secondary mt-4">
           Sign out
         </button>
       </div>
       <div className="grid gap-3 md:grid-cols-2">
-        <Link href="/orders" className="rounded-lg border border-white/10 bg-[#0A0A10] p-4">
-          <h3 className="text-lg text-[#E8E8F0]">Order History</h3>
-          <p className="text-xs text-[#8A8AA0]">View Medusa orders linked to this account.</p>
+        <Link href="/orders" className="card card-hover p-4">
+          <h3 className="text-lg text-[#0F172A]">Order history</h3>
+          <p className="text-xs text-[#475569]">View Medusa orders linked to this account.</p>
         </Link>
-        <Link href="/coa-library" className="rounded-lg border border-white/10 bg-[#0A0A10] p-4">
-          <h3 className="text-lg text-[#E8E8F0]">COA Library</h3>
-          <p className="text-xs text-[#8A8AA0]">Access batch COA and HPLC documents.</p>
+        <Link href="/coa-library" className="card card-hover p-4">
+          <h3 className="text-lg text-[#0F172A]">COA library</h3>
+          <p className="text-xs text-[#475569]">Access batch COA and HPLC documents.</p>
         </Link>
       </div>
     </div>

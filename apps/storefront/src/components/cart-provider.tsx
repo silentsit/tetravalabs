@@ -21,6 +21,8 @@ type CartContextValue = {
   clear: () => void
   totalItems: number
   subtotal: number
+  isOpen: boolean
+  setIsOpen: (open: boolean) => void
 }
 
 const CartContext = createContext<CartContextValue | null>(null)
@@ -28,6 +30,7 @@ const STORAGE_KEY = "tetrava_cart_v1"
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -54,6 +57,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
         return [...prev, { ...item, quantity }]
       })
+      setIsOpen(true)
     }
 
     const removeItem = (id: string) => setItems((prev) => prev.filter((p) => p.id !== id))
@@ -70,8 +74,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const totalItems = items.reduce((acc, item) => acc + item.quantity, 0)
     const subtotal = items.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0)
 
-    return { items, addItem, removeItem, updateQty, clear, totalItems, subtotal }
-  }, [items])
+    return { items, addItem, removeItem, updateQty, clear, totalItems, subtotal, isOpen, setIsOpen }
+  }, [items, isOpen])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

@@ -70,46 +70,46 @@ export function RegisterForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-md space-y-3 rounded-lg border border-white/10 bg-[#0A0A10] p-5">
+    <form onSubmit={onSubmit} className="card max-w-md space-y-3 p-5">
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
-          <label className="block text-xs text-[#8A8AA0]">First Name</label>
+          <label className="block text-xs text-[#475569]">First Name</label>
           <input
             value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
-            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+            className="input-field mt-1"
           />
         </div>
         <div>
-          <label className="block text-xs text-[#8A8AA0]">Last Name</label>
+          <label className="block text-xs text-[#475569]">Last Name</label>
           <input
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
-            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+            className="input-field mt-1"
           />
         </div>
       </div>
       <div>
-        <label className="block text-xs text-[#8A8AA0]">Email</label>
+        <label className="block text-xs text-[#475569]">Email</label>
         <input
           required
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          className="input-field mt-1"
         />
       </div>
       <div>
-        <label className="block text-xs text-[#8A8AA0]">Password</label>
+        <label className="block text-xs text-[#475569]">Password</label>
         <input
           required
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          className="input-field mt-1"
         />
       </div>
-      <label className="flex items-start gap-2 text-xs text-[#8A8AA0]">
+      <label className="flex items-start gap-2 text-xs text-[#475569]">
         <input
           checked={ruoAck}
           onChange={(event) => setRuoAck(event.target.checked)}
@@ -118,13 +118,10 @@ export function RegisterForm() {
         />
         I acknowledge research-use-only terms and confirm I am not purchasing for human consumption.
       </label>
-      <button
-        disabled={loading}
-        className="rounded bg-[#5EEAD4] px-4 py-2 text-sm font-medium text-[#050508] disabled:opacity-60"
-      >
+      <button disabled={loading} className="btn-primary disabled:opacity-60">
         {loading ? "Creating account..." : "Create Account"}
       </button>
-      {status ? <p className="text-xs text-[#F87171]">{status}</p> : null}
+      {status ? <p className="text-xs text-red-600">{status}</p> : null}
     </form>
   )
 }

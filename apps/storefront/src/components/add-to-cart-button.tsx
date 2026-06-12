@@ -43,7 +43,7 @@ export function AddToCartButton({
         setAdded(true)
         setTimeout(() => setAdded(false), 900)
       }}
-      className="rounded-md bg-[#5EEAD4] px-4 py-2 text-sm font-medium text-[#050508] hover:brightness-110"
+      className="rounded-lg bg-[#0D9488] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0F766E]"
     >
       {added ? "Added" : "Add to cart"}
     </button>

@@ -274,77 +274,77 @@ export function CheckoutForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-lg border border-white/10 bg-[#0A0A10] p-5">
+    <form onSubmit={onSubmit} className="card space-y-4 p-5">
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
-          <label className="block text-xs text-[#8A8AA0]">First name</label>
+          <label className="block text-xs text-[#475569]">First name</label>
           <input
             required
             value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
-            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+            className="input-field mt-1"
           />
         </div>
         <div>
-          <label className="block text-xs text-[#8A8AA0]">Last name</label>
+          <label className="block text-xs text-[#475569]">Last name</label>
           <input
             required
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
-            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+            className="input-field mt-1"
           />
         </div>
       </div>
       <div>
-        <label className="block text-xs text-[#8A8AA0]">Email</label>
+        <label className="block text-xs text-[#475569]">Email</label>
         <input
           required
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          className="input-field mt-1"
         />
       </div>
       <div>
-        <label className="block text-xs text-[#8A8AA0]">Address</label>
+        <label className="block text-xs text-[#475569]">Address</label>
         <input
           required
           value={address1}
           onChange={(event) => setAddress1(event.target.value)}
-          className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          className="input-field mt-1"
         />
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
-          <label className="block text-xs text-[#8A8AA0]">City</label>
+          <label className="block text-xs text-[#475569]">City</label>
           <input
             required
             value={city}
             onChange={(event) => setCity(event.target.value)}
-            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+            className="input-field mt-1"
           />
         </div>
         <div>
-          <label className="block text-xs text-[#8A8AA0]">Postal code</label>
+          <label className="block text-xs text-[#475569]">Postal code</label>
           <input
             required
             value={postalCode}
             onChange={(event) => setPostalCode(event.target.value)}
-            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+            className="input-field mt-1"
           />
         </div>
       </div>
       <div>
-        <label className="block text-xs text-[#8A8AA0]">Shipping country</label>
+        <label className="block text-xs text-[#475569]">Shipping country</label>
         <input
           required
           value={country}
           onChange={(event) => setCountry(event.target.value.toUpperCase())}
           placeholder="US"
-          className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2"
+          className="input-field mt-1"
         />
       </div>
-      <label className="flex items-start gap-2 text-sm text-[#8A8AA0]">
+      <label className="flex items-start gap-2 text-sm text-[#475569]">
         <input
           checked={ruoAck}
           onChange={(event) => setRuoAck(event.target.checked)}
@@ -353,18 +353,18 @@ export function CheckoutForm() {
         />
         I confirm these compounds are for research use only and not for human consumption.
       </label>
-      <p className="text-sm text-[#E8E8F0]">Subtotal: ${subtotal.toFixed(2)}</p>
-      <p className="text-sm text-[#8A8AA0]">Estimated shipping: ${DEFAULT_SHIPPING_USD.toFixed(2)}</p>
-      <p className="text-sm font-medium text-[#E8E8F0]">
+      <p className="text-sm text-[#0F172A]">Subtotal: ${subtotal.toFixed(2)}</p>
+      <p className="text-sm text-[#475569]">Estimated shipping: ${DEFAULT_SHIPPING_USD.toFixed(2)}</p>
+      <p className="text-sm font-medium text-[#0F172A]">
         Estimated total: ${(subtotal + DEFAULT_SHIPPING_USD).toFixed(2)}
       </p>
       {cryptoOptions.length > 0 ? (
         <div>
-          <label className="block text-xs text-[#8A8AA0]">Pay with cryptocurrency</label>
+          <label className="block text-xs text-[#475569]">Pay with cryptocurrency</label>
           <select
             value={selectedAsset}
             onChange={(event) => setSelectedAsset(event.target.value)}
-            className="mt-1 w-full rounded border border-white/20 bg-[#050508] px-3 py-2 text-sm text-[#E8E8F0]"
+            className="input-field mt-1 text-sm"
           >
             {cryptoOptions.map((option) => (
               <option key={option.asset} value={option.asset}>
@@ -375,16 +375,13 @@ export function CheckoutForm() {
           </select>
         </div>
       ) : null}
-      <button
-        disabled={loading}
-        className="rounded bg-[#5EEAD4] px-4 py-2 text-sm font-medium text-[#050508] disabled:opacity-60"
-      >
+      <button disabled={loading} className="btn-primary disabled:opacity-60">
         {loading ? "Placing order..." : "Place Research Order"}
       </button>
-      {error ? <p className="text-xs text-[#F87171]">{error}</p> : null}
-      {status ? <p className="text-xs text-[#8A8AA0]">{status}</p> : null}
+      {error ? <p className="text-xs text-red-600">{error}</p> : null}
+      {status ? <p className="text-xs text-[#475569]">{status}</p> : null}
       {checkoutUrl ? (
-        <a href={checkoutUrl} target="_blank" rel="noreferrer" className="block text-xs text-[#5EEAD4]">
+        <a href={checkoutUrl} target="_blank" rel="noreferrer" className="block text-xs text-[#0D9488]">
           Continue to crypto payment
         </a>
       ) : null}

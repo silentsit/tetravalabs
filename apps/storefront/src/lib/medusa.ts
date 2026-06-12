@@ -47,10 +47,14 @@ export async function listProducts() {
       headers: withHeaders(),
       next: { revalidate: 300, tags: ["products"] }
     })
-    if (!response.ok) throw new Error("Failed products request")
+    if (!response.ok) {
+      console.error(`[medusa] products request failed: ${response.status} ${response.statusText}`)
+      throw new Error("Failed products request")
+    }
     const data = await response.json()
     return (data.products || []) as StoreProduct[]
-  } catch {
+  } catch (error) {
+    console.error("[medusa] unable to load products from", MEDUSA_URL, error)
     return []
   }
 }

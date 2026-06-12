@@ -1,31 +1,29 @@
 import Link from "next/link"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { faqItems } from "@/lib/faq-content"
 
 export default function FaqPage() {
   return (
-    <section className="mx-auto max-w-3xl space-y-8">
+    <section className="page-container mx-auto max-w-3xl space-y-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} />
       <div>
-        <p className="font-mono text-xs uppercase tracking-wider text-[#5EEAD4]">Support</p>
-        <h1 className="mt-4 font-serif text-4xl text-[#E8E8F0]">Frequently Asked Questions</h1>
-        <p className="mt-4 text-[#8A8AA0]">
+        <span className="section-label">Support</span>
+        <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">Frequently asked questions</h1>
+        <p className="mt-4 text-[#475569]">
           Answers about research compounds, ordering, shipping, and analytical documentation.
         </p>
       </div>
       <FaqAccordion items={faqItems} />
-      <div className="rounded-xl border border-white/[0.06] bg-[#0A0A10] p-6 text-center">
-        <p className="text-[#E8E8F0]">Still have questions?</p>
-        <p className="mt-2 text-sm text-[#8A8AA0]">Our research support team is here to help.</p>
-        <Link
-          href="/contact"
-          className="mt-4 inline-block rounded-lg bg-[#5EEAD4] px-6 py-2.5 text-sm font-medium text-[#050508]"
-        >
-          Contact Us
+      <div className="card p-6 text-center">
+        <p className="text-[#0F172A]">Still have questions?</p>
+        <p className="mt-2 text-sm text-[#475569]">Our research support team is here to help.</p>
+        <Link href="/contact" className="btn-primary mt-4 inline-flex px-6 py-2.5">
+          Contact us
         </Link>
       </div>
-      <p className="rounded-xl border border-[#FBBF24]/20 bg-white/[0.03] p-5 text-sm text-[#FBBF24]/90">
-        All products are sold strictly for in-vitro laboratory research. Not for human or veterinary use.
-      </p>
+      <ComplianceNotice />
     </section>
   )
 }

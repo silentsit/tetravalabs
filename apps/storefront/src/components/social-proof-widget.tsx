@@ -1,13 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { ShoppingBag, Star, Users, X } from "lucide-react"
 
 const notifications = [
   { name: "Dr. Martinez", location: "Boston, MA", product: "BPC-157 10mg", time: "2 min ago" },
-  { name: "Research Lab 47", location: "San Diego, CA", product: "Semaglutide 5mg", time: "5 min ago" },
-  { name: "Dr. Patel", location: "Houston, TX", product: "TB-500 10mg", time: "8 min ago" },
-  { name: "BioTech Inc.", location: "Research Triangle, NC", product: "GHK-Cu 100mg", time: "12 min ago" },
-  { name: "Dr. Johnson", location: "Seattle, WA", product: "CJC-1295 Blend", time: "15 min ago" }
+  { name: "Research Lab 47", location: "San Diego, CA", product: "Semaglutide 5mg", time: "5 min ago" }
 ]
 
 const reviews = [
@@ -38,53 +36,44 @@ export function SocialProofToast() {
 
   useEffect(() => {
     if (dismissed) return
-
-    const showTimer = setTimeout(() => setVisible(true), 3000)
+    const t = setTimeout(() => setVisible(true), 4000)
     const cycle = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
-        setCurrent((index) => (index + 1) % notifications.length)
+        setCurrent((p) => (p + 1) % notifications.length)
         setVisible(true)
-      }, 500)
-    }, 6000)
-
+      }, 400)
+    }, 8000)
     return () => {
-      clearTimeout(showTimer)
+      clearTimeout(t)
       clearInterval(cycle)
     }
   }, [dismissed])
 
   if (dismissed) return null
-
-  const notification = notifications[current]
+  const n = notifications[current]
 
   return (
     <div
-      className={`fixed bottom-6 left-6 z-40 max-w-[calc(100vw-3rem)] transition-all duration-500 ${
+      className={`fixed bottom-6 left-6 z-40 transition-all duration-500 ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
-      role="status"
-      aria-live="polite"
     >
-      <div className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-[#0A0A10]/95 p-4 shadow-2xl backdrop-blur-md">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#5EEAD4]/10 text-[#5EEAD4]">
-          ◈
+      <div className="flex max-w-sm items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-xl">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#CCFBF1]">
+          <ShoppingBag className="h-5 w-5 text-[#0D9488]" />
         </div>
-        <div className="min-w-0 flex-1">
-          <p className="text-sm text-[#E8E8F0]">
-            <span className="font-medium">{notification.name}</span> from {notification.location}
+        <div className="flex-1">
+          <p className="text-sm text-[#0F172A]">
+            <span className="font-medium">{n.name}</span>{" "}
+            <span className="text-[#94A3B8]">from {n.location}</span>
           </p>
-          <p className="truncate text-xs text-[#8A8AA0]">
-            Ordered {notification.product} · {notification.time}
+          <p className="text-xs text-[#94A3B8]">
+            Ordered {n.product} · {n.time}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => setDismissed(true)}
-          className="shrink-0 text-[#5A5A70] transition-colors hover:text-[#E8E8F0]"
-          aria-label="Dismiss notification"
-        >
-          ✕
+        <button type="button" onClick={() => setDismissed(true)} className="text-[#CBD5E1] hover:text-[#0F172A]">
+          <X className="h-4 w-4" />
         </button>
       </div>
     </div>
@@ -95,22 +84,15 @@ export function SocialProofReviews() {
   return (
     <div className="grid gap-6 md:grid-cols-3">
       {reviews.map((review) => (
-        <div
-          key={review.name}
-          className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 backdrop-blur-sm"
-        >
-          <div className="mb-3 flex gap-0.5 text-[#F59E0B]" aria-label={`${review.rating} out of 5 stars`}>
-            {Array.from({ length: review.rating }).map((_, index) => (
-              <span key={index}>★</span>
+        <div key={review.name} className="rounded-xl border border-[#E2E8F0] bg-white p-6">
+          <div className="mb-3 flex gap-0.5">
+            {Array.from({ length: review.rating }).map((_, i) => (
+              <Star key={i} className="h-4 w-4 fill-[#F59E0B] text-[#F59E0B]" />
             ))}
           </div>
-          <p className="mb-4 text-sm italic leading-relaxed text-[#E8E8F0]">
-            &ldquo;{review.text}&rdquo;
-          </p>
-          <div>
-            <p className="text-sm font-medium text-[#E8E8F0]">{review.name}</p>
-            <p className="text-xs text-[#8A8AA0]">{review.institution}</p>
-          </div>
+          <p className="mb-4 text-sm italic leading-relaxed text-[#0F172A]">&ldquo;{review.text}&rdquo;</p>
+          <p className="text-sm font-medium text-[#0F172A]">{review.name}</p>
+          <p className="text-xs text-[#94A3B8]">{review.institution}</p>
         </div>
       ))}
     </div>
@@ -118,23 +100,15 @@ export function SocialProofReviews() {
 }
 
 export function LiveVisitorCounter() {
-  const [count, setCount] = useState(42)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((value) => Math.max(12, value + Math.floor(Math.random() * 3) - 1))
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-[#0A0A10]/80 px-4 py-2 backdrop-blur-sm">
+    <div className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-white px-4 py-2 shadow-sm">
       <span className="relative flex h-2.5 w-2.5">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#34D399] opacity-75" />
-        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#34D399]" />
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#059669] opacity-60" />
+        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#059669]" />
       </span>
-      <span className="text-xs text-[#8A8AA0]">
-        <span className="font-medium text-[#E8E8F0]">{count}</span> researchers browsing
+      <Users className="h-4 w-4 text-[#94A3B8]" />
+      <span className="text-xs text-[#94A3B8]">
+        <span className="font-medium text-[#0F172A]">47</span> researchers online
       </span>
     </div>
   )

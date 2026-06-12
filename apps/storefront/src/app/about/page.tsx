@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const stats = [
   { label: "Compounds", value: "120+" },
@@ -9,12 +10,13 @@ const stats = [
 
 export default function AboutPage() {
   return (
-    <section className="mx-auto max-w-4xl space-y-10">
+    <section className="page-container mx-auto max-w-4xl space-y-10 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
       <div>
-        <p className="font-mono text-xs uppercase tracking-wider text-[#5EEAD4]">About Us</p>
-        <h1 className="mt-4 font-serif text-4xl text-[#E8E8F0]">About Tetrava Labs</h1>
+        <span className="section-label">About us</span>
+        <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">About Tetrava Labs</h1>
       </div>
-      <div className="space-y-6 text-base leading-relaxed text-[#8A8AA0]">
+      <div className="space-y-6 text-base leading-relaxed text-[#475569]">
         <p>
           Tetrava Labs provides the scientific community with access to high-quality, verified research
           compounds. Every product in our catalog is backed by transparent analytical data and strict
@@ -28,25 +30,25 @@ export default function AboutPage() {
       </div>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-white/[0.06] bg-[#0A0A10] p-5 text-center">
-            <p className="font-serif text-2xl text-[#E8E8F0]">{stat.value}</p>
-            <p className="mt-1 text-xs text-[#8A8AA0]">{stat.label}</p>
+          <div key={stat.label} className="card p-5 text-center">
+            <p className="font-serif text-2xl text-[#0F172A]">{stat.value}</p>
+            <p className="mt-1 text-xs text-[#475569]">{stat.label}</p>
           </div>
         ))}
       </div>
-      <div className="rounded-xl border border-white/[0.06] bg-[#0A0A10] p-8">
-        <h2 className="font-serif text-2xl text-[#E8E8F0]">Our Mission</h2>
-        <p className="mt-4 text-sm leading-relaxed text-[#8A8AA0]">
+      <div className="card p-8">
+        <h2 className="font-serif text-2xl text-[#0F172A]">Our mission</h2>
+        <p className="mt-4 text-sm leading-relaxed text-[#475569]">
           To advance scientific discovery by providing researchers with reliable materials, batch-level
           documentation, and responsive support. Reliable materials are the foundation of reliable science.
         </p>
       </div>
       <div className="flex flex-wrap gap-3">
-        <Link href="/shop" className="rounded-lg bg-[#5EEAD4] px-6 py-2.5 text-sm font-medium text-[#050508]">
-          Browse Catalog
+        <Link href="/shop" className="btn-primary px-6 py-2.5">
+          Browse catalog
         </Link>
-        <Link href="/coa-library" className="rounded-lg border border-white/10 px-6 py-2.5 text-sm text-[#E8E8F0]">
-          View COA Library
+        <Link href="/coa-library" className="btn-secondary px-6 py-2.5">
+          View COA library
         </Link>
       </div>
     </section>

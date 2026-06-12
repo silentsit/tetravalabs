@@ -28,12 +28,12 @@ export default async function ShopPage({ searchParams }: Props) {
   }
 
   return (
-    <section className="space-y-8">
+    <section className="page-container space-y-8 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Shop" }]} />
       <div>
-        <p className="font-mono text-xs uppercase tracking-wider text-[#5EEAD4]">Catalog</p>
-        <h1 className="mt-2 font-serif text-4xl text-[#E8E8F0]">Research Compounds</h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#8A8AA0]">
+        <span className="section-label">Catalog</span>
+        <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Research Compounds</h1>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#475569]">
           Browse the live catalog synced from Medusa. All products are sold strictly for laboratory
           research use.
         </p>
@@ -45,23 +45,20 @@ export default async function ShopPage({ searchParams }: Props) {
             name="q"
             defaultValue={q}
             placeholder="Filter by name, CAS, formula..."
-            className="w-full rounded-lg border border-white/10 bg-[#0A0A10] px-4 py-2.5 text-sm text-[#E8E8F0] outline-none transition focus:border-[#5EEAD4]/40"
+            className="input-field"
           />
           {category ? <input type="hidden" name="category" value={category} /> : null}
-          <button
-            type="submit"
-            className="shrink-0 rounded-lg border border-white/10 px-4 py-2.5 text-sm text-[#E8E8F0] transition hover:border-[#5EEAD4]/40"
-          >
+          <button type="submit" className="btn-secondary shrink-0 px-4 py-2.5">
             Filter
           </button>
         </div>
       </form>
 
-      <div className="flex flex-wrap gap-2 text-xs text-[#8A8AA0]">
+      <div className="flex flex-wrap gap-2 text-xs text-[#475569]">
         <Link
           href="/shop"
           className={`rounded-full border px-3 py-1 transition ${
-            !category ? "border-[#5EEAD4] text-[#5EEAD4]" : "border-white/10 hover:border-white/20"
+            !category ? "border-[#0D9488] text-[#0D9488]" : "border-[#E2E8F0] hover:border-[#CBD5E1]"
           }`}
         >
           All ({products.length})
@@ -72,8 +69,8 @@ export default async function ShopPage({ searchParams }: Props) {
             href={`/shop?category=${item.slug}`}
             className={`rounded-full border px-3 py-1 transition ${
               category === item.slug
-                ? "border-[#5EEAD4] text-[#5EEAD4]"
-                : "border-white/10 hover:border-white/20"
+                ? "border-[#0D9488] text-[#0D9488]"
+                : "border-[#E2E8F0] hover:border-[#CBD5E1]"
             }`}
           >
             {item.name} ({item.count})
@@ -81,16 +78,17 @@ export default async function ShopPage({ searchParams }: Props) {
         ))}
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {displayProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
       {displayProducts.length === 0 ? (
-        <p className="rounded-xl border border-white/10 bg-[#0A0A10] p-6 text-sm text-[#8A8AA0]">
-          No products found. Run catalog normalization and Medusa import, then connect Medusa env
-          vars — or try a different search term.
+        <p className="rounded-xl border border-[#E2E8F0] bg-white p-6 text-sm text-[#475569]">
+          {products.length === 0
+            ? "Catalog is empty — Medusa returned no products. Check NEXT_PUBLIC_MEDUSA_URL in .env.local and that the backend is reachable."
+            : "No products match this filter. Try a different search term or category."}
         </p>
       ) : null}
     </section>

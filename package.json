@@ -33,7 +33,8 @@
     "production:verify": "node scripts/verify-production-alignment.mjs",
     "production:setup": "node scripts/production-data-setup.mjs",
     "production:setup:run": "node scripts/production-data-setup.mjs --run",
-    "bootstrap:remote": "node scripts/remote-bootstrap.mjs"
+    "bootstrap:remote": "node scripts/remote-bootstrap.mjs",
+    "postinstall": "patch-package"
   },
   "engines": {
     "node": "20.x"
@@ -44,9 +45,11 @@
   },
   "devDependencies": {
     "next": "^15.5.19",
+    "patch-package": "^8.0.1",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@medusajs/medusa": "2.15.5"
+    "@medusajs/medusa": "2.15.5",
+    "@medusajs/ui": "^4.1.15"
   }
 }

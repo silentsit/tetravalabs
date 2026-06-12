@@ -1,9 +1,15 @@
 import { execSync } from "node:child_process"
 
+// Admin is off by default when NODE_ENV=production unless ENABLE_MEDUSA_ADMIN=true.
+// Force it during Render builds so /app assets exist even before blueprint env sync.
+process.env.ENABLE_MEDUSA_ADMIN = "true"
+
 const maxAttempts = 3
 const retryDelaySeconds = 15
-// Medusa workspace + root (root lists @medusajs/medusa so link-modules resolve from hoisted framework).
-const installCmd = "npm ci --workspace=@tetrava/medusa --include-workspace-root"
+// Render sets NODE_ENV=production during build, which skips devDependencies.
+// patch-package (root postinstall) and the admin-bundler patch are required for medusa build.
+const installCmd =
+  "npm ci --workspace=@tetrava/medusa --include-workspace-root --include=dev"
 
 function sleep(seconds) {
   execSync(`sleep ${seconds}`)

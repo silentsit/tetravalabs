@@ -9,6 +9,10 @@ envVarGroups:
         value: production
       - key: USE_REDIS
         value: "true"
+      - key: ENABLE_MEDUSA_ADMIN
+        value: "true"
+      - key: ADMIN_CORS
+        value: https://tetrava-medusa.onrender.com
 
 services:
   - type: web
@@ -32,8 +36,6 @@ services:
       - key: COOKIE_SECRET
         generateValue: true
       - key: STORE_CORS
-        sync: false
-      - key: ADMIN_CORS
         sync: false
       - key: AUTH_CORS
         sync: false

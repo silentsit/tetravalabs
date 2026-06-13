@@ -102,8 +102,10 @@ services:
     plan: starter
     image:
       url: docker.io/typesense/typesense:27.1
-    dockerCommand: --data-dir /data --api-key=${TYPESENSE_API_KEY} --listen-port 8108 --enable-cors
+    dockerCommand: --data-dir /data --api-key=${TYPESENSE_API_KEY} --listen-port=10000 --enable-cors
     envVars:
+      - key: PORT
+        value: "10000"
       - key: TYPESENSE_DATA_DIR
         value: /data
       - key: TYPESENSE_API_KEY

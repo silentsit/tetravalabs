@@ -21,6 +21,8 @@ export default async function removeLegacyAdmin({ container }) {
 
   await client.connect()
 
+  let inTransaction = false
+
   try {
     const userResult = await client.query(`SELECT id, email FROM "user" WHERE email = $1 AND deleted_at IS NULL`, [
       legacyEmail
@@ -39,6 +41,7 @@ export default async function removeLegacyAdmin({ container }) {
     const authIdentityId = authResult.rows[0]?.id
 
     await client.query("BEGIN")
+    inTransaction = true
 
     await client.query(
       `UPDATE provider_identity SET deleted_at = NOW(), updated_at = NOW()
@@ -60,13 +63,15 @@ export default async function removeLegacyAdmin({ container }) {
       [user.id]
     )
 
-    await client.query(`DELETE FROM user_rbac_role WHERE user_id = $1`, [user.id])
-    await client.query(`DELETE FROM user_preference WHERE user_id = $1`, [user.id])
+    await client.query(`DELETE FROM user_rbac_role WHERE user_id = $1`, [user.id]).catch(() => undefined)
+    await client.query(`DELETE FROM user_preference WHERE user_id = $1`, [user.id]).catch(() => undefined)
 
     await client.query("COMMIT")
     logger.info(`Removed legacy admin user: ${legacyEmail}`)
   } catch (error) {
-    await client.query("ROLLBACK")
+    if (inTransaction) {
+      await client.query("ROLLBACK").catch(() => undefined)
+    }
     throw error
   } finally {
     await client.end()

@@ -87,7 +87,14 @@ async function run() {
 run().catch((error) => {
   const message = error?.message || String(error)
   const code = error?.code || error?.cause?.code || ""
-  if (message.includes("ECONNREFUSED") || code === "ECONNREFUSED" || message === "AggregateError") {
+  const networkCodes = new Set(["ECONNREFUSED", "ENOTFOUND", "ETIMEDOUT", "EAI_AGAIN"])
+  if (
+    networkCodes.has(code) ||
+    message.includes("ECONNREFUSED") ||
+    message.includes("ENOTFOUND") ||
+    message.includes("getaddrinfo") ||
+    message === "AggregateError"
+  ) {
     console.warn("Typesense is not reachable. Start the service and rerun `npm run typesense:index`.")
     process.exit(0)
   }

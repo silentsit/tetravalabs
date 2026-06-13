@@ -24,8 +24,13 @@ export function isTypesenseConfigured() {
   return Boolean(process.env.TYPESENSE_HOST?.trim() && process.env.TYPESENSE_API_KEY?.trim())
 }
 
-async function searchViaMedusaProxy(query: string): Promise<SearchResponse | null> {
-  if (!query.trim() || !PUBLISHABLE_KEY) return null
+type MedusaProxyResult =
+  | { status: "success"; response: SearchResponse }
+  | { status: "unavailable" }
+  | { status: "error" }
+
+async function searchViaMedusaProxy(query: string): Promise<MedusaProxyResult> {
+  if (!query.trim() || !PUBLISHABLE_KEY) return { status: "unavailable" }
 
   try {
     const url = new URL(`${MEDUSA_URL}/store/search`)
@@ -34,15 +39,29 @@ async function searchViaMedusaProxy(query: string): Promise<SearchResponse | nul
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
       cache: "no-store"
     })
-    if (!response.ok) return null
+
+    if (response.status === 503) {
+      return { status: "unavailable" }
+    }
+
+    const contentType = response.headers.get("content-type") || ""
+    if (!response.ok || !contentType.includes("application/json")) {
+      return { status: "error" }
+    }
+
     const data = (await response.json()) as {
       results?: SearchResult[]
-      source?: SearchSource
     }
-    if (!data.results) return null
-    return { results: data.results, source: "typesense" }
+
+    return {
+      status: "success",
+      response: {
+        results: data.results ?? [],
+        source: "typesense"
+      }
+    }
   } catch {
-    return null
+    return { status: "error" }
   }
 }
 
@@ -112,22 +131,13 @@ async function searchViaMedusaFallback(query: string): Promise<SearchResult[]> {
 
 export async function searchProducts(query: string): Promise<SearchResponse> {
   const medusaProxy = await searchViaMedusaProxy(query)
-  if (medusaProxy && medusaProxy.results.length > 0) {
-    return medusaProxy
+  if (medusaProxy.status === "success") {
+    return medusaProxy.response
   }
 
   const typesenseResults = await searchViaTypesenseDirect(query)
   if (typesenseResults !== null) {
-    if (typesenseResults.length > 0) {
-      return { results: typesenseResults, source: "typesense" }
-    }
-    return { results: await searchViaMedusaFallback(query), source: "catalog" }
-  }
-
-  if (medusaProxy) {
-    return medusaProxy.results.length > 0
-      ? medusaProxy
-      : { results: await searchViaMedusaFallback(query), source: "catalog" }
+    return { results: typesenseResults, source: "typesense" }
   }
 
   return { results: await searchViaMedusaFallback(query), source: "catalog" }

@@ -15,6 +15,7 @@ const steps = [
   "Paymento setup guide: npm run paymento:setup (PAYMENTO_API_KEY + PAYMENTO_SECRET_KEY on Render)",
   "Point Paymento IPN to https://<medusa>/webhooks/payments/paymento",
   "Checkout smoke test: npm run smoke:checkout",
+  "Full launch gate: npm run launch:verify",
   "Run: SMOKE_STOREFRONT_URL=... SMOKE_MEDUSA_URL=... npm run smoke:production",
   "Remote bootstrap: MEDUSA_ADMIN_URL=https://<medusa> npm run bootstrap:remote -- --run"
 ]

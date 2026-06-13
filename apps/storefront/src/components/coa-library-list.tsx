@@ -15,7 +15,10 @@ export function CoaLibraryList({ documents }: Props) {
     const q = search.trim().toLowerCase()
     if (!q) return documents
     return documents.filter((doc) =>
-      [doc.batch_number, doc.document_type, doc.variant_id].join(" ").toLowerCase().includes(q)
+      [doc.batch_number, doc.document_type, doc.variant_id, String(doc.metadata?.compound || "")]
+        .join(" ")
+        .toLowerCase()
+        .includes(q)
     )
   }, [documents, search])
 
@@ -51,7 +54,8 @@ export function CoaLibraryList({ documents }: Props) {
               </div>
               <div>
                 <p className="font-medium text-[#0F172A]">
-                  Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
+                  {doc.metadata?.compound ? String(doc.metadata.compound) : "Research compound"} — Batch{" "}
+                  {doc.batch_number} ({doc.document_type.toUpperCase()})
                 </p>
                 <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-[#94A3B8]">
                   {doc.purity_percent != null ? (

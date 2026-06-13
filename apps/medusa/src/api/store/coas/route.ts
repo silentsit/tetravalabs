@@ -34,9 +34,17 @@ function mapDocument(row: LabDocumentRow) {
  */
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const variantId = String(req.query.variant_id || "")
-  const limit = Math.min(Math.max(Number(req.query.limit) || 25, 1), 100)
+  const limit = Math.min(Math.max(Number(req.query.limit) || 25, 1), 250)
   const items = await withDb(
     async (db) => {
+      const totalResult = variantId
+        ? await db.query(
+            `SELECT COUNT(*)::int AS count FROM lab_batch_documents WHERE variant_id = $1`,
+            [variantId]
+          )
+        : await db.query(`SELECT COUNT(*)::int AS count FROM lab_batch_documents`)
+      const total = totalResult.rows[0]?.count ?? 0
+
       const result = variantId
         ? await db.query(
             `
@@ -57,15 +65,17 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
         `,
             [limit]
           )
-      return result.rows as LabDocumentRow[]
+      return { rows: result.rows as LabDocumentRow[], total }
     },
-    async () => []
+    async () => ({ rows: [] as LabDocumentRow[], total: 0 })
   )
 
   return res.json({
     variant_id: variantId || null,
-    count: items.length,
+    count: items.total,
+    limit,
+    returned: items.rows.length,
     r2_configured: isR2Configured(),
-    items: items.map(mapDocument)
+    items: items.rows.map(mapDocument)
   })
 }

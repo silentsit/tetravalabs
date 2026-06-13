@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { listBlogPosts } from "@/lib/sanity"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 
 export const revalidate = 600
 
@@ -7,20 +8,29 @@ export default async function BlogPage() {
   const posts = await listBlogPosts()
 
   return (
-    <section className="space-y-4">
-      <h1 className="text-3xl font-semibold">Research Blog</h1>
-      <p className="text-[#8A8AA0]">
-        Research guides and protocol notes sourced from Sanity with local fallback content.
-      </p>
-      <div className="grid gap-3">
+    <section className="page-container mx-auto max-w-4xl space-y-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Research Hub" }]} />
+      <div>
+        <span className="section-label">Research Hub</span>
+        <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">Research articles</h1>
+        <p className="mt-4 max-w-2xl text-[#475569]">
+          Protocol notes, handling guidance, and analytical documentation for qualified research buyers.
+        </p>
+      </div>
+      <div className="grid gap-4">
         {posts.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="rounded border border-white/10 bg-[#0A0A10] p-4"
+            className="card card-hover block p-5"
           >
-            <h2 className="text-lg text-[#E8E8F0]">{post.title}</h2>
-            <p className="mt-1 text-sm text-[#8A8AA0]">{post.excerpt || "Research article"}</p>
+            <h2 className="font-serif text-xl text-[#0F172A]">{post.title}</h2>
+            <p className="mt-2 text-sm text-[#475569]">{post.excerpt || "Research article"}</p>
+            {post.publishedAt ? (
+              <p className="mt-3 text-xs text-[#94A3B8]">
+                {new Date(post.publishedAt).toLocaleDateString()}
+              </p>
+            ) : null}
           </Link>
         ))}
       </div>

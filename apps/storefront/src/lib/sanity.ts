@@ -11,13 +11,31 @@ const fallbackPosts: BlogPost[] = [
     title: "RUO Handling and Storage Basics",
     slug: "ruo-handling-and-storage-basics",
     excerpt: "Storage, reconstitution, and handling best practices for peptide research materials.",
-    body: "Sanity is not connected yet, so this fallback article is shown from local code."
+    publishedAt: "2026-05-15T00:00:00.000Z",
+    body:
+      "Research-use-only peptides should be stored lyophilized at -20°C until reconstitution. Limit freeze-thaw cycles and document batch IDs for every vial used in a study.\n\n" +
+      "After reconstitution, use bacteriostatic water or the appropriate solvent noted on the product label. Label vials with compound, concentration, and date opened. Most reconstituted materials are stable for a limited window at 2–8°C — follow your lab SOP.\n\n" +
+      "Always cross-reference the batch COA in our COA Library before starting an experiment."
   },
   {
     title: "How to Read COA and HPLC Reports",
     slug: "how-to-read-coa-and-hplc-reports",
     excerpt: "A practical guide to interpreting purity and analytical outputs.",
-    body: "Once Sanity is configured, this route will serve the authored article body."
+    publishedAt: "2026-05-20T00:00:00.000Z",
+    body:
+      "A Certificate of Analysis (COA) confirms identity and purity for a specific batch. Look for batch number, test date, and reported purity percentage.\n\n" +
+      "HPLC chromatograms show peak area for the target compound versus impurities. A single dominant peak near the expected retention time with minimal secondary peaks generally indicates higher purity.\n\n" +
+      "Compare COA and HPLC documents together — COA summarizes acceptance criteria while HPLC provides the underlying chromatographic evidence."
+  },
+  {
+    title: "Semaglutide Storage Protocols for Research Labs",
+    slug: "semaglutide-storage-protocols",
+    excerpt: "Cold-chain and lyophilized storage guidance for GLP-1 research materials.",
+    publishedAt: "2026-06-01T00:00:00.000Z",
+    body:
+      "GLP-1 receptor agonist peptides are sensitive to heat and repeated moisture exposure. Keep lyophilized vials sealed until use and store at -20°C.\n\n" +
+      "Reconstitute only the amount required for the current experimental window. Avoid agitation that introduces foaming, and use low-bind pipette tips for accurate volumetric work.\n\n" +
+      "Document the batch COA ID in your lab notebook — Tetrava publishes batch-level documents for every catalog SKU in the COA Library."
   }
 ]
 

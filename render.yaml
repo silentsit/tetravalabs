@@ -60,7 +60,7 @@ services:
       - key: PAYMENTO_SPEED
         sync: false
       - key: STOREFRONT_URL
-        sync: false
+        value: https://tetravalabs.com
       - key: RESEND_API_KEY
         sync: false
       - key: RESEND_FROM

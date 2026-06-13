@@ -36,6 +36,7 @@
     "production:setup": "node scripts/production-data-setup.mjs",
     "production:setup:run": "node scripts/production-data-setup.mjs --run",
     "bootstrap:remote": "node scripts/remote-bootstrap.mjs",
+    "launch:verify": "node scripts/launch-verify.mjs",
     "postinstall": "patch-package"
   },
   "engines": {

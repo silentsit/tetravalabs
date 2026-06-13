@@ -7,7 +7,8 @@
     "normalize": "node scripts/normalize-catalog.mjs",
     "import:medusa": "node scripts/import-to-medusa.mjs",
     "typesense:index": "node scripts/index-to-typesense.mjs",
-    "coa:sync-r2": "node scripts/sync-coa-r2.mjs"
+    "coa:sync-r2": "node scripts/sync-coa-r2.mjs",
+    "coa:manifest:generate": "node scripts/generate-coa-manifest.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.888.0",

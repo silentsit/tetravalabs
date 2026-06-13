@@ -1,8 +1,9 @@
 /**
- * Sync COA/HPLC PDFs to Cloudflare R2 and upsert lab_batch_documents rows.
+ * Sync COA/HPLC files (PDF or image) to Cloudflare R2 and upsert lab_batch_documents rows.
  *
  * Manifest: packages/catalog/data/coa/manifest.json
- * Optional local files: packages/catalog/data/coa/files/<local_file>
+ * Local files: packages/catalog/data/coa/files/<local_file>
+ * Supported: .pdf, .jpg, .jpeg, .png, .webp, .gif
  *
  * Usage:
  *   npm run coa:sync-r2
@@ -33,6 +34,15 @@ const medusaUrl = (process.env.MEDUSA_ADMIN_URL || process.env.NEXT_PUBLIC_MEDUS
 )
 const publishableKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
 
+const CONTENT_TYPES = {
+  ".pdf": "application/pdf",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
+  ".gif": "image/gif"
+}
+
 function getR2Config() {
   const bucket = process.env.R2_BUCKET?.trim()
   const endpoint = process.env.R2_ENDPOINT?.trim()
@@ -52,9 +62,57 @@ function buildPublicUrl(storageKey, publicBaseUrl) {
   return `${publicBaseUrl}/${storageKey.replace(/^\/+/, "")}`
 }
 
+function normalizeExtension(value) {
+  if (!value) return ".pdf"
+  const ext = value.startsWith(".") ? value.toLowerCase() : `.${value.toLowerCase()}`
+  return CONTENT_TYPES[ext] ? ext : ".pdf"
+}
+
+function extensionFromFilename(filename) {
+  return normalizeExtension(path.extname(filename))
+}
+
+function contentTypeForExtension(ext) {
+  return CONTENT_TYPES[normalizeExtension(ext)] || "application/octet-stream"
+}
+
 function minimalPdfBuffer(title) {
   const text = `%PDF-1.4\n1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj\n2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj\n3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R >>endobj\n4 0 obj<< /Length 44 >>stream\nBT /F1 12 Tf 72 720 Td (${title}) Tj ET\nendstream\nendobj\nxref\n0 5\n0000000000 65535 f \n0000000009 00000 n \n0000000058 00000 n \n0000000115 00000 n \n0000000214 00000 n \ntrailer<< /Size 5 /Root 1 0 R >>\nstartxref\n304\n%%EOF\n`
   return Buffer.from(text, "utf8")
+}
+
+async function loadDocumentBody(entry) {
+  const label = `${entry.batch_number} ${entry.document_type}`
+
+  if (entry.local_file) {
+    const filePath = path.join(filesDir, entry.local_file)
+    try {
+      const body = await fs.readFile(filePath)
+      const ext = extensionFromFilename(entry.local_file)
+      return { body, ext, contentType: contentTypeForExtension(ext), source: entry.local_file }
+    } catch {
+      console.warn(`[warn] ${entry.id}: missing file ${entry.local_file}, uploading placeholder PDF`)
+    }
+  }
+
+  const ext = normalizeExtension(entry.file_extension)
+  if (ext !== ".pdf") {
+    console.warn(`[warn] ${entry.id}: no local_file for ${ext}; uploading placeholder PDF instead`)
+  }
+
+  return {
+    body: minimalPdfBuffer(label),
+    ext: ".pdf",
+    contentType: "application/pdf",
+    source: "placeholder"
+  }
+}
+
+function buildStorageKey(entry, variantId, ext) {
+  if (entry.storage_key) {
+    return entry.storage_key.replace(/\.(pdf|jpe?g|png|webp|gif)$/i, ext)
+  }
+  return `coa/${variantId}/${entry.batch_number}/${entry.document_type}${ext}`
 }
 
 async function fetchProducts() {
@@ -76,6 +134,15 @@ function resolveVariantId(products, entry) {
   const handle = entry.variant_handle || entry.product_handle
   if (!handle) return null
 
+  for (const product of products) {
+    for (const variant of product.variants || []) {
+      const catalogSlug = variant.metadata?.catalog_slug
+      if (catalogSlug === handle || variant.sku?.toLowerCase() === handle.replace(/-/g, "_").toLowerCase()) {
+        return variant.id
+      }
+    }
+  }
+
   const product = products.find((item) => item.handle === handle)
   if (!product?.variants?.length) return null
 
@@ -87,7 +154,7 @@ function resolveVariantId(products, entry) {
   return product.variants[0].id
 }
 
-async function upsertDocument(client, entry, variantId, storageKey, documentUrl) {
+async function upsertDocument(client, entry, variantId, storageKey, documentUrl, mediaType) {
   await client.query(
     `
     INSERT INTO lab_batch_documents (
@@ -113,7 +180,10 @@ async function upsertDocument(client, entry, variantId, storageKey, documentUrl)
       entry.document_type,
       documentUrl,
       storageKey,
-      entry.metadata || {}
+      {
+        ...(entry.metadata || {}),
+        media_type: mediaType
+      }
     ]
   )
 }
@@ -157,34 +227,23 @@ async function run() {
   await pgClient.connect()
 
   let uploaded = 0
+  let skipped = 0
+
   for (const entry of manifest) {
     const variantId = resolveVariantId(products, entry)
     if (!variantId) {
       console.warn(`[skip] ${entry.id}: could not resolve variant for handle ${entry.variant_handle || entry.product_handle}`)
+      skipped += 1
       continue
     }
 
-    const storageKey =
-      entry.storage_key ||
-      `coa/${variantId}/${entry.batch_number}/${entry.document_type}.pdf`
-
-    let body
-    if (entry.local_file) {
-      const filePath = path.join(filesDir, entry.local_file)
-      try {
-        body = await fs.readFile(filePath)
-      } catch {
-        console.warn(`[warn] ${entry.id}: missing file ${entry.local_file}, uploading placeholder PDF`)
-        body = minimalPdfBuffer(`${entry.batch_number} ${entry.document_type}`)
-      }
-    } else {
-      body = minimalPdfBuffer(`${entry.batch_number} ${entry.document_type}`)
-    }
-
+    const { body, ext, contentType, source } = await loadDocumentBody(entry)
+    const storageKey = buildStorageKey(entry, variantId, ext)
     const documentUrl = buildPublicUrl(storageKey, r2.publicBaseUrl)
+    const mediaType = ext === ".pdf" ? "pdf" : "image"
 
     if (dryRun) {
-      console.log(`[dry-run] ${entry.id} -> ${storageKey} (${documentUrl})`)
+      console.log(`[dry-run] ${entry.id} -> ${storageKey} (${contentType}, ${source})`)
       continue
     }
 
@@ -193,17 +252,22 @@ async function run() {
         Bucket: r2.bucket,
         Key: storageKey,
         Body: body,
-        ContentType: "application/pdf"
+        ContentType: contentType
       })
     )
 
-    await upsertDocument(pgClient, entry, variantId, storageKey, documentUrl)
+    await upsertDocument(pgClient, entry, variantId, storageKey, documentUrl, mediaType)
     uploaded += 1
     console.log(`[ok] ${entry.id} -> ${documentUrl}`)
   }
 
   await pgClient.end()
-  console.log(`\nSynced ${uploaded} COA/HPLC document(s) to R2.`)
+
+  if (dryRun) {
+    console.log(`\nDry run complete for ${manifest.length} manifest entries (${skipped} skipped).`)
+  } else {
+    console.log(`\nSynced ${uploaded} COA/HPLC document(s) to R2 (${skipped} skipped).`)
+  }
 }
 
 run().catch((error) => {

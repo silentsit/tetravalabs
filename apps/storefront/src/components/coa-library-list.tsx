@@ -70,7 +70,7 @@ export function CoaLibraryList({ documents }: Props) {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] px-4 py-2 text-sm text-[#475569] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
               >
-                <Download className="h-4 w-4" /> Download COA
+                <Download className="h-4 w-4" /> View document
               </a>
             ) : null}
           </div>

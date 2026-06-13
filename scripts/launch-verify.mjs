@@ -71,10 +71,27 @@ await check("Crypto options (BTC + USDT)", async () => {
   return r.ok && d.btcpay_configured && d.paymento_configured && assets.includes("BTC") && assets.includes("USDT")
 })
 
-await check("COA API + R2", async () => {
+await check("COA API + R2 (200+ docs)", async () => {
   const r = await fetch(`${medusaUrl}/store/coas?limit=5`, { headers: medusaHeaders })
   const d = await r.json()
-  return r.ok && d.r2_configured === true && (d.count || 0) > 0
+  return r.ok && d.r2_configured === true && (d.count || 0) >= 200
+})
+
+await check("COA library page", async () => (await fetch(`${storefrontUrl}/coa-library`)).ok)
+
+await check("Contact page", async () => (await fetch(`${storefrontUrl}/contact`)).ok)
+
+await check("Search API", async () => {
+  const r = await fetch(`${storefrontUrl}/api/search?q=semaglutide`)
+  const d = await r.json()
+  return r.ok && (d.count || 0) >= 1
+})
+
+await check("Sitemap", async () => {
+  const r = await fetch(`${storefrontUrl}/sitemap.xml`)
+  if (!r.ok) return false
+  const xml = await r.text()
+  return xml.includes("/shop") && xml.includes("/blog")
 })
 
 async function smokeCheckout(asset) {
@@ -121,5 +138,4 @@ if (failed > 0) {
   console.log(`Launch verification failed (${failed} check(s)).`)
   process.exit(1)
 }
-console.log("Launch verification passed. Ready for soft launch.")
-console.log("\nManual: confirm BTCPay/Paymento webhooks in provider dashboards point to Render URLs.")
+console.log("Launch verification passed — production is live.")

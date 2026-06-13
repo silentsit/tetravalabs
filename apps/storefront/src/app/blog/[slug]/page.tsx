@@ -1,11 +1,27 @@
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { getBlogPostBySlug } from "@/lib/sanity"
+import { getBlogPostBySlug, listBlogPosts } from "@/lib/sanity"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
 type Props = { params: Promise<{ slug: string }> }
 
 export const revalidate = 600
+
+export async function generateStaticParams() {
+  const posts = await listBlogPosts()
+  return posts.map((post) => ({ slug: post.slug }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
+  if (!post) return {}
+  return {
+    title: `${post.title} | Tetrava Labs`,
+    description: post.excerpt || "Research article from Tetrava Labs."
+  }
+}
 
 export default async function BlogArticlePage({ params }: Props) {
   const { slug } = await params

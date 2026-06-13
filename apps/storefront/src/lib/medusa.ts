@@ -59,6 +59,34 @@ export async function listProducts() {
   }
 }
 
+export async function listAllProducts() {
+  const all: StoreProduct[] = []
+  const limit = 100
+  let offset = 0
+
+  try {
+    while (true) {
+      const response = await fetch(
+        `${MEDUSA_URL}/store/products?limit=${limit}&offset=${offset}`,
+        {
+          headers: withHeaders(),
+          next: { revalidate: 3600, tags: ["products"] }
+        }
+      )
+      if (!response.ok) break
+      const data = await response.json()
+      const batch = (data.products || []) as StoreProduct[]
+      all.push(...batch)
+      if (batch.length < limit) break
+      offset += limit
+    }
+  } catch (error) {
+    console.error("[medusa] unable to paginate products from", MEDUSA_URL, error)
+  }
+
+  return all
+}
+
 export async function getProductByHandle(handle: string) {
   try {
     const response = await fetch(`${MEDUSA_URL}/store/products?handle=${handle}`, {

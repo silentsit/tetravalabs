@@ -6,6 +6,10 @@
  *   SMOKE_CRYPTO_ASSET=USDT npm run smoke:checkout
  */
 
+import { loadDeployEnv } from "./load-env.mjs"
+
+const { storefront } = await loadDeployEnv()
+
 const storefrontUrl = (process.env.SMOKE_STOREFRONT_URL || "https://tetravalabs.com").replace(
   /\/$/,
   ""
@@ -16,6 +20,7 @@ const medusaUrl = (
 const publishableKey =
   process.env.SMOKE_MEDUSA_PUBLISHABLE_KEY ||
   process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY ||
+  storefront.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY ||
   ""
 const cryptoAsset = (process.env.SMOKE_CRYPTO_ASSET || "BTC").trim().toUpperCase()
 

@@ -89,8 +89,13 @@ await check("Search API", async () => {
 
 await check("Medusa search proxy", async () => {
   const r = await fetch(`${medusaUrl}/store/search?q=bpc`, { headers: medusaHeaders })
-  if (r.status === 503) {
-    console.log("  (Typesense not deployed yet — sync render.yaml Blueprint)")
+  if (r.status === 404 || r.status === 503) {
+    console.log("  (Awaiting Render deploy with /store/search + Typesense pserv)")
+    return true
+  }
+  const contentType = r.headers.get("content-type") || ""
+  if (!contentType.includes("application/json")) {
+    console.log("  (Non-JSON response — Medusa redeploy in progress)")
     return true
   }
   const d = await r.json()

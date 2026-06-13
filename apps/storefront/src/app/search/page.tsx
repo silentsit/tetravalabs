@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { SearchResultCard } from "@/components/search-result-card"
-import { isTypesenseConfigured, searchProducts } from "@/lib/search"
+import { searchProducts } from "@/lib/search"
 
 type Props = { searchParams: Promise<{ q?: string }> }
 
@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic"
 export default async function SearchPage({ searchParams }: Props) {
   const { q = "" } = await searchParams
   const { results, source } = await searchProducts(q)
-  const typesenseReady = isTypesenseConfigured()
+  const typesenseReady = source === "typesense"
 
   return (
     <section className="page-container space-y-8 py-8">
@@ -55,10 +55,10 @@ export default async function SearchPage({ searchParams }: Props) {
         ) : null}
       </div>
 
-      {!typesenseReady ? (
+      {!typesenseReady && q ? (
         <p className="rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-sm text-[#475569]">
-          Typesense is not configured — search uses the live Medusa catalog. Set TYPESENSE_HOST and
-          TYPESENSE_API_KEY on Vercel, then run npm run typesense:index.
+          Search is using the live Medusa catalog. Typesense indexes automatically on Render after the
+          next Medusa deploy.
         </p>
       ) : null}
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { isTypesenseConfigured, searchProducts } from "@/lib/search"
+import { searchProducts } from "@/lib/search"
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
@@ -10,6 +10,6 @@ export async function GET(req: Request) {
     count: results.length,
     results,
     source,
-    typesenseConfigured: isTypesenseConfigured()
+    typesenseConfigured: source === "typesense"
   })
 }

@@ -19,7 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {}
   return {
     title: `${post.title} | Tetrava Labs`,
-    description: post.excerpt || "Research article from Tetrava Labs."
+    description: post.excerpt || "Research article from Tetrava Labs.",
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.publishedAt
+    }
   }
 }
 
@@ -28,8 +34,21 @@ export default async function BlogArticlePage({ params }: Props) {
   const post = await getBlogPostBySlug(slug)
   if (!post) notFound()
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com"
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishedAt,
+    author: { "@type": "Organization", name: "Tetrava Labs" },
+    publisher: { "@type": "Organization", name: "Tetrava Labs" },
+    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`
+  }
+
   return (
     <article className="page-container mx-auto max-w-3xl space-y-8 py-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

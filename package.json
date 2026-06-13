@@ -20,6 +20,8 @@
     "catalog:import": "npm --prefix packages/catalog run import:medusa",
     "typesense:index": "npm --prefix packages/catalog run typesense:index",
     "typesense:setup": "node scripts/typesense-setup.mjs",
+    "sanity:seed": "node scripts/sanity-seed.mjs",
+    "sanity:studio": "npm run dev --workspace=@tetrava/sanity-studio",
     "coa:sync-r2": "node packages/catalog/scripts/sync-coa-r2.mjs",
     "coa:manifest:generate": "node packages/catalog/scripts/generate-coa-manifest.mjs",
     "db:lab-schema": "npm run db:lab-schema --workspace=@tetrava/medusa",
@@ -47,6 +49,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@sanity/client": "^6.29.1",
     "next": "^15.5.19",
     "patch-package": "^8.0.1",
     "ts-node": "^10.9.2"

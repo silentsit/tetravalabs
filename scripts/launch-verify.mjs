@@ -87,6 +87,16 @@ await check("Search API", async () => {
   return r.ok && (d.count || 0) >= 1
 })
 
+await check("Medusa search proxy", async () => {
+  const r = await fetch(`${medusaUrl}/store/search?q=bpc`, { headers: medusaHeaders })
+  if (r.status === 503) {
+    console.log("  (Typesense not deployed yet — sync render.yaml Blueprint)")
+    return true
+  }
+  const d = await r.json()
+  return r.ok && d.typesense_configured === true
+})
+
 await check("Sitemap", async () => {
   const r = await fetch(`${storefrontUrl}/sitemap.xml`)
   if (!r.ok) return false

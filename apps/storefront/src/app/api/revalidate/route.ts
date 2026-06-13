@@ -10,6 +10,8 @@ export async function POST(req: NextRequest) {
   const payload = await req.json()
   const handle = payload?.handle as string | undefined
   const category = payload?.category as string | undefined
+  const slug = payload?.slug as string | undefined
+  const docType = payload?.type as string | undefined
 
   revalidatePath("/shop")
   revalidateTag("products")
@@ -21,6 +23,13 @@ export async function POST(req: NextRequest) {
 
   if (category) {
     revalidatePath(`/category/${category}`)
+  }
+
+  if (docType === "researchArticle" || slug) {
+    revalidatePath("/blog")
+    if (slug) {
+      revalidatePath(`/blog/${slug}`)
+    }
   }
 
   return NextResponse.json({ revalidated: true })

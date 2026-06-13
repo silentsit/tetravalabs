@@ -1,0 +1,53 @@
+# Tetrava Labs — AI & search context
+# https://tetravalabs.com
+# Last updated: 2026-06-13
+
+> Research-use-only (RUO) peptide supplier for qualified laboratories.
+> Products are NOT for human consumption, clinical use, or veterinary use.
+
+## Company
+- Name: Tetrava Labs
+- Website: https://tetravalabs.com
+- Support: info@tetravalabs.com
+- Tagline: Verified. Documented. Delivered.
+
+## What we sell
+Research-grade peptides and lab supplies with:
+- HPLC-MS purity verification (typically 99%+)
+- Lot-linked Certificates of Analysis (COA) per batch
+- Cold-chain shipping with discreet packaging
+- Crypto and alternative payment options for qualified buyers
+
+## Product categories
+- GLP-1 / metabolic research peptides (e.g. semaglutide, tirzepatide, retatrutide)
+- Tissue repair & recovery peptides (e.g. BPC-157, TB-500)
+- Growth hormone secretagogues (e.g. CJC-1295, ipamorelin, sermorelin)
+- Blends, lab water, and ancillary research materials
+
+## Key pages (canonical URLs)
+- Home: https://tetravalabs.com/
+- Shop catalog: https://tetravalabs.com/shop
+- Search: https://tetravalabs.com/search
+- Categories: https://tetravalabs.com/categories
+- COA Library: https://tetravalabs.com/coa-library
+- Research Hub (blog): https://tetravalabs.com/blog
+- Payment guide: https://tetravalabs.com/payment
+- FAQ: https://tetravalabs.com/faq
+- About: https://tetravalabs.com/about
+- Contact: https://tetravalabs.com/contact
+- RUO disclaimer: https://tetravalabs.com/ruo
+
+## Compliance (important)
+All products are sold strictly for in-vitro / laboratory research (RUO).
+Buyers must be qualified researchers or institutions.
+Full disclaimer: https://tetravalabs.com/ruo
+
+## Ordering
+- Browse shop → add to cart → checkout with shipping details
+- Guest checkout supported; order lookup via email + order number at /orders
+- Payment instructions provided after checkout (see /payment)
+
+## Structured data
+Product pages include schema.org Product + Offer markup.
+FAQ page includes FAQPage schema.
+Organization and WebSite schema on all pages.

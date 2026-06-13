@@ -1,5 +1,13 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import { LegalPageShell } from "@/components/legal-page-shell"
+import { buildPageMetadata } from "@/lib/seo"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Shipping information",
+  description: "Cold-chain shipping, delivery times, and packaging for research peptide orders.",
+  path: "/shipping"
+})
 
 export default function ShippingPage() {
   return (

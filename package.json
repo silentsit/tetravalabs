@@ -21,6 +21,7 @@
     "typesense:index": "npm --prefix packages/catalog run typesense:index",
     "typesense:setup": "node scripts/typesense-setup.mjs",
     "sanity:seed": "node scripts/sanity-seed.mjs",
+  "sanity:bootstrap": "node scripts/sanity-bootstrap.mjs",
     "sanity:studio": "npm run dev --workspace=@tetrava/sanity-studio",
     "coa:sync-r2": "node packages/catalog/scripts/sync-coa-r2.mjs",
     "coa:manifest:generate": "node packages/catalog/scripts/generate-coa-manifest.mjs",

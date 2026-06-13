@@ -1,8 +1,11 @@
+import type { Metadata } from "next"
 import { LegalPageShell } from "@/components/legal-page-shell"
+import { buildPageMetadata } from "@/lib/seo"
 
-export const metadata = {
-  title: "Privacy Policy | Tetrava Labs"
-}
+export const metadata: Metadata = buildPageMetadata({
+  title: "Privacy Policy",
+  path: "/privacy"
+})
 
 export default function PrivacyPage() {
   return (

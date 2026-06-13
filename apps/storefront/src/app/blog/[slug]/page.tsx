@@ -17,12 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getBlogPostBySlug(slug)
   if (!post) return {}
+  const description = post.excerpt || "Research article from Tetrava Labs."
   return {
-    title: `${post.title} | Tetrava Labs`,
-    description: post.excerpt || "Research article from Tetrava Labs.",
+    title: post.title,
+    description,
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       type: "article",
       publishedTime: post.publishedAt
     }

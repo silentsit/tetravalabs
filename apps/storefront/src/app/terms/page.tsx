@@ -1,9 +1,12 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import { LegalPageShell } from "@/components/legal-page-shell"
+import { buildPageMetadata } from "@/lib/seo"
 
-export const metadata = {
-  title: "Terms of Service | Tetrava Labs"
-}
+export const metadata: Metadata = buildPageMetadata({
+  title: "Terms of Service",
+  path: "/terms"
+})
 
 export default function TermsPage() {
   return (

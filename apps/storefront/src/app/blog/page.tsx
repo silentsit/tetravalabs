@@ -2,14 +2,16 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { listBlogPosts } from "@/lib/sanity"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { buildPageMetadata } from "@/lib/seo"
 
 export const revalidate = 600
 
-export const metadata: Metadata = {
-  title: "Research Hub | Tetrava Labs",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Research Hub — articles & protocols",
   description:
-    "Protocol notes, handling guidance, and analytical documentation for qualified research buyers."
-}
+    "Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers.",
+  path: "/blog"
+})
 
 export default async function BlogPage() {
   const posts = await listBlogPosts()

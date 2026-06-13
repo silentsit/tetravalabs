@@ -9,11 +9,16 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
 dotenv.config({ path: path.join(workspaceRoot, "apps", "medusa", ".env") })
+dotenv.config({ path: path.join(workspaceRoot, "apps", "storefront", ".env.local") })
 
 const normalizedPath = path.join(workspaceRoot, "packages", "catalog", "output", "catalog.normalized.json")
 const collectionName = process.env.TYPESENSE_COLLECTION || "products"
 const { host, port, protocol } = getTypesenseNodeConfig()
 const apiKey = process.env.TYPESENSE_API_KEY || "xyz"
+
+const MEDUSA_URL = (process.env.MEDUSA_ADMIN_URL || process.env.NEXT_PUBLIC_MEDUSA_URL || "").replace(/\/$/, "")
+const PUBLISHABLE_KEY =
+  process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || process.env.MEDUSA_PUBLISHABLE_KEY || ""
 
 const client = new Typesense.Client({
   nodes: [{ host, port, protocol }],
@@ -40,6 +45,86 @@ const schema = {
   default_sorting_field: "price_min"
 }
 
+function mapMedusaProduct(product) {
+  const prices = (product.variants || [])
+    .flatMap((variant) => variant.prices || [])
+    .map((price) => Number(price.amount || 0))
+    .filter((amount) => amount > 0)
+  const priceMin = prices.length ? Math.min(...prices) : 0
+  const priceMax = prices.length ? Math.max(...prices) : 0
+  const metadata = product.metadata || {}
+
+  return {
+    id: product.id,
+    title: product.title,
+    handle: product.handle,
+    category: String(metadata.source_category || "Research Product"),
+    strengths: (product.variants || []).map((variant) => variant.title),
+    cas_number: String(metadata.cas_number || ""),
+    molecular_formula: String(metadata.molecular_formula || ""),
+    sequence: String(metadata.sequence || ""),
+    visual_type: String(metadata.visual_type || "vial"),
+    price_min: priceMin,
+    price_max: priceMax,
+    coa_available: Boolean(metadata.coa_available)
+  }
+}
+
+function mapCatalogProduct(product) {
+  const prices = product.variants
+    .map((variant) => Math.round(variant.amount_usd * 100))
+    .filter((amount) => amount > 0)
+  const priceMin = prices.length ? Math.min(...prices) : 0
+  const priceMax = prices.length ? Math.max(...prices) : 0
+  return {
+    id: product.handle,
+    title: product.title,
+    handle: product.handle,
+    category: product.category,
+    strengths: product.variants.map((variant) => variant.title),
+    cas_number: product.metadata?.cas_number || "",
+    molecular_formula: product.metadata?.molecular_formula || "",
+    sequence: product.metadata?.sequence || "",
+    visual_type: product.visual_type || "vial",
+    price_min: priceMin,
+    price_max: priceMax,
+    coa_available: Boolean(product.metadata?.coa_available)
+  }
+}
+
+async function fetchMedusaProducts() {
+  if (!MEDUSA_URL || !PUBLISHABLE_KEY) return null
+
+  const all = []
+  const limit = 100
+  let offset = 0
+
+  while (true) {
+    const url = new URL(`${MEDUSA_URL}/store/products`)
+    url.searchParams.set("limit", String(limit))
+    url.searchParams.set("offset", String(offset))
+    const response = await fetch(url.toString(), {
+      headers: { "x-publishable-api-key": PUBLISHABLE_KEY }
+    })
+    if (!response.ok) {
+      console.warn(`Medusa products fetch failed (${response.status}); falling back to catalog JSON.`)
+      return null
+    }
+    const data = await response.json()
+    const batch = data.products || []
+    all.push(...batch)
+    if (batch.length < limit) break
+    offset += limit
+  }
+
+  return all.map(mapMedusaProduct)
+}
+
+async function loadCatalogProducts() {
+  const normalized = JSON.parse(await fs.readFile(normalizedPath, "utf8"))
+  return normalized.products.map(mapCatalogProduct)
+}
+
 async function ensureCollection() {
   try {
     await client.collections(collectionName).retrieve()
@@ -49,28 +134,9 @@ async function ensureCollection() {
 }
 
 async function run() {
-  const normalized = JSON.parse(await fs.readFile(normalizedPath, "utf8"))
-  const documents = normalized.products.map((product) => {
-    const prices = product.variants
-      .map((variant) => Math.round(variant.amount_usd * 100))
-      .filter((amount) => amount > 0)
-    const priceMin = prices.length ? Math.min(...prices) : 0
-    const priceMax = prices.length ? Math.max(...prices) : 0
-    return {
-      id: product.id,
-      title: product.title,
-      handle: product.handle,
-      category: product.category,
-      strengths: product.variants.map((variant) => variant.title),
-      cas_number: product.metadata?.cas_number || "",
-      molecular_formula: product.metadata?.molecular_formula || "",
-      sequence: product.metadata?.sequence || "",
-      visual_type: product.visual_type || "vial",
-      price_min: priceMin,
-      price_max: priceMax,
-      coa_available: Boolean(product.metadata?.coa_available)
-    }
-  })
+  const documents = (await fetchMedusaProducts()) ?? (await loadCatalogProducts())
+  const source =
+    documents.length > 0 && String(documents[0].id).startsWith("prod_") ? "medusa" : "catalog"
 
   await ensureCollection()
   const payload = documents.map((doc) => JSON.stringify(doc)).join("\n")
@@ -79,7 +145,7 @@ async function run() {
     .documents()
     .import(payload, { action: "upsert" })
 
-  console.log(`Indexed ${documents.length} products into Typesense collection "${collectionName}".`)
+  console.log(`Indexed ${documents.length} products (${source}) into Typesense collection "${collectionName}".`)
   console.log(`Typesense host: ${buildTypesenseBaseUrl()}`)
   console.log(result.split("\n").slice(0, 3).join("\n"))
 }

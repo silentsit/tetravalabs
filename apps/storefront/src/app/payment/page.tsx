@@ -1,4 +1,5 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import {
   ArrowRight,
   Bitcoin,
@@ -14,6 +15,14 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
+import { buildPageMetadata } from "@/lib/seo"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "How to pay — crypto checkout guide",
+  description:
+    "Step-by-step payment guide for Tetrava Labs orders using BTC, USDT, ETH, and other supported crypto assets.",
+  path: "/payment"
+})
 
 const steps = [
   {

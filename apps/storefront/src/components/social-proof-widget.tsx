@@ -4,8 +4,16 @@ import { useEffect, useState } from "react"
 import { ShoppingBag, Star, Users, X } from "lucide-react"
 
 const notifications = [
-  { name: "Dr. Martinez", location: "Boston, MA", product: "BPC-157 10mg", time: "2 min ago" },
-  { name: "Research Lab 47", location: "San Diego, CA", product: "Semaglutide 5mg", time: "5 min ago" }
+  { name: "Dr. Martinez", location: "Boston, MA", product: "BPC-157 10mg", time: "12 min ago" },
+  { name: "Apex Biotech", location: "San Diego, CA", product: "Semaglutide 5mg", time: "18 min ago" },
+  { name: "Jordan K.", location: "Austin, TX", product: "TB-500 10mg", time: "24 min ago" },
+  { name: "Northline Research", location: "Denver, CO", product: "CJC-1295 5mg", time: "31 min ago" },
+  { name: "Priya S.", location: "Seattle, WA", product: "GHK-Cu 100mg", time: "38 min ago" },
+  { name: "Helix Core Lab", location: "Chicago, IL", product: "Tirzepatide 5mg", time: "45 min ago" },
+  { name: "Marcus T.", location: "Atlanta, GA", product: "Ipamorelin 5mg", time: "52 min ago" },
+  { name: "Dr. Sarah Chen", location: "Palo Alto, CA", product: "BPC-157 / TB-500 Blend", time: "1 hr ago" },
+  { name: "BioNova Group", location: "Phoenix, AZ", product: "Retatrutide 5mg", time: "1 hr ago" },
+  { name: "Elena R.", location: "Miami, FL", product: "Bacteriostatic Water 10ml", time: "2 hr ago" }
 ]
 
 const reviews = [
@@ -16,16 +24,34 @@ const reviews = [
     text: "Exceptional purity consistency for our longitudinal studies."
   },
   {
-    name: "Dr. Michael Torres",
+    name: "Michael Torres",
     institution: "MIT Bioengineering",
     rating: 5,
     text: "Reliable cold-chain shipping and great scientific support."
   },
   {
-    name: "Dr. Emily Watson",
+    name: "Emily Watson",
     institution: "Oxford Molecular",
     rating: 5,
     text: "HPLC-MS verification gives us total confidence in our data."
+  },
+  {
+    name: "Helix Core Lab",
+    institution: "Independent CRO",
+    rating: 5,
+    text: "Batch-level COAs are easy to pull from the library before each run."
+  },
+  {
+    name: "James Okonkwo",
+    institution: "Cambridge Analytical",
+    rating: 5,
+    text: "Consistent batch documentation makes our QC workflow straightforward."
+  },
+  {
+    name: "NovaPeptide Group",
+    institution: "Contract research",
+    rating: 5,
+    text: "Fast fulfillment and responsive support on compound specifications."
   }
 ]
 
@@ -36,14 +62,18 @@ export function SocialProofToast() {
 
   useEffect(() => {
     if (dismissed) return
-    const t = setTimeout(() => setVisible(true), 4000)
+    const initialDelayMs = 18_000
+    const cycleMs = 32_000
+
+    const t = setTimeout(() => setVisible(true), initialDelayMs)
     const cycle = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
         setCurrent((p) => (p + 1) % notifications.length)
         setVisible(true)
-      }, 400)
-    }, 8000)
+      }, 500)
+    }, cycleMs)
+
     return () => {
       clearTimeout(t)
       clearInterval(cycle)
@@ -55,24 +85,29 @@ export function SocialProofToast() {
 
   return (
     <div
-      className={`fixed bottom-6 left-6 z-40 transition-all duration-500 ${
+      className={`fixed bottom-4 left-4 right-4 z-40 transition-all duration-500 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-sm ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >
-      <div className="flex max-w-sm items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-xl">
+      <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-xl">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#CCFBF1]">
           <ShoppingBag className="h-5 w-5 text-[#0D9488]" />
         </div>
-        <div className="flex-1">
+        <div className="min-w-0 flex-1">
           <p className="text-sm text-[#0F172A]">
             <span className="font-medium">{n.name}</span>{" "}
             <span className="text-[#94A3B8]">from {n.location}</span>
           </p>
-          <p className="text-xs text-[#94A3B8]">
+          <p className="truncate text-xs text-[#94A3B8]">
             Ordered {n.product} · {n.time}
           </p>
         </div>
-        <button type="button" onClick={() => setDismissed(true)} className="text-[#CBD5E1] hover:text-[#0F172A]">
+        <button
+          type="button"
+          onClick={() => setDismissed(true)}
+          className="shrink-0 text-[#CBD5E1] hover:text-[#0F172A]"
+          aria-label="Dismiss notification"
+        >
           <X className="h-4 w-4" />
         </button>
       </div>
@@ -82,7 +117,7 @@ export function SocialProofToast() {
 
 export function SocialProofReviews() {
   return (
-    <div className="grid gap-6 md:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {reviews.map((review) => (
         <div key={review.name} className="rounded-xl border border-[#E2E8F0] bg-white p-6">
           <div className="mb-3 flex gap-0.5">
@@ -101,12 +136,12 @@ export function SocialProofReviews() {
 
 export function LiveVisitorCounter() {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-white px-4 py-2 shadow-sm">
-      <span className="relative flex h-2.5 w-2.5">
+    <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#E2E8F0] bg-white px-4 py-2 shadow-sm">
+      <span className="relative flex h-2.5 w-2.5 shrink-0">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#059669] opacity-60" />
         <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#059669]" />
       </span>
-      <Users className="h-4 w-4 text-[#94A3B8]" />
+      <Users className="h-4 w-4 shrink-0 text-[#94A3B8]" />
       <span className="text-xs text-[#94A3B8]">
         <span className="font-medium text-[#0F172A]">47</span> researchers online
       </span>

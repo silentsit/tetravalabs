@@ -1,11 +1,19 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { SearchResultCard } from "@/components/search-result-card"
 import { searchProducts } from "@/lib/search"
+import { buildPageMetadata } from "@/lib/seo"
 
 type Props = { searchParams: Promise<{ q?: string }> }
 
 export const dynamic = "force-dynamic"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Search research compounds",
+  description: "Search the Tetrava Labs catalog by peptide name, CAS number, formula, or sequence.",
+  path: "/search"
+})
 
 export default async function SearchPage({ searchParams }: Props) {
   const { q = "" } = await searchParams

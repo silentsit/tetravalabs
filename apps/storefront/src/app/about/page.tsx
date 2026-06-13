@@ -1,5 +1,14 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { buildPageMetadata } from "@/lib/seo"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "About us",
+  description:
+    "Research peptide supplier with HPLC-MS verification, lot-linked COAs, and cold-chain logistics for qualified laboratories worldwide.",
+  path: "/about"
+})
 
 const stats = [
   { label: "Compounds", value: "120+" },

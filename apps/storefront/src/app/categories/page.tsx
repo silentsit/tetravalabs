@@ -1,9 +1,17 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { listProducts } from "@/lib/medusa"
 import { groupProductsByCategory } from "@/lib/categories"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
+import { buildPageMetadata } from "@/lib/seo"
 
 export const revalidate = 300
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Product categories",
+  description: "Browse research peptides and compounds by category — GLP-1, tissue repair, growth, and blends.",
+  path: "/categories"
+})
 
 export default async function CategoriesPage() {
   const products = await listProducts()

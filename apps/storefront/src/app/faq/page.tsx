@@ -1,10 +1,21 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { faqItems } from "@/lib/faq-content"
+import { buildPageMetadata, faqJsonLd } from "@/lib/seo"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "FAQ — ordering, shipping & COAs",
+  description:
+    "Answers about research-use peptides, HPLC verification, certificates of analysis, shipping, and payment.",
+  path: "/faq"
+})
 
 export default function FaqPage() {
+  const jsonLd = faqJsonLd(faqItems)
+
   return (
     <section className="page-container mx-auto max-w-3xl space-y-8 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} />
@@ -24,6 +35,7 @@ export default function FaqPage() {
         </Link>
       </div>
       <ComplianceNotice />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </section>
   )
 }

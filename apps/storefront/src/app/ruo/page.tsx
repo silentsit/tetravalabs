@@ -1,10 +1,13 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import type { Metadata } from "next"
 import { LegalPageShell } from "@/components/legal-page-shell"
+import { buildPageMetadata } from "@/lib/seo"
 
-export const metadata = {
-  title: "Research Use Only Policy | Tetrava Labs"
-}
+export const metadata: Metadata = buildPageMetadata({
+  title: "Research Use Only Policy",
+  path: "/ruo"
+})
 
 export default async function RuoGatePage() {
   async function acknowledge() {

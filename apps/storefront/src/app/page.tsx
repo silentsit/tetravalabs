@@ -7,6 +7,7 @@ import {
   FileCheck,
   Wallet
 } from "lucide-react"
+import type { Metadata } from "next"
 import { ProductCard } from "@/components/product-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
@@ -16,6 +17,14 @@ import { categoryArt, categoryArtForSlug } from "@/lib/revamp/category-art"
 import { groupProductsByCategory } from "@/lib/categories"
 import { faqItems } from "@/lib/faq-content"
 import { listProducts } from "@/lib/medusa"
+import { buildPageMetadata } from "@/lib/seo"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Research-Grade Peptides — Verified, Documented, Delivered",
+  description:
+    "Shop HPLC-MS verified research peptides with lot-linked COAs, cold-chain shipping, and crypto checkout for qualified laboratories.",
+  path: "/"
+})
 
 export default async function HomePage() {
   const products = await listProducts()

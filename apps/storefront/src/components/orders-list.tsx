@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { sdk } from "@/lib/medusa-client"
+import { OrderLookupForm, type LookupOrder } from "@/components/order-lookup-form"
 
 type StoredOrder = {
   id: string
@@ -9,6 +10,7 @@ type StoredOrder = {
   created_at: string
   total: number
   shipping_country: string
+  email?: string
 }
 
 type MedusaOrder = {
@@ -84,120 +86,140 @@ function PaymentBadge({
   )
 }
 
+function mergeLookupOrder(order: LookupOrder): LookupOrder {
+  return order
+}
+
 export function OrdersList() {
   const [localOrders, setLocalOrders] = useState<StoredOrder[]>([])
   const [medusaOrders, setMedusaOrders] = useState<MedusaOrder[]>([])
+  const [lookedUp, setLookedUp] = useState<LookupOrder[]>([])
   const [paymentByOrder, setPaymentByOrder] = useState<Record<string, PaymentStatus>>({})
-  const [source, setSource] = useState<"loading" | "medusa" | "local">("loading")
+  const [source, setSource] = useState<"loading" | "ready">("loading")
 
   useEffect(() => {
     const load = async () => {
       try {
         const { orders } = await sdk.store.order.list({ limit: 20 })
-        if (orders?.length) {
-          setMedusaOrders(orders)
-          setSource("medusa")
-
-          const statuses: Record<string, PaymentStatus> = {}
-          await Promise.all(
-            orders.map(async (order) => {
-              const status = await fetchPaymentStatus(order.id)
-              if (status) statuses[order.id] = status
-            })
-          )
-          setPaymentByOrder(statuses)
-          return
-        }
+        if (orders?.length) setMedusaOrders(orders)
       } catch {
-        // Fall back to guest/local orders when not authenticated.
+        // Guest or unsigned — local + lookup still available.
       }
 
       const raw = window.localStorage.getItem(ORDERS_KEY)
-      if (!raw) {
-        setSource("local")
-        return
+      if (raw) {
+        try {
+          setLocalOrders(JSON.parse(raw) as StoredOrder[])
+        } catch {
+          setLocalOrders([])
+        }
       }
 
-      let parsed: StoredOrder[] = []
-      try {
-        parsed = JSON.parse(raw)
-      } catch {
-        parsed = []
-      }
-      setLocalOrders(parsed)
-      setSource("local")
-
-      const statuses: Record<string, PaymentStatus> = {}
-      await Promise.all(
-        parsed.map(async (order) => {
-          const status = await fetchPaymentStatus(order.id)
-          if (status) statuses[order.id] = status
-        })
-      )
-      setPaymentByOrder(statuses)
+      setSource("ready")
     }
 
     void load()
   }, [])
 
+  const mergedOrders = useMemo(() => {
+    const map = new Map<string, LookupOrder>()
+
+    for (const order of medusaOrders) {
+      map.set(order.id, {
+        id: order.id,
+        display_id: order.display_id,
+        created_at: order.created_at ? String(order.created_at) : new Date().toISOString(),
+        total: (order.total || 0) / 100,
+        status: order.status,
+        currency_code: order.currency_code,
+        source: "medusa"
+      })
+    }
+
+    for (const order of localOrders) {
+      if (!map.has(order.id)) {
+        map.set(order.id, {
+          id: order.id,
+          display_id: order.display_id,
+          created_at: order.created_at,
+          total: order.total,
+          email: order.email,
+          shipping_country: order.shipping_country,
+          source: "local"
+        })
+      }
+    }
+
+    for (const order of lookedUp) {
+      map.set(order.id, mergeLookupOrder(order))
+    }
+
+    return Array.from(map.values()).sort(
+      (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    )
+  }, [localOrders, medusaOrders, lookedUp])
+
+  useEffect(() => {
+    if (!mergedOrders.length) return
+
+    void (async () => {
+      const statuses: Record<string, PaymentStatus> = {}
+      await Promise.all(
+        mergedOrders.map(async (order) => {
+          const status = await fetchPaymentStatus(order.id)
+          if (status) statuses[order.id] = status
+        })
+      )
+      setPaymentByOrder(statuses)
+    })()
+  }, [mergedOrders])
+
   if (source === "loading") {
     return <p className="text-sm text-[#475569]">Loading orders...</p>
   }
 
-  if (source === "medusa") {
-    return (
-      <ul className="space-y-3">
-        {medusaOrders.map((order) => {
-          const payment = paymentByOrder[order.id]
-          return (
-            <li key={order.id} className="card p-4">
-              <p className="text-sm text-[#0F172A]">
-                Order {order.display_id ? `#${order.display_id}` : order.id}
-              </p>
-              <p className="text-xs text-[#475569]">
-                {order.created_at ? new Date(order.created_at).toLocaleString() : "—"} ·{" "}
-                {order.status || "pending"}
-              </p>
-              <p className="text-xs text-[#475569]">
-                Total: ${((order.total || 0) / 100).toFixed(2)} {order.currency_code?.toUpperCase()}
-              </p>
-              <PaymentBadge
-                status={payment?.status}
-                orderStatus={order.status}
-                payUrl={payment?.provider_url}
-              />
-            </li>
-          )
-        })}
-      </ul>
-    )
-  }
-
-  if (localOrders.length === 0) {
-    return (
-      <p className="text-sm text-[#475569]">
-        No orders found. Sign in to view Medusa order history, or place a checkout order first.
-      </p>
-    )
-  }
-
   return (
-    <ul className="space-y-3">
-      {localOrders.map((order) => {
-        const payment = paymentByOrder[order.id]
-        return (
-          <li key={order.id} className="card p-4">
-            <p className="text-sm text-[#0F172A]">
-              {order.display_id ? `Order #${order.display_id}` : order.id}
-            </p>
-            <p className="text-xs text-[#475569]">
-              {new Date(order.created_at).toLocaleString()} · {order.shipping_country}
-            </p>
-            <p className="text-xs text-[#475569]">Total: ${order.total.toFixed(2)}</p>
-            <PaymentBadge status={payment?.status} payUrl={payment?.provider_url} />
-          </li>
-        )
-      })}
-    </ul>
+    <div className="space-y-6">
+      <OrderLookupForm
+        onFound={(order) => {
+          setLookedUp((prev) => {
+            if (prev.some((item) => item.id === order.id)) return prev
+            return [order, ...prev]
+          })
+        }}
+      />
+
+      {mergedOrders.length === 0 ? (
+        <p className="text-sm text-[#475569]">
+          No orders yet. Place a checkout order or look up a guest order with your email and order number.
+        </p>
+      ) : (
+        <ul className="space-y-3">
+          {mergedOrders.map((order) => {
+            const payment = paymentByOrder[order.id]
+            return (
+              <li key={order.id} className="card p-4">
+                <p className="text-sm text-[#0F172A]">
+                  Order {order.display_id ? `#${order.display_id}` : order.id}
+                </p>
+                <p className="text-xs text-[#475569]">
+                  {new Date(order.created_at).toLocaleString()}
+                  {order.shipping_country ? ` · ${order.shipping_country}` : ""}
+                  {order.status ? ` · ${order.status}` : ""}
+                </p>
+                <p className="text-xs text-[#475569]">
+                  Total: ${order.total.toFixed(2)} {order.currency_code?.toUpperCase() || "USD"}
+                </p>
+                <PaymentBadge
+                  status={payment?.status}
+                  orderStatus={order.status}
+                  payUrl={payment?.provider_url}
+                />
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </div>
   )
 }

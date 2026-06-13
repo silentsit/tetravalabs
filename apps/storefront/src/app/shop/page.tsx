@@ -1,11 +1,20 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
 import { listProducts } from "@/lib/medusa"
 import { filterProductsByCategorySlug, groupProductsByCategory } from "@/lib/categories"
 import { searchProducts } from "@/lib/search"
+import { buildPageMetadata } from "@/lib/seo"
 
 export const revalidate = 300
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Shop Research Peptides",
+  description:
+    "Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs.",
+  path: "/shop"
+})
 
 type Props = {
   searchParams: Promise<{ q?: string; category?: string }>

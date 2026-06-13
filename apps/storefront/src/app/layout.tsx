@@ -8,10 +8,31 @@ import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { SocialProofToast } from "@/components/social-proof-widget"
 import { TrustBar } from "@/components/trust-bar"
+import { organizationJsonLd, siteConfig, websiteJsonLd } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Tetrava Labs",
-  description: "Research-use peptide ecommerce storefront"
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  alternates: { canonical: siteConfig.url },
+  openGraph: {
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description
+  },
+  robots: { index: true, follow: true }
 }
 
 export default function RootLayout({
@@ -21,7 +42,20 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[#F8FAFC] text-[#0F172A]">
+      <head>
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
+      </head>
+      <body className="min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]">
+        <Script
+          id="jsonld-organization"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
+        <Script
+          id="jsonld-website"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+        />
         <CartProvider>
           <SiteHeader />
           <TrustBar />

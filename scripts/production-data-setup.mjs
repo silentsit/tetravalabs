@@ -75,7 +75,7 @@ const ensureMedusaEnv = async () => {
   }
 
   const current = parseEnv(content)
-  const email = process.env.MEDUSA_ADMIN_EMAIL || current.MEDUSA_ADMIN_EMAIL || "admin@tetravalabs.com"
+  const email = process.env.MEDUSA_ADMIN_EMAIL || current.MEDUSA_ADMIN_EMAIL || "info@tetravalabs.com"
   const password =
     process.env.MEDUSA_ADMIN_PASSWORD ||
     current.MEDUSA_ADMIN_PASSWORD ||

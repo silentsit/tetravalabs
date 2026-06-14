@@ -4,6 +4,7 @@ import { getProductByHandle, listCoasByVariant } from "@/lib/medusa"
 import { slugifyCategory } from "@/lib/categories"
 import { getProductImage, getProductPurity } from "@/lib/revamp/product-visual"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
+import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata } from "@/lib/seo"
@@ -85,29 +86,34 @@ export default async function ProductPage({ params }: Props) {
         {coas.length === 0 ? (
           <p className="mt-3 text-sm text-[#475569]">No batch documents published yet for this variant.</p>
         ) : (
-          <ul className="mt-4 space-y-3">
-            {coas.map((doc) => (
-              <li
-                key={doc.id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm"
-              >
-                <span className="text-[#0F172A]">
-                  Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
-                  {doc.purity_percent != null ? ` (${doc.purity_percent}%)` : ""}
-                </span>
-                {doc.document_url ? (
-                  <a
-                    href={doc.document_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-[#0D9488] hover:underline"
+          <div className="mt-4 space-y-6">
+            <CoaDocumentPreview document={coas[0]} />
+            {coas.length > 1 ? (
+              <ul className="space-y-3">
+                {coas.slice(1).map((doc) => (
+                  <li
+                    key={doc.id}
+                    className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm"
                   >
-                    View document
-                  </a>
-                ) : null}
-              </li>
-            ))}
-          </ul>
+                    <span className="text-[#0F172A]">
+                      Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
+                      {doc.purity_percent != null ? ` (${doc.purity_percent}%)` : ""}
+                    </span>
+                    {doc.document_url ? (
+                      <a
+                        href={doc.document_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-[#0D9488] hover:underline"
+                      >
+                        View document
+                      </a>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
         )}
       </section>
 

@@ -172,6 +172,30 @@ const run = async () => {
   console.log(
     `Catalog import complete. Created ${createdProducts}, skipped ${skippedProducts} (already existed).`
   )
+
+  const syncSecret = process.env.TYPESENSE_SYNC_SECRET
+  if (syncSecret && createdProducts > 0) {
+    try {
+      const response = await fetch(`${MEDUSA_ADMIN_URL}/hooks/typesense/sync`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-typesense-sync-secret": syncSecret
+        },
+        body: JSON.stringify({ action: "full" })
+      })
+      if (response.ok) {
+        const data = await response.json()
+        console.log(`Typesense full sync: ${data.indexed} indexed, ${data.failed} failed.`)
+      } else {
+        console.warn(`Typesense sync hook failed (${response.status}). Run npm run typesense:index`)
+      }
+    } catch (error) {
+      console.warn("Typesense sync hook error:", error?.message || error)
+    }
+  } else if (createdProducts > 0) {
+    console.log("Set TYPESENSE_SYNC_SECRET in apps/medusa/.env to auto-sync Typesense after import.")
+  }
 }
 
 run().catch((error) => {

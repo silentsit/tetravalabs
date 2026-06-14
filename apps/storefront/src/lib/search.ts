@@ -3,6 +3,12 @@ import { listProducts } from "@/lib/medusa"
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
 
+export type SearchFilters = {
+  category?: string
+  priceMin?: number
+  priceMax?: number
+}
+
 export type SearchResult = {
   id: string
   title: string
@@ -29,12 +35,22 @@ type MedusaProxyResult =
   | { status: "unavailable" }
   | { status: "error" }
 
-async function searchViaMedusaProxy(query: string): Promise<MedusaProxyResult> {
-  if (!query.trim() || !PUBLISHABLE_KEY) return { status: "unavailable" }
+async function searchViaMedusaProxy(
+  query: string,
+  filters?: SearchFilters
+): Promise<MedusaProxyResult> {
+  if (!PUBLISHABLE_KEY) return { status: "unavailable" }
+  if (!query.trim() && !filters?.category && filters?.priceMin == null && filters?.priceMax == null) {
+    return { status: "unavailable" }
+  }
 
   try {
     const url = new URL(`${MEDUSA_URL}/store/search`)
-    url.searchParams.set("q", query)
+    if (query.trim()) url.searchParams.set("q", query)
+    else url.searchParams.set("q", "*")
+    if (filters?.category) url.searchParams.set("category", filters.category)
+    if (filters?.priceMin != null) url.searchParams.set("price_min", String(filters.priceMin))
+    if (filters?.priceMax != null) url.searchParams.set("price_max", String(filters.priceMax))
     const response = await fetch(url.toString(), {
       headers: { "x-publishable-api-key": PUBLISHABLE_KEY },
       cache: "no-store"
@@ -65,9 +81,15 @@ async function searchViaMedusaProxy(query: string): Promise<MedusaProxyResult> {
   }
 }
 
-async function searchViaTypesenseDirect(query: string): Promise<SearchResult[] | null> {
+async function searchViaTypesenseDirect(
+  query: string,
+  filters?: SearchFilters
+): Promise<SearchResult[] | null> {
   const apiKey = process.env.TYPESENSE_API_KEY
-  if (!isTypesenseConfigured() || !query.trim() || !apiKey) return null
+  if (!isTypesenseConfigured() || !apiKey) return null
+  if (!query.trim() && !filters?.category && filters?.priceMin == null && filters?.priceMax == null) {
+    return null
+  }
 
   const collection = process.env.TYPESENSE_COLLECTION || "products"
   const protocol = process.env.TYPESENSE_PROTOCOL || "http"
@@ -77,9 +99,14 @@ async function searchViaTypesenseDirect(query: string): Promise<SearchResult[] |
   const base =
     port === defaultPort ? `${protocol}://${host}` : `${protocol}://${host}:${port}`
   const url = new URL(`${base}/collections/${collection}/documents/search`)
-  url.searchParams.set("q", query)
+  url.searchParams.set("q", query.trim() || "*")
   url.searchParams.set("query_by", "title,handle,cas_number,molecular_formula,sequence")
   url.searchParams.set("per_page", "24")
+  const filterParts: string[] = []
+  if (filters?.category) filterParts.push(`category:=\`${filters.category}\``)
+  if (filters?.priceMin != null) filterParts.push(`price_min:>=${Math.round(filters.priceMin)}`)
+  if (filters?.priceMax != null) filterParts.push(`price_max:<=${Math.round(filters.priceMax)}`)
+  if (filterParts.length) url.searchParams.set("filter_by", filterParts.join(" && "))
 
   try {
     const response = await fetch(url.toString(), {
@@ -95,10 +122,10 @@ async function searchViaTypesenseDirect(query: string): Promise<SearchResult[] |
   }
 }
 
-async function searchViaMedusaFallback(query: string): Promise<SearchResult[]> {
+async function searchViaMedusaFallback(query: string, filters?: SearchFilters): Promise<SearchResult[]> {
   const products = await listProducts()
   const q = query.trim().toLowerCase()
-  const filtered = q
+  let filtered = q
     ? products.filter((product) => {
         const haystack = [
           product.title,
@@ -112,6 +139,27 @@ async function searchViaMedusaFallback(query: string): Promise<SearchResult[]> {
         return haystack.includes(q)
       })
     : products
+
+  if (filters?.category) {
+    const category = filters.category.toLowerCase()
+    filtered = filtered.filter(
+      (product) =>
+        String(product.metadata?.source_category || "").toLowerCase() === category
+    )
+  }
+
+  if (filters?.priceMin != null || filters?.priceMax != null) {
+    filtered = filtered.filter((product) => {
+      const prices = (product.variants || [])
+        .map((variant) => variant.prices?.[0]?.amount || 0)
+        .filter(Boolean)
+      const priceMin = prices.length ? Math.min(...prices) : 0
+      const priceMax = prices.length ? Math.max(...prices) : 0
+      if (filters.priceMin != null && priceMax < filters.priceMin) return false
+      if (filters.priceMax != null && priceMin > filters.priceMax) return false
+      return true
+    })
+  }
 
   return filtered.slice(0, 24).map((product) => {
     const prices = (product.variants || [])
@@ -129,16 +177,19 @@ async function searchViaMedusaFallback(query: string): Promise<SearchResult[]> {
   })
 }
 
-export async function searchProducts(query: string): Promise<SearchResponse> {
-  const medusaProxy = await searchViaMedusaProxy(query)
+export async function searchProducts(
+  query: string,
+  filters?: SearchFilters
+): Promise<SearchResponse> {
+  const medusaProxy = await searchViaMedusaProxy(query, filters)
   if (medusaProxy.status === "success") {
     return medusaProxy.response
   }
 
-  const typesenseResults = await searchViaTypesenseDirect(query)
+  const typesenseResults = await searchViaTypesenseDirect(query, filters)
   if (typesenseResults !== null) {
     return { results: typesenseResults, source: "typesense" }
   }
 
-  return { results: await searchViaMedusaFallback(query), source: "catalog" }
+  return { results: await searchViaMedusaFallback(query, filters), source: "catalog" }
 }

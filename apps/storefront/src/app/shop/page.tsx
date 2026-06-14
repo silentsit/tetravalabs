@@ -3,7 +3,11 @@ import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
 import { listProducts } from "@/lib/medusa"
-import { filterProductsByCategorySlug, groupProductsByCategory } from "@/lib/categories"
+import {
+  categoryLabelFromSlug,
+  filterProductsByCategorySlug,
+  groupProductsByCategory
+} from "@/lib/categories"
 import { searchProducts } from "@/lib/search"
 import { buildPageMetadata } from "@/lib/seo"
 
@@ -17,22 +21,36 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 type Props = {
-  searchParams: Promise<{ q?: string; category?: string }>
+  searchParams: Promise<{ q?: string; category?: string; price_min?: string; price_max?: string }>
+}
+
+function parseCents(value?: string) {
+  if (!value?.trim()) return undefined
+  const dollars = Number(value)
+  if (!Number.isFinite(dollars) || dollars < 0) return undefined
+  return Math.round(dollars * 100)
 }
 
 export default async function ShopPage({ searchParams }: Props) {
-  const { q = "", category = "" } = await searchParams
+  const { q = "", category = "", price_min = "", price_max = "" } = await searchParams
   const products = await listProducts()
   const categories = groupProductsByCategory(products)
+  const categoryLabel = category ? categoryLabelFromSlug(category, products) : undefined
+  const priceMin = parseCents(price_min)
+  const priceMax = parseCents(price_max)
 
   let displayProducts = products
-  if (q) {
-    const { results } = await searchProducts(q)
+  const useSearch = Boolean(q.trim() || priceMin != null || priceMax != null)
+
+  if (useSearch) {
+    const { results } = await searchProducts(q, {
+      category: categoryLabel,
+      priceMin,
+      priceMax
+    })
     const handles = new Set(results.map((result) => result.handle))
     displayProducts = products.filter((product) => handles.has(product.handle))
-  }
-
-  if (category) {
+  } else if (category) {
     displayProducts = filterProductsByCategorySlug(displayProducts, category)
   }
 
@@ -48,7 +66,7 @@ export default async function ShopPage({ searchParams }: Props) {
         </p>
       </div>
 
-      <form action="/shop" className="max-w-xl">
+      <form action="/shop" className="max-w-3xl space-y-3">
         <div className="flex gap-2">
           <input
             name="q"
@@ -60,6 +78,32 @@ export default async function ShopPage({ searchParams }: Props) {
           <button type="submit" className="btn-secondary shrink-0 px-4 py-2.5">
             Filter
           </button>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="block text-xs text-[#64748B]">
+            Min price (USD)
+            <input
+              name="price_min"
+              type="number"
+              min="0"
+              step="0.01"
+              defaultValue={price_min}
+              placeholder="0.00"
+              className="input-field mt-1"
+            />
+          </label>
+          <label className="block text-xs text-[#64748B]">
+            Max price (USD)
+            <input
+              name="price_max"
+              type="number"
+              min="0"
+              step="0.01"
+              defaultValue={price_max}
+              placeholder="999.00"
+              className="input-field mt-1"
+            />
+          </label>
         </div>
       </form>
 
@@ -75,7 +119,9 @@ export default async function ShopPage({ searchParams }: Props) {
         {categories.map((item) => (
           <Link
             key={item.slug}
-            href={`/shop?category=${item.slug}`}
+            href={`/shop?category=${item.slug}${q ? `&q=${encodeURIComponent(q)}` : ""}${
+              price_min ? `&price_min=${price_min}` : ""
+            }${price_max ? `&price_max=${price_max}` : ""}`}
             className={`rounded-full border px-3 py-1 transition ${
               category === item.slug
                 ? "border-[#0D9488] text-[#0D9488]"

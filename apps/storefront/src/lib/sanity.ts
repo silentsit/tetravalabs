@@ -6,6 +6,21 @@ export type BlogPost = {
   publishedAt?: string
 }
 
+export type CategorySeoBlock = {
+  categorySlug: string
+  introCopy: string
+  supportingCopy?: string
+  seoTitle?: string
+  seoDescription?: string
+}
+
+export type LegalPageContent = {
+  type: string
+  content: string
+  version?: string
+  publishedAt?: string
+}
+
 const fallbackPosts: BlogPost[] = [
   {
     title: "RUO Handling and Storage Basics",
@@ -39,7 +54,24 @@ const fallbackPosts: BlogPost[] = [
   }
 ]
 
-async function fetchSanity<T>(query: string): Promise<T | null> {
+const fallbackCategorySeo: CategorySeoBlock[] = [
+  {
+    categorySlug: "glp-1-incretin",
+    introCopy:
+      "GLP-1 and incretin research peptides for laboratory investigation of metabolic pathways, appetite signaling, and glucose regulation models.",
+    supportingCopy:
+      "All compounds ship lyophilized with lot-linked COA and HPLC documentation. Store at -20°C until reconstitution per your lab SOP."
+  },
+  {
+    categorySlug: "bpc-157-tb500",
+    introCopy:
+      "BPC-157 and TB-500 research peptides for in-vitro and animal model studies focused on tissue repair pathways.",
+    supportingCopy:
+      "Batch purity is verified by HPLC-MS. Cross-reference the COA Library before starting any experiment."
+  }
+]
+
+async function fetchSanity<T>(query: string, tags?: string[]): Promise<T | null> {
   const projectId = process.env.SANITY_PROJECT_ID
   const dataset = process.env.SANITY_DATASET
   const apiVersion = process.env.SANITY_API_VERSION || "2025-01-01"
@@ -50,7 +82,9 @@ async function fetchSanity<T>(query: string): Promise<T | null> {
   url.searchParams.set("query", query)
 
   try {
-    const response = await fetch(url.toString(), { next: { revalidate: 600 } })
+    const response = await fetch(url.toString(), {
+      next: { revalidate: 600, tags: tags || ["sanity"] }
+    })
     if (!response.ok) return null
     const json = await response.json()
     return (json.result || null) as T | null
@@ -59,16 +93,16 @@ async function fetchSanity<T>(query: string): Promise<T | null> {
   }
 }
 
+function sanitizeSlug(slug: string) {
+  return slug.replace(/[^a-z0-9-]/gi, "")
+}
+
 export async function listBlogPosts(): Promise<BlogPost[]> {
   const query =
     '*[_type == "researchArticle"] | order(publishedAt desc){title,"slug":slug.current,excerpt,publishedAt}'
-  const posts = await fetchSanity<BlogPost[]>(query)
+  const posts = await fetchSanity<BlogPost[]>(query, ["sanity:blog"])
   if (!posts || posts.length === 0) return fallbackPosts
   return posts
-}
-
-function sanitizeSlug(slug: string) {
-  return slug.replace(/[^a-z0-9-]/gi, "")
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
@@ -76,7 +110,47 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   if (!safeSlug) return null
 
   const query = `*[_type == "researchArticle" && slug.current == "${safeSlug}"][0]{title,"slug":slug.current,excerpt,body,publishedAt}`
-  const post = await fetchSanity<BlogPost>(query)
+  const post = await fetchSanity<BlogPost>(query, [`sanity:blog:${safeSlug}`])
   if (!post) return fallbackPosts.find((item) => item.slug === safeSlug) || null
   return post
+}
+
+export async function getCategorySeoBlock(slug: string): Promise<CategorySeoBlock | null> {
+  const safeSlug = sanitizeSlug(slug)
+  if (!safeSlug) return null
+
+  const query = `*[_type == "categorySeoBlock" && categorySlug == "${safeSlug}"][0]{
+    categorySlug, introCopy, supportingCopy, seoTitle, seoDescription
+  }`
+  const block = await fetchSanity<CategorySeoBlock>(query, [`sanity:category:${safeSlug}`])
+  if (block) return block
+  return fallbackCategorySeo.find((item) => item.categorySlug === safeSlug) || null
+}
+
+const legalPaths: Record<string, string> = {
+  terms: "/terms",
+  privacy: "/privacy",
+  refund: "/refund",
+  ruo: "/ruo"
+}
+
+export function legalPathForType(type: string) {
+  return legalPaths[type] || null
+}
+
+export async function getLegalPage(type: string): Promise<LegalPageContent | null> {
+  const safeType = type.replace(/[^a-z]/gi, "")
+  if (!safeType) return null
+
+  const query = `*[_type == "legalPage" && type == "${safeType}"][0]{
+    type, content, version, publishedAt
+  }`
+  return fetchSanity<LegalPageContent>(query, [`sanity:legal:${safeType}`])
+}
+
+export function renderLegalParagraphs(content: string) {
+  return content
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
 }

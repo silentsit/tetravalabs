@@ -32,5 +32,7 @@ Search is staged after core catalog + checkout stability.
 
 ## Sync Strategy
 
-- Initial full sync script.
-- Incremental updates via Medusa product events/webhooks.
+- Initial full sync: `npm run typesense:index`
+- Incremental: Medusa subscribers on `product.created`, `product.updated`, `product.deleted`
+- Ops hook: `POST /hooks/typesense/sync` with header `x-typesense-sync-secret` (set `TYPESENSE_SYNC_SECRET`)
+- Catalog import triggers full sync when `TYPESENSE_SYNC_SECRET` is set

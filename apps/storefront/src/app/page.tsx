@@ -16,7 +16,8 @@ import { LiveVisitorCounter, SocialProofReviews } from "@/components/social-proo
 import { categoryArt, categoryArtForSlug } from "@/lib/revamp/category-art"
 import { groupProductsByCategory } from "@/lib/categories"
 import { faqItems } from "@/lib/faq-content"
-import { listProducts } from "@/lib/medusa"
+import { listProducts, listRecentCoas } from "@/lib/medusa"
+import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
@@ -28,6 +29,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default async function HomePage() {
   const products = await listProducts()
+  const recentCoas = await listRecentCoas(3)
   const grouped = groupProductsByCategory(products)
   const featured = products.slice(0, 8)
 
@@ -183,7 +185,15 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 shadow-sm">
-              <img src="/v2/coa-preview.jpg" alt="Certificate of Analysis preview" className="rounded-xl" />
+              {recentCoas.length > 0 ? (
+                <div className="grid gap-4">
+                  {recentCoas.slice(0, 1).map((doc) => (
+                    <CoaDocumentPreview key={doc.id} document={doc} compact />
+                  ))}
+                </div>
+              ) : (
+                <img src="/v2/coa-preview.jpg" alt="Certificate of Analysis preview" className="rounded-xl" />
+              )}
             </div>
           </div>
         </div>

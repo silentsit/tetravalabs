@@ -98,3 +98,71 @@ for (const article of articles) {
 console.log(`Sanity seed complete (${created} created, ${skipped} skipped).`)
 console.log(`Project: ${projectId} / ${dataset}`)
 console.log("Set SANITY_PROJECT_ID + SANITY_DATASET on Vercel, then redeploy the storefront.")
+
+const categoryBlocks = [
+  {
+    categorySlug: "glp-1-incretin",
+    introCopy:
+      "GLP-1 and incretin research peptides for laboratory investigation of metabolic pathways, appetite signaling, and glucose regulation models.",
+    supportingCopy:
+      "All compounds ship lyophilized with lot-linked COA and HPLC documentation. Store at -20°C until reconstitution per your lab SOP.",
+    seoTitle: "GLP-1 / Incretin — research peptides",
+    seoDescription:
+      "Shop GLP-1 and incretin research peptides with HPLC-MS verification and batch COAs from Tetrava Labs."
+  },
+  {
+    categorySlug: "bpc-157-tb500",
+    introCopy:
+      "BPC-157 and TB-500 research peptides for in-vitro and animal model studies focused on tissue repair pathways.",
+    supportingCopy:
+      "Batch purity is verified by HPLC-MS. Cross-reference the COA Library before starting any experiment.",
+    seoTitle: "BPC-157 / TB500 — research peptides",
+    seoDescription:
+      "Shop BPC-157 and TB-500 research peptides with lot-linked COA documentation for qualified laboratories."
+  }
+]
+
+const existingCategories = await client.fetch(
+  `*[_type == "categorySeoBlock"]{ categorySlug }`
+)
+const existingCategorySlugs = new Set((existingCategories || []).map((row) => row.categorySlug))
+
+for (const block of categoryBlocks) {
+  if (existingCategorySlugs.has(block.categorySlug)) continue
+  await client.create({ _type: "categorySeoBlock", ...block })
+  console.log(`Created category SEO block: ${block.categorySlug}`)
+}
+
+const legalPages = [
+  {
+    type: "terms",
+    version: "1.0",
+    content:
+      "These terms govern your use of the Tetrava Labs website and purchase of research compounds.\n\n" +
+      "By placing an order, you confirm eligibility as a qualified research buyer and acceptance of our Research Use Only policy.\n\n" +
+      "Products are provided without warranty beyond documented batch specifications."
+  },
+  {
+    type: "privacy",
+    version: "1.0",
+    content:
+      "Tetrava Labs collects order and contact information required to fulfill research compound purchases.\n\n" +
+      "We do not sell personal data. Payment processors handle crypto transaction metadata according to their policies.\n\n" +
+      "Contact support@tetravalabs.com for data access or deletion requests."
+  }
+]
+
+const existingLegal = await client.fetch(`*[_type == "legalPage"]{ type }`)
+const existingLegalTypes = new Set((existingLegal || []).map((row) => row.type))
+
+for (const page of legalPages) {
+  if (existingLegalTypes.has(page.type)) continue
+  await client.create({
+    _type: "legalPage",
+    type: page.type,
+    content: page.content,
+    version: page.version,
+    publishedAt: new Date().toISOString()
+  })
+  console.log(`Created legal page: ${page.type}`)
+}

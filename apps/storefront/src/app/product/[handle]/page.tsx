@@ -6,19 +6,9 @@ import { getProductImage, getProductPurity } from "@/lib/revamp/product-visual"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
-import { buildPageMetadata, pageUrl } from "@/lib/seo"
+import { buildPageMetadata } from "@/lib/seo"
 
 type Props = { params: Promise<{ handle: string }> }
-
-function productPriceRange(product: Awaited<ReturnType<typeof getProductByHandle>>) {
-  if (!product) return { low: 0, high: 0 }
-  const amounts = (product.variants || [])
-    .flatMap((variant) => variant.prices || [])
-    .map((price) => Number(price.amount || 0) / 100)
-    .filter((amount) => amount > 0)
-  if (!amounts.length) return { low: 0, high: 0 }
-  return { low: Math.min(...amounts), high: Math.max(...amounts) }
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params
@@ -42,28 +32,6 @@ export default async function ProductPage({ params }: Props) {
   const image = getProductImage(product)
   const categoryLabel = String(product.metadata?.source_category || "Research Product")
   const categorySlug = slugifyCategory(categoryLabel)
-  const { low, high } = productPriceRange(product)
-  const offerPrice = low || high
-
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.title,
-    description: `${product.title} — research-use only (RUO) peptide with HPLC-MS verification.`,
-    image: image.startsWith("http") ? image : pageUrl(image),
-    sku: product.variants?.[0]?.id,
-    category: categoryLabel,
-    brand: { "@type": "Brand", name: "Tetrava Labs" },
-    offers: {
-      "@type": "Offer",
-      url: pageUrl(`/product/${handle}`),
-      priceCurrency: "USD",
-      price: offerPrice || undefined,
-      ...(low && high && low !== high ? { lowPrice: low, highPrice: high } : {}),
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition"
-    }
-  }
 
   return (
     <article className="page-container space-y-8 py-8">
@@ -144,11 +112,6 @@ export default async function ProductPage({ params }: Props) {
       </section>
 
       <ComplianceNotice />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-      />
     </article>
   )
 }

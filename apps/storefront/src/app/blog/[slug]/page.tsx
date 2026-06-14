@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { getBlogPostBySlug, listBlogPosts } from "@/lib/sanity"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { buildPageMetadata } from "@/lib/seo"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -18,16 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getBlogPostBySlug(slug)
   if (!post) return {}
   const description = post.excerpt || "Research article from Tetrava Labs."
-  return {
+  return buildPageMetadata({
     title: post.title,
     description,
-    openGraph: {
-      title: post.title,
-      description,
-      type: "article",
-      publishedTime: post.publishedAt
-    }
-  }
+    path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.publishedAt,
+    registerWebPage: false
+  })
 }
 
 export default async function BlogArticlePage({ params }: Props) {
@@ -35,21 +34,8 @@ export default async function BlogArticlePage({ params }: Props) {
   const post = await getBlogPostBySlug(slug)
   if (!post) notFound()
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com"
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.publishedAt,
-    author: { "@type": "Organization", name: "Tetrava Labs" },
-    publisher: { "@type": "Organization", name: "Tetrava Labs" },
-    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`
-  }
-
   return (
     <article className="page-container mx-auto max-w-3xl space-y-8 py-8">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

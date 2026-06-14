@@ -1,14 +1,18 @@
 import type { Metadata } from "next"
-import Script from "next/script"
+import { headers } from "next/headers"
 import "./globals.css"
+import "@/lib/json-ld-registry"
 import { CartDrawer } from "@/components/cart-drawer"
 import { CartProvider } from "@/components/cart-provider"
+import { JsonLd } from "@/components/json-ld"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { SocialProofToast } from "@/components/social-proof-widget"
 import { TrustBar } from "@/components/trust-bar"
-import { organizationJsonLd, siteConfig, websiteJsonLd } from "@/lib/seo"
+import { resolvePageJsonLd } from "@/lib/json-ld-store"
+import { organizationJsonLd, siteConfig, websiteJsonLd, webPageJsonLd } from "@/lib/seo"
+import Script from "next/script"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -35,27 +39,32 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
+  const pathname = (await headers()).get("x-pathname") || "/"
+  const pageGraphs = await resolvePageJsonLd(pathname)
+  const fallbackPageGraph =
+    pageGraphs.length === 0
+      ? [
+          webPageJsonLd({
+            title: siteConfig.name,
+            description: siteConfig.description,
+            path: pathname
+          })
+        ]
+      : pageGraphs
+
+  const jsonLdGraph = [organizationJsonLd(), websiteJsonLd(), ...fallbackPageGraph]
 
   return (
     <html lang="en">
       <head>
+        <JsonLd graph={jsonLdGraph} />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
       </head>
       <body className="min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]">
-        <Script
-          id="jsonld-organization"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
-        />
-        <Script
-          id="jsonld-website"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
-        />
         <CartProvider>
           <SiteHeader />
           <TrustBar />

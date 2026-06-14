@@ -10,12 +10,11 @@ export const metadata: Metadata = buildPageMetadata({
   title: "FAQ — ordering, shipping & COAs",
   description:
     "Answers about research-use peptides, HPLC verification, certificates of analysis, shipping, and payment.",
-  path: "/faq"
+  path: "/faq",
+  jsonLd: faqJsonLd(faqItems)
 })
 
 export default function FaqPage() {
-  const jsonLd = faqJsonLd(faqItems)
-
   return (
     <section className="page-container mx-auto max-w-3xl space-y-8 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} />
@@ -35,7 +34,6 @@ export default function FaqPage() {
         </Link>
       </div>
       <ComplianceNotice />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </section>
   )
 }

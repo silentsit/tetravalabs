@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { AddToCartButton } from "@/components/add-to-cart-button"
+import { getVariantPriceCents } from "@/lib/product-price"
 
 type Variant = {
   id: string
@@ -22,7 +23,7 @@ export function ProductPurchaseBox({ productId, handle, title, variants }: Props
     () => variants.find((variant) => variant.id === selectedId) || variants[0],
     [selectedId, variants]
   )
-  const price = (selected?.prices?.[0]?.amount || 0) / 100
+  const price = getVariantPriceCents(selected) / 100
 
   if (!selected) return null
 

@@ -13,6 +13,7 @@ dotenv.config({ path: path.join(workspaceRoot, "apps", "storefront", ".env.local
 
 const normalizedPath = path.join(workspaceRoot, "packages", "catalog", "output", "catalog.normalized.json")
 const collectionName = process.env.TYPESENSE_COLLECTION || "products"
+const STORE_PRODUCT_FIELDS = "*variants,*variants.calculated_price,+variants.prices"
 const { host, port, protocol } = getTypesenseNodeConfig()
 const apiKey = process.env.TYPESENSE_API_KEY || "xyz"
 
@@ -45,11 +46,16 @@ const schema = {
   default_sorting_field: "price_min"
 }
 
+function variantPriceCents(variant) {
+  const fromPrices = variant?.prices?.[0]?.amount
+  if (fromPrices != null && Number(fromPrices) > 0) return Number(fromPrices)
+  const calculated = variant?.calculated_price?.calculated_amount
+  if (calculated != null && Number(calculated) > 0) return Number(calculated)
+  return 0
+}
+
 function mapMedusaProduct(product) {
-  const prices = (product.variants || [])
-    .flatMap((variant) => variant.prices || [])
-    .map((price) => Number(price.amount || 0))
-    .filter((amount) => amount > 0)
+  const prices = (product.variants || []).map(variantPriceCents).filter((amount) => amount > 0)
   const priceMin = prices.length ? Math.min(...prices) : 0
   const priceMax = prices.length ? Math.max(...prices) : 0
   const metadata = product.metadata || {}
@@ -101,6 +107,7 @@ async function fetchMedusaProducts() {
 
   while (true) {
     const url = new URL(`${MEDUSA_URL}/store/products`)
+    url.searchParams.set("fields", STORE_PRODUCT_FIELDS)
     url.searchParams.set("limit", String(limit))
     url.searchParams.set("offset", String(offset))
     const response = await fetch(url.toString(), {

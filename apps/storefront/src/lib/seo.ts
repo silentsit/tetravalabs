@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import { registerPageJsonLd } from "@/lib/json-ld-store"
+import type { StoreProduct } from "@/lib/medusa"
+import { getProductPriceRangeCents } from "@/lib/product-price"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 
@@ -136,17 +138,17 @@ export function webPageJsonLd(input: {
 type ProductLike = {
   title: string
   handle: string
-  variants?: Array<{ id: string; prices?: Array<{ amount: number }> }>
+  variants?: Array<{
+    id: string
+    prices?: Array<{ amount: number }>
+    calculated_price?: { calculated_amount?: number }
+  }>
   metadata?: Record<string, unknown> | null
 }
 
 function productPriceRange(product: ProductLike) {
-  const amounts = (product.variants || [])
-    .flatMap((variant) => variant.prices || [])
-    .map((price) => Number(price.amount || 0) / 100)
-    .filter((amount) => amount > 0)
-  if (!amounts.length) return { low: 0, high: 0 }
-  return { low: Math.min(...amounts), high: Math.max(...amounts) }
+  const { min, max } = getProductPriceRangeCents(product as StoreProduct)
+  return { low: min / 100, high: max / 100 }
 }
 
 function hashString(input: string) {

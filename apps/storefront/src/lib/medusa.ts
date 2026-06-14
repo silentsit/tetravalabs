@@ -1,5 +1,16 @@
+import { STORE_PRODUCT_FIELDS } from "@/lib/product-price"
+
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
+
+function productsUrl(params: Record<string, string>) {
+  const url = new URL(`${MEDUSA_URL}/store/products`)
+  url.searchParams.set("fields", STORE_PRODUCT_FIELDS)
+  for (const [key, value] of Object.entries(params)) {
+    url.searchParams.set(key, value)
+  }
+  return url.toString()
+}
 
 export type StoreProduct = {
   id: string
@@ -13,6 +24,11 @@ export type StoreProduct = {
       amount: number
       currency_code: string
     }>
+    calculated_price?: {
+      calculated_amount?: number
+      original_amount?: number
+      currency_code?: string
+    }
   }>
 }
 
@@ -43,7 +59,7 @@ const withHeaders = (headers: HeadersInit = {}) => ({
 
 export async function listProducts() {
   try {
-    const response = await fetch(`${MEDUSA_URL}/store/products?limit=100`, {
+    const response = await fetch(productsUrl({ limit: "100" }), {
       headers: withHeaders(),
       next: { revalidate: 300, tags: ["products"] }
     })
@@ -66,13 +82,10 @@ export async function listAllProducts() {
 
   try {
     while (true) {
-      const response = await fetch(
-        `${MEDUSA_URL}/store/products?limit=${limit}&offset=${offset}`,
-        {
-          headers: withHeaders(),
-          next: { revalidate: 3600, tags: ["products"] }
-        }
-      )
+      const response = await fetch(productsUrl({ limit: String(limit), offset: String(offset) }), {
+        headers: withHeaders(),
+        next: { revalidate: 3600, tags: ["products"] }
+      })
       if (!response.ok) break
       const data = await response.json()
       const batch = (data.products || []) as StoreProduct[]
@@ -89,7 +102,7 @@ export async function listAllProducts() {
 
 export async function getProductByHandle(handle: string) {
   try {
-    const response = await fetch(`${MEDUSA_URL}/store/products?handle=${handle}`, {
+    const response = await fetch(productsUrl({ handle, limit: "1" }), {
       headers: withHeaders(),
       next: { revalidate: 300, tags: [`product:${handle}`] }
     })

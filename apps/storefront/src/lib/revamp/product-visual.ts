@@ -1,4 +1,5 @@
 import type { StoreProduct } from "@/lib/medusa"
+import { getProductPriceCents, getVariantPriceCents } from "@/lib/product-price"
 import productImageMap from "@/lib/revamp/product-image-map.json"
 
 type AliasEntry = { slug: string; image: string }
@@ -74,9 +75,10 @@ export function getPrimaryVariant(product: StoreProduct) {
 }
 
 export function getProductPrice(product: StoreProduct) {
-  const cents = getPrimaryVariant(product)?.prices?.[0]?.amount || 0
-  return cents / 100
+  return getProductPriceCents(product) / 100
 }
+
+export { getVariantPriceCents }
 
 export function isBlendProduct(product: StoreProduct) {
   const visual = String(product.metadata?.visual_type || "")

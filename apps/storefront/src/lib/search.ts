@@ -1,4 +1,5 @@
 import { listProducts } from "@/lib/medusa"
+import { getProductPriceRangeCents, getVariantPriceCents } from "@/lib/product-price"
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
@@ -150,28 +151,22 @@ async function searchViaMedusaFallback(query: string, filters?: SearchFilters): 
 
   if (filters?.priceMin != null || filters?.priceMax != null) {
     filtered = filtered.filter((product) => {
-      const prices = (product.variants || [])
-        .map((variant) => variant.prices?.[0]?.amount || 0)
-        .filter(Boolean)
-      const priceMin = prices.length ? Math.min(...prices) : 0
-      const priceMax = prices.length ? Math.max(...prices) : 0
-      if (filters.priceMin != null && priceMax < filters.priceMin) return false
-      if (filters.priceMax != null && priceMin > filters.priceMax) return false
+      const { min, max } = getProductPriceRangeCents(product)
+      if (filters.priceMin != null && max < filters.priceMin) return false
+      if (filters.priceMax != null && min > filters.priceMax) return false
       return true
     })
   }
 
   return filtered.slice(0, 24).map((product) => {
-    const prices = (product.variants || [])
-      .map((variant) => variant.prices?.[0]?.amount || 0)
-      .filter(Boolean)
+    const { min, max } = getProductPriceRangeCents(product)
     return {
       id: product.id,
       title: product.title,
       handle: product.handle,
       category: String(product.metadata?.source_category || "Research Product"),
-      price_min: prices.length ? Math.min(...prices) : 0,
-      price_max: prices.length ? Math.max(...prices) : 0,
+      price_min: min,
+      price_max: max,
       visual_type: String(product.metadata?.visual_type || "vial")
     }
   })

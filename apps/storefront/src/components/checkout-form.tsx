@@ -44,7 +44,6 @@ export function CheckoutForm() {
   const [ruoAck, setRuoAck] = useState(false)
   const [status, setStatus] = useState("")
   const [error, setError] = useState("")
-  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [restrictedCountries, setRestrictedCountries] = useState<string[]>([])
   const [cryptoOptions, setCryptoOptions] = useState<CryptoOption[]>([])
@@ -210,21 +209,8 @@ export function CheckoutForm() {
         const intentJson = await intentResponse.json()
         if (intentJson?.provider_url) {
           paymentUrl = intentJson.provider_url
-          setCheckoutUrl(intentJson.provider_url)
+          if (intentJson.provider) paymentProvider = intentJson.provider
         }
-        if (intentJson?.provider === "paymento" && intentJson?.provider_url) {
-          storePaymentUrl(orderId, intentJson.provider_url)
-          clear()
-          setLoading(false)
-          window.location.assign(intentJson.provider_url)
-          return
-        }
-      } else if (paymentProvider === "paymento" && paymentUrl) {
-        storePaymentUrl(orderId, paymentUrl)
-        clear()
-        setLoading(false)
-        window.location.assign(paymentUrl)
-        return
       }
     } catch {
       // Crypto intent fallback when checkout API did not return a payment URL.
@@ -261,12 +247,18 @@ export function CheckoutForm() {
     setLoading(false)
 
     if (paymentUrl) {
-      storePaymentUrl(orderId, paymentUrl)
+      storePaymentUrl(orderId, paymentUrl, {
+        provider: paymentProvider || undefined,
+        totalUsd: orderTotal,
+        cryptoAsset: selectedAsset,
+        displayId: displayId ? String(displayId) : undefined
+      })
     }
 
     const params = new URLSearchParams({
       order_id: orderId,
-      total: orderTotal.toFixed(2)
+      total: orderTotal.toFixed(2),
+      asset: selectedAsset
     })
     if (displayId) params.set("display_id", String(displayId))
 
@@ -380,11 +372,6 @@ export function CheckoutForm() {
       </button>
       {error ? <p className="text-xs text-red-600">{error}</p> : null}
       {status ? <p className="text-xs text-[#475569]">{status}</p> : null}
-      {checkoutUrl ? (
-        <a href={checkoutUrl} target="_blank" rel="noreferrer" className="block text-xs text-[#0D9488]">
-          Continue to crypto payment
-        </a>
-      ) : null}
     </form>
   )
 }

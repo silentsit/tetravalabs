@@ -9,7 +9,7 @@ const retryDelaySeconds = 15
 // Render sets NODE_ENV=production during build, which skips devDependencies.
 // patch-package (root postinstall) and the admin-bundler patch are required for medusa build.
 const installCmd =
-  "npm ci --workspace=@tetrava/medusa --include-workspace-root --include=dev"
+  "npm ci --workspace=@tetrava/medusa --workspace=@tetrava/catalog --include-workspace-root --include=dev"
 
 function sleep(seconds) {
   execSync(`sleep ${seconds}`)

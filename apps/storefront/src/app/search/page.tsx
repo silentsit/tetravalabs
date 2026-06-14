@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { ProductSortSelect } from "@/components/product-sort-select"
 import { SearchResultCard } from "@/components/search-result-card"
 import { searchProducts } from "@/lib/search"
 import { buildPageMetadata } from "@/lib/seo"
+import { parseProductSort, sortSearchResults } from "@/lib/sort-products"
 
-type Props = { searchParams: Promise<{ q?: string }> }
+type Props = { searchParams: Promise<{ q?: string; sort?: string }> }
 
 export const dynamic = "force-dynamic"
 
@@ -16,8 +18,10 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 export default async function SearchPage({ searchParams }: Props) {
-  const { q = "" } = await searchParams
-  const { results, source } = await searchProducts(q)
+  const { q = "", sort = "" } = await searchParams
+  const sortKey = parseProductSort(sort)
+  const { results: rawResults, source } = await searchProducts(q)
+  const results = sortSearchResults(rawResults, sortKey)
   const typesenseReady = source === "typesense"
 
   return (
@@ -31,13 +35,14 @@ export default async function SearchPage({ searchParams }: Props) {
         </p>
       </div>
 
-      <form action="/search" className="max-w-xl">
+      <form action="/search" className="max-w-xl space-y-3">
         <div className="flex gap-2">
           <input name="q" defaultValue={q} placeholder="e.g. BPC-157, semaglutide, acetic" className="input-field" />
           <button type="submit" className="btn-primary shrink-0 px-5 py-2.5">
             Search
           </button>
         </div>
+        {q ? <ProductSortSelect defaultValue={sortKey} className="max-w-xs" /> : null}
       </form>
 
       <div className="flex flex-wrap items-center gap-3 text-sm text-[#475569]">

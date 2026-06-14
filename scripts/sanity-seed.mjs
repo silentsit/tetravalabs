@@ -11,7 +11,13 @@
 
 import dotenv from "dotenv"
 import path from "node:path"
+import fs from "node:fs"
+import { fileURLToPath } from "node:url"
 import { createClient } from "@sanity/client"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const workspaceRoot = path.resolve(__dirname, "..")
 
 dotenv.config({ path: path.join("apps", "storefront", ".env.local") })
 dotenv.config({ path: path.join("apps", "medusa", ".env") })
@@ -20,38 +26,8 @@ const projectId = process.env.SANITY_PROJECT_ID
 const dataset = process.env.SANITY_DATASET || "production"
 const token = process.env.SANITY_API_WRITE_TOKEN || process.env.SANITY_API_TOKEN
 
-const articles = [
-  {
-    title: "RUO Handling and Storage Basics",
-    slug: "ruo-handling-and-storage-basics",
-    excerpt: "Storage, reconstitution, and handling best practices for peptide research materials.",
-    publishedAt: "2026-05-15T00:00:00.000Z",
-    body:
-      "Research-use-only peptides should be stored lyophilized at -20°C until reconstitution. Limit freeze-thaw cycles and document batch IDs for every vial used in a study.\n\n" +
-      "After reconstitution, use bacteriostatic water or the appropriate solvent noted on the product label. Label vials with compound, concentration, and date opened. Most reconstituted materials are stable for a limited window at 2–8°C — follow your lab SOP.\n\n" +
-      "Always cross-reference the batch COA in our COA Library before starting an experiment."
-  },
-  {
-    title: "How to Read COA and HPLC Reports",
-    slug: "how-to-read-coa-and-hplc-reports",
-    excerpt: "A practical guide to interpreting purity and analytical outputs.",
-    publishedAt: "2026-05-20T00:00:00.000Z",
-    body:
-      "A Certificate of Analysis (COA) confirms identity and purity for a specific batch. Look for batch number, test date, and reported purity percentage.\n\n" +
-      "HPLC chromatograms show peak area for the target compound versus impurities. A single dominant peak near the expected retention time with minimal secondary peaks generally indicates higher purity.\n\n" +
-      "Compare COA and HPLC documents together — COA summarizes acceptance criteria while HPLC provides the underlying chromatographic evidence."
-  },
-  {
-    title: "Semaglutide Storage Protocols for Research Labs",
-    slug: "semaglutide-storage-protocols",
-    excerpt: "Cold-chain and lyophilized storage guidance for GLP-1 research materials.",
-    publishedAt: "2026-06-01T00:00:00.000Z",
-    body:
-      "GLP-1 receptor agonist peptides are sensitive to heat and repeated moisture exposure. Keep lyophilized vials sealed until use and store at -20°C.\n\n" +
-      "Reconstitute only the amount required for the current experimental window. Avoid agitation that introduces foaming, and use low-bind pipette tips for accurate volumetric work.\n\n" +
-      "Document the batch COA ID in your lab notebook — Tetrava publishes batch-level documents for every catalog SKU in the COA Library."
-  }
-]
+const articlesPath = path.join(workspaceRoot, "apps", "storefront", "src", "data", "research-articles.json")
+const articles = JSON.parse(fs.readFileSync(articlesPath, "utf8"))
 
 if (!projectId || !token) {
   console.error("Missing SANITY_PROJECT_ID or SANITY_API_WRITE_TOKEN.")
@@ -71,31 +47,48 @@ const client = createClient({
 })
 
 const existing = await client.fetch(
-  `*[_type == "researchArticle"]{ "slug": slug.current }`
+  `*[_type == "researchArticle"]{ _id, "slug": slug.current, category, readTimeMinutes, excerpt, body }`
 )
-const existingSlugs = new Set((existing || []).map((row) => row.slug))
+const existingBySlug = new Map((existing || []).map((row) => [row.slug, row]))
 
 let created = 0
+let updated = 0
 let skipped = 0
 
 for (const article of articles) {
-  if (existingSlugs.has(article.slug)) {
+  const found = existingBySlug.get(article.slug)
+
+  if (!found) {
+    await client.create({
+      _type: "researchArticle",
+      title: article.title,
+      slug: { _type: "slug", current: article.slug },
+      excerpt: article.excerpt,
+      category: article.category,
+      readTimeMinutes: article.readTimeMinutes,
+      body: article.body,
+      publishedAt: article.publishedAt
+    })
+    created += 1
+    continue
+  }
+
+  const patch = {}
+  if (!found.category && article.category) patch.category = article.category
+  if (!found.readTimeMinutes && article.readTimeMinutes) patch.readTimeMinutes = article.readTimeMinutes
+  if (!found.excerpt?.trim() && article.excerpt) patch.excerpt = article.excerpt
+  if (!found.body?.trim() && article.body) patch.body = article.body
+
+  if (Object.keys(patch).length === 0) {
     skipped += 1
     continue
   }
 
-  await client.create({
-    _type: "researchArticle",
-    title: article.title,
-    slug: { _type: "slug", current: article.slug },
-    excerpt: article.excerpt,
-    body: article.body,
-    publishedAt: article.publishedAt
-  })
-  created += 1
+  await client.patch(found._id).set(patch).commit()
+  updated += 1
 }
 
-console.log(`Sanity seed complete (${created} created, ${skipped} skipped).`)
+console.log(`Sanity seed complete (${created} created, ${updated} updated, ${skipped} unchanged).`)
 console.log(`Project: ${projectId} / ${dataset}`)
 console.log("Set SANITY_PROJECT_ID + SANITY_DATASET on Vercel, then redeploy the storefront.")
 
@@ -119,6 +112,47 @@ const categoryBlocks = [
     seoTitle: "BPC-157 / TB500 — research peptides",
     seoDescription:
       "Shop BPC-157 and TB-500 research peptides with lot-linked COA documentation for qualified laboratories."
+  },
+  {
+    categorySlug: "blends",
+    introCopy:
+      "Multi-peptide research blends formulated for studies that require combined compound profiles in a single vial.",
+    supportingCopy:
+      "Each blend SKU includes variant-level COA documentation where published.",
+    seoTitle: "Peptide blends — research compounds",
+    seoDescription: "Shop multi-peptide research blends with batch COA documentation."
+  },
+  {
+    categorySlug: "cjc-ipamorelin-ghrp",
+    introCopy:
+      "CJC-1295, Ipamorelin, and GHRP-class secretagogues for growth hormone axis research models.",
+    supportingCopy: "Lyophilized powders with independent HPLC verification.",
+    seoTitle: "CJC / Ipamorelin / GHRP — research peptides",
+    seoDescription: "Shop CJC, Ipamorelin, and GHRP research peptides with COA documentation."
+  },
+  {
+    categorySlug: "growth-hormone-axis",
+    introCopy:
+      "Growth hormone axis peptides including sermorelin, tesamorelin, and related secretagogues for endocrine research.",
+    supportingCopy: "Cold-chain shipping available. Store sealed vials at -20°C until reconstitution.",
+    seoTitle: "Growth hormone axis — research peptides",
+    seoDescription: "Shop GH axis research peptides with lot-linked COAs."
+  },
+  {
+    categorySlug: "longevity-thymic-neuropeptides",
+    introCopy:
+      "Longevity and neuropeptide research compounds including epithalon, selank, semax, and thymic peptides.",
+    supportingCopy: "Lot-linked analytical documentation supports reproducible experimental design.",
+    seoTitle: "Longevity & neuropeptides — research compounds",
+    seoDescription: "Shop longevity and neuropeptide research compounds with COA documentation."
+  },
+  {
+    categorySlug: "supplies-reconstitution",
+    introCopy:
+      "BAC water, acetic acid, and reconstitution supplies required for peptide preparation in the lab.",
+    supportingCopy: "Pair with your peptide order to streamline reconstitution workflows.",
+    seoTitle: "Lab supplies & reconstitution",
+    seoDescription: "Shop BAC water and reconstitution supplies for peptide research labs."
   }
 ]
 

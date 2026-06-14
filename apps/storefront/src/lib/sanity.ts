@@ -1,8 +1,14 @@
+import researchArticles from "@/data/research-articles.json"
+
+export type BlogCategory = "Protocols" | "Analytical" | "Compliance"
+
 export type BlogPost = {
   title: string
   slug: string
   excerpt?: string
   body?: string
+  category?: BlogCategory
+  readTimeMinutes?: number
   publishedAt?: string
 }
 
@@ -21,38 +27,7 @@ export type LegalPageContent = {
   publishedAt?: string
 }
 
-const fallbackPosts: BlogPost[] = [
-  {
-    title: "RUO Handling and Storage Basics",
-    slug: "ruo-handling-and-storage-basics",
-    excerpt: "Storage, reconstitution, and handling best practices for peptide research materials.",
-    publishedAt: "2026-05-15T00:00:00.000Z",
-    body:
-      "Research-use-only peptides should be stored lyophilized at -20°C until reconstitution. Limit freeze-thaw cycles and document batch IDs for every vial used in a study.\n\n" +
-      "After reconstitution, use bacteriostatic water or the appropriate solvent noted on the product label. Label vials with compound, concentration, and date opened. Most reconstituted materials are stable for a limited window at 2–8°C — follow your lab SOP.\n\n" +
-      "Always cross-reference the batch COA in our COA Library before starting an experiment."
-  },
-  {
-    title: "How to Read COA and HPLC Reports",
-    slug: "how-to-read-coa-and-hplc-reports",
-    excerpt: "A practical guide to interpreting purity and analytical outputs.",
-    publishedAt: "2026-05-20T00:00:00.000Z",
-    body:
-      "A Certificate of Analysis (COA) confirms identity and purity for a specific batch. Look for batch number, test date, and reported purity percentage.\n\n" +
-      "HPLC chromatograms show peak area for the target compound versus impurities. A single dominant peak near the expected retention time with minimal secondary peaks generally indicates higher purity.\n\n" +
-      "Compare COA and HPLC documents together — COA summarizes acceptance criteria while HPLC provides the underlying chromatographic evidence."
-  },
-  {
-    title: "Semaglutide Storage Protocols for Research Labs",
-    slug: "semaglutide-storage-protocols",
-    excerpt: "Cold-chain and lyophilized storage guidance for GLP-1 research materials.",
-    publishedAt: "2026-06-01T00:00:00.000Z",
-    body:
-      "GLP-1 receptor agonist peptides are sensitive to heat and repeated moisture exposure. Keep lyophilized vials sealed until use and store at -20°C.\n\n" +
-      "Reconstitute only the amount required for the current experimental window. Avoid agitation that introduces foaming, and use low-bind pipette tips for accurate volumetric work.\n\n" +
-      "Document the batch COA ID in your lab notebook — Tetrava publishes batch-level documents for every catalog SKU in the COA Library."
-  }
-]
+const fallbackPosts = researchArticles as BlogPost[]
 
 const fallbackCategorySeo: CategorySeoBlock[] = [
   {
@@ -68,8 +43,66 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
       "BPC-157 and TB-500 research peptides for in-vitro and animal model studies focused on tissue repair pathways.",
     supportingCopy:
       "Batch purity is verified by HPLC-MS. Cross-reference the COA Library before starting any experiment."
+  },
+  {
+    categorySlug: "blends",
+    introCopy:
+      "Multi-peptide research blends formulated for studies that require combined compound profiles in a single vial.",
+    supportingCopy:
+      "Each blend SKU includes variant-level COA documentation where published. Verify batch IDs before use."
+  },
+  {
+    categorySlug: "cjc-ipamorelin-ghrp",
+    introCopy:
+      "CJC-1295, Ipamorelin, and GHRP-class secretagogues for growth hormone axis research models.",
+    supportingCopy:
+      "Lyophilized powders with independent HPLC verification. For qualified laboratory research only."
+  },
+  {
+    categorySlug: "growth-hormone-axis",
+    introCopy:
+      "Growth hormone axis peptides including sermorelin, tesamorelin, and related secretagogues for endocrine research.",
+    supportingCopy:
+      "Cold-chain shipping available. Store sealed vials at -20°C until reconstitution."
+  },
+  {
+    categorySlug: "longevity-thymic-neuropeptides",
+    introCopy:
+      "Longevity and neuropeptide research compounds including epithalon, selank, semax, and thymic peptides.",
+    supportingCopy:
+      "Lot-linked analytical documentation supports reproducible experimental design."
+  },
+  {
+    categorySlug: "cosmetic-copper-tanning",
+    introCopy:
+      "Copper peptide, melanotan, and related compounds for dermal and pigmentation pathway research.",
+    supportingCopy:
+      "RUO materials only — not for cosmetic or human application."
+  },
+  {
+    categorySlug: "mitochondrial-metabolic-other",
+    introCopy:
+      "Mitochondrial and metabolic research peptides including NAD+, glutathione, and related cofactors.",
+    supportingCopy:
+      "Verify storage requirements on each product specification tab before use."
+  },
+  {
+    categorySlug: "supplies-reconstitution",
+    introCopy:
+      "BAC water, acetic acid, and reconstitution supplies required for peptide preparation in the lab.",
+    supportingCopy:
+      "Pair with your peptide order to streamline reconstitution workflows."
+  },
+  {
+    categorySlug: "vitamins-injectables",
+    introCopy:
+      "Injectable research vitamins and adjunct compounds for laboratory protocol support.",
+    supportingCopy:
+      "For research use only. Review COA documentation for each batch before administration in models."
   }
 ]
+
+const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt`
 
 async function fetchSanity<T>(query: string, tags?: string[]): Promise<T | null> {
   const projectId = process.env.SANITY_PROJECT_ID
@@ -97,22 +130,42 @@ function sanitizeSlug(slug: string) {
   return slug.replace(/[^a-z0-9-]/gi, "")
 }
 
+function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
+  if (!posts?.length) return fallbackPosts
+
+  const merged: BlogPost[] = posts.map((post) => ({
+    ...post,
+    readTimeMinutes: post.readTimeMinutes || 5
+  }))
+
+  // If Sanity has fewer docs than local fallbacks, append missing slugs for dev/preview.
+  if (merged.length < fallbackPosts.length) {
+    const slugs = new Set(merged.map((post) => post.slug))
+    for (const fallback of fallbackPosts) {
+      if (!slugs.has(fallback.slug)) merged.push(fallback)
+    }
+    merged.sort(
+      (a, b) =>
+        new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime()
+    )
+  }
+
+  return merged
+}
+
 export async function listBlogPosts(): Promise<BlogPost[]> {
-  const query =
-    '*[_type == "researchArticle"] | order(publishedAt desc){title,"slug":slug.current,excerpt,publishedAt}'
-  const posts = await fetchSanity<BlogPost[]>(query, ["sanity:blog"])
-  if (!posts || posts.length === 0) return fallbackPosts
-  return posts
+  const query = `*[_type == "researchArticle"] | order(publishedAt desc){${blogFields}}`
+  return normalizePosts(await fetchSanity<BlogPost[]>(query, ["sanity:blog"]))
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const safeSlug = sanitizeSlug(slug)
   if (!safeSlug) return null
 
-  const query = `*[_type == "researchArticle" && slug.current == "${safeSlug}"][0]{title,"slug":slug.current,excerpt,body,publishedAt}`
+  const query = `*[_type == "researchArticle" && slug.current == "${safeSlug}"][0]{${blogFields}}`
   const post = await fetchSanity<BlogPost>(query, [`sanity:blog:${safeSlug}`])
   if (!post) return fallbackPosts.find((item) => item.slug === safeSlug) || null
-  return post
+  return { ...post, readTimeMinutes: post.readTimeMinutes || 5 }
 }
 
 export async function getCategorySeoBlock(slug: string): Promise<CategorySeoBlock | null> {

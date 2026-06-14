@@ -207,13 +207,22 @@ export function articleJsonLd(post: {
   slug: string
   excerpt?: string
   publishedAt?: string
+  category?: string
 }) {
+  const imagePath =
+    post.category === "Analytical"
+      ? "/v2/coa-preview.jpg"
+      : post.category === "Compliance"
+        ? "/images/blog-hero.jpg"
+        : "/v2/blog-research.jpg"
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
     datePublished: post.publishedAt,
+    image: pageUrl(imagePath),
     author: { "@type": "Organization", name: siteConfig.name },
     publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
     mainEntityOfPage: pageUrl(`/blog/${post.slug}`)

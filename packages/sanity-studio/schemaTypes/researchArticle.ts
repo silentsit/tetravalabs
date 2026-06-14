@@ -1,5 +1,11 @@
 import { defineField, defineType } from "sanity"
 
+const categories = [
+  { title: "Protocols", value: "Protocols" },
+  { title: "Analytical", value: "Analytical" },
+  { title: "Compliance", value: "Compliance" }
+]
+
 export const researchArticle = defineType({
   name: "researchArticle",
   title: "Research Article",
@@ -25,6 +31,19 @@ export const researchArticle = defineType({
       rows: 3
     }),
     defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      options: { list: categories },
+      initialValue: "Protocols"
+    }),
+    defineField({
+      name: "readTimeMinutes",
+      title: "Read time (minutes)",
+      type: "number",
+      validation: (rule) => rule.min(1).max(60)
+    }),
+    defineField({
       name: "body",
       title: "Body",
       type: "text",
@@ -39,6 +58,6 @@ export const researchArticle = defineType({
     })
   ],
   preview: {
-    select: { title: "title", subtitle: "excerpt" }
+    select: { title: "title", subtitle: "category" }
   }
 })

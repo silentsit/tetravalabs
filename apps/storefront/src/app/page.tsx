@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import type { Metadata } from "next"
 import { ProductCard } from "@/components/product-card"
+import { BlogPostCard } from "@/components/blog-post-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
@@ -17,6 +18,7 @@ import { categoryArt, categoryArtForSlug } from "@/lib/revamp/category-art"
 import { groupProductsByCategory } from "@/lib/categories"
 import { faqItems } from "@/lib/faq-content"
 import { listProducts, listRecentCoas } from "@/lib/medusa"
+import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata } from "@/lib/seo"
 
@@ -28,8 +30,12 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 export default async function HomePage() {
-  const products = await listProducts()
-  const recentCoas = await listRecentCoas(3)
+  const [products, recentCoas, blogPosts] = await Promise.all([
+    listProducts(),
+    listRecentCoas(3),
+    listBlogPosts()
+  ])
+  const latestPosts = blogPosts.slice(0, 3)
   const grouped = groupProductsByCategory(products)
   const featured = products.slice(0, 8)
 
@@ -251,6 +257,28 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {latestPosts.length > 0 ? (
+      <section className="section-padding bg-white">
+        <div className="page-container">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <span className="section-label">Research Hub</span>
+              <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Latest research articles</h2>
+              <p className="mt-2 text-[#475569]">Protocols, analytics, and compliance for qualified buyers</p>
+            </div>
+            <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E]">
+              View all articles <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {latestPosts.map((post) => (
+              <BlogPostCard key={post.slug} post={post} compact />
+            ))}
+          </div>
+        </div>
+      </section>
+      ) : null}
 
       <section className="section-padding bg-white">
         <div className="page-container max-w-3xl">

@@ -2,11 +2,16 @@ import type { Metadata } from "next"
 import { listProducts } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
+import { ProductSortSelect } from "@/components/product-sort-select"
 import { categoryLabelFromSlug, filterProductsByCategorySlug } from "@/lib/categories"
 import { getCategorySeoBlock } from "@/lib/sanity"
 import { buildPageMetadata } from "@/lib/seo"
+import { parseProductSort, sortProducts } from "@/lib/sort-products"
 
-type Props = { params: Promise<{ slug: string }> }
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ sort?: string }>
+}
 
 export const revalidate = 300
 
@@ -24,10 +29,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-export default async function CategoryPage({ params }: Props) {
+export default async function CategoryPage({ params, searchParams }: Props) {
   const { slug } = await params
+  const { sort = "" } = await searchParams
+  const sortKey = parseProductSort(sort)
   const products = await listProducts()
-  const filtered = filterProductsByCategorySlug(products, slug)
+  const filtered = sortProducts(filterProductsByCategorySlug(products, slug), sortKey)
   const label = categoryLabelFromSlug(slug, products)
   const seo = await getCategorySeoBlock(slug)
 
@@ -51,6 +58,14 @@ export default async function CategoryPage({ params }: Props) {
           </p>
         )}
       </div>
+
+      <form action={`/category/${slug}`} className="max-w-xs">
+        <ProductSortSelect defaultValue={sortKey} />
+        <button type="submit" className="btn-secondary mt-3 px-4 py-2 text-sm">
+          Apply sort
+        </button>
+      </form>
+
       {filtered.length === 0 ? (
         <p className="text-sm text-[#475569]">No products in this category yet.</p>
       ) : (

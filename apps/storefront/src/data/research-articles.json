@@ -1,0 +1,92 @@
+[
+  {
+    "title": "RUO Handling and Storage Basics",
+    "slug": "ruo-handling-and-storage-basics",
+    "excerpt": "Storage, reconstitution, and handling best practices for peptide research materials.",
+    "category": "Protocols",
+    "readTimeMinutes": 5,
+    "publishedAt": "2026-05-15T00:00:00.000Z",
+    "body": "Research-use-only peptides should be stored lyophilized at -20°C until reconstitution. Limit freeze-thaw cycles and document batch IDs for every vial used in a study.\n\nAfter reconstitution, use bacteriostatic water or the appropriate solvent noted on the product label. Label vials with compound, concentration, and date opened. Most reconstituted materials are stable for a limited window at 2–8°C — follow your lab SOP.\n\nAlways cross-reference the batch COA in our COA Library before starting an experiment."
+  },
+  {
+    "title": "How to Read COA and HPLC Reports",
+    "slug": "how-to-read-coa-and-hplc-reports",
+    "excerpt": "A practical guide to interpreting purity and analytical outputs.",
+    "category": "Analytical",
+    "readTimeMinutes": 6,
+    "publishedAt": "2026-05-20T00:00:00.000Z",
+    "body": "A Certificate of Analysis (COA) confirms identity and purity for a specific batch. Look for batch number, test date, and reported purity percentage.\n\nHPLC chromatograms show peak area for the target compound versus impurities. A single dominant peak near the expected retention time with minimal secondary peaks generally indicates higher purity.\n\nCompare COA and HPLC documents together — COA summarizes acceptance criteria while HPLC provides the underlying chromatographic evidence.\n\nWhen reviewing MS data, confirm observed molecular weight matches the theoretical mass within instrument tolerance. Discrepancies may indicate salt forms, incomplete synthesis, or degradation."
+  },
+  {
+    "title": "Semaglutide Storage Protocols for Research Labs",
+    "slug": "semaglutide-storage-protocols",
+    "excerpt": "Cold-chain and lyophilized storage guidance for GLP-1 research materials.",
+    "category": "Protocols",
+    "readTimeMinutes": 4,
+    "publishedAt": "2026-06-01T00:00:00.000Z",
+    "body": "GLP-1 receptor agonist peptides are sensitive to heat and repeated moisture exposure. Keep lyophilized vials sealed until use and store at -20°C.\n\nReconstitute only the amount required for the current experimental window. Avoid agitation that introduces foaming, and use low-bind pipette tips for accurate volumetric work.\n\nDocument the batch COA ID in your lab notebook — Tetrava publishes batch-level documents for every catalog SKU in the COA Library."
+  },
+  {
+    "title": "BPC-157 Handling Protocol for Laboratory Use",
+    "slug": "bpc-157-handling-protocol",
+    "excerpt": "Reconstitution, aliquoting, and stability notes for BPC-157 research vials.",
+    "category": "Protocols",
+    "readTimeMinutes": 5,
+    "publishedAt": "2026-06-05T00:00:00.000Z",
+    "body": "BPC-157 is supplied lyophilized to maximize shelf stability. Allow vials to reach room temperature inside the packaging before opening to reduce condensation on the peptide cake.\n\nReconstitute with bacteriostatic water unless your protocol specifies otherwise. Inject solvent slowly against the vial wall and gently swirl — do not vortex unless your SOP explicitly requires it.\n\nAliquot reconstituted material into low-bind microcentrifuge tubes if the full volume will not be used within your validated stability window. Store aliquots at -20°C and avoid repeated freeze-thaw cycles.\n\nRecord batch number, reconstitution date, and final concentration in your experiment log. Match the batch ID to the COA document before dosing in animal or cell models."
+  },
+  {
+    "title": "Tirzepatide Storage and Stability in Research Settings",
+    "slug": "tirzepatide-storage-research-labs",
+    "excerpt": "Dual incretin peptide handling guidance for multi-day study designs.",
+    "category": "Protocols",
+    "readTimeMinutes": 4,
+    "publishedAt": "2026-06-08T00:00:00.000Z",
+    "body": "Tirzepatide and related dual-agonist peptides require the same cold-storage discipline as other GLP-1 class materials. Store lyophilized vials at -20°C in a dedicated peptide freezer when possible.\n\nPlan reconstitution volumes to match daily or weekly dosing blocks in your model. Partial vial use increases contamination risk — use sterile technique and dedicated needles for each draw.\n\nIf your protocol spans multiple weeks, verify whether your institution requires fresh reconstitution per cohort. Analytical COA data supports identity confirmation but does not replace your internal stability validation for reconstituted solutions."
+  },
+  {
+    "title": "Peptide Reconstitution Calculations",
+    "slug": "peptide-reconstitution-calculations",
+    "excerpt": "Convert lyophilized milligrams to working concentration with simple lab math.",
+    "category": "Analytical",
+    "readTimeMinutes": 7,
+    "publishedAt": "2026-06-10T00:00:00.000Z",
+    "body": "Reconstitution math starts with the peptide mass on the vial label. A 5 mg vial reconstituted with 2 mL of bacteriostatic water yields 2.5 mg/mL (2,500 µg/mL).\n\nTo target a specific concentration: divide total peptide mass (in µg) by desired volume (in mL). Example: 10 mg (10,000 µg) in 4 mL = 2,500 µg/mL.\n\nFor dosing calculations, convert your desired microgram dose into volume: dose (µg) ÷ concentration (µg/mL) = draw volume (mL). Always double-check unit conversions before preparing study material.\n\nDocument solvent choice, final concentration, and calculation steps in your lab notebook. Small arithmetic errors are a common source of irreproducible peptide study results."
+  },
+  {
+    "title": "Cold-Chain Shipping for Lyophilized Peptides",
+    "slug": "cold-chain-shipping-peptides",
+    "excerpt": "What to expect in transit and how to inspect shipments on arrival.",
+    "category": "Protocols",
+    "readTimeMinutes": 4,
+    "publishedAt": "2026-06-12T00:00:00.000Z",
+    "body": "Lyophilized peptides are resilient compared to reconstituted solutions, but prolonged heat exposure can degrade sensitive sequences. Tetrava ships temperature-controlled where appropriate and uses insulated packaging for domestic orders.\n\nOn delivery, inspect outer packaging for damage and note any ice pack melt — brief transit warmth is usually acceptable for lyophilized material if vials remain sealed and dry.\n\nTransfer vials to -20°C storage promptly. Do not freeze-thaw repeatedly during inventory intake; assign a single receiving date label for each batch entering your freezer.\n\nReport shipping damage or missing items within 48 hours with photos of the outer carton and inner packaging for faster resolution."
+  },
+  {
+    "title": "Crypto Checkout Guide for Research Laboratories",
+    "slug": "crypto-payment-guide-research-labs",
+    "excerpt": "How qualified buyers complete BTC and USDT orders without leaving your protocol workflow.",
+    "category": "Compliance",
+    "readTimeMinutes": 5,
+    "publishedAt": "2026-06-14T00:00:00.000Z",
+    "body": "Tetrava accepts cryptocurrency to reduce payment friction for international research buyers. At checkout you can pay with BTC or USDT via our guided wallet flow.\n\nIf you already hold crypto, scan the QR code or copy the payment address exactly as shown — partial payments and wrong networks are the most common delay sources.\n\nIf you are new to crypto, use the on-ramp links in checkout to purchase USDC or BTC through a regulated exchange, then return to complete payment. Allow time for exchange settlement before the invoice window expires.\n\nRetain transaction hashes in your procurement records. Orders ship after on-chain confirmation per our payment policy."
+  },
+  {
+    "title": "Documenting Batch IDs in Lab Notebooks",
+    "slug": "documenting-batch-ids-lab-notebooks",
+    "excerpt": "Traceability practices that satisfy internal QA and external audit requirements.",
+    "category": "Compliance",
+    "readTimeMinutes": 5,
+    "publishedAt": "2026-06-16T00:00:00.000Z",
+    "body": "Every peptide vial used in a study should map to a batch-specific COA. Record catalog SKU, batch number, receipt date, and storage location at minimum.\n\nWhen multiple batches of the same compound are active, never assume interchangeability — purity and impurity profiles can differ between lots even within specification.\n\nLink COA PDFs or chromatogram files in your ELN when possible. For paper notebooks, attach a printed COA cover sheet or reference the document ID from the Tetrava COA Library URL.\n\nTraceability supports reproducibility: if a result cannot be tied to a batch, it should not be used in comparative analysis or publication supplementary data."
+  },
+  {
+    "title": "TB-500 Stability and Reconstitution Notes",
+    "slug": "tb500-stability-reconstitution",
+    "excerpt": "Practical handling guidance for thymosin beta-4 fragment research materials.",
+    "category": "Protocols",
+    "readTimeMinutes": 4,
+    "publishedAt": "2026-06-18T00:00:00.000Z",
+    "body": "TB-500 is typically supplied as a lyophilized powder. Store unopened vials at -20°C and protect from moisture until reconstitution.\n\nUse bacteriostatic water for multi-dose protocols or sterile water for single-use preparations according to your validated method. Add solvent slowly and allow the cake to dissolve without vigorous shaking.\n\nAliquot if your study design requires multiple sessions from one vial. Label each aliquot with compound, concentration, batch ID, and preparation date.\n\nConsult the lot COA for purity confirmation before initiating tissue-repair model work."
+  }
+]

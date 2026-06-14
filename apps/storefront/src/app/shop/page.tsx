@@ -2,6 +2,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
+import { ProductSortSelect } from "@/components/product-sort-select"
 import { listProducts } from "@/lib/medusa"
 import {
   categoryLabelFromSlug,
@@ -10,6 +11,12 @@ import {
 } from "@/lib/categories"
 import { searchProducts } from "@/lib/search"
 import { buildPageMetadata } from "@/lib/seo"
+import {
+  buildShopHref,
+  orderProductsBySearchResults,
+  parseProductSort,
+  sortProducts
+} from "@/lib/sort-products"
 
 export const revalidate = 300
 
@@ -21,7 +28,13 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 type Props = {
-  searchParams: Promise<{ q?: string; category?: string; price_min?: string; price_max?: string }>
+  searchParams: Promise<{
+    q?: string
+    category?: string
+    price_min?: string
+    price_max?: string
+    sort?: string
+  }>
 }
 
 function parseCents(value?: string) {
@@ -32,12 +45,13 @@ function parseCents(value?: string) {
 }
 
 export default async function ShopPage({ searchParams }: Props) {
-  const { q = "", category = "", price_min = "", price_max = "" } = await searchParams
+  const { q = "", category = "", price_min = "", price_max = "", sort = "" } = await searchParams
   const products = await listProducts()
   const categories = groupProductsByCategory(products)
   const categoryLabel = category ? categoryLabelFromSlug(category, products) : undefined
   const priceMin = parseCents(price_min)
   const priceMax = parseCents(price_max)
+  const sortKey = parseProductSort(sort)
 
   let displayProducts = products
   const useSearch = Boolean(q.trim() || priceMin != null || priceMax != null)
@@ -50,8 +64,14 @@ export default async function ShopPage({ searchParams }: Props) {
     })
     const handles = new Set(results.map((result) => result.handle))
     displayProducts = products.filter((product) => handles.has(product.handle))
+    displayProducts =
+      sortKey === "featured"
+        ? orderProductsBySearchResults(displayProducts, results)
+        : sortProducts(displayProducts, sortKey)
   } else if (category) {
-    displayProducts = filterProductsByCategorySlug(displayProducts, category)
+    displayProducts = sortProducts(filterProductsByCategorySlug(displayProducts, category), sortKey)
+  } else {
+    displayProducts = sortProducts(displayProducts, sortKey)
   }
 
   return (
@@ -79,7 +99,7 @@ export default async function ShopPage({ searchParams }: Props) {
             Filter
           </button>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-3">
           <label className="block text-xs text-[#64748B]">
             Min price (USD)
             <input
@@ -104,12 +124,13 @@ export default async function ShopPage({ searchParams }: Props) {
               className="input-field mt-1"
             />
           </label>
+          <ProductSortSelect defaultValue={sortKey} />
         </div>
       </form>
 
       <div className="flex flex-wrap gap-2 text-xs text-[#475569]">
         <Link
-          href="/shop"
+          href={buildShopHref({ q, price_min, price_max, sort })}
           className={`rounded-full border px-3 py-1 transition ${
             !category ? "border-[#0D9488] text-[#0D9488]" : "border-[#E2E8F0] hover:border-[#CBD5E1]"
           }`}
@@ -119,9 +140,13 @@ export default async function ShopPage({ searchParams }: Props) {
         {categories.map((item) => (
           <Link
             key={item.slug}
-            href={`/shop?category=${item.slug}${q ? `&q=${encodeURIComponent(q)}` : ""}${
-              price_min ? `&price_min=${price_min}` : ""
-            }${price_max ? `&price_max=${price_max}` : ""}`}
+            href={buildShopHref({
+              q,
+              category: item.slug,
+              price_min,
+              price_max,
+              sort
+            })}
             className={`rounded-full border px-3 py-1 transition ${
               category === item.slug
                 ? "border-[#0D9488] text-[#0D9488]"
@@ -132,6 +157,11 @@ export default async function ShopPage({ searchParams }: Props) {
           </Link>
         ))}
       </div>
+
+      <p className="text-sm text-[#64748B]">
+        Showing {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
+        {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
+      </p>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {displayProducts.map((product) => (

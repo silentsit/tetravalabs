@@ -17,21 +17,6 @@ function finalize(request: NextRequest, response: NextResponse) {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const isPublicPath =
-    pathname.startsWith("/ruo") ||
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api")
-
-  if (isPublicPath) {
-    return finalize(request, NextResponse.next())
-  }
-
-  const ruoCookie = request.cookies.get("tetrava_ruo_ack")?.value
-  if (ruoCookie !== "v1") {
-    const url = request.nextUrl.clone()
-    url.pathname = "/ruo"
-    return finalize(request, NextResponse.redirect(url))
-  }
 
   if (pathname.startsWith("/checkout")) {
     const country =

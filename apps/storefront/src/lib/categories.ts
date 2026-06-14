@@ -37,6 +37,17 @@ export function groupProductsByCategory(products: StoreProduct[]) {
     .sort((a, b) => b.count - a.count)
 }
 
+export function getRelatedProducts(product: StoreProduct, products: StoreProduct[], limit = 4) {
+  const category = String(product.metadata?.source_category || "")
+  return products
+    .filter(
+      (candidate) =>
+        candidate.id !== product.id &&
+        String(candidate.metadata?.source_category || "") === category
+    )
+    .slice(0, limit)
+}
+
 export function filterProductsByCategorySlug(products: StoreProduct[], slug: string) {
   const normalized = slug.toLowerCase()
   return products.filter((product) => {

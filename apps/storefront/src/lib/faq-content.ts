@@ -3,6 +3,24 @@ export type FaqItem = {
   answer: string
 }
 
+export const productFaqItems: FaqItem[] = [
+  {
+    question: "What is the purity of this compound?",
+    answer:
+      "All compounds are verified by independent third-party HPLC-MS analysis. The purity percentage is listed on the product page and documented in the lot-linked Certificate of Analysis when published."
+  },
+  {
+    question: "How is this compound shipped?",
+    answer:
+      "Lyophilized peptides are shipped in temperature-controlled packaging with cold packs where required. Packages are discreet and unmarked. Tracking is provided when available."
+  },
+  {
+    question: "How should I store this product?",
+    answer:
+      "Store lyophilized powder at -20°C for long-term stability. Avoid repeated freeze-thaw cycles. Once reconstituted, store at 4°C and follow your laboratory protocol for use-by timing."
+  }
+]
+
 export const faqItems: FaqItem[] = [
   {
     question: 'What does "Research Use Only" mean?',

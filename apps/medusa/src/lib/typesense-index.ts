@@ -27,14 +27,20 @@ type ProductRow = {
   variants?: Array<{
     title: string
     prices?: Array<{ amount: number | string }>
+    calculated_price?: { calculated_amount?: number }
   }>
 }
 
+function variantPriceCents(variant: NonNullable<ProductRow["variants"]>[number]) {
+  const fromPrices = variant.prices?.[0]?.amount
+  if (fromPrices != null && Number(fromPrices) > 0) return Number(fromPrices)
+  const calculated = variant.calculated_price?.calculated_amount
+  if (calculated != null && Number(calculated) > 0) return Number(calculated)
+  return 0
+}
+
 export function mapProductToTypesenseDoc(product: ProductRow): TypesenseProductDoc {
-  const prices = (product.variants || [])
-    .flatMap((variant) => variant.prices || [])
-    .map((price) => Number(price.amount || 0))
-    .filter((amount) => amount > 0)
+  const prices = (product.variants || []).map(variantPriceCents).filter((amount) => amount > 0)
   const priceMin = prices.length ? Math.min(...prices) : 0
   const priceMax = prices.length ? Math.max(...prices) : 0
   const metadata = product.metadata || {}

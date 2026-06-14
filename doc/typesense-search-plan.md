@@ -32,7 +32,19 @@ Search is staged after core catalog + checkout stability.
 
 ## Sync Strategy
 
-- Initial full sync: `npm run typesense:index`
+- Initial full sync: `npm run typesense:index` (local or Render preDeploy)
 - Incremental: Medusa subscribers on `product.created`, `product.updated`, `product.deleted`
-- Ops hook: `POST /hooks/typesense/sync` with header `x-typesense-sync-secret` (set `TYPESENSE_SYNC_SECRET`)
+- Ops hook: `POST /hooks/typesense/sync` with header `x-typesense-sync-secret` (set `TYPESENSE_SYNC_SECRET` on Medusa)
 - Catalog import triggers full sync when `TYPESENSE_SYNC_SECRET` is set
+
+### Typesense Cloud (recommended)
+
+Set on **Render Medusa** (and locally in `apps/storefront/.env.local` for indexing):
+
+- `TYPESENSE_PROTOCOL=https`
+- `TYPESENSE_HOST=<cluster>.a1.typesense.net`
+- `TYPESENSE_PORT=443`
+- `TYPESENSE_API_KEY=<admin key>`
+- `MEDUSA_PUBLISHABLE_KEY=<pk_...>` (for preDeploy index)
+
+Storefront search uses Medusa `GET /store/search` — Vercel does not need Typesense env vars.

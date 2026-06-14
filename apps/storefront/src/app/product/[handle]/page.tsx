@@ -1,13 +1,16 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getProductByHandle, listCoasByVariant } from "@/lib/medusa"
-import { slugifyCategory } from "@/lib/categories"
+import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
+import { getRelatedProducts, slugifyCategory } from "@/lib/categories"
 import { getProductImage, getProductPurity } from "@/lib/revamp/product-visual"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
-import { CoaDocumentPreview } from "@/components/coa-document-preview"
+import { ProductDetailTabs } from "@/components/product-detail-tabs"
+import { ProductTrustStrip } from "@/components/product-trust-strip"
+import { ProductCard } from "@/components/product-card"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata } from "@/lib/seo"
+import { productFaqItems } from "@/lib/faq-content"
 
 type Props = { params: Promise<{ handle: string }> }
 
@@ -24,18 +27,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
+function researchSummary(product: Awaited<ReturnType<typeof getProductByHandle>>) {
+  if (!product) return ""
+  const custom = String(product.metadata?.research_summary || "").trim()
+  if (custom) return custom
+  const category = String(product.metadata?.source_category || "research peptide")
+  return `${product.title} is supplied for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing where COA documents are published.`
+}
+
 export default async function ProductPage({ params }: Props) {
   const { handle } = await params
-  const product = await getProductByHandle(handle)
+  const [product, allProducts] = await Promise.all([getProductByHandle(handle), listProducts()])
   if (!product) notFound()
   const primaryVariantId = product.variants?.[0]?.id
   const coas = primaryVariantId ? await listCoasByVariant(primaryVariantId) : []
   const image = getProductImage(product)
   const categoryLabel = String(product.metadata?.source_category || "Research Product")
   const categorySlug = slugifyCategory(categoryLabel)
+  const related = getRelatedProducts(product, allProducts)
 
   return (
-    <article className="page-container space-y-8 py-8">
+    <article className="page-container space-y-10 py-8">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -66,56 +78,39 @@ export default async function ProductPage({ params }: Props) {
             title={product.title}
             variants={product.variants || []}
           />
+          <ProductTrustStrip />
         </div>
       </div>
 
-      <section className="card p-6">
-        <h2 className="font-serif text-xl text-[#0F172A]">Specifications</h2>
-        <div className="mt-4 grid gap-2 text-sm text-[#475569] sm:grid-cols-2">
-          <p>CAS: {String(product.metadata?.cas_number || "N/A")}</p>
-          <p>Formula: {String(product.metadata?.molecular_formula || "N/A")}</p>
-          <p>Weight: {String(product.metadata?.molecular_weight || "N/A")}</p>
-          <p>Storage: {String(product.metadata?.storage || "-20°C lyophilized")}</p>
-          <p>Appearance: {String(product.metadata?.appearance || "Lyophilized powder")}</p>
-          <p>Sequence: {String(product.metadata?.sequence || "N/A")}</p>
-        </div>
-      </section>
+      <ProductDetailTabs
+        product={{
+          title: product.title,
+          handle: product.handle,
+          category: categoryLabel,
+          purity: getProductPurity(product),
+          primaryVariantTitle: product.variants?.[0]?.title || "Standard",
+          casNumber: String(product.metadata?.cas_number || "N/A"),
+          molecularFormula: String(product.metadata?.molecular_formula || "N/A"),
+          molecularWeight: String(product.metadata?.molecular_weight || "N/A"),
+          storage: String(product.metadata?.storage || "-20°C lyophilized"),
+          appearance: String(product.metadata?.appearance || "Lyophilized powder"),
+          sequence: String(product.metadata?.sequence || "N/A"),
+          researchSummary: researchSummary(product)
+        }}
+        coas={coas}
+        faqs={productFaqItems}
+      />
 
-      <section className="card p-6">
-        <h2 className="font-serif text-xl text-[#0F172A]">COA / HPLC documents</h2>
-        {coas.length === 0 ? (
-          <p className="mt-3 text-sm text-[#475569]">No batch documents published yet for this variant.</p>
-        ) : (
-          <div className="mt-4 space-y-6">
-            <CoaDocumentPreview document={coas[0]} />
-            {coas.length > 1 ? (
-              <ul className="space-y-3">
-                {coas.slice(1).map((doc) => (
-                  <li
-                    key={doc.id}
-                    className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm"
-                  >
-                    <span className="text-[#0F172A]">
-                      Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
-                      {doc.purity_percent != null ? ` (${doc.purity_percent}%)` : ""}
-                    </span>
-                    {doc.document_url ? (
-                      <a
-                        href={doc.document_url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-[#0D9488] hover:underline"
-                      >
-                        View document
-                      </a>
-                    ) : null}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
+      {related.length > 0 ? (
+        <section>
+          <h2 className="mb-6 font-serif text-2xl text-[#0F172A]">Related Compounds</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {related.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))}
           </div>
-        )}
-      </section>
+        </section>
+      ) : null}
 
       <ComplianceNotice />
     </article>

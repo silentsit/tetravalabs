@@ -1,6 +1,6 @@
 # Tetrava Labs — Render Blueprint
 # Storefront deploys on Vercel; this Blueprint covers the Medusa commerce API.
-# External services: Neon Postgres, Upstash Redis, Cloudflare R2, Typesense (Render private service).
+# Search: Typesense Cloud (set TYPESENSE_* manually on Medusa). Legacy Render pserv optional.
 
 envVarGroups:
   - name: tetrava-medusa-shared
@@ -76,24 +76,19 @@ services:
       - key: R2_PUBLIC_BASE_URL
         sync: false
       - key: TYPESENSE_PROTOCOL
-        value: http
+        sync: false
       - key: TYPESENSE_HOST
-        fromService:
-          name: tetrava-typesense
-          type: pserv
-          property: host
+        sync: false
       - key: TYPESENSE_PORT
-        fromService:
-          name: tetrava-typesense
-          type: pserv
-          property: port
+        sync: false
       - key: TYPESENSE_API_KEY
-        fromService:
-          name: tetrava-typesense
-          type: pserv
-          envVarKey: TYPESENSE_API_KEY
+        sync: false
       - key: TYPESENSE_COLLECTION
         value: products
+      - key: TYPESENSE_SYNC_SECRET
+        sync: false
+      - key: MEDUSA_PUBLISHABLE_KEY
+        sync: false
 
   - type: pserv
     name: tetrava-typesense

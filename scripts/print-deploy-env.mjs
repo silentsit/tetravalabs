@@ -45,10 +45,12 @@ Medusa (Render, render.yaml)
   R2_SECRET_ACCESS_KEY=<r2 secret>
   R2_PUBLIC_BASE_URL=https://coa.tetravalabs.com
   TYPESENSE_PROTOCOL=https
-  TYPESENSE_HOST=<typesense host>
+  TYPESENSE_HOST=<cluster>.a1.typesense.net
   TYPESENSE_PORT=443
-  TYPESENSE_API_KEY=<typesense admin key for indexing>
+  TYPESENSE_API_KEY=<typesense admin key>
   TYPESENSE_COLLECTION=products
+  TYPESENSE_SYNC_SECRET=<random secret for /hooks/typesense/sync>
+  MEDUSA_PUBLISHABLE_KEY=<same pk_ key as Vercel storefront>
 
 Post-deploy commands (Render preDeployCommand in render.yaml)
   npm run db:migrate --workspace=@tetrava/medusa

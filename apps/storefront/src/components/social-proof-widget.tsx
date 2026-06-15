@@ -134,7 +134,38 @@ export function SocialProofReviews() {
   )
 }
 
+function randomResearchersOnline() {
+  return Math.floor(Math.random() * 36) + 15
+}
+
 export function LiveVisitorCounter() {
+  const [count, setCount] = useState(randomResearchersOnline)
+
+  useEffect(() => {
+    let cancelled = false
+    let timeoutId: number
+
+    const tick = () => {
+      if (cancelled) return
+      setCount((prev) => {
+        let next = randomResearchersOnline()
+        while (next === prev) {
+          next = randomResearchersOnline()
+        }
+        return next
+      })
+      const delayMs = 10_000 + Math.floor(Math.random() * 15_000)
+      timeoutId = window.setTimeout(tick, delayMs)
+    }
+
+    timeoutId = window.setTimeout(tick, 12_000)
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(timeoutId)
+    }
+  }, [])
+
   return (
     <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#E2E8F0] bg-white px-4 py-2 shadow-sm">
       <span className="relative flex h-2.5 w-2.5 shrink-0">
@@ -143,7 +174,7 @@ export function LiveVisitorCounter() {
       </span>
       <Users className="h-4 w-4 shrink-0 text-[#94A3B8]" />
       <span className="text-xs text-[#94A3B8]">
-        <span className="font-medium text-[#0F172A]">47</span> researchers online
+        <span className="font-medium text-[#0F172A]">{count}</span> researchers online
       </span>
     </div>
   )

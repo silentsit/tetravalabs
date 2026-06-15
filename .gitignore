@@ -9,3 +9,5 @@ dist/
 !.env.example
 *.log
 coverage/
+
+.vercel

@@ -1,4 +1,6 @@
 import type { StoreProduct } from "@/lib/medusa"
+import { categoryArt } from "@/lib/revamp/category-art"
+import { sortProducts, type ProductSort } from "@/lib/sort-products"
 
 /** Legacy pricing-sheet categories → storefront slug (pre-normalization Medusa data). */
 const LEGACY_SOURCE_TO_SLUG: Record<string, string> = {
@@ -78,4 +80,26 @@ export function filterProductsByCategorySlug(products: StoreProduct[], slug: str
     const label = String(product.metadata?.source_category || "")
     return categorySlugFromLabel(label) === normalized
   })
+}
+
+export type StorefrontCategorySection = {
+  slug: string
+  name: string
+  description: string
+  products: StoreProduct[]
+}
+
+/** Group and order products for the full-catalog shop view. */
+export function getStorefrontCategorySections(
+  products: StoreProduct[],
+  sort: ProductSort
+): StorefrontCategorySection[] {
+  return categoryArt
+    .map((cat) => ({
+      slug: cat.slug,
+      name: cat.name,
+      description: cat.description,
+      products: sortProducts(filterProductsByCategorySlug(products, cat.slug), sort)
+    }))
+    .filter((section) => section.products.length > 0)
 }

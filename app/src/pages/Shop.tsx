@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X } from 'lucide-react';
 import { products, categories } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
@@ -64,6 +64,16 @@ export default function Shop() {
 
     return filtered;
   }, [categorySlug, sortBy, activeFilters]);
+
+  const categorySections = useMemo(() => {
+    if (categorySlug) return null;
+    return categories
+      .map((cat) => ({
+        ...cat,
+        products: filteredProducts.filter((p) => p.category === cat.slug),
+      }))
+      .filter((section) => section.products.length > 0);
+  }, [categorySlug, filteredProducts]);
 
   const toggleFilter = (filter: string) => {
     setActiveFilters(prev =>
@@ -152,9 +162,33 @@ export default function Shop() {
             <p className="text-xl text-[#E8E8F0]">No compounds match your criteria</p>
             <p className="mt-2 text-sm text-[#8A8AA0]">Try adjusting your filters</p>
           </div>
+        ) : categorySections ? (
+          <div className="space-y-14">
+            {categorySections.map((section) => (
+              <section key={section.id} className="space-y-6">
+                <div className="flex flex-wrap items-end justify-between gap-4 border-b border-white/[0.06] pb-4">
+                  <div>
+                    <h2 className="font-serif text-2xl text-[#E8E8F0] md:text-3xl">{section.name}</h2>
+                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#8A8AA0]">{section.description}</p>
+                  </div>
+                  <Link
+                    to={`/shop?category=${section.slug}`}
+                    className="text-sm font-medium text-[#5EEAD4] hover:text-[#99F6E4]"
+                  >
+                    View all →
+                  </Link>
+                </div>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {section.products.map((p) => (
+                    <ProductCard key={p.id} product={p} />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProducts.map(p => (
+            {filteredProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>

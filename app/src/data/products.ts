@@ -47,15 +47,15 @@ export const categories: Category[] = [
     slug: 'glp-1-research',
     description: 'Glucagon-like peptide-1 receptor agonists for metabolic and glucose homeostasis research. Includes Semaglutide, Tirzepatide, and novel triple-agonist compounds.',
     image: '/images/category-glp1.jpg',
-    productCount: 27,
+    productCount: 7,
   },
   {
     id: 'growth',
     name: 'Growth Factors',
     slug: 'growth-factors',
-    description: 'BPC-157, TB-500, GHK-Cu and other tissue repair and growth research peptides.',
+    description: 'BPC-157, TB-500, GHK-Cu, growth hormone secretagogues, IGF-1, neuropeptides, and other tissue repair and cellular signaling research peptides.',
     image: '/images/category-growth.jpg',
-    productCount: 11,
+    productCount: 18,
   },
   {
     id: 'blends',
@@ -63,7 +63,7 @@ export const categories: Category[] = [
     slug: 'research-blends',
     description: 'Pre-formulated synergistic stacks combining complementary research compounds.',
     image: '/images/category-blends.jpg',
-    productCount: 6,
+    productCount: 2,
   },
   {
     id: 'supplies',
@@ -71,7 +71,7 @@ export const categories: Category[] = [
     slug: 'lab-supplies',
     description: 'Bacteriostatic water, reconstitution kits, and essential laboratory supplies.',
     image: '/images/category-blends.jpg',
-    productCount: 5,
+    productCount: 2,
   },
 ];
 
@@ -145,7 +145,7 @@ export const products: Product[] = [
   },
   {
     id: 'sermorelin-5mg', name: 'Sermorelin', slug: 'sermorelin-5mg',
-    category: 'glp-1-research', subcategory: 'Growth Secretagogues',
+    category: 'growth-factors', subcategory: 'Growth Secretagogues',
     strength: '5mg', price: 59.00, purity: '99.4%',
     molecularWeight: '3357.93 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'GHRH analogue for growth hormone secretion research.',
@@ -157,7 +157,7 @@ export const products: Product[] = [
   },
   {
     id: 'tesamorelin-5mg', name: 'Tesamorelin', slug: 'tesamorelin-5mg',
-    category: 'glp-1-research', subcategory: 'Growth Secretagogues',
+    category: 'growth-factors', subcategory: 'Growth Secretagogues',
     strength: '5mg', price: 49.00, purity: '99.3%',
     appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'GHRH analogue for growth hormone axis research.',
@@ -170,7 +170,7 @@ export const products: Product[] = [
   },
   {
     id: 'cjc1295-dac-5mg', name: 'CJC-1295 with DAC', slug: 'cjc1295-dac-5mg',
-    category: 'glp-1-research', subcategory: 'Growth Secretagogues',
+    category: 'growth-factors', subcategory: 'Growth Secretagogues',
     strength: '5mg', price: 139.00, purity: '99.5%',
     molecularWeight: '3647.28 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Long-acting GHRH analogue with DAC for extended half-life research.',
@@ -182,7 +182,7 @@ export const products: Product[] = [
   },
   {
     id: 'cjc1295-nodac-5mg', name: 'CJC-1295 without DAC', slug: 'cjc1295-nodac-5mg',
-    category: 'glp-1-research', subcategory: 'Growth Secretagogues',
+    category: 'growth-factors', subcategory: 'Growth Secretagogues',
     strength: '5mg', price: 49.00, purity: '99.4%',
     molecularWeight: '3367.90 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Modified GRF(1-29) for growth hormone pulse research.',
@@ -194,7 +194,7 @@ export const products: Product[] = [
   },
   {
     id: 'ipamorelin-5mg', name: 'Ipamorelin', slug: 'ipamorelin-5mg',
-    category: 'glp-1-research', subcategory: 'Growth Secretagogues',
+    category: 'growth-factors', subcategory: 'Growth Secretagogues',
     strength: '5mg', price: 39.00, purity: '99.2%',
     molecularWeight: '711.85 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Selective GH secretagogue for growth hormone research.',
@@ -323,7 +323,7 @@ export const products: Product[] = [
   // Additional bestsellers
   {
     id: 'mk677-5mg', name: 'MK-677 (Ibutamoren)', slug: 'mk677-5mg',
-    category: 'glp-1-research', subcategory: 'Growth Secretagogues',
+    category: 'growth-factors', subcategory: 'Growth Secretagogues',
     strength: '5mg', price: 55.00, purity: '99.2%',
     appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Oral GH secretagogue for growth hormone axis research.',
@@ -347,7 +347,7 @@ export const products: Product[] = [
   },
   {
     id: 'hgh-10iu', name: 'HGH 191aa', slug: 'hgh-10iu',
-    category: 'glp-1-research', subcategory: 'Growth Hormone',
+    category: 'growth-factors', subcategory: 'Growth Hormone',
     strength: '10 IU', price: 49.00, purity: '99.0%',
     appearance: 'White lyophilized powder', imageType: 'hgh',
     image: imageMap.vial, description: 'Recombinant human growth hormone (somatropin) for research.',
@@ -375,7 +375,7 @@ export const products: Product[] = [
   },
   {
     id: 'glutathione-600mg', name: 'Glutathione', slug: 'glutathione-600mg',
-    category: 'glp-1-research', subcategory: 'Antioxidants',
+    category: 'growth-factors', subcategory: 'Cellular Health',
     strength: '600mg', price: 59.00, purity: '99.4%',
     appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Tripeptide antioxidant for oxidative stress research.',
@@ -395,7 +395,7 @@ export const products: Product[] = [
   },
   {
     id: 'epithalon-10mg', name: 'Epithalon', slug: 'epithalon-10mg',
-    category: 'glp-1-research', subcategory: 'Telomere Research',
+    category: 'growth-factors', subcategory: 'Longevity',
     strength: '10mg', price: 45.00, purity: '99.3%',
     molecularWeight: '390.35 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Telomerase activator peptide for cellular aging research.',
@@ -408,7 +408,7 @@ export const products: Product[] = [
   },
   {
     id: 'dsip-5mg', name: 'DSIP', slug: 'dsip-5mg',
-    category: 'glp-1-research', subcategory: 'Neuropeptides',
+    category: 'growth-factors', subcategory: 'Neuropeptides',
     strength: '5mg', price: 30.00, purity: '99.2%',
     molecularWeight: '848.81 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Delta sleep-inducing peptide for sleep architecture research.',
@@ -421,7 +421,7 @@ export const products: Product[] = [
   },
   {
     id: 'selank-5mg', name: 'Selank', slug: 'selank-5mg',
-    category: 'glp-1-research', subcategory: 'Neuropeptides',
+    category: 'growth-factors', subcategory: 'Neuropeptides',
     strength: '5mg', price: 35.00, purity: '99.4%',
     molecularWeight: '751.89 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'Synthetic tuftsin analogue for cognitive research.',
@@ -433,7 +433,7 @@ export const products: Product[] = [
   },
   {
     id: 'semax-5mg', name: 'Semax', slug: 'semax-5mg',
-    category: 'glp-1-research', subcategory: 'Neuropeptides',
+    category: 'growth-factors', subcategory: 'Neuropeptides',
     strength: '5mg', price: 35.00, purity: '99.3%',
     molecularWeight: '813.97 g/mol', appearance: 'White lyophilized powder', imageType: 'vial',
     image: imageMap.vial, description: 'ACTH-derived peptide for neuroplasticity research.',
@@ -453,7 +453,7 @@ export const products: Product[] = [
   },
   {
     id: 'pinealon-caps', name: 'Pinealon (Capsules)', slug: 'pinealon-caps',
-    category: 'glp-1-research', subcategory: 'Neuropeptides',
+    category: 'growth-factors', subcategory: 'Neuropeptides',
     strength: '100 count', price: 99.00, purity: '99.0%',
     appearance: 'White capsules in HDPE bottle', imageType: 'capsule',
     image: imageMap.capsule, description: 'Short peptide bioregulator for cellular signaling research.',

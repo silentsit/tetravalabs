@@ -1,6 +1,7 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import { resolveStorefrontCategoryName } from "../lib/storefront-categories.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -48,7 +49,8 @@ const run = async () => {
       grouped.set(productId, {
         id: productId,
         title: row.name,
-        category: row.category,
+        category: row.storefront_category || resolveStorefrontCategoryName(row.name, row.category),
+        source_category: row.category,
         handle: slugify(row.name),
         visual_type: visualType(row.name, row.strength),
         metadata: {

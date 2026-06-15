@@ -16,7 +16,8 @@ export const categoryArt: CategoryArt[] = [
   {
     slug: "growth-factors",
     name: "Growth Factors",
-    description: "BPC-157, TB-500, GHK-Cu and other tissue repair research peptides.",
+    description:
+      "BPC-157, TB-500, GHK-Cu, growth hormone secretagogues, IGF-1, neuropeptides, and other tissue repair research peptides.",
     image: "/v2/cat-growth.jpg"
   },
   {

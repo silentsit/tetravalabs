@@ -1,5 +1,20 @@
 import type { StoreProduct } from "@/lib/medusa"
 
+/** Legacy pricing-sheet categories → storefront slug (pre-normalization Medusa data). */
+const LEGACY_SOURCE_TO_SLUG: Record<string, string> = {
+  "glp-1-incretin": "glp-1-research",
+  "supplies-reconstitution": "lab-supplies",
+  "bpc-157-tb500": "growth-factors",
+  blends: "research-blends",
+  "cjc-ipamorelin-ghrp": "growth-factors",
+  "growth-hormone-axis": "growth-factors",
+  "mitochondrial-metabolic-other": "growth-factors",
+  "cosmetic-copper-tanning": "growth-factors",
+  "longevity-thymic-neuropeptides": "growth-factors",
+  "vitamins-injectables": "growth-factors",
+  "legacy-catalog": "growth-factors",
+}
+
 export function slugifyCategory(name: string) {
   return name
     .toLowerCase()
@@ -7,10 +22,18 @@ export function slugifyCategory(name: string) {
     .replace(/^-+|-+$/g, "")
 }
 
+export function categorySlugFromLabel(label: string) {
+  const slug = slugifyCategory(label)
+  if (slug === "glp-1-research" || slug === "growth-factors" || slug === "research-blends" || slug === "lab-supplies") {
+    return slug
+  }
+  return LEGACY_SOURCE_TO_SLUG[slug] || slug
+}
+
 export function categoryLabelFromSlug(slug: string, products: StoreProduct[]) {
   for (const product of products) {
     const label = String(product.metadata?.source_category || "")
-    if (label && slugifyCategory(label) === slug.toLowerCase()) {
+    if (label && categorySlugFromLabel(label) === slug.toLowerCase()) {
       return label
     }
   }
@@ -22,15 +45,16 @@ export function groupProductsByCategory(products: StoreProduct[]) {
 
   for (const product of products) {
     const label = String(product.metadata?.source_category || "Research Product")
-    const existing = groups.get(label) || []
+    const slug = categorySlugFromLabel(label)
+    const existing = groups.get(slug) || []
     existing.push(product)
-    groups.set(label, existing)
+    groups.set(slug, existing)
   }
 
   return [...groups.entries()]
-    .map(([name, items]) => ({
-      name,
-      slug: slugifyCategory(name),
+    .map(([slug, items]) => ({
+      name: items[0] ? String(items[0].metadata?.source_category || slug) : slug,
+      slug,
       count: items.length,
       products: items
     }))
@@ -52,6 +76,6 @@ export function filterProductsByCategorySlug(products: StoreProduct[], slug: str
   const normalized = slug.toLowerCase()
   return products.filter((product) => {
     const label = String(product.metadata?.source_category || "")
-    return slugifyCategory(label) === normalized
+    return categorySlugFromLabel(label) === normalized
   })
 }

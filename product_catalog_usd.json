@@ -4,874 +4,999 @@
     "name": "Acetic Acid Water",
     "strength": "3ml",
     "price_usd": 10.99,
-    "slug": "acetic-acid-water-3ml"
+    "slug": "acetic-acid-water-3ml",
+    "storefront_category": "Lab Supplies"
   },
   {
     "category": "Supplies & Reconstitution",
     "name": "Bacteriostatic Water",
     "strength": "3ml",
     "price_usd": 8.99,
-    "slug": "bacteriostatic-water-3ml"
+    "slug": "bacteriostatic-water-3ml",
+    "storefront_category": "Lab Supplies"
   },
   {
     "category": "Supplies & Reconstitution",
     "name": "Bacteriostatic Water",
     "strength": "10ml",
     "price_usd": 10.99,
-    "slug": "bacteriostatic-water-10ml"
+    "slug": "bacteriostatic-water-10ml",
+    "storefront_category": "Lab Supplies"
   },
   {
     "category": "Supplies & Reconstitution",
     "name": "Benzyl Alcohol",
     "strength": "3ml",
     "price_usd": 7.99,
-    "slug": "benzyl-alcohol-3ml"
+    "slug": "benzyl-alcohol-3ml",
+    "storefront_category": "Lab Supplies"
   },
   {
     "category": "Supplies & Reconstitution",
     "name": "Benzyl Alcohol",
     "strength": "10ml",
     "price_usd": 9.99,
-    "slug": "benzyl-alcohol-10ml"
+    "slug": "benzyl-alcohol-10ml",
+    "storefront_category": "Lab Supplies"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "5-Amino-1MQ",
     "strength": "5mg",
-    "price_usd": 29.0,
-    "slug": "5-amino-1mq-5mg"
+    "price_usd": 29,
+    "slug": "5-amino-1mq-5mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "5-Amino-1MQ",
     "strength": "10mg",
-    "price_usd": 49.0,
-    "slug": "5-amino-1mq-10mg"
+    "price_usd": 49,
+    "slug": "5-amino-1mq-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "AOD-9604",
     "strength": "5mg",
-    "price_usd": 55.0,
-    "slug": "aod-9604-5mg"
+    "price_usd": 55,
+    "slug": "aod-9604-5mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "AOD-9604",
     "strength": "10mg",
-    "price_usd": 95.0,
-    "slug": "aod-9604-10mg"
+    "price_usd": 95,
+    "slug": "aod-9604-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Cagrilintide",
     "strength": "5mg",
-    "price_usd": 79.0,
-    "slug": "cagrilintide-5mg"
+    "price_usd": 79,
+    "slug": "cagrilintide-5mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Cagrilintide",
     "strength": "10mg",
-    "price_usd": 149.0,
-    "slug": "cagrilintide-10mg"
+    "price_usd": 149,
+    "slug": "cagrilintide-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Cagrilintide + Semaglutide",
     "strength": "5mg",
-    "price_usd": 159.0,
-    "slug": "cagrilintide-semaglutide-5mg"
+    "price_usd": 159,
+    "slug": "cagrilintide-semaglutide-5mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Cagrilintide + Semaglutide",
     "strength": "10mg",
-    "price_usd": 299.0,
-    "slug": "cagrilintide-semaglutide-10mg"
+    "price_usd": 299,
+    "slug": "cagrilintide-semaglutide-10mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Mazdutide",
     "strength": "5mg",
-    "price_usd": 79.0,
-    "slug": "mazdutide-5mg"
+    "price_usd": 79,
+    "slug": "mazdutide-5mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Mazdutide",
     "strength": "10mg",
-    "price_usd": 119.0,
-    "slug": "mazdutide-10mg"
+    "price_usd": 119,
+    "slug": "mazdutide-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Retatrutide",
     "strength": "5mg",
-    "price_usd": 109.0,
-    "slug": "retatrutide-5mg"
+    "price_usd": 109,
+    "slug": "retatrutide-5mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Retatrutide",
     "strength": "10mg",
-    "price_usd": 129.0,
-    "slug": "retatrutide-10mg"
+    "price_usd": 129,
+    "slug": "retatrutide-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Retatrutide",
     "strength": "20mg",
-    "price_usd": 209.0,
-    "slug": "retatrutide-20mg"
+    "price_usd": 209,
+    "slug": "retatrutide-20mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Retatrutide",
     "strength": "50mg",
-    "price_usd": 469.0,
-    "slug": "retatrutide-50mg"
+    "price_usd": 469,
+    "slug": "retatrutide-50mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Retatrutide",
     "strength": "100mg",
-    "price_usd": 929.0,
-    "slug": "retatrutide-100mg"
+    "price_usd": 929,
+    "slug": "retatrutide-100mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Semaglutide",
     "strength": "5mg",
-    "price_usd": 89.0,
-    "slug": "semaglutide-5mg"
+    "price_usd": 89,
+    "slug": "semaglutide-5mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Semaglutide",
     "strength": "10mg",
-    "price_usd": 129.0,
-    "slug": "semaglutide-10mg"
+    "price_usd": 129,
+    "slug": "semaglutide-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Sermorelin",
     "strength": "5mg",
-    "price_usd": 59.0,
-    "slug": "sermorelin-5mg"
+    "price_usd": 59,
+    "slug": "sermorelin-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Sermorelin",
     "strength": "10mg",
-    "price_usd": 109.0,
-    "slug": "sermorelin-10mg"
+    "price_usd": 109,
+    "slug": "sermorelin-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Survodutide",
     "strength": "10mg",
-    "price_usd": 109.0,
-    "slug": "survodutide-10mg"
+    "price_usd": 109,
+    "slug": "survodutide-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Tesamorelin",
     "strength": "5mg",
-    "price_usd": 49.0,
-    "slug": "tesamorelin-5mg"
+    "price_usd": 49,
+    "slug": "tesamorelin-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Tesamorelin",
     "strength": "10mg",
-    "price_usd": 79.0,
-    "slug": "tesamorelin-10mg"
+    "price_usd": 79,
+    "slug": "tesamorelin-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Tesamorelin",
     "strength": "20mg",
-    "price_usd": 119.0,
-    "slug": "tesamorelin-20mg"
+    "price_usd": 119,
+    "slug": "tesamorelin-20mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Tirzepatide",
     "strength": "5mg",
-    "price_usd": 49.0,
-    "slug": "tirzepatide-5mg"
+    "price_usd": 49,
+    "slug": "tirzepatide-5mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Tirzepatide",
     "strength": "10mg",
-    "price_usd": 89.0,
-    "slug": "tirzepatide-10mg"
+    "price_usd": 89,
+    "slug": "tirzepatide-10mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Tirzepatide",
     "strength": "20mg",
-    "price_usd": 179.0,
-    "slug": "tirzepatide-20mg"
+    "price_usd": 179,
+    "slug": "tirzepatide-20mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "GLP-1 / Incretin",
     "name": "Tirzepatide",
     "strength": "50mg",
-    "price_usd": 429.0,
-    "slug": "tirzepatide-50mg"
+    "price_usd": 429,
+    "slug": "tirzepatide-50mg",
+    "storefront_category": "GLP-1 Research"
   },
   {
     "category": "BPC-157 / TB500",
     "name": "BPC-157",
     "strength": "5mg",
-    "price_usd": 39.0,
-    "slug": "bpc-157-5mg"
+    "price_usd": 39,
+    "slug": "bpc-157-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "BPC-157 / TB500",
     "name": "BPC-157",
     "strength": "10mg",
-    "price_usd": 69.0,
-    "slug": "bpc-157-10mg"
+    "price_usd": 69,
+    "slug": "bpc-157-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "BPC-157 / TB500",
     "name": "BPC-157 (Capsules)",
     "strength": "100 count (500mcg)",
-    "price_usd": 85.0,
-    "slug": "bpc-157-capsules-100ct"
+    "price_usd": 85,
+    "slug": "bpc-157-capsules-100ct",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "BPC-157 / TB500",
     "name": "TB500",
     "strength": "5mg",
-    "price_usd": 49.0,
-    "slug": "tb500-5mg"
+    "price_usd": 49,
+    "slug": "tb500-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "BPC-157 / TB500",
     "name": "TB500",
     "strength": "10mg",
-    "price_usd": 79.0,
-    "slug": "tb500-10mg"
+    "price_usd": 79,
+    "slug": "tb500-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Blends",
     "name": "BPC-157 5mg + TB500 5mg",
     "strength": "10mg",
-    "price_usd": 109.0,
-    "slug": "bpc-157-tb500-blend-10mg"
+    "price_usd": 109,
+    "slug": "bpc-157-tb500-blend-10mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "Blends",
     "name": "BPC-157 5mg + TB500 5mg",
     "strength": "20mg",
-    "price_usd": 149.0,
-    "slug": "bpc-157-tb500-blend-20mg"
+    "price_usd": 149,
+    "slug": "bpc-157-tb500-blend-20mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "Blends",
     "name": "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
     "strength": "80mg",
-    "price_usd": 229.0,
-    "slug": "cu-tb500-bpc-157-kpv-blend-80mg"
+    "price_usd": 229,
+    "slug": "cu-tb500-bpc-157-kpv-blend-80mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "Blends",
     "name": "Glow BPC-157 + TB500 + GHK-Cu",
     "strength": "30mg",
-    "price_usd": 89.0,
-    "slug": "glow-blend-30mg"
+    "price_usd": 89,
+    "slug": "glow-blend-30mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "Blends",
     "name": "Glow BPC-157 + TB500 + GHK-Cu",
     "strength": "85mg",
-    "price_usd": 179.0,
-    "slug": "glow-blend-85mg"
+    "price_usd": 179,
+    "slug": "glow-blend-85mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "Blends",
     "name": "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg",
     "strength": "70mg",
-    "price_usd": 149.0,
-    "slug": "glow-tb500-bpc-157-ghk-cu-70mg"
+    "price_usd": 149,
+    "slug": "glow-tb500-bpc-157-ghk-cu-70mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "CJC-1295 with DAC",
     "strength": "5mg",
-    "price_usd": 139.0,
-    "slug": "cjc-1295-with-dac-5mg"
+    "price_usd": 139,
+    "slug": "cjc-1295-with-dac-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "CJC-1295 with DAC",
     "strength": "10mg",
-    "price_usd": 279.0,
-    "slug": "cjc-1295-with-dac-10mg"
+    "price_usd": 279,
+    "slug": "cjc-1295-with-dac-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "CJC-1295 without DAC",
     "strength": "5mg",
-    "price_usd": 49.0,
-    "slug": "cjc-1295-without-dac-5mg"
+    "price_usd": 49,
+    "slug": "cjc-1295-without-dac-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "CJC-1295 without DAC",
     "strength": "10mg",
-    "price_usd": 79.0,
-    "slug": "cjc-1295-without-dac-10mg"
+    "price_usd": 79,
+    "slug": "cjc-1295-without-dac-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "CJC-1295 without DAC / Ipamorelin Blend",
     "strength": "10mg",
-    "price_usd": 79.0,
-    "slug": "cjc-1295-ipamorelin-blend-10mg"
+    "price_usd": 79,
+    "slug": "cjc-1295-ipamorelin-blend-10mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend",
     "strength": "5mg",
-    "price_usd": 109.0,
-    "slug": "cjc-1295-sermorelin-ipamorelin-blend-5mg"
+    "price_usd": 109,
+    "slug": "cjc-1295-sermorelin-ipamorelin-blend-5mg",
+    "storefront_category": "Research Blends"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "GHRP-2 Acetate",
     "strength": "5mg",
-    "price_usd": 29.0,
-    "slug": "ghrp-2-acetate-5mg"
+    "price_usd": 29,
+    "slug": "ghrp-2-acetate-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "GHRP-2 Acetate",
     "strength": "10mg",
-    "price_usd": 49.0,
-    "slug": "ghrp-2-acetate-10mg"
+    "price_usd": 49,
+    "slug": "ghrp-2-acetate-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "GHRP-6 Acetate",
     "strength": "5mg",
-    "price_usd": 39.0,
-    "slug": "ghrp-6-acetate-5mg"
+    "price_usd": 39,
+    "slug": "ghrp-6-acetate-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "GHRP-6 Acetate",
     "strength": "10mg",
-    "price_usd": 59.0,
-    "slug": "ghrp-6-acetate-10mg"
+    "price_usd": 59,
+    "slug": "ghrp-6-acetate-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "Hexarelin Acetate",
     "strength": "2mg",
-    "price_usd": 39.0,
-    "slug": "hexarelin-acetate-2mg"
+    "price_usd": 39,
+    "slug": "hexarelin-acetate-2mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "Hexarelin Acetate",
     "strength": "5mg",
-    "price_usd": 59.0,
-    "slug": "hexarelin-acetate-5mg"
+    "price_usd": 59,
+    "slug": "hexarelin-acetate-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "Ipamorelin",
     "strength": "5mg",
-    "price_usd": 39.0,
-    "slug": "ipamorelin-5mg"
+    "price_usd": 39,
+    "slug": "ipamorelin-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "CJC / Ipamorelin / GHRP",
     "name": "Ipamorelin",
     "strength": "10mg",
-    "price_usd": 59.0,
-    "slug": "ipamorelin-10mg"
+    "price_usd": 59,
+    "slug": "ipamorelin-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "Gonadorelin",
     "strength": "2mg",
-    "price_usd": 29.0,
-    "slug": "gonadorelin-2mg"
+    "price_usd": 29,
+    "slug": "gonadorelin-2mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "Gonadorelin",
     "strength": "10mg",
-    "price_usd": 89.0,
-    "slug": "gonadorelin-10mg"
+    "price_usd": 89,
+    "slug": "gonadorelin-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HCG",
     "strength": "5000 IU",
-    "price_usd": 49.0,
-    "slug": "hcg-5000-iu"
+    "price_usd": 49,
+    "slug": "hcg-5000-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HCG",
     "strength": "10000 IU",
-    "price_usd": 69.0,
-    "slug": "hcg-10000-iu"
+    "price_usd": 69,
+    "slug": "hcg-10000-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HGH 191aa",
     "strength": "10 IU",
-    "price_usd": 49.0,
-    "slug": "hgh-191aa-10-iu"
+    "price_usd": 49,
+    "slug": "hgh-191aa-10-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HGH 191aa",
     "strength": "12 IU",
-    "price_usd": 55.0,
-    "slug": "hgh-191aa-12-iu"
+    "price_usd": 55,
+    "slug": "hgh-191aa-12-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HGH 191aa",
     "strength": "15 IU",
-    "price_usd": 59.0,
-    "slug": "hgh-191aa-15-iu"
+    "price_usd": 59,
+    "slug": "hgh-191aa-15-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HGH 191aa",
     "strength": "24 IU",
-    "price_usd": 79.0,
-    "slug": "hgh-191aa-24-iu"
+    "price_usd": 79,
+    "slug": "hgh-191aa-24-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HGH 191aa",
     "strength": "36 IU",
-    "price_usd": 85.0,
-    "slug": "hgh-191aa-36-iu"
+    "price_usd": 85,
+    "slug": "hgh-191aa-36-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "HMG",
     "strength": "75 IU",
-    "price_usd": 39.0,
-    "slug": "hmg-75-iu"
+    "price_usd": 39,
+    "slug": "hmg-75-iu",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "IGF-1 LR3",
     "strength": "0.1mg",
-    "price_usd": 29.0,
-    "slug": "igf-1-lr3-0-1mg"
+    "price_usd": 29,
+    "slug": "igf-1-lr3-0-1mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "IGF-1 LR3",
     "strength": "1mg",
-    "price_usd": 89.0,
-    "slug": "igf-1-lr3-1mg"
+    "price_usd": 89,
+    "slug": "igf-1-lr3-1mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "MGF",
     "strength": "2mg",
-    "price_usd": 29.0,
-    "slug": "mgf-2mg"
+    "price_usd": 29,
+    "slug": "mgf-2mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Growth Hormone Axis",
     "name": "PEG-MGF",
     "strength": "2mg",
-    "price_usd": 49.0,
-    "slug": "peg-mgf-2mg"
+    "price_usd": 49,
+    "slug": "peg-mgf-2mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "Adipotide",
     "strength": "2mg",
-    "price_usd": 29.0,
-    "slug": "adipotide-2mg"
+    "price_usd": 29,
+    "slug": "adipotide-2mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "Adipotide",
     "strength": "5mg",
-    "price_usd": 59.0,
-    "slug": "adipotide-5mg"
+    "price_usd": 59,
+    "slug": "adipotide-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "AICAR",
     "strength": "50mg",
-    "price_usd": 55.0,
-    "slug": "aicar-50mg"
+    "price_usd": 55,
+    "slug": "aicar-50mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "MOTS-c",
     "strength": "5mg",
-    "price_usd": 50.0,
-    "slug": "mots-c-5mg"
+    "price_usd": 50,
+    "slug": "mots-c-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "MOTS-c",
     "strength": "10mg",
-    "price_usd": 70.0,
-    "slug": "mots-c-10mg"
+    "price_usd": 70,
+    "slug": "mots-c-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "MOTS-c",
     "strength": "20mg",
-    "price_usd": 80.0,
-    "slug": "mots-c-20mg"
+    "price_usd": 80,
+    "slug": "mots-c-20mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "MOTS-c",
     "strength": "40mg",
-    "price_usd": 140.0,
-    "slug": "mots-c-40mg"
+    "price_usd": 140,
+    "slug": "mots-c-40mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "SS-31",
     "strength": "10mg",
-    "price_usd": 69.0,
-    "slug": "ss-31-10mg"
+    "price_usd": 69,
+    "slug": "ss-31-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "SS-31",
     "strength": "25mg",
-    "price_usd": 109.0,
-    "slug": "ss-31-25mg"
+    "price_usd": 109,
+    "slug": "ss-31-25mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Mitochondrial / Metabolic Other",
     "name": "SS-31",
     "strength": "50mg",
-    "price_usd": 179.0,
-    "slug": "ss-31-50mg"
+    "price_usd": 179,
+    "slug": "ss-31-50mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Cosmetic / Copper / Tanning",
     "name": "GHK-Cu",
     "strength": "50mg",
-    "price_usd": 49.0,
-    "slug": "ghk-cu-50mg"
+    "price_usd": 49,
+    "slug": "ghk-cu-50mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Cosmetic / Copper / Tanning",
     "name": "GHK-Cu",
     "strength": "100mg",
-    "price_usd": 59.0,
-    "slug": "ghk-cu-100mg"
+    "price_usd": 59,
+    "slug": "ghk-cu-100mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Cosmetic / Copper / Tanning",
     "name": "Melanotan 1",
     "strength": "10mg",
-    "price_usd": 39.0,
-    "slug": "melanotan-1-10mg"
+    "price_usd": 39,
+    "slug": "melanotan-1-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Cosmetic / Copper / Tanning",
     "name": "Melanotan 2",
     "strength": "10mg",
-    "price_usd": 35.0,
-    "slug": "melanotan-2-10mg"
+    "price_usd": 35,
+    "slug": "melanotan-2-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Cosmetic / Copper / Tanning",
     "name": "Snap-8",
     "strength": "10mg",
-    "price_usd": 35.0,
-    "slug": "snap-8-10mg"
+    "price_usd": 35,
+    "slug": "snap-8-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "ARA-290",
     "strength": "10mg",
-    "price_usd": 59.0,
-    "slug": "ara-290-10mg"
+    "price_usd": 59,
+    "slug": "ara-290-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Bremelanotide",
     "strength": "5mg",
-    "price_usd": 49.0,
-    "slug": "bremelanotide-5mg"
+    "price_usd": 49,
+    "slug": "bremelanotide-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Bremelanotide",
     "strength": "10mg",
-    "price_usd": 59.0,
-    "slug": "bremelanotide-10mg"
+    "price_usd": 59,
+    "slug": "bremelanotide-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Dermorphin",
     "strength": "5mg",
-    "price_usd": 79.0,
-    "slug": "dermorphin-5mg"
+    "price_usd": 79,
+    "slug": "dermorphin-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "DSIP",
     "strength": "5mg",
-    "price_usd": 30.0,
-    "slug": "dsip-5mg"
+    "price_usd": 30,
+    "slug": "dsip-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "DSIP",
     "strength": "10mg",
-    "price_usd": 45.0,
-    "slug": "dsip-10mg"
+    "price_usd": 45,
+    "slug": "dsip-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "DSIP",
     "strength": "15mg",
-    "price_usd": 55.0,
-    "slug": "dsip-15mg"
+    "price_usd": 55,
+    "slug": "dsip-15mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Epithalon",
     "strength": "10mg",
-    "price_usd": 45.0,
-    "slug": "epithalon-10mg"
+    "price_usd": 45,
+    "slug": "epithalon-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Epithalon",
     "strength": "20mg",
-    "price_usd": 70.0,
-    "slug": "epithalon-20mg"
+    "price_usd": 70,
+    "slug": "epithalon-20mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Epithalon",
     "strength": "50mg",
-    "price_usd": 120.0,
-    "slug": "epithalon-50mg"
+    "price_usd": 120,
+    "slug": "epithalon-50mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "FOXO4-DRI",
     "strength": "10mg",
-    "price_usd": 149.0,
-    "slug": "foxo4-dri-10mg"
+    "price_usd": 149,
+    "slug": "foxo4-dri-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Kisspeptin-10",
     "strength": "5mg",
-    "price_usd": 25.0,
-    "slug": "kisspeptin-10-5mg"
+    "price_usd": 25,
+    "slug": "kisspeptin-10-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Kisspeptin-10",
     "strength": "10mg",
-    "price_usd": 65.0,
-    "slug": "kisspeptin-10-10mg"
+    "price_usd": 65,
+    "slug": "kisspeptin-10-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "KPV",
     "strength": "5mg",
-    "price_usd": 35.0,
-    "slug": "kpv-5mg"
+    "price_usd": 35,
+    "slug": "kpv-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "KPV",
     "strength": "10mg",
-    "price_usd": 55.0,
-    "slug": "kpv-10mg"
+    "price_usd": 55,
+    "slug": "kpv-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "LL-37",
     "strength": "5mg",
-    "price_usd": 69.0,
-    "slug": "ll-37-5mg"
+    "price_usd": 69,
+    "slug": "ll-37-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "NAD+",
     "strength": "100mg",
-    "price_usd": 40.0,
-    "slug": "nad-plus-100mg"
+    "price_usd": 40,
+    "slug": "nad-plus-100mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "NAD+",
     "strength": "500mg",
-    "price_usd": 75.0,
-    "slug": "nad-plus-500mg"
+    "price_usd": 75,
+    "slug": "nad-plus-500mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "NAD+",
     "strength": "1000mg",
-    "price_usd": 150.0,
-    "slug": "nad-plus-1000mg"
+    "price_usd": 150,
+    "slug": "nad-plus-1000mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Oxytocin Acetate",
     "strength": "2mg",
-    "price_usd": 25.0,
-    "slug": "oxytocin-acetate-2mg"
+    "price_usd": 25,
+    "slug": "oxytocin-acetate-2mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Oxytocin Acetate",
     "strength": "5mg",
-    "price_usd": 39.0,
-    "slug": "oxytocin-acetate-5mg"
+    "price_usd": 39,
+    "slug": "oxytocin-acetate-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Oxytocin Acetate",
     "strength": "10mg",
-    "price_usd": 49.0,
-    "slug": "oxytocin-acetate-10mg"
+    "price_usd": 49,
+    "slug": "oxytocin-acetate-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Selank",
     "strength": "5mg",
-    "price_usd": 35.0,
-    "slug": "selank-5mg"
+    "price_usd": 35,
+    "slug": "selank-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Selank",
     "strength": "10mg",
-    "price_usd": 50.0,
-    "slug": "selank-10mg"
+    "price_usd": 50,
+    "slug": "selank-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Semax",
     "strength": "5mg",
-    "price_usd": 35.0,
-    "slug": "semax-5mg"
+    "price_usd": 35,
+    "slug": "semax-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Semax",
     "strength": "10mg",
-    "price_usd": 55.0,
-    "slug": "semax-10mg"
+    "price_usd": 55,
+    "slug": "semax-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Thymalin",
     "strength": "10mg",
-    "price_usd": 39.0,
-    "slug": "thymalin-10mg"
+    "price_usd": 39,
+    "slug": "thymalin-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Thymosin Alpha-1",
     "strength": "5mg",
-    "price_usd": 59.0,
-    "slug": "thymosin-alpha-1-5mg"
+    "price_usd": 59,
+    "slug": "thymosin-alpha-1-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Thymosin Alpha-1",
     "strength": "10mg",
-    "price_usd": 119.0,
-    "slug": "thymosin-alpha-1-10mg"
+    "price_usd": 119,
+    "slug": "thymosin-alpha-1-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "VIP",
     "strength": "10mg",
-    "price_usd": 99.0,
-    "slug": "vip-10mg"
+    "price_usd": 99,
+    "slug": "vip-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Vitamins & Injectables",
     "name": "B-12",
     "strength": "10mg",
-    "price_usd": 29.0,
-    "slug": "b-12-10mg"
+    "price_usd": 29,
+    "slug": "b-12-10mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Vitamins & Injectables",
     "name": "Glutathione",
     "strength": "600mg",
-    "price_usd": 59.0,
-    "slug": "glutathione-600mg"
+    "price_usd": 59,
+    "slug": "glutathione-600mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Vitamins & Injectables",
     "name": "Glutathione",
     "strength": "1500mg",
-    "price_usd": 99.0,
-    "slug": "glutathione-1500mg"
+    "price_usd": 99,
+    "slug": "glutathione-1500mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Vitamins & Injectables",
     "name": "L-Carnitine",
     "strength": "600mg (10ml)",
-    "price_usd": 29.0,
-    "slug": "l-carnitine-600mg-10ml"
+    "price_usd": 29,
+    "slug": "l-carnitine-600mg-10ml",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Vitamins & Injectables",
     "name": "Lemon Bottle",
     "strength": "10ml",
-    "price_usd": 39.0,
-    "slug": "lemon-bottle-10ml"
+    "price_usd": 39,
+    "slug": "lemon-bottle-10ml",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Vitamins & Injectables",
     "name": "Lipo-C",
     "strength": "10ml",
-    "price_usd": 69.0,
-    "slug": "lipo-c-10ml"
+    "price_usd": 69,
+    "slug": "lipo-c-10ml",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Vitamins & Injectables",
     "name": "MK-677",
     "strength": "5mg",
-    "price_usd": 55.0,
-    "slug": "mk-677-5mg"
+    "price_usd": 55,
+    "slug": "mk-677-5mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Legacy Catalog",
     "name": "L-Glu",
     "strength": "100mg",
-    "price_usd": 40.0,
-    "slug": "l-glu-100mg"
+    "price_usd": 40,
+    "slug": "l-glu-100mg",
+    "storefront_category": "Growth Factors"
   },
   {
     "category": "Legacy Catalog",
     "name": "Pinealon (Capsules)",
     "strength": "100 count",
-    "price_usd": 99.0,
-    "slug": "pinealon-capsules-100ct"
+    "price_usd": 99,
+    "slug": "pinealon-capsules-100ct",
+    "storefront_category": "Growth Factors"
   }
 ]

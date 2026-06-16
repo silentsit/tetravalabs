@@ -53,8 +53,8 @@ export function PaymentConfirmation() {
 
         if (active) {
           setPaymentStatus(nextStatus)
-          if (data.provider_url) {
-            setPayUrl((current) => current || data.provider_url)
+          if (data.provider_url && !stored) {
+            setPayUrl(data.provider_url)
             sessionStorage.setItem(payUrlKey(orderId), data.provider_url)
           }
         }

@@ -173,13 +173,15 @@ export async function POST(req: Request) {
     const cryptoProvider = intent?.ok === false ? null : intent?.provider || null
     const paymentError = intent?.ok === false ? intent.message || "Crypto payment setup failed" : null
 
-    const emailResult = await sendOrderConfirmationEmail({
+    void sendOrderConfirmationEmail({
       email,
       orderId: order.id,
       displayId: order.display_id,
       total: totalUsd,
       paymentUrl,
       items: emailItems
+    }).catch(() => {
+      // Email failure must not block checkout.
     })
 
     return NextResponse.json({
@@ -193,9 +195,7 @@ export async function POST(req: Request) {
       payment_url: paymentUrl,
       payment_provider: cryptoProvider,
       payment_error: paymentError,
-      crypto_asset: cryptoAsset,
-      email_sent: emailResult.ok && emailResult.emailed === true,
-      email_skipped: emailResult.ok && "skipped" in emailResult ? emailResult.skipped : undefined
+      crypto_asset: cryptoAsset
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : "Medusa checkout failed"

@@ -20,8 +20,8 @@
     "ghk-cu-50mg": "/products/ghk-cu-100mg.jpg",
     "bpc157-tb500-blend": "/products/blend-bpc157-tb500.jpg",
     "cjc-ipamorelin-blend": "/v2/cat-blends.jpg",
-    "bac-water-3ml": "/products/bac-water-10ml.jpg",
-    "acetic-acid-3ml": "/products/vial-water.jpg",
+    "bac-water-3ml": "/products/bac-water-10ml.png",
+    "acetic-acid-3ml": "/products/acetic-acid-3ml.png",
     "mk677-5mg": "/products/mk677-5mg.jpg",
     "melanotan2-10mg": "/products/melanotan2-10mg.jpg",
     "ghk-cu-100mg": "/products/ghk-cu-100mg.jpg",
@@ -38,17 +38,17 @@
     "bremelanotide-10mg": "/products/bremelanotide-10mg.jpg",
     "hcg-5000iu": "/products/hcg-5000iu.jpg",
     "igf1-lr3-1mg": "/products/igf1-lr3-1mg.jpg",
-    "bpc157-caps": "/products/pinealon-caps.jpg",
-    "pinealon-caps": "/products/pinealon-caps.jpg"
+    "bpc157-caps": "/products/bpc-157-capsules.png",
+    "pinealon-caps": "/products/pinealon-capsules.png"
   },
   "aliases": {
     "acetic-acid-water": {
       "slug": "acetic-acid-3ml",
-      "image": "/products/vial-water.jpg"
+      "image": "/products/acetic-acid-3ml.png"
     },
     "bacteriostatic-water": {
-      "slug": "5amino1mq-5mg",
-      "image": "/products/5amino1mq-10mg.jpg"
+      "slug": "bac-water-3ml",
+      "image": "/products/bac-water-10ml.png"
     },
     "benzyl-alcohol": {
       "slug": "5amino1mq-5mg",
@@ -104,7 +104,7 @@
     },
     "bpc-157-capsules": {
       "slug": "bpc-157-capsules",
-      "image": "/products/bottle-capsules.jpg"
+      "image": "/products/bpc-157-capsules.png"
     },
     "tb500": {
       "slug": "tb500-5mg",
@@ -312,7 +312,7 @@
     },
     "pinealon-capsules": {
       "slug": "pinealon-capsules",
-      "image": "/products/bottle-capsules.jpg"
+      "image": "/products/pinealon-capsules.png"
     }
   }
 }

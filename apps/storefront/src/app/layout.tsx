@@ -36,7 +36,11 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description
   },
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
+  icons: {
+    icon: "/brand/tetravalabs-icon.jpg",
+    apple: "/brand/tetravalabs-icon.jpg"
+  }
 }
 
 export default async function RootLayout({

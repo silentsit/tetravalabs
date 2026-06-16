@@ -1,24 +1,5 @@
 import Link from "next/link"
-
-function FooterLogoIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden
-    >
-      <path d="M10 2v6.292a7 7 0 1 0 4 0V2" />
-      <path d="M5 2h14" />
-      <path d="M8.5 2h7" />
-    </svg>
-  )
-}
+import { SiteLogo } from "@/components/site-logo"
 
 const shopLinks = [
   { label: "GLP-1 Research", href: "/shop?category=glp-1-research" },
@@ -48,11 +29,8 @@ export function SiteFooter() {
       <div className="page-container py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="flex items-center gap-2">
-              <FooterLogoIcon className="h-5 w-5 text-[#0D9488]" />
-              <span className="font-mono text-sm font-medium tracking-[0.15em]">
-                TETRAVA<span className="ml-1 text-[#64748B]">Labs</span>
-              </span>
+            <Link href="/" className="inline-flex shrink-0 items-center">
+              <SiteLogo variant="footer" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-[#94A3B8]">
               Research-grade peptides and compounds for qualified laboratory professionals.

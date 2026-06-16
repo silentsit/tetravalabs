@@ -3,8 +3,9 @@
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
-import { ArrowRight, FlaskConical, Menu, Search, ShoppingCart, X } from "lucide-react"
+import { ArrowRight, Menu, Search, ShoppingCart, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
+import { SiteLogo } from "@/components/site-logo"
 
 const navLinks = [
   { label: "Shop", href: "/shop" },
@@ -54,11 +55,8 @@ export function SiteHeader() {
         }`}
       >
         <div className="page-container flex h-full items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <FlaskConical className="h-5 w-5 text-[#0D9488]" />
-            <span className="font-mono text-sm font-medium tracking-[0.15em] text-[#0F172A]">
-              TETRAVA<span className="ml-1 font-normal text-[#94A3B8]">Labs</span>
-            </span>
+          <Link href="/" className="flex shrink-0 items-center">
+            <SiteLogo />
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
@@ -176,11 +174,8 @@ export function SiteHeader() {
         <div className="fixed inset-0 z-[60] bg-white">
           <div className="flex h-full flex-col p-6">
             <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-2">
-                <FlaskConical className="h-5 w-5 text-[#0D9488]" />
-                <span className="font-mono text-sm font-medium tracking-[0.15em] text-[#0F172A]">
-                  TETRAVA<span className="text-[#94A3B8]">Labs</span>
-                </span>
+              <Link href="/" className="flex shrink-0 items-center">
+                <SiteLogo />
               </Link>
               <button type="button" onClick={() => setMobileOpen(false)} className="text-[#475569]">
                 <X className="h-6 w-6" />

@@ -79,6 +79,7 @@ export default async function ShopPage({ searchParams }: Props) {
   const categorySections = showCategorySections
     ? getStorefrontCategorySections(displayProducts, sortKey)
     : []
+  const useCategorySections = showCategorySections && categorySections.length > 0
 
   return (
     <section className="page-container space-y-8 py-8">
@@ -169,7 +170,7 @@ export default async function ShopPage({ searchParams }: Props) {
         {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
       </p>
 
-      {showCategorySections ? (
+      {useCategorySections ? (
         <div className="space-y-14">
           {categorySections.map((section) => (
             <section key={section.slug} className="space-y-6">

@@ -1,11 +1,46 @@
 const collection = process.env.TYPESENSE_COLLECTION || "products"
 
+function normalizeTypesenseHost(rawHost?: string) {
+  let host = (rawHost || "").trim()
+  if (!host) {
+    return { host: "localhost", protocolOverride: null as string | null, portOverride: null as number | null }
+  }
+
+  if (host.includes("://")) {
+    try {
+      const parsed = new URL(host)
+      return {
+        host: parsed.hostname,
+        protocolOverride: parsed.protocol.replace(":", "") || null,
+        portOverride: parsed.port ? Number(parsed.port) : null
+      }
+    } catch {
+      // Fall through.
+    }
+  }
+
+  host = host.replace(/^https?:\/\//i, "").replace(/\/+$/, "")
+  const slashIndex = host.indexOf("/")
+  if (slashIndex !== -1) {
+    host = host.slice(0, slashIndex)
+  }
+
+  const colonIndex = host.lastIndexOf(":")
+  if (colonIndex > 0 && /^\d+$/.test(host.slice(colonIndex + 1))) {
+    const portOverride = Number(host.slice(colonIndex + 1))
+    host = host.slice(0, colonIndex)
+    return { host, protocolOverride: null, portOverride }
+  }
+
+  return { host, protocolOverride: null, portOverride: null }
+}
+
 export function getTypesenseNodeConfig(env: NodeJS.ProcessEnv = process.env) {
-  const host = (env.TYPESENSE_HOST || "localhost").trim()
-  const protocol = (env.TYPESENSE_PROTOCOL || "http").trim()
+  const normalized = normalizeTypesenseHost(env.TYPESENSE_HOST)
+  const protocol = (normalized.protocolOverride || env.TYPESENSE_PROTOCOL || "http").trim()
   const defaultPort = protocol === "https" ? 443 : 8108
-  const port = Number(env.TYPESENSE_PORT || defaultPort)
-  return { host, port, protocol, defaultPort }
+  const port = Number(normalized.portOverride ?? env.TYPESENSE_PORT ?? defaultPort)
+  return { host: normalized.host, port, protocol, defaultPort }
 }
 
 export function buildTypesenseBaseUrl(env: NodeJS.ProcessEnv = process.env) {

@@ -3,7 +3,7 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import dotenv from "dotenv"
 import Typesense from "typesense"
-import { buildTypesenseBaseUrl, getTypesenseNodeConfig } from "../lib/typesense-config.mjs"
+import { buildTypesenseBaseUrl, getTypesenseNodeConfig, isTypesenseConfigured } from "../lib/typesense-config.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -141,6 +141,22 @@ async function ensureCollection() {
 }
 
 async function run() {
+  if (!isTypesenseConfigured()) {
+    console.warn(
+      "Typesense not configured (set TYPESENSE_HOST and TYPESENSE_API_KEY on Render). Skipping index — search uses catalog fallback until configured."
+    )
+    process.exit(0)
+  }
+
+  try {
+    new URL(buildTypesenseBaseUrl())
+  } catch {
+    console.warn(
+      `Invalid Typesense config — skipping index. Set TYPESENSE_HOST to hostname only (e.g. cluster.a1.typesense.net), TYPESENSE_PROTOCOL=https, TYPESENSE_PORT=443. Got: ${process.env.TYPESENSE_HOST}`
+    )
+    process.exit(0)
+  }
+
   const documents = (await fetchMedusaProducts()) ?? (await loadCatalogProducts())
   const source =
     documents.length > 0 && String(documents[0].id).startsWith("prod_") ? "medusa" : "catalog"
@@ -166,9 +182,16 @@ run().catch((error) => {
     message.includes("ECONNREFUSED") ||
     message.includes("ENOTFOUND") ||
     message.includes("getaddrinfo") ||
+    message.includes("Invalid URL") ||
     message === "AggregateError"
   ) {
-    console.warn("Typesense is not reachable. Start the service and rerun `npm run typesense:index`.")
+    if (message.includes("Invalid URL")) {
+      console.warn(
+        `Typesense URL invalid. Set TYPESENSE_HOST to hostname only (e.g. xxx.a1.typesense.net), TYPESENSE_PROTOCOL=https, TYPESENSE_PORT=443. Current host: ${process.env.TYPESENSE_HOST}`
+      )
+    } else {
+      console.warn("Typesense is not reachable. Start the service and rerun `npm run typesense:index`.")
+    }
     process.exit(0)
   }
   console.error("Typesense indexing failed:", message)

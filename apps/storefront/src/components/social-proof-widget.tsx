@@ -55,6 +55,10 @@ const reviews = [
   }
 ]
 
+function randomToastIntervalMs() {
+  return 5 * 60 * 1000 + Math.floor(Math.random() * 5 * 60 * 1000)
+}
+
 export function SocialProofToast() {
   const [current, setCurrent] = useState(0)
   const [visible, setVisible] = useState(false)
@@ -62,21 +66,31 @@ export function SocialProofToast() {
 
   useEffect(() => {
     if (dismissed) return
-    const initialDelayMs = 18_000
-    const cycleMs = 32_000
 
-    const t = setTimeout(() => setVisible(true), initialDelayMs)
-    const cycle = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setCurrent((p) => (p + 1) % notifications.length)
-        setVisible(true)
-      }, 500)
-    }, cycleMs)
+    let cancelled = false
+    let timeoutId: number
+    let hideTimeoutId: number
+
+    const showNext = () => {
+      if (cancelled) return
+      setVisible(true)
+      timeoutId = window.setTimeout(() => {
+        if (cancelled) return
+        setVisible(false)
+        hideTimeoutId = window.setTimeout(() => {
+          if (cancelled) return
+          setCurrent((p) => (p + 1) % notifications.length)
+          showNext()
+        }, 500)
+      }, randomToastIntervalMs())
+    }
+
+    timeoutId = window.setTimeout(showNext, randomToastIntervalMs())
 
     return () => {
-      clearTimeout(t)
-      clearInterval(cycle)
+      cancelled = true
+      window.clearTimeout(timeoutId)
+      window.clearTimeout(hideTimeoutId)
     }
   }, [dismissed])
 

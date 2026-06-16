@@ -7,7 +7,6 @@ import { listProducts } from "@/lib/medusa"
 import {
   categoryLabelFromSlug,
   filterProductsByCategorySlug,
-  getStorefrontCategorySections,
   groupProductsByCategory
 } from "@/lib/categories"
 import { searchProducts } from "@/lib/search"
@@ -74,12 +73,6 @@ export default async function ShopPage({ searchParams }: Props) {
   } else {
     displayProducts = sortProducts(displayProducts, sortKey)
   }
-
-  const showCategorySections = !category && !useSearch
-  const categorySections = showCategorySections
-    ? getStorefrontCategorySections(displayProducts, sortKey)
-    : []
-  const useCategorySections = showCategorySections && categorySections.length > 0
 
   return (
     <section className="page-container space-y-8 py-8">
@@ -170,39 +163,11 @@ export default async function ShopPage({ searchParams }: Props) {
         {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
       </p>
 
-      {useCategorySections ? (
-        <div className="space-y-14">
-          {categorySections.map((section) => (
-            <section key={section.slug} className="space-y-6">
-              <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#E2E8F0] pb-4">
-                <div>
-                  <h2 className="font-serif text-2xl text-[#0F172A] md:text-3xl">{section.name}</h2>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#475569]">
-                    {section.description}
-                  </p>
-                </div>
-                <Link
-                  href={buildShopHref({ q, category: section.slug, price_min, price_max, sort })}
-                  className="text-sm font-medium text-[#0D9488] hover:text-[#0F766E]"
-                >
-                  View all →
-                </Link>
-              </div>
-              <div className="product-card-grid">
-                {section.products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      ) : (
-        <div className="product-card-grid">
-          {displayProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
+      <div className="product-card-grid">
+        {displayProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
 
       {displayProducts.length === 0 ? (
         <p className="rounded-xl border border-[#E2E8F0] bg-white p-6 text-sm text-[#475569]">

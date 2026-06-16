@@ -187,7 +187,7 @@ export default async function ShopPage({ searchParams }: Props) {
                   View all →
                 </Link>
               </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="product-card-grid">
                 {section.products.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -196,7 +196,7 @@ export default async function ShopPage({ searchParams }: Props) {
           ))}
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="product-card-grid">
           {displayProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

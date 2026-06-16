@@ -69,7 +69,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       {filtered.length === 0 ? (
         <p className="text-sm text-[#475569]">No products in this category yet.</p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="product-card-grid">
           {filtered.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

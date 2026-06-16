@@ -105,7 +105,7 @@ export default async function HomePage() {
             <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Shop by Research Area</h2>
             <p className="mt-2 text-[#475569]">Specialized compounds organized by application</p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="product-card-grid">
             {fallbackCategories.slice(0, 4).map((cat) => (
               <Link
                 key={cat.slug}
@@ -150,7 +150,7 @@ export default async function HomePage() {
               View All <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="product-card-grid">
             {featured.length === 0 ? (
               <p className="col-span-full rounded-xl border border-[#E2E8F0] bg-white p-6 text-sm text-[#475569]">
                 Catalog is loading from Medusa. If this persists, check NEXT_PUBLIC_MEDUSA_URL in

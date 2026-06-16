@@ -23,7 +23,7 @@ export async function FeaturedProducts() {
           No products loaded yet. Start Medusa and run catalog import.
         </p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="product-card-grid">
           {featured.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

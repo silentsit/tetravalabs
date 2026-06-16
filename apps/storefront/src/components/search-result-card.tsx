@@ -19,11 +19,11 @@ export function SearchResultCard({ result }: Props) {
       href={`/product/${result.handle}`}
       className="card card-hover group flex flex-col overflow-hidden"
     >
-      <div className="relative aspect-[3/4] bg-white">
+      <div className="product-card-media">
         <img
           src={image}
           alt={result.title}
-          className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.04]"
+          className="product-card-media-image"
           loading="lazy"
         />
       </div>

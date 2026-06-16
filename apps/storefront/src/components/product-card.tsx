@@ -33,11 +33,11 @@ export function ProductCard({ product }: { product: StoreProduct }) {
 
   return (
     <div className="card card-hover group flex flex-col overflow-hidden">
-      <Link href={`/product/${product.handle}`} className="product-card-media">
+      <Link href={`/product/${product.handle}`} className="relative block aspect-[3/4] overflow-hidden bg-white">
         <img
           src={getProductImage(product)}
           alt={product.title}
-          className="product-card-media-image"
+          className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.04]"
           loading="lazy"
         />
         {isBlendProduct(product) ? (

@@ -103,8 +103,8 @@
       "image": "/products/bpc157-5mg.jpg"
     },
     "bpc-157-capsules": {
-      "slug": "5amino1mq-5mg",
-      "image": "/products/5amino1mq-10mg.jpg"
+      "slug": "bpc-157-capsules",
+      "image": "/products/bottle-capsules.jpg"
     },
     "tb500": {
       "slug": "tb500-5mg",
@@ -311,8 +311,8 @@
       "image": "/products/5amino1mq-10mg.jpg"
     },
     "pinealon-capsules": {
-      "slug": "5amino1mq-5mg",
-      "image": "/products/5amino1mq-10mg.jpg"
+      "slug": "pinealon-capsules",
+      "image": "/products/bottle-capsules.jpg"
     }
   }
 }

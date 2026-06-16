@@ -53,6 +53,11 @@ export function getProductImage(product: StoreProduct) {
     return metadataUrl
   }
 
+  const visual = String(product.metadata?.visual_type || "vial")
+  if (visual === "capsule") {
+    return visualFallback.capsule
+  }
+
   const variantHandle = product.variants?.[0]?.title
     ? `${product.handle}-${product.variants[0].title.toLowerCase().replace(/\s+/g, "")}`
     : undefined
@@ -60,7 +65,6 @@ export function getProductImage(product: StoreProduct) {
   const mapped = getProductImageForHandle(product.handle, variantHandle)
   if (mapped) return mapped
 
-  const visual = String(product.metadata?.visual_type || "vial")
   return visualFallback[visual] || "/v2/vial-single.jpg"
 }
 

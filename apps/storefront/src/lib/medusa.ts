@@ -1,3 +1,4 @@
+import { filterSupersededLegacyProducts } from "@/lib/pack-pricing"
 import { STORE_PRODUCT_FIELDS } from "@/lib/product-price"
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
@@ -20,6 +21,7 @@ export type StoreProduct = {
   variants?: Array<{
     id: string
     title: string
+    metadata?: Record<string, unknown>
     prices?: Array<{
       amount: number
       currency_code: string
@@ -58,21 +60,7 @@ const withHeaders = (headers: HeadersInit = {}) => ({
 })
 
 export async function listProducts() {
-  try {
-    const response = await fetch(productsUrl({ limit: "100" }), {
-      headers: withHeaders(),
-      next: { revalidate: 300, tags: ["products"] }
-    })
-    if (!response.ok) {
-      console.error(`[medusa] products request failed: ${response.status} ${response.statusText}`)
-      throw new Error("Failed products request")
-    }
-    const data = await response.json()
-    return (data.products || []) as StoreProduct[]
-  } catch (error) {
-    console.error("[medusa] unable to load products from", MEDUSA_URL, error)
-    return []
-  }
+  return listAllProducts()
 }
 
 export async function listAllProducts() {
@@ -97,7 +85,7 @@ export async function listAllProducts() {
     console.error("[medusa] unable to paginate products from", MEDUSA_URL, error)
   }
 
-  return all
+  return filterSupersededLegacyProducts(all)
 }
 
 export async function getProductByHandle(handle: string) {

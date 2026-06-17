@@ -4,7 +4,7 @@ export type StoreVariant = NonNullable<StoreProduct["variants"]>[number]
 
 /** Medusa v2 requires explicit fields for calculated_price and product metadata. */
 export const STORE_PRODUCT_FIELDS =
-  "*variants,*variants.calculated_price,+variants.prices,+metadata"
+  "*variants,*variants.calculated_price,+variants.prices,+variants.metadata,+metadata"
 
 export function getVariantPriceCents(variant?: StoreVariant | null): number {
   if (!variant) return 0

@@ -11,23 +11,28 @@ import {
   getProductPurity,
   isBlendProduct
 } from "@/lib/revamp/product-visual"
+import { hasMultiplePackTiers, getLowestPackPrice, packTiersFromVariants } from "@/lib/pack-pricing"
 
 export function ProductCard({ product }: { product: StoreProduct }) {
   const { addItem } = useCart()
   const variant = getPrimaryVariant(product)
-  const price = getProductPrice(product)
-  const inStock = Boolean(variant?.id)
+  const packTiers = packTiersFromVariants(product.variants || [])
+  const showFromPrice = hasMultiplePackTiers(product)
+  const price = showFromPrice ? getLowestPackPrice(product) : getProductPrice(product)
+  const cartVariant = showFromPrice ? packTiers[0] : null
+  const inStock = Boolean(cartVariant?.variantId || variant?.id)
 
   const handleAdd = () => {
-    if (!variant?.id) return
+    const variantId = cartVariant?.variantId || variant?.id
+    if (!variantId) return
     addItem({
-      id: `${product.id}:${variant.id}`,
+      id: `${product.id}:${variantId}`,
       productId: product.id,
       handle: product.handle,
       title: product.title,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      unitPrice: price
+      variantId,
+      variantTitle: cartVariant?.tier || variant?.title || "Standard",
+      unitPrice: cartVariant?.price ?? price
     })
   }
 
@@ -56,7 +61,9 @@ export function ProductCard({ product }: { product: StoreProduct }) {
           </h3>
         </Link>
         <div className="mt-0.5 flex items-center gap-2">
-          <p className="font-mono text-[11px] font-medium text-[#94A3B8]">{variant?.title || "Standard"}</p>
+          <p className="font-mono text-[11px] font-medium text-[#94A3B8]">
+            {showFromPrice ? "From 1 vial" : variant?.title || "Standard"}
+          </p>
           {inStock ? (
             <span className="flex items-center gap-0.5 font-mono text-[10px] text-[#059669]">
               <Check className="h-3 w-3" /> In Stock
@@ -66,7 +73,9 @@ export function ProductCard({ product }: { product: StoreProduct }) {
           )}
         </div>
         <div className="mt-auto flex items-center justify-between gap-2 pt-3">
-          <span className="text-base font-bold text-[#0F172A]">${price.toFixed(2)}</span>
+          <span className="text-base font-bold text-[#0F172A]">
+            {showFromPrice ? "From " : ""}${price.toFixed(2)}
+          </span>
           <button
             type="button"
             onClick={handleAdd}

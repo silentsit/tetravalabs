@@ -6,9 +6,12 @@ import type { StoreProduct } from "@/lib/medusa"
 import { useCart } from "@/components/cart-provider"
 import {
   getPrimaryVariant,
+  getProductDisplayName,
+  getProductDisplaySubtitle,
   getProductImage,
   getProductPrice,
   getProductPurity,
+  getProductStrengthLabel,
   isBlendProduct
 } from "@/lib/revamp/product-visual"
 import { hasMultiplePackTiers, getLowestPackPrice, packTiersFromVariants } from "@/lib/pack-pricing"
@@ -16,6 +19,9 @@ import { hasMultiplePackTiers, getLowestPackPrice, packTiersFromVariants } from 
 export function ProductCard({ product }: { product: StoreProduct }) {
   const { addItem } = useCart()
   const variant = getPrimaryVariant(product)
+  const displayName = getProductDisplayName(product)
+  const displaySubtitle = getProductDisplaySubtitle(product)
+  const strengthLabel = getProductStrengthLabel(product)
   const packTiers = packTiersFromVariants(product.variants || [])
   const showFromPrice = hasMultiplePackTiers(product)
   const price = showFromPrice ? getLowestPackPrice(product) : getProductPrice(product)
@@ -29,7 +35,7 @@ export function ProductCard({ product }: { product: StoreProduct }) {
       id: `${product.id}:${variantId}`,
       productId: product.id,
       handle: product.handle,
-      title: product.title,
+      title: displayName,
       variantId,
       variantTitle: cartVariant?.tier || variant?.title || "Standard",
       unitPrice: cartVariant?.price ?? price
@@ -41,7 +47,7 @@ export function ProductCard({ product }: { product: StoreProduct }) {
       <Link href={`/product/${product.handle}`} className="relative block aspect-[3/4] overflow-hidden bg-white">
         <img
           src={getProductImage(product)}
-          alt={product.title}
+          alt={displayName}
           className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.04]"
           loading="lazy"
         />
@@ -57,12 +63,19 @@ export function ProductCard({ product }: { product: StoreProduct }) {
       <div className="flex flex-1 flex-col border-t border-[#E2E8F0] p-4">
         <Link href={`/product/${product.handle}`}>
           <h3 className="text-[15px] font-semibold leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
-            {product.title}
+            {displayName}
           </h3>
+          {displaySubtitle ? (
+            <p className="mt-0.5 text-[11px] leading-snug text-[#64748B]">{displaySubtitle}</p>
+          ) : null}
         </Link>
         <div className="mt-0.5 flex items-center gap-2">
           <p className="font-mono text-[11px] font-medium text-[#94A3B8]">
-            {showFromPrice ? "From 1 vial" : variant?.title || "Standard"}
+            {showFromPrice
+              ? strengthLabel
+                ? `${strengthLabel} · From 1 vial`
+                : "From 1 vial"
+              : strengthLabel || variant?.title || "Standard"}
           </p>
           {inStock ? (
             <span className="flex items-center gap-0.5 font-mono text-[10px] text-[#059669]">

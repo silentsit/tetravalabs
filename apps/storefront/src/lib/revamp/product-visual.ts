@@ -86,5 +86,34 @@ export { getVariantPriceCents }
 
 export function isBlendProduct(product: StoreProduct) {
   const visual = String(product.metadata?.visual_type || "")
-  return visual === "blend" || product.handle.includes("blend")
+  return visual === "blend" || product.handle.includes("blend") || isGlowBlendProduct(product)
+}
+
+const GLOW_BLEND_HANDLES = new Set([
+  "glow-blend-30mg",
+  "glow-blend-85mg",
+  "glow-bpc-157-tb500-ghk-cu",
+  "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg",
+  "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg"
+])
+
+export function isGlowBlendProduct(product: StoreProduct) {
+  return GLOW_BLEND_HANDLES.has(product.handle) || product.handle.startsWith("glow-blend-")
+}
+
+export function getProductDisplayName(product: StoreProduct) {
+  if (isGlowBlendProduct(product)) return "Glow Blend"
+  return product.title
+}
+
+export function getProductDisplaySubtitle(product: StoreProduct) {
+  if (isGlowBlendProduct(product)) return "BPC-157 + TB-500 + GHK-Cu"
+  return null
+}
+
+export function getProductStrengthLabel(product: StoreProduct) {
+  const fromMeta = product.metadata?.strength
+  if (fromMeta) return String(fromMeta)
+  const match = product.handle.match(/(\d+mg)$/i)
+  return match?.[1] || null
 }

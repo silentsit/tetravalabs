@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
 import { getRelatedProducts, slugifyCategory } from "@/lib/categories"
-import { getProductImage, getProductPurity } from "@/lib/revamp/product-visual"
+import { getProductImage, getProductPurity, getProductDisplayName, getProductDisplaySubtitle, getProductStrengthLabel } from "@/lib/revamp/product-visual"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
 import { ProductDetailTabs } from "@/components/product-detail-tabs"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
@@ -20,9 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Product Not Found" }
   const category = String(product.metadata?.source_category || "Research peptide")
   const cas = product.metadata?.cas_number ? ` CAS ${product.metadata.cas_number}.` : ""
+  const displayName = getProductDisplayName(product)
+  const strengthLabel = getProductStrengthLabel(product)
   return buildPageMetadata({
-    title: `${product.title} — ${category}`,
-    description: `${product.title} for laboratory research (RUO). ${getProductPurity(product)} purity with lot-linked COA.${cas}`,
+    title: `${displayName}${strengthLabel ? ` ${strengthLabel}` : ""} — ${category}`,
+    description: `${displayName} for laboratory research (RUO). ${getProductPurity(product)} purity with lot-linked COA.${cas}`,
     path: `/product/${handle}`
   })
 }
@@ -32,7 +34,8 @@ function researchSummary(product: Awaited<ReturnType<typeof getProductByHandle>>
   const custom = String(product.metadata?.research_summary || "").trim()
   if (custom) return custom
   const category = String(product.metadata?.source_category || "research peptide")
-  return `${product.title} is supplied for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing where COA documents are published.`
+  const name = getProductDisplayName(product)
+  return `${name} is supplied for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing where COA documents are published.`
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -41,6 +44,9 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound()
   const primaryVariantId = product.variants?.[0]?.id
   const coas = primaryVariantId ? await listCoasByVariant(primaryVariantId) : []
+  const displayName = getProductDisplayName(product)
+  const displaySubtitle = getProductDisplaySubtitle(product)
+  const strengthLabel = getProductStrengthLabel(product)
   const image = getProductImage(product)
   const categoryLabel = String(product.metadata?.source_category || "Research Product")
   const categorySlug = slugifyCategory(categoryLabel)
@@ -53,20 +59,28 @@ export default async function ProductPage({ params }: Props) {
           { label: "Home", href: "/" },
           { label: "Shop", href: "/shop" },
           { label: categoryLabel, href: `/category/${categorySlug}` },
-          { label: product.title }
+          { label: strengthLabel ? `${displayName} ${strengthLabel}` : displayName }
         ]}
       />
 
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="card overflow-hidden">
           <div className="aspect-square bg-white p-6">
-            <img src={image} alt={product.title} className="h-full w-full object-contain" />
+            <img src={image} alt={displayName} className="h-full w-full object-contain" />
           </div>
         </div>
         <div className="space-y-5">
           <div>
             <span className="section-label">{categoryLabel}</span>
-            <h1 className="mt-2 break-words font-serif text-3xl text-[#0F172A] sm:text-4xl">{product.title}</h1>
+            <h1 className="mt-2 break-words font-serif text-3xl text-[#0F172A] sm:text-4xl">
+              {displayName}
+              {strengthLabel ? (
+                <span className="ml-2 font-mono text-xl text-[#64748B] sm:text-2xl">{strengthLabel}</span>
+              ) : null}
+            </h1>
+            {displaySubtitle ? (
+              <p className="mt-1 text-sm text-[#64748B]">{displaySubtitle}</p>
+            ) : null}
             <p className="mt-2 text-sm text-[#D97706]">For Research Use Only. Not for human consumption.</p>
             <p className="mt-3 inline-flex rounded-full bg-[#CCFBF1] px-3 py-1 font-mono text-xs text-[#0D9488]">
               {getProductPurity(product)} purity
@@ -75,7 +89,7 @@ export default async function ProductPage({ params }: Props) {
           <ProductPurchaseBox
             productId={product.id}
             handle={product.handle}
-            title={product.title}
+            title={displayName}
             variants={product.variants || []}
           />
           <ProductTrustStrip />
@@ -84,7 +98,7 @@ export default async function ProductPage({ params }: Props) {
 
       <ProductDetailTabs
         product={{
-          title: product.title,
+          title: displayName,
           handle: product.handle,
           category: categoryLabel,
           purity: getProductPurity(product),

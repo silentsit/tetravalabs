@@ -27,7 +27,18 @@ function Normalize-TierLabel([int]$qty) {
   return "$qty vials"
 }
 
-function Match-Slug([string]$pname, $oldRows) {
+function Write-Utf8NoBom([string]$Path, [string]$Content) {
+  $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+  [System.IO.File]::WriteAllText($Path, $Content, $utf8NoBom)
+}
+
+function Read-JsonFile([string]$Path) {
+  $text = [System.IO.File]::ReadAllText($Path)
+  if ($text.Length -gt 0 -and [int][char]$text[0] -eq 0xFEFF) {
+    $text = $text.Substring(1)
+  }
+  return $text | ConvertFrom-Json
+}
   $normalized = $pname.Trim().ToLower()
   foreach ($row in $oldRows) {
     $combined = "$($row.name) $($row.strength)".Trim().ToLower()
@@ -87,7 +98,7 @@ if (-not (Test-Path $XlsxPath)) {
   Write-Error "Missing pricing workbook: $XlsxPath"
 }
 
-$oldRows = Get-Content $CatalogPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$oldRows = Read-JsonFile $CatalogPath
 $df = Read-TierRows $XlsxPath
 
 $tieredProducts = @()
@@ -148,8 +159,8 @@ $tieredPayload = @{
   products = $tieredProducts
 }
 New-Item -ItemType Directory -Force -Path (Split-Path $TieredPath) | Out-Null
-$tieredPayload | ConvertTo-Json -Depth 10 | Set-Content $TieredPath -Encoding UTF8
-$flatRows | ConvertTo-Json -Depth 10 | Set-Content $CatalogPath -Encoding UTF8
+Write-Utf8NoBom $TieredPath ($tieredPayload | ConvertTo-Json -Depth 10)
+Write-Utf8NoBom $CatalogPath ($flatRows | ConvertTo-Json -Depth 10)
 
 $tsLines = @(
   "/** Auto-generated from tiered pricing import. Do not edit manually. */",
@@ -197,7 +208,7 @@ $tsLines += @(
 )
 
 New-Item -ItemType Directory -Force -Path (Split-Path $PackPricingTs) | Out-Null
-$tsLines -join "`n" | Set-Content $PackPricingTs -Encoding UTF8
+Write-Utf8NoBom $PackPricingTs ($tsLines -join "`n")
 
 Write-Host "Imported $($tieredProducts.Count) products from $XlsxPath"
 Write-Host "Updated $CatalogPath"

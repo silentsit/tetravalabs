@@ -47,9 +47,14 @@ const defaultPackTiers = (row) => [
   }
 ]
 
+const readJsonFile = async (filePath) => {
+  const raw = await fs.readFile(filePath, "utf8")
+  return JSON.parse(raw.replace(/^\uFEFF/, ""))
+}
+
 const run = async () => {
-  const raw = JSON.parse(await fs.readFile(sourcePath, "utf8"))
-  const enrichment = JSON.parse(await fs.readFile(enrichmentPath, "utf8"))
+  const raw = await readJsonFile(sourcePath)
+  const enrichment = await readJsonFile(enrichmentPath)
   const products = []
 
   for (const row of raw) {

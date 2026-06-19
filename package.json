@@ -43,7 +43,7 @@
     "postinstall": "patch-package"
   },
   "engines": {
-    "node": "20.x"
+    "node": ">=20"
   },
   "overrides": {
     "react": "^19.0.0",

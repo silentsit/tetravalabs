@@ -39,6 +39,8 @@ function Read-JsonFile([string]$Path) {
   }
   return $text | ConvertFrom-Json
 }
+
+function Match-Slug([string]$pname, $oldRows) {
   $normalized = $pname.Trim().ToLower()
   foreach ($row in $oldRows) {
     $combined = "$($row.name) $($row.strength)".Trim().ToLower()

@@ -163,7 +163,7 @@ export default async function ShopPage({ searchParams }: Props) {
         {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
       </p>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="product-card-grid">
         {displayProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

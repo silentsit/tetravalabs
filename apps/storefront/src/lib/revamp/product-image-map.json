@@ -14,7 +14,7 @@
     "ipamorelin-5mg": "/products/ipamorelin-5mg.jpg",
     "5amino1mq-5mg": "/products/5amino1mq-10mg.jpg",
     "aod9604-5mg": "/products/aod9604-5mg.jpg",
-    "mazdutide-5mg": "/v2/vial-single.jpg",
+    "mazdutide-5mg": "/products/mazdutide-5mg.jpg",
     "bpc157-5mg": "/products/bpc157-5mg.jpg",
     "tb500-5mg": "/products/tb500-10mg.jpg",
     "ghk-cu-50mg": "/products/ghk-cu-100mg.jpg",
@@ -26,7 +26,7 @@
     "melanotan2-10mg": "/products/melanotan2-10mg.jpg",
     "ghk-cu-100mg": "/products/ghk-cu-100mg.jpg",
     "hgh-10iu": "/products/hgh-10iu.jpg",
-    "nad-plus-100mg": "/products/nad-plus-500mg.jpg",
+    "nad-plus-100mg": "/products/nad-plus-100mg.jpg",
     "glutathione-600mg": "/products/glutathione-600mg.jpg",
     "ll37-5mg": "/products/ll37-5mg.jpg",
     "epithalon-10mg": "/products/epithalon-10mg.jpg",
@@ -39,14 +39,90 @@
     "hcg-5000iu": "/products/hcg-5000iu.jpg",
     "igf1-lr3-1mg": "/products/igf1-lr3-1mg.jpg",
     "bpc157-caps": "/products/bpc-157-capsules.png",
-    "pinealon-caps": "/products/pinealon-capsules.png"
+    "pinealon-caps": "/products/pinealon-capsules.png",
+    "hmg-75iu": "/products/hmg-75iu.jpg",
+    "aicar-50mg": "/products/aicar-50mg.jpg",
+    "adipotide-2mg": "/products/adipotide-2mg.jpg",
+    "mgf-2mg": "/products/mgf-2mg.jpg",
+    "peg-mgf-2mg": "/products/peg-mgf-2mg.jpg",
+    "mots-c-5mg": "/products/mots-c-5mg.jpg",
+    "ss-31-10mg": "/products/ss-31-10mg.jpg",
+    "melanotan1-10mg": "/products/melanotan1-10mg.jpg",
+    "snap-8-10mg": "/products/snap-8-10mg.jpg",
+    "ara-290-10mg": "/products/ara-290-10mg.jpg",
+    "foxo4-dri-10mg": "/products/foxo4-dri-10mg.jpg",
+    "kisspeptin-10-5mg": "/products/kisspeptin-10-5mg.jpg",
+    "kpv-5mg": "/products/kpv-5mg.jpg",
+    "oxytocin-2mg": "/products/oxytocin-2mg.jpg",
+    "gonadorelin-2mg": "/products/gonadorelin-2mg.jpg",
+    "ghrp-2-5mg": "/products/ghrp-2-5mg.jpg",
+    "ghrp-6-5mg": "/products/ghrp-6-5mg.jpg",
+    "hexarelin-2mg": "/products/hexarelin-2mg.jpg",
+    "b-12-10mg": "/products/b-12-10mg.jpg",
+    "l-carnitine-600mg": "/products/l-carnitine-600mg.jpg",
+    "l-glu-100mg": "/products/l-glu-100mg.jpg",
+    "lemon-bottle-10ml": "/products/lemon-bottle-10ml.jpg",
+    "lipo-c-10ml": "/products/lipo-c-10ml.jpg",
+    "thymalin-10mg": "/products/thymalin-10mg.jpg",
+    "benzyl-alcohol-3ml": "/products/benzyl-alcohol-3ml.jpg",
+    "glow-blend-30mg": "/products/glow-blend-30mg.jpg",
+    "dermorphin-5mg": "/products/dermorphin-5mg.jpg",
+    "survodutide-5mg": "/products/survodutide-5mg.jpg",
+    "acetic-acid-water-3ml": "/products/acetic-acid-3ml.png",
+    "bacteriostatic-water-3ml": "/products/bac-water-10ml.jpg",
+    "bacteriostatic-water-10ml": "/products/bac-water-10ml.jpg",
+    "benzyl-alcohol-10ml": "/products/benzyl-alcohol-3ml.jpg",
+    "5-amino-1mq-10mg": "/products/5amino1mq-10mg.jpg",
+    "cjc-1295-with-dac-5mg": "/products/cjc1295-5mg.jpg",
+    "cjc-1295-with-dac-10mg": "/products/cjc1295-5mg.jpg",
+    "cjc-1295-without-dac-5mg": "/products/cjc1295-5mg.jpg",
+    "cjc-1295-without-dac-10mg": "/products/cjc1295-5mg.jpg",
+    "ghrp-2-acetate-5mg": "/products/ghrp-2-5mg.jpg",
+    "ghrp-2-acetate-10mg": "/products/ghrp-2-5mg.jpg",
+    "ghrp-6-acetate-5mg": "/products/ghrp-6-5mg.jpg",
+    "ghrp-6-acetate-10mg": "/products/ghrp-6-5mg.jpg",
+    "hexarelin-acetate-2mg": "/products/hexarelin-2mg.jpg",
+    "hexarelin-acetate-5mg": "/products/hexarelin-2mg.jpg",
+    "hgh-191aa-10-iu": "/products/hgh-10iu.jpg",
+    "hgh-191aa-12-iu": "/products/hgh-10iu.jpg",
+    "hgh-191aa-15-iu": "/products/hgh-10iu.jpg",
+    "hgh-191aa-24-iu": "/products/hgh-10iu.jpg",
+    "hgh-191aa-36-iu": "/products/hgh-10iu.jpg",
+    "igf-1-lr3-0-1mg": "/products/igf1-lr3-1mg.jpg",
+    "oxytocin-acetate-2mg": "/products/oxytocin-2mg.jpg",
+    "oxytocin-acetate-5mg": "/products/oxytocin-2mg.jpg",
+    "oxytocin-acetate-10mg": "/products/oxytocin-2mg.jpg",
+    "thymosin-alpha-1-5mg": "/products/thymosin-5mg.jpg",
+    "thymosin-alpha-1-10mg": "/products/thymosin-5mg.jpg",
+    "bpc-157-10mg": "/products/bpc157-5mg.jpg",
+    "bpc-157-5mg-tb500-5mg": "/products/blend-bpc157-tb500.jpg",
+    "adipotide-5mg": "/products/adipotide-2mg.jpg",
+    "kisspeptin-10-2mg": "/products/kisspeptin-10-5mg.jpg",
+    "kpv-10mg": "/products/kpv-5mg.jpg",
+    "l-carnitine-500mg": "/products/l-carnitine-600mg.jpg",
+    "mgf-5mg": "/products/mgf-2mg.jpg",
+    "mots-c-10mg": "/products/mots-c-5mg.jpg",
+    "peg-mgf-5mg": "/products/peg-mgf-2mg.jpg",
+    "selank-10mg": "/products/selank-5mg.jpg",
+    "semax-10mg": "/products/semax-5mg.jpg",
+    "snap-8-5mg": "/products/snap-8-10mg.jpg",
+    "ss-31-5mg": "/products/ss-31-10mg.jpg",
+    "vip-5mg": "/products/vip-10mg.jpg",
+    "epithalon-20mg": "/products/epithalon-10mg.jpg",
+    "bremelanotide-20mg": "/products/bremelanotide-10mg.jpg",
+    "melanotan-1-10mg": "/products/melanotan1-10mg.jpg",
+    "glutathione-200mg": "/products/glutathione-600mg.jpg",
+    "glutathione-400mg": "/products/glutathione-600mg.jpg",
+    "mk-677-10mg": "/products/mk677-5mg.jpg",
+    "cagrilintide-10mg": "/products/cagrilintide-5mg.jpg",
+    "ipamorelin-10mg": "/products/ipamorelin-5mg.jpg",
+    "ll-37-10mg": "/products/ll37-5mg.jpg",
+    "ara-290-16mg": "/products/ara-290-10mg.jpg",
+    "hgh-fragment-176-191-5mg": "/products/hgh-10iu.jpg",
+    "tesofensine-1mg": "/products/tesamorelin-5mg.jpg"
   },
   "aliases": {
     "acetic-acid-water": {
-      "slug": "acetic-acid-3ml",
-      "image": "/products/acetic-acid-3ml.png"
-    },
-    "acetic-acid-water-3ml": {
       "slug": "acetic-acid-3ml",
       "image": "/products/acetic-acid-3ml.png"
     },
@@ -54,23 +130,11 @@
       "slug": "bac-water-3ml",
       "image": "/products/bac-water-10ml.png"
     },
-    "bacteriostatic-water-3ml": {
-      "slug": "bac-water-3ml",
-      "image": "/products/bac-water-10ml.png"
-    },
-    "bacteriostatic-water-10ml": {
-      "slug": "bac-water-3ml",
-      "image": "/products/bac-water-10ml.png"
+    "benzyl-alcohol": {
+      "slug": "benzyl-alcohol-3ml",
+      "image": "/products/benzyl-alcohol-3ml.jpg"
     },
     "5-amino-1mq": {
-      "slug": "5amino1mq-5mg",
-      "image": "/products/5amino1mq-10mg.jpg"
-    },
-    "5-amino-1mq-5mg": {
-      "slug": "5amino1mq-5mg",
-      "image": "/products/5amino1mq-10mg.jpg"
-    },
-    "5-amino-1mq-10mg": {
       "slug": "5amino1mq-5mg",
       "image": "/products/5amino1mq-10mg.jpg"
     },
@@ -78,35 +142,19 @@
       "slug": "aod9604-5mg",
       "image": "/products/aod9604-5mg.jpg"
     },
-    "aod-9604-5mg": {
-      "slug": "aod9604-5mg",
-      "image": "/products/aod9604-5mg.jpg"
-    },
-    "aod-9604-10mg": {
-      "slug": "aod9604-5mg",
-      "image": "/products/aod9604-5mg.jpg"
-    },
     "cagrilintide": {
       "slug": "cagrilintide-5mg",
       "image": "/products/cagrilintide-5mg.jpg"
     },
-    "cagrilintide-5mg": {
-      "slug": "cagrilintide-5mg",
-      "image": "/products/cagrilintide-5mg.jpg"
-    },
-    "cagrilintide-10mg": {
-      "slug": "cagrilintide-5mg",
-      "image": "/products/cagrilintide-5mg.jpg"
-    },
     "cagrilintide-semaglutide": {
-      "slug": "blend-bpc157-tb500",
-      "image": "/products/blend-bpc157-tb500.jpg"
+      "slug": "cagrilintide-5mg",
+      "image": "/products/cagrilintide-5mg.jpg"
+    },
+    "mazdutide": {
+      "slug": "mazdutide-5mg",
+      "image": "/products/mazdutide-5mg.jpg"
     },
     "retatrutide": {
-      "slug": "retatrutide-5mg",
-      "image": "/products/retatrutide-5mg.jpg"
-    },
-    "retatrutide-5mg": {
       "slug": "retatrutide-5mg",
       "image": "/products/retatrutide-5mg.jpg"
     },
@@ -114,27 +162,15 @@
       "slug": "semaglutide-5mg",
       "image": "/products/semaglutide-5mg.jpg"
     },
-    "semaglutide-5mg": {
-      "slug": "semaglutide-5mg",
-      "image": "/products/semaglutide-5mg.jpg"
-    },
     "sermorelin": {
       "slug": "sermorelin-5mg",
       "image": "/products/sermorelin-5mg.jpg"
     },
-    "sermorelin-5mg": {
-      "slug": "sermorelin-5mg",
-      "image": "/products/sermorelin-5mg.jpg"
-    },
-    "sermorelin-10mg": {
-      "slug": "sermorelin-5mg",
-      "image": "/products/sermorelin-5mg.jpg"
+    "survodutide": {
+      "slug": "survodutide-5mg",
+      "image": "/products/survodutide-5mg.jpg"
     },
     "tesamorelin": {
-      "slug": "tesamorelin-5mg",
-      "image": "/products/tesamorelin-5mg.jpg"
-    },
-    "tesamorelin-5mg": {
       "slug": "tesamorelin-5mg",
       "image": "/products/tesamorelin-5mg.jpg"
     },
@@ -142,19 +178,7 @@
       "slug": "tirzepatide-5mg",
       "image": "/products/tirzepatide-5mg.jpg"
     },
-    "tirzepatide-5mg": {
-      "slug": "tirzepatide-5mg",
-      "image": "/products/tirzepatide-5mg.jpg"
-    },
     "bpc-157": {
-      "slug": "bpc157-5mg",
-      "image": "/products/bpc157-5mg.jpg"
-    },
-    "bpc-157-5mg": {
-      "slug": "bpc157-5mg",
-      "image": "/products/bpc157-5mg.jpg"
-    },
-    "bpc-157-10mg": {
       "slug": "bpc157-5mg",
       "image": "/products/bpc157-5mg.jpg"
     },
@@ -162,19 +186,7 @@
       "slug": "bpc-157-capsules",
       "image": "/products/bpc-157-capsules.png"
     },
-    "bpc-157-capsules-100ct": {
-      "slug": "bpc-157-capsules",
-      "image": "/products/bpc-157-capsules.png"
-    },
     "tb500": {
-      "slug": "tb500-5mg",
-      "image": "/products/tb500-10mg.jpg"
-    },
-    "tb500-5mg": {
-      "slug": "tb500-5mg",
-      "image": "/products/tb500-10mg.jpg"
-    },
-    "tb500-10mg": {
       "slug": "tb500-5mg",
       "image": "/products/tb500-10mg.jpg"
     },
@@ -182,31 +194,19 @@
       "slug": "bpc157-tb500-blend",
       "image": "/products/blend-bpc157-tb500.jpg"
     },
-    "glow-blend-30mg": {
-      "slug": "bpc157-tb500-blend",
-      "image": "/products/blend-bpc157-tb500.jpg"
-    },
-    "glow-blend-85mg": {
-      "slug": "bpc157-tb500-blend",
-      "image": "/products/blend-bpc157-tb500.jpg"
+    "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg": {
+      "slug": "glow-blend-30mg",
+      "image": "/products/glow-blend-30mg.jpg"
     },
     "glow-bpc-157-tb500-ghk-cu": {
-      "slug": "bpc157-tb500-blend",
-      "image": "/products/blend-bpc157-tb500.jpg"
+      "slug": "glow-blend-30mg",
+      "image": "/products/glow-blend-30mg.jpg"
     },
     "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg": {
-      "slug": "bpc157-tb500-blend",
-      "image": "/products/blend-bpc157-tb500.jpg"
-    },
-    "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": {
-      "slug": "bpc157-tb500-blend",
-      "image": "/products/blend-bpc157-tb500.jpg"
+      "slug": "glow-blend-30mg",
+      "image": "/products/glow-blend-30mg.jpg"
     },
     "cjc-1295-with-dac": {
-      "slug": "cjc1295-dac-5mg",
-      "image": "/products/cjc1295-5mg.jpg"
-    },
-    "cjc-1295-with-dac-5mg": {
       "slug": "cjc1295-dac-5mg",
       "image": "/products/cjc1295-5mg.jpg"
     },
@@ -214,31 +214,35 @@
       "slug": "cjc1295-nodac-5mg",
       "image": "/products/cjc1295-5mg.jpg"
     },
-    "cjc-1295-without-dac-5mg": {
-      "slug": "cjc1295-nodac-5mg",
-      "image": "/products/cjc1295-5mg.jpg"
-    },
     "cjc-1295-without-dac-ipamorelin-blend": {
-      "slug": "cjc1295-nodac-5mg",
+      "slug": "cjc1295-5mg",
       "image": "/products/cjc1295-5mg.jpg"
     },
     "cjc-1295-without-dac-sermorelin-ipamorelin-blend": {
-      "slug": "cjc1295-nodac-5mg",
+      "slug": "cjc1295-5mg",
       "image": "/products/cjc1295-5mg.jpg"
+    },
+    "ghrp-2-acetate": {
+      "slug": "ghrp-2-5mg",
+      "image": "/products/ghrp-2-5mg.jpg"
+    },
+    "ghrp-6-acetate": {
+      "slug": "ghrp-6-5mg",
+      "image": "/products/ghrp-6-5mg.jpg"
+    },
+    "hexarelin-acetate": {
+      "slug": "hexarelin-2mg",
+      "image": "/products/hexarelin-2mg.jpg"
     },
     "ipamorelin": {
       "slug": "ipamorelin-5mg",
       "image": "/products/ipamorelin-5mg.jpg"
     },
-    "ipamorelin-5mg": {
-      "slug": "ipamorelin-5mg",
-      "image": "/products/ipamorelin-5mg.jpg"
+    "gonadorelin": {
+      "slug": "gonadorelin-2mg",
+      "image": "/products/gonadorelin-2mg.jpg"
     },
     "hcg": {
-      "slug": "hcg-5000iu",
-      "image": "/products/hcg-5000iu.jpg"
-    },
-    "hcg-5000-iu": {
       "slug": "hcg-5000iu",
       "image": "/products/hcg-5000iu.jpg"
     },
@@ -246,51 +250,67 @@
       "slug": "hgh-10iu",
       "image": "/products/hgh-10iu.jpg"
     },
-    "hgh-191aa-10-iu": {
-      "slug": "hgh-10iu",
-      "image": "/products/hgh-10iu.jpg"
+    "hmg": {
+      "slug": "hmg-75iu",
+      "image": "/products/hmg-75iu.jpg"
     },
     "igf-1-lr3": {
       "slug": "igf1-lr3-1mg",
       "image": "/products/igf1-lr3-1mg.jpg"
     },
-    "igf-1-lr3-1mg": {
-      "slug": "igf1-lr3-1mg",
-      "image": "/products/igf1-lr3-1mg.jpg"
+    "mgf": {
+      "slug": "mgf-2mg",
+      "image": "/products/mgf-2mg.jpg"
+    },
+    "peg-mgf": {
+      "slug": "peg-mgf-2mg",
+      "image": "/products/peg-mgf-2mg.jpg"
+    },
+    "adipotide": {
+      "slug": "adipotide-2mg",
+      "image": "/products/adipotide-2mg.jpg"
+    },
+    "aicar": {
+      "slug": "aicar-50mg",
+      "image": "/products/aicar-50mg.jpg"
+    },
+    "mots-c": {
+      "slug": "mots-c-5mg",
+      "image": "/products/mots-c-5mg.jpg"
+    },
+    "ss-31": {
+      "slug": "ss-31-10mg",
+      "image": "/products/ss-31-10mg.jpg"
     },
     "ghk-cu": {
       "slug": "ghk-cu-50mg",
       "image": "/products/ghk-cu-100mg.jpg"
     },
-    "ghk-cu-50mg": {
-      "slug": "ghk-cu-50mg",
-      "image": "/products/ghk-cu-100mg.jpg"
-    },
-    "ghk-cu-100mg": {
-      "slug": "ghk-cu-100mg",
-      "image": "/products/ghk-cu-100mg.jpg"
+    "melanotan-1": {
+      "slug": "melanotan1-10mg",
+      "image": "/products/melanotan1-10mg.jpg"
     },
     "melanotan-2": {
       "slug": "melanotan2-10mg",
       "image": "/products/melanotan2-10mg.jpg"
     },
-    "melanotan-2-10mg": {
-      "slug": "melanotan2-10mg",
-      "image": "/products/melanotan2-10mg.jpg"
+    "snap-8": {
+      "slug": "snap-8-10mg",
+      "image": "/products/snap-8-10mg.jpg"
+    },
+    "ara-290": {
+      "slug": "ara-290-10mg",
+      "image": "/products/ara-290-10mg.jpg"
     },
     "bremelanotide": {
       "slug": "bremelanotide-10mg",
       "image": "/products/bremelanotide-10mg.jpg"
     },
-    "bremelanotide-10mg": {
-      "slug": "bremelanotide-10mg",
-      "image": "/products/bremelanotide-10mg.jpg"
+    "dermorphin": {
+      "slug": "dermorphin-5mg",
+      "image": "/products/dermorphin-5mg.jpg"
     },
     "dsip": {
-      "slug": "dsip-5mg",
-      "image": "/products/dsip-5mg.jpg"
-    },
-    "dsip-5mg": {
       "slug": "dsip-5mg",
       "image": "/products/dsip-5mg.jpg"
     },
@@ -298,35 +318,31 @@
       "slug": "epithalon-10mg",
       "image": "/products/epithalon-10mg.jpg"
     },
-    "epithalon-10mg": {
-      "slug": "epithalon-10mg",
-      "image": "/products/epithalon-10mg.jpg"
+    "foxo4-dri": {
+      "slug": "foxo4-dri-10mg",
+      "image": "/products/foxo4-dri-10mg.jpg"
+    },
+    "kisspeptin-10": {
+      "slug": "kisspeptin-10-5mg",
+      "image": "/products/kisspeptin-10-5mg.jpg"
+    },
+    "kpv": {
+      "slug": "kpv-5mg",
+      "image": "/products/kpv-5mg.jpg"
     },
     "ll-37": {
       "slug": "ll37-5mg",
       "image": "/products/ll37-5mg.jpg"
     },
-    "ll-37-5mg": {
-      "slug": "ll37-5mg",
-      "image": "/products/ll37-5mg.jpg"
-    },
     "nad": {
       "slug": "nad-plus-100mg",
-      "image": "/products/nad-plus-500mg.jpg"
+      "image": "/products/nad-plus-100mg.jpg"
     },
-    "nad-plus-100mg": {
-      "slug": "nad-plus-100mg",
-      "image": "/products/nad-plus-500mg.jpg"
-    },
-    "nad-plus-500mg": {
-      "slug": "nad-plus-500mg",
-      "image": "/products/nad-plus-500mg.jpg"
+    "oxytocin-acetate": {
+      "slug": "oxytocin-2mg",
+      "image": "/products/oxytocin-2mg.jpg"
     },
     "selank": {
-      "slug": "selank-5mg",
-      "image": "/products/selank-5mg.jpg"
-    },
-    "selank-5mg": {
       "slug": "selank-5mg",
       "image": "/products/selank-5mg.jpg"
     },
@@ -334,15 +350,11 @@
       "slug": "semax-5mg",
       "image": "/products/semax-5mg.jpg"
     },
-    "semax-5mg": {
-      "slug": "semax-5mg",
-      "image": "/products/semax-5mg.jpg"
+    "thymalin": {
+      "slug": "thymalin-10mg",
+      "image": "/products/thymalin-10mg.jpg"
     },
     "thymosin-alpha-1": {
-      "slug": "thymosin-5mg",
-      "image": "/products/thymosin-5mg.jpg"
-    },
-    "thymosin-alpha-1-5mg": {
       "slug": "thymosin-5mg",
       "image": "/products/thymosin-5mg.jpg"
     },
@@ -350,31 +362,35 @@
       "slug": "vip-10mg",
       "image": "/products/vip-10mg.jpg"
     },
-    "vip-10mg": {
-      "slug": "vip-10mg",
-      "image": "/products/vip-10mg.jpg"
+    "b-12": {
+      "slug": "b-12-10mg",
+      "image": "/products/b-12-10mg.jpg"
     },
     "glutathione": {
       "slug": "glutathione-600mg",
       "image": "/products/glutathione-600mg.jpg"
     },
-    "glutathione-600mg": {
-      "slug": "glutathione-600mg",
-      "image": "/products/glutathione-600mg.jpg"
+    "l-carnitine": {
+      "slug": "l-carnitine-600mg",
+      "image": "/products/l-carnitine-600mg.jpg"
+    },
+    "lemon-bottle": {
+      "slug": "lemon-bottle-10ml",
+      "image": "/products/lemon-bottle-10ml.jpg"
+    },
+    "lipo-c": {
+      "slug": "lipo-c-10ml",
+      "image": "/products/lipo-c-10ml.jpg"
     },
     "mk-677": {
       "slug": "mk677-5mg",
       "image": "/products/mk677-5mg.jpg"
     },
-    "mk-677-5mg": {
-      "slug": "mk677-5mg",
-      "image": "/products/mk677-5mg.jpg"
+    "l-glu": {
+      "slug": "l-glu-100mg",
+      "image": "/products/l-glu-100mg.jpg"
     },
     "pinealon-capsules": {
-      "slug": "pinealon-capsules",
-      "image": "/products/pinealon-capsules.png"
-    },
-    "pinealon-capsules-100-count": {
       "slug": "pinealon-capsules",
       "image": "/products/pinealon-capsules.png"
     }

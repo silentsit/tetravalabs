@@ -18,6 +18,7 @@
     "medusa:bootstrap": "npm --prefix apps/medusa run bootstrap:store",
     "catalog:normalize": "npm --prefix packages/catalog run normalize",
     "catalog:import": "npm --prefix packages/catalog run import:medusa",
+    "catalog:update": "npm --prefix packages/catalog run update:medusa --",
     "typesense:index": "npm --prefix packages/catalog run typesense:index",
     "typesense:setup": "node scripts/typesense-setup.mjs",
     "sanity:seed": "node scripts/sanity-seed.mjs",

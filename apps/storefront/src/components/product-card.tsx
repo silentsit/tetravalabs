@@ -73,8 +73,8 @@ export function ProductCard({ product }: { product: StoreProduct }) {
           <p className="font-mono text-[11px] font-medium text-[#94A3B8]">
             {showFromPrice
               ? strengthLabel
-                ? `${strengthLabel} · From 1 vial`
-                : "From 1 vial"
+                ? `${strengthLabel} · From 5 vials`
+                : "From 5 vials"
               : strengthLabel || variant?.title || "Standard"}
           </p>
           {inStock ? (

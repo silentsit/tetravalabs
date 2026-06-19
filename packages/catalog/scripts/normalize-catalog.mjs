@@ -34,68 +34,79 @@ const visualType = (name, strength) => {
   return "vial"
 }
 
-const toProductId = (name, category) => slugify(`${category}-${name}`)
+const productTitle = (name, strength) =>
+  strength && strength !== "Standard" ? `${name} ${strength}` : name
 
-const toVariantId = (name, strength) => slugify(`${name}-${strength}`)
+const defaultPackTiers = (row) => [
+  {
+    tier: "5 vials",
+    qty: 5,
+    price_usd: Number(row.price_usd),
+    per_unit_usd: Number(row.price_usd) / 5,
+    savings_pct: 0
+  }
+]
 
 const run = async () => {
   const raw = JSON.parse(await fs.readFile(sourcePath, "utf8"))
   const enrichment = JSON.parse(await fs.readFile(enrichmentPath, "utf8"))
-  const grouped = new Map()
+  const products = []
 
   for (const row of raw) {
-    const productId = toProductId(row.name, row.category)
-    if (!grouped.has(productId)) {
-      grouped.set(productId, {
-        id: productId,
-        title: row.name,
-        category: row.storefront_category || resolveStorefrontCategoryName(row.name, row.category),
-        source_category: row.category,
-        handle: slugify(row.name),
-        visual_type: visualType(row.name, row.strength),
-        metadata: {
-          source: "USD-PRICING.xlsx",
-          ruo: true,
-          cas_number: enrichment[row.name]?.cas_number || null,
-          molecular_formula: enrichment[row.name]?.molecular_formula || null,
-          molecular_weight: enrichment[row.name]?.molecular_weight || null,
-          storage: enrichment[row.name]?.storage || "-20C lyophilized",
-          appearance:
-            enrichment[row.name]?.appearance ||
-            (isCapsule(row.name, row.strength)
-              ? "White capsule"
-              : isWaterSolution(row.name, row.strength)
-                ? "Clear solution"
-                : "White lyophilized powder")
-        },
-        variants: []
-      })
-    }
+    const tiers = row.pack_tiers?.length ? row.pack_tiers : defaultPackTiers(row)
+    const title = productTitle(row.name, row.strength)
+    const enrichmentKey = row.name
 
-    grouped.get(productId).variants.push({
-      id: toVariantId(row.name, row.strength),
-      title: row.strength,
-      sku: row.slug.toUpperCase().replace(/-/g, "_"),
+    products.push({
+      id: slugify(row.slug),
+      title,
+      category: row.storefront_category || resolveStorefrontCategoryName(title, row.category),
+      source_category: row.category,
       handle: row.slug,
-      amount_usd: Number(row.price_usd),
-      currency_code: "usd",
+      visual_type: visualType(row.name, row.strength),
       metadata: {
+        source: "Tiered_Pricing_5_10_20_Vials.xlsx",
+        ruo: true,
         strength: row.strength,
-        catalog_slug: row.slug,
-        dosage_mg: Number((row.strength.match(/(\d+)\s*mg/i) || [])[1] || 0)
-      }
+        cas_number: enrichment[enrichmentKey]?.cas_number || null,
+        molecular_formula: enrichment[enrichmentKey]?.molecular_formula || null,
+        molecular_weight: enrichment[enrichmentKey]?.molecular_weight || null,
+        storage: enrichment[enrichmentKey]?.storage || "-20C lyophilized",
+        appearance:
+          enrichment[enrichmentKey]?.appearance ||
+          (isCapsule(row.name, row.strength)
+            ? "White capsule"
+            : isWaterSolution(row.name, row.strength)
+              ? "Clear solution"
+              : "White lyophilized powder")
+      },
+      variants: tiers.map((tier) => ({
+        id: slugify(`${row.slug}-${tier.qty}-pack`),
+        title: tier.tier,
+        sku: `${row.slug.replace(/-/g, "_").toUpperCase()}_${tier.qty}PK`,
+        handle: `${row.slug}-${tier.qty}-pack`,
+        amount_usd: Number(tier.price_usd),
+        currency_code: "usd",
+        metadata: {
+          pack_qty: tier.qty,
+          per_unit_usd: Number(tier.per_unit_usd),
+          savings_pct: Number(tier.savings_pct || 0),
+          catalog_slug: row.slug,
+          strength: row.strength
+        }
+      }))
     })
   }
 
   const catalog = {
     generated_at: new Date().toISOString(),
-    products: Array.from(grouped.values())
+    products
   }
 
   await fs.mkdir(outputDir, { recursive: true })
   await fs.writeFile(outputPath, JSON.stringify(catalog, null, 2), "utf8")
   console.log(
-    `Normalized ${catalog.products.length} products to ${outputPath.replaceAll(
+    `Normalized ${catalog.products.length} tiered products to ${outputPath.replaceAll(
       "\\",
       "/"
     )}`

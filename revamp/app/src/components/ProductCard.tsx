@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Check } from 'lucide-react';
 import type { Product } from '@/data/products';
+import { getDefaultPackTier, getPackTiers } from '@/data/pack-pricing';
 import { useCart } from '@/context/CartContext';
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const isOnSale = product.originalPrice && product.originalPrice > product.price;
+  const packTiers = getPackTiers(product.slug);
+  const defaultTier = getDefaultPackTier(product.slug);
+  const displayPrice = defaultTier?.price ?? product.price;
+  const priceLabel = packTiers && packTiers.length > 1
+    ? `From $${displayPrice.toFixed(2)}`
+    : `$${displayPrice.toFixed(2)}`;
+  const packHint = packTiers && packTiers.length > 1 ? 'From 5 vials' : null;
 
   return (
     <div className="card card-hover group flex flex-col overflow-hidden">
@@ -40,7 +48,9 @@ export default function ProductCard({ product }: { product: Product }) {
           </h3>
         </Link>
         <div className="mt-0.5 flex items-center gap-2">
-          <p className="font-mono text-[11px] font-medium text-[#94A3B8]">{product.strength}</p>
+          <p className="font-mono text-[11px] font-medium text-[#94A3B8]">
+            {packHint ? `${product.strength} · ${packHint}` : product.strength}
+          </p>
           {product.inStock ? (
             <span className="flex items-center gap-0.5 font-mono text-[10px] text-[#059669]">
               <Check className="h-3 w-3" /> In Stock
@@ -57,7 +67,7 @@ export default function ProductCard({ product }: { product: Product }) {
               </span>
             )}
             <span className={`font-bold ${isOnSale ? 'text-base text-[#D97706]' : 'text-base text-[#0F172A]'}`}>
-              ${product.price.toFixed(2)}
+              {priceLabel}
             </span>
           </div>
           <button

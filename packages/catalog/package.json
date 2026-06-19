@@ -8,7 +8,8 @@
     "import:medusa": "node scripts/import-to-medusa.mjs",
     "typesense:index": "node scripts/index-to-typesense.mjs",
     "coa:sync-r2": "node scripts/sync-coa-r2.mjs",
-    "coa:manifest:generate": "node scripts/generate-coa-manifest.mjs"
+    "coa:manifest:generate": "node scripts/generate-coa-manifest.mjs",
+    "import:tiered-pricing": "powershell -ExecutionPolicy Bypass -File scripts/import-tiered-pricing.ps1"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.888.0",

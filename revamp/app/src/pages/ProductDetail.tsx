@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CheckCircle, Download, Minus, Plus, ShoppingCart, ShieldCheck, Snowflake, FileCheck, Star } from 'lucide-react';
 import { products, reviews } from '@/data/products';
+import { getDefaultPackTier, getPackTiers, type PackTier } from '@/data/pack-pricing';
 import { useCart } from '@/context/CartContext';
 import ProductCard from '@/components/ProductCard';
+import PackSizeSelector from '@/components/PackSizeSelector';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ComplianceNotice from '@/components/ComplianceNotice';
 import FAQAccordion from '@/components/FAQAccordion';
@@ -19,10 +21,23 @@ export default function ProductDetail() {
   const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState('Overview');
   const [quantity, setQuantity] = useState(1);
-  const [selectedVariant, setSelectedVariant] = useState('');
+  const [selectedPack, setSelectedPack] = useState<PackTier | null>(null);
   const [stickyVisible, setStickyVisible] = useState(false);
 
   const product = products.find(p => p.slug === slug);
+  const packTiers = useMemo(() => {
+    if (!product) return [] as PackTier[];
+    return getPackTiers(product.slug) || [
+      {
+        tier: '5 vials',
+        qty: 5,
+        price: product.price,
+        perUnit: product.price / 5,
+        savingsPct: 0,
+      },
+    ];
+  }, [product]);
+  const activePack = selectedPack || packTiers[0];
 
   useEffect(() => {
     const onScroll = () => setStickyVisible(window.scrollY > 600);
@@ -32,10 +47,19 @@ export default function ProductDetail() {
 
   useEffect(() => { window.scrollTo(0, 0); }, [slug]);
 
-  if (!product) return <div className="flex min-h-screen items-center justify-center pt-20"><div className="text-center"><p className="text-xl text-[#0F172A]">Product not found</p><Link to="/shop" className="mt-4 text-[#0D9488]">Back to Shop</Link></div></div>;
+  useEffect(() => {
+    setSelectedPack(getDefaultPackTier(slug || '') || null);
+    setQuantity(1);
+  }, [slug]);
+
+  if (!product || !activePack) return <div className="flex min-h-screen items-center justify-center pt-20"><div className="text-center"><p className="text-xl text-[#0F172A]">Product not found</p><Link to="/shop" className="mt-4 text-[#0D9488]">Back to Shop</Link></div></div>;
 
   const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
-  const currentPrice = product.variants?.find(v => v.strength === selectedVariant)?.price || product.price;
+  const priceRange =
+    packTiers.length > 1
+      ? `$${Math.min(...packTiers.map(t => t.price)).toFixed(2)} – $${Math.max(...packTiers.map(t => t.price)).toFixed(2)}`
+      : `$${activePack.price.toFixed(2)}`;
+  const unitLabel = /(water|alcohol|suppl)/i.test(`${product.name} ${product.category}`) ? 'unit' : 'vial';
 
   return (
     <div className="min-h-screen">
@@ -61,25 +85,21 @@ export default function ProductDetail() {
             <span className="mb-2 inline-block font-mono text-xs uppercase tracking-wider text-[#0D9488]">{product.subcategory}</span>
             <h1 className="font-serif text-4xl text-[#0F172A] md:text-5xl">{product.name}</h1>
             <p className="mt-2 text-lg text-[#475569]">{product.strength} Lyophilized Powder</p>
-            <p className="mt-6 font-serif text-4xl text-[#0F172A]">${currentPrice.toFixed(2)}</p>
+            <p className="mt-6 font-serif text-4xl text-[#0F172A]">{priceRange}</p>
+            <p className="mt-1 text-sm text-[#64748B]">Selected pack: ${activePack.price.toFixed(2)}</p>
             <div className="mt-4 flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-[#0D9488]" />
               <span className="font-mono text-sm text-[#0D9488]">{product.purity} HPLC Verified</span>
             </div>
 
-            {product.variants && product.variants.length > 1 && (
-              <div className="mt-6">
-                <span className="mb-2 block text-sm text-[#475569]">Select Size</span>
-                <div className="flex flex-wrap gap-2">
-                  {product.variants.map(v => (
-                    <button key={v.strength} onClick={() => setSelectedVariant(v.strength)}
-                      className={`rounded-lg border px-4 py-2 text-sm font-medium transition-all ${selectedVariant === v.strength ? 'border-[#0D9488] bg-[#CCFBF1] text-[#0D9488]' : 'border-[#E2E8F0] bg-white text-[#475569] hover:border-[#0D9488]/50'}`}>
-                      {v.strength} — ${v.price.toFixed(2)}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+            <div className="mt-6">
+              <PackSizeSelector
+                key={product.slug}
+                tiers={packTiers}
+                unitLabel={unitLabel}
+                onChange={setSelectedPack}
+              />
+            </div>
 
             <div className="mt-6">
               <span className="mb-2 block text-sm text-[#475569]">Quantity</span>
@@ -90,8 +110,11 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <button onClick={() => addItem(product, quantity, selectedVariant || undefined)} className="btn-cta mt-6 w-full gap-2 text-base">
-              <ShoppingCart className="h-5 w-5" /> Add to Cart — ${(currentPrice * quantity).toFixed(2)}
+            <button
+              onClick={() => addItem(product, quantity, activePack.tier, activePack.price)}
+              className="btn-cta mt-6 w-full gap-2 text-base"
+            >
+              <ShoppingCart className="h-5 w-5" /> Add to Cart — ${(activePack.price * quantity).toFixed(2)}
             </button>
             <button className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-[#E2E8F0] py-3 text-sm text-[#475569] hover:border-[#0D9488] hover:text-[#0D9488] transition-colors">
               <Download className="h-4 w-4" /> Download COA (PDF)
@@ -210,9 +233,9 @@ export default function ProductDetail() {
           <div className="page-container flex items-center justify-between py-3">
             <div className="flex items-center gap-4">
               <img src={product.image} alt={product.name} className="h-10 w-10 rounded-lg object-cover" />
-              <div><p className="text-sm font-medium text-[#0F172A]">{product.name}</p><p className="text-xs text-[#94A3B8]">${currentPrice.toFixed(2)}</p></div>
+              <div><p className="text-sm font-medium text-[#0F172A]">{product.name}</p><p className="text-xs text-[#94A3B8]">${activePack.price.toFixed(2)} · {activePack.tier}</p></div>
             </div>
-            <button onClick={() => addItem(product, quantity, selectedVariant || undefined)} className="btn-cta gap-2"><ShoppingCart className="h-4 w-4" /> Add to Cart</button>
+            <button onClick={() => addItem(product, quantity, activePack.tier, activePack.price)} className="btn-cta gap-2"><ShoppingCart className="h-4 w-4" /> Add to Cart</button>
           </div>
         </div>
       )}

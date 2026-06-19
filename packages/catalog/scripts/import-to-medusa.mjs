@@ -144,7 +144,7 @@ const run = async () => {
       },
       options: [
         {
-          title: "Strength",
+          title: "Pack Size",
           values: product.variants.map((variant) => variant.title)
         }
       ],
@@ -152,7 +152,7 @@ const run = async () => {
         title: variant.title,
         sku: variant.sku,
         manage_inventory: false,
-        options: { Strength: variant.title },
+        options: { "Pack Size": variant.title },
         prices: [
           {
             amount: Math.round(variant.amount_usd * 100),

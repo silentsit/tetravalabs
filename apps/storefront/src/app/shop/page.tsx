@@ -1,18 +1,14 @@
-import Link from "next/link"
+import { Suspense } from "react"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
-import { ProductSortSelect } from "@/components/product-sort-select"
+import { ProductFilters, filterByPill, normalizeShopCategoryPill } from "@/components/product-filters"
+import { ProductSort } from "@/components/product-sort"
 import { listProducts } from "@/lib/medusa"
-import {
-  categoryLabelFromSlug,
-  filterProductsByCategorySlug,
-  groupProductsByCategory
-} from "@/lib/categories"
+import { filterProductsByCategorySlug } from "@/lib/categories"
 import { searchProducts } from "@/lib/search"
 import { buildPageMetadata } from "@/lib/seo"
 import {
-  buildShopHref,
   orderProductsBySearchResults,
   parseProductSort,
   sortProducts
@@ -44,32 +40,33 @@ function parseCents(value?: string) {
   return Math.round(dollars * 100)
 }
 
+function ShopFiltersSkeleton() {
+  return <div className="h-10 w-full max-w-3xl animate-pulse rounded-full bg-[#F1F5F9]" />
+}
+
 export default async function ShopPage({ searchParams }: Props) {
   const { q = "", category = "", price_min = "", price_max = "", sort = "" } = await searchParams
   const products = await listProducts()
-  const categories = groupProductsByCategory(products)
-  const categoryLabel = category ? categoryLabelFromSlug(category, products) : undefined
   const priceMin = parseCents(price_min)
   const priceMax = parseCents(price_max)
   const sortKey = parseProductSort(sort)
+  const categoryPill = normalizeShopCategoryPill(category || undefined)
 
-  let displayProducts = products
+  let displayProducts = category
+    ? categoryPill
+      ? filterByPill(products, category)
+      : filterProductsByCategorySlug(products, category)
+    : products
   const useSearch = Boolean(q.trim() || priceMin != null || priceMax != null)
 
   if (useSearch) {
-    const { results } = await searchProducts(q, {
-      category: categoryLabel,
-      priceMin,
-      priceMax
-    })
+    const { results } = await searchProducts(q, { priceMin, priceMax })
     const handles = new Set(results.map((result) => result.handle))
-    displayProducts = products.filter((product) => handles.has(product.handle))
+    displayProducts = displayProducts.filter((product) => handles.has(product.handle))
     displayProducts =
       sortKey === "featured"
         ? orderProductsBySearchResults(displayProducts, results)
         : sortProducts(displayProducts, sortKey)
-  } else if (category) {
-    displayProducts = sortProducts(filterProductsByCategorySlug(displayProducts, category), sortKey)
   } else {
     displayProducts = sortProducts(displayProducts, sortKey)
   }
@@ -77,105 +74,87 @@ export default async function ShopPage({ searchParams }: Props) {
   return (
     <section className="page-container space-y-8 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Shop" }]} />
-      <div>
-        <span className="section-label">Catalog</span>
-        <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Research Compounds</h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#475569]">
-          Browse the live catalog synced from Medusa. All products are sold strictly for laboratory
-          research use.
-        </p>
-      </div>
 
-      <form action="/shop" className="max-w-3xl space-y-3">
-        <div className="flex gap-2">
-          <input
-            name="q"
-            defaultValue={q}
-            placeholder="Filter by name, CAS, formula..."
-            className="input-field"
-          />
-          {category ? <input type="hidden" name="category" value={category} /> : null}
-          <button type="submit" className="btn-secondary shrink-0 px-4 py-2.5">
-            Filter
-          </button>
+      <div className="border-b border-[#E2E8F0] pb-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <span className="section-label">Catalog</span>
+            <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Research Compounds</h1>
+            <p className="mt-2 text-sm text-[#64748B]">
+              {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
+              {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
+            </p>
+          </div>
+          <Suspense fallback={<ShopFiltersSkeleton />}>
+            <ProductSort currentSort={sortKey} />
+          </Suspense>
         </div>
-        <div className="grid gap-3 sm:grid-cols-3">
-          <label className="block text-xs text-[#64748B]">
-            Min price (USD)
+
+        <form action="/shop" className="mt-6 max-w-3xl space-y-3">
+          <div className="flex gap-2">
             <input
-              name="price_min"
-              type="number"
-              min="0"
-              step="0.01"
-              defaultValue={price_min}
-              placeholder="0.00"
-              className="input-field mt-1"
+              name="q"
+              defaultValue={q}
+              placeholder="Filter by name, CAS, formula..."
+              className="input-field"
             />
-          </label>
-          <label className="block text-xs text-[#64748B]">
-            Max price (USD)
-            <input
-              name="price_max"
-              type="number"
-              min="0"
-              step="0.01"
-              defaultValue={price_max}
-              placeholder="999.00"
-              className="input-field mt-1"
-            />
-          </label>
-          <ProductSortSelect defaultValue={sortKey} />
+            {category ? <input type="hidden" name="category" value={category} /> : null}
+            {sort && sort !== "featured" ? <input type="hidden" name="sort" value={sort} /> : null}
+            <button type="submit" className="btn-secondary shrink-0 px-4 py-2.5">
+              Search
+            </button>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="block text-xs text-[#64748B]">
+              Min price (USD)
+              <input
+                name="price_min"
+                type="number"
+                min="0"
+                step="0.01"
+                defaultValue={price_min}
+                placeholder="0.00"
+                className="input-field mt-1"
+              />
+            </label>
+            <label className="block text-xs text-[#64748B]">
+              Max price (USD)
+              <input
+                name="price_max"
+                type="number"
+                min="0"
+                step="0.01"
+                defaultValue={price_max}
+                placeholder="999.00"
+                className="input-field mt-1"
+              />
+            </label>
+          </div>
+        </form>
+
+        <div className="mt-6">
+          <Suspense fallback={<ShopFiltersSkeleton />}>
+            <ProductFilters products={products} activePill={categoryPill || category || undefined} />
+          </Suspense>
         </div>
-      </form>
-
-      <div className="flex flex-wrap gap-2 text-xs text-[#475569]">
-        <Link
-          href={buildShopHref({ q, price_min, price_max, sort })}
-          className={`rounded-full border px-3 py-1 transition ${
-            !category ? "border-[#0D9488] text-[#0D9488]" : "border-[#E2E8F0] hover:border-[#CBD5E1]"
-          }`}
-        >
-          All ({products.length})
-        </Link>
-        {categories.map((item) => (
-          <Link
-            key={item.slug}
-            href={buildShopHref({
-              q,
-              category: item.slug,
-              price_min,
-              price_max,
-              sort
-            })}
-            className={`rounded-full border px-3 py-1 transition ${
-              category === item.slug
-                ? "border-[#0D9488] text-[#0D9488]"
-                : "border-[#E2E8F0] hover:border-[#CBD5E1]"
-            }`}
-          >
-            {item.name} ({item.count})
-          </Link>
-        ))}
       </div>
 
-      <p className="text-sm text-[#64748B]">
-        Showing {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
-        {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
-      </p>
-
-      <div className="product-card-grid">
-        {displayProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-
-      {displayProducts.length === 0 ? (
-        <p className="rounded-xl border border-[#E2E8F0] bg-white p-6 text-sm text-[#475569]">
-          {products.length === 0
-            ? "Catalog is empty — Medusa returned no products. Check NEXT_PUBLIC_MEDUSA_URL in .env.local and that the backend is reachable."
-            : "No products match this filter. Try a different search term or category."}
-        </p>
-      ) : null}
+      {displayProducts.length > 0 ? (
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+          {displayProducts.map((product) => (
+            <ProductCard key={product.id} product={product} variant="shop" />
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-xl border border-[#E2E8F0] bg-white p-10 text-center">
+          <h3 className="font-serif text-xl text-[#0F172A]">No products found</h3>
+          <p className="mt-2 text-sm text-[#64748B]">
+            {products.length === 0
+              ? "Catalog is empty — check Medusa connectivity."
+              : "Try a different search term or category filter."}
+          </p>
+        </div>
+      )}
     </section>
   )
 }

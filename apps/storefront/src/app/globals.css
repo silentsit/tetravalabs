@@ -99,6 +99,19 @@
   .product-detail-image-wrapper img {
     @apply h-full w-full object-contain object-center p-8;
   }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
   .product-card-grid {
     @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
   }

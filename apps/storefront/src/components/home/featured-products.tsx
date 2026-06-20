@@ -1,10 +1,14 @@
 import Link from "next/link"
 import { listProducts } from "@/lib/medusa"
 import { ProductCard } from "@/components/product-card"
+import { FEATURED_PRODUCT_HANDLES } from "@/lib/product-image-map"
 
 export async function FeaturedProducts() {
   const products = await listProducts()
-  const featured = products.slice(0, 8)
+  const byHandle = new Map(products.map((product) => [product.handle, product]))
+  const featured = FEATURED_PRODUCT_HANDLES.map((handle) => byHandle.get(handle)).filter(
+    (product): product is NonNullable<typeof product> => Boolean(product)
+  )
 
   return (
     <section className="space-y-8">
@@ -23,9 +27,9 @@ export async function FeaturedProducts() {
           No products loaded yet. Start Medusa and run catalog import.
         </p>
       ) : (
-        <div className="product-card-grid">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
           {featured.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} variant="shop" />
           ))}
         </div>
       )}

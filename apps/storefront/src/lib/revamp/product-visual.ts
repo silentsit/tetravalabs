@@ -1,5 +1,6 @@
 import type { StoreProduct } from "@/lib/medusa"
 import { getProductPriceCents, getVariantPriceCents } from "@/lib/product-price"
+import { getV2ProductImage } from "@/lib/product-image-map"
 import productImageMap from "@/lib/revamp/product-image-map.json"
 
 type AliasEntry = { slug: string; image: string }
@@ -324,6 +325,9 @@ export function getProductImage(product: StoreProduct) {
   if (metadataUrl.startsWith("/") || metadataUrl.startsWith("http")) {
     return metadataUrl
   }
+
+  const v2Image = getV2ProductImage(product.handle)
+  if (v2Image) return v2Image
 
   const mapped = getProductImageForHandle(product.handle)
   if (mapped) return mapped

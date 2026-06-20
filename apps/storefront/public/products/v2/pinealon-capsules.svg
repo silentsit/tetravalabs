@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+<defs>
+  <radialGradient id="bgG" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#E2E8F0"/></radialGradient>
+  <linearGradient id="bottle" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#E2E8F0"/><stop offset="15%" stop-color="#F8FAFC"/><stop offset="50%" stop-color="#FFFFFF"/><stop offset="85%" stop-color="#F1F5F9"/><stop offset="100%" stop-color="#CBD5E1"/></linearGradient>
+  <linearGradient id="capB" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#E2E8F0"/><stop offset="20%" stop-color="#F8FAFC"/><stop offset="50%" stop-color="#FFFFFF"/><stop offset="80%" stop-color="#F1F5F9"/><stop offset="100%" stop-color="#CBD5E1"/></linearGradient>
+  <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(255,255,255,0)"/><stop offset="30%" stop-color="rgba(255,255,255,0.8)"/><stop offset="50%" stop-color="rgba(255,255,255,0.9)"/><stop offset="70%" stop-color="rgba(255,255,255,0.6)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+  <filter id="sh" x="-20%" y="-10%" width="140%" height="130%"><feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000" flood-opacity="0.12"/></filter>
+  <filter id="gsh" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur in="SourceAlpha" stdDeviation="15"/><feOffset dx="0" dy="20"/><feComponentTransfer><feFuncA type="linear" slope="0.15"/></feComponentTransfer></filter>
+</defs>
+<rect width="600" height="900" fill="#FFFFFF"/>
+<rect width="600" height="900" fill="url(#bgG)" opacity="0.4"/>
+<ellipse cx="300" cy="685" rx="170" ry="25" fill="#000" filter="url(#gsh)"/>
+<rect x="160" y="280" width="280" height="420" rx="50" fill="url(#bottle)" filter="url(#sh)"/>
+<rect x="165" y="230" width="270" height="55" rx="8" fill="url(#capB)"/>
+<line x1="180" y1="235" x2="180" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="201.8181818181818" y1="235" x2="201.8181818181818" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="223.63636363636363" y1="235" x2="223.63636363636363" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="245.45454545454544" y1="235" x2="245.45454545454544" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="267.27272727272725" y1="235" x2="267.27272727272725" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="289.0909090909091" y1="235" x2="289.0909090909091" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="310.9090909090909" y1="235" x2="310.9090909090909" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="332.72727272727275" y1="235" x2="332.72727272727275" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="354.5454545454545" y1="235" x2="354.5454545454545" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="376.3636363636364" y1="235" x2="376.3636363636364" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="398.1818181818182" y1="235" x2="398.1818181818182" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/><line x1="420" y1="235" x2="420" y2="280" stroke="#CBD5E1" stroke-width="1" opacity="0.5"/>
+<rect x="205.5" y="235" width="67.5" height="43" rx="3" fill="#FFF" opacity="0.4"/>
+<rect x="180" y="340" width="240" height="220" rx="8" fill="#FFFFFF" opacity="0.95"/>
+<rect x="180" y="340" width="240" height="220" rx="8" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+<text x="300" y="410" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="52" fill="#1E293B" letter-spacing="-0.5">Pinealon</text>
+<rect x="220" y="440" width="160" height="48" rx="24" fill="none" stroke="#334155" stroke-width="2.5"/>
+<text x="300" y="472" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="30" fill="#334155" letter-spacing="1">100 count</text>
+<text x="300" y="535" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="18" fill="#94A3B8" letter-spacing="0.5">For Research Use Only</text>
+<rect x="175" y="310" width="35" height="340" rx="15" fill="url(#shine)" opacity="0.4"/>
+<rect x="385" y="320" width="20" height="320" rx="8" fill="#FFFFFF" opacity="0.2"/>
+</svg>

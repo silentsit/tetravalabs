@@ -1,6 +1,6 @@
 import Link from "next/link"
 import type { SearchResult } from "@/lib/search"
-import { getProductImageForHandle } from "@/lib/revamp/product-visual"
+import { getProductImage } from "@/lib/product-image-map"
 
 type Props = {
   result: SearchResult
@@ -12,7 +12,7 @@ export function SearchResultCard({ result }: Props) {
       ? `$${(result.price_min / 100).toFixed(2)}`
       : `$${(result.price_min / 100).toFixed(2)} – $${(result.price_max / 100).toFixed(2)}`
 
-  const image = getProductImageForHandle(result.handle) || "/v2/vial-single.jpg"
+  const image = getProductImage(result.handle)
 
   return (
     <Link

@@ -1,93 +1,20 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation"
+import {
+  filterByPill,
+  groupBySourceCategory,
+  storefrontPills,
+  type FilterableProduct
+} from "@/lib/shop-filters"
 
 function cn(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(" ")
 }
 
-const storefrontPills: {
-  key: string
-  label: string
-  matches: string[]
-}[] = [
-  { key: "all", label: "All Products", matches: [] },
-  {
-    key: "glp-1",
-    label: "GLP-1 Research",
-    matches: ["GLP-1 Research", "GLP-1 / Incretin"]
-  },
-  {
-    key: "growth-factors",
-    label: "Growth Factors",
-    matches: [
-      "Growth Factors",
-      "BPC-157 / TB500",
-      "CJC / Ipamorelin / GHRP",
-      "Growth Hormone Axis",
-      "Longevity / Thymic / Neuropeptides",
-      "Mitochondrial / Metabolic Other",
-      "Cosmetic / Copper / Tanning",
-      "Vitamins & Injectables",
-      "Legacy Catalog"
-    ]
-  },
-  {
-    key: "blends",
-    label: "Research Blends",
-    matches: ["Research Blends", "Blends"]
-  },
-  {
-    key: "supplies",
-    label: "Lab Supplies",
-    matches: ["Lab Supplies", "Supplies & Reconstitution"]
-  }
-]
-
-const LEGACY_PILL_ALIASES: Record<string, string> = {
-  "glp-1-research": "glp-1",
-  "glp-1-incretin": "glp-1",
-  "research-blends": "blends",
-  "lab-supplies": "supplies",
-  "supplies-reconstitution": "supplies"
-}
-
-export function isShopPillKey(value: string): boolean {
-  return storefrontPills.some((pill) => pill.key === value)
-}
-
-export function normalizeShopCategoryPill(category?: string): string | undefined {
-  if (!category) return undefined
-  if (isShopPillKey(category)) return category
-  return LEGACY_PILL_ALIASES[category]
-}
-
-export interface FilterableProduct {
-  id: string
-  handle: string
-  title: string
-  metadata?: {
-    source_category?: string
-    [key: string]: unknown
-  } | null
-  collection?: {
-    handle: string
-    title: string
-  } | null
-}
-
 interface ProductFiltersProps {
   products: FilterableProduct[]
   activePill?: string
-}
-
-function matchesPill(product: FilterableProduct, pillCategories: string[]): boolean {
-  const sourceCategory =
-    product.metadata?.source_category || product.collection?.title || ""
-
-  return pillCategories.some(
-    (cat) => sourceCategory.toLowerCase() === cat.toLowerCase()
-  )
 }
 
 export function ProductFilters({ products, activePill = "all" }: ProductFiltersProps) {
@@ -98,7 +25,7 @@ export function ProductFilters({ products, activePill = "all" }: ProductFiltersP
 
   for (const pill of storefrontPills) {
     if (pill.key === "all") continue
-    counts[pill.key] = products.filter((p) => matchesPill(p, pill.matches)).length
+    counts[pill.key] = filterByPill(products, pill.key).length
   }
 
   const handlePillClick = (key: string) => {
@@ -150,33 +77,5 @@ export function ProductFilters({ products, activePill = "all" }: ProductFiltersP
   )
 }
 
-export function filterByPill<T extends FilterableProduct>(
-  products: T[],
-  activePill: string | undefined
-): T[] {
-  const pillKey = normalizeShopCategoryPill(activePill)
-  if (!pillKey || pillKey === "all") return products
-
-  const pill = storefrontPills.find((p) => p.key === pillKey)
-  if (!pill || pill.key === "all") return products
-
-  return products.filter((p) => matchesPill(p, pill.matches))
-}
-
-export function groupBySourceCategory(
-  products: FilterableProduct[]
-): Record<string, FilterableProduct[]> {
-  const groups: Record<string, FilterableProduct[]> = {}
-
-  for (const product of products) {
-    const cat =
-      product.metadata?.source_category ||
-      product.collection?.title ||
-      "Uncategorized"
-
-    if (!groups[cat]) groups[cat] = []
-    groups[cat].push(product)
-  }
-
-  return groups
-}
+export { filterByPill, groupBySourceCategory }
+export type { FilterableProduct }

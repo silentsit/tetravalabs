@@ -64,9 +64,9 @@ export default async function ProductPage({ params }: Props) {
       />
 
       <div className="grid gap-10 lg:grid-cols-2">
-        <div className="card overflow-hidden">
-          <div className="aspect-square bg-white p-6">
-            <img src={image} alt={displayName} className="h-full w-full object-contain" />
+        <div className="card overflow-hidden p-4">
+          <div className="product-detail-image-wrapper">
+            <img src={image} alt={displayName} />
           </div>
         </div>
         <div className="space-y-5">

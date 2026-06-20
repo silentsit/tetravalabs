@@ -70,10 +70,34 @@
     @apply -translate-y-0.5 border-[#CBD5E1] shadow-[0_4px_20px_rgba(15,23,42,0.06)];
   }
   .product-card-media {
-    @apply relative block h-[280px] overflow-hidden bg-white;
+    @apply relative block w-full overflow-hidden bg-[#f8f9fa];
+    aspect-ratio: 1 / 1;
   }
   .product-card-media-image {
-    @apply absolute left-1/2 top-1/2 h-[240px] w-auto max-w-[calc(100%-1.5rem)] -translate-x-1/2 -translate-y-1/2 object-contain transition-transform duration-300 group-hover:scale-[1.04];
+    @apply h-full w-full object-contain object-center p-4 transition-transform duration-300 group-hover:scale-105;
+  }
+  .product-card-media-image[src*="cat-"],
+  .product-card-media-image[src*="blend"],
+  .product-card-media-image[src*="/v2/"] {
+    @apply object-cover p-0;
+  }
+  .product-card-media-image[src*="capsules"],
+  .product-card-media-image[src*="caps"] {
+    padding: 1.5rem;
+  }
+  .product-card-media-image[src*="bac-water"],
+  .product-card-media-image[src*="acetic-acid"],
+  .product-card-media-image[src*="benzyl-alcohol"],
+  .product-card-media-image[src*="lipo-c"],
+  .product-card-media-image[src*="lemon-bottle"] {
+    padding: 1.25rem;
+  }
+  .product-detail-image-wrapper {
+    @apply relative mx-auto w-full max-w-[500px] overflow-hidden rounded-xl bg-[#f8f9fa];
+    aspect-ratio: 1 / 1;
+  }
+  .product-detail-image-wrapper img {
+    @apply h-full w-full object-contain object-center p-8;
   }
   .product-card-grid {
     @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;

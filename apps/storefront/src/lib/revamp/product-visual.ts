@@ -233,27 +233,87 @@ function compoundImageForHandle(handle: string): string | null {
   return null
 }
 
+function extractStrengthFromHandle(handle: string): string | null {
+  const match = handle.match(/(\d+(?:\.\d+)?(?:\s*|-\s*)(?:mg|ml|iu|mcg|ct|count))$/i)
+  return match?.[1]?.toLowerCase().replace(/[\s-]/g, "") || null
+}
+
+function extractStrengthFromImagePath(imagePath: string): string | null {
+  const filename = imagePath.split("/").pop() || ""
+  const match = filename.match(/(\d+(?:\.\d+)?(?:\s*|-\s*)?(?:mg|ml|iu|mcg|ct|count))/i)
+  return match?.[1]?.toLowerCase().replace(/[\s-]/g, "") || null
+}
+
+function validateStrengthMatch(imagePath: string, productHandle: string): string | null {
+  const skipPatterns = [
+    "/v2/",
+    "cat-",
+    "blend",
+    "capsule",
+    "caps",
+    "bac-water",
+    "acetic-acid",
+    "benzyl-alcohol",
+    "lipo-c",
+    "lemon-bottle",
+    "vial-single",
+    "vial-water",
+    "vial-blend",
+    "bottle-"
+  ]
+
+  const lowerPath = imagePath.toLowerCase()
+  if (skipPatterns.some((pattern) => lowerPath.includes(pattern))) {
+    return imagePath
+  }
+
+  const productStrength = extractStrengthFromHandle(productHandle)
+  const imageStrength = extractStrengthFromImagePath(imagePath)
+
+  if (!productStrength || !imageStrength) return imagePath
+  if (productStrength === imageStrength) return imagePath
+
+  if (process.env.NODE_ENV === "development") {
+    console.warn(
+      `[STRENGTH MISMATCH] Product "${productHandle}" (${productStrength}) ` +
+        `blocked from using image "${imagePath}" (${imageStrength})`
+    )
+  }
+  return null
+}
+
+function acceptMappedImage(image: string | null, handle: string): string | null {
+  if (!image) return null
+  return validateStrengthMatch(image, handle)
+}
+
 export function getProductImageForHandle(handle: string, variantHandle?: string) {
   const alias = handleAliases[handle]
-  if (alias?.image) return alias.image
+  const aliasImage = acceptMappedImage(alias?.image ?? null, handle)
+  if (aliasImage) return aliasImage
 
   const candidates = [handle, variantHandle].filter(Boolean) as string[]
   for (const candidate of candidates) {
-    const fromFiles = resolveFromAvailableFiles(candidate)
+    const fromFiles = acceptMappedImage(resolveFromAvailableFiles(candidate), candidate)
     if (fromFiles) return fromFiles
 
-    if (kimiImages[candidate]) return kimiImages[candidate]
+    const kimiImage = acceptMappedImage(kimiImages[candidate] ?? null, candidate)
+    if (kimiImage) return kimiImage
 
     const aliasCandidate = handleAliases[candidate]
-    if (aliasCandidate?.image) return aliasCandidate.image
+    const aliasCandidateImage = acceptMappedImage(aliasCandidate?.image ?? null, candidate)
+    if (aliasCandidateImage) return aliasCandidateImage
 
-    const compound = compoundImageForHandle(candidate)
+    const compound = acceptMappedImage(compoundImageForHandle(candidate), candidate)
     if (compound) return compound
   }
 
   const normalizedHandle = normalizeKey(handle)
   for (const [slug, image] of Object.entries(kimiImages)) {
-    if (normalizeKey(slug) === normalizedHandle) return image
+    if (normalizeKey(slug) === normalizedHandle) {
+      const validated = acceptMappedImage(image, handle)
+      if (validated) return validated
+    }
   }
 
   return null

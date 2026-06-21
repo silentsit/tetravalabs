@@ -44,61 +44,43 @@ const PUBLISHABLE_KEY =
   process.env.MEDUSA_PUBLISHABLE_KEY ||
   ""
 
-/** Handles with KIMI photorealistic PNG assets — prefer PNG over labeled SVG. */
-const PREFER_PNG_HANDLES = new Set([
-  "bacteriostatic-water-10ml",
-  "bpc-157-5mg",
-  "bpc-157-10mg",
-  "bpc-157-capsules-100ct",
-  "cagrilintide-semaglutide-5mg",
-  "cjc-1295-with-dac-5mg",
-  "epithalon-20mg",
-  "ghk-cu-50mg",
-  "glow-blend-30mg",
-  "hgh-191aa-10-iu",
-  "ipamorelin-5mg",
-  "mots-c-10mg",
-  "nad-plus-100mg",
-  "retatrutide-5mg",
-  "semaglutide-5mg",
-  "tb500-10mg",
-  "tirzepatide-10mg"
-])
+/** Catalog map always prefers labeled SVG; PNGs are featured-row only (product-image-map.ts). */
+const PREFER_PNG_HANDLES = new Set([])
 
 const AUTO_MATCH_PATTERNS = [
-  [/bpc.?157.*5mg/i, `${V2_BASE}/bpc157-5mg.png`],
-  [/bpc.?157.*10mg/i, `${V2_BASE}/bpc157-10mg.png`],
-  [/bpc.?157.*capsule/i, `${V2_BASE}/bpc157-capsules.png`],
+  [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.svg`],
+  [/bpc.?157.*10mg/i, `${V2_BASE}/bpc-157-10mg.svg`],
+  [/bpc.?157.*capsule/i, `${V2_BASE}/bpc-157-capsules.svg`],
   [/tb500.*5mg/i, `${V2_BASE}/tb500-5mg.svg`],
-  [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.png`],
-  [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.png`],
+  [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.svg`],
+  [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.svg`],
   [/ghk.?cu.*100/i, `${V2_BASE}/ghk-cu-100mg.svg`],
   [/cjc.*without.*dac.*5/i, `${V2_BASE}/cjc-1295-no-dac-5mg.svg`],
   [/cjc.*without.*dac.*10/i, `${V2_BASE}/cjc-1295-no-dac-10mg.svg`],
-  [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc1295-5mg.png`],
+  [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc-1295-5mg.svg`],
   [/cjc.*with.*dac.*10/i, `${V2_BASE}/cjc-1295-10mg.svg`],
-  [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.png`],
-  [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.png`],
-  [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.png`],
-  [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.png`],
-  [/hgh.*10.?iu/i, `${V2_BASE}/hgh-10iu.png`],
+  [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.svg`],
+  [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.svg`],
+  [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.svg`],
+  [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.svg`],
+  [/hgh.*10.?iu/i, `${V2_BASE}/hgh-191aa-10iu.svg`],
   [/hgh.*12.?iu/i, `${V2_BASE}/hgh-191aa-12iu.svg`],
   [/hgh.*15.?iu/i, `${V2_BASE}/hgh-191aa-15iu.svg`],
   [/hgh.*24.?iu/i, `${V2_BASE}/hgh-191aa-24iu.svg`],
   [/hgh.*36.?iu/i, `${V2_BASE}/hgh-191aa-36iu.svg`],
-  [/nad.*100/i, `${V2_BASE}/nad-100mg.png`],
+  [/nad.*100/i, `${V2_BASE}/nad-100mg.svg`],
   [/nad.*500/i, `${V2_BASE}/nad-500mg.svg`],
   [/nad.*1000/i, `${V2_BASE}/nad-1000mg.svg`],
-  [/bacteriostatic.*10/i, `${V2_BASE}/bac-water-10ml.png`],
+  [/bacteriostatic.*10/i, `${V2_BASE}/bacteriostatic-water-10ml.svg`],
   [/acetic.*acid/i, `${V2_BASE}/acetic-acid-3ml.svg`],
-  [/benzyl.*alcohol/i, `${V2_BASE}/benzyl-alcohol-3ml.svg`],
-  [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.png`],
+  [/benzyl.*alcohol/i, `${V2_BASE}/acetic-acid-3ml.svg`],
+  [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.svg`],
   [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.svg`],
   [/glow.*70/i, `${V2_BASE}/glow-enhanced-70mg.svg`],
   [/bpc.*tb500.*20/i, `${V2_BASE}/bpc-tb500-blend-20mg.svg`],
   [/bpc.*tb500.*10/i, `${V2_BASE}/bpc-tb500-blend-10mg.svg`],
   [/copper.*80|cu-50.*80/i, `${V2_BASE}/copper-repair-80mg.svg`],
-  [/cagrilintide.*semaglutide/i, `${V2_BASE}/cagrilintide-semaglutide-5mg.svg`]
+  [/cagrilintide.*semaglutide/i, `${V2_BASE}/semaglutide-5mg.svg`]
 ]
 
 async function loadJson(filePath, fallback) {

@@ -7,31 +7,23 @@ const v2Dir = path.join(root, "public", "products", "v2")
 const map = JSON.parse(
   fs.readFileSync(path.join(root, "src/lib/product-image-map.generated.json"), "utf8")
 )
-const featured = {
-  "bpc-157-5mg": "bpc-157-5mg.png",
-  "semaglutide-5mg": "semaglutide-5mg.png",
-  "tirzepatide-10mg": "tirzepatide-10mg.png",
-  "retatrutide-5mg": "retatrutide-5mg.png",
-  "ghk-cu-50mg": "ghk-cu-50mg.png",
-  "ipamorelin-5mg": "ipamorelin-5mg.png",
-  "tb500-10mg": "tb500-10mg.png",
-  "hgh-191aa-10-iu": "hgh-10iu.png"
-}
 
 const files = new Set(fs.readdirSync(v2Dir))
 const errors = []
+let pngCount = 0
+let svgCount = 0
 
 for (const [handle, url] of Object.entries(map)) {
   const base = path.basename(url)
   if (!files.has(base)) errors.push(`missing file: ${handle} -> ${base}`)
-  if (url.endsWith(".png")) errors.push(`catalog map uses PNG: ${handle} -> ${url}`)
-}
-
-for (const [handle, base] of Object.entries(featured)) {
-  if (!files.has(base)) errors.push(`missing featured PNG: ${handle} -> ${base}`)
+  if (url.endsWith(".png")) pngCount++
+  if (url.endsWith(".svg")) svgCount++
 }
 
 console.log(`handles: ${Object.keys(map).length}`)
+console.log(`png: ${pngCount}, svg: ${svgCount}`)
 console.log(`errors: ${errors.length}`)
 if (errors.length) console.log(errors.join("\n"))
 else console.log("ok")
+
+process.exit(errors.length ? 1 : 0)

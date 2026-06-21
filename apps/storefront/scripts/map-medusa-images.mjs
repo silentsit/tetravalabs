@@ -44,45 +44,49 @@ const PUBLISHABLE_KEY =
   process.env.MEDUSA_PUBLISHABLE_KEY ||
   ""
 
-/** Catalog map always prefers labeled SVG; PNGs are featured-row only (product-image-map.ts). */
+/** @deprecated PNG-first is default for all handles with v2-photos assets. */
 const PREFER_PNG_HANDLES = new Set([])
 
 const AUTO_MATCH_PATTERNS = [
-  [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.svg`],
-  [/bpc.?157.*10mg/i, `${V2_BASE}/bpc-157-10mg.svg`],
-  [/bpc.?157.*capsule/i, `${V2_BASE}/bpc-157-capsules.svg`],
-  [/tb500.*5mg/i, `${V2_BASE}/tb500-5mg.svg`],
-  [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.svg`],
-  [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.svg`],
-  [/ghk.?cu.*100/i, `${V2_BASE}/ghk-cu-100mg.svg`],
-  [/cjc.*without.*dac.*5/i, `${V2_BASE}/cjc-1295-no-dac-5mg.svg`],
-  [/cjc.*without.*dac.*10/i, `${V2_BASE}/cjc-1295-no-dac-10mg.svg`],
-  [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc-1295-5mg.svg`],
-  [/cjc.*with.*dac.*10/i, `${V2_BASE}/cjc-1295-10mg.svg`],
-  [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.svg`],
-  [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.svg`],
-  [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.svg`],
-  [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.svg`],
-  [/hgh.*10.?iu/i, `${V2_BASE}/hgh-191aa-10iu.svg`],
-  [/hgh.*12.?iu/i, `${V2_BASE}/hgh-191aa-12iu.svg`],
-  [/hgh.*15.?iu/i, `${V2_BASE}/hgh-191aa-15iu.svg`],
-  [/hgh.*24.?iu/i, `${V2_BASE}/hgh-191aa-24iu.svg`],
-  [/hgh.*36.?iu/i, `${V2_BASE}/hgh-191aa-36iu.svg`],
-  [/nad.*100/i, `${V2_BASE}/nad-100mg.svg`],
-  [/nad.*500/i, `${V2_BASE}/nad-500mg.svg`],
-  [/nad.*1000/i, `${V2_BASE}/nad-1000mg.svg`],
-  [/bacteriostatic.*10/i, `${V2_BASE}/bacteriostatic-water-10ml.svg`],
-  [/acetic.*acid/i, `${V2_BASE}/acetic-acid-3ml.svg`],
-  [/benzyl.*alcohol/i, `${V2_BASE}/acetic-acid-3ml.svg`],
-  [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.svg`],
-  [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.svg`],
-  [/glow.*70/i, `${V2_BASE}/glow-enhanced-70mg.svg`],
-  [/bpc.*tb500.*20/i, `${V2_BASE}/bpc-tb500-blend-20mg.svg`],
-  [/bpc.*tb500.*10/i, `${V2_BASE}/bpc-tb500-blend-10mg.svg`],
-  [/copper.*80|cu-50.*80/i, `${V2_BASE}/copper-repair-80mg.svg`],
-  [/cagrilintide.*semaglutide/i, `${V2_BASE}/semaglutide-5mg.svg`],
-  [/kisspeptin.*10.*10/i, `${V2_BASE}/kisspeptin-10mg.svg`],
-  [/kisspeptin.*5/i, `${V2_BASE}/kisspeptin-5mg.svg`]
+  [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.png`],
+  [/bpc.?157.*10mg/i, `${V2_BASE}/bpc-157-10mg.png`],
+  [/bpc.?157.*capsule/i, `${V2_BASE}/bpc157-capsules.png`],
+  [/tb500.*5mg/i, `${V2_BASE}/tb500-5mg.png`],
+  [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.png`],
+  [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.png`],
+  [/ghk.?cu.*100/i, `${V2_BASE}/ghk-cu-100mg.png`],
+  [/cjc.*without.*dac.*5/i, `${V2_BASE}/cjc1295-no-dac-5mg.png`],
+  [/cjc.*without.*dac.*10/i, `${V2_BASE}/cjc1295-no-dac-10mg.png`],
+  [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc1295-dac-5mg.png`],
+  [/cjc.*with.*dac.*10/i, `${V2_BASE}/cjc1295-dac-10mg.png`],
+  [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.png`],
+  [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.png`],
+  [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.png`],
+  [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.png`],
+  [/hgh.*10.?iu/i, `${V2_BASE}/hgh-10iu.png`],
+  [/hgh.*12.?iu/i, `${V2_BASE}/hgh-191aa-12iu.png`],
+  [/hgh.*15.?iu/i, `${V2_BASE}/hgh-191aa-15iu.png`],
+  [/hgh.*24.?iu/i, `${V2_BASE}/hgh-191aa-24iu.png`],
+  [/hgh.*36.?iu/i, `${V2_BASE}/hgh-191aa-36iu.png`],
+  [/nad.*100/i, `${V2_BASE}/nad-100mg.png`],
+  [/nad.*500/i, `${V2_BASE}/nad-500mg.png`],
+  [/nad.*1000/i, `${V2_BASE}/nad-1000mg.png`],
+  [/bacteriostatic.*10/i, `${V2_BASE}/bac-water-10ml.png`],
+  [/acetic.*acid/i, `${V2_BASE}/acetic-acid-3ml.png`],
+  [/benzyl.*alcohol/i, `${V2_BASE}/acetic-acid-3ml.png`],
+  [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.png`],
+  [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.png`],
+  [/glow.*70/i, `${V2_BASE}/glow-enhanced-70mg.png`],
+  [/bpc.*tb500.*20/i, `${V2_BASE}/bpc157-tb500-blend-20mg.png`],
+  [/bpc.*tb500.*10/i, `${V2_BASE}/bpc-tb500-blend-10mg.png`],
+  [/copper.*80|cu-50.*80/i, `${V2_BASE}/copper-repair-80mg.png`],
+  [/cagrilintide.*semaglutide/i, `${V2_BASE}/cagrilintide-semaglutide-5mg.png`],
+  [/kisspeptin.*10.*10/i, `${V2_BASE}/kisspeptin-10-10mg.png`],
+  [/kisspeptin.*5/i, `${V2_BASE}/kisspeptin-10-5mg.png`],
+  [/aod.?9604.*5/i, `${V2_BASE}/aod9604-5mg.png`],
+  [/aod.?9604.*10/i, `${V2_BASE}/aod9604-10mg.png`],
+  [/ghrp-2.*5/i, `${V2_BASE}/ghrp2-5mg.png`],
+  [/ghrp-6.*5/i, `${V2_BASE}/ghrp6-5mg.png`]
 ]
 
 async function loadJson(filePath, fallback) {
@@ -139,40 +143,41 @@ function buildFileIndex(files) {
   return byStem
 }
 
-function pickFile(stem, byStem, handle) {
+/** Prefer v2-photos PNG when available; SVG fallback for the rest. */
+function pickFile(stem, byStem) {
   const matches = byStem.get(stem)
   if (!matches?.length) return null
 
-  if (PREFER_PNG_HANDLES.has(handle)) {
-    const png = matches.find((file) => file.endsWith(".png"))
-    if (png) return png
-  }
+  const png = matches.find((file) => file.endsWith(".png"))
+  if (png) return png
 
   const svg = matches.find((file) => file.endsWith(".svg"))
   if (svg) return svg
 
-  // Catalog uses SVG only — try alternate stems instead of falling back to PNG.
-  return null
+  return matches[0]
 }
 
 function normalizeHandleToStem(handle) {
   return handle
-    .replace(/^ghrp-2-acetate-/i, "ghrp-2-")
-    .replace(/^ghrp-6-acetate-/i, "ghrp-6-")
+    .replace(/^ghrp-2-acetate-/i, "ghrp2-")
+    .replace(/^ghrp-6-acetate-/i, "ghrp6-")
     .replace(/^hexarelin-acetate-/i, "hexarelin-")
     .replace(/^oxytocin-acetate-/i, "oxytocin-")
     .replace(/^hcg-(\d+)-iu$/i, "hcg-$1iu")
-    .replace(/^hmg-(\d+)-iu$/i, "hmg-$1iu")
+    .replace(/^hmg-(\d+)-iu$/i, "hmg-75iu")
     .replace(/^igf-1-lr3-0-1mg$/i, "igf-1-lr3-0.1mg")
     .replace(/^kisspeptin-10-/i, "kisspeptin-")
     .replace(/^melanotan-1-/i, "melanotan-i-")
     .replace(/^melanotan-2-/i, "melanotan-ii-")
     .replace(/^l-carnitine-600mg-10ml$/i, "l-carnitine-600mg")
     .replace(/^pinealon-capsules-100-count$/i, "pinealon-capsules")
+    .replace(/-plus-/g, "-")
+    .replace(/^nad-plus-/i, "nad-")
 }
 
 function candidateStems(handle) {
   const stems = new Set([handle, normalizeHandleToStem(handle)])
+  stems.add(handle.replace(/aod-9604/g, "aod9604"))
   stems.add(handle.replace(/-plus-/g, "-"))
   stems.add(handle.replace(/191aa-(\d+)-iu/gi, "191aa-$1iu"))
   stems.add(handle.replace(/^hgh-191aa-10-iu$/i, "hgh-10iu"))
@@ -181,9 +186,28 @@ function candidateStems(handle) {
   stems.add(handle.replace(/^hgh-191aa-24-iu$/i, "hgh-191aa-24iu"))
   stems.add(handle.replace(/^hgh-191aa-36-iu$/i, "hgh-191aa-36iu"))
   stems.add(handle.replace(/cjc-1295-with-dac/i, "cjc-1295"))
-  stems.add(handle.replace(/cjc-1295-without-dac/i, "cjc-1295-no-dac"))
-  stems.add(handle.replace(/bpc-157/g, "bpc157"))
+  stems.add(handle.replace(/cjc-1295-with-dac/g, "cjc1295-dac"))
   stems.add(handle.replace(/cjc-1295-with-dac/g, "cjc1295"))
+  stems.add(handle.replace(/cjc-1295-without-dac/i, "cjc-1295-no-dac"))
+  stems.add(handle.replace(/cjc-1295-without-dac/g, "cjc1295-no-dac"))
+  stems.add(handle.replace(/cjc-1295-ipamorelin-blend/i, "cjc1295-ipa-blend"))
+  stems.add(handle.replace(/cjc-1295-sermorelin-ipamorelin-blend/i, "cjc-serm-ipa-blend"))
+  stems.add(handle.replace(/bpc-157/g, "bpc157"))
+  stems.add(handle.replace(/^bacteriostatic-water-10ml$/i, "bac-water-10ml"))
+  stems.add(handle.replace(/^bacteriostatic-water-3ml$/i, "bac-water-10ml"))
+  stems.add(handle.replace(/^benzyl-alcohol-10ml$/i, "bac-water-10ml"))
+  stems.add(handle.replace(/^acetic-acid-water-3ml$/i, "acetic-acid-3ml"))
+  stems.add(handle.replace(/^benzyl-alcohol-3ml$/i, "acetic-acid-3ml"))
+  stems.add(handle.replace(/bpc-157-5mg-tb500-5mg-10mg/i, "bpc-tb500-blend-10mg"))
+  stems.add(handle.replace(/bpc-157-5mg-tb500-5mg-10mg/i, "bpc157-tb500-blend-10mg"))
+  stems.add(handle.replace(/bpc-157-5mg-tb500-5mg-20mg/i, "bpc-tb500-blend-20mg"))
+  stems.add(handle.replace(/bpc-157-5mg-tb500-5mg-20mg/i, "bpc157-tb500-blend-20mg"))
+  stems.add(handle.replace(/glow-tb500.*70mg/i, "glow-enhanced-70mg"))
+  stems.add(handle.replace(/cu-50mg-tb500.*80mg/i, "copper-repair-80mg"))
+  stems.add(handle.replace(/bpc-157-capsules-100ct/i, "bpc157-capsules"))
+  stems.add(handle.replace(/bpc-157-capsules-100ct/i, "bpc-157-capsules-500mcg"))
+  stems.add(handle.replace(/^igf-1-lr3-0-1mg$/i, "igf-1-des-1mg"))
+  stems.add(handle.replace(/^vip-10mg$/i, "selank-10mg"))
   return [...stems]
 }
 
@@ -195,7 +219,7 @@ function resolveImage(handle, byStem, customMappings, availableSet) {
   }
 
   for (const stem of candidateStems(handle)) {
-    const file = pickFile(stem, byStem, handle)
+    const file = pickFile(stem, byStem)
     if (file) return `${V2_BASE}/${file}`
   }
 

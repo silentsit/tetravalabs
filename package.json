@@ -20,6 +20,8 @@
     "catalog:import": "npm --prefix packages/catalog run import:medusa",
     "catalog:update": "npm --prefix packages/catalog run update:medusa --",
     "typesense:index": "npm --prefix packages/catalog run typesense:index",
+    "typesense:reindex": "npm --prefix packages/catalog run typesense:index -- -- --fresh",
+    "sync:typesense": "node scripts/sync-typesense-production.mjs",
     "typesense:setup": "node scripts/typesense-setup.mjs",
     "sanity:seed": "node scripts/sanity-seed.mjs",
   "sanity:bootstrap": "node scripts/sanity-bootstrap.mjs",

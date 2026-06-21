@@ -12,6 +12,25 @@ dotenv.config({ path: path.join(workspaceRoot, "apps", "medusa", ".env") })
 dotenv.config({ path: path.join(workspaceRoot, "apps", "storefront", ".env.local") })
 
 const normalizedPath = path.join(workspaceRoot, "packages", "catalog", "output", "catalog.normalized.json")
+const catalogHandlesPath = path.join(
+  workspaceRoot,
+  "apps",
+  "storefront",
+  "src",
+  "lib",
+  "catalog-handles.generated.json"
+)
+const dryRun = process.argv.includes("--dry-run")
+const fresh = process.argv.includes("--fresh")
+
+let catalogHandles = null
+async function loadCatalogHandles() {
+  if (catalogHandles) return catalogHandles
+  const raw = JSON.parse(await fs.readFile(catalogHandlesPath, "utf8"))
+  catalogHandles = new Set(raw)
+  return catalogHandles
+}
+
 const collectionName = process.env.TYPESENSE_COLLECTION || "products"
 const STORE_PRODUCT_FIELDS = "*variants,*variants.calculated_price,+variants.prices"
 const { host, port, protocol } = getTypesenseNodeConfig()
@@ -127,16 +146,42 @@ async function fetchMedusaProducts() {
   return all.map(mapMedusaProduct)
 }
 
+async function loadDocuments() {
+  const handles = await loadCatalogHandles()
+  const medusaProducts = await fetchMedusaProducts()
+  if (medusaProducts) {
+    const filtered = medusaProducts.filter((doc) => handles.has(doc.handle))
+    return { documents: filtered, source: "medusa" }
+  }
+  const catalogProducts = await loadCatalogProducts()
+  return {
+    documents: catalogProducts.filter((doc) => handles.has(doc.handle)),
+    source: "catalog"
+  }
+}
+
 async function loadCatalogProducts() {
   const normalized = JSON.parse(await fs.readFile(normalizedPath, "utf8"))
   return normalized.products.map(mapCatalogProduct)
 }
 
 async function ensureCollection() {
+  if (fresh) {
+    try {
+      await client.collections(collectionName).delete()
+      console.log(`Dropped existing Typesense collection "${collectionName}".`)
+    } catch {
+      // Collection may not exist yet.
+    }
+  }
+
   try {
     await client.collections(collectionName).retrieve()
   } catch {
     await client.collections().create(schema)
+    if (fresh) {
+      console.log(`Created fresh Typesense collection "${collectionName}".`)
+    }
   }
 }
 
@@ -157,9 +202,12 @@ async function run() {
     process.exit(0)
   }
 
-  const documents = (await fetchMedusaProducts()) ?? (await loadCatalogProducts())
-  const source =
-    documents.length > 0 && String(documents[0].id).startsWith("prod_") ? "medusa" : "catalog"
+  const { documents, source } = await loadDocuments()
+
+  if (dryRun) {
+    console.log(`[dry-run] Would index ${documents.length} products (${source})${fresh ? " with fresh collection" : ""}.`)
+    process.exit(0)
+  }
 
   await ensureCollection()
   const payload = documents.map((doc) => JSON.stringify(doc)).join("\n")

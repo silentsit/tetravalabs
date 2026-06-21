@@ -72,8 +72,10 @@ const AUTO_MATCH_PATTERNS = [
   [/nad.*500/i, `${V2_BASE}/nad-500mg.png`],
   [/nad.*1000/i, `${V2_BASE}/nad-1000mg.png`],
   [/bacteriostatic.*10/i, `${V2_BASE}/bac-water-10ml.png`],
+  [/bacteriostatic.*3/i, `${V2_BASE}/bacteriostatic-water-3ml.svg`],
   [/acetic.*acid/i, `${V2_BASE}/acetic-acid-3ml.png`],
-  [/benzyl.*alcohol/i, `${V2_BASE}/acetic-acid-3ml.png`],
+  [/benzyl.*alcohol.*3/i, `${V2_BASE}/benzyl-alcohol-3ml.svg`],
+  [/benzyl.*alcohol.*10/i, `${V2_BASE}/benzyl-alcohol-10ml.svg`],
   [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.png`],
   [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.png`],
   [/glow.*70/i, `${V2_BASE}/glow-enhanced-70mg.png`],
@@ -194,10 +196,7 @@ function candidateStems(handle) {
   stems.add(handle.replace(/cjc-1295-sermorelin-ipamorelin-blend/i, "cjc-serm-ipa-blend"))
   stems.add(handle.replace(/bpc-157/g, "bpc157"))
   stems.add(handle.replace(/^bacteriostatic-water-10ml$/i, "bac-water-10ml"))
-  stems.add(handle.replace(/^bacteriostatic-water-3ml$/i, "bac-water-10ml"))
-  stems.add(handle.replace(/^benzyl-alcohol-10ml$/i, "bac-water-10ml"))
   stems.add(handle.replace(/^acetic-acid-water-3ml$/i, "acetic-acid-3ml"))
-  stems.add(handle.replace(/^benzyl-alcohol-3ml$/i, "acetic-acid-3ml"))
   stems.add(handle.replace(/bpc-157-5mg-tb500-5mg-10mg/i, "bpc-tb500-blend-10mg"))
   stems.add(handle.replace(/bpc-157-5mg-tb500-5mg-10mg/i, "bpc157-tb500-blend-10mg"))
   stems.add(handle.replace(/bpc-157-5mg-tb500-5mg-20mg/i, "bpc-tb500-blend-20mg"))

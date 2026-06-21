@@ -12,6 +12,36 @@ export const PRODUCT_SORT_OPTIONS: Array<{ value: ProductSort; label: string }> 
   { value: "name-desc", label: "Name: Z–A" }
 ]
 
+/** Strip strength suffix so related SKUs group together (e.g. bacteriostatic-water). */
+function baseHandleKey(handle: string): string {
+  return handle
+    .replace(/-(\d+(?:\.\d+)?)-iu$/i, "")
+    .replace(/-(\d+(?:\.\d+)?)(mg|ml)$/i, "")
+}
+
+/** Numeric strength for ascending ordering within a product family. */
+function strengthSortValue(handle: string): number {
+  const iu = handle.match(/(\d+(?:\.\d+)?)-iu$/i)
+  if (iu) return parseFloat(iu[1])
+  const mg = handle.match(/(\d+(?:\.\d+)?)mg$/i)
+  if (mg) return parseFloat(mg[1])
+  const ml = handle.match(/(\d+(?:\.\d+)?)ml$/i)
+  if (ml) return parseFloat(ml[1])
+  return 0
+}
+
+function compareByBaseAndStrength(a: StoreProduct, b: StoreProduct): number {
+  const baseCmp = baseHandleKey(a.handle).localeCompare(baseHandleKey(b.handle), undefined, {
+    sensitivity: "base"
+  })
+  if (baseCmp !== 0) return baseCmp
+
+  const strengthCmp = strengthSortValue(a.handle) - strengthSortValue(b.handle)
+  if (strengthCmp !== 0) return strengthCmp
+
+  return a.handle.localeCompare(b.handle, undefined, { sensitivity: "base" })
+}
+
 export function parseProductSort(value?: string): ProductSort {
   if (
     value === "price-asc" ||
@@ -25,12 +55,14 @@ export function parseProductSort(value?: string): ProductSort {
 }
 
 export function sortProducts(products: StoreProduct[], sort: ProductSort): StoreProduct[] {
-  if (sort === "featured") return products
+  if (sort === "featured") {
+    return [...products].sort(compareByBaseAndStrength)
+  }
 
   const copy = [...products]
   copy.sort((a, b) => {
     if (sort === "name-asc" || sort === "name-desc") {
-      const cmp = a.title.localeCompare(b.title, undefined, { sensitivity: "base" })
+      const cmp = compareByBaseAndStrength(a, b)
       return sort === "name-asc" ? cmp : -cmp
     }
 
@@ -39,7 +71,7 @@ export function sortProducts(products: StoreProduct[], sort: ProductSort): Store
     if (priceA !== priceB) {
       return sort === "price-asc" ? priceA - priceB : priceB - priceA
     }
-    return a.title.localeCompare(b.title, undefined, { sensitivity: "base" })
+    return compareByBaseAndStrength(a, b)
   })
 
   return copy

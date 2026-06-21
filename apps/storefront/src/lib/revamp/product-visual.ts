@@ -289,6 +289,9 @@ function acceptMappedImage(image: string | null, handle: string): string | null 
 }
 
 export function getProductImageForHandle(handle: string, variantHandle?: string) {
+  const v2Image = getV2ProductImage(handle)
+  if (v2Image) return v2Image
+
   const alias = handleAliases[handle]
   const aliasImage = acceptMappedImage(alias?.image ?? null, handle)
   if (aliasImage) return aliasImage
@@ -321,16 +324,19 @@ export function getProductImageForHandle(handle: string, variantHandle?: string)
 }
 
 export function getProductImage(product: StoreProduct) {
-  const metadataUrl = String(product.metadata?.product_image || product.metadata?.image_url || "")
-  if (metadataUrl.startsWith("/") || metadataUrl.startsWith("http")) {
-    return metadataUrl
-  }
-
   const v2Image = getV2ProductImage(product.handle)
   if (v2Image) return v2Image
 
+  const metadataUrl = String(product.metadata?.product_image || product.metadata?.image_url || "")
+  if (
+    metadataUrl.startsWith("/products/v2/") ||
+    (metadataUrl.startsWith("http") && metadataUrl.includes("/products/v2/"))
+  ) {
+    return metadataUrl
+  }
+
   const mapped = getProductImageForHandle(product.handle)
-  if (mapped) return mapped
+  if (mapped && mapped.includes("/products/v2/")) return mapped
 
   const visual = String(product.metadata?.visual_type || "vial")
   if (visual === "capsule") {

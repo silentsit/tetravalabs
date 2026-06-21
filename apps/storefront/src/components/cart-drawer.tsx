@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Lock, Minus, Plus, Trash2, Truck, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
-import { getProductImageForHandle } from "@/lib/revamp/product-visual"
+import { getProductImage } from "@/lib/product-image-map"
 
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQty, subtotal } = useCart()
@@ -42,7 +42,7 @@ export function CartDrawer() {
                 <div key={item.id} className="flex gap-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3">
                   <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-white">
                     <img
-                      src={getProductImageForHandle(item.handle) || "/v2/vial-single.jpg"}
+                      src={getProductImage(item.handle)}
                       alt={item.title}
                       className="h-14 w-14 rounded-lg object-contain"
                     />

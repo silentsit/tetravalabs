@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { listProducts } from "@/lib/medusa"
 import { ProductCard } from "@/components/product-card"
 import { FEATURED_PRODUCT_HANDLES } from "@/lib/product-image-map"
@@ -11,28 +12,32 @@ export async function FeaturedProducts() {
   )
 
   return (
-    <section className="space-y-8">
-      <div className="flex items-end justify-between gap-4">
+    <>
+      <div className="mb-10 flex items-end justify-between">
         <div>
-          <p className="font-mono text-xs uppercase tracking-wider text-[#5EEAD4]">Featured</p>
-          <h2 className="mt-2 font-serif text-3xl text-[#E8E8F0]">Most Requested</h2>
-          <p className="mt-2 text-[#8A8AA0]">Live catalog from Medusa</p>
+          <span className="section-label">Popular</span>
+          <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Most Requested</h2>
+          <p className="mt-2 text-[#475569]">Frequently reordered by research institutions</p>
         </div>
-        <Link href="/shop" className="hidden text-sm text-[#5EEAD4] sm:inline">
-          View all
+        <Link
+          href="/shop"
+          className="hidden items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E] sm:flex"
+        >
+          View All <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
       {featured.length === 0 ? (
-        <p className="text-sm text-[#8A8AA0]">
-          No products loaded yet. Start Medusa and run catalog import.
+        <p className="rounded-xl border border-[#E2E8F0] bg-white p-6 text-sm text-[#475569]">
+          Catalog is loading from Medusa. If this persists, check NEXT_PUBLIC_MEDUSA_URL in
+          .env.local.
         </p>
       ) : (
-        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+        <div className="product-card-grid">
           {featured.map((product) => (
-            <ProductCard key={product.id} product={product} variant="shop" />
+            <ProductCard key={product.id} product={product} variant="featured" />
           ))}
         </div>
       )}
-    </section>
+    </>
   )
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useCart } from "@/components/cart-provider"
-import { getProductImageForHandle } from "@/lib/revamp/product-visual"
+import { getProductImage } from "@/lib/product-image-map"
 
 export function CartPanel() {
   const { items, subtotal, totalItems, removeItem, updateQty } = useCart()
@@ -19,7 +19,7 @@ export function CartPanel() {
               <li key={item.id} className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3">
                 <div className="flex gap-3">
                   <img
-                    src={getProductImageForHandle(item.handle) || "/v2/vial-single.jpg"}
+                    src={getProductImage(item.handle)}
                     alt={item.title}
                     className="h-14 w-14 rounded-lg object-contain bg-white"
                   />

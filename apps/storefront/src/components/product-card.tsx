@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ShoppingCart } from "lucide-react"
 import type { StoreProduct } from "@/lib/medusa"
 import { useCart } from "@/components/cart-provider"
-import { getProductImage } from "@/lib/product-image-map"
+import { getFeaturedProductImage, getProductImage } from "@/lib/product-image-map"
 import {
   getPrimaryVariant,
   getProductDisplayName,
@@ -17,10 +17,12 @@ import { hasMultiplePackTiers, getLowestPackPrice, packTiersFromVariants } from 
 interface ProductCardProps {
   product: StoreProduct
   /** Tighter grid layout for shop page revamp */
-  variant?: "shop" | "default"
+  variant?: "shop" | "default" | "featured"
+  /** Optional override (e.g. photorealistic PNG on homepage featured row) */
+  imageOverride?: string
 }
 
-export function ProductCard({ product, variant = "shop" }: ProductCardProps) {
+export function ProductCard({ product, variant = "shop", imageOverride }: ProductCardProps) {
   const { addItem } = useCart()
   const variantRow = getPrimaryVariant(product)
   const displayName = getProductDisplayName(product)
@@ -29,7 +31,11 @@ export function ProductCard({ product, variant = "shop" }: ProductCardProps) {
   const price = showFromPrice ? getLowestPackPrice(product) : getProductPrice(product)
   const cartVariant = showFromPrice ? packTiers[0] : null
   const inStock = Boolean(cartVariant?.variantId || variantRow?.id)
-  const imageUrl = getProductImage(product.handle)
+  const imageUrl =
+    imageOverride ??
+    (variant === "featured"
+      ? getFeaturedProductImage(product.handle)
+      : getProductImage(product.handle))
   const showBlendBadge = isBlendProduct(product)
 
   const handleQuickAdd = (e: React.MouseEvent) => {

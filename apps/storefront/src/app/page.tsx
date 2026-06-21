@@ -8,7 +8,7 @@ import {
   Wallet
 } from "lucide-react"
 import type { Metadata } from "next"
-import { ProductCard } from "@/components/product-card"
+import { FeaturedProducts } from "@/components/home/featured-products"
 import { BlogPostCard } from "@/components/blog-post-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
@@ -37,7 +37,6 @@ export default async function HomePage() {
   ])
   const latestPosts = blogPosts.slice(0, 3)
   const grouped = groupProductsByCategory(products)
-  const featured = products.slice(0, 8)
 
   const categories = grouped.slice(0, 4).map((group) => {
     const art = categoryArtForSlug(group.slug, group.name)
@@ -137,29 +136,7 @@ export default async function HomePage() {
 
       <section className="section-padding bg-[#F8FAFC]">
         <div className="page-container">
-          <div className="mb-10 flex items-end justify-between">
-            <div>
-              <span className="section-label">Popular</span>
-              <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Most Requested</h2>
-              <p className="mt-2 text-[#475569]">Frequently reordered by research institutions</p>
-            </div>
-            <Link
-              href="/shop"
-              className="hidden items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E] sm:flex"
-            >
-              View All <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="product-card-grid">
-            {featured.length === 0 ? (
-              <p className="col-span-full rounded-xl border border-[#E2E8F0] bg-white p-6 text-sm text-[#475569]">
-                Catalog is loading from Medusa. If this persists, check NEXT_PUBLIC_MEDUSA_URL in
-                .env.local.
-              </p>
-            ) : (
-              featured.map((product) => <ProductCard key={product.id} product={product} />)
-            )}
-          </div>
+          <FeaturedProducts />
         </div>
       </section>
 

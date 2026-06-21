@@ -1,3 +1,7 @@
+/**
+ * Maps product handles → v2 SVG/PNG assets.
+ * Regenerate mappings: npm run map:images
+ */
 import generatedMap from "@/lib/product-image-map.generated.json"
 
 const V2_BASE = "/products/v2"

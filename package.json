@@ -22,6 +22,7 @@
     "typesense:index": "npm --prefix packages/catalog run typesense:index",
     "typesense:reindex": "npm --prefix packages/catalog run typesense:index -- -- --fresh",
     "sync:typesense": "node scripts/sync-typesense-production.mjs",
+    "map:images": "node apps/storefront/scripts/map-medusa-images.mjs",
     "typesense:setup": "node scripts/typesense-setup.mjs",
     "sanity:seed": "node scripts/sanity-seed.mjs",
   "sanity:bootstrap": "node scripts/sanity-bootstrap.mjs",

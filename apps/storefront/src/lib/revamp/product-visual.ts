@@ -1,6 +1,6 @@
 import type { StoreProduct } from "@/lib/medusa"
 import { getProductPriceCents, getVariantPriceCents } from "@/lib/product-price"
-import { getV2ProductImage } from "@/lib/product-image-map"
+import { getProductImage as getMappedProductImage, getV2ProductImage } from "@/lib/product-image-map"
 import productImageMap from "@/lib/revamp/product-image-map.json"
 
 type AliasEntry = { slug: string; image: string }
@@ -324,8 +324,8 @@ export function getProductImageForHandle(handle: string, variantHandle?: string)
 }
 
 export function getProductImage(product: StoreProduct) {
-  const v2Image = getV2ProductImage(product.handle)
-  if (v2Image) return v2Image
+  const mapped = getMappedProductImage(product.handle)
+  if (mapped.includes("/products/v2/")) return mapped
 
   const metadataUrl = String(product.metadata?.product_image || product.metadata?.image_url || "")
   if (
@@ -335,8 +335,8 @@ export function getProductImage(product: StoreProduct) {
     return metadataUrl
   }
 
-  const mapped = getProductImageForHandle(product.handle)
-  if (mapped && mapped.includes("/products/v2/")) return mapped
+  const legacyMapped = getProductImageForHandle(product.handle)
+  if (legacyMapped && legacyMapped.includes("/products/v2/")) return legacyMapped
 
   const visual = String(product.metadata?.visual_type || "vial")
   if (visual === "capsule") {

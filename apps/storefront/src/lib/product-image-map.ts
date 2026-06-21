@@ -7,16 +7,37 @@ import generatedMap from "@/lib/product-image-map.generated.json"
 const V2_BASE = "/products/v2"
 const GENERIC_FALLBACK = "/v2/vial-single.jpg"
 
-/** Photorealistic PNGs from KIMI FIXES/images — homepage featured heroes only. */
-export const FEATURED_PNG_IMAGES: Record<string, string> = {
+/** Photorealistic PNGs from KIMI — used on shop/PDP/cart when a PNG asset exists. */
+export const PHOTOREALISTIC_PNG_IMAGES: Record<string, string> = {
+  "bacteriostatic-water-10ml": `${V2_BASE}/bac-water-10ml.png`,
   "bpc-157-5mg": `${V2_BASE}/bpc157-5mg.png`,
-  "semaglutide-5mg": `${V2_BASE}/semaglutide-5mg.png`,
-  "tirzepatide-10mg": `${V2_BASE}/tirzepatide-10mg.png`,
-  "retatrutide-5mg": `${V2_BASE}/retatrutide-5mg.png`,
+  "bpc-157-10mg": `${V2_BASE}/bpc157-10mg.png`,
+  "bpc-157-capsules-100ct": `${V2_BASE}/bpc157-capsules.png`,
+  "cagrilintide-semaglutide-5mg": `${V2_BASE}/semaglutide-5mg.png`,
+  "cjc-1295-with-dac-5mg": `${V2_BASE}/cjc1295-5mg.png`,
+  "epithalon-20mg": `${V2_BASE}/epithalon-20mg.png`,
   "ghk-cu-50mg": `${V2_BASE}/ghk-cu-50mg.png`,
+  "glow-blend-30mg": `${V2_BASE}/glow-blend-30mg.png`,
+  "hgh-191aa-10-iu": `${V2_BASE}/hgh-10iu.png`,
   "ipamorelin-5mg": `${V2_BASE}/ipamorelin-5mg.png`,
+  "mots-c-10mg": `${V2_BASE}/mots-c-10mg.png`,
+  "nad-plus-100mg": `${V2_BASE}/nad-100mg.png`,
+  "retatrutide-5mg": `${V2_BASE}/retatrutide-5mg.png`,
+  "semaglutide-5mg": `${V2_BASE}/semaglutide-5mg.png`,
   "tb500-10mg": `${V2_BASE}/tb500-10mg.png`,
-  "hgh-191aa-10-iu": `${V2_BASE}/hgh-10iu.png`
+  "tirzepatide-10mg": `${V2_BASE}/tirzepatide-10mg.png`
+}
+
+/** Homepage featured row — same photorealistic PNG heroes. */
+export const FEATURED_PNG_IMAGES: Record<string, string> = {
+  "bpc-157-5mg": PHOTOREALISTIC_PNG_IMAGES["bpc-157-5mg"],
+  "semaglutide-5mg": PHOTOREALISTIC_PNG_IMAGES["semaglutide-5mg"],
+  "tirzepatide-10mg": PHOTOREALISTIC_PNG_IMAGES["tirzepatide-10mg"],
+  "retatrutide-5mg": PHOTOREALISTIC_PNG_IMAGES["retatrutide-5mg"],
+  "ghk-cu-50mg": PHOTOREALISTIC_PNG_IMAGES["ghk-cu-50mg"],
+  "ipamorelin-5mg": PHOTOREALISTIC_PNG_IMAGES["ipamorelin-5mg"],
+  "tb500-10mg": PHOTOREALISTIC_PNG_IMAGES["tb500-10mg"],
+  "hgh-191aa-10-iu": PHOTOREALISTIC_PNG_IMAGES["hgh-191aa-10-iu"]
 }
 
 export const FEATURED_PRODUCT_HANDLES = [
@@ -98,31 +119,33 @@ const LEGACY_BASE_IMAGES: Record<string, string> = {
 
 function autoMatchImage(handle: string): string | null {
   const patterns: [RegExp, string][] = [
-    [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.svg`],
-    [/bpc.?157.*10mg/i, `${V2_BASE}/bpc-157-10mg.svg`],
-    [/bpc.?157.*capsule/i, `${V2_BASE}/bpc-157-capsules.svg`],
+    [/bpc.?157.*5mg/i, `${V2_BASE}/bpc157-5mg.png`],
+    [/bpc.?157.*10mg/i, `${V2_BASE}/bpc157-10mg.png`],
+    [/bpc.?157.*capsule/i, `${V2_BASE}/bpc157-capsules.png`],
     [/tb500.*5mg/i, `${V2_BASE}/tb500-5mg.svg`],
-    [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.svg`],
-    [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.svg`],
+    [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.png`],
+    [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.png`],
     [/ghk.?cu.*100/i, `${V2_BASE}/ghk-cu-100mg.svg`],
     [/cjc.*without.*dac.*5/i, `${V2_BASE}/cjc-1295-no-dac-5mg.svg`],
     [/cjc.*without.*dac.*10/i, `${V2_BASE}/cjc-1295-no-dac-10mg.svg`],
-    [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc-1295-5mg.svg`],
+    [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc1295-5mg.png`],
     [/cjc.*with.*dac.*10/i, `${V2_BASE}/cjc-1295-10mg.svg`],
-    [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.svg`],
-    [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.svg`],
-    [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.svg`],
-    [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.svg`],
-    [/hgh.*10.?iu/i, `${V2_BASE}/hgh-191aa-10iu.svg`],
+    [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.png`],
+    [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.png`],
+    [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.png`],
+    [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.png`],
+    [/hgh.*10.?iu/i, `${V2_BASE}/hgh-10iu.png`],
     [/hgh.*12.?iu/i, `${V2_BASE}/hgh-191aa-12iu.svg`],
     [/hgh.*15.?iu/i, `${V2_BASE}/hgh-191aa-15iu.svg`],
-    [/nad.*100/i, `${V2_BASE}/nad-100mg.svg`],
+    [/nad.*100/i, `${V2_BASE}/nad-100mg.png`],
     [/nad.*500/i, `${V2_BASE}/nad-500mg.svg`],
-    [/bacteriostatic.*10/i, `${V2_BASE}/bacteriostatic-water-10ml.svg`],
+    [/bacteriostatic.*10/i, `${V2_BASE}/bac-water-10ml.png`],
     [/acetic.*acid/i, `${V2_BASE}/acetic-acid-3ml.svg`],
     [/benzyl.*alcohol/i, `${V2_BASE}/acetic-acid-3ml.svg`],
-    [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.svg`],
-    [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.svg`]
+    [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.png`],
+    [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.svg`],
+    [/mots-c.*10/i, `${V2_BASE}/mots-c-10mg.png`],
+    [/epithalon.*20/i, `${V2_BASE}/epithalon-20mg.png`]
   ]
 
   for (const [pattern, image] of patterns) {
@@ -139,8 +162,9 @@ export function getV2ProductImage(handle: string): string | null {
   return autoMatchImage(handle)
 }
 
-/** Labeled KIMI SVG/PNG for shop, PDP, cart, and search. */
+/** Labeled SVG fallback, photorealistic PNG when KIMI provided one. */
 export function getProductImage(handle: string): string {
+  if (PHOTOREALISTIC_PNG_IMAGES[handle]) return PHOTOREALISTIC_PNG_IMAGES[handle]
   return getV2ProductImage(handle) ?? GENERIC_FALLBACK
 }
 

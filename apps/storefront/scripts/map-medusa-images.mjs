@@ -44,8 +44,26 @@ const PUBLISHABLE_KEY =
   process.env.MEDUSA_PUBLISHABLE_KEY ||
   ""
 
-/** @deprecated Shop map prefers labeled SVGs; PNG heroes live in product-image-map.ts */
-const PREFER_PNG_HANDLES = new Set([])
+/** Handles with KIMI photorealistic PNG assets — prefer PNG over labeled SVG. */
+const PREFER_PNG_HANDLES = new Set([
+  "bacteriostatic-water-10ml",
+  "bpc-157-5mg",
+  "bpc-157-10mg",
+  "bpc-157-capsules-100ct",
+  "cagrilintide-semaglutide-5mg",
+  "cjc-1295-with-dac-5mg",
+  "epithalon-20mg",
+  "ghk-cu-50mg",
+  "glow-blend-30mg",
+  "hgh-191aa-10-iu",
+  "ipamorelin-5mg",
+  "mots-c-10mg",
+  "nad-plus-100mg",
+  "retatrutide-5mg",
+  "semaglutide-5mg",
+  "tb500-10mg",
+  "tirzepatide-10mg"
+])
 
 const AUTO_MATCH_PATTERNS = [
   [/bpc.?157.*5mg/i, `${V2_BASE}/bpc157-5mg.png`],
@@ -137,9 +155,14 @@ function buildFileIndex(files) {
   return byStem
 }
 
-function pickFile(stem, byStem) {
+function pickFile(stem, byStem, handle) {
   const matches = byStem.get(stem)
   if (!matches?.length) return null
+
+  if (PREFER_PNG_HANDLES.has(handle)) {
+    const png = matches.find((file) => file.endsWith(".png"))
+    if (png) return png
+  }
 
   const svg = matches.find((file) => file.endsWith(".svg"))
   if (svg) return svg
@@ -185,7 +208,7 @@ function resolveImage(handle, byStem, customMappings, availableSet) {
   }
 
   for (const stem of candidateStems(handle)) {
-    const file = pickFile(stem, byStem)
+    const file = pickFile(stem, byStem, handle)
     if (file) return `${V2_BASE}/${file}`
   }
 

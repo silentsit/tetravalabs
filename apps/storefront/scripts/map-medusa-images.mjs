@@ -80,7 +80,9 @@ const AUTO_MATCH_PATTERNS = [
   [/bpc.*tb500.*20/i, `${V2_BASE}/bpc-tb500-blend-20mg.svg`],
   [/bpc.*tb500.*10/i, `${V2_BASE}/bpc-tb500-blend-10mg.svg`],
   [/copper.*80|cu-50.*80/i, `${V2_BASE}/copper-repair-80mg.svg`],
-  [/cagrilintide.*semaglutide/i, `${V2_BASE}/semaglutide-5mg.svg`]
+  [/cagrilintide.*semaglutide/i, `${V2_BASE}/semaglutide-5mg.svg`],
+  [/kisspeptin.*10.*10/i, `${V2_BASE}/kisspeptin-10mg.svg`],
+  [/kisspeptin.*5/i, `${V2_BASE}/kisspeptin-5mg.svg`]
 ]
 
 async function loadJson(filePath, fallback) {
@@ -148,7 +150,9 @@ function pickFile(stem, byStem, handle) {
 
   const svg = matches.find((file) => file.endsWith(".svg"))
   if (svg) return svg
-  return matches[0]
+
+  // Catalog uses SVG only — try alternate stems instead of falling back to PNG.
+  return null
 }
 
 function normalizeHandleToStem(handle) {
@@ -176,9 +180,10 @@ function candidateStems(handle) {
   stems.add(handle.replace(/^hgh-191aa-15-iu$/i, "hgh-191aa-15iu"))
   stems.add(handle.replace(/^hgh-191aa-24-iu$/i, "hgh-191aa-24iu"))
   stems.add(handle.replace(/^hgh-191aa-36-iu$/i, "hgh-191aa-36iu"))
+  stems.add(handle.replace(/cjc-1295-with-dac/i, "cjc-1295"))
+  stems.add(handle.replace(/cjc-1295-without-dac/i, "cjc-1295-no-dac"))
   stems.add(handle.replace(/bpc-157/g, "bpc157"))
   stems.add(handle.replace(/cjc-1295-with-dac/g, "cjc1295"))
-  stems.add(handle.replace(/cjc-1295-without-dac/g, "cjc-1295-no-dac"))
   return [...stems]
 }
 

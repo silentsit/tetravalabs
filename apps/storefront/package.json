@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start -p 3000",
     "lint": "next lint",
-    "map:images": "node scripts/map-medusa-images.mjs"
+    "map:images": "node scripts/map-medusa-images.mjs",
+    "validate:images": "node scripts/validate-image-map.mjs"
   },
   "dependencies": {
     "@medusajs/js-sdk": "^2.11.2",

@@ -126,7 +126,9 @@ function autoMatchImage(handle: string): string | null {
     [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.svg`],
     [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.svg`],
     [/mots-c.*10/i, `${V2_BASE}/mots-c-10mg.svg`],
-    [/epithalon.*20/i, `${V2_BASE}/epithalon-20mg.svg`]
+    [/epithalon.*20/i, `${V2_BASE}/epithalon-20mg.svg`],
+    [/kisspeptin.*10.*10/i, `${V2_BASE}/kisspeptin-10mg.svg`],
+    [/kisspeptin.*5/i, `${V2_BASE}/kisspeptin-5mg.svg`]
   ]
 
   for (const [pattern, image] of patterns) {

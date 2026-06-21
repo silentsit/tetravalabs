@@ -9,6 +9,14 @@ const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
 const sourcePath = path.join(workspaceRoot, "product_catalog_usd.json")
 const outputDir = path.join(workspaceRoot, "packages", "catalog", "output")
 const outputPath = path.join(outputDir, "catalog.normalized.json")
+const storefrontHandlesPath = path.join(
+  workspaceRoot,
+  "apps",
+  "storefront",
+  "src",
+  "lib",
+  "catalog-handles.generated.json"
+)
 const enrichmentPath = path.join(workspaceRoot, "packages", "catalog", "data", "product-enrichment.json")
 
 const slugify = (value) =>
@@ -110,8 +118,16 @@ const run = async () => {
 
   await fs.mkdir(outputDir, { recursive: true })
   await fs.writeFile(outputPath, JSON.stringify(catalog, null, 2), "utf8")
+  const handles = products.map((product) => product.handle).sort()
+  await fs.writeFile(storefrontHandlesPath, `${JSON.stringify(handles, null, 2)}\n`, "utf8")
   console.log(
     `Normalized ${catalog.products.length} tiered products to ${outputPath.replaceAll(
+      "\\",
+      "/"
+    )}`
+  )
+  console.log(
+    `Wrote ${handles.length} storefront catalog handles to ${storefrontHandlesPath.replaceAll(
       "\\",
       "/"
     )}`

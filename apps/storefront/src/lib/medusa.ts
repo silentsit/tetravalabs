@@ -1,4 +1,4 @@
-import { filterSupersededLegacyProducts } from "@/lib/pack-pricing"
+import { filterToCatalogProducts, isCatalogProductHandle } from "@/lib/catalog-filter"
 import { STORE_PRODUCT_FIELDS } from "@/lib/product-price"
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
@@ -85,7 +85,7 @@ export async function listAllProducts() {
     console.error("[medusa] unable to paginate products from", MEDUSA_URL, error)
   }
 
-  return filterSupersededLegacyProducts(all)
+  return filterToCatalogProducts(all)
 }
 
 export async function getProductByHandle(handle: string) {
@@ -96,7 +96,9 @@ export async function getProductByHandle(handle: string) {
     })
     if (!response.ok) throw new Error("Failed product request")
     const data = await response.json()
-    return (data.products?.[0] || null) as StoreProduct | null
+    const product = (data.products?.[0] || null) as StoreProduct | null
+    if (!product || !isCatalogProductHandle(product.handle)) return null
+    return product
   } catch {
     return null
   }

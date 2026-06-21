@@ -7,6 +7,7 @@
     "normalize": "node scripts/normalize-catalog.mjs",
     "import:medusa": "node scripts/import-to-medusa.mjs",
     "update:medusa": "node scripts/update-medusa-catalog.mjs",
+    "remove:legacy": "node scripts/remove-legacy-medusa-products.mjs",
     "typesense:index": "node scripts/index-to-typesense.mjs",
     "coa:sync-r2": "node scripts/sync-coa-r2.mjs",
     "coa:manifest:generate": "node scripts/generate-coa-manifest.mjs",

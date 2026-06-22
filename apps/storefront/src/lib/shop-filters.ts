@@ -103,3 +103,18 @@ export function groupBySourceCategory(
 
   return groups
 }
+
+/** Short uppercase label for shop product cards (Bangkok-style category line). */
+export function getShopCategoryLabel(product: FilterableProduct): string {
+  for (const pill of storefrontPills) {
+    if (pill.key === "all") continue
+    if (matchesPill(product, [...pill.matches])) {
+      return pill.label.toUpperCase()
+    }
+  }
+
+  const sourceCategory =
+    product.metadata?.source_category || product.collection?.title || ""
+
+  return sourceCategory ? sourceCategory.toUpperCase() : "ALL PEPTIDES"
+}

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ShoppingCart } from "lucide-react"
+import { Plus, ShoppingCart } from "lucide-react"
 import type { StoreProduct } from "@/lib/medusa"
 import { useCart } from "@/components/cart-provider"
 import { getFeaturedProductImage, getProductImage } from "@/lib/product-image-map"
@@ -20,9 +20,16 @@ interface ProductCardProps {
   variant?: "shop" | "default" | "featured"
   /** Optional override (e.g. photorealistic PNG on homepage featured row) */
   imageOverride?: string
+  /** Optional category line under price (shop grid) */
+  categoryLabel?: string
 }
 
-export function ProductCard({ product, variant = "shop", imageOverride }: ProductCardProps) {
+export function ProductCard({
+  product,
+  variant = "shop",
+  imageOverride,
+  categoryLabel
+}: ProductCardProps) {
   const { addItem } = useCart()
   const variantRow = getPrimaryVariant(product)
   const displayName = getProductDisplayName(product)
@@ -99,41 +106,44 @@ export function ProductCard({ product, variant = "shop", imageOverride }: Produc
   }
 
   return (
-    <Link href={`/product/${product.handle}`} className="group block">
-      <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]">
+    <Link href={`/product/${product.handle}`} className="group relative block">
+      <button
+        type="button"
+        onClick={handleQuickAdd}
+        disabled={!inStock}
+        className="absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-[#E2E8F0] bg-white/95 text-[#64748B] shadow-sm transition-all hover:border-[#0D9488] hover:bg-[#0D9488] hover:text-white disabled:pointer-events-none disabled:opacity-40"
+        aria-label="Add to cart"
+      >
+        <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
+      </button>
+
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]">
         <Image
           src={imageUrl}
           alt={displayName}
           fill
           unoptimized
-          className="object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-105"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-contain p-4 transition-transform duration-300 ease-out group-hover:scale-105"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
         />
 
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-        <button
-          type="button"
-          onClick={handleQuickAdd}
-          disabled={!inStock}
-          className="absolute bottom-3 right-3 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full bg-white/90 text-[#0F172A] opacity-0 shadow-md backdrop-blur-sm transition-all duration-300 hover:bg-[#0D9488] hover:text-white group-hover:translate-y-0 group-hover:opacity-100 disabled:pointer-events-none disabled:opacity-0"
-          aria-label="Add to cart"
-        >
-          <ShoppingCart className="h-4 w-4" />
-        </button>
-
         {showBlendBadge ? (
-          <span className="absolute left-3 top-3 rounded-full bg-violet-600/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+          <span className="absolute left-2 top-2 rounded-full bg-violet-600/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
             Blend
           </span>
         ) : null}
       </div>
 
-      <div className="mt-3 space-y-1 px-0.5">
-        <h3 className="line-clamp-1 text-[15px] font-semibold leading-tight text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
+      <div className="mt-2 space-y-0.5 px-0.5">
+        <h3 className="line-clamp-2 min-h-[2.5em] text-[13px] font-bold leading-tight text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
           {displayName}
         </h3>
-        <p className="text-[14px] font-medium text-[#64748B]">{priceLabel}</p>
+        <p className="text-[13px] font-bold text-[#0D9488]">{priceLabel}</p>
+        {categoryLabel ? (
+          <p className="text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
+            {categoryLabel}
+          </p>
+        ) : null}
       </div>
     </Link>
   )

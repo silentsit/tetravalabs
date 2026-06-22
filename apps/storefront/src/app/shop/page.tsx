@@ -6,7 +6,7 @@ import { ProductFilters } from "@/components/product-filters"
 import { ProductSort } from "@/components/product-sort"
 import { listProducts } from "@/lib/medusa"
 import { filterProductsByCategorySlug } from "@/lib/categories"
-import { filterByPill, normalizeShopCategoryPill } from "@/lib/shop-filters"
+import { filterByPill, getShopCategoryLabel, normalizeShopCategoryPill } from "@/lib/shop-filters"
 import { searchProducts } from "@/lib/search"
 import { buildPageMetadata } from "@/lib/seo"
 import {
@@ -141,9 +141,14 @@ export default async function ShopPage({ searchParams }: Props) {
       </div>
 
       {displayProducts.length > 0 ? (
-        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-5">
           {displayProducts.map((product) => (
-            <ProductCard key={product.id} product={product} variant="shop" />
+            <ProductCard
+              key={product.id}
+              product={product}
+              variant="shop"
+              categoryLabel={getShopCategoryLabel(product)}
+            />
           ))}
         </div>
       ) : (

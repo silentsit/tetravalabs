@@ -9,8 +9,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "5-Amino-1MQ",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_5-Amino-1MQ_10mg_Injectable.pdf"
+    },
+    "local_file": "5-amino-1mq-10mg.pdf"
   },
   {
     "id": "coa_5_amino_1mq_5mg_batch_a001",
@@ -61,8 +63,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Adipotide",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_Adipotide_5mg.pdf"
+    },
+    "local_file": "adipotide-5mg.pdf"
   },
   {
     "id": "coa_aicar_50mg_batch_a001",
@@ -100,8 +104,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "AOD-9604",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_AOD-9604_5mg.pdf"
+    },
+    "local_file": "aod-9604-5mg.pdf"
   },
   {
     "id": "coa_ara_290_10mg_batch_a001",
@@ -191,8 +197,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "BPC-157",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_BPC-157_10mg.pdf"
+    },
+    "local_file": "bpc-157-10mg.pdf"
   },
   {
     "id": "coa_bpc_157_5mg_batch_a001",
@@ -204,8 +212,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "BPC-157",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_BPC-157_5mg.pdf"
+    },
+    "local_file": "bpc-157-5mg.pdf"
   },
   {
     "id": "coa_bpc_157_capsules_100ct_batch_a001",
@@ -217,8 +227,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "BPC-157 (Capsules)",
-      "variant": "100 count (500mcg)"
-    }
+      "variant": "100 count (500mcg)",
+      "source_filename": "COA_BPC-157_500mcg_Tablet.pdf"
+    },
+    "local_file": "bpc-157-capsules-500mcg.pdf"
   },
   {
     "id": "coa_bpc_157_tb500_blend_10mg_batch_a001",
@@ -282,8 +294,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Cagrilintide",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Cagrilintide_10mg.pdf"
+    },
+    "local_file": "cagrilintide-10mg.pdf"
   },
   {
     "id": "coa_cagrilintide_5mg_batch_a001",
@@ -295,8 +309,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Cagrilintide",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_Cagrilintide_5mg.pdf"
+    },
+    "local_file": "cagrilintide-5mg.pdf"
   },
   {
     "id": "coa_cagrilintide_semaglutide_10mg_batch_a001",
@@ -438,8 +454,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "DSIP",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_DSIP_10mg.pdf"
+    },
+    "local_file": "dsip-10mg.pdf"
   },
   {
     "id": "coa_dsip_15mg_batch_a001",
@@ -477,8 +495,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Epithalon",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Epithalon_10mg.pdf"
+    },
+    "local_file": "epithalon-10mg.pdf"
   },
   {
     "id": "coa_epithalon_20mg_batch_a001",
@@ -542,8 +562,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "GHK-Cu",
-      "variant": "50mg"
-    }
+      "variant": "50mg",
+      "source_filename": "COA_GHK-Cu_50mg.pdf"
+    },
+    "local_file": "ghk-cu-50mg.pdf"
   },
   {
     "id": "coa_ghrp_2_acetate_10mg_batch_a001",
@@ -1244,8 +1266,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Retatrutide",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_GLP-2_TR_10mg.pdf"
+    },
+    "local_file": "retatrutide-10mg.pdf"
   },
   {
     "id": "coa_retatrutide_20mg_batch_a001",
@@ -1257,8 +1281,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Retatrutide",
-      "variant": "20mg"
-    }
+      "variant": "20mg",
+      "source_filename": "COA_GLP-2_TR_20mg.pdf"
+    },
+    "local_file": "retatrutide-20mg.pdf"
   },
   {
     "id": "coa_retatrutide_50mg_batch_a001",
@@ -1283,8 +1309,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Retatrutide",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_GLP-2_TR_5mg.pdf"
+    },
+    "local_file": "retatrutide-5mg.pdf"
   },
   {
     "id": "coa_selank_10mg_batch_a001",

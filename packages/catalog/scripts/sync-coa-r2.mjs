@@ -27,6 +27,7 @@ dotenv.config({ path: path.join(workspaceRoot, "apps", "medusa", ".env") })
 const manifestPath = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "manifest.json")
 const filesDir = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "files")
 const dryRun = process.argv.includes("--dry-run")
+const includePlaceholders = process.argv.includes("--include-placeholders")
 
 const medusaUrl = (process.env.MEDUSA_ADMIN_URL || process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(
   /\/$/,
@@ -233,6 +234,11 @@ async function run() {
     const variantId = resolveVariantId(products, entry)
     if (!variantId) {
       console.warn(`[skip] ${entry.id}: could not resolve variant for handle ${entry.variant_handle || entry.product_handle}`)
+      skipped += 1
+      continue
+    }
+
+    if (!entry.local_file && !includePlaceholders) {
       skipped += 1
       continue
     }

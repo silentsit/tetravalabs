@@ -29,6 +29,7 @@
     "sanity:studio": "npm run dev --workspace=@tetrava/sanity-studio",
     "coa:sync-r2": "node packages/catalog/scripts/sync-coa-r2.mjs",
     "coa:manifest:generate": "node packages/catalog/scripts/generate-coa-manifest.mjs",
+    "coa:ingest-morgan": "node packages/catalog/scripts/ingest-morgan-coas.mjs",
     "db:lab-schema": "npm run db:lab-schema --workspace=@tetrava/medusa",
     "smoke:search": "node scripts/smoke-search-production.mjs",
     "smoke:local": "node scripts/smoke-local.mjs",

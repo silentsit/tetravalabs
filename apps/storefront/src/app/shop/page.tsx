@@ -2,7 +2,6 @@ import { Suspense } from "react"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
-import { ProductFilters } from "@/components/product-filters"
 import { ProductSort } from "@/components/product-sort"
 import { listProducts } from "@/lib/medusa"
 import { filterProductsByCategorySlug } from "@/lib/categories"
@@ -41,8 +40,8 @@ function parseCents(value?: string) {
   return Math.round(dollars * 100)
 }
 
-function ShopFiltersSkeleton() {
-  return <div className="h-10 w-full max-w-3xl animate-pulse rounded-full bg-[#F1F5F9]" />
+function ShopSortSkeleton() {
+  return <div className="h-10 w-40 animate-pulse rounded-lg bg-[#F1F5F9]" />
 }
 
 export default async function ShopPage({ searchParams }: Props) {
@@ -86,56 +85,8 @@ export default async function ShopPage({ searchParams }: Props) {
               {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
             </p>
           </div>
-          <Suspense fallback={<ShopFiltersSkeleton />}>
+          <Suspense fallback={<ShopSortSkeleton />}>
             <ProductSort currentSort={sortKey} />
-          </Suspense>
-        </div>
-
-        <form action="/shop" className="mt-6 max-w-3xl space-y-3">
-          <div className="flex gap-2">
-            <input
-              name="q"
-              defaultValue={q}
-              placeholder="Filter by name, CAS, formula..."
-              className="input-field"
-            />
-            {category ? <input type="hidden" name="category" value={category} /> : null}
-            {sort && sort !== "featured" ? <input type="hidden" name="sort" value={sort} /> : null}
-            <button type="submit" className="btn-secondary shrink-0 px-4 py-2.5">
-              Search
-            </button>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <label className="block text-xs text-[#64748B]">
-              Min price (USD)
-              <input
-                name="price_min"
-                type="number"
-                min="0"
-                step="0.01"
-                defaultValue={price_min}
-                placeholder="0.00"
-                className="input-field mt-1"
-              />
-            </label>
-            <label className="block text-xs text-[#64748B]">
-              Max price (USD)
-              <input
-                name="price_max"
-                type="number"
-                min="0"
-                step="0.01"
-                defaultValue={price_max}
-                placeholder="999.00"
-                className="input-field mt-1"
-              />
-            </label>
-          </div>
-        </form>
-
-        <div className="mt-6">
-          <Suspense fallback={<ShopFiltersSkeleton />}>
-            <ProductFilters products={products} activePill={categoryPill || category || undefined} />
           </Suspense>
         </div>
       </div>
@@ -157,7 +108,7 @@ export default async function ShopPage({ searchParams }: Props) {
           <p className="mt-2 text-sm text-[#64748B]">
             {products.length === 0
               ? "Catalog is empty — check Medusa connectivity."
-              : "Try a different search term or category filter."}
+              : "Try a different category or sort option."}
           </p>
         </div>
       )}

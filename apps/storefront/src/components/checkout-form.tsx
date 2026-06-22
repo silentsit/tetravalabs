@@ -11,6 +11,7 @@ import {
   loadCheckoutPaymentOptions,
   type CheckoutCryptoOption
 } from "@/lib/checkout-payment-options"
+import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { storePaymentUrl } from "@/components/payment-confirmation"
 
 type CheckoutOrder = {
@@ -52,7 +53,7 @@ export function CheckoutForm() {
   const [address1, setAddress1] = useState("")
   const [city, setCity] = useState("")
   const [postalCode, setPostalCode] = useState("")
-  const [country, setCountry] = useState("")
+  const [country, setCountry] = useState("US")
   const [ruoAck, setRuoAck] = useState(false)
   const [status, setStatus] = useState("")
   const [error, setError] = useState("")
@@ -104,6 +105,11 @@ export function CheckoutForm() {
       if (customer.last_name) setLastName(customer.last_name)
     })
   }, [])
+
+  const availableCountries = useMemo(
+    () => CHECKOUT_COUNTRIES.filter((entry) => !restrictedCountries.includes(entry.code)),
+    [restrictedCountries]
+  )
 
   const submitLabel = useMemo(() => {
     if (loading) return "Processing…"
@@ -309,85 +315,6 @@ export function CheckoutForm() {
 
       <div className="space-y-6 p-4 sm:p-6">
         <fieldset className="space-y-3">
-          <legend className="text-sm font-medium text-[#0F172A]">Payment method</legend>
-          <p className="text-xs leading-relaxed text-[#64748B]">
-            Card is the fastest option. Choose crypto below for Bitcoin (BTCPay) or other assets (Paymento).
-          </p>
-
-          {cardAvailable ? (
-            <label className={methodCardClass(paymentMethod === "card")}>
-              <input
-                type="radio"
-                name="payment_method"
-                value="card"
-                checked={paymentMethod === "card"}
-                onChange={() => setPaymentMethod("card")}
-                className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
-              />
-              <span className="flex min-w-0 flex-1 flex-col gap-1">
-                <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                  <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
-                  Credit or debit card
-                  <span className="rounded-full bg-[#0D9488]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#0F766E]">
-                    Recommended
-                  </span>
-                </span>
-                <span className="text-xs leading-relaxed text-[#64748B]">
-                  Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
-                </span>
-              </span>
-            </label>
-          ) : null}
-
-          <label className={methodCardClass(paymentMethod === "crypto")}>
-            <input
-              type="radio"
-              name="payment_method"
-              value="crypto"
-              checked={paymentMethod === "crypto"}
-              onChange={() => setPaymentMethod("crypto")}
-              className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
-            />
-            <span className="flex min-w-0 flex-1 flex-col gap-1">
-              <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
-                <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
-                Pay with cryptocurrency
-              </span>
-              <span className="text-xs leading-relaxed text-[#64748B]">
-                Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento.
-              </span>
-            </span>
-          </label>
-
-          {paymentMethod === "crypto" ? (
-            <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
-              <label htmlFor="checkout-crypto-asset" className="block text-xs font-medium text-[#475569]">
-                Select asset
-              </label>
-              <select
-                id="checkout-crypto-asset"
-                value={selectedAsset}
-                onChange={(event) => setSelectedAsset(event.target.value)}
-                className="input-field mt-2 text-sm"
-              >
-                {cryptoOptions.map((option) => (
-                  <option key={option.asset} value={option.asset}>
-                    {option.label}
-                    {option.provider === "btcpay" ? " · BTCPay" : option.provider === "paymento" ? " · Paymento" : ""}
-                  </option>
-                ))}
-              </select>
-              {!cryptoLive ? (
-                <p className="mt-2 text-xs text-amber-700">
-                  Crypto gateways are not connected in this environment yet. Production checkout uses live
-                  BTCPay and Paymento.
-                </p>
-              ) : null}
-            </div>
-          ) : null}
-        </fieldset>
-
-        <fieldset className="space-y-3">
           <legend className="text-sm font-medium text-[#0F172A]">Contact &amp; shipping</legend>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
@@ -474,18 +401,102 @@ export function CheckoutForm() {
           </div>
           <div>
             <label htmlFor="checkout-country" className="block text-xs font-medium text-[#475569]">
-              Country (ISO code)
+              Country
             </label>
-            <input
+            <select
               id="checkout-country"
               required
               autoComplete="country"
               value={country}
-              onChange={(event) => setCountry(event.target.value.toUpperCase())}
-              placeholder="US"
-              className="input-field mt-1.5 uppercase"
-            />
+              onChange={(event) => setCountry(event.target.value)}
+              className="input-field mt-1.5"
+            >
+              {availableCountries.map((entry) => (
+                <option key={entry.code} value={entry.code}>
+                  {entry.name}
+                </option>
+              ))}
+            </select>
           </div>
+        </fieldset>
+
+        <fieldset className="space-y-3">
+          <legend className="text-sm font-medium text-[#0F172A]">Payment method</legend>
+          <p className="text-xs leading-relaxed text-[#64748B]">
+            Card is the fastest option. Choose crypto below for Bitcoin (BTCPay) or other assets (Paymento).
+          </p>
+
+          {cardAvailable ? (
+            <label className={methodCardClass(paymentMethod === "card")}>
+              <input
+                type="radio"
+                name="payment_method"
+                value="card"
+                checked={paymentMethod === "card"}
+                onChange={() => setPaymentMethod("card")}
+                className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+              />
+              <span className="flex min-w-0 flex-1 flex-col gap-1">
+                <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
+                  <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                  Credit or debit card
+                  <span className="rounded-full bg-[#0D9488]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#0F766E]">
+                    Recommended
+                  </span>
+                </span>
+                <span className="text-xs leading-relaxed text-[#64748B]">
+                  Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
+                </span>
+              </span>
+            </label>
+          ) : null}
+
+          <label className={methodCardClass(paymentMethod === "crypto")}>
+            <input
+              type="radio"
+              name="payment_method"
+              value="crypto"
+              checked={paymentMethod === "crypto"}
+              onChange={() => setPaymentMethod("crypto")}
+              className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+            />
+            <span className="flex min-w-0 flex-1 flex-col gap-1">
+              <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
+                <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
+                Pay with cryptocurrency
+              </span>
+              <span className="text-xs leading-relaxed text-[#64748B]">
+                Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento.
+              </span>
+            </span>
+          </label>
+
+          {paymentMethod === "crypto" ? (
+            <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
+              <label htmlFor="checkout-crypto-asset" className="block text-xs font-medium text-[#475569]">
+                Select asset
+              </label>
+              <select
+                id="checkout-crypto-asset"
+                value={selectedAsset}
+                onChange={(event) => setSelectedAsset(event.target.value)}
+                className="input-field mt-2 text-sm"
+              >
+                {cryptoOptions.map((option) => (
+                  <option key={option.asset} value={option.asset}>
+                    {option.label}
+                    {option.provider === "btcpay" ? " · BTCPay" : option.provider === "paymento" ? " · Paymento" : ""}
+                  </option>
+                ))}
+              </select>
+              {!cryptoLive ? (
+                <p className="mt-2 text-xs text-amber-700">
+                  Crypto gateways are not connected in this environment yet. Production checkout uses live
+                  BTCPay and Paymento.
+                </p>
+              ) : null}
+            </div>
+          ) : null}
         </fieldset>
 
         <label className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569]">
@@ -504,7 +515,7 @@ export function CheckoutForm() {
             <span>${subtotal.toFixed(2)}</span>
           </div>
           <div className="mt-2 flex items-center justify-between text-sm text-[#475569]">
-            <span>Estimated shipping</span>
+            <span>Shipping Fee</span>
             <span>${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
           </div>
           <div className="mt-3 flex items-center justify-between border-t border-[#E2E8F0] pt-3">

@@ -12,11 +12,12 @@ import {
   isBlendProduct
 } from "@/lib/revamp/product-visual"
 import {
-  getLowestPackPrice,
+  formatShelfPriceFromProduct,
   hasMultiplePackTiers,
   packTiersFromVariants,
   resolveProductPurchaseLayout
 } from "@/lib/pack-pricing"
+import { ShelfPriceLabel } from "@/components/shelf-price-label"
 
 interface ProductCardProps {
   product: StoreProduct
@@ -26,20 +27,6 @@ interface ProductCardProps {
   imageOverride?: string
   /** Optional category line under price (shop grid) */
   categoryLabel?: string
-}
-
-function getShopPriceDisplay(product: StoreProduct): string {
-  const packTiers = packTiersFromVariants(product.variants || [])
-  if (packTiers.length >= 2) {
-    const prices = packTiers.map((tier) => tier.price)
-    const min = Math.min(...prices)
-    const max = Math.max(...prices)
-    if (min !== max) return `$${min.toFixed(2)} – $${max.toFixed(2)}`
-    return `$${min.toFixed(2)}`
-  }
-
-  const price = getProductPrice(product)
-  return `$${price.toFixed(2)}`
 }
 
 function productNeedsOptions(product: StoreProduct): boolean {
@@ -57,7 +44,7 @@ export function ProductCard({
   const displayName = getProductDisplayName(product)
   const packTiers = packTiersFromVariants(product.variants || [])
   const showFromPrice = hasMultiplePackTiers(product)
-  const price = showFromPrice ? getLowestPackPrice(product) : getProductPrice(product)
+  const fallbackCartPrice = getProductPrice(product)
   const cartVariant = showFromPrice ? packTiers[0] : null
   const inStock = Boolean(cartVariant?.variantId || variantRow?.id)
   const imageUrl =
@@ -81,11 +68,11 @@ export function ProductCard({
       title: displayName,
       variantId,
       variantTitle: cartVariant?.tier || variantRow?.title || "Standard",
-      unitPrice: cartVariant?.price ?? price
+      unitPrice: cartVariant?.price ?? fallbackCartPrice
     })
   }
 
-  const priceLabel = getShopPriceDisplay(product)
+  const shelfPrice = formatShelfPriceFromProduct(product)
   const needsOptions = productNeedsOptions(product)
   const productHref = `/product/${product.handle}`
 
@@ -111,8 +98,8 @@ export function ProductCard({
               {displayName}
             </h3>
           </Link>
-          <div className="mt-auto flex items-center justify-between gap-2 pt-3">
-            <span className="text-base font-bold text-[#0F172A]">{priceLabel}</span>
+          <div className="mt-auto flex items-end justify-between gap-2 pt-3">
+            <ShelfPriceLabel shelf={shelfPrice} variant="default" />
             <button
               type="button"
               onClick={handleQuickAdd}
@@ -151,7 +138,7 @@ export function ProductCard({
           <h3 className="product-card-title font-bold line-clamp-2 min-h-[2.5em] text-[15px] leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
             {displayName}
           </h3>
-          <p className="mt-1 text-[13px] font-bold tabular-nums text-[#0D9488]">{priceLabel}</p>
+          <ShelfPriceLabel shelf={shelfPrice} variant="shop" />
           {categoryLabel ? (
             <p className="mt-1 text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
               {categoryLabel}

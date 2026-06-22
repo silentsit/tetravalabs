@@ -1,5 +1,5 @@
 import type { StoreProduct } from "@/lib/medusa"
-import { getProductPriceCents } from "@/lib/product-price"
+import { getDisplaySortPriceCents } from "@/lib/pack-pricing"
 import type { SearchResult } from "@/lib/search"
 
 export type ProductSort = "featured" | "price-asc" | "price-desc" | "name-asc" | "name-desc"
@@ -66,8 +66,8 @@ export function sortProducts(products: StoreProduct[], sort: ProductSort): Store
       return sort === "name-asc" ? cmp : -cmp
     }
 
-    const priceA = getProductPriceCents(a)
-    const priceB = getProductPriceCents(b)
+    const priceA = getDisplaySortPriceCents(a)
+    const priceB = getDisplaySortPriceCents(b)
     if (priceA !== priceB) {
       return sort === "price-asc" ? priceA - priceB : priceB - priceA
     }
@@ -97,8 +97,8 @@ export function sortSearchResults(results: SearchResult[], sort: ProductSort): S
       return sort === "name-asc" ? cmp : -cmp
     }
 
-    const priceA = a.price_min || a.price_max
-    const priceB = b.price_min || b.price_max
+    const priceA = a.unit_price_min ?? a.price_min ?? a.price_max
+    const priceB = b.unit_price_min ?? b.price_min ?? b.price_max
     if (priceA !== priceB) {
       return sort === "price-asc" ? priceA - priceB : priceB - priceA
     }

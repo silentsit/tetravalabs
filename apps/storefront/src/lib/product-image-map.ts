@@ -1,8 +1,8 @@
 /**
- * Maps product handles → v2 PNG/SVG assets from v2-photos + labeled SVG fallbacks.
+ * Maps product handles → v2 PNG assets (white-background v2-photos-white).
+ * Source: Minor fixes/tetravalabs-shop-revamp/images/v2-photos-white/
+ * Deploy: apps/storefront/public/products/v2/ (npm run sync:v2-images)
  * Regenerate mappings: npm run map:images
- *
- * Policy: prefer v2-photos PNG on shop/PDP/cart; SVG only when no PNG exists.
  * Homepage featured row uses the same PNG map for curated heroes.
  */
 import generatedMap from "@/lib/product-image-map.generated.json"

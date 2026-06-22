@@ -1,6 +1,6 @@
 import type { StoreProduct } from "@/lib/medusa"
 import type { StoreVariant } from "@/lib/product-price"
-import { getVariantPriceCents } from "@/lib/product-price"
+import { getProductPriceCents, getVariantPriceCents } from "@/lib/product-price"
 
 export type PackTier = {
   tier: string
@@ -151,6 +151,81 @@ export function getLowestPackPrice(product: StoreProduct): number {
   const tiers = packTiersFromVariants(product.variants || [])
   if (tiers.length) return Math.min(...tiers.map((t) => t.price))
   return 0
+}
+
+export type ShelfPriceDisplay = {
+  /** Primary amount, e.g. "$49.00" or "$38.00 – $49.00" */
+  unitAmount: string
+  /** Suffix such as "/vial", or empty for non-pack SKUs */
+  unitSuffix: string
+  /** Secondary line, e.g. "5-vial minimum · packs from $245.00" */
+  detail: string | null
+  isPackProduct: boolean
+}
+
+export function formatShelfPrice(
+  tiers: PackTier[],
+  unitLabel: "vial" | "unit" = "vial"
+): ShelfPriceDisplay {
+  const unitSuffix = unitLabel === "vial" ? "/vial" : "/unit"
+  const unitWord = unitLabel === "vial" ? "vial" : "unit"
+
+  if (!tiers.length) {
+    return { unitAmount: "", unitSuffix, detail: null, isPackProduct: false }
+  }
+
+  const moq = tiers[0]
+  const perUnits = tiers.map((tier) => tier.perUnit)
+  const minPerUnit = Math.min(...perUnits)
+  const maxPerUnit = Math.max(...perUnits)
+  const unitAmount =
+    minPerUnit !== maxPerUnit
+      ? `$${minPerUnit.toFixed(2)} – $${maxPerUnit.toFixed(2)}`
+      : `$${moq.perUnit.toFixed(2)}`
+
+  const moqLabel = `${moq.qty}-${unitWord} minimum`
+  const packLabel = `packs from $${moq.price.toFixed(2)}`
+  const detail = `${moqLabel} · ${packLabel}`
+
+  return { unitAmount, unitSuffix, detail, isPackProduct: true }
+}
+
+export function formatShelfPriceFromProduct(
+  product: StoreProduct,
+  unitLabel: "vial" | "unit" = "vial"
+): ShelfPriceDisplay {
+  const tiers = packTiersFromVariants(product.variants || [])
+  if (tiers.length) return formatShelfPrice(tiers, unitLabel)
+
+  const price = getProductPriceCents(product) / 100
+  return {
+    unitAmount: `$${price.toFixed(2)}`,
+    unitSuffix: "",
+    detail: null,
+    isPackProduct: false
+  }
+}
+
+/** Per-unit cents for pack products; falls back to variant price for simple SKUs. */
+export function getProductPerUnitPriceRangeCents(product: StoreProduct) {
+  const tiers = packTiersFromVariants(product.variants || [])
+  if (!tiers.length) {
+    const cents = getProductPriceCents(product)
+    return { min: cents, max: cents, moqQty: null as number | null }
+  }
+
+  const perUnitCents = tiers.map((tier) => Math.round(tier.perUnit * 100))
+  return {
+    min: Math.min(...perUnitCents),
+    max: Math.max(...perUnitCents),
+    moqQty: tiers[0].qty
+  }
+}
+
+/** Sort/filter key aligned with shelf (per-unit for packs). */
+export function getDisplaySortPriceCents(product: StoreProduct): number {
+  const { min } = getProductPerUnitPriceRangeCents(product)
+  return min
 }
 
 /** Hide consolidated legacy SKUs when per-strength tiered products exist (e.g. bpc-157 vs bpc-157-5mg). */

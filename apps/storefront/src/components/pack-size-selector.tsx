@@ -19,11 +19,13 @@ export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props)
   if (!selected) return null
 
   const unitSuffix = unitLabel === "vial" ? "/vial" : "/unit"
-  const prices = tiers.map((tier) => tier.price)
-  const priceRange =
-    prices.length > 1
-      ? `$${Math.min(...prices).toFixed(2)} – $${Math.max(...prices).toFixed(2)}`
-      : `$${selected.price.toFixed(2)}`
+  const unitWord = unitLabel === "vial" ? "vial" : "unit"
+  const moqQty = tiers[0]?.qty ?? 5
+  const perUnits = tiers.map((tier) => tier.perUnit)
+  const perUnitRange =
+    perUnits.length > 1 && Math.min(...perUnits) !== Math.max(...perUnits)
+      ? `$${Math.min(...perUnits).toFixed(2)} – $${Math.max(...perUnits).toFixed(2)}`
+      : `$${selected.perUnit.toFixed(2)}`
 
   const pickTier = (tier: PackTier) => {
     setSelectedQty(tier.qty)
@@ -35,9 +37,14 @@ export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props)
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <span className="mb-2 block text-sm font-medium text-[#475569]">Choose pack size</span>
-          <p className="text-xs text-[#94A3B8]">Economy-of-scale pricing on multi-vial packs</p>
+          <p className="text-xs text-[#94A3B8]">
+            Sold in multi-{unitWord} packs only · {moqQty}-{unitWord} minimum
+          </p>
         </div>
-        <p className="text-sm font-medium text-[#475569]">{priceRange}</p>
+        <p className="text-sm font-medium tabular-nums text-[#475569]">
+          {perUnitRange}
+          {unitSuffix}
+        </p>
       </div>
 
       <div className="space-y-3">
@@ -84,23 +91,25 @@ export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props)
                     </span>
                   ) : null}
                 </div>
-                <p className="mt-1 font-mono text-xs text-[#64748B]">
-                  ${tier.perUnit.toFixed(2)}
-                  {unitSuffix}
-                </p>
+                <p className="mt-1 font-mono text-xs text-[#64748B]">${tier.price.toFixed(2)} pack total</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold text-[#0F172A]">${tier.price.toFixed(2)}</p>
+                <p className="text-lg font-bold tabular-nums text-[#0F172A]">
+                  ${tier.perUnit.toFixed(2)}
+                  <span className="text-xs font-semibold text-[#64748B]">{unitSuffix}</span>
+                </p>
               </div>
             </button>
           )
         })}
       </div>
 
-      <p className="text-2xl font-bold text-[#0F172A]">${selected.price.toFixed(2)}</p>
-      <p className="text-sm text-[#64748B]">
+      <p className="text-2xl font-bold tabular-nums text-[#0F172A]">
         ${selected.perUnit.toFixed(2)}
-        {unitSuffix} · {selected.tier}
+        <span className="text-base font-semibold text-[#64748B]">{unitSuffix}</span>
+      </p>
+      <p className="text-sm text-[#64748B]">
+        ${selected.price.toFixed(2)} pack total · {selected.tier}
       </p>
     </div>
   )

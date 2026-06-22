@@ -99,38 +99,11 @@ export default async function HomePage() {
 
       <section className="section-padding bg-white">
         <div className="page-container">
-          <div className="mb-10">
-            <span className="section-label">Browse</span>
-            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Shop by Research Area</h2>
-            <p className="mt-2 text-[#475569]">Specialized compounds organized by application</p>
+          <div className="mb-10 text-center">
+            <span className="section-label">Testimonials</span>
+            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Trusted by Researchers Worldwide</h2>
           </div>
-          <div className="product-card-grid">
-            {fallbackCategories.slice(0, 4).map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/shop?category=${cat.slug}`}
-                className="card card-hover group flex flex-col overflow-hidden"
-              >
-                <div className="aspect-[16/10] overflow-hidden bg-[#F8FAFC]">
-                  <img
-                    src={cat.image}
-                    alt={cat.name}
-                    className="h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-serif text-xl text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
-                    {cat.name}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-sm text-[#94A3B8]">{cat.description}</p>
-                  <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-[#0D9488]">
-                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <SocialProofReviews />
         </div>
       </section>
 
@@ -194,11 +167,38 @@ export default async function HomePage() {
 
       <section className="section-padding bg-white">
         <div className="page-container">
-          <div className="mb-10 text-center">
-            <span className="section-label">Testimonials</span>
-            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Trusted by Researchers Worldwide</h2>
+          <div className="mb-10">
+            <span className="section-label">Browse</span>
+            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Shop by Research Area</h2>
+            <p className="mt-2 text-[#475569]">Specialized compounds organized by application</p>
           </div>
-          <SocialProofReviews />
+          <div className="product-card-grid">
+            {fallbackCategories.slice(0, 4).map((cat) => (
+              <Link
+                key={cat.slug}
+                href={`/shop?category=${cat.slug}`}
+                className="card card-hover group flex flex-col overflow-hidden"
+              >
+                <div className="aspect-[16/10] overflow-hidden bg-[#F8FAFC]">
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className="h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-serif text-xl text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
+                    {cat.name}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-sm text-[#94A3B8]">{cat.description}</p>
+                  <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-[#0D9488]">
+                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

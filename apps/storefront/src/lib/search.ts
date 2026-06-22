@@ -1,5 +1,6 @@
 import { listProducts } from "@/lib/medusa"
-import { getProductPriceRangeCents, getVariantPriceCents } from "@/lib/product-price"
+import { getProductPerUnitPriceRangeCents } from "@/lib/pack-pricing"
+import { getProductPriceRangeCents } from "@/lib/product-price"
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
@@ -15,8 +16,13 @@ export type SearchResult = {
   title: string
   handle: string
   category: string
+  /** Pack-total cents (legacy index / filters) */
   price_min: number
   price_max: number
+  /** Per-unit cents when product uses pack tiers */
+  unit_price_min?: number
+  unit_price_max?: number
+  moq_qty?: number
   visual_type: string
 }
 
@@ -160,6 +166,7 @@ async function searchViaMedusaFallback(query: string, filters?: SearchFilters): 
 
   return filtered.slice(0, 24).map((product) => {
     const { min, max } = getProductPriceRangeCents(product)
+    const unitRange = getProductPerUnitPriceRangeCents(product)
     return {
       id: product.id,
       title: product.title,
@@ -167,6 +174,9 @@ async function searchViaMedusaFallback(query: string, filters?: SearchFilters): 
       category: String(product.metadata?.source_category || "Research Product"),
       price_min: min,
       price_max: max,
+      unit_price_min: unitRange.moqQty != null ? unitRange.min : undefined,
+      unit_price_max: unitRange.moqQty != null ? unitRange.max : undefined,
+      moq_qty: unitRange.moqQty ?? undefined,
       visual_type: String(product.metadata?.visual_type || "vial")
     }
   })

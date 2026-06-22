@@ -127,7 +127,19 @@ export default function PaymentGuidePage() {
 
       <section className="border-y border-[#E2E8F0] bg-white py-16">
         <div className="page-container">
-          <h2 className="mb-10 text-center font-serif text-2xl text-[#0F172A]">Supported Assets</h2>
+          <h2 className="mb-6 text-center font-serif text-2xl text-[#0F172A]">Default Payment Method</h2>
+          <div className="mx-auto max-w-xl rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
+            <div className="mb-4 flex items-center gap-3">
+              <CreditCard className="h-6 w-6 text-[#0D9488]" />
+              <h3 className="font-serif text-lg text-[#0F172A]">Credit &amp; debit cards</h3>
+            </div>
+            <p className="text-sm leading-relaxed text-[#475569]">
+              The fastest option at checkout. You will be redirected to a secure hosted payment page to
+              complete your purchase with Visa, Mastercard, Amex, Apple Pay, or Google Pay.
+            </p>
+          </div>
+
+          <h2 className="mb-10 mt-12 text-center font-serif text-2xl text-[#0F172A]">Supported Assets</h2>
           <div className="mx-auto max-w-xl space-y-3">
             {cryptoOptions.map((opt) => (
               <div
@@ -150,16 +162,6 @@ export default function PaymentGuidePage() {
             ))}
           </div>
           <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
-            <div className="mb-4 flex items-center gap-3">
-              <CreditCard className="h-6 w-6 text-[#0D9488]" />
-              <h3 className="font-serif text-lg text-[#0F172A]">Credit &amp; debit cards</h3>
-            </div>
-            <p className="text-sm leading-relaxed text-[#475569]">
-              The fastest option at checkout. You will be redirected to a secure hosted payment page to
-              complete your purchase with Visa, Mastercard, Amex, Apple Pay, or Google Pay.
-            </p>
-          </div>
-          <div className="mx-auto mt-4 max-w-xl rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
             <div className="mb-4 flex items-center gap-3">
               <CreditCard className="h-6 w-6 text-[#D97706]" />
               <h3 className="font-serif text-lg text-[#0F172A]">Buy crypto first</h3>

@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
-import { Plus, ShoppingCart } from "lucide-react"
+import { ShoppingCart } from "lucide-react"
 import type { StoreProduct } from "@/lib/medusa"
 import { useCart } from "@/components/cart-provider"
 import { getFeaturedProductImage, getProductImage } from "@/lib/product-image-map"
@@ -12,7 +11,12 @@ import {
   getProductPrice,
   isBlendProduct
 } from "@/lib/revamp/product-visual"
-import { hasMultiplePackTiers, getLowestPackPrice, packTiersFromVariants } from "@/lib/pack-pricing"
+import {
+  getLowestPackPrice,
+  hasMultiplePackTiers,
+  packTiersFromVariants,
+  resolveProductPurchaseLayout
+} from "@/lib/pack-pricing"
 
 interface ProductCardProps {
   product: StoreProduct
@@ -22,6 +26,24 @@ interface ProductCardProps {
   imageOverride?: string
   /** Optional category line under price (shop grid) */
   categoryLabel?: string
+}
+
+function getShopPriceDisplay(product: StoreProduct): string {
+  const packTiers = packTiersFromVariants(product.variants || [])
+  if (packTiers.length >= 2) {
+    const prices = packTiers.map((tier) => tier.price)
+    const min = Math.min(...prices)
+    const max = Math.max(...prices)
+    if (min !== max) return `$${min.toFixed(2)} – $${max.toFixed(2)}`
+    return `$${min.toFixed(2)}`
+  }
+
+  const price = getProductPrice(product)
+  return `$${price.toFixed(2)}`
+}
+
+function productNeedsOptions(product: StoreProduct): boolean {
+  return resolveProductPurchaseLayout(product.variants || []).mode !== "simple"
 }
 
 export function ProductCard({
@@ -63,9 +85,9 @@ export function ProductCard({
     })
   }
 
-  const priceLabel = showFromPrice
-    ? `From $${price.toFixed(2)}`
-    : `$${price.toFixed(2)}`
+  const priceLabel = getShopPriceDisplay(product)
+  const needsOptions = productNeedsOptions(product)
+  const productHref = `/product/${product.handle}`
 
   if (variant === "default") {
     return (
@@ -85,7 +107,7 @@ export function ProductCard({
         </Link>
         <div className="flex flex-1 flex-col border-t border-[#E2E8F0] p-4">
           <Link href={`/product/${product.handle}`}>
-            <h3 className="text-[15px] font-semibold leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
+            <h3 className="product-card-title text-[15px] leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
               {displayName}
             </h3>
           </Link>
@@ -106,45 +128,58 @@ export function ProductCard({
   }
 
   return (
-    <Link href={`/product/${product.handle}`} className="group relative block">
-      <button
-        type="button"
-        onClick={handleQuickAdd}
-        disabled={!inStock}
-        className="absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-[#E2E8F0] bg-white/95 text-[#64748B] shadow-sm transition-all hover:border-[#0D9488] hover:bg-[#0D9488] hover:text-white disabled:pointer-events-none disabled:opacity-40"
-        aria-label="Add to cart"
-      >
-        <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
-      </button>
+    <article className="card card-hover group flex h-full min-w-0 flex-col overflow-hidden">
+      <Link href={productHref} className="block flex-1 min-w-0">
+        <div className="flex items-center justify-center px-3 pb-1 pt-3">
+          <div className="relative aspect-[3/4] w-[85%] max-w-[280px] overflow-hidden bg-white">
+            <img
+              src={imageUrl}
+              alt={displayName}
+              className="h-full w-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+              loading="lazy"
+            />
 
-      <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]">
-        <Image
-          src={imageUrl}
-          alt={displayName}
-          fill
-          unoptimized
-          className="object-contain p-4 transition-transform duration-300 ease-out group-hover:scale-105"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-        />
+            {showBlendBadge ? (
+              <span className="absolute left-2 top-2 rounded-full bg-violet-600/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+                Blend
+              </span>
+            ) : null}
+          </div>
+        </div>
 
-        {showBlendBadge ? (
-          <span className="absolute left-2 top-2 rounded-full bg-violet-600/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
-            Blend
-          </span>
-        ) : null}
+        <div className="flex flex-col px-3.5 pb-2 pt-1">
+          <h3 className="product-card-title font-bold line-clamp-2 min-h-[2.5em] text-[15px] leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
+            {displayName}
+          </h3>
+          <p className="mt-1 text-[13px] font-bold tabular-nums text-[#0D9488]">{priceLabel}</p>
+          {categoryLabel ? (
+            <p className="mt-1 text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
+              {categoryLabel}
+            </p>
+          ) : null}
+        </div>
+      </Link>
+
+      <div className="mt-auto px-3.5 pb-3.5">
+        {needsOptions ? (
+          <Link
+            href={productHref}
+            className="flex h-10 w-full items-center justify-center rounded-full border border-[#0D9488] bg-white text-[13px] font-semibold text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
+          >
+            Select options
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={handleQuickAdd}
+            disabled={!inStock}
+            className="flex h-10 w-full items-center justify-center gap-2 rounded-full bg-[#0D9488] text-[13px] font-semibold text-white transition-colors hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-45"
+          >
+            <ShoppingCart className="h-4 w-4" strokeWidth={2.25} />
+            Add to cart
+          </button>
+        )}
       </div>
-
-      <div className="mt-2 space-y-0.5 px-0.5">
-        <h3 className="line-clamp-2 min-h-[2.5em] text-[13px] font-bold leading-tight text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
-          {displayName}
-        </h3>
-        <p className="text-[13px] font-bold text-[#0D9488]">{priceLabel}</p>
-        {categoryLabel ? (
-          <p className="text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
-            {categoryLabel}
-          </p>
-        ) : null}
-      </div>
-    </Link>
+    </article>
   )
 }

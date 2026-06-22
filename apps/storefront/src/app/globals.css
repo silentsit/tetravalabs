@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -25,7 +25,7 @@
     scroll-behavior: smooth;
   }
 
-  img,
+  img:not([data-nimg]),
   video {
     max-width: 100%;
     height: auto;
@@ -93,11 +93,18 @@
     padding: 1.25rem;
   }
   .product-detail-image-wrapper {
-    @apply relative mx-auto w-full max-w-[500px] overflow-hidden rounded-xl bg-white;
+    @apply relative mx-auto w-full overflow-hidden rounded-xl bg-white;
     aspect-ratio: 1 / 1;
   }
+  .product-detail-image-wrapper-compact {
+    @apply mx-auto w-full max-w-[280px];
+    aspect-ratio: 4 / 5;
+  }
   .product-detail-image-wrapper img {
-    @apply h-full w-full object-contain object-center p-8;
+    @apply h-full w-full object-contain object-center p-6;
+  }
+  .product-detail-image-wrapper-compact img {
+    @apply p-4;
   }
   .scrollbar-hide {
     -ms-overflow-style: none;
@@ -114,6 +121,11 @@
   }
   .product-card-grid {
     @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+  .product-card-title {
+    font-family: "Cormorant Garamond", "Playfair Display", serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
   }
   .section-label {
     @apply font-mono text-xs font-medium uppercase tracking-widest text-[#0D9488];

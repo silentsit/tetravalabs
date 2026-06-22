@@ -4,6 +4,9 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      fontFamily: {
+        product: ['"Cormorant Garamond"', '"Playfair Display"', "serif"]
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

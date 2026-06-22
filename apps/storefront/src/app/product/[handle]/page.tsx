@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
 import { getRelatedProducts, slugifyCategory } from "@/lib/categories"
 import { getProductImage, getProductPurity, getProductDisplayName, getProductDisplaySubtitle, getProductStrengthLabel } from "@/lib/revamp/product-visual"
+import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
 import { ProductDetailTabs } from "@/components/product-detail-tabs"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
@@ -63,16 +64,18 @@ export default async function ProductPage({ params }: Props) {
         ]}
       />
 
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div className="card overflow-hidden p-4">
-          <div className="product-detail-image-wrapper">
-            <img src={image} alt={displayName} />
-          </div>
+      <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="card overflow-hidden p-4 lg:max-w-md">
+          <ProductImageGallery
+            productImage={image}
+            productName={displayName}
+            coas={coas}
+          />
         </div>
         <div className="space-y-5">
           <div>
             <span className="section-label">{categoryLabel}</span>
-            <h1 className="mt-2 break-words font-serif text-3xl text-[#0F172A] sm:text-4xl">
+            <h1 className="product-card-title mt-2 break-words text-3xl text-[#0F172A] sm:text-4xl">
               {displayName}
               {strengthLabel ? (
                 <span className="ml-2 font-mono text-xl text-[#64748B] sm:text-2xl">{strengthLabel}</span>

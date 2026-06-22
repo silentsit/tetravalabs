@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation"
 import {
   filterByPill,
-  groupBySourceCategory,
   storefrontPills,
   type FilterableProduct
 } from "@/lib/shop-filters"
@@ -76,6 +75,3 @@ export function ProductFilters({ products, activePill = "all" }: ProductFiltersP
     </div>
   )
 }
-
-export { filterByPill, groupBySourceCategory }
-export type { FilterableProduct }

@@ -6,7 +6,7 @@ import { CheckoutForm } from "@/components/checkout-form"
 
 export default function CheckoutPage() {
   return (
-    <section className="page-container space-y-8 py-8">
+    <section className="page-container space-y-6 py-6 sm:space-y-8 sm:py-8">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -16,18 +16,22 @@ export default function CheckoutPage() {
       />
       <div>
         <span className="section-label">Order</span>
-        <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Checkout</h1>
+        <h1 className="mt-2 font-serif text-3xl text-[#0F172A] sm:text-4xl">Checkout</h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#475569]">
-          Crypto-first checkout with RUO compliance recording. Orders are placed through Medusa and completed
-          via BTCPay or Paymento when configured.{" "}
+          Pay securely by card or cryptocurrency. All orders require RUO acknowledgment before
+          fulfillment.{" "}
           <a href="/payment" className="text-[#0D9488] hover:underline">
             Payment guide
           </a>
         </p>
       </div>
-      <div className="grid gap-6 lg:grid-cols-2">
-        <CartPanel />
-        <CheckoutForm />
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+        <div className="order-2 lg:order-1">
+          <CartPanel />
+        </div>
+        <div className="order-1 lg:order-2 lg:sticky lg:top-6">
+          <CheckoutForm />
+        </div>
       </div>
     </section>
   )

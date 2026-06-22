@@ -11,6 +11,11 @@ export default defineMiddlewares({
       method: ["POST"],
       matcher: "/webhooks/payments/btcpay",
       bodyParser: { preserveRawBody: true }
+    },
+    {
+      method: ["POST"],
+      matcher: "/webhooks/payments/peptidepay",
+      bodyParser: { preserveRawBody: true }
     }
   ]
 })

@@ -18,9 +18,9 @@ import { TrustBadgesRow } from "@/components/trust-badges"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "How to pay — crypto checkout guide",
+  title: "How to pay — card & crypto checkout",
   description:
-    "Step-by-step payment guide for Tetrava Labs orders using BTC, USDT, ETH, and other supported crypto assets.",
+    "Step-by-step payment guide for Tetrava Labs orders using credit card, Apple Pay, BTC, USDT, ETH, and other supported assets.",
   path: "/payment"
 })
 
@@ -34,16 +34,16 @@ const steps = [
   },
   {
     num: "02",
-    icon: ArrowRight,
+    icon: CreditCard,
     title: "Select Payment Method",
-    desc: "Choose BTC via BTCPay or USDT/ETH and other assets via Paymento at checkout.",
+    desc: "Pay by card (recommended) or choose cryptocurrency — BTC via BTCPay, other assets via Paymento.",
     color: "#2563EB"
   },
   {
     num: "03",
     icon: Bitcoin,
     title: "Complete Payment",
-    desc: "Send the exact amount to the wallet address shown on the checkout confirmation screen.",
+    desc: "Card payments use secure hosted checkout. Crypto orders show a wallet address or BTCPay invoice.",
     color: "#D97706"
   },
   {
@@ -63,23 +63,23 @@ const cryptoOptions = [
 
 const paymentFaqs = [
   {
-    question: "Why does Tetrava Labs accept cryptocurrency?",
+    question: "Can I pay with a credit or debit card?",
     answer:
-      "Cryptocurrency provides a secure payment path for research compounds with lower chargeback risk and faster settlement than many traditional processors."
+      "Yes. Card checkout (Visa, Mastercard, Amex, Apple Pay, Google Pay) is the default option at checkout via our secure payment partner."
   },
   {
-    question: "Which coins are supported?",
+    question: "Which cryptocurrencies are supported?",
     answer:
       "BTC is routed through BTCPay Server. USDT, ETH, and other supported assets are routed through Paymento based on your checkout selection."
   },
   {
     question: "How long does confirmation take?",
     answer:
-      "BTC typically confirms within 10–60 minutes depending on network conditions. USDT and ETH usually confirm within a few minutes."
+      "Card payments usually confirm within a minute. BTC typically confirms within 10–60 minutes. USDT and ETH usually confirm within a few minutes."
   },
   {
     question: "Where do I get help if payment fails?",
-    answer: "Contact support with your order ID. You can also revisit checkout to retry payment intent creation."
+    answer: "Contact support with your order ID. You can also revisit checkout to retry payment."
   }
 ]
 
@@ -97,8 +97,8 @@ export default function PaymentGuidePage() {
           </div>
           <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">How to Pay</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#475569]">
-            Tetrava Labs accepts cryptocurrency at checkout. BTC, USDT, ETH, and other supported assets
-            are available depending on your selection.
+            Pay by credit or debit card at checkout, or choose cryptocurrency. BTC, USDT, ETH, and other
+            supported assets are available depending on your selection.
           </p>
         </div>
       </section>
@@ -151,8 +151,18 @@ export default function PaymentGuidePage() {
           </div>
           <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
             <div className="mb-4 flex items-center gap-3">
+              <CreditCard className="h-6 w-6 text-[#0D9488]" />
+              <h3 className="font-serif text-lg text-[#0F172A]">Credit &amp; debit cards</h3>
+            </div>
+            <p className="text-sm leading-relaxed text-[#475569]">
+              The fastest option at checkout. You will be redirected to a secure hosted payment page to
+              complete your purchase with Visa, Mastercard, Amex, Apple Pay, or Google Pay.
+            </p>
+          </div>
+          <div className="mx-auto mt-4 max-w-xl rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
+            <div className="mb-4 flex items-center gap-3">
               <CreditCard className="h-6 w-6 text-[#D97706]" />
-              <h3 className="font-serif text-lg text-[#0F172A]">Card to crypto</h3>
+              <h3 className="font-serif text-lg text-[#0F172A]">Buy crypto first</h3>
             </div>
             <p className="text-sm leading-relaxed text-[#475569]">
               If you need to buy crypto first, use a reputable exchange, fund your wallet, then complete
@@ -181,7 +191,7 @@ export default function PaymentGuidePage() {
               </div>
               <h2 className="font-serif text-2xl text-[#0F172A]">Your payment is protected</h2>
               <p className="mt-4 text-sm leading-relaxed text-[#475569]">
-                Payments are verified via signed webhooks from BTCPay and Paymento before orders are marked
+                Payments are verified via signed webhooks from our payment partners before orders are marked
                 paid.
               </p>
             </div>

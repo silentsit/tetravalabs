@@ -98,11 +98,13 @@ export function PaymentConfirmation() {
   const isProcessing = paymentStatus?.status === "processing"
   const provider = paymentStatus?.provider || ""
   const payButtonLabel =
-    provider === "paymento"
-      ? "Open Paymento checkout"
-      : provider === "btcpay"
-        ? "Pay with Bitcoin (BTCPay)"
-        : "Pay with Crypto"
+    provider === "peptidepay"
+      ? "Complete card payment"
+      : provider === "paymento"
+        ? "Open Paymento checkout"
+        : provider === "btcpay"
+          ? "Pay with Bitcoin (BTCPay)"
+          : "Pay with Crypto"
 
   return (
     <section className="page-container mx-auto max-w-xl space-y-6 py-8">
@@ -116,13 +118,15 @@ export function PaymentConfirmation() {
       <div>
         <span className="section-label">Payment</span>
         <h1 className="mt-4 font-serif text-3xl text-[#0F172A]">
-          {isPaid ? "Payment received" : "Complete crypto payment"}
+          {isPaid ? "Payment received" : provider === "peptidepay" ? "Complete card payment" : "Complete crypto payment"}
         </h1>
         <p className="mt-3 text-sm text-[#475569]">
           {label ? `${label} was created.` : "Your order was created."}{" "}
           {isPaid
-            ? "Your crypto payment is confirmed. Fulfillment will begin shortly."
-            : "Pay with crypto to confirm fulfillment."}
+            ? "Your payment is confirmed. Fulfillment will begin shortly."
+            : provider === "peptidepay"
+              ? "Complete card payment to confirm fulfillment."
+              : "Pay with crypto to confirm fulfillment."}
         </p>
       </div>
       <div className="card space-y-4 p-6">

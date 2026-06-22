@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import Medusa from "@medusajs/js-sdk"
 import { isRestrictedCountry } from "@/lib/shipping-compliance"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
+import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
 import { sendOrderConfirmationEmail, type OrderEmailItem } from "@/lib/send-order-confirmation"
 
 type CheckoutItem = {
@@ -20,6 +21,7 @@ type CheckoutBody = {
   city?: string
   postalCode?: string
   country?: string
+  payment_method?: "card" | "crypto"
   crypto_asset?: string
   items?: CheckoutItem[]
 }
@@ -161,17 +163,40 @@ export async function POST(req: Request) {
         unitPrice: item.unitPrice!
       }))
 
+    const paymentMethod = body.payment_method === "crypto" ? "crypto" : "card"
     const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "BTC"
-    const intent = await createCryptoPaymentIntent({
-      orderId: order.id,
-      email,
-      amountUsd: totalUsd,
-      cryptoAsset
-    })
+    const productName =
+      items.length === 1 && items[0].title
+        ? items[0].title.slice(0, 80)
+        : `Tetrava Labs order (${items.length} items)`
 
-    const paymentUrl = intent?.ok === false ? null : intent?.provider_url || null
-    const cryptoProvider = intent?.ok === false ? null : intent?.provider || null
-    const paymentError = intent?.ok === false ? intent.message || "Crypto payment setup failed" : null
+    let paymentUrl: string | null = null
+    let paymentProvider: string | null = null
+    let paymentError: string | null = null
+
+    if (paymentMethod === "card") {
+      const cardIntent = await createPeptidepayPaymentIntent({
+        orderId: order.id,
+        email,
+        amountUsd: totalUsd,
+        currency: "USD",
+        productName
+      })
+      paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
+      paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"
+      paymentError =
+        cardIntent?.ok === false ? cardIntent.message || "Card payment setup failed" : null
+    } else {
+      const intent = await createCryptoPaymentIntent({
+        orderId: order.id,
+        email,
+        amountUsd: totalUsd,
+        cryptoAsset
+      })
+      paymentUrl = intent?.ok === false ? null : intent?.provider_url || null
+      paymentProvider = intent?.ok === false ? null : intent?.provider || null
+      paymentError = intent?.ok === false ? intent.message || "Crypto payment setup failed" : null
+    }
 
     void sendOrderConfirmationEmail({
       email,
@@ -193,9 +218,10 @@ export async function POST(req: Request) {
       shipping: shippingUsd,
       source: "medusa",
       payment_url: paymentUrl,
-      payment_provider: cryptoProvider,
+      payment_provider: paymentProvider,
+      payment_method: paymentMethod,
       payment_error: paymentError,
-      crypto_asset: cryptoAsset
+      crypto_asset: paymentMethod === "crypto" ? cryptoAsset : null
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : "Medusa checkout failed"

@@ -712,33 +712,7 @@ export function CheckoutForm() {
             />
           </section>
 
-          <label className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569]">
-            <input
-              checked={ruoAck}
-              onChange={(event) => setRuoAck(event.target.checked)}
-              type="checkbox"
-              className="mt-0.5 h-4 w-4 shrink-0 rounded accent-[#0D9488]"
-            />
-            I confirm these compounds are for research use only and not for human consumption.
-          </label>
-
-          <section className="card overflow-hidden">
-            <div className="space-y-2 border-b border-[#E2E8F0] px-5 py-4 text-sm text-[#475569] sm:px-6">
-              <div className="flex items-center justify-between">
-                <span>Subtotal</span>
-                <span className="tabular-nums">${subtotal.toFixed(2)}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Shipping</span>
-                <span className="tabular-nums">${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
-              </div>
-              <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
-                <span>Total</span>
-                <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
-              </div>
-            </div>
-
-            <div className="bg-[#F0FDFA] p-5 sm:p-6">
+          <section className="card bg-[#F0FDFA] p-5 sm:p-6">
               <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h3>
 
               {cardAvailable ? (
@@ -814,34 +788,6 @@ export function CheckoutForm() {
                   Card details are entered on our secure hosted payment page after you place your order.
                 </p>
               ) : null}
-
-              <p className="mt-5 text-xs leading-relaxed text-[#64748B]">
-                Your personal data will be used to process your order and for other purposes described in
-                our{" "}
-                <Link href="/privacy" className="text-[#0D9488] hover:underline">
-                  privacy policy
-                </Link>
-                .
-              </p>
-
-              <button
-                type="submit"
-                disabled={loading || !items.length}
-                className="btn-primary mt-5 w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {submitLabel}
-              </button>
-
-              {error ? (
-                <p
-                  className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
-                  role="alert"
-                >
-                  {error}
-                </p>
-              ) : null}
-              {status ? <p className="mt-4 text-sm text-[#475569]">{status}</p> : null}
-            </div>
           </section>
         </div>
 
@@ -884,7 +830,58 @@ export function CheckoutForm() {
                 ))}
               </ul>
             )}
+
+            <div className="space-y-2 border-t border-[#E2E8F0] px-4 py-4 text-sm text-[#475569]">
+              <div className="flex items-center justify-between">
+                <span>Subtotal</span>
+                <span className="tabular-nums">${subtotal.toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Shipping</span>
+                <span className="tabular-nums">${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
+                <span>Total</span>
+                <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
+              </div>
+            </div>
           </div>
+
+          <label className="mt-4 flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569]">
+            <input
+              checked={ruoAck}
+              onChange={(event) => setRuoAck(event.target.checked)}
+              type="checkbox"
+              className="mt-0.5 h-4 w-4 shrink-0 rounded accent-[#0D9488]"
+            />
+            I confirm these compounds are for research use only and not for human consumption.
+          </label>
+
+          <p className="mt-5 text-xs leading-relaxed text-[#64748B]">
+            Your personal data will be used to process your order and for other purposes described in our{" "}
+            <Link href="/privacy" className="text-[#0D9488] hover:underline">
+              privacy policy
+            </Link>
+            .
+          </p>
+
+          <button
+            type="submit"
+            disabled={loading || !items.length}
+            className="btn-primary mt-5 w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {submitLabel}
+          </button>
+
+          {error ? (
+            <p
+              className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+              role="alert"
+            >
+              {error}
+            </p>
+          ) : null}
+          {status ? <p className="mt-4 text-sm text-[#475569]">{status}</p> : null}
         </aside>
       </div>
     </form>

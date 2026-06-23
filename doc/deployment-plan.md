@@ -67,7 +67,7 @@ That second error happens when the build writes to `apps/storefront/.next` but V
 | Framework Preset | Next.js |
 | Build Command | leave empty (uses `npm run build` from `vercel.json`) |
 | Output Directory | **leave empty** — do not set `.next` manually |
-| Install Command | leave empty (uses `cd .. && npm ci` from `vercel.json`) |
+| Install Command | leave empty (uses `cd ../.. && npm ci` from `vercel.json`) |
 | Include source files outside Root Directory | **Enabled** (needed for monorepo lockfile + workspace install) |
 | Node version | `20.x` (`.nvmrc` + `engines` in package.json) |
 

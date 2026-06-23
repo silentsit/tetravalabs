@@ -1,8 +1,9 @@
 "use client"
 
-import { FormEvent, useEffect, useMemo, useState } from "react"
+import Link from "next/link"
+import { FormEvent, useEffect, useMemo, useState, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
-import { Bitcoin, CreditCard, Lock, ShieldCheck } from "lucide-react"
+import { Bitcoin, CreditCard } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
 import { getMedusaStoreHeaders } from "@/lib/medusa-headers"
@@ -12,6 +13,7 @@ import {
   type CheckoutCryptoOption
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
+import { CHECKOUT_US_STATES } from "@/lib/checkout-us-states"
 import { storePaymentUrl } from "@/components/payment-confirmation"
 
 type CheckoutOrder = {
@@ -36,12 +38,266 @@ const DEFAULT_SHIPPING_USD = 15
 
 function methodCardClass(selected: boolean) {
   return [
-    "relative flex w-full cursor-pointer items-start gap-3 rounded-xl border p-4 text-left transition-all",
-    "focus-within:ring-2 focus-within:ring-[#0D9488]/30",
+    "relative flex w-full cursor-pointer items-start gap-3 rounded-lg border p-3 text-left transition-all",
     selected
-      ? "border-[#0D9488] bg-[#F0FDFA] shadow-[0_0_0_1px_#0D9488]"
-      : "border-[#E2E8F0] bg-white hover:border-[#CBD5E1] hover:bg-[#F8FAFC]"
+      ? "border-[#0D9488] bg-white shadow-[0_0_0_1px_#0D9488]"
+      : "border-[#E2E8F0] bg-white hover:border-[#CBD5E1]"
   ].join(" ")
+}
+
+function FieldLabel({
+  htmlFor,
+  required,
+  children
+}: {
+  htmlFor: string
+  required?: boolean
+  children: ReactNode
+}) {
+  return (
+    <label htmlFor={htmlFor} className="mb-1.5 block text-sm text-[#334155]">
+      {children}
+      {required ? <span className="text-red-500"> *</span> : null}
+    </label>
+  )
+}
+
+type AddressFieldsProps = {
+  idPrefix: string
+  firstName: string
+  setFirstName: (value: string) => void
+  lastName: string
+  setLastName: (value: string) => void
+  company: string
+  setCompany: (value: string) => void
+  country: string
+  setCountry: (value: string) => void
+  address1: string
+  setAddress1: (value: string) => void
+  address2: string
+  setAddress2: (value: string) => void
+  city: string
+  setCity: (value: string) => void
+  province: string
+  setProvince: (value: string) => void
+  postalCode: string
+  setPostalCode: (value: string) => void
+  phone: string
+  setPhone: (value: string) => void
+  email?: string
+  setEmail?: (value: string) => void
+  availableCountries: Array<{ code: string; name: string }>
+  showEmail?: boolean
+}
+
+function AddressFields({
+  idPrefix,
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  company,
+  setCompany,
+  country,
+  setCountry,
+  address1,
+  setAddress1,
+  address2,
+  setAddress2,
+  city,
+  setCity,
+  province,
+  setProvince,
+  postalCode,
+  setPostalCode,
+  phone,
+  setPhone,
+  email,
+  setEmail,
+  availableCountries,
+  showEmail = false
+}: AddressFieldsProps) {
+  const isUs = country === "US"
+
+  return (
+    <div className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <FieldLabel htmlFor={`${idPrefix}-first-name`} required>
+            First name
+          </FieldLabel>
+          <input
+            id={`${idPrefix}-first-name`}
+            required
+            autoComplete="given-name"
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+            className="input-field"
+          />
+        </div>
+        <div>
+          <FieldLabel htmlFor={`${idPrefix}-last-name`} required>
+            Last name
+          </FieldLabel>
+          <input
+            id={`${idPrefix}-last-name`}
+            required
+            autoComplete="family-name"
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+            className="input-field"
+          />
+        </div>
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${idPrefix}-company`}>Company name (optional)</FieldLabel>
+        <input
+          id={`${idPrefix}-company`}
+          autoComplete="organization"
+          value={company}
+          onChange={(event) => setCompany(event.target.value)}
+          className="input-field"
+        />
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${idPrefix}-country`} required>
+          Country / Region
+        </FieldLabel>
+        <select
+          id={`${idPrefix}-country`}
+          required
+          autoComplete="country"
+          value={country}
+          onChange={(event) => setCountry(event.target.value)}
+          className="input-field"
+        >
+          {availableCountries.map((entry) => (
+            <option key={entry.code} value={entry.code}>
+              {entry.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${idPrefix}-address1`} required>
+          Street address
+        </FieldLabel>
+        <input
+          id={`${idPrefix}-address1`}
+          required
+          autoComplete="address-line1"
+          placeholder="House number and street name"
+          value={address1}
+          onChange={(event) => setAddress1(event.target.value)}
+          className="input-field"
+        />
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${idPrefix}-address2`}>
+          Apartment, suite, unit, etc. (optional)
+        </FieldLabel>
+        <input
+          id={`${idPrefix}-address2`}
+          autoComplete="address-line2"
+          value={address2}
+          onChange={(event) => setAddress2(event.target.value)}
+          className="input-field"
+        />
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        <div className="sm:col-span-1">
+          <FieldLabel htmlFor={`${idPrefix}-city`} required>
+            Town / City
+          </FieldLabel>
+          <input
+            id={`${idPrefix}-city`}
+            required
+            autoComplete="address-level2"
+            value={city}
+            onChange={(event) => setCity(event.target.value)}
+            className="input-field"
+          />
+        </div>
+        <div className="sm:col-span-1">
+          <FieldLabel htmlFor={`${idPrefix}-province`} required={isUs}>
+            State
+          </FieldLabel>
+          {isUs ? (
+            <select
+              id={`${idPrefix}-province`}
+              required
+              autoComplete="address-level1"
+              value={province}
+              onChange={(event) => setProvince(event.target.value)}
+              className="input-field"
+            >
+              <option value="">Select a state</option>
+              {CHECKOUT_US_STATES.map((state) => (
+                <option key={state.code} value={state.code}>
+                  {state.name}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              id={`${idPrefix}-province`}
+              autoComplete="address-level1"
+              value={province}
+              onChange={(event) => setProvince(event.target.value)}
+              className="input-field"
+            />
+          )}
+        </div>
+        <div className="sm:col-span-1">
+          <FieldLabel htmlFor={`${idPrefix}-postal`} required>
+            ZIP / Postal code
+          </FieldLabel>
+          <input
+            id={`${idPrefix}-postal`}
+            required
+            autoComplete="postal-code"
+            value={postalCode}
+            onChange={(event) => setPostalCode(event.target.value)}
+            className="input-field"
+          />
+        </div>
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${idPrefix}-phone`}>Phone (optional)</FieldLabel>
+        <input
+          id={`${idPrefix}-phone`}
+          type="tel"
+          autoComplete="tel"
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+          className="input-field"
+        />
+      </div>
+
+      {showEmail && setEmail ? (
+        <div>
+          <FieldLabel htmlFor={`${idPrefix}-email`} required>
+            Email address
+          </FieldLabel>
+          <input
+            id={`${idPrefix}-email`}
+            required
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            className="input-field"
+          />
+        </div>
+      ) : null}
+    </div>
+  )
 }
 
 export function CheckoutForm() {
@@ -50,10 +306,26 @@ export function CheckoutForm() {
   const [email, setEmail] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
+  const [company, setCompany] = useState("")
   const [address1, setAddress1] = useState("")
+  const [address2, setAddress2] = useState("")
   const [city, setCity] = useState("")
+  const [province, setProvince] = useState("")
   const [postalCode, setPostalCode] = useState("")
+  const [phone, setPhone] = useState("")
   const [country, setCountry] = useState("US")
+  const [shipToDifferent, setShipToDifferent] = useState(false)
+  const [shipFirstName, setShipFirstName] = useState("")
+  const [shipLastName, setShipLastName] = useState("")
+  const [shipCompany, setShipCompany] = useState("")
+  const [shipAddress1, setShipAddress1] = useState("")
+  const [shipAddress2, setShipAddress2] = useState("")
+  const [shipCity, setShipCity] = useState("")
+  const [shipProvince, setShipProvince] = useState("")
+  const [shipPostalCode, setShipPostalCode] = useState("")
+  const [shipPhone, setShipPhone] = useState("")
+  const [shipCountry, setShipCountry] = useState("US")
+  const [orderNotes, setOrderNotes] = useState("")
   const [ruoAck, setRuoAck] = useState(false)
   const [status, setStatus] = useState("")
   const [error, setError] = useState("")
@@ -113,9 +385,60 @@ export function CheckoutForm() {
 
   const submitLabel = useMemo(() => {
     if (loading) return "Processing…"
-    if (paymentMethod === "card") return `Pay $${estimatedTotal.toFixed(2)} with card`
+    if (paymentMethod === "card") return "Place order"
     return "Continue to crypto payment"
-  }, [estimatedTotal, loading, paymentMethod])
+  }, [loading, paymentMethod])
+
+  const shippingAddress = useMemo(() => {
+    if (!shipToDifferent) {
+      return {
+        firstName,
+        lastName,
+        company,
+        address1,
+        address2,
+        city,
+        province,
+        postalCode,
+        phone,
+        country
+      }
+    }
+    return {
+      firstName: shipFirstName,
+      lastName: shipLastName,
+      company: shipCompany,
+      address1: shipAddress1,
+      address2: shipAddress2,
+      city: shipCity,
+      province: shipProvince,
+      postalCode: shipPostalCode,
+      phone: shipPhone,
+      country: shipCountry
+    }
+  }, [
+    shipToDifferent,
+    firstName,
+    lastName,
+    company,
+    address1,
+    address2,
+    city,
+    province,
+    postalCode,
+    phone,
+    country,
+    shipFirstName,
+    shipLastName,
+    shipCompany,
+    shipAddress1,
+    shipAddress2,
+    shipCity,
+    shipProvince,
+    shipPostalCode,
+    shipPhone,
+    shipCountry
+  ])
 
   const persistLocalOrder = (order: CheckoutOrder) => {
     const raw = window.localStorage.getItem(ORDERS_KEY)
@@ -155,7 +478,7 @@ export function CheckoutForm() {
       return
     }
 
-    const normalizedCountry = country.trim().toUpperCase()
+    const normalizedCountry = shippingAddress.country.trim().toUpperCase()
     if (restrictedCountries.includes(normalizedCountry)) {
       setError(`Shipping to ${normalizedCountry} is restricted under our compliance policy.`)
       return
@@ -179,12 +502,17 @@ export function CheckoutForm() {
         },
         body: JSON.stringify({
           email,
-          firstName,
-          lastName,
-          address1,
-          city,
-          postalCode,
-          country,
+          firstName: shippingAddress.firstName,
+          lastName: shippingAddress.lastName,
+          company: shippingAddress.company,
+          address1: shippingAddress.address1,
+          address2: shippingAddress.address2,
+          city: shippingAddress.city,
+          province: shippingAddress.province,
+          postalCode: shippingAddress.postalCode,
+          phone: shippingAddress.phone,
+          country: shippingAddress.country,
+          orderNotes: orderNotes.trim() || undefined,
           payment_method: paymentMethod,
           crypto_asset: selectedAsset,
           items: items.map((item) => ({
@@ -240,7 +568,7 @@ export function CheckoutForm() {
             order_id: orderId,
             disclaimer_version: "v1",
             acknowledged_at: new Date().toISOString(),
-            shipping_country: country,
+            shipping_country: shippingAddress.country,
             ip_country: null
           })
         }
@@ -254,7 +582,7 @@ export function CheckoutForm() {
       display_id: displayId,
       created_at: new Date().toISOString(),
       email,
-      shipping_country: country,
+      shipping_country: shippingAddress.country,
       total: orderTotal,
       items: items.map((item) => ({
         title: item.title,
@@ -295,249 +623,264 @@ export function CheckoutForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="card overflow-hidden">
-      <div className="border-b border-[#E2E8F0] bg-gradient-to-br from-[#F0FDFA] to-white px-4 py-5 sm:px-6">
-        <h2 className="font-serif text-xl text-[#0F172A] sm:text-2xl">Shipping &amp; payment</h2>
-        <p className="mt-1 text-sm text-[#475569]">
-          Secure checkout · encrypted connection
-        </p>
-        <div className="mt-3 flex flex-wrap gap-3 text-xs text-[#64748B]">
-          <span className="inline-flex items-center gap-1">
-            <Lock className="h-3.5 w-3.5 text-[#0D9488]" aria-hidden />
-            SSL secured
-          </span>
-          <span className="inline-flex items-center gap-1">
-            <ShieldCheck className="h-3.5 w-3.5 text-[#0D9488]" aria-hidden />
-            RUO compliance recorded
-          </span>
+    <form onSubmit={onSubmit}>
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
+        <div className="space-y-8">
+          <section className="card p-6 sm:p-8">
+            <h2 className="mb-6 font-serif text-xl text-[#0F172A]">Billing details</h2>
+            <AddressFields
+              idPrefix="billing"
+              firstName={firstName}
+              setFirstName={setFirstName}
+              lastName={lastName}
+              setLastName={setLastName}
+              company={company}
+              setCompany={setCompany}
+              country={country}
+              setCountry={setCountry}
+              address1={address1}
+              setAddress1={setAddress1}
+              address2={address2}
+              setAddress2={setAddress2}
+              city={city}
+              setCity={setCity}
+              province={province}
+              setProvince={setProvince}
+              postalCode={postalCode}
+              setPostalCode={setPostalCode}
+              phone={phone}
+              setPhone={setPhone}
+              email={email}
+              setEmail={setEmail}
+              availableCountries={availableCountries}
+              showEmail
+            />
+          </section>
+
+          <section className="card p-6 sm:p-8">
+            <label className="flex cursor-pointer items-center gap-3 text-sm font-medium text-[#0F172A]">
+              <input
+                type="checkbox"
+                checked={shipToDifferent}
+                onChange={(event) => setShipToDifferent(event.target.checked)}
+                className="h-4 w-4 rounded accent-[#0D9488]"
+              />
+              Ship to a different address?
+            </label>
+
+            {shipToDifferent ? (
+              <div className="mt-6 border-t border-[#E2E8F0] pt-6">
+                <h3 className="mb-6 font-serif text-lg text-[#0F172A]">Shipping details</h3>
+                <AddressFields
+                  idPrefix="shipping"
+                  firstName={shipFirstName}
+                  setFirstName={setShipFirstName}
+                  lastName={shipLastName}
+                  setLastName={setShipLastName}
+                  company={shipCompany}
+                  setCompany={setShipCompany}
+                  country={shipCountry}
+                  setCountry={setShipCountry}
+                  address1={shipAddress1}
+                  setAddress1={setShipAddress1}
+                  address2={shipAddress2}
+                  setAddress2={setShipAddress2}
+                  city={shipCity}
+                  setCity={setShipCity}
+                  province={shipProvince}
+                  setProvince={setShipProvince}
+                  postalCode={shipPostalCode}
+                  setPostalCode={setShipPostalCode}
+                  phone={shipPhone}
+                  setPhone={setShipPhone}
+                  availableCountries={availableCountries}
+                />
+              </div>
+            ) : null}
+          </section>
+
+          <section className="card p-6 sm:p-8">
+            <FieldLabel htmlFor="checkout-order-notes">Order notes (optional)</FieldLabel>
+            <textarea
+              id="checkout-order-notes"
+              rows={4}
+              value={orderNotes}
+              onChange={(event) => setOrderNotes(event.target.value)}
+              placeholder="Notes about your order, e.g. special delivery instructions."
+              className="input-field resize-y"
+            />
+          </section>
+
+          <label className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569]">
+            <input
+              checked={ruoAck}
+              onChange={(event) => setRuoAck(event.target.checked)}
+              type="checkbox"
+              className="mt-0.5 h-4 w-4 shrink-0 rounded accent-[#0D9488]"
+            />
+            I confirm these compounds are for research use only and not for human consumption.
+          </label>
         </div>
-      </div>
 
-      <div className="space-y-6 p-4 sm:p-6">
-        <fieldset className="space-y-3">
-          <legend className="text-sm font-medium text-[#0F172A]">Contact &amp; shipping</legend>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div>
-              <label htmlFor="checkout-first-name" className="block text-xs font-medium text-[#475569]">
-                First name
-              </label>
-              <input
-                id="checkout-first-name"
-                required
-                autoComplete="given-name"
-                value={firstName}
-                onChange={(event) => setFirstName(event.target.value)}
-                className="input-field mt-1.5"
-              />
+        <aside className="space-y-0 lg:sticky lg:top-6">
+          <div className="overflow-hidden rounded-t-xl border border-[#E2E8F0] bg-white">
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 bg-[#0F172A] px-4 py-3 text-sm font-medium text-white">
+              <span>Product</span>
+              <span>Subtotal</span>
             </div>
-            <div>
-              <label htmlFor="checkout-last-name" className="block text-xs font-medium text-[#475569]">
-                Last name
-              </label>
-              <input
-                id="checkout-last-name"
-                required
-                autoComplete="family-name"
-                value={lastName}
-                onChange={(event) => setLastName(event.target.value)}
-                className="input-field mt-1.5"
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="checkout-email" className="block text-xs font-medium text-[#475569]">
-              Email
-            </label>
-            <input
-              id="checkout-email"
-              required
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="input-field mt-1.5"
-            />
-          </div>
-          <div>
-            <label htmlFor="checkout-address" className="block text-xs font-medium text-[#475569]">
-              Street address
-            </label>
-            <input
-              id="checkout-address"
-              required
-              autoComplete="street-address"
-              value={address1}
-              onChange={(event) => setAddress1(event.target.value)}
-              className="input-field mt-1.5"
-            />
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div>
-              <label htmlFor="checkout-city" className="block text-xs font-medium text-[#475569]">
-                City
-              </label>
-              <input
-                id="checkout-city"
-                required
-                autoComplete="address-level2"
-                value={city}
-                onChange={(event) => setCity(event.target.value)}
-                className="input-field mt-1.5"
-              />
-            </div>
-            <div>
-              <label htmlFor="checkout-postal" className="block text-xs font-medium text-[#475569]">
-                Postal code
-              </label>
-              <input
-                id="checkout-postal"
-                required
-                autoComplete="postal-code"
-                value={postalCode}
-                onChange={(event) => setPostalCode(event.target.value)}
-                className="input-field mt-1.5"
-              />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="checkout-country" className="block text-xs font-medium text-[#475569]">
-              Country
-            </label>
-            <select
-              id="checkout-country"
-              required
-              autoComplete="country"
-              value={country}
-              onChange={(event) => setCountry(event.target.value)}
-              className="input-field mt-1.5"
-            >
-              {availableCountries.map((entry) => (
-                <option key={entry.code} value={entry.code}>
-                  {entry.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </fieldset>
 
-        <fieldset className="space-y-3">
-          <legend className="text-sm font-medium text-[#0F172A]">Payment method</legend>
-          <p className="text-xs leading-relaxed text-[#64748B]">
-            Card is the fastest option. Choose crypto below for Bitcoin (BTCPay) or other assets (Paymento).
-          </p>
+            {items.length === 0 ? (
+              <div className="px-4 py-6 text-sm text-[#64748B]">
+                Your cart is empty.{" "}
+                <Link href="/shop" className="text-[#0D9488] hover:underline">
+                  Browse catalog
+                </Link>
+              </div>
+            ) : (
+              <ul className="divide-y divide-[#E2E8F0]">
+                {items.map((item) => (
+                  <li
+                    key={item.id}
+                    className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 px-4 py-4 text-sm"
+                  >
+                    <div>
+                      <p className="font-medium text-[#0F172A]">
+                        {item.title}
+                        <span className="ml-1 font-normal text-[#64748B]">× {item.quantity}</span>
+                      </p>
+                      {item.variantTitle ? (
+                        <p className="mt-0.5 text-xs text-[#94A3B8]">{item.variantTitle}</p>
+                      ) : null}
+                    </div>
+                    <p className="tabular-nums text-[#0F172A]">
+                      ${(item.unitPrice * item.quantity).toFixed(2)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            )}
 
-          {cardAvailable ? (
-            <label className={methodCardClass(paymentMethod === "card")}>
+            <div className="space-y-2 border-t border-[#E2E8F0] px-4 py-4 text-sm text-[#475569]">
+              <div className="flex items-center justify-between">
+                <span>Subtotal</span>
+                <span className="tabular-nums">${subtotal.toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Shipping Fee</span>
+                <span className="tabular-nums">${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
+                <span>Total</span>
+                <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-b-xl border border-t-0 border-[#E2E8F0] bg-[#F0FDFA] p-5 sm:p-6">
+            <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h3>
+
+            {cardAvailable ? (
+              <label className={methodCardClass(paymentMethod === "card")}>
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="card"
+                  checked={paymentMethod === "card"}
+                  onChange={() => setPaymentMethod("card")}
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+                />
+                <span className="flex min-w-0 flex-1 flex-col gap-1">
+                  <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
+                    <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                    Credit / debit card
+                  </span>
+                  <span className="text-xs leading-relaxed text-[#64748B]">
+                    Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
+                  </span>
+                </span>
+              </label>
+            ) : null}
+
+            <label className={`${methodCardClass(paymentMethod === "crypto")} ${cardAvailable ? "mt-3" : ""}`}>
               <input
                 type="radio"
                 name="payment_method"
-                value="card"
-                checked={paymentMethod === "card"}
-                onChange={() => setPaymentMethod("card")}
+                value="crypto"
+                checked={paymentMethod === "crypto"}
+                onChange={() => setPaymentMethod("crypto")}
                 className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
               />
               <span className="flex min-w-0 flex-1 flex-col gap-1">
-                <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                  <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
-                  Credit or debit card
-                  <span className="rounded-full bg-[#0D9488]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#0F766E]">
-                    Recommended
-                  </span>
+                <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
+                  <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
+                  Cryptocurrency
                 </span>
                 <span className="text-xs leading-relaxed text-[#64748B]">
-                  Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
+                  Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento.
                 </span>
               </span>
             </label>
-          ) : null}
 
-          <label className={methodCardClass(paymentMethod === "crypto")}>
-            <input
-              type="radio"
-              name="payment_method"
-              value="crypto"
-              checked={paymentMethod === "crypto"}
-              onChange={() => setPaymentMethod("crypto")}
-              className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
-            />
-            <span className="flex min-w-0 flex-1 flex-col gap-1">
-              <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
-                <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
-                Pay with cryptocurrency
-              </span>
-              <span className="text-xs leading-relaxed text-[#64748B]">
-                Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento.
-              </span>
-            </span>
-          </label>
+            {paymentMethod === "crypto" ? (
+              <div className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4">
+                <FieldLabel htmlFor="checkout-crypto-asset">Select asset</FieldLabel>
+                <select
+                  id="checkout-crypto-asset"
+                  value={selectedAsset}
+                  onChange={(event) => setSelectedAsset(event.target.value)}
+                  className="input-field text-sm"
+                >
+                  {cryptoOptions.map((option) => (
+                    <option key={option.asset} value={option.asset}>
+                      {option.label}
+                      {option.provider === "btcpay"
+                        ? " · BTCPay"
+                        : option.provider === "paymento"
+                          ? " · Paymento"
+                          : ""}
+                    </option>
+                  ))}
+                </select>
+                {!cryptoLive ? (
+                  <p className="mt-2 text-xs text-amber-700">
+                    Crypto gateways are not connected in this environment yet.
+                  </p>
+                ) : null}
+              </div>
+            ) : paymentMethod === "card" ? (
+              <p className="mt-4 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-xs leading-relaxed text-[#64748B]">
+                Card details are entered on our secure hosted payment page after you place your order.
+              </p>
+            ) : null}
 
-          {paymentMethod === "crypto" ? (
-            <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
-              <label htmlFor="checkout-crypto-asset" className="block text-xs font-medium text-[#475569]">
-                Select asset
-              </label>
-              <select
-                id="checkout-crypto-asset"
-                value={selectedAsset}
-                onChange={(event) => setSelectedAsset(event.target.value)}
-                className="input-field mt-2 text-sm"
+            <p className="mt-5 text-xs leading-relaxed text-[#64748B]">
+              Your personal data will be used to process your order and for other purposes described in
+              our{" "}
+              <Link href="/privacy" className="text-[#0D9488] hover:underline">
+                privacy policy
+              </Link>
+              .
+            </p>
+
+            <button
+              type="submit"
+              disabled={loading || !items.length}
+              className="btn-primary mt-5 w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {submitLabel}
+            </button>
+
+            {error ? (
+              <p
+                className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+                role="alert"
               >
-                {cryptoOptions.map((option) => (
-                  <option key={option.asset} value={option.asset}>
-                    {option.label}
-                    {option.provider === "btcpay" ? " · BTCPay" : option.provider === "paymento" ? " · Paymento" : ""}
-                  </option>
-                ))}
-              </select>
-              {!cryptoLive ? (
-                <p className="mt-2 text-xs text-amber-700">
-                  Crypto gateways are not connected in this environment yet. Production checkout uses live
-                  BTCPay and Paymento.
-                </p>
-              ) : null}
-            </div>
-          ) : null}
-        </fieldset>
-
-        <label className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569]">
-          <input
-            checked={ruoAck}
-            onChange={(event) => setRuoAck(event.target.checked)}
-            type="checkbox"
-            className="mt-0.5 h-4 w-4 shrink-0 rounded accent-[#0D9488]"
-          />
-          I confirm these compounds are for research use only and not for human consumption.
-        </label>
-
-        <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
-          <div className="flex items-center justify-between text-sm text-[#475569]">
-            <span>Subtotal</span>
-            <span>${subtotal.toFixed(2)}</span>
+                {error}
+              </p>
+            ) : null}
+            {status ? <p className="mt-4 text-sm text-[#475569]">{status}</p> : null}
           </div>
-          <div className="mt-2 flex items-center justify-between text-sm text-[#475569]">
-            <span>Shipping Fee</span>
-            <span>${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
-          </div>
-          <div className="mt-3 flex items-center justify-between border-t border-[#E2E8F0] pt-3">
-            <span className="text-sm font-medium text-[#0F172A]">Estimated total</span>
-            <span className="font-serif text-xl text-[#0F172A]">${estimatedTotal.toFixed(2)}</span>
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading || !items.length}
-          className="btn-primary w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {submitLabel}
-        </button>
-
-        {error ? (
-          <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
-            {error}
-          </p>
-        ) : null}
-        {status ? <p className="text-sm text-[#475569]">{status}</p> : null}
+        </aside>
       </div>
     </form>
   )

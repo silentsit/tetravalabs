@@ -7,9 +7,7 @@ import {
   Clock,
   CreditCard,
   Lock,
-  QrCode,
-  ShieldCheck,
-  Banknote
+  ShieldCheck
 } from "lucide-react"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
@@ -160,26 +158,6 @@ export default function PaymentGuidePage() {
                 </span>
               </div>
             ))}
-          </div>
-          <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
-            <div className="mb-4 flex items-center gap-3">
-              <CreditCard className="h-6 w-6 text-[#D97706]" />
-              <h3 className="font-serif text-lg text-[#0F172A]">Buy crypto first</h3>
-            </div>
-            <p className="text-sm leading-relaxed text-[#475569]">
-              If you need to buy crypto first, use a reputable exchange, fund your wallet, then complete
-              checkout on Tetrava with the exact amount shown.
-            </p>
-            <div className="mt-4 space-y-3">
-              <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white p-4">
-                <Banknote className="mt-0.5 h-5 w-5 shrink-0 text-[#D97706]" />
-                <p className="text-xs text-[#475569]">Purchase crypto on an exchange or on-ramp service.</p>
-              </div>
-              <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white p-4">
-                <QrCode className="mt-0.5 h-5 w-5 shrink-0 text-[#D97706]" />
-                <p className="text-xs text-[#475569]">Send the exact checkout amount to the address shown.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

@@ -17,10 +17,15 @@ type CheckoutBody = {
   email?: string
   firstName?: string
   lastName?: string
+  company?: string
   address1?: string
+  address2?: string
   city?: string
+  province?: string
   postalCode?: string
+  phone?: string
   country?: string
+  orderNotes?: string
   payment_method?: "card" | "crypto"
   crypto_asset?: string
   items?: CheckoutItem[]
@@ -43,9 +48,13 @@ export async function POST(req: Request) {
   const email = body.email?.trim()
   const firstName = body.firstName?.trim() || "Research"
   const lastName = body.lastName?.trim() || "Customer"
+  const company = body.company?.trim() || undefined
   const address1 = body.address1?.trim() || "Laboratory Address"
+  const address2 = body.address2?.trim() || undefined
   const city = body.city?.trim() || "Research City"
+  const province = body.province?.trim() || undefined
   const postalCode = body.postalCode?.trim() || "00000"
+  const phone = body.phone?.trim() || undefined
   const country = body.country?.trim().toUpperCase()
   const items = body.items || []
 
@@ -85,9 +94,13 @@ export async function POST(req: Request) {
       shipping_address: {
         first_name: firstName,
         last_name: lastName,
+        company,
         address_1: address1,
+        address_2: address2,
         city,
+        province,
         postal_code: postalCode,
+        phone,
         country_code: country.toLowerCase()
       }
     })

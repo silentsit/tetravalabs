@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic"
 
+import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import { CartPanel } from "@/components/cart-panel"
 import { CheckoutForm } from "@/components/checkout-form"
 
 export default function CheckoutPage() {
@@ -25,14 +25,13 @@ export default function CheckoutPage() {
           </a>
         </p>
       </div>
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
-        <div className="order-2 lg:order-1">
-          <CartPanel />
-        </div>
-        <div className="order-1 lg:order-2 lg:sticky lg:top-6">
-          <CheckoutForm />
-        </div>
-      </div>
+      <p className="rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm text-[#475569]">
+        Returning customer?{" "}
+        <Link href="/login" className="font-medium text-[#0D9488] hover:underline">
+          Click here to log in
+        </Link>
+      </p>
+      <CheckoutForm />
     </section>
   )
 }

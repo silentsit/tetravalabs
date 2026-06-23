@@ -3,6 +3,11 @@ import { listAllProducts } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 
 export const SITEMAP_REVALIDATE_SECONDS = 3600
+export const SITEMAP_XSL_PATH = "/main-sitemap.xsl"
+
+function xmlDeclaration(body: string) {
+  return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="${SITEMAP_XSL_PATH}"?>\n${body}`
+}
 
 export function getSitemapBaseUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
@@ -54,7 +59,7 @@ export function renderUrlSet(entries: SitemapUrlEntry[]) {
     })
     .join("\n")
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+  return xmlDeclaration(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`)
 }
 
 export function renderSitemapIndex(entries: Array<{ loc: string; lastModified?: Date }>) {
@@ -68,7 +73,7 @@ export function renderSitemapIndex(entries: Array<{ loc: string; lastModified?: 
     })
     .join("\n")
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`
+  return xmlDeclaration(`<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`)
 }
 
 function maxDate(dates: Array<Date | undefined>) {
@@ -170,12 +175,12 @@ export async function getSitemapIndexEntries() {
 
   return [
     {
-      loc: `${baseUrl}/page-sitemap.xml`,
-      lastModified: maxDate(pages.map((entry) => entry.lastModified))
-    },
-    {
       loc: `${baseUrl}/post-sitemap.xml`,
       lastModified: maxDate(posts.map((entry) => entry.lastModified))
+    },
+    {
+      loc: `${baseUrl}/page-sitemap.xml`,
+      lastModified: maxDate(pages.map((entry) => entry.lastModified))
     },
     {
       loc: `${baseUrl}/product-sitemap.xml`,

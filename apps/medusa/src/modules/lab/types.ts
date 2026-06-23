@@ -25,3 +25,15 @@ export interface ComplianceRecord {
   shipping_country: string | null
   ip_country: string | null
 }
+
+export interface ProductReview {
+  id: string
+  product_id: string
+  product_handle: string
+  customer_id: string
+  author_name: string
+  rating: number
+  body: string
+  created_at: string
+  updated_at: string
+}

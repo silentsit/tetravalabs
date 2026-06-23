@@ -3,7 +3,9 @@
 import { useState } from "react"
 import { Download } from "lucide-react"
 import type { StoreCoaDocument } from "@/lib/medusa"
+import type { ProductReviewsResponse } from "@/lib/reviews"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
+import { ProductReviewsPanel } from "@/components/product-reviews-panel"
 import type { FaqItem } from "@/lib/faq-content"
 import { FaqAccordion } from "@/components/faq-accordion"
 
@@ -24,14 +26,16 @@ export type ProductDetailData = {
 
 type Props = {
   product: ProductDetailData
+  productId: string
   coas: StoreCoaDocument[]
   faqs: FaqItem[]
+  reviews: ProductReviewsResponse
 }
 
-const tabs = ["Overview", "Specifications", "Storage", "COA", "Shipping"] as const
+const tabs = ["Overview", "Specifications", "Storage", "COA", "Shipping", "Reviews"] as const
 type TabId = (typeof tabs)[number]
 
-export function ProductDetailTabs({ product, coas, faqs }: Props) {
+export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("Overview")
   const primaryCoa = coas[0]
 
@@ -177,6 +181,14 @@ export function ProductDetailTabs({ product, coas, faqs }: Props) {
                 for restricted regions.
               </p>
             </div>
+          ) : null}
+
+          {activeTab === "Reviews" ? (
+            <ProductReviewsPanel
+              productId={productId}
+              productHandle={product.handle}
+              initialData={reviews}
+            />
           ) : null}
         </div>
       </div>

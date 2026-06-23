@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import Link from "next/link"
 import { sdk } from "@/lib/medusa-client"
 import { OrderLookupForm, type LookupOrder } from "@/components/order-lookup-form"
 
@@ -20,6 +21,13 @@ type MedusaOrder = {
   total?: number
   currency_code?: string
   status?: string
+  items?: Array<{
+    id?: string
+    title?: string
+    quantity?: number
+    product?: { handle?: string; title?: string } | null
+    variant?: { title?: string } | null
+  }> | null
 }
 
 type PaymentStatus = {
@@ -100,8 +108,11 @@ export function OrdersList() {
   useEffect(() => {
     const load = async () => {
       try {
-        const { orders } = await sdk.store.order.list({ limit: 20 })
-        if (orders?.length) setMedusaOrders(orders)
+        const { orders } = await sdk.store.order.list({
+          limit: 50,
+          fields: "*items,*items.product,*items.variant"
+        })
+        if (orders?.length) setMedusaOrders(orders as MedusaOrder[])
       } catch {
         // Guest or unsigned — local + lookup still available.
       }
@@ -132,6 +143,7 @@ export function OrdersList() {
         total: (order.total || 0) / 100,
         status: order.status,
         currency_code: order.currency_code,
+        items: order.items,
         source: "medusa"
       })
     }
@@ -215,6 +227,33 @@ export function OrdersList() {
                   orderStatus={order.status}
                   payUrl={payment?.provider_url}
                 />
+                {"items" in order && order.items?.length ? (
+                  <ul className="mt-3 space-y-1 border-t border-[#E2E8F0] pt-3">
+                    {order.items.map((item) => {
+                      const handle = item.product?.handle
+                      const label = item.product?.title || item.title || "Product"
+                      const variant = item.variant?.title
+                      const content = (
+                        <>
+                          {label}
+                          {variant ? <span className="text-[#94A3B8]"> · {variant}</span> : null}
+                          {item.quantity ? <span className="text-[#94A3B8]"> × {item.quantity}</span> : null}
+                        </>
+                      )
+                      return (
+                        <li key={item.id || `${order.id}-${label}`} className="text-xs text-[#475569]">
+                          {handle ? (
+                            <Link href={`/product/${handle}`} className="text-[#0F172A] hover:text-[#0D9488]">
+                              {content}
+                            </Link>
+                          ) : (
+                            content
+                          )}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                ) : null}
               </li>
             )
           })}

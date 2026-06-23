@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { logoutCustomer, retrieveCustomer, type StoreCustomer } from "@/lib/medusa-auth"
+import { PurchaseHistory } from "@/components/purchase-history"
 
 export function AccountDashboard() {
   const router = useRouter()
@@ -53,6 +54,9 @@ export function AccountDashboard() {
           <h3 className="text-lg text-[#0F172A]">COA library</h3>
           <p className="text-xs text-[#475569]">Access batch COA and HPLC documents.</p>
         </Link>
+      </div>
+      <div className="card p-5">
+        <PurchaseHistory limit={5} compact showHeading />
       </div>
     </div>
   )

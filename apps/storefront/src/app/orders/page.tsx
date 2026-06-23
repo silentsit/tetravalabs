@@ -30,8 +30,8 @@ export default async function OrdersPage({ searchParams }: Props) {
         </p>
       ) : null}
       <p className="text-sm text-[#475569]">
-        Signed-in customers see Medusa orders automatically. Guest checkouts can be retrieved with the
-        email and order number from your confirmation — or saved locally in this browser.
+        Signed-in customers see purchase history with line items automatically. Guest checkouts can be
+        retrieved with the email and order number from your confirmation — or saved locally in this browser.
       </p>
       <OrdersList />
     </section>

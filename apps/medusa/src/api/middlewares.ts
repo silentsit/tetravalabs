@@ -1,7 +1,24 @@
-import { defineMiddlewares } from "@medusajs/framework/http"
+import { defineMiddlewares, authenticate } from "@medusajs/framework/http"
 
 export default defineMiddlewares({
   routes: [
+    {
+      method: ["GET"],
+      matcher: "/store/reviews",
+      middlewares: [
+        authenticate("customer", ["session", "bearer"], { allowUnauthenticated: true })
+      ]
+    },
+    {
+      method: ["POST"],
+      matcher: "/store/reviews",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
+    {
+      method: ["DELETE"],
+      matcher: "/store/reviews/:id",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
     {
       method: ["POST"],
       matcher: "/webhooks/payments/paymento",

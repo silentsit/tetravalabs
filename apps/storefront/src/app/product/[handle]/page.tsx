@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
+import { listProductReviews } from "@/lib/reviews"
 import { getRelatedProducts, slugifyCategory } from "@/lib/categories"
 import { getProductImage, getProductPurity, getProductDisplayName, getProductDisplaySubtitle, getProductStrengthLabel } from "@/lib/revamp/product-visual"
 import { ProductImageGallery } from "@/components/product-image-gallery"
@@ -44,7 +45,10 @@ export default async function ProductPage({ params }: Props) {
   const [product, allProducts] = await Promise.all([getProductByHandle(handle), listProducts()])
   if (!product) notFound()
   const primaryVariantId = product.variants?.[0]?.id
-  const coas = primaryVariantId ? await listCoasByVariant(primaryVariantId) : []
+  const [coas, reviews] = await Promise.all([
+    primaryVariantId ? listCoasByVariant(primaryVariantId) : Promise.resolve([]),
+    listProductReviews({ productHandle: handle, productId: product.id })
+  ])
   const displayName = getProductDisplayName(product)
   const displaySubtitle = getProductDisplaySubtitle(product)
   const strengthLabel = getProductStrengthLabel(product)
@@ -114,8 +118,10 @@ export default async function ProductPage({ params }: Props) {
           sequence: String(product.metadata?.sequence || "N/A"),
           researchSummary: researchSummary(product)
         }}
+        productId={product.id}
         coas={coas}
         faqs={productFaqItems}
+        reviews={reviews}
       />
 
       {related.length > 0 ? (

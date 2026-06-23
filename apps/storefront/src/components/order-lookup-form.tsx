@@ -12,6 +12,13 @@ export type LookupOrder = {
   email?: string
   shipping_country?: string
   source: "lookup" | "local" | "medusa"
+  items?: Array<{
+    id?: string
+    title?: string
+    quantity?: number
+    product?: { handle?: string; title?: string } | null
+    variant?: { title?: string } | null
+  }> | null
 }
 
 type Props = {

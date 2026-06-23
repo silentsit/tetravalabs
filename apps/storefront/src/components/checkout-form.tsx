@@ -347,7 +347,6 @@ export function CheckoutForm() {
   const [shipPostalCode, setShipPostalCode] = useState("")
   const [shipPhone, setShipPhone] = useState("")
   const [shipCountry, setShipCountry] = useState("US")
-  const [orderNotes, setOrderNotes] = useState("")
   const [ruoAck, setRuoAck] = useState(false)
   const [status, setStatus] = useState("")
   const [error, setError] = useState("")
@@ -534,7 +533,6 @@ export function CheckoutForm() {
           postalCode: shippingAddress.postalCode,
           phone: shippingAddress.phone,
           country: shippingAddress.country,
-          orderNotes: orderNotes.trim() || undefined,
           payment_method: paymentMethod,
           crypto_asset: selectedAsset,
           items: items.map((item) => ({
@@ -719,18 +717,6 @@ export function CheckoutForm() {
                 />
               </div>
             ) : null}
-          </section>
-
-          <section className="card p-6 sm:p-8">
-            <FieldLabel htmlFor="checkout-order-notes">Order notes (optional)</FieldLabel>
-            <textarea
-              id="checkout-order-notes"
-              rows={4}
-              value={orderNotes}
-              onChange={(event) => setOrderNotes(event.target.value)}
-              placeholder="Notes about your order, e.g. special delivery instructions."
-              className="input-field resize-y"
-            />
           </section>
 
           <section className="card bg-[#F0FDFA] p-5 sm:p-6">

@@ -11,7 +11,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Answers about research-use peptides, HPLC verification, certificates of analysis, shipping, and payment.",
   path: "/faq",
-  jsonLd: faqJsonLd(faqItems)
+  jsonLd: faqJsonLd(faqItems, "/faq")
 })
 
 export default function FaqPage() {

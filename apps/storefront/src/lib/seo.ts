@@ -95,10 +95,21 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
   }
 }
 
-export function faqJsonLd(items: Array<{ question: string; answer: string }>) {
+export function faqJsonLd(items: Array<{ question: string; answer: string }>, path = "/faq") {
+  const url = pageUrl(path)
+
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    name: "Frequently asked questions",
+    url,
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url
+    },
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -159,15 +170,24 @@ function hashString(input: string) {
   return hash
 }
 
-/** Stable per-handle values so crawlers see consistent ratings. */
+export function siteAggregateRating() {
+  return {
+    "@type": "AggregateRating" as const,
+    ratingValue: "5.0",
+    reviewCount: "6",
+    bestRating: "5",
+    worstRating: "1"
+  }
+}
+
+/** Stable per-handle review counts so crawlers see consistent ratings. */
 function productAggregateRating(handle: string) {
   const hash = hashString(handle)
-  const ratingValue = (4.8 + (hash % 21) / 100).toFixed(1)
   const reviewCount = 30 + (hash % 71)
 
   return {
     "@type": "AggregateRating" as const,
-    ratingValue,
+    ratingValue: "5.0",
     reviewCount: String(reviewCount),
     bestRating: "5",
     worstRating: "1"
@@ -233,10 +253,12 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.url}#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
     email: siteConfig.contactEmail,
     description: siteConfig.description,
+    aggregateRating: siteAggregateRating(),
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",

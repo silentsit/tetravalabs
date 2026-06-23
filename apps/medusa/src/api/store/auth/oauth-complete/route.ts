@@ -1,4 +1,4 @@
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import type { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { createCustomerAccountWorkflow } from "@medusajs/core-flows"
 import { MedusaError, Modules } from "@medusajs/framework/utils"
 
@@ -22,7 +22,7 @@ function splitName(fullName?: string) {
  * POST /store/auth/oauth-complete
  * Ensures an authenticated OAuth identity has a linked Medusa customer record.
  */
-export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
+export const POST = async (req: AuthenticatedMedusaRequest, res: MedusaResponse) => {
   const actorId = req.auth_context?.actor_id
   if (actorId) {
     return res.status(200).json({ customer_id: actorId, created: false })

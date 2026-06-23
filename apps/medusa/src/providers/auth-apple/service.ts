@@ -1,5 +1,11 @@
 import crypto from "crypto"
 import jwt from "jsonwebtoken"
+import type {
+  AuthenticationInput,
+  AuthenticationResponse,
+  AuthIdentityProviderService,
+  Logger
+} from "@medusajs/framework/types"
 import {
   AbstractAuthModuleProvider,
   MedusaError
@@ -23,12 +29,16 @@ type AppleIdTokenPayload = {
   }
 }
 
+type AppleOAuthState = {
+  callback_url: string
+}
+
 export class AppleAuthService extends AbstractAuthModuleProvider {
   static identifier = "apple"
   static DISPLAY_NAME = "Apple Authentication"
 
   protected config_: AppleAuthOptions
-  protected logger_: { warn: (message: string) => void }
+  protected logger_: Logger
 
   static validateOptions(options: AppleAuthOptions) {
     if (!options.clientId) throw new Error("Apple clientId is required")
@@ -38,17 +48,17 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
     if (!options.callbackUrl) throw new Error("Apple callbackUrl is required")
   }
 
-  constructor(
-    { logger }: { logger: { warn: (message: string) => void } },
-    options: AppleAuthOptions
-  ) {
+  constructor({ logger }: { logger: Logger }, options: AppleAuthOptions) {
     // @ts-expect-error Medusa provider base constructor
     super(...arguments)
     this.config_ = options
     this.logger_ = logger
   }
 
-  async register() {
+  async register(
+    _: AuthenticationInput,
+    __: AuthIdentityProviderService
+  ): Promise<AuthenticationResponse> {
     throw new MedusaError(
       MedusaError.Types.NOT_ALLOWED,
       "Apple does not support registration. Use method `authenticate` instead."
@@ -56,14 +66,9 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
   }
 
   async authenticate(
-    req: {
-      query?: Record<string, string>
-      body?: Record<string, unknown>
-    },
-    authIdentityService: {
-      setState: (key: string, value: { callback_url: string }) => Promise<void>
-    }
-  ) {
+    req: AuthenticationInput,
+    authIdentityService: AuthIdentityProviderService
+  ): Promise<AuthenticationResponse> {
     const query = req.query ?? {}
     const body = req.body ?? {}
 
@@ -75,8 +80,7 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
     }
 
     const stateKey = crypto.randomBytes(32).toString("hex")
-    const callbackUrl =
-      typeof body.callback_url === "string" ? body.callback_url : this.config_.callbackUrl
+    const callbackUrl = body.callback_url ?? this.config_.callbackUrl
 
     await authIdentityService.setState(stateKey, { callback_url: callbackUrl })
 
@@ -92,19 +96,9 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
   }
 
   async validateCallback(
-    req: {
-      query?: Record<string, string>
-      body?: Record<string, unknown>
-    },
-    authIdentityService: {
-      getState: (key?: string) => Promise<{ callback_url: string } | null>
-      retrieve: (input: { entity_id: string }) => Promise<unknown>
-      create: (input: {
-        entity_id: string
-        user_metadata: Record<string, unknown>
-      }) => Promise<unknown>
-    }
-  ) {
+    req: AuthenticationInput,
+    authIdentityService: AuthIdentityProviderService
+  ): Promise<AuthenticationResponse> {
     const query = req.query ?? {}
     const body = req.body ?? {}
 
@@ -115,13 +109,19 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
       }
     }
 
-    const code = query.code ?? (typeof body.code === "string" ? body.code : undefined)
+    const code = query.code ?? body.code
     if (!code) {
       return { success: false, error: "No code provided" }
     }
 
-    const state = await authIdentityService.getState(query.state)
-    if (!state) {
+    const stateKey = query.state
+    if (!stateKey) {
+      return { success: false, error: "No state provided, or session expired" }
+    }
+
+    const state = await authIdentityService.getState(stateKey)
+    const callbackUrl = (state as AppleOAuthState | null)?.callback_url
+    if (!callbackUrl) {
       return { success: false, error: "No state provided, or session expired" }
     }
 
@@ -137,7 +137,7 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
           client_secret: clientSecret,
           code,
           grant_type: "authorization_code",
-          redirect_uri: state.callback_url
+          redirect_uri: callbackUrl
         }).toString()
       })
 
@@ -150,13 +150,13 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
       }
 
       const tokenData = (await tokenResponse.json()) as { id_token?: string }
-      const { authIdentity, success } = await this.verifyIdToken_(
+      const { authIdentity, success, error } = await this.verifyIdToken_(
         tokenData.id_token,
         authIdentityService,
         body
       )
 
-      return { success, authIdentity }
+      return { success, authIdentity, error }
     } catch (error) {
       const message = error instanceof Error ? error.message : "Apple authentication failed"
       return { success: false, error: message }
@@ -183,15 +183,9 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
 
   private async verifyIdToken_(
     idToken: string | undefined,
-    authIdentityService: {
-      retrieve: (input: { entity_id: string }) => Promise<unknown>
-      create: (input: {
-        entity_id: string
-        user_metadata: Record<string, unknown>
-      }) => Promise<unknown>
-    },
-    body: Record<string, unknown>
-  ) {
+    authIdentityService: AuthIdentityProviderService,
+    body: Record<string, string>
+  ): Promise<AuthenticationResponse> {
     if (!idToken) {
       return { success: false, error: "No Apple ID token returned" }
     }
@@ -204,7 +198,7 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
     let firstName: string | undefined
     let lastName: string | undefined
 
-    if (typeof body.user === "string") {
+    if (body.user) {
       try {
         const parsed = JSON.parse(body.user) as {
           name?: { firstName?: string; lastName?: string }
@@ -223,21 +217,25 @@ export class AppleAuthService extends AbstractAuthModuleProvider {
       name: [firstName, lastName].filter(Boolean).join(" ") || undefined
     }
 
-    let authIdentity: unknown
     try {
-      authIdentity = await authIdentityService.retrieve({ entity_id: payload.sub })
+      const authIdentity = await authIdentityService.retrieve({
+        entity_id: payload.sub
+      })
+      return { success: true, authIdentity }
     } catch (error) {
       const medusaError = error as { type?: string; message?: string }
       if (medusaError.type === MedusaError.Types.NOT_FOUND) {
-        authIdentity = await authIdentityService.create({
+        const authIdentity = await authIdentityService.create({
           entity_id: payload.sub,
           user_metadata: userMetadata
         })
-      } else {
-        return { success: false, error: medusaError.message || "Unable to create Apple identity" }
+        return { success: true, authIdentity }
+      }
+
+      return {
+        success: false,
+        error: medusaError.message || "Unable to create Apple identity"
       }
     }
-
-    return { success: true, authIdentity }
   }
 }

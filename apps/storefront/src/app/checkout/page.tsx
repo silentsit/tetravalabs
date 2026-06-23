@@ -6,7 +6,7 @@ import { CheckoutForm } from "@/components/checkout-form"
 
 export default function CheckoutPage() {
   return (
-    <section className="page-container space-y-6 py-6 sm:space-y-8 sm:py-8">
+    <section className="page-container space-y-6 py-6 pb-20 sm:space-y-8 sm:py-8 sm:pb-24 lg:pb-28">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

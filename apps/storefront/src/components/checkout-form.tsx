@@ -13,9 +13,11 @@ import {
   type CheckoutCryptoOption
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
-import { CHECKOUT_US_STATES } from "@/lib/checkout-us-states"
+import { CHECKOUT_US_STATES, normalizeUsStateCode } from "@/lib/checkout-us-states"
 import { getProductImage } from "@/lib/product-image-map"
 import { storePaymentUrl } from "@/components/payment-confirmation"
+import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
+import type { ParsedAddress } from "@/lib/google-places"
 
 type CheckoutOrder = {
   id: string
@@ -120,6 +122,25 @@ function AddressFields({
 }: AddressFieldsProps) {
   const isUs = country === "US"
 
+  const applyParsedAddress = (parsed: ParsedAddress) => {
+    if (parsed.address1) setAddress1(parsed.address1)
+    if (parsed.city) setCity(parsed.city)
+    if (parsed.province) {
+      setProvince(
+        parsed.country.toUpperCase() === "US" || country === "US"
+          ? normalizeUsStateCode(parsed.province)
+          : parsed.province
+      )
+    }
+    if (parsed.postalCode) setPostalCode(parsed.postalCode)
+    if (
+      parsed.country &&
+      availableCountries.some((entry) => entry.code === parsed.country.toUpperCase())
+    ) {
+      setCountry(parsed.country.toUpperCase())
+    }
+  }
+
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
@@ -186,14 +207,14 @@ function AddressFields({
         <FieldLabel htmlFor={`${idPrefix}-address1`} required>
           Street address
         </FieldLabel>
-        <input
+        <AddressAutocompleteInput
           id={`${idPrefix}-address1`}
           required
-          autoComplete="address-line1"
           placeholder="House number and street name"
           value={address1}
-          onChange={(event) => setAddress1(event.target.value)}
-          className="input-field"
+          onChange={setAddress1}
+          onAddressSelect={applyParsedAddress}
+          countryCode={country}
         />
       </div>
 

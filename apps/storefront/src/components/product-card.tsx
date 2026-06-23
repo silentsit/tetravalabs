@@ -13,7 +13,6 @@ import {
 } from "@/lib/revamp/product-visual"
 import {
   formatShelfPriceFromProduct,
-  hasMultiplePackTiers,
   packTiersFromVariants,
   resolveProductPurchaseLayout
 } from "@/lib/pack-pricing"
@@ -43,10 +42,9 @@ export function ProductCard({
   const variantRow = getPrimaryVariant(product)
   const displayName = getProductDisplayName(product)
   const packTiers = packTiersFromVariants(product.variants || [])
-  const showFromPrice = hasMultiplePackTiers(product)
+  const cartPackTier = packTiers[0] ?? null
   const fallbackCartPrice = getProductPrice(product)
-  const cartVariant = showFromPrice ? packTiers[0] : null
-  const inStock = Boolean(cartVariant?.variantId || variantRow?.id)
+  const inStock = Boolean(cartPackTier?.variantId || variantRow?.id)
   const imageUrl =
     imageOverride ??
     (variant === "featured"
@@ -58,7 +56,7 @@ export function ProductCard({
     e.preventDefault()
     e.stopPropagation()
 
-    const variantId = cartVariant?.variantId || variantRow?.id
+    const variantId = cartPackTier?.variantId || variantRow?.id
     if (!variantId) return
 
     addItem({
@@ -67,8 +65,8 @@ export function ProductCard({
       handle: product.handle,
       title: displayName,
       variantId,
-      variantTitle: cartVariant?.tier || variantRow?.title || "Standard",
-      unitPrice: cartVariant?.price ?? fallbackCartPrice
+      variantTitle: cartPackTier?.tier || variantRow?.title || "Standard",
+      unitPrice: cartPackTier?.price ?? fallbackCartPrice
     })
   }
 

@@ -190,6 +190,37 @@ export function formatShelfPrice(
   return { unitAmount, unitSuffix, detail, isPackProduct: true }
 }
 
+export function formatShelfPriceFromUnitCents(input: {
+  unitPriceMinCents: number
+  unitPriceMaxCents?: number
+  moqQty?: number
+  packPriceMinCents?: number
+  unitLabel?: "vial" | "unit"
+}): ShelfPriceDisplay {
+  const unitLabel = input.unitLabel ?? "vial"
+  const unitSuffix = unitLabel === "vial" ? "/vial" : "/unit"
+  const unitWord = unitLabel === "vial" ? "vial" : "unit"
+  const min = input.unitPriceMinCents / 100
+  const max = (input.unitPriceMaxCents ?? input.unitPriceMinCents) / 100
+  const unitAmount =
+    min !== max ? `$${min.toFixed(2)} – $${max.toFixed(2)}` : `$${min.toFixed(2)}`
+
+  const moqLabel = input.moqQty ? `${input.moqQty}-${unitWord} minimum` : null
+  const packLabel =
+    input.packPriceMinCents != null && input.packPriceMinCents > 0
+      ? `packs from $${(input.packPriceMinCents / 100).toFixed(2)}`
+      : null
+  const detail =
+    moqLabel && packLabel ? `${moqLabel} · ${packLabel}` : moqLabel || packLabel
+
+  return {
+    unitAmount,
+    unitSuffix,
+    detail,
+    isPackProduct: true
+  }
+}
+
 export function formatShelfPriceFromProduct(
   product: StoreProduct,
   unitLabel: "vial" | "unit" = "vial"

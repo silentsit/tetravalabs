@@ -24,7 +24,7 @@ export function ShelfPriceLabel({ shelf, variant = "shop" }: Props) {
       : "mt-0.5 text-[11px] font-medium text-[#94A3B8]"
 
   return (
-    <div>
+    <div className={variant === "shop" ? "mt-1" : undefined}>
       <p className={amountClass}>
         {shelf.unitAmount}
         {shelf.unitSuffix ? <span className={suffixClass}> {shelf.unitSuffix}</span> : null}

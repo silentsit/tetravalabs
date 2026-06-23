@@ -14,6 +14,7 @@ import {
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { CHECKOUT_US_STATES } from "@/lib/checkout-us-states"
+import { getProductImage } from "@/lib/product-image-map"
 import { storePaymentUrl } from "@/components/payment-confirmation"
 
 type CheckoutOrder = {
@@ -720,11 +721,133 @@ export function CheckoutForm() {
             />
             I confirm these compounds are for research use only and not for human consumption.
           </label>
+
+          <section className="card overflow-hidden">
+            <div className="space-y-2 border-b border-[#E2E8F0] px-5 py-4 text-sm text-[#475569] sm:px-6">
+              <div className="flex items-center justify-between">
+                <span>Subtotal</span>
+                <span className="tabular-nums">${subtotal.toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Shipping</span>
+                <span className="tabular-nums">${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
+                <span>Total</span>
+                <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
+              </div>
+            </div>
+
+            <div className="bg-[#F0FDFA] p-5 sm:p-6">
+              <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h3>
+
+              {cardAvailable ? (
+                <label className={methodCardClass(paymentMethod === "card")}>
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="card"
+                    checked={paymentMethod === "card"}
+                    onChange={() => setPaymentMethod("card")}
+                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+                  />
+                  <span className="flex min-w-0 flex-1 flex-col gap-1">
+                    <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
+                      <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                      Credit / debit card
+                    </span>
+                    <span className="text-xs leading-relaxed text-[#64748B]">
+                      Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
+                    </span>
+                  </span>
+                </label>
+              ) : null}
+
+              <label className={`${methodCardClass(paymentMethod === "crypto")} ${cardAvailable ? "mt-3" : ""}`}>
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="crypto"
+                  checked={paymentMethod === "crypto"}
+                  onChange={() => setPaymentMethod("crypto")}
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+                />
+                <span className="flex min-w-0 flex-1 flex-col gap-1">
+                  <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
+                    <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
+                    Cryptocurrency
+                  </span>
+                  <span className="text-xs leading-relaxed text-[#64748B]">
+                    Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento.
+                  </span>
+                </span>
+              </label>
+
+              {paymentMethod === "crypto" ? (
+                <div className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4">
+                  <FieldLabel htmlFor="checkout-crypto-asset">Select asset</FieldLabel>
+                  <select
+                    id="checkout-crypto-asset"
+                    value={selectedAsset}
+                    onChange={(event) => setSelectedAsset(event.target.value)}
+                    className="input-field text-sm"
+                  >
+                    {cryptoOptions.map((option) => (
+                      <option key={option.asset} value={option.asset}>
+                        {option.label}
+                        {option.provider === "btcpay"
+                          ? " · BTCPay"
+                          : option.provider === "paymento"
+                            ? " · Paymento"
+                            : ""}
+                      </option>
+                    ))}
+                  </select>
+                  {!cryptoLive ? (
+                    <p className="mt-2 text-xs text-amber-700">
+                      Crypto gateways are not connected in this environment yet.
+                    </p>
+                  ) : null}
+                </div>
+              ) : paymentMethod === "card" ? (
+                <p className="mt-4 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-xs leading-relaxed text-[#64748B]">
+                  Card details are entered on our secure hosted payment page after you place your order.
+                </p>
+              ) : null}
+
+              <p className="mt-5 text-xs leading-relaxed text-[#64748B]">
+                Your personal data will be used to process your order and for other purposes described in
+                our{" "}
+                <Link href="/privacy" className="text-[#0D9488] hover:underline">
+                  privacy policy
+                </Link>
+                .
+              </p>
+
+              <button
+                type="submit"
+                disabled={loading || !items.length}
+                className="btn-primary mt-5 w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {submitLabel}
+              </button>
+
+              {error ? (
+                <p
+                  className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+                  role="alert"
+                >
+                  {error}
+                </p>
+              ) : null}
+              {status ? <p className="mt-4 text-sm text-[#475569]">{status}</p> : null}
+            </div>
+          </section>
         </div>
 
-        <aside className="space-y-0 lg:sticky lg:top-6">
-          <div className="overflow-hidden rounded-t-xl border border-[#E2E8F0] bg-white">
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 bg-[#0F172A] px-4 py-3 text-sm font-medium text-white">
+        <aside className="lg:sticky lg:top-6">
+          <div className="card overflow-hidden">
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-[#E2E8F0] bg-[#0F172A] px-4 py-3 text-sm font-medium text-white">
               <span>Product</span>
               <span>Subtotal</span>
             </div>
@@ -739,146 +862,28 @@ export function CheckoutForm() {
             ) : (
               <ul className="divide-y divide-[#E2E8F0]">
                 {items.map((item) => (
-                  <li
-                    key={item.id}
-                    className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 px-4 py-4 text-sm"
-                  >
-                    <div>
-                      <p className="font-medium text-[#0F172A]">
-                        {item.title}
-                        <span className="ml-1 font-normal text-[#64748B]">× {item.quantity}</span>
+                  <li key={item.id} className="flex gap-3 px-4 py-4">
+                    <img
+                      src={getProductImage(item.handle)}
+                      alt={item.title}
+                      className="h-14 w-14 shrink-0 rounded-lg bg-white object-contain"
+                    />
+                    <div className="flex min-w-0 flex-1 items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-[#0F172A]">{item.title}</p>
+                        {item.variantTitle ? (
+                          <p className="mt-0.5 text-xs text-[#94A3B8]">{item.variantTitle}</p>
+                        ) : null}
+                        <p className="mt-1 text-xs text-[#64748B]">Qty: {item.quantity}</p>
+                      </div>
+                      <p className="shrink-0 tabular-nums text-sm text-[#0F172A]">
+                        ${(item.unitPrice * item.quantity).toFixed(2)}
                       </p>
-                      {item.variantTitle ? (
-                        <p className="mt-0.5 text-xs text-[#94A3B8]">{item.variantTitle}</p>
-                      ) : null}
                     </div>
-                    <p className="tabular-nums text-[#0F172A]">
-                      ${(item.unitPrice * item.quantity).toFixed(2)}
-                    </p>
                   </li>
                 ))}
               </ul>
             )}
-
-            <div className="space-y-2 border-t border-[#E2E8F0] px-4 py-4 text-sm text-[#475569]">
-              <div className="flex items-center justify-between">
-                <span>Subtotal</span>
-                <span className="tabular-nums">${subtotal.toFixed(2)}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Shipping Fee</span>
-                <span className="tabular-nums">${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
-              </div>
-              <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
-                <span>Total</span>
-                <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-b-xl border border-t-0 border-[#E2E8F0] bg-[#F0FDFA] p-5 sm:p-6">
-            <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h3>
-
-            {cardAvailable ? (
-              <label className={methodCardClass(paymentMethod === "card")}>
-                <input
-                  type="radio"
-                  name="payment_method"
-                  value="card"
-                  checked={paymentMethod === "card"}
-                  onChange={() => setPaymentMethod("card")}
-                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
-                />
-                <span className="flex min-w-0 flex-1 flex-col gap-1">
-                  <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                    <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
-                    Credit / debit card
-                  </span>
-                  <span className="text-xs leading-relaxed text-[#64748B]">
-                    Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
-                  </span>
-                </span>
-              </label>
-            ) : null}
-
-            <label className={`${methodCardClass(paymentMethod === "crypto")} ${cardAvailable ? "mt-3" : ""}`}>
-              <input
-                type="radio"
-                name="payment_method"
-                value="crypto"
-                checked={paymentMethod === "crypto"}
-                onChange={() => setPaymentMethod("crypto")}
-                className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
-              />
-              <span className="flex min-w-0 flex-1 flex-col gap-1">
-                <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
-                  <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
-                  Cryptocurrency
-                </span>
-                <span className="text-xs leading-relaxed text-[#64748B]">
-                  Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento.
-                </span>
-              </span>
-            </label>
-
-            {paymentMethod === "crypto" ? (
-              <div className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4">
-                <FieldLabel htmlFor="checkout-crypto-asset">Select asset</FieldLabel>
-                <select
-                  id="checkout-crypto-asset"
-                  value={selectedAsset}
-                  onChange={(event) => setSelectedAsset(event.target.value)}
-                  className="input-field text-sm"
-                >
-                  {cryptoOptions.map((option) => (
-                    <option key={option.asset} value={option.asset}>
-                      {option.label}
-                      {option.provider === "btcpay"
-                        ? " · BTCPay"
-                        : option.provider === "paymento"
-                          ? " · Paymento"
-                          : ""}
-                    </option>
-                  ))}
-                </select>
-                {!cryptoLive ? (
-                  <p className="mt-2 text-xs text-amber-700">
-                    Crypto gateways are not connected in this environment yet.
-                  </p>
-                ) : null}
-              </div>
-            ) : paymentMethod === "card" ? (
-              <p className="mt-4 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-xs leading-relaxed text-[#64748B]">
-                Card details are entered on our secure hosted payment page after you place your order.
-              </p>
-            ) : null}
-
-            <p className="mt-5 text-xs leading-relaxed text-[#64748B]">
-              Your personal data will be used to process your order and for other purposes described in
-              our{" "}
-              <Link href="/privacy" className="text-[#0D9488] hover:underline">
-                privacy policy
-              </Link>
-              .
-            </p>
-
-            <button
-              type="submit"
-              disabled={loading || !items.length}
-              className="btn-primary mt-5 w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {submitLabel}
-            </button>
-
-            {error ? (
-              <p
-                className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
-                role="alert"
-              >
-                {error}
-              </p>
-            ) : null}
-            {status ? <p className="mt-4 text-sm text-[#475569]">{status}</p> : null}
           </div>
         </aside>
       </div>

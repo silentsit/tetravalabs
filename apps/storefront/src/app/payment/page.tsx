@@ -34,7 +34,7 @@ const steps = [
     num: "02",
     icon: CreditCard,
     title: "Select Payment Method",
-    desc: "Pay by card (recommended) or choose cryptocurrency — BTC via BTCPay, other assets via Paymento.",
+    desc: "Pay by card (recommended) or choose cryptocurrency.",
     color: "#2563EB"
   },
   {

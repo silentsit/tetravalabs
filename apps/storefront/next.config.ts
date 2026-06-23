@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/coa", destination: "/coa-library", permanent: true },
       { source: "/ruo-disclaimer", destination: "/ruo", permanent: true },
       { source: "/refund-policy", destination: "/refund", permanent: true }

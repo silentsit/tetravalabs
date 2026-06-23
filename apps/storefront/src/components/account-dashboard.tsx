@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { AccountAuthPanel } from "@/components/account-auth-panel"
 import { logoutCustomer, retrieveCustomer, type StoreCustomer } from "@/lib/medusa-auth"
 import { PurchaseHistory } from "@/components/purchase-history"
 
@@ -13,25 +14,24 @@ export function AccountDashboard() {
 
   useEffect(() => {
     void retrieveCustomer().then((result) => {
-      if (!result) {
-        router.replace("/login")
-        return
-      }
       setCustomer(result)
       setLoading(false)
     })
-  }, [router])
+  }, [])
 
   const onSignOut = async () => {
     await logoutCustomer()
-    router.push("/login")
+    setCustomer(null)
+    router.refresh()
   }
 
   if (loading) {
     return <p className="text-sm text-[#475569]">Loading account...</p>
   }
 
-  if (!customer) return null
+  if (!customer) {
+    return <AccountAuthPanel />
+  }
 
   const name = [customer.first_name, customer.last_name].filter(Boolean).join(" ") || "Research Customer"
 

@@ -71,6 +71,54 @@ function isAdminDisabled() {
   return process.env.NODE_ENV === "production"
 }
 
+const STOREFRONT_URL = (process.env.STOREFRONT_URL || "http://localhost:3000").replace(/\/$/, "")
+
+function buildAuthModule() {
+  const providers = [
+    {
+      resolve: "@medusajs/medusa/auth-emailpass",
+      id: "emailpass"
+    }
+  ]
+
+  const googleClientId = process.env.MEDUSA_AUTH_GOOGLE_CLIENT_ID?.trim()
+  const googleClientSecret = process.env.MEDUSA_AUTH_GOOGLE_CLIENT_SECRET?.trim()
+  if (googleClientId && googleClientSecret) {
+    providers.push({
+      resolve: "@medusajs/medusa/auth-google",
+      id: "google",
+      options: {
+        clientId: googleClientId,
+        clientSecret: googleClientSecret,
+        callbackUrl: `${STOREFRONT_URL}/account/oauth/google/callback`
+      }
+    })
+  }
+
+  const appleClientId = process.env.MEDUSA_AUTH_APPLE_CLIENT_ID?.trim()
+  const appleTeamId = process.env.MEDUSA_AUTH_APPLE_TEAM_ID?.trim()
+  const appleKeyId = process.env.MEDUSA_AUTH_APPLE_KEY_ID?.trim()
+  const applePrivateKey = process.env.MEDUSA_AUTH_APPLE_PRIVATE_KEY?.trim()
+  if (appleClientId && appleTeamId && appleKeyId && applePrivateKey) {
+    providers.push({
+      resolve: "./src/providers/auth-apple",
+      id: "apple",
+      options: {
+        clientId: appleClientId,
+        teamId: appleTeamId,
+        keyId: appleKeyId,
+        privateKey: applePrivateKey.replace(/\\n/g, "\n"),
+        callbackUrl: `${STOREFRONT_URL}/account/oauth/apple/callback`
+      }
+    })
+  }
+
+  return {
+    resolve: "@medusajs/medusa/auth",
+    options: { providers }
+  }
+}
+
 module.exports = defineConfig({
   admin: {
     disable: isAdminDisabled()
@@ -86,14 +134,17 @@ module.exports = defineConfig({
       cookieSecret: COOKIE_SECRET
     }
   },
-  modules: REDIS_URL
-    ? [
-        {
-          resolve: "@medusajs/medusa/cache-redis",
-          options: {
-            redisUrl: REDIS_URL
+  modules: [
+    buildAuthModule(),
+    ...(REDIS_URL
+      ? [
+          {
+            resolve: "@medusajs/medusa/cache-redis",
+            options: {
+              redisUrl: REDIS_URL
+            }
           }
-        }
-      ]
-    : []
+        ]
+      : [])
+  ]
 })

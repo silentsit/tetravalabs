@@ -21,6 +21,11 @@ export default defineMiddlewares({
     },
     {
       method: ["POST"],
+      matcher: "/store/auth/oauth-complete",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
+    {
+      method: ["POST"],
       matcher: "/webhooks/payments/paymento",
       bodyParser: { preserveRawBody: true }
     },

@@ -73,7 +73,7 @@ export function SocialAuthButtons({ returnUrl = "/account", placement = "above" 
 
   return (
     <div className="space-y-3">
-      {placement === "above" ? divider : null}
+      {divider}
 
       {socialAuthConfig.google ? (
         <button
@@ -98,8 +98,6 @@ export function SocialAuthButtons({ returnUrl = "/account", placement = "above" 
           {loadingProvider === "apple" ? "Redirecting..." : "Continue with Apple"}
         </button>
       ) : null}
-
-      {placement === "below" ? divider : null}
 
       {status ? <p className="text-xs text-red-600">{status}</p> : null}
     </div>

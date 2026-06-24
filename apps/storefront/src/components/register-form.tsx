@@ -2,18 +2,18 @@
 
 import { FormEvent, useState } from "react"
 import Link from "next/link"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { FetchError } from "@medusajs/js-sdk"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import { SocialAuthButtons } from "@/components/social-auth-buttons"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { CHECKOUT_US_STATES, normalizeUsStateCode } from "@/lib/checkout-us-states"
 import type { ParsedAddress } from "@/lib/google-places"
+import { notifyAuthSessionChanged } from "@/lib/medusa-auth"
 import { sdk } from "@/lib/medusa-client"
 
 type Props = {
   layout?: "default" | "account"
-  returnUrl?: string
 }
 
 function RequiredLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
@@ -24,10 +24,8 @@ function RequiredLabel({ htmlFor, children }: { htmlFor: string; children: React
   )
 }
 
-export function RegisterForm({ layout = "default", returnUrl = "/account" }: Props) {
+export function RegisterForm({ layout = "default" }: Props) {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const redirectTo = searchParams.get("returnUrl") || returnUrl
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -114,9 +112,9 @@ export function RegisterForm({ layout = "default", returnUrl = "/account" }: Pro
         })
       }
 
-      const destination =
-        redirectTo.startsWith("/") && !redirectTo.startsWith("//") ? redirectTo : "/account"
-      router.push(destination)
+      notifyAuthSessionChanged()
+      router.push("/account")
+      router.refresh()
     } catch (error) {
       const fetchError = error as FetchError
       setStatus(fetchError.message || "Account created but profile setup failed.")
@@ -340,7 +338,7 @@ export function RegisterForm({ layout = "default", returnUrl = "/account" }: Pro
         {loading ? "Creating account..." : isAccount ? "Register" : "Create Account"}
       </button>
 
-      {isAccount ? <SocialAuthButtons returnUrl={redirectTo} placement="below" /> : null}
+      {isAccount ? <SocialAuthButtons returnUrl="/account" placement="below" /> : null}
 
       {status ? <p className="text-xs text-red-600">{status}</p> : null}
     </form>

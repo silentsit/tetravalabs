@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { notifyAuthSessionChanged } from "@/lib/medusa-auth"
 import {
   clearOAuthReturnUrl,
   completeSocialAuth,
@@ -25,7 +26,9 @@ export function OAuthCallbackClient({ provider }: Props) {
     void completeSocialAuth(provider, params)
       .then(() => {
         clearOAuthReturnUrl()
+        notifyAuthSessionChanged()
         router.replace(returnUrl.startsWith("/") ? returnUrl : "/account")
+        router.refresh()
       })
       .catch((error) => {
         const text = error instanceof Error ? error.message : "Unable to complete sign-in."

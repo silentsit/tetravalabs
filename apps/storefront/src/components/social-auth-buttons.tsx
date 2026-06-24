@@ -6,6 +6,7 @@ import { isSocialAuthEnabled, socialAuthConfig } from "@/lib/social-auth-config"
 
 type Props = {
   returnUrl?: string
+  placement?: "above" | "below"
 }
 
 function GoogleIcon() {
@@ -39,7 +40,7 @@ function AppleIcon() {
   )
 }
 
-export function SocialAuthButtons({ returnUrl = "/account" }: Props) {
+export function SocialAuthButtons({ returnUrl = "/account", placement = "above" }: Props) {
   const [status, setStatus] = useState("")
   const [loadingProvider, setLoadingProvider] = useState<"google" | "apple" | null>(null)
 
@@ -57,8 +58,23 @@ export function SocialAuthButtons({ returnUrl = "/account" }: Props) {
     }
   }
 
+  const divider = (
+    <div className="relative py-1">
+      <div className="absolute inset-0 flex items-center">
+        <div className="w-full border-t border-[#E2E8F0]" />
+      </div>
+      <div className="relative flex justify-center">
+        <span className="bg-white px-3 text-xs uppercase tracking-wide text-[#94A3B8]">
+          {placement === "below" ? "Or continue with" : "Or continue with email"}
+        </span>
+      </div>
+    </div>
+  )
+
   return (
     <div className="space-y-3">
+      {placement === "above" ? divider : null}
+
       {socialAuthConfig.google ? (
         <button
           type="button"
@@ -83,16 +99,7 @@ export function SocialAuthButtons({ returnUrl = "/account" }: Props) {
         </button>
       ) : null}
 
-      <div className="relative py-1">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-[#E2E8F0]" />
-        </div>
-        <div className="relative flex justify-center">
-          <span className="bg-white px-3 text-xs uppercase tracking-wide text-[#94A3B8]">
-            Or continue with email
-          </span>
-        </div>
-      </div>
+      {placement === "below" ? divider : null}
 
       {status ? <p className="text-xs text-red-600">{status}</p> : null}
     </div>

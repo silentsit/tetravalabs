@@ -1,4 +1,4 @@
-import { getSitemapIndexEntries, renderSitemapIndex, xmlResponse } from "@/lib/sitemap-xml"
+import { getSitemapIndexEntries, renderSitemapIndex, xmlResponse } from "@/lib/sitemap-entries"
 
 export const revalidate = 3600
 

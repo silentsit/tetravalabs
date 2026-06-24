@@ -86,8 +86,6 @@ export function LoginForm({ returnUrl = "/account", layout = "default" }: Props)
     >
       {isAccount ? <h2 className="text-xl font-semibold text-[#0F172A]">Login</h2> : null}
 
-      {isAccount ? <SocialAuthButtons returnUrl={safeReturnUrl(redirectTo)} /> : null}
-
       <div>
         {isAccount ? (
           <RequiredLabel htmlFor="login-email">Email address</RequiredLabel>
@@ -163,6 +161,10 @@ export function LoginForm({ returnUrl = "/account", layout = "default" }: Props)
         <Link href="/contact" className="inline-block text-sm text-[#0F172A] underline underline-offset-2">
           Lost your password?
         </Link>
+      ) : null}
+
+      {isAccount ? (
+        <SocialAuthButtons returnUrl={safeReturnUrl(redirectTo)} placement="below" />
       ) : null}
 
       {status ? <p className="text-xs text-red-600">{status}</p> : null}

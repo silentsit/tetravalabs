@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 import type { StoreCoaDocument } from "@/lib/medusa"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
@@ -80,22 +81,31 @@ function GalleryMain({ item }: { item: GalleryItem }) {
     )
   }
 
-  return (
-    <img
-      src={item.src}
-      alt={item.label}
-      className="h-full w-full object-contain p-4"
-    />
-  )
+  if (item.kind === "product") {
+    return (
+      <Image
+        src={item.src}
+        alt={item.label}
+        fill
+        priority
+        sizes="(max-width: 1024px) 280px, 320px"
+        className="object-contain p-4"
+      />
+    )
+  }
+
+  return <img src={item.src} alt={item.label} className="h-full w-full object-contain p-4" />
 }
 
 function GalleryThumb({ item }: { item: GalleryItem }) {
   if (item.kind === "product") {
     return (
-      <img
+      <Image
         src={item.src}
         alt=""
-        className="h-full w-full object-contain p-1.5"
+        fill
+        sizes="64px"
+        className="object-contain p-1.5"
         aria-hidden
       />
     )
@@ -112,14 +122,7 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
     )
   }
 
-  return (
-    <img
-      src={item.src}
-      alt=""
-      className="h-full w-full object-contain object-top p-0.5"
-      aria-hidden
-    />
-  )
+  return <img src={item.src} alt="" className="h-full w-full object-contain object-top p-0.5" aria-hidden />
 }
 
 export function ProductImageGallery({ productImage, productName, coas = [] }: Props) {
@@ -152,7 +155,7 @@ export function ProductImageGallery({ productImage, productName, coas = [] }: Pr
                 key={item.id}
                 type="button"
                 onClick={() => setActiveId(item.id)}
-                className={`h-16 w-16 shrink-0 overflow-hidden rounded-lg border bg-white transition-colors ${
+                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border bg-white transition-colors ${
                   selected
                     ? "border-[#0D9488] ring-2 ring-[#0D9488]/20"
                     : "border-[#E2E8F0] hover:border-[#CBD5E1]"

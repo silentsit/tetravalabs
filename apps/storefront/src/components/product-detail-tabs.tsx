@@ -42,13 +42,13 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
   return (
     <section className="space-y-8">
       <div>
-        <div className="flex gap-0 overflow-x-auto border-b border-[#E2E8F0]">
+        <div className="scrollbar-hide flex gap-0 overflow-x-auto border-b border-[#E2E8F0]">
           {tabs.map((tab) => (
             <button
               key={tab}
               type="button"
               onClick={() => setActiveTab(tab)}
-              className={`whitespace-nowrap border-b-2 px-5 py-3 text-sm font-medium transition-colors ${
+              className={`whitespace-nowrap border-b-2 px-3 py-3 text-sm font-medium transition-colors sm:px-5 ${
                 activeTab === tab
                   ? "border-[#0D9488] text-[#0F172A]"
                   : "border-transparent text-[#94A3B8] hover:text-[#475569]"
@@ -207,10 +207,10 @@ function AnalyticalTable({ rows }: { rows: Array<{ label: string; value: string 
       {rows.map((row) => (
         <div
           key={row.label}
-          className="flex justify-between gap-4 border-b border-[#E2E8F0] px-5 py-3 last:border-0"
+          className="flex flex-col gap-1 border-b border-[#E2E8F0] px-5 py-3 last:border-0 sm:flex-row sm:justify-between sm:gap-4"
         >
           <span className="font-mono text-xs text-[#94A3B8]">{row.label}</span>
-          <span className="text-right font-mono text-xs text-[#0F172A]">{row.value}</span>
+          <span className="break-words font-mono text-xs text-[#0F172A] sm:text-right">{row.value}</span>
         </div>
       ))}
     </div>
@@ -219,9 +219,9 @@ function AnalyticalTable({ rows }: { rows: Array<{ label: string; value: string 
 
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between gap-4 border-b border-[#E2E8F0] py-2">
+    <div className="flex flex-col gap-1 border-b border-[#E2E8F0] py-2 sm:flex-row sm:justify-between sm:gap-4">
       <span className="text-sm text-[#475569]">{label}</span>
-      <span className="text-right text-sm text-[#0F172A]">{value}</span>
+      <span className="break-words text-sm text-[#0F172A] sm:text-right">{value}</span>
     </div>
   )
 }

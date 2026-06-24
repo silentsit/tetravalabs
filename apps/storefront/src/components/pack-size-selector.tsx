@@ -57,7 +57,7 @@ export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props)
               key={tier.qty}
               type="button"
               onClick={() => pickTier(tier)}
-              className={`flex w-full items-center gap-4 rounded-xl border px-4 py-4 text-left transition ${
+              className={`flex w-full flex-col gap-3 rounded-xl border px-4 py-4 text-left transition sm:flex-row sm:items-center sm:gap-4 ${
                 active
                   ? "border-[#0D9488] bg-[#F0FDFA] shadow-[0_0_0_1px_#0D9488]"
                   : "border-[#E2E8F0] bg-white hover:border-[#CBD5E1]"
@@ -72,7 +72,7 @@ export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props)
                   className={`h-2.5 w-2.5 rounded-full ${active ? "bg-[#0D9488]" : "bg-transparent"}`}
                 />
               </span>
-              <div className="min-w-0 flex-1">
+              <div className="min-w-0 flex-1 self-stretch sm:self-auto">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="font-medium text-[#0F172A]">{tier.tier}</span>
                   {tier.qty === 10 ? (
@@ -93,7 +93,7 @@ export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props)
                 </div>
                 <p className="mt-1 font-mono text-xs text-[#64748B]">${tier.price.toFixed(2)} pack total</p>
               </div>
-              <div className="text-right">
+              <div className="shrink-0 text-left sm:text-right">
                 <p className="text-lg font-bold tabular-nums text-[#0F172A]">
                   ${tier.perUnit.toFixed(2)}
                   <span className="text-xs font-semibold text-[#64748B]">{unitSuffix}</span>

@@ -99,11 +99,11 @@ export function SocialProofToast() {
 
   return (
     <div
-      className={`fixed bottom-4 left-4 right-4 z-40 transition-all duration-500 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-sm ${
+      className={`pointer-events-none fixed bottom-20 left-4 right-4 z-40 transition-all duration-500 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-sm ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >
-      <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-xl">
+      <div className="pointer-events-auto flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white p-4 shadow-xl">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#CCFBF1]">
           <ShoppingBag className="h-5 w-5 text-[#0D9488]" />
         </div>
@@ -188,7 +188,10 @@ export function LiveVisitorCounter() {
       </span>
       <Users className="h-4 w-4 shrink-0 text-[#94A3B8]" />
       <span className="text-xs text-[#94A3B8]">
-        <span className="font-medium text-[#0F172A]">{count}</span> researchers online
+        <span className="inline-block min-w-[2ch] text-center font-medium tabular-nums text-[#0F172A]">
+          {count}
+        </span>{" "}
+        researchers online
       </span>
     </div>
   )

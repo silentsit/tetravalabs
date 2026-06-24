@@ -10,6 +10,25 @@ type Props = {
   children: React.ReactNode
 }
 
+function AccountAuthSkeleton() {
+  return (
+    <div className="grid min-h-[1900px] gap-8 lg:min-h-[760px] lg:grid-cols-2 lg:gap-0">
+      <div className="space-y-5 lg:border-r lg:border-dotted lg:border-[#CBD5E1] lg:pr-12 xl:pr-16">
+        <div className="h-7 w-20 animate-pulse rounded bg-[#E2E8F0]" />
+        <div className="h-12 animate-pulse rounded-md bg-[#E2E8F0]" />
+        <div className="h-12 animate-pulse rounded-md bg-[#E2E8F0]" />
+        <div className="h-10 w-28 animate-pulse rounded-md bg-[#E2E8F0]" />
+      </div>
+      <div className="space-y-5 lg:pl-12 xl:pl-16">
+        <div className="h-7 w-24 animate-pulse rounded bg-[#E2E8F0]" />
+        <div className="h-12 animate-pulse rounded-md bg-[#E2E8F0]" />
+        <div className="h-12 animate-pulse rounded-md bg-[#E2E8F0]" />
+        <div className="h-64 animate-pulse rounded-md bg-[#E2E8F0]" />
+      </div>
+    </div>
+  )
+}
+
 export function AccountShell({ children }: Props) {
   const pathname = usePathname()
   const router = useRouter()
@@ -30,7 +49,7 @@ export function AccountShell({ children }: Props) {
   }, [customer, isOAuthRoute, loading, pathname, router])
 
   if (loading && !isOAuthRoute) {
-    return <p className="text-sm text-[#475569]">Loading account...</p>
+    return <AccountAuthSkeleton />
   }
 
   if (isOAuthRoute) {

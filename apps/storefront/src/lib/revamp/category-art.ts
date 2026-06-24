@@ -11,26 +11,26 @@ export const categoryArt: CategoryArt[] = [
     name: "GLP-1 Research",
     description:
       "Glucagon-like peptide-1 receptor agonists for metabolic and glucose homeostasis research.",
-    image: "/v2/cat-metabolic.jpg"
+    image: "/products/v2/semaglutide-5mg.png"
   },
   {
     slug: "growth-factors",
     name: "Growth Factors",
     description:
       "BPC-157, TB-500, GHK-Cu, growth hormone secretagogues, IGF-1, neuropeptides, and other tissue repair research peptides.",
-    image: "/v2/cat-growth.jpg"
+    image: "/products/v2/bpc-157-5mg.png"
   },
   {
     slug: "research-blends",
     name: "Research Blends",
     description: "Pre-formulated synergistic stacks combining complementary compounds.",
-    image: "/v2/cat-blends.jpg"
+    image: "/products/v2/glow-blend-30mg.png"
   },
   {
     slug: "lab-supplies",
     name: "Lab Supplies",
     description: "Bacteriostatic water, reconstitution kits, and laboratory supplies.",
-    image: "/v2/cat-tissue.jpg"
+    image: "/products/v2/bacteriostatic-water-10ml.png"
   }
 ]
 
@@ -40,7 +40,7 @@ export function categoryArtForSlug(slug: string, fallbackName: string) {
       slug,
       name: fallbackName,
       description: "Browse research compounds in this category.",
-      image: "/v2/vial-single.jpg"
+      image: "/products/v2/semaglutide-5mg.png"
     }
   )
 }

@@ -27,9 +27,18 @@ export function SiteHeader() {
   const searchInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
+    let frame = 0
+    const onScroll = () => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50)
+      })
+    }
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener("scroll", onScroll)
+    }
   }, [])
 
   useEffect(() => {
@@ -56,7 +65,7 @@ export function SiteHeader() {
       >
         <div className="page-container flex h-full items-center justify-between">
           <Link href="/" className="flex shrink-0 items-center">
-            <SiteLogo />
+            <SiteLogo className="w-[156px] sm:w-[216px]" />
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
@@ -83,10 +92,7 @@ export function SiteHeader() {
             >
               <Search className="h-5 w-5" />
             </button>
-            <Link
-              href="/account"
-              className="hidden text-[#475569] transition-colors hover:text-[#0F172A] sm:block"
-            >
+            <Link href="/account" className="text-[#475569] transition-colors hover:text-[#0F172A]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -108,11 +114,14 @@ export function SiteHeader() {
               className="relative text-[#475569] transition-colors hover:text-[#0F172A]"
             >
               <ShoppingCart className="h-5 w-5" />
-              {totalItems > 0 ? (
-                <span className="absolute -right-2 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#0D9488] text-[10px] font-medium text-white">
-                  {totalItems}
-                </span>
-              ) : null}
+              <span
+                className={`absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-medium text-white transition-opacity ${
+                  totalItems > 0 ? "bg-[#0D9488] opacity-100" : "bg-[#0D9488] opacity-0"
+                }`}
+                aria-hidden={totalItems === 0}
+              >
+                {totalItems > 0 ? totalItems : "0"}
+              </span>
             </button>
             <button
               type="button"
@@ -175,7 +184,7 @@ export function SiteHeader() {
           <div className="flex h-full flex-col p-6">
             <div className="flex items-center justify-between">
               <Link href="/" className="flex shrink-0 items-center">
-                <SiteLogo />
+                <SiteLogo className="w-[180px] sm:w-[216px]" />
               </Link>
               <button type="button" onClick={() => setMobileOpen(false)} className="text-[#475569]">
                 <X className="h-6 w-6" />
@@ -193,16 +202,16 @@ export function SiteHeader() {
                 </Link>
               ))}
             </nav>
-            <div className="mt-auto flex gap-4">
+            <div className="mt-auto flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/login"
-                className="rounded-lg border border-[#0D9488] px-6 py-2.5 text-sm font-medium text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
+                href="/account"
+                className="inline-flex justify-center rounded-lg border border-[#0D9488] px-6 py-2.5 text-sm font-medium text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
               >
                 Sign In
               </Link>
               <Link
-                href="/register"
-                className="rounded-lg bg-[#0D9488] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0F766E]"
+                href="/account"
+                className="inline-flex justify-center rounded-lg bg-[#0D9488] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0F766E]"
               >
                 Register
               </Link>

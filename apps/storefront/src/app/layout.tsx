@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { headers } from "next/headers"
+import { Cormorant_Garamond, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import "@/lib/json-ld-registry"
 import { CartDrawer } from "@/components/cart-drawer"
@@ -13,6 +14,31 @@ import { TrustBar } from "@/components/trust-bar"
 import { resolvePageJsonLd } from "@/lib/json-ld-store"
 import { organizationJsonLd, siteConfig, websiteJsonLd, webPageJsonLd } from "@/lib/seo"
 import Script from "next/script"
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter"
+})
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair"
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+  variable: "--font-cormorant"
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono"
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -68,7 +94,9 @@ export default async function RootLayout({
         <JsonLd graph={jsonLdGraph} />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
       </head>
-      <body className="min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]">
+      <body
+        className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${jetbrainsMono.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}
+      >
         <CartProvider>
           <SiteHeader />
           <TrustBar />

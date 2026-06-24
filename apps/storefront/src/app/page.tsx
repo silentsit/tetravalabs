@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import {
   ArrowRight,
   CheckCircle,
@@ -21,6 +22,12 @@ import { listProducts, listRecentCoas } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata } from "@/lib/seo"
+
+const heroProducts = [
+  { src: "/products/v2/semaglutide-5mg.png", alt: "Semaglutide research vial" },
+  { src: "/products/v2/tirzepatide-10mg.png", alt: "Tirzepatide research vial" },
+  { src: "/products/v2/retatrutide-5mg.png", alt: "Retatrutide research vial" }
+]
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Research-Grade Peptides — Verified, Documented, Delivered",
@@ -63,7 +70,7 @@ export default async function HomePage() {
           <div className="animate-mesh-2 absolute -right-20 top-20 h-80 w-80 rounded-full bg-[#2563EB]/10 blur-3xl" />
           <div className="animate-mesh-3 absolute bottom-10 left-1/3 h-72 w-72 rounded-full bg-[#0D9488]/10 blur-3xl" />
         </div>
-        <div className="page-container relative grid gap-10 py-20 lg:grid-cols-2 lg:py-28">
+        <div className="page-container relative grid gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:py-24">
           <div className="flex flex-col justify-center">
             <span className="section-label mb-4">Research-Grade Peptides</span>
             <h1 className="font-serif text-4xl leading-[1.1] text-[#0F172A] sm:text-5xl lg:text-[3.5rem]">
@@ -87,11 +94,24 @@ export default async function HomePage() {
           </div>
           <div className="flex items-center justify-center">
             <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-sm">
-              <img
-                src="/v2/hero-products.jpg"
-                alt="Research peptide vials"
-                className="h-full w-full object-cover"
-              />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(13,148,136,0.14),transparent_45%),linear-gradient(135deg,#ffffff,#f8fafc)]" />
+              <div className="relative grid h-full grid-cols-3 items-center gap-3 px-5 sm:px-8">
+                {heroProducts.map((product, index) => (
+                  <div
+                    key={product.src}
+                    className={`relative aspect-[3/4] ${index === 1 ? "scale-110" : "scale-95 opacity-90"}`}
+                  >
+                    <Image
+                      src={product.src}
+                      alt={product.alt}
+                      fill
+                      priority={index === 1}
+                      sizes="(max-width: 1024px) 28vw, 150px"
+                      className="object-contain drop-shadow-[0_18px_35px_rgba(15,23,42,0.16)]"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -109,7 +129,7 @@ export default async function HomePage() {
 
       <section className="section-padding bg-[#F8FAFC]">
         <div className="page-container">
-          <FeaturedProducts />
+          <FeaturedProducts products={products} />
         </div>
       </section>
 
@@ -179,12 +199,13 @@ export default async function HomePage() {
                 href={`/shop?category=${cat.slug}`}
                 className="card card-hover group flex flex-col overflow-hidden"
               >
-                <div className="aspect-[16/10] overflow-hidden bg-[#F8FAFC]">
-                  <img
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#F8FAFC]">
+                  <Image
                     src={cat.image}
                     alt={cat.name}
-                    className="h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                    className="object-contain p-5 opacity-80 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5">

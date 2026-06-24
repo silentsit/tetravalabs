@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Lock, Minus, Plus, Trash2, Truck, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import { getProductImage } from "@/lib/product-image-map"
@@ -22,7 +23,7 @@ export function CartDrawer() {
             <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto px-6 py-4">
+        <div className="flex-1 overflow-y-auto px-4 py-4 sm:px-6">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <Truck className="h-10 w-10 text-[#CBD5E1]" />
@@ -39,19 +40,21 @@ export function CartDrawer() {
           ) : (
             <div className="space-y-3">
               {items.map((item) => (
-                <div key={item.id} className="flex gap-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-white">
-                    <img
+                <div key={item.id} className="flex gap-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3 sm:gap-4">
+                  <div className="relative h-16 w-16 shrink-0 rounded-lg bg-white">
+                    <Image
                       src={getProductImage(item.handle)}
                       alt={item.title}
-                      className="h-14 w-14 rounded-lg object-contain"
+                      fill
+                      sizes="64px"
+                      className="rounded-lg object-contain p-1"
                     />
                   </div>
-                  <div className="flex flex-1 flex-col">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-[#0F172A]">{item.title}</p>
-                        <p className="text-xs text-[#94A3B8]">{item.variantTitle}</p>
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <div className="flex min-w-0 items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="line-clamp-2 text-sm font-medium leading-snug text-[#0F172A]">{item.title}</p>
+                        <p className="truncate text-xs text-[#94A3B8]">{item.variantTitle}</p>
                       </div>
                       <button
                         type="button"
@@ -61,7 +64,7 @@ export function CartDrawer() {
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
-                    <div className="mt-auto flex items-center justify-between">
+                    <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <button
                           type="button"
@@ -90,15 +93,15 @@ export function CartDrawer() {
           )}
         </div>
         {items.length > 0 ? (
-          <div className="border-t border-[#E2E8F0] px-6 py-4">
+          <div className="border-t border-[#E2E8F0] px-4 py-4 sm:px-6">
             <div className="mb-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-[#475569]">Subtotal</span>
                 <span className="text-[#0F172A]">${subtotal.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex items-start justify-between gap-4 text-sm">
                 <span className="text-[#475569]">Shipping</span>
-                <span className="text-[#94A3B8]">Calculated at checkout</span>
+                <span className="text-right text-xs text-[#94A3B8] sm:text-sm">Calculated at checkout</span>
               </div>
               <div className="flex justify-between border-t border-[#E2E8F0] pt-2">
                 <span className="font-medium text-[#0F172A]">Total</span>

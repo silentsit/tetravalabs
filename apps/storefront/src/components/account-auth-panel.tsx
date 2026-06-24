@@ -15,7 +15,7 @@ function AccountAuthPanelContent() {
   const returnUrl = safeReturnUrl(searchParams.get("returnUrl"))
 
   return (
-    <div className="grid gap-12 lg:grid-cols-2 lg:gap-0">
+    <div className="grid min-h-[1900px] gap-8 lg:min-h-[760px] lg:grid-cols-2 lg:gap-0">
       <div className="lg:border-r lg:border-dotted lg:border-[#CBD5E1] lg:pr-12 xl:pr-16">
         <Suspense fallback={<p className="text-sm text-[#475569]">Loading...</p>}>
           <LoginForm layout="account" returnUrl={returnUrl} />

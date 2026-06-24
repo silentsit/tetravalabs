@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ShoppingCart } from "lucide-react"
 import type { StoreProduct } from "@/lib/medusa"
 import { useCart } from "@/components/cart-provider"
@@ -78,11 +79,12 @@ export function ProductCard({
     return (
       <div className="card card-hover group flex flex-col overflow-hidden">
         <Link href={`/product/${product.handle}`} className="product-card-media">
-          <img
+          <Image
             src={imageUrl}
             alt={displayName}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
             className="product-card-media-image"
-            loading="lazy"
           />
           {showBlendBadge ? (
             <span className="absolute left-3 top-3 rounded-md bg-[#7C3AED] px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white shadow-sm">
@@ -116,12 +118,13 @@ export function ProductCard({
     <article className="card card-hover group flex h-full min-w-0 flex-col overflow-hidden">
       <Link href={productHref} className="block flex-1 min-w-0">
         <div className="flex items-center justify-center px-3 pb-1 pt-3">
-          <div className="relative aspect-[3/4] w-[85%] max-w-[280px] overflow-hidden bg-white">
-            <img
+          <div className="relative aspect-[3/4] w-[78%] max-w-[280px] overflow-hidden bg-white min-[480px]:w-[85%]">
+            <Image
               src={imageUrl}
               alt={displayName}
+              fill
+              sizes="(max-width: 480px) 90vw, (max-width: 768px) 42vw, (max-width: 1280px) 28vw, 220px"
               className="h-full w-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-              loading="lazy"
             />
 
             {showBlendBadge ? (
@@ -133,12 +136,12 @@ export function ProductCard({
         </div>
 
         <div className="flex flex-col px-3.5 pb-2 pt-1">
-          <h3 className="product-card-title font-bold line-clamp-2 min-h-[2.5em] text-[15px] leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
+          <h3 className="product-card-title line-clamp-2 text-base font-bold leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488] min-[480px]:min-h-[2.5em]">
             {displayName}
           </h3>
           <ShelfPriceLabel shelf={shelfPrice} variant="shop" />
           {categoryLabel ? (
-            <p className="mt-1 text-[10px] font-medium uppercase tracking-wider text-[#94A3B8]">
+            <p className="mt-1 text-xs font-medium uppercase tracking-wider text-[#94A3B8]">
               {categoryLabel}
             </p>
           ) : null}
@@ -149,7 +152,7 @@ export function ProductCard({
         {needsOptions ? (
           <Link
             href={productHref}
-            className="flex h-10 w-full items-center justify-center rounded-full border border-[#0D9488] bg-white text-[13px] font-semibold text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
+            className="flex h-10 w-full items-center justify-center rounded-full border border-[#0D9488] bg-white text-sm font-semibold text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
           >
             Select options
           </Link>
@@ -158,7 +161,7 @@ export function ProductCard({
             type="button"
             onClick={handleQuickAdd}
             disabled={!inStock}
-            className="flex h-10 w-full items-center justify-center gap-2 rounded-full bg-[#0D9488] text-[13px] font-semibold text-white transition-colors hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-45"
+            className="flex h-10 w-full items-center justify-center gap-2 rounded-full bg-[#0D9488] text-sm font-semibold text-white transition-colors hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-45"
           >
             <ShoppingCart className="h-4 w-4" strokeWidth={2.25} />
             Add to cart

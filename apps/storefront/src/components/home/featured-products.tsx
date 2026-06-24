@@ -1,11 +1,14 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { listProducts } from "@/lib/medusa"
+import type { StoreProduct } from "@/lib/medusa"
 import { ProductCard } from "@/components/product-card"
 import { FEATURED_PRODUCT_HANDLES } from "@/lib/product-image-map"
 
-export async function FeaturedProducts() {
-  const products = await listProducts()
+type Props = {
+  products: StoreProduct[]
+}
+
+export function FeaturedProducts({ products }: Props) {
   const byHandle = new Map(products.map((product) => [product.handle, product]))
   const featured = FEATURED_PRODUCT_HANDLES.map((handle) => byHandle.get(handle)).filter(
     (product): product is NonNullable<typeof product> => Boolean(product)

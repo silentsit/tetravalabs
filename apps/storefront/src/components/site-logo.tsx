@@ -16,7 +16,7 @@ export function SiteLogo({
   className = "",
   showWordmark = true
 }: SiteLogoProps) {
-  const heightClass = showWordmark ? "h-8" : "h-6"
+  const sizeClass = showWordmark ? "h-8 w-[216px]" : "h-6 w-[162px]"
   const variantClass =
     variant === "footer" ? "brightness-0 invert opacity-90" : ""
 
@@ -27,7 +27,7 @@ export function SiteLogo({
       width={LOGO_WIDTH}
       height={LOGO_HEIGHT}
       priority={variant === "default"}
-      className={`w-auto ${heightClass} ${variantClass} ${className}`.trim()}
+      className={`${sizeClass} ${variantClass} ${className}`.trim()}
     />
   )
 }

@@ -36,8 +36,6 @@
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.15.30",
-    "@types/prop-types": "15.7.15",
-    "@types/react": "18.3.31",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }

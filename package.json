@@ -54,7 +54,10 @@
   "packageManager": "npm@10.9.2",
   "overrides": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "@medusajs/dashboard": {
+      "@types/react": "18.3.31"
+    }
   },
   "devDependencies": {
     "@sanity/client": "^6.29.1",

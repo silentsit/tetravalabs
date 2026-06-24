@@ -31,13 +31,19 @@ type Props = {
   limit?: number
   compact?: boolean
   showHeading?: boolean
+  accountOrdersHref?: string
 }
 
 function formatMoney(total: number, currencyCode?: string) {
   return `$${(total / 100).toFixed(2)} ${(currencyCode || "USD").toUpperCase()}`
 }
 
-export function PurchaseHistory({ limit = 10, compact = false, showHeading = true }: Props) {
+export function PurchaseHistory({
+  limit = 10,
+  compact = false,
+  showHeading = true,
+  accountOrdersHref = "/orders"
+}: Props) {
   const [orders, setOrders] = useState<PurchaseOrder[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
@@ -90,7 +96,7 @@ export function PurchaseHistory({ limit = 10, compact = false, showHeading = tru
       {showHeading ? (
         <div className="flex items-center justify-between gap-3">
           <h3 className="text-lg text-[#0F172A]">Purchase history</h3>
-          <Link href="/orders" className="text-xs text-[#0D9488] hover:underline">
+          <Link href={accountOrdersHref} className="text-xs text-[#0D9488] hover:underline">
             View all orders
           </Link>
         </div>

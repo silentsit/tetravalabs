@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { OrdersList } from "@/components/orders-list"
 import { buildPageMetadata } from "@/lib/seo"
@@ -30,8 +31,11 @@ export default async function OrdersPage({ searchParams }: Props) {
         </p>
       ) : null}
       <p className="text-sm text-[#475569]">
-        Signed-in customers see purchase history with line items automatically. Guest checkouts can be
-        retrieved with the email and order number from your confirmation — or saved locally in this browser.
+        Signed-in customers can manage orders in{" "}
+        <Link href="/account/orders" className="text-[#0D9488] hover:underline">
+          My Account → Orders
+        </Link>
+        . Guest checkouts can be retrieved below with your email and order number.
       </p>
       <OrdersList />
     </section>

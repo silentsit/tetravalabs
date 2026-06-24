@@ -1,6 +1,6 @@
 import { Suspense } from "react"
-import { Breadcrumbs } from "@/components/breadcrumbs"
 import { OAuthCallbackClient } from "@/components/oauth-callback-client"
+import { AccountPageHeader } from "@/components/account/account-page-header"
 import type { SocialAuthProvider } from "@/lib/social-auth-config"
 
 type Props = {
@@ -15,19 +15,15 @@ export default async function OAuthCallbackPage({ params }: Props) {
   const { provider } = await params
 
   if (!isProvider(provider)) {
-    return (
-      <section className="page-container py-8">
-        <p className="text-sm text-red-600">Unsupported sign-in provider.</p>
-      </section>
-    )
+    return <p className="text-sm text-red-600">Unsupported sign-in provider.</p>
   }
 
   return (
-    <section className="page-container py-8 sm:py-10">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "My Account", href: "/account" }, { label: "Sign in" }]} />
+    <>
+      <AccountPageHeader title="Sign in" description="Completing your secure sign-in request." />
       <Suspense fallback={<p className="text-sm text-[#475569]">Completing sign-in...</p>}>
         <OAuthCallbackClient provider={provider} />
       </Suspense>
-    </section>
+    </>
   )
 }

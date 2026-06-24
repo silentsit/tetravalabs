@@ -98,7 +98,12 @@ function mergeLookupOrder(order: LookupOrder): LookupOrder {
   return order
 }
 
-export function OrdersList() {
+type Props = {
+  emptyState?: React.ReactNode
+  showGuestLookup?: boolean
+}
+
+export function OrdersList({ emptyState, showGuestLookup = true }: Props) {
   const [localOrders, setLocalOrders] = useState<StoredOrder[]>([])
   const [medusaOrders, setMedusaOrders] = useState<MedusaOrder[]>([])
   const [lookedUp, setLookedUp] = useState<LookupOrder[]>([])
@@ -192,19 +197,24 @@ export function OrdersList() {
 
   return (
     <div className="space-y-6">
-      <OrderLookupForm
-        onFound={(order) => {
-          setLookedUp((prev) => {
-            if (prev.some((item) => item.id === order.id)) return prev
-            return [order, ...prev]
-          })
-        }}
-      />
+      {showGuestLookup ? (
+        <OrderLookupForm
+          onFound={(order) => {
+            setLookedUp((prev) => {
+              if (prev.some((item) => item.id === order.id)) return prev
+              return [order, ...prev]
+            })
+          }}
+        />
+      ) : null}
 
       {mergedOrders.length === 0 ? (
-        <p className="text-sm text-[#475569]">
-          No orders yet. Place a checkout order or look up a guest order with your email and order number.
-        </p>
+        emptyState ?? (
+          <p className="text-sm text-[#475569]">
+            No orders yet. Place a checkout order or look up a guest order with your email and order
+            number.
+          </p>
+        )
       ) : (
         <ul className="space-y-3">
           {mergedOrders.map((order) => {

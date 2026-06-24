@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { FetchError } from "@medusajs/js-sdk"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import { SocialAuthButtons } from "@/components/social-auth-buttons"
@@ -13,6 +13,7 @@ import { sdk } from "@/lib/medusa-client"
 
 type Props = {
   layout?: "default" | "account"
+  returnUrl?: string
 }
 
 function RequiredLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
@@ -23,8 +24,10 @@ function RequiredLabel({ htmlFor, children }: { htmlFor: string; children: React
   )
 }
 
-export function RegisterForm({ layout = "default" }: Props) {
+export function RegisterForm({ layout = "default", returnUrl = "/account" }: Props) {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get("returnUrl") || returnUrl
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -111,7 +114,9 @@ export function RegisterForm({ layout = "default" }: Props) {
         })
       }
 
-      router.push("/account")
+      const destination =
+        redirectTo.startsWith("/") && !redirectTo.startsWith("//") ? redirectTo : "/account"
+      router.push(destination)
     } catch (error) {
       const fetchError = error as FetchError
       setStatus(fetchError.message || "Account created but profile setup failed.")
@@ -335,7 +340,7 @@ export function RegisterForm({ layout = "default" }: Props) {
         {loading ? "Creating account..." : isAccount ? "Register" : "Create Account"}
       </button>
 
-      {isAccount ? <SocialAuthButtons returnUrl="/account" placement="below" /> : null}
+      {isAccount ? <SocialAuthButtons returnUrl={redirectTo} placement="below" /> : null}
 
       {status ? <p className="text-xs text-red-600">{status}</p> : null}
     </form>

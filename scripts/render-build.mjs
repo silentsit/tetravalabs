@@ -32,5 +32,7 @@ for (let attempt = 1; attempt <= maxAttempts; attempt++) {
 }
 
 console.log("[render-build] building @tetrava/medusa")
+// Medusa build only bundles assets; Redis is required at runtime, not during compile.
+process.env.USE_REDIS = "false"
 execSync("npm run build --workspace=@tetrava/medusa", { stdio: "inherit" })
 console.log("[render-build] done")

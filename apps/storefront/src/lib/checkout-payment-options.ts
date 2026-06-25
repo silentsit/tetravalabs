@@ -34,8 +34,10 @@ export async function loadCheckoutPaymentOptions(
     cryptoOptions: CHECKOUT_CRYPTO_CATALOG
   }
 
+  const fetchOptions = { headers, cache: "no-store" as RequestCache }
+
   try {
-    const primary = await fetchFn(`${medusaUrl}/store/payments/checkout-options`, { headers })
+    const primary = await fetchFn(`${medusaUrl}/store/payments/checkout-options`, fetchOptions)
     if (primary.ok) {
       const data = await primary.json()
       if (data?.ok) {
@@ -48,12 +50,18 @@ export async function loadCheckoutPaymentOptions(
       }
     }
 
-    const legacy = await fetchFn(`${medusaUrl}/store/payments/crypto-options`, { headers })
+    const legacy = await fetchFn(`${medusaUrl}/store/payments/crypto-options`, fetchOptions)
     if (legacy.ok) {
       const data = await legacy.json()
       const liveAssets = Array.isArray(data?.assets) ? data.assets : []
+      const retry = await fetchFn(`${medusaUrl}/store/payments/checkout-options`, fetchOptions)
+      let cardAvailable = false
+      if (retry.ok) {
+        const retryData = await retry.json()
+        cardAvailable = Boolean(retryData?.card?.available)
+      }
       return {
-        cardAvailable: false,
+        cardAvailable,
         cryptoLive: liveAssets.length > 0,
         cryptoOptions: liveAssets.length > 0 ? liveAssets : CHECKOUT_CRYPTO_CATALOG
       }

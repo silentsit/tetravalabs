@@ -12,6 +12,8 @@ export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
   const assets = getAvailableCheckoutCryptoAssets()
   const cardAvailable = isPeptidepayConfigured()
 
+  res.setHeader("Cache-Control", "no-store, max-age=0")
+
   return res.json({
     ok: true,
     card: {

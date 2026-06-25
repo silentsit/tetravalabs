@@ -10,6 +10,7 @@
     "dev": "npm --prefix apps/storefront run dev",
     "build": "npm --prefix apps/storefront run build",
     "build:vercel-root": "npm run build --workspace=@tetrava/storefront && node scripts/sync-next-output.mjs",
+    "render:build": "node scripts/render-build.mjs",
     "start": "npm --prefix apps/storefront run start",
     "dev:legacy": "npm --prefix app run dev",
     "build:legacy": "npm --prefix app run build",

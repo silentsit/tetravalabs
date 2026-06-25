@@ -25,6 +25,9 @@ type Props = {
   required?: boolean
   placeholder?: string
   className?: string
+  onBlur?: () => void
+  invalid?: boolean
+  errorId?: string
 }
 
 export function AddressAutocompleteInput({
@@ -35,7 +38,10 @@ export function AddressAutocompleteInput({
   countryCode,
   required,
   placeholder,
-  className = "input-field"
+  className = "input-field",
+  onBlur,
+  invalid = false,
+  errorId
 }: Props) {
   const inputRef = useRef<HTMLInputElement>(null)
   const autocompleteRef = useRef<GoogleAutocomplete | null>(null)
@@ -178,12 +184,15 @@ export function AddressAutocompleteInput({
           if (!useGoogle && suggestions.length) setSuggestOpen(true)
         }}
         onBlur={() => {
+          onBlur?.()
           window.setTimeout(() => setSuggestOpen(false), 150)
         }}
         className={className}
         aria-autocomplete="list"
         aria-expanded={suggestOpen}
         aria-controls={`${id}-suggestions`}
+        aria-invalid={invalid}
+        aria-describedby={invalid && errorId ? errorId : undefined}
       />
 
       {!useGoogle && suggestOpen ? (

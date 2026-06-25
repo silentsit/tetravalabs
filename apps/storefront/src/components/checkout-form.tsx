@@ -38,6 +38,131 @@ type PaymentMethod = "card" | "crypto"
 
 const ORDERS_KEY = "tetrava_orders_v1"
 const DEFAULT_SHIPPING_USD = 15
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const US_ZIP_PATTERN = /^\d{5}(-\d{4})?$/
+const PHONE_PATTERN = /^[\d\s()+\-.]{7,}$/
+
+type AddressFieldKey =
+  | "firstName"
+  | "lastName"
+  | "email"
+  | "address1"
+  | "city"
+  | "province"
+  | "postalCode"
+  | "phone"
+  | "country"
+
+type AddressFieldErrors = Partial<Record<AddressFieldKey, string>>
+
+type AddressValues = {
+  firstName: string
+  lastName: string
+  email?: string
+  address1: string
+  city: string
+  province: string
+  postalCode: string
+  phone: string
+  country: string
+}
+
+function inputFieldClass(hasError: boolean) {
+  return hasError
+    ? "input-field border-red-400 focus:border-red-500 focus:ring-red-500/20"
+    : "input-field"
+}
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) return null
+  return (
+    <p id={id} className="mt-1.5 text-xs text-red-600" role="alert">
+      {message}
+    </p>
+  )
+}
+
+function validateAddress(values: AddressValues, options?: { requireEmail?: boolean }): AddressFieldErrors {
+  const errors: AddressFieldErrors = {}
+
+  if (!values.firstName.trim()) errors.firstName = "First name is required."
+  if (!values.lastName.trim()) errors.lastName = "Last name is required."
+
+  if (options?.requireEmail) {
+    const email = values.email?.trim() || ""
+    if (!email) errors.email = "Email is required."
+    else if (!EMAIL_PATTERN.test(email)) errors.email = "Enter a valid email address."
+  }
+
+  if (!values.address1.trim()) errors.address1 = "Street address is required."
+  if (!values.city.trim()) errors.city = "Town / city is required."
+
+  const country = values.country.trim().toUpperCase()
+  if (!country) errors.country = "Country is required."
+
+  if (country === "US") {
+    if (!values.province.trim()) errors.province = "State is required."
+    else if (!CHECKOUT_US_STATES.some((state) => state.code === values.province)) {
+      errors.province = "Select a valid US state."
+    }
+
+    const postal = values.postalCode.trim()
+    if (!postal) errors.postalCode = "ZIP code is required."
+    else if (!US_ZIP_PATTERN.test(postal)) errors.postalCode = "Enter a valid US ZIP code."
+  } else if (!values.postalCode.trim()) {
+    errors.postalCode = "Postal code is required."
+  }
+
+  const phone = values.phone.trim()
+  if (phone && !PHONE_PATTERN.test(phone)) {
+    errors.phone = "Enter a valid phone number."
+  }
+
+  return errors
+}
+
+function validateAddressField(field: AddressFieldKey, values: AddressValues, requireEmail = false): string | undefined {
+  return validateAddress(values, { requireEmail })[field]
+}
+
+function firstInvalidFieldId(payload: {
+  billing: AddressFieldErrors
+  shipping: AddressFieldErrors
+  ruoAck?: string
+  shipToDifferent: boolean
+}): string | null {
+  const billingOrder: Array<{ field: AddressFieldKey; id: string }> = [
+    { field: "firstName", id: "billing-first-name" },
+    { field: "lastName", id: "billing-last-name" },
+    { field: "email", id: "billing-email" },
+    { field: "country", id: "billing-country" },
+    { field: "address1", id: "billing-address1" },
+    { field: "city", id: "billing-city" },
+    { field: "province", id: "billing-province" },
+    { field: "postalCode", id: "billing-postal" },
+    { field: "phone", id: "billing-phone" }
+  ]
+
+  for (const entry of billingOrder) {
+    if (payload.billing[entry.field]) return entry.id
+  }
+
+  if (payload.shipToDifferent) {
+    const shippingOrder = billingOrder
+      .filter((entry) => entry.field !== "email")
+      .map((entry) => ({
+        field: entry.field,
+        id: entry.id.replace("billing-", "shipping-")
+      }))
+
+    for (const entry of shippingOrder) {
+      if (payload.shipping[entry.field]) return entry.id
+    }
+  }
+
+  if (payload.ruoAck) return "checkout-ruo-ack"
+  return null
+}
 
 function methodCardClass(selected: boolean) {
   return [
@@ -91,6 +216,23 @@ type AddressFieldsProps = {
   setEmail?: (value: string) => void
   availableCountries: Array<{ code: string; name: string }>
   showEmail?: boolean
+  errors?: AddressFieldErrors
+  touched?: Partial<Record<AddressFieldKey, boolean>>
+  attemptedSubmit?: boolean
+  onFieldBlur?: (field: AddressFieldKey) => void
+  onFieldChange?: (field: AddressFieldKey) => void
+}
+
+function fieldVisibleError(
+  field: AddressFieldKey,
+  errors: AddressFieldErrors | undefined,
+  touched: Partial<Record<AddressFieldKey, boolean>> | undefined,
+  attemptedSubmit: boolean | undefined
+) {
+  const message = errors?.[field]
+  if (!message) return undefined
+  if (attemptedSubmit || touched?.[field]) return message
+  return undefined
 }
 
 function AddressFields({
@@ -118,9 +260,19 @@ function AddressFields({
   email,
   setEmail,
   availableCountries,
-  showEmail = false
+  showEmail = false,
+  errors,
+  touched,
+  attemptedSubmit = false,
+  onFieldBlur,
+  onFieldChange
 }: AddressFieldsProps) {
   const isUs = country === "US"
+
+  const showError = (field: AddressFieldKey) =>
+    fieldVisibleError(field, errors, touched, attemptedSubmit)
+
+  const errorId = (field: AddressFieldKey) => `${idPrefix}-${field}-error`
 
   const applyParsedAddress = (parsed: ParsedAddress) => {
     if (parsed.address1) setAddress1(parsed.address1)
@@ -139,6 +291,12 @@ function AddressFields({
     ) {
       setCountry(parsed.country.toUpperCase())
     }
+
+    onFieldChange?.("address1")
+    onFieldChange?.("city")
+    onFieldChange?.("province")
+    onFieldChange?.("postalCode")
+    onFieldChange?.("country")
   }
 
   return (
@@ -153,9 +311,16 @@ function AddressFields({
             required
             autoComplete="given-name"
             value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
-            className="input-field"
+            onChange={(event) => {
+              setFirstName(event.target.value)
+              onFieldChange?.("firstName")
+            }}
+            onBlur={() => onFieldBlur?.("firstName")}
+            aria-invalid={Boolean(showError("firstName"))}
+            aria-describedby={showError("firstName") ? errorId("firstName") : undefined}
+            className={inputFieldClass(Boolean(showError("firstName")))}
           />
+          <FieldError id={errorId("firstName")} message={showError("firstName")} />
         </div>
         <div>
           <FieldLabel htmlFor={`${idPrefix}-last-name`} required>
@@ -166,9 +331,16 @@ function AddressFields({
             required
             autoComplete="family-name"
             value={lastName}
-            onChange={(event) => setLastName(event.target.value)}
-            className="input-field"
+            onChange={(event) => {
+              setLastName(event.target.value)
+              onFieldChange?.("lastName")
+            }}
+            onBlur={() => onFieldBlur?.("lastName")}
+            aria-invalid={Boolean(showError("lastName"))}
+            aria-describedby={showError("lastName") ? errorId("lastName") : undefined}
+            className={inputFieldClass(Boolean(showError("lastName")))}
           />
+          <FieldError id={errorId("lastName")} message={showError("lastName")} />
         </div>
       </div>
 
@@ -192,8 +364,14 @@ function AddressFields({
           required
           autoComplete="country"
           value={country}
-          onChange={(event) => setCountry(event.target.value)}
-          className="input-field"
+          onChange={(event) => {
+            setCountry(event.target.value)
+            onFieldChange?.("country")
+          }}
+          onBlur={() => onFieldBlur?.("country")}
+          aria-invalid={Boolean(showError("country"))}
+          aria-describedby={showError("country") ? errorId("country") : undefined}
+          className={inputFieldClass(Boolean(showError("country")))}
         >
           {availableCountries.map((entry) => (
             <option key={entry.code} value={entry.code}>
@@ -201,6 +379,7 @@ function AddressFields({
             </option>
           ))}
         </select>
+        <FieldError id={errorId("country")} message={showError("country")} />
       </div>
 
       <div>
@@ -212,10 +391,18 @@ function AddressFields({
           required
           placeholder="House number and street name"
           value={address1}
-          onChange={setAddress1}
+          onChange={(value) => {
+            setAddress1(value)
+            onFieldChange?.("address1")
+          }}
           onAddressSelect={applyParsedAddress}
+          onBlur={() => onFieldBlur?.("address1")}
           countryCode={country}
+          invalid={Boolean(showError("address1"))}
+          className={inputFieldClass(Boolean(showError("address1")))}
+          errorId={errorId("address1")}
         />
+        <FieldError id={errorId("address1")} message={showError("address1")} />
       </div>
 
       <div>
@@ -241,9 +428,16 @@ function AddressFields({
             required
             autoComplete="address-level2"
             value={city}
-            onChange={(event) => setCity(event.target.value)}
-            className="input-field"
+            onChange={(event) => {
+              setCity(event.target.value)
+              onFieldChange?.("city")
+            }}
+            onBlur={() => onFieldBlur?.("city")}
+            aria-invalid={Boolean(showError("city"))}
+            aria-describedby={showError("city") ? errorId("city") : undefined}
+            className={inputFieldClass(Boolean(showError("city")))}
           />
+          <FieldError id={errorId("city")} message={showError("city")} />
         </div>
         <div className="sm:col-span-1">
           <FieldLabel htmlFor={`${idPrefix}-province`} required={isUs}>
@@ -255,8 +449,14 @@ function AddressFields({
               required
               autoComplete="address-level1"
               value={province}
-              onChange={(event) => setProvince(event.target.value)}
-              className="input-field"
+              onChange={(event) => {
+                setProvince(event.target.value)
+                onFieldChange?.("province")
+              }}
+              onBlur={() => onFieldBlur?.("province")}
+              aria-invalid={Boolean(showError("province"))}
+              aria-describedby={showError("province") ? errorId("province") : undefined}
+              className={inputFieldClass(Boolean(showError("province")))}
             >
               <option value="">Select a state</option>
               {CHECKOUT_US_STATES.map((state) => (
@@ -270,10 +470,17 @@ function AddressFields({
               id={`${idPrefix}-province`}
               autoComplete="address-level1"
               value={province}
-              onChange={(event) => setProvince(event.target.value)}
-              className="input-field"
+              onChange={(event) => {
+                setProvince(event.target.value)
+                onFieldChange?.("province")
+              }}
+              onBlur={() => onFieldBlur?.("province")}
+              aria-invalid={Boolean(showError("province"))}
+              aria-describedby={showError("province") ? errorId("province") : undefined}
+              className={inputFieldClass(Boolean(showError("province")))}
             />
           )}
+          <FieldError id={errorId("province")} message={showError("province")} />
         </div>
         <div className="sm:col-span-1">
           <FieldLabel htmlFor={`${idPrefix}-postal`} required>
@@ -284,9 +491,16 @@ function AddressFields({
             required
             autoComplete="postal-code"
             value={postalCode}
-            onChange={(event) => setPostalCode(event.target.value)}
-            className="input-field"
+            onChange={(event) => {
+              setPostalCode(event.target.value)
+              onFieldChange?.("postalCode")
+            }}
+            onBlur={() => onFieldBlur?.("postalCode")}
+            aria-invalid={Boolean(showError("postalCode"))}
+            aria-describedby={showError("postalCode") ? errorId("postalCode") : undefined}
+            className={inputFieldClass(Boolean(showError("postalCode")))}
           />
+          <FieldError id={errorId("postalCode")} message={showError("postalCode")} />
         </div>
       </div>
 
@@ -297,9 +511,16 @@ function AddressFields({
           type="tel"
           autoComplete="tel"
           value={phone}
-          onChange={(event) => setPhone(event.target.value)}
-          className="input-field"
+          onChange={(event) => {
+            setPhone(event.target.value)
+            onFieldChange?.("phone")
+          }}
+          onBlur={() => onFieldBlur?.("phone")}
+          aria-invalid={Boolean(showError("phone"))}
+          aria-describedby={showError("phone") ? errorId("phone") : undefined}
+          className={inputFieldClass(Boolean(showError("phone")))}
         />
+        <FieldError id={errorId("phone")} message={showError("phone")} />
       </div>
 
       {showEmail && setEmail ? (
@@ -313,9 +534,16 @@ function AddressFields({
             type="email"
             autoComplete="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            className="input-field"
+            onChange={(event) => {
+              setEmail(event.target.value)
+              onFieldChange?.("email")
+            }}
+            onBlur={() => onFieldBlur?.("email")}
+            aria-invalid={Boolean(showError("email"))}
+            aria-describedby={showError("email") ? errorId("email") : undefined}
+            className={inputFieldClass(Boolean(showError("email")))}
           />
+          <FieldError id={errorId("email")} message={showError("email")} />
         </div>
       ) : null}
     </div>
@@ -350,6 +578,12 @@ export function CheckoutForm() {
   const [ruoAck, setRuoAck] = useState(false)
   const [status, setStatus] = useState("")
   const [error, setError] = useState("")
+  const [billingErrors, setBillingErrors] = useState<AddressFieldErrors>({})
+  const [shippingErrors, setShippingErrors] = useState<AddressFieldErrors>({})
+  const [billingTouched, setBillingTouched] = useState<Partial<Record<AddressFieldKey, boolean>>>({})
+  const [shippingTouched, setShippingTouched] = useState<Partial<Record<AddressFieldKey, boolean>>>({})
+  const [attemptedSubmit, setAttemptedSubmit] = useState(false)
+  const [ruoError, setRuoError] = useState("")
   const [loading, setLoading] = useState(false)
   const [restrictedCountries, setRestrictedCountries] = useState<string[]>([])
   const [cardAvailable, setCardAvailable] = useState(false)
@@ -359,6 +593,91 @@ export function CheckoutForm() {
   const [selectedAsset, setSelectedAsset] = useState("BTC")
 
   const estimatedTotal = subtotal + DEFAULT_SHIPPING_USD
+
+  const billingValues = useMemo<AddressValues>(
+    () => ({
+      firstName,
+      lastName,
+      email,
+      address1,
+      city,
+      province,
+      postalCode,
+      phone,
+      country
+    }),
+    [firstName, lastName, email, address1, city, province, postalCode, phone, country]
+  )
+
+  const shippingValues = useMemo<AddressValues>(
+    () => ({
+      firstName: shipFirstName,
+      lastName: shipLastName,
+      address1: shipAddress1,
+      city: shipCity,
+      province: shipProvince,
+      postalCode: shipPostalCode,
+      phone: shipPhone,
+      country: shipCountry
+    }),
+    [
+      shipFirstName,
+      shipLastName,
+      shipAddress1,
+      shipCity,
+      shipProvince,
+      shipPostalCode,
+      shipPhone,
+      shipCountry
+    ]
+  )
+
+  const handleBillingBlur = (field: AddressFieldKey) => {
+    setBillingTouched((prev) => ({ ...prev, [field]: true }))
+    const message = validateAddressField(field, billingValues, true)
+    setBillingErrors((prev) => {
+      const next = { ...prev }
+      if (message) next[field] = message
+      else delete next[field]
+      return next
+    })
+  }
+
+  const handleShippingBlur = (field: AddressFieldKey) => {
+    setShippingTouched((prev) => ({ ...prev, [field]: true }))
+    const message = validateAddressField(field, shippingValues, false)
+    setShippingErrors((prev) => {
+      const next = { ...prev }
+      if (message) next[field] = message
+      else delete next[field]
+      return next
+    })
+  }
+
+  const clearBillingError = (field: AddressFieldKey) => {
+    setBillingErrors((prev) => {
+      if (!prev[field]) return prev
+      const next = { ...prev }
+      delete next[field]
+      return next
+    })
+  }
+
+  const clearShippingError = (field: AddressFieldKey) => {
+    setShippingErrors((prev) => {
+      if (!prev[field]) return prev
+      const next = { ...prev }
+      delete next[field]
+      return next
+    })
+  }
+
+  useEffect(() => {
+    if (!shipToDifferent) {
+      setShippingErrors({})
+      setShippingTouched({})
+    }
+  }, [shipToDifferent])
 
   useEffect(() => {
     void fetch("/api/compliance/restricted-countries")
@@ -479,11 +798,33 @@ export function CheckoutForm() {
     event.preventDefault()
     setError("")
     setStatus("")
+    setAttemptedSubmit(true)
 
-    if (!ruoAck) {
-      setError("Please acknowledge RUO requirements before checkout.")
+    const nextBillingErrors = validateAddress(billingValues, { requireEmail: true })
+    const nextShippingErrors = shipToDifferent
+      ? validateAddress(shippingValues, { requireEmail: false })
+      : {}
+    const nextRuoError = ruoAck ? "" : "Please acknowledge RUO requirements before checkout."
+
+    setBillingErrors(nextBillingErrors)
+    setShippingErrors(nextShippingErrors)
+    setRuoError(nextRuoError)
+
+    const invalidFieldId = firstInvalidFieldId({
+      billing: nextBillingErrors,
+      shipping: nextShippingErrors,
+      ruoAck: nextRuoError || undefined,
+      shipToDifferent
+    })
+
+    if (invalidFieldId) {
+      document.getElementById(invalidFieldId)?.focus()
+      if (nextRuoError && !Object.keys(nextBillingErrors).length && !Object.keys(nextShippingErrors).length) {
+        setError(nextRuoError)
+      }
       return
     }
+
     if (!items.length) {
       setError("Cart is empty.")
       return
@@ -643,7 +984,7 @@ export function CheckoutForm() {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} noValidate>
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
         <div className="space-y-8">
           <section className="card p-6 sm:p-8">
@@ -674,6 +1015,11 @@ export function CheckoutForm() {
               setEmail={setEmail}
               availableCountries={availableCountries}
               showEmail
+              errors={billingErrors}
+              touched={billingTouched}
+              attemptedSubmit={attemptedSubmit}
+              onFieldBlur={handleBillingBlur}
+              onFieldChange={clearBillingError}
             />
           </section>
 
@@ -714,6 +1060,11 @@ export function CheckoutForm() {
                   phone={shipPhone}
                   setPhone={setShipPhone}
                   availableCountries={availableCountries}
+                  errors={shippingErrors}
+                  touched={shippingTouched}
+                  attemptedSubmit={attemptedSubmit}
+                  onFieldBlur={handleShippingBlur}
+                  onFieldChange={clearShippingError}
                 />
               </div>
             ) : null}
@@ -854,15 +1205,26 @@ export function CheckoutForm() {
             </div>
           </div>
 
-          <label className="mt-4 flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569]">
+          <label
+            className={`mt-4 flex items-start gap-3 rounded-xl border bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569] ${
+              ruoError && attemptedSubmit ? "border-red-300" : "border-[#E2E8F0]"
+            }`}
+          >
             <input
+              id="checkout-ruo-ack"
               checked={ruoAck}
-              onChange={(event) => setRuoAck(event.target.checked)}
+              onChange={(event) => {
+                setRuoAck(event.target.checked)
+                if (event.target.checked) setRuoError("")
+              }}
               type="checkbox"
+              aria-invalid={Boolean(ruoError && attemptedSubmit)}
+              aria-describedby={ruoError && attemptedSubmit ? "checkout-ruo-error" : undefined}
               className="mt-0.5 h-4 w-4 shrink-0 rounded accent-[#0D9488]"
             />
             I confirm these compounds are for research use only and not for human consumption.
           </label>
+          <FieldError id="checkout-ruo-error" message={attemptedSubmit ? ruoError : undefined} />
 
           <p className="mt-5 text-xs leading-relaxed text-[#64748B]">
             Your personal data will be used to process your order and for other purposes described in our{" "}

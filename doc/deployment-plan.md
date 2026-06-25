@@ -5,7 +5,8 @@
 - Storefront: Vercel (`apps/storefront`).
 - Commerce API: Medusa v2 (`apps/medusa`) on Render/Railway/Fly/VPS.
 - Database: Neon PostgreSQL.
-- Redis: Upstash Redis.
+- Redis: Upstash Redis (`rediss://` connection string on Medusa — not the redis-cli command).
+- Search: Typesense Cloud (env on Medusa only; no Render search service).
 - COA files: Cloudflare R2 or S3.
 - Security edge: Cloudflare DNS + WAF.
 
@@ -27,7 +28,7 @@ Create separate env sets for:
 ### Medusa env
 
 - `DATABASE_URL`
-- `REDIS_URL`
+- `REDIS_URL` (Upstash TLS URL, e.g. `rediss://default:TOKEN@....upstash.io:6379`)
 - `STORE_CORS`
 - `ADMIN_CORS`
 - `AUTH_CORS`
@@ -37,6 +38,12 @@ Create separate env sets for:
 - `CRYPTO_WEBHOOK_SECRET`
 - `R2_*` or S3 credentials
 - `RESEND_API_KEY`
+- `TYPESENSE_PROTOCOL=https`
+- `TYPESENSE_HOST` (Typesense Cloud cluster hostname)
+- `TYPESENSE_PORT=443`
+- `TYPESENSE_API_KEY`
+- `TYPESENSE_COLLECTION=products`
+- `TYPESENSE_SYNC_SECRET`
 
 ## Rollout Order
 
@@ -75,8 +82,9 @@ Required env: see `apps/storefront/.env.example`
 
 ## Render (Medusa)
 
-- Blueprint: `render.yaml` at repo root
-- `preDeployCommand` runs `db:migrate` + `db:lab-schema`
+- Blueprint: `render.yaml` at repo root (single web service: `tetrava-medusa`)
+- Search: **Typesense Cloud** — configure `TYPESENSE_*` on Medusa; do not run Typesense on Render
+- `preDeployCommand` runs `db:migrate`, `db:lab-schema`, and `typesense:index`
 - Required env: see `apps/medusa/.env.example`
 - Print full mapping: `npm run deploy:env`
 

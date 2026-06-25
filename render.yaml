@@ -1,6 +1,6 @@
 # Tetrava Labs — Render Blueprint
-# Storefront deploys on Vercel; this Blueprint covers the Medusa commerce API.
-# Search: Typesense Cloud (set TYPESENSE_* manually on Medusa). Legacy Render pserv optional.
+# Storefront: Vercel (apps/storefront). Commerce API: Medusa on Render.
+# Search: Typesense Cloud — set TYPESENSE_* on tetrava-medusa (not a Render service).
 
 envVarGroups:
   - name: tetrava-medusa-shared
@@ -89,23 +89,3 @@ services:
         sync: false
       - key: MEDUSA_PUBLISHABLE_KEY
         sync: false
-
-  - type: pserv
-    name: tetrava-typesense
-    runtime: docker
-    region: oregon
-    plan: starter
-    rootDir: .
-    dockerfilePath: ./docker/typesense/Dockerfile
-    dockerContext: ./docker/typesense
-    envVars:
-      - key: PORT
-        value: "10000"
-      - key: TYPESENSE_DATA_DIR
-        value: /data
-      - key: TYPESENSE_API_KEY
-        generateValue: true
-    disk:
-      name: typesense-data
-      mountPath: /data
-      sizeGB: 1

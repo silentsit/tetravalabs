@@ -17,6 +17,7 @@ export const siteConfig = {
   locale: "en_US",
   twitterHandle: "@tetravalabs",
   contactEmail: "info@tetravalabs.com",
+  defaultOgImage: "/brand/tetravalabs-icon.jpg",
   keywords: [
     "research peptides",
     "RUO peptides",
@@ -30,6 +31,8 @@ export const siteConfig = {
 
 type PageMetaInput = {
   title: string
+  /** Bypasses the layout title template when an exact SERP title is required. */
+  absoluteTitle?: string
   description?: string
   path?: string
   noIndex?: boolean
@@ -47,12 +50,17 @@ export function pageUrl(path = "") {
 }
 
 export function buildPageMetadata(input: PageMetaInput): Metadata {
-  const shortTitle = input.title.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim()
-  const fullTitle = shortTitle.includes(siteConfig.name)
-    ? shortTitle
-    : `${shortTitle} | ${siteConfig.name}`
+  const shortTitle = input.absoluteTitle
+    ? input.absoluteTitle.trim()
+    : input.title.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim()
+  const fullTitle = input.absoluteTitle
+    ? input.absoluteTitle.trim()
+    : shortTitle.includes(siteConfig.name)
+      ? shortTitle
+      : `${shortTitle} | ${siteConfig.name}`
   const description = input.description || siteConfig.description
   const url = pageUrl(input.path)
+  const ogImage = pageUrl(siteConfig.defaultOgImage)
 
   if (input.path && !input.noIndex) {
     const graphs: JsonLdGraph[] = []
@@ -73,7 +81,7 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
   }
 
   return {
-    title: shortTitle,
+    title: input.absoluteTitle ? { absolute: input.absoluteTitle } : shortTitle,
     description,
     keywords: siteConfig.keywords,
     alternates: { canonical: url },
@@ -85,12 +93,14 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: input.type || "website",
+      images: [{ url: ogImage, alt: siteConfig.name }],
       ...(input.publishedTime ? { publishedTime: input.publishedTime } : {})
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
-      description
+      description,
+      images: [ogImage]
     }
   }
 }

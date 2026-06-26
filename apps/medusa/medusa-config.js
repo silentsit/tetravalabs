@@ -2,9 +2,20 @@ const { defineConfig, loadEnv } = require("@medusajs/framework/utils")
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
-const DATABASE_URL =
-  process.env.DATABASE_URL ||
-  "postgres://postgres:postgres@localhost:5432/tetrava_medusa"
+function resolveDatabaseUrl() {
+  const raw = process.env.DATABASE_URL?.trim()
+  if (raw) return raw
+
+  if ((process.env.NODE_ENV || "development") === "production") {
+    throw new Error(
+      "DATABASE_URL is missing. Set DATABASE_URL on Render to your Neon PostgreSQL connection string (Neon Dashboard → Connect → copy the pooled or direct URL with sslmode=require)."
+    )
+  }
+
+  return "postgres://postgres:postgres@localhost:5432/tetrava_medusa"
+}
+
+const DATABASE_URL = resolveDatabaseUrl()
 function normalizeRedisUrlInput(raw) {
   let value = raw.trim()
 

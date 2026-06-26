@@ -190,7 +190,7 @@ export default async function HomePage() {
                     alt={cat.name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    className="object-contain p-5 opacity-80 transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5">

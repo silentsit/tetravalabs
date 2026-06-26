@@ -23,11 +23,6 @@ import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata } from "@/lib/seo"
 
-const heroProducts = [
-  { src: "/products/v2/semaglutide-5mg.png", alt: "Semaglutide research vial" },
-  { src: "/products/v2/tirzepatide-10mg.png", alt: "Tirzepatide research vial" },
-  { src: "/products/v2/retatrutide-5mg.png", alt: "Retatrutide research vial" }
-]
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Research-Grade Peptides — Verified, Documented, Delivered",
@@ -94,24 +89,14 @@ export default async function HomePage() {
           </div>
           <div className="flex items-center justify-center">
             <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-sm">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(13,148,136,0.14),transparent_45%),linear-gradient(135deg,#ffffff,#f8fafc)]" />
-              <div className="relative grid h-full grid-cols-3 items-center gap-3 px-5 sm:px-8">
-                {heroProducts.map((product, index) => (
-                  <div
-                    key={product.src}
-                    className={`relative aspect-[3/4] ${index === 1 ? "scale-110" : "scale-95 opacity-90"}`}
-                  >
-                    <Image
-                      src={product.src}
-                      alt={product.alt}
-                      fill
-                      priority={index === 1}
-                      sizes="(max-width: 1024px) 28vw, 150px"
-                      className="object-contain drop-shadow-[0_18px_35px_rgba(15,23,42,0.16)]"
-                    />
-                  </div>
-                ))}
-              </div>
+              <Image
+                src="/v2/hero-products.jpg"
+                alt="Research peptide vials"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

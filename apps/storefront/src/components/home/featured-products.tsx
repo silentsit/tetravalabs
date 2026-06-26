@@ -10,9 +10,9 @@ type Props = {
 
 export function FeaturedProducts({ products }: Props) {
   const byHandle = new Map(products.map((product) => [product.handle, product]))
-  const featured = FEATURED_PRODUCT_HANDLES.map((handle) => byHandle.get(handle)).filter(
-    (product): product is NonNullable<typeof product> => Boolean(product)
-  )
+  const featured = FEATURED_PRODUCT_HANDLES.map((handle) => byHandle.get(handle))
+    .filter((product): product is NonNullable<typeof product> => Boolean(product))
+    .slice(0, 4)
 
   return (
     <>

@@ -36,6 +36,8 @@ jobs:
         env:
           DISABLE_MEDUSA_ADMIN: "true"
           NODE_ENV: production
+          # medusa-config.js requires DATABASE_URL when NODE_ENV=production; build does not connect to the DB.
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/tetrava_medusa
 
       - name: Verify root Vercel build path
         run: npm run build:vercel-root

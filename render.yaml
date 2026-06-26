@@ -27,8 +27,6 @@ services:
     healthCheckPath: /health
     envVars:
       - fromGroup: tetrava-medusa-shared
-      - key: ENABLE_MEDUSA_ADMIN
-        value: "true"
       - key: DATABASE_URL
         sync: false
       - key: REDIS_URL

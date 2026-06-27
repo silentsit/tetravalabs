@@ -12,7 +12,7 @@ envVarGroups:
       - key: ENABLE_MEDUSA_ADMIN
         value: "true"
       - key: ADMIN_CORS
-        value: https://tetrava-medusa.onrender.com
+        value: https://tetrava-medusa-i44n.onrender.com
 
 services:
   - type: web

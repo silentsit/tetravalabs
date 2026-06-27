@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import { Beaker, Download, Search } from "lucide-react"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
+import { formatCoaSearchText, formatCoaStrength, formatCoaTitle } from "@/lib/coa-display"
 import type { StoreCoaDocument } from "@/lib/medusa"
 
 type Props = {
@@ -15,12 +16,7 @@ export function CoaLibraryList({ documents }: Props) {
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()
     if (!q) return documents
-    return documents.filter((doc) =>
-      [doc.batch_number, doc.document_type, doc.variant_id, String(doc.metadata?.compound || "")]
-        .join(" ")
-        .toLowerCase()
-        .includes(q)
-    )
+    return documents.filter((doc) => formatCoaSearchText(doc).toLowerCase().includes(q))
   }, [documents, search])
 
   return (
@@ -36,7 +32,7 @@ export function CoaLibraryList({ documents }: Props) {
         <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#94A3B8]" />
         <input
           type="text"
-          placeholder="Search by batch number or document type..."
+          placeholder="Search by compound, strength, batch, or document type..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="input-field pl-12"
@@ -52,7 +48,9 @@ export function CoaLibraryList({ documents }: Props) {
       ) : null}
 
       <div className="mt-8 space-y-6">
-        {filtered.map((doc) => (
+        {filtered.map((doc) => {
+          const strength = formatCoaStrength(doc)
+          return (
           <article
             key={doc.id}
             className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
@@ -63,11 +61,13 @@ export function CoaLibraryList({ documents }: Props) {
                   <Beaker className="h-6 w-6 text-[#0D9488]" />
                 </div>
                 <div>
-                  <p className="font-medium text-[#0F172A]">
-                    {doc.metadata?.compound ? String(doc.metadata.compound) : "Research compound"} — Batch{" "}
-                    {doc.batch_number} ({doc.document_type.toUpperCase()})
-                  </p>
+                  <p className="font-medium text-[#0F172A]">{formatCoaTitle(doc)}</p>
                   <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-[#94A3B8]">
+                    {strength ? (
+                      <span className="rounded bg-[#F1F5F9] px-1.5 py-0.5 font-medium text-[#475569]">
+                        {strength}
+                      </span>
+                    ) : null}
                     {doc.purity_percent != null ? (
                       <span className="rounded bg-[#CCFBF1] px-1.5 py-0.5 text-[#0D9488]">
                         {doc.purity_percent}% purity
@@ -94,7 +94,8 @@ export function CoaLibraryList({ documents }: Props) {
               </div>
             ) : null}
           </article>
-        ))}
+          )
+        })}
       </div>
 
       {documents.length > 0 && filtered.length === 0 ? (

@@ -183,6 +183,7 @@ async function upsertDocument(client, entry, variantId, storageKey, documentUrl,
       storageKey,
       {
         ...(entry.metadata || {}),
+        ...(entry.variant_handle ? { variant_handle: entry.variant_handle } : {}),
         media_type: mediaType
       }
     ]

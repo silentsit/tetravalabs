@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { FileText } from "lucide-react"
+import { formatCoaCompound, formatCoaStrength } from "@/lib/coa-display"
 import type { StoreCoaDocument } from "@/lib/medusa"
 
 type Props = {
@@ -12,10 +13,8 @@ function isPdfUrl(url: string) {
 }
 
 export function CoaDocumentPreview({ document, compact = false }: Props) {
-  const compound = document.metadata?.compound
-    ? String(document.metadata.compound)
-    : "Research compound"
   const previewHeight = compact ? "h-48" : "h-72"
+  const strength = formatCoaStrength(document)
 
   return (
     <div className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm">
@@ -41,7 +40,9 @@ export function CoaDocumentPreview({ document, compact = false }: Props) {
       </div>
       <div className="space-y-2 border-t border-[#E2E8F0] p-4">
         <p className="text-sm font-medium text-[#0F172A]">
-          {compound} — Batch {document.batch_number}
+          {strength
+            ? `${formatCoaCompound(document)} ${strength} — Batch ${document.batch_number}`
+            : `${formatCoaCompound(document)} — Batch ${document.batch_number}`}
         </p>
         <div className="flex flex-wrap items-center gap-2 text-xs text-[#64748B]">
           <span className="rounded bg-[#CCFBF1] px-2 py-0.5 text-[#0D9488]">

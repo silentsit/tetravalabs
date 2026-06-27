@@ -64,6 +64,21 @@ export function normalizeShopCategoryPill(category?: string): string | undefined
   return LEGACY_PILL_ALIASES[category]
 }
 
+/** Map URL `category` param (pill key or category slug) to active filter pill. */
+export function resolveActiveShopPill(category?: string): string {
+  if (!category) return "all"
+  const pill = normalizeShopCategoryPill(category)
+  if (pill) return pill
+  if (isShopPillKey(category)) return category
+  const slugToPill: Record<string, string> = {
+    "glp-1-research": "glp-1",
+    "growth-factors": "growth-factors",
+    "research-blends": "blends",
+    "lab-supplies": "supplies"
+  }
+  return slugToPill[category] || "all"
+}
+
 function matchesPill(product: FilterableProduct, pillCategories: string[]): boolean {
   const sourceCategory =
     product.metadata?.source_category || product.collection?.title || ""

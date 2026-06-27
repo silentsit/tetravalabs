@@ -2,10 +2,11 @@ import { Suspense } from "react"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
+import { ProductFilters } from "@/components/product-filters"
 import { ProductSort } from "@/components/product-sort"
 import { listProducts } from "@/lib/medusa"
 import { filterProductsByCategorySlug } from "@/lib/categories"
-import { filterByPill, getShopCategoryLabel, normalizeShopCategoryPill } from "@/lib/shop-filters"
+import { filterByPill, getShopCategoryLabel, normalizeShopCategoryPill, resolveActiveShopPill } from "@/lib/shop-filters"
 import { searchProducts } from "@/lib/search"
 import { buildPageMetadata } from "@/lib/seo"
 import {
@@ -44,6 +45,16 @@ function ShopSortSkeleton() {
   return <div className="h-10 w-40 animate-pulse rounded-lg bg-[#F1F5F9]" />
 }
 
+function ShopFiltersSkeleton() {
+  return (
+    <div className="flex gap-2 overflow-x-auto pb-1">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <div key={index} className="h-9 w-28 shrink-0 animate-pulse rounded-full bg-[#F1F5F9]" />
+      ))}
+    </div>
+  )
+}
+
 export default async function ShopPage({ searchParams }: Props) {
   const { q = "", category = "", price_min = "", price_max = "", sort = "" } = await searchParams
   const products = await listProducts()
@@ -51,6 +62,7 @@ export default async function ShopPage({ searchParams }: Props) {
   const priceMax = parseCents(price_max)
   const sortKey = parseProductSort(sort)
   const categoryPill = normalizeShopCategoryPill(category || undefined)
+  const activePill = resolveActiveShopPill(category || undefined)
 
   let displayProducts = category
     ? categoryPill
@@ -90,6 +102,10 @@ export default async function ShopPage({ searchParams }: Props) {
           </Suspense>
         </div>
       </div>
+
+      <Suspense fallback={<ShopFiltersSkeleton />}>
+        <ProductFilters products={products} activePill={activePill} />
+      </Suspense>
 
       {displayProducts.length > 0 ? (
         <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 xl:gap-6 [&>*]:min-w-0">

@@ -50,7 +50,7 @@
     "postinstall": "patch-package"
   },
   "engines": {
-    "node": ">=20"
+    "node": "24.x"
   },
   "packageManager": "npm@10.9.2",
   "overrides": {

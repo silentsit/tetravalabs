@@ -53,15 +53,19 @@ export async function resolveAdminToken() {
 
   try {
     return await login()
-  } catch {
-    await axios.post(`${baseUrl}/auth/user/emailpass/register`, {
-      email: process.env.MEDUSA_ADMIN_EMAIL,
-      password: process.env.MEDUSA_ADMIN_PASSWORD
-    })
-    console.warn(
-      "Registered auth identity but admin user may still need linking. Run: npm --prefix apps/medusa run bootstrap:admin"
-    )
-    return login()
+  } catch (loginError) {
+    try {
+      await axios.post(`${baseUrl}/auth/user/emailpass/register`, {
+        email: process.env.MEDUSA_ADMIN_EMAIL,
+        password: process.env.MEDUSA_ADMIN_PASSWORD
+      })
+      console.warn(
+        "Registered auth identity but admin user may still need linking. Run: npm --prefix apps/medusa run bootstrap:admin"
+      )
+      return login()
+    } catch (registerError) {
+      throw registerError.response ? registerError : loginError
+    }
   }
 }
 
@@ -102,6 +106,42 @@ export async function fetchProductByHandle(client, handle) {
   return response.data?.products?.[0] || null
 }
 
+/** Catalog slugs renamed in Price List USD — Medusa may still use legacy handles. */
+export const LEGACY_HANDLE_BY_CATALOG_HANDLE = {
+  "nad-100mg": "nad-plus-100mg",
+  "nad-500mg": "nad-plus-500mg",
+  "nad-1000mg": "nad-plus-1000mg",
+  "bpc-157-capsules-100-count-500mcg": "bpc-157-capsules-100ct",
+  "glow-bpc-157-tb500-ghk-cu-30mg": "glow-blend-30mg",
+  "glow-bpc-157-tb500-ghk-cu-85mg": "glow-blend-85mg",
+  "cjc-1295-without-dac-ipamorelin-blend-10mg": "cjc-1295-ipamorelin-blend-10mg",
+  "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg": "cjc-1295-sermorelin-ipamorelin-blend-5mg"
+}
+
+export async function fetchCatalogProduct(client, catalogHandle) {
+  const existing = await fetchProductByHandle(client, catalogHandle)
+  if (existing) {
+    return { existing, legacyHandle: null }
+  }
+
+  const legacyHandle = LEGACY_HANDLE_BY_CATALOG_HANDLE[catalogHandle]
+  if (!legacyHandle) {
+    return { existing: null, legacyHandle: null }
+  }
+
+  const legacyProduct = await fetchProductByHandle(client, legacyHandle)
+  return { existing: legacyProduct, legacyHandle: legacyProduct ? legacyHandle : null }
+}
+
+export async function verifyMedusaReachable(client) {
+  try {
+    await client.get("/admin/sales-channels", { params: { limit: 1 } })
+    return true
+  } catch (error) {
+    throw new Error(formatAxiosError(error))
+  }
+}
+
 export async function syncTypesenseAfterChanges(updatedCount) {
   const syncSecret = process.env.TYPESENSE_SYNC_SECRET
   if (!syncSecret || updatedCount <= 0) {
@@ -132,5 +172,23 @@ export async function syncTypesenseAfterChanges(updatedCount) {
 }
 
 export function formatAxiosError(error) {
-  return error?.response?.data || error?.message || error
+  const status = error?.response?.status
+  const method = error?.config?.method?.toUpperCase() || "REQUEST"
+  const baseURL = error?.config?.baseURL || ""
+  const url = error?.config?.url || ""
+  const fullUrl = `${baseURL}${url}`
+  const data = error?.response?.data
+  const detail =
+    typeof data === "string"
+      ? data
+      : data?.message || data?.type || (data ? JSON.stringify(data) : error?.message || String(error))
+
+  if (status === 404 && fullUrl.includes("/auth/")) {
+    return (
+      `${method} ${fullUrl} failed (404): Medusa auth endpoint not found. ` +
+      `Check MEDUSA_ADMIN_URL (${MEDUSA_ADMIN_URL()}) — the service may be down, suspended, or misconfigured on Render.`
+    )
+  }
+
+  return `${method} ${fullUrl} failed (${status || "network"}): ${detail}`
 }

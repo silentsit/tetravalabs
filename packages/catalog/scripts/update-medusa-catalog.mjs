@@ -12,13 +12,14 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import {
   ensureCategory,
-  fetchProductByHandle,
+  fetchCatalogProduct,
   formatAxiosError,
   getMedusaClient,
   loadMedusaEnv,
   requireMedusaCredentials,
   resolveAdminToken,
-  syncTypesenseAfterChanges
+  syncTypesenseAfterChanges,
+  verifyMedusaReachable
 } from "../lib/medusa-admin.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -114,18 +115,25 @@ const run = async () => {
 
   const token = await resolveAdminToken()
   const client = getMedusaClient(token)
+  await verifyMedusaReachable(client)
   const raw = JSON.parse(await fs.readFile(normalizedPath, "utf8"))
 
   let updatedProducts = 0
   let missingProducts = 0
   let unchangedProducts = 0
+  let renamedProducts = 0
 
   for (const catalogProduct of raw.products) {
-    const existing = await fetchProductByHandle(client, catalogProduct.handle)
+    const { existing, legacyHandle } = await fetchCatalogProduct(client, catalogProduct.handle)
     if (!existing) {
       missingProducts += 1
       console.warn(`Missing in Medusa (skipped): ${catalogProduct.handle}`)
       continue
+    }
+
+    if (legacyHandle) {
+      renamedProducts += 1
+      console.log(`Matched legacy handle ${legacyHandle} -> ${catalogProduct.handle}`)
     }
 
     const batch = buildVariantBatch(existing, catalogProduct)
@@ -140,6 +148,7 @@ const run = async () => {
     const categoryId = await ensureCategory(client, catalogProduct.category)
     const productPayload = {
       title: catalogProduct.title,
+      handle: catalogProduct.handle,
       subtitle: "Research Use Only",
       categories: [{ id: categoryId }],
       metadata: {
@@ -173,7 +182,7 @@ const run = async () => {
   }
 
   console.log(
-    `Catalog update complete. Updated ${updatedProducts}, unchanged ${unchangedProducts}, missing ${missingProducts}${dryRun ? " (dry-run)" : ""}.`
+    `Catalog update complete. Updated ${updatedProducts}, unchanged ${unchangedProducts}, renamed ${renamedProducts}, missing ${missingProducts}${dryRun ? " (dry-run)" : ""}.`
   )
 
   if (!dryRun) {

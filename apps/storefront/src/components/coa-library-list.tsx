@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { Beaker, Download, Search } from "lucide-react"
+import { CoaPdfPreview } from "@/components/coa-pdf-preview"
 import type { StoreCoaDocument } from "@/lib/medusa"
 
 type Props = {
@@ -42,46 +43,61 @@ export function CoaLibraryList({ documents }: Props) {
         />
       </div>
 
-      <div className="mt-8 space-y-3">
+      {documents.length === 0 ? (
+        <p className="mt-10 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-6 text-center text-[#475569]">
+          No COA documents are available yet. Run{" "}
+          <code className="rounded bg-white px-1.5 py-0.5 text-sm">npm run coa:sync-r2</code> against production
+          Medusa/R2, then redeploy.
+        </p>
+      ) : null}
+
+      <div className="mt-8 space-y-6">
         {filtered.map((doc) => (
-          <div
+          <article
             key={doc.id}
-            className="flex flex-col gap-4 rounded-xl border border-[#E2E8F0] bg-white p-5 sm:flex-row sm:items-center sm:justify-between"
+            className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm"
           >
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#CCFBF1]">
-                <Beaker className="h-6 w-6 text-[#0D9488]" />
-              </div>
-              <div>
-                <p className="font-medium text-[#0F172A]">
-                  {doc.metadata?.compound ? String(doc.metadata.compound) : "Research compound"} — Batch{" "}
-                  {doc.batch_number} ({doc.document_type.toUpperCase()})
-                </p>
-                <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-[#94A3B8]">
-                  {doc.purity_percent != null ? (
-                    <span className="rounded bg-[#CCFBF1] px-1.5 py-0.5 text-[#0D9488]">
-                      {doc.purity_percent}% purity
-                    </span>
-                  ) : null}
-                  {doc.tested_at ? <span>Tested {new Date(doc.tested_at).toLocaleDateString()}</span> : null}
+            <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#CCFBF1]">
+                  <Beaker className="h-6 w-6 text-[#0D9488]" />
+                </div>
+                <div>
+                  <p className="font-medium text-[#0F172A]">
+                    {doc.metadata?.compound ? String(doc.metadata.compound) : "Research compound"} — Batch{" "}
+                    {doc.batch_number} ({doc.document_type.toUpperCase()})
+                  </p>
+                  <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-[#94A3B8]">
+                    {doc.purity_percent != null ? (
+                      <span className="rounded bg-[#CCFBF1] px-1.5 py-0.5 text-[#0D9488]">
+                        {doc.purity_percent}% purity
+                      </span>
+                    ) : null}
+                    {doc.tested_at ? <span>Tested {new Date(doc.tested_at).toLocaleDateString()}</span> : null}
+                  </div>
                 </div>
               </div>
+              {doc.document_url ? (
+                <a
+                  href={doc.document_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] px-4 py-2 text-sm text-[#475569] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
+                >
+                  <Download className="h-4 w-4" /> Open full PDF
+                </a>
+              ) : null}
             </div>
             {doc.document_url ? (
-              <a
-                href={doc.document_url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] px-4 py-2 text-sm text-[#475569] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
-              >
-                <Download className="h-4 w-4" /> View document
-              </a>
+              <div className="h-72 border-t border-[#E2E8F0] bg-[#F8FAFC] p-2">
+                <CoaPdfPreview url={doc.document_url} alt={`COA batch ${doc.batch_number}`} scale={1.05} />
+              </div>
             ) : null}
-          </div>
+          </article>
         ))}
       </div>
 
-      {filtered.length === 0 ? (
+      {documents.length > 0 && filtered.length === 0 ? (
         <p className="mt-10 text-center text-[#475569]">No documents found matching your search.</p>
       ) : null}
     </div>

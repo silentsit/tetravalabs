@@ -11,7 +11,8 @@
     "typesense:index": "node scripts/index-to-typesense.mjs",
     "coa:sync-r2": "node scripts/sync-coa-r2.mjs",
     "coa:manifest:generate": "node scripts/generate-coa-manifest.mjs",
-    "import:tiered-pricing": "powershell -ExecutionPolicy Bypass -File scripts/import-tiered-pricing.ps1"
+    "import:tiered-pricing": "powershell -ExecutionPolicy Bypass -File scripts/import-tiered-pricing.ps1",
+    "import:price-list-usd": "python scripts/import-price-list-usd.py"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.888.0",

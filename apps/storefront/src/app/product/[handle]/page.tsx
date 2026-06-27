@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
 import { listProductReviews } from "@/lib/reviews"
 import { getRelatedProducts, slugifyCategory } from "@/lib/categories"
-import { getProductImage, getProductPurity, getProductDisplayName, getProductDisplaySubtitle, getProductStrengthLabel } from "@/lib/revamp/product-visual"
+import { getProductImage, getProductPurity, getProductDisplayName, getProductDisplaySubtitle, getProductStrengthLabel, getProductFullName, strengthAlreadyInName } from "@/lib/revamp/product-visual"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
 import { ProductDetailTabs } from "@/components/product-detail-tabs"
@@ -24,9 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cas = product.metadata?.cas_number ? ` CAS ${product.metadata.cas_number}.` : ""
   const displayName = getProductDisplayName(product)
   const strengthLabel = getProductStrengthLabel(product)
+  const productName = getProductFullName(displayName, strengthLabel)
   return buildPageMetadata({
-    title: `${displayName}${strengthLabel ? ` ${strengthLabel}` : ""} — ${category}`,
-    description: `${displayName} for laboratory research (RUO). ${getProductPurity(product)} purity with lot-linked COA.${cas}`,
+    title: `${productName} — ${category}`,
+    description: `${productName} for laboratory research (RUO). ${getProductPurity(product)} purity with lot-linked COA.${cas}`,
     path: `/product/${handle}`
   })
 }
@@ -52,6 +53,8 @@ export default async function ProductPage({ params }: Props) {
   const displayName = getProductDisplayName(product)
   const displaySubtitle = getProductDisplaySubtitle(product)
   const strengthLabel = getProductStrengthLabel(product)
+  const productName = getProductFullName(displayName, strengthLabel)
+  const showStrengthSeparately = strengthLabel && !strengthAlreadyInName(displayName, strengthLabel)
   const image = getProductImage(product)
   const categoryLabel = String(product.metadata?.source_category || "Research Product")
   const categorySlug = slugifyCategory(categoryLabel)
@@ -64,7 +67,7 @@ export default async function ProductPage({ params }: Props) {
           { label: "Home", href: "/" },
           { label: "Shop", href: "/shop" },
           { label: categoryLabel, href: `/category/${categorySlug}` },
-          { label: strengthLabel ? `${displayName} ${strengthLabel}` : displayName }
+          { label: productName }
         ]}
       />
 
@@ -81,7 +84,7 @@ export default async function ProductPage({ params }: Props) {
             <span className="section-label">{categoryLabel}</span>
             <h1 className="product-card-title mt-2 break-words text-3xl text-[#0F172A] sm:text-4xl">
               {displayName}
-              {strengthLabel ? (
+              {showStrengthSeparately ? (
                 <span className="ml-2 font-mono text-xl text-[#64748B] sm:text-2xl">{strengthLabel}</span>
               ) : null}
             </h1>

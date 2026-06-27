@@ -46,12 +46,14 @@ export type StoreCoaDocument = {
   metadata?: Record<string, unknown>
 }
 
+/** Same-origin proxy — avoids R2 CORS and cross-origin Medusa redirects in the browser. */
+export function coaViewerUrl(documentId: string) {
+  return `/api/coa-file?id=${encodeURIComponent(documentId)}`
+}
+
 function normalizeCoaDocumentUrl(doc: StoreCoaDocument): StoreCoaDocument {
-  const url = doc.document_url
-  if (!url || url.includes("example.com") || url.startsWith("r2://")) {
-    return { ...doc, document_url: `${MEDUSA_URL}/store/coas/${doc.id}/file` }
-  }
-  return doc
+  if (!doc.id) return doc
+  return { ...doc, document_url: coaViewerUrl(doc.id) }
 }
 
 const withHeaders = (headers: HeadersInit = {}) => ({

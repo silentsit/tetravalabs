@@ -5,6 +5,9 @@ import { getProductPriceRangeCents } from "@/lib/product-price"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 
+export const META_TITLE_MAX = 60
+export const META_DESCRIPTION_MAX = 160
+
 export type JsonLdGraph = Record<string, unknown>
 
 export const siteConfig = {
@@ -49,16 +52,63 @@ export function pageUrl(path = "") {
   return `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`
 }
 
+const BRAND_SUFFIX = ` | ${siteConfig.name}`
+
+function truncateMetaText(text: string, max: number) {
+  const normalized = text.replace(/\s+/g, " ").trim()
+  if (normalized.length <= max) return normalized
+
+  const slice = normalized.slice(0, max)
+  const lastSpace = slice.lastIndexOf(" ")
+  if (lastSpace >= Math.floor(max * 0.5)) {
+    return slice.slice(0, lastSpace).trim()
+  }
+
+  return slice.trim()
+}
+
+export function clampMetaDescription(description: string) {
+  return truncateMetaText(description, META_DESCRIPTION_MAX)
+}
+
+export function resolveMetaTitles(input: { title: string; absoluteTitle?: string }) {
+  if (input.absoluteTitle) {
+    const absolute = truncateMetaText(input.absoluteTitle.trim(), META_TITLE_MAX)
+    return {
+      documentTitle: { absolute } as Metadata["title"],
+      shortTitle: absolute,
+      fullTitle: absolute
+    }
+  }
+
+  let shortTitle = input.title.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim()
+
+  if (shortTitle.includes(siteConfig.name)) {
+    const absolute = truncateMetaText(shortTitle, META_TITLE_MAX)
+    return {
+      documentTitle: { absolute } as Metadata["title"],
+      shortTitle: absolute,
+      fullTitle: absolute
+    }
+  }
+
+  const maxShort = META_TITLE_MAX - BRAND_SUFFIX.length
+  shortTitle = truncateMetaText(shortTitle, maxShort)
+  const fullTitle = truncateMetaText(`${shortTitle}${BRAND_SUFFIX}`, META_TITLE_MAX)
+
+  return {
+    documentTitle: shortTitle,
+    shortTitle,
+    fullTitle
+  }
+}
+
 export function buildPageMetadata(input: PageMetaInput): Metadata {
-  const shortTitle = input.absoluteTitle
-    ? input.absoluteTitle.trim()
-    : input.title.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim()
-  const fullTitle = input.absoluteTitle
-    ? input.absoluteTitle.trim()
-    : shortTitle.includes(siteConfig.name)
-      ? shortTitle
-      : `${shortTitle} | ${siteConfig.name}`
-  const description = input.description || siteConfig.description
+  const { documentTitle, shortTitle, fullTitle } = resolveMetaTitles({
+    title: input.title,
+    absoluteTitle: input.absoluteTitle
+  })
+  const description = clampMetaDescription(input.description || siteConfig.description)
   const url = pageUrl(input.path)
   const ogImage = pageUrl(siteConfig.defaultOgImage)
 
@@ -81,7 +131,7 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
   }
 
   return {
-    title: input.absoluteTitle ? { absolute: input.absoluteTitle } : shortTitle,
+    title: documentTitle,
     description,
     keywords: siteConfig.keywords,
     alternates: { canonical: url },

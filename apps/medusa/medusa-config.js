@@ -2,9 +2,21 @@ const { defineConfig, loadEnv } = require("@medusajs/framework/utils")
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
+function normalizeDatabaseUrl(raw) {
+  let url = raw.trim()
+
+  url = url
+    .replace(/([?&])channel_binding=require&/i, "$1")
+    .replace(/([?&])channel_binding=require(?=&|$)/i, "")
+    .replace(/\?&/, "?")
+    .replace(/[?&]$/, "")
+
+  return url
+}
+
 function resolveDatabaseUrl() {
   const raw = process.env.DATABASE_URL?.trim()
-  if (raw) return raw
+  if (raw) return normalizeDatabaseUrl(raw)
 
   if ((process.env.NODE_ENV || "development") === "production") {
     throw new Error(

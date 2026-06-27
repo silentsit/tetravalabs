@@ -12,7 +12,14 @@ import { SiteHeader } from "@/components/site-header"
 import { SocialProofToast } from "@/components/social-proof-widget"
 import { TrustBar } from "@/components/trust-bar"
 import { resolvePageJsonLd } from "@/lib/json-ld-store"
-import { organizationJsonLd, siteConfig, websiteJsonLd, webPageJsonLd } from "@/lib/seo"
+import {
+  clampMetaDescription,
+  organizationJsonLd,
+  resolveMetaTitles,
+  siteConfig,
+  websiteJsonLd,
+  webPageJsonLd
+} from "@/lib/seo"
 import Script from "next/script"
 
 const inter = Inter({
@@ -40,18 +47,23 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono"
 })
 
+const defaultSiteTitle = resolveMetaTitles({
+  title: `${siteConfig.name} — ${siteConfig.tagline}`
+}).fullTitle
+const defaultSiteDescription = clampMetaDescription(siteConfig.description)
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: defaultSiteTitle,
     template: `%s | ${siteConfig.name}`
   },
-  description: siteConfig.description,
+  description: defaultSiteDescription,
   keywords: siteConfig.keywords,
   alternates: { canonical: siteConfig.url },
   openGraph: {
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description: siteConfig.description,
+    title: defaultSiteTitle,
+    description: defaultSiteDescription,
     url: siteConfig.url,
     siteName: siteConfig.name,
     locale: siteConfig.locale,
@@ -59,8 +71,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description
+    title: defaultSiteTitle,
+    description: defaultSiteDescription
   },
   robots: { index: true, follow: true },
   icons: {

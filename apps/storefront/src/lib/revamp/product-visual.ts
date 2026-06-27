@@ -395,3 +395,16 @@ export function getProductStrengthLabel(product: StoreProduct) {
   const match = product.handle.match(/(\d+mg)$/i)
   return match?.[1] || null
 }
+
+/** Avoid repeating strength when the catalog title already includes it (e.g. "Retatrutide 10mg"). */
+export function strengthAlreadyInName(displayName: string, strengthLabel: string | null) {
+  if (!strengthLabel) return false
+  const name = displayName.toLowerCase()
+  const strength = strengthLabel.toLowerCase()
+  return name.endsWith(strength) || name.includes(strength)
+}
+
+export function getProductFullName(displayName: string, strengthLabel: string | null) {
+  if (!strengthLabel || strengthAlreadyInName(displayName, strengthLabel)) return displayName
+  return `${displayName} ${strengthLabel}`
+}

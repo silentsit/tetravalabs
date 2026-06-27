@@ -25,7 +25,7 @@ import { buildPageMetadata } from "@/lib/seo"
 
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Research-Grade Peptides — Verified, Documented, Delivered",
+  title: "Research Peptides — Verified & Documented",
   description:
     "Shop HPLC-MS verified research peptides with lot-linked COAs, cold-chain shipping, and crypto checkout for qualified laboratories.",
   path: "/"

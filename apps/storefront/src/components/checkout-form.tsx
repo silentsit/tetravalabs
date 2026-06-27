@@ -6,10 +6,8 @@ import { useRouter } from "next/navigation"
 import { Bitcoin, CreditCard } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
-import { getMedusaStoreHeaders } from "@/lib/medusa-headers"
 import {
   CHECKOUT_CRYPTO_CATALOG,
-  loadCheckoutPaymentOptions,
   type CheckoutCryptoOption
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
@@ -587,6 +585,7 @@ export function CheckoutForm() {
   const [loading, setLoading] = useState(false)
   const [restrictedCountries, setRestrictedCountries] = useState<string[]>([])
   const [cardAvailable, setCardAvailable] = useState(false)
+  const [paymentOptionsLoaded, setPaymentOptionsLoaded] = useState(false)
   const [cryptoLive, setCryptoLive] = useState(false)
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
@@ -693,20 +692,33 @@ export function CheckoutForm() {
   }, [])
 
   useEffect(() => {
-    const medusaUrl = (process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(/\/$/, "")
-    void loadCheckoutPaymentOptions(fetch, medusaUrl, getMedusaStoreHeaders()).then((options) => {
-      setCardAvailable(options.cardAvailable)
-      setCryptoLive(options.cryptoLive)
-      setCryptoOptions(options.cryptoOptions)
+    void fetch("/api/checkout-payment-options", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error("Unable to load payment options")
+        return response.json()
+      })
+      .then((data) => {
+        if (!data?.ok) return
 
-      const preferred = options.cryptoOptions.find((item) => item.asset === "BTC")
-      if (preferred) setSelectedAsset(preferred.asset)
-      else if (options.cryptoOptions[0]?.asset) setSelectedAsset(options.cryptoOptions[0].asset)
+        setCardAvailable(Boolean(data.cardAvailable))
+        setCryptoLive(Boolean(data.cryptoLive))
+        setCryptoOptions(Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG)
 
-      if (!options.cardAvailable && options.cryptoLive) {
-        setPaymentMethod("crypto")
-      }
-    })
+        const options = Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG
+        const preferred = options.find((item: CheckoutCryptoOption) => item.asset === "BTC")
+        if (preferred) setSelectedAsset(preferred.asset)
+        else if (options[0]?.asset) setSelectedAsset(options[0].asset)
+
+        if (!data.cardAvailable && data.cryptoLive) {
+          setPaymentMethod("crypto")
+        }
+      })
+      .catch(() => {
+        // Keep card visible; submit handler still validates availability.
+      })
+      .finally(() => {
+        setPaymentOptionsLoaded(true)
+      })
   }, [])
 
   useEffect(() => {
@@ -1073,29 +1085,37 @@ export function CheckoutForm() {
           <section className="card bg-[#F0FDFA] p-5 sm:p-6">
               <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h3>
 
-              {cardAvailable ? (
-                <label className={methodCardClass(paymentMethod === "card")}>
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    value="card"
-                    checked={paymentMethod === "card"}
-                    onChange={() => setPaymentMethod("card")}
-                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
-                  />
-                  <span className="flex min-w-0 flex-1 flex-col gap-1">
-                    <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                      <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
-                      Credit / debit card
-                    </span>
-                    <span className="text-xs leading-relaxed text-[#64748B]">
-                      Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
-                    </span>
+              <label
+                className={`${methodCardClass(paymentMethod === "card")} ${paymentOptionsLoaded && !cardAvailable ? "opacity-70" : ""}`}
+              >
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="card"
+                  checked={paymentMethod === "card"}
+                  onChange={() => setPaymentMethod("card")}
+                  disabled={paymentOptionsLoaded && !cardAvailable}
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
+                />
+                <span className="flex min-w-0 flex-1 flex-col gap-1">
+                  <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
+                    <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                    Credit / debit card
                   </span>
-                </label>
-              ) : null}
+                  <span className="text-xs leading-relaxed text-[#64748B]">
+                    Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
+                  </span>
+                  {!paymentOptionsLoaded ? (
+                    <span className="text-xs text-[#64748B]">Checking card availability…</span>
+                  ) : !cardAvailable ? (
+                    <span className="text-xs text-amber-700">
+                      Card gateway did not respond — refresh the page or use cryptocurrency below.
+                    </span>
+                  ) : null}
+                </span>
+              </label>
 
-              <label className={`${methodCardClass(paymentMethod === "crypto")} ${cardAvailable ? "mt-3" : ""}`}>
+              <label className={`${methodCardClass(paymentMethod === "crypto")} mt-3`}>
                 <input
                   type="radio"
                   name="payment_method"

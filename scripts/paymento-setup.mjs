@@ -11,7 +11,7 @@ import path from "node:path"
 
 dotenv.config({ path: path.join("apps", "medusa", ".env") })
 
-const medusaUrl = (process.env.MEDUSA_ADMIN_URL || "https://tetrava-medusa.onrender.com").replace(
+const medusaUrl = (process.env.MEDUSA_ADMIN_URL || "https://tetrava-medusa-i44n.onrender.com").replace(
   /\/$/,
   ""
 )

@@ -1,10 +1,10 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../../lib/db"
-import { getCoaSignedUrl, isR2Configured, resolveCoaDocumentUrl } from "../../../../../lib/r2-storage"
+import { getCoaObject, isR2Configured } from "../../../../../lib/r2-storage"
 
 /**
  * GET /store/coas/:id/file
- * Redirects to a signed R2 URL when the bucket is private (no R2_PUBLIC_BASE_URL).
+ * Streams the COA/HPLC file from R2 using server credentials (works even when the public r2.dev URL is private).
  */
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const id = String(req.params?.id || "").trim()
@@ -16,7 +16,7 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     async (db) => {
       const result = await db.query(
         `
-        SELECT id, document_url, storage_key
+        SELECT id, document_url, storage_key, metadata
         FROM lab_batch_documents
         WHERE id = $1
         LIMIT 1
@@ -32,20 +32,28 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     return res.status(404).json({ message: "Document not found" })
   }
 
-  const publicUrl = resolveCoaDocumentUrl(row.document_url, row.storage_key)
-  if (publicUrl && !publicUrl.includes("example.com") && !publicUrl.startsWith("r2://")) {
-    return res.redirect(publicUrl, 302)
-  }
+  const storageKey =
+    (typeof row.storage_key === "string" && row.storage_key.trim()) ||
+    (typeof row.document_url === "string" && row.document_url.startsWith("r2://")
+      ? row.document_url.slice("r2://".length)
+      : "")
 
-  if (!isR2Configured() || !row.storage_key) {
+  if (!storageKey) {
     return res.status(404).json({ message: "Document file is not available" })
   }
 
+  if (!isR2Configured()) {
+    return res.status(503).json({ message: "Document storage is not configured" })
+  }
+
   try {
-    const signedUrl = await getCoaSignedUrl(row.storage_key)
-    return res.redirect(signedUrl, 302)
+    const { body, contentType } = await getCoaObject(storageKey)
+    res.setHeader("Content-Type", contentType)
+    res.setHeader("Cache-Control", "public, max-age=3600")
+    return res.status(200).send(body)
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unable to sign COA URL"
-    return res.status(502).json({ message })
+    const message = error instanceof Error ? error.message : "Unable to load COA file"
+    console.error("[coa-file]", id, message)
+    return res.status(404).json({ message: "Document file is not available" })
   }
 }

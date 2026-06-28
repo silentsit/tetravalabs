@@ -15,7 +15,7 @@ const storefrontUrl = (process.env.SMOKE_STOREFRONT_URL || "https://tetravalabs.
   ""
 )
 const medusaUrl = (
-  process.env.SMOKE_MEDUSA_URL || "https://tetrava-medusa.onrender.com"
+  process.env.SMOKE_MEDUSA_URL || "https://tetrava-medusa-i44n.onrender.com"
 ).replace(/\/$/, "")
 const publishableKey =
   process.env.SMOKE_MEDUSA_PUBLISHABLE_KEY ||

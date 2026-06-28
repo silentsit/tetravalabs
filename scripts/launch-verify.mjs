@@ -10,7 +10,7 @@ import { loadDeployEnv } from "./load-env.mjs"
 const { storefront } = await loadDeployEnv()
 
 const storefrontUrl = (process.env.SMOKE_STOREFRONT_URL || "https://tetravalabs.com").replace(/\/$/, "")
-const medusaUrl = (process.env.SMOKE_MEDUSA_URL || "https://tetrava-medusa.onrender.com").replace(
+const medusaUrl = (process.env.SMOKE_MEDUSA_URL || "https://tetrava-medusa-i44n.onrender.com").replace(
   /\/$/,
   ""
 )

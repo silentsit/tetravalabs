@@ -19,7 +19,7 @@ import path from "node:path"
 import { loadDeployEnv } from "./load-env.mjs"
 
 const PRODUCTION_MEDUSA_URL =
-  (process.env.MEDUSA_ADMIN_URL || "https://tetrava-medusa.onrender.com").replace(/\/$/, "")
+  (process.env.MEDUSA_ADMIN_URL || "https://tetrava-medusa-i44n.onrender.com").replace(/\/$/, "")
 const PRODUCTION_STOREFRONT_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.PRODUCTION_STOREFRONT_URL ||

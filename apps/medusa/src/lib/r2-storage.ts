@@ -95,3 +95,23 @@ export async function getCoaSignedUrl(storageKey: string, expiresInSeconds = 360
     { expiresIn: expiresInSeconds }
   )
 }
+
+export async function getCoaObject(storageKey: string) {
+  const { client: s3, bucket } = getClient()
+  const response = await s3.send(
+    new GetObjectCommand({
+      Bucket: bucket,
+      Key: storageKey.replace(/^\/+/, "")
+    })
+  )
+
+  const body = await response.Body?.transformToByteArray()
+  if (!body?.length) {
+    throw new Error("COA object is empty")
+  }
+
+  return {
+    body: Buffer.from(body),
+    contentType: response.ContentType || "application/pdf"
+  }
+}

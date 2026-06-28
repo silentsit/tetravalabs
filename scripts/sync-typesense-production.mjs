@@ -19,7 +19,7 @@ const workspaceRoot = path.resolve(__dirname, "..")
 dotenv.config({ path: path.join(workspaceRoot, "apps", "medusa", ".env") })
 
 const dryRun = process.argv.includes("--dry-run")
-const medusaUrl = (process.env.MEDUSA_ADMIN_URL || "https://tetrava-medusa.onrender.com").replace(/\/$/, "")
+const medusaUrl = (process.env.MEDUSA_ADMIN_URL || "https://tetrava-medusa-i44n.onrender.com").replace(/\/$/, "")
 const secret = process.env.TYPESENSE_SYNC_SECRET?.trim()
 
 if (!secret) {

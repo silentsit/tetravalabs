@@ -21,6 +21,8 @@ export async function GET(req: Request) {
   })
 
   if (!upstream.ok) {
+    const detail = await upstream.text().catch(() => "")
+    console.error("[coa-file] upstream failed", upstream.status, MEDUSA_URL, id, detail.slice(0, 200))
     return NextResponse.json({ message: "COA file not found" }, { status: upstream.status })
   }
 

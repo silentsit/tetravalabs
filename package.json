@@ -54,12 +54,16 @@
   "overrides": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "@medusajs/dashboard": {
       "@types/react": "18.3.31"
     }
   },
   "devDependencies": {
     "@sanity/client": "^6.29.1",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "next": "^15.5.19",
     "patch-package": "^8.0.1",
     "ts-node": "^10.9.2"

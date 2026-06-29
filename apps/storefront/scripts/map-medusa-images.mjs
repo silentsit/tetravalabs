@@ -208,7 +208,6 @@ function candidateStems(handle) {
   stems.add(handle.replace(/bpc-157-capsules-100ct/i, "bpc157-capsules"))
   stems.add(handle.replace(/bpc-157-capsules-100ct/i, "bpc-157-capsules-500mcg"))
   stems.add(handle.replace(/^igf-1-lr3-0-1mg$/i, "igf-1-des-1mg"))
-  stems.add(handle.replace(/^vip-10mg$/i, "selank-10mg"))
   return [...stems]
 }
 
@@ -248,13 +247,28 @@ async function run() {
   console.log(`Images in ${imagesDir}: ${imageFiles.length}`)
   console.log(`Custom mappings: ${Object.keys(customMappings).length}`)
 
-  const products = await fetchMedusaProducts()
-  console.log(`Medusa products fetched: ${products.length}`)
-
   const catalogSet = catalogHandles ? new Set(catalogHandles) : null
-  const targetProducts = catalogSet
-    ? products.filter((product) => catalogSet.has(product.handle))
-    : products
+  let products = []
+  let productSource = "medusa"
+
+  try {
+    products = await fetchMedusaProducts()
+    console.log(`Medusa products fetched: ${products.length}`)
+  } catch (error) {
+    if (!catalogHandles?.length) {
+      throw error
+    }
+    productSource = "catalog"
+    console.warn(
+      `Medusa unavailable (${error?.message || error}); mapping from catalog handles only.`
+    )
+    products = catalogHandles.map((handle) => ({ handle, title: handle }))
+  }
+
+  const targetProducts =
+    catalogSet && productSource === "medusa"
+      ? products.filter((product) => catalogSet.has(product.handle))
+      : products
 
   if (catalogSet) {
     console.log(`Catalog-filtered products: ${targetProducts.length}`)
@@ -264,13 +278,25 @@ async function run() {
   const mapped = []
   const unmapped = []
 
-  for (const product of targetProducts) {
-    const image = resolveImage(product.handle, byStem, customMappings, availableSet)
+  const mapHandle = (handle, title = handle) => {
+    const image = resolveImage(handle, byStem, customMappings, availableSet)
     if (image) {
-      imageMap[product.handle] = image
-      mapped.push({ handle: product.handle, title: product.title, image })
+      imageMap[handle] = image
+      mapped.push({ handle, title, image })
     } else {
-      unmapped.push({ handle: product.handle, title: product.title })
+      unmapped.push({ handle, title })
+    }
+  }
+
+  for (const product of targetProducts) {
+    mapHandle(product.handle, product.title)
+  }
+
+  if (catalogSet && productSource === "medusa") {
+    for (const handle of catalogHandles) {
+      if (!imageMap[handle]) {
+        mapHandle(handle)
+      }
     }
   }
 
@@ -281,13 +307,15 @@ async function run() {
   const report = {
     generated_at: new Date().toISOString(),
     medusa_url: MEDUSA_URL,
-    total_products: targetProducts.length,
-    mapped: mapped.length,
+    product_source: productSource,
+    total_products: catalogSet ? catalogHandles.length : targetProducts.length,
+    mapped: Object.keys(imageMap).length,
     unmapped: unmapped.length,
     unmapped_products: unmapped
   }
 
-  console.log(`\nMapped: ${mapped.length} / ${targetProducts.length}`)
+  const totalTargets = catalogSet ? catalogHandles.length : targetProducts.length
+  console.log(`\nMapped: ${Object.keys(imageMap).length} / ${totalTargets}`)
   if (unmapped.length) {
     console.log("\nUnmapped products:")
     for (const item of unmapped) {

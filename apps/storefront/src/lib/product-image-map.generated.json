@@ -19,7 +19,6 @@
   "bpc-157-5mg-tb500-5mg-10mg": "/products/v2/bpc-tb500-blend-10mg.png",
   "bpc-157-5mg-tb500-5mg-20mg": "/products/v2/bpc157-tb500-blend-20mg.png",
   "bpc-157-capsules-100-count-500mcg": "/products/v2/bpc157-capsules.png",
-  "bpc-157-capsules-100ct": "/products/v2/bpc157-capsules.png",
   "bremelanotide-10mg": "/products/v2/bremelanotide-10mg.png",
   "bremelanotide-5mg": "/products/v2/bremelanotide-5mg.png",
   "cagrilintide-10mg": "/products/v2/cagrilintide-10mg.png",
@@ -27,8 +26,6 @@
   "cagrilintide-semaglutide-10mg": "/products/v2/cagrilintide-semaglutide-10mg.png",
   "cagrilintide-semaglutide-5mg": "/products/v2/cagrilintide-semaglutide-5mg.png",
   "cerebrolysin-10mg": "/products/v2/cerebrolysin-10mg.png",
-  "cjc-1295-ipamorelin-blend-10mg": "/products/v2/cjc1295-ipa-blend-10mg.png",
-  "cjc-1295-sermorelin-ipamorelin-blend-5mg": "/products/v2/cjc-serm-ipa-blend-5mg.png",
   "cjc-1295-with-dac-10mg": "/products/v2/cjc1295-dac-10mg.png",
   "cjc-1295-with-dac-5mg": "/products/v2/cjc1295-dac-5mg.png",
   "cjc-1295-without-dac-10mg": "/products/v2/cjc1295-no-dac-10mg.png",
@@ -51,8 +48,6 @@
   "ghrp-2-acetate-5mg": "/products/v2/ghrp2-5mg.png",
   "ghrp-6-acetate-10mg": "/products/v2/ghrp6-10mg.png",
   "ghrp-6-acetate-5mg": "/products/v2/ghrp6-5mg.png",
-  "glow-blend-30mg": "/products/v2/glow-blend-30mg.png",
-  "glow-blend-85mg": "/products/v2/glow-blend-85mg.png",
   "glow-bpc-157-tb500-ghk-cu-30mg": "/products/v2/glow-blend-30mg.png",
   "glow-bpc-157-tb500-ghk-cu-85mg": "/products/v2/glow-blend-85mg.png",
   "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": "/products/v2/glow-enhanced-70mg.png",
@@ -97,9 +92,6 @@
   "nad-1000mg": "/products/v2/nad-1000mg.png",
   "nad-100mg": "/products/v2/nad-100mg.png",
   "nad-500mg": "/products/v2/nad-500mg.png",
-  "nad-plus-1000mg": "/products/v2/nad-1000mg.png",
-  "nad-plus-100mg": "/products/v2/nad-100mg.png",
-  "nad-plus-500mg": "/products/v2/nad-500mg.png",
   "oxytocin-acetate-10mg": "/products/v2/oxytocin-10mg.png",
   "oxytocin-acetate-2mg": "/products/v2/oxytocin-2mg.png",
   "oxytocin-acetate-5mg": "/products/v2/oxytocin-5mg.png",
@@ -135,6 +127,5 @@
   "tirzepatide-10mg": "/products/v2/tirzepatide-10mg.png",
   "tirzepatide-20mg": "/products/v2/tirzepatide-20mg.png",
   "tirzepatide-50mg": "/products/v2/tirzepatide-50mg.png",
-  "tirzepatide-5mg": "/products/v2/tirzepatide-5mg.png",
-  "vip-10mg": "/products/v2/selank-10mg.png"
+  "tirzepatide-5mg": "/products/v2/tirzepatide-5mg.png"
 }

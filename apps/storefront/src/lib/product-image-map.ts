@@ -1,7 +1,5 @@
 /**
- * Maps product handles → v2 PNG assets (white-background v2-photos-white).
- * Source: Minor fixes/tetravalabs-shop-revamp/images/v2-photos-white/
- * Deploy: apps/storefront/public/products/v2/ (npm run sync:v2-images)
+ * Maps product handles → v2 PNG assets in apps/storefront/public/products/v2/.
  * Regenerate mappings: npm run map:images
  * Homepage featured row uses the same PNG map for curated heroes.
  */

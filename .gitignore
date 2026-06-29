@@ -9,5 +9,27 @@ dist/
 !.env.example
 *.log
 coverage/
+.cursor-restore/
 
 .vercel
+
+# Legacy / abandoned storefront prototypes — never commit again
+/app/
+/revamp/
+/Minor fixes/
+/logo/
+/Medusa/
+cursor_master_prompt_conversations.md
+
+# Local scratch / one-off scripts (not part of the app)
+/tmp-*
+/meta-inventory*
+/biotech_*
+/deep_dive_prices.json
+/*_prices.py
+/fetch_biotech*.py
+/match_biotech.py
+/more_prices.py
+/scrape_prices.py
+/search_snippets.py
+/tools/fix-tetravalabs-chats.js

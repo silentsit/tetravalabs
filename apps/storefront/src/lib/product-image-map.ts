@@ -1,5 +1,6 @@
 /**
  * Maps product handles → v2 PNG assets in apps/storefront/public/products/v2/.
+ * Source archive: v2-photos-white/ at repo root (npm run sync:v2-images).
  * Regenerate mappings: npm run map:images
  * Homepage featured row uses the same PNG map for curated heroes.
  */

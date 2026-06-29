@@ -16,10 +16,12 @@ coverage/
 # Legacy / abandoned storefront prototypes — never commit again
 /app/
 /revamp/
-/Minor fixes/
 /logo/
 /Medusa/
 cursor_master_prompt_conversations.md
+
+# Kimi export scratch only (product source lives in v2-photos-white/ + public/products/v2/)
+/Minor fixes/
 
 # Local scratch / one-off scripts (not part of the app)
 /tmp-*

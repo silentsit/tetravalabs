@@ -76,8 +76,8 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: "/brand/tetravalabs-icon.jpg",
-    apple: "/brand/tetravalabs-icon.jpg"
+    icon: "/brand/8_1.png",
+    apple: "/brand/8_1.png"
   }
 }
 

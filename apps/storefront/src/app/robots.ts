@@ -15,7 +15,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: ["/", "/llms.txt", "/blog", "/shop", "/coa-library", "/faq"]
       }
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap_index.xml`,
     host: baseUrl
   }
 }

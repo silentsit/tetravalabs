@@ -4,7 +4,10 @@ import { listBlogPosts } from "@/lib/sanity"
 
 export const SITEMAP_REVALIDATE_SECONDS = 3600
 export const PRODUCT_SITEMAP_CHUNK_SIZE = 50_000
-export const SITEMAP_XSL_PATH = "/main-sitemap.xsl"
+export function getSitemapXslHref() {
+  const host = new URL(getSitemapBaseUrl()).host
+  return `//${host}/main-sitemap.xsl`
+}
 
 export type SitemapUrlEntry = {
   loc: string
@@ -38,12 +41,21 @@ export function getSitemapBaseUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 }
 
-export function childSitemapPath(id: string) {
+/** Rank Math / WooCommerce-style public sitemap URLs (Bangkok Peptides pattern). */
+export function publicChildSitemapPath(id: string) {
+  if (id === "posts") return "/post-sitemap.xml"
+  if (id === "pages") return "/page-sitemap.xml"
+  if (id === "categories") return "/category-sitemap.xml"
+  if (id === "products-0") return "/product-sitemap.xml"
+  if (id.startsWith("products-")) {
+    const chunk = id.slice("products-".length)
+    return chunk === "0" ? "/product-sitemap.xml" : `/product-sitemap-${chunk}.xml`
+  }
   return `/sitemap/${id}.xml`
 }
 
 function xmlDeclaration(body: string) {
-  return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="${SITEMAP_XSL_PATH}"?>\n${body}`
+  return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="${getSitemapXslHref()}"?>\n${body}`
 }
 
 function escapeXml(value: string) {
@@ -81,6 +93,28 @@ export function renderSitemapIndex(entries: Array<{ loc: string; lastModified?: 
 
   return xmlDeclaration(
     `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`
+  )
+}
+
+export function renderSitemapUrlSet(entries: SitemapUrlEntry[]) {
+  const items = entries
+    .map((entry) => {
+      const parts = [`    <loc>${escapeXml(entry.loc)}</loc>`]
+      if (entry.lastModified) {
+        parts.push(`    <lastmod>${formatSitemapDate(entry.lastModified)}</lastmod>`)
+      }
+      if (entry.changeFrequency) {
+        parts.push(`    <changefreq>${entry.changeFrequency}</changefreq>`)
+      }
+      if (entry.priority != null) {
+        parts.push(`    <priority>${entry.priority.toFixed(1)}</priority>`)
+      }
+      return `  <url>\n${parts.join("\n")}\n  </url>`
+    })
+    .join("\n")
+
+  return xmlDeclaration(
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</urlset>\n`
   )
 }
 
@@ -161,15 +195,13 @@ export async function getSitemapIds(): Promise<Array<{ id: string }>> {
   const products = await getAllProductSitemapEntries()
   const chunkCount = Math.max(1, Math.ceil(products.length / PRODUCT_SITEMAP_CHUNK_SIZE))
 
-  const ids: Array<{ id: string }> = [
-    { id: "posts" },
-    { id: "pages" },
-    { id: "categories" }
-  ]
+  const ids: Array<{ id: string }> = [{ id: "posts" }, { id: "pages" }]
 
   for (let index = 0; index < chunkCount; index += 1) {
     ids.push({ id: `products-${index}` })
   }
+
+  ids.push({ id: "categories" })
 
   return ids
 }
@@ -195,7 +227,7 @@ export async function getSitemapIndexEntries() {
     if (entry.id.startsWith("products-")) lastModified = productLastModified
 
     return {
-      loc: `${baseUrl}${childSitemapPath(entry.id)}`,
+      loc: `${baseUrl}${publicChildSitemapPath(entry.id)}`,
       lastModified
     }
   })

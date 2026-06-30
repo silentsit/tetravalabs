@@ -103,7 +103,7 @@ await check("Medusa search proxy", async () => {
 })
 
 await check("Sitemap", async () => {
-  const r = await fetch(`${storefrontUrl}/sitemap.xml`)
+  const r = await fetch(`${storefrontUrl}/sitemap_index.xml`)
   if (!r.ok) return false
   const xml = await r.text()
   return xml.includes("/shop") && xml.includes("/blog")

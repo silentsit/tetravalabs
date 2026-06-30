@@ -133,7 +133,7 @@
               <xsl:otherwise>
                 <div style="padding: 20px 20px 0;">
                   <p class="expl">
-                    <a href="/sitemap.xml">← Back to sitemap index</a>
+                    <a href="/sitemap_index.xml">← Back to sitemap index</a>
                   </p>
                   <span class="count">
                     <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> URLs

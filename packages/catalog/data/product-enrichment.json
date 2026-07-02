@@ -87,5 +87,325 @@
     "cas_number": "42437-96-7",
     "storage": "Room temperature, dry",
     "appearance": "White powder"
+  },
+  "5-amino-1mq": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "42437-96-7"
+  },
+  "AICAR": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "2627-69-2"
+  },
+  "ARA-290": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "1208243-50-8"
+  },
+  "Acetic Acid Water": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "64-19-7"
+  },
+  "Adamax": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "2920938-90-3"
+  },
+  "Adipotide": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "859216-15-2"
+  },
+  "B-12": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "68-19-9"
+  },
+  "BPC-157 (Capsules)": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "137525-51-0"
+  },
+  "BPC-157 5mg + TB500 5mg (10mg)": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "137525-51-0"
+  },
+  "BPC-157 5mg + TB500 5mg (20mg)": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "137525-51-0"
+  },
+  "Bacteriostatic Water": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "7732-18-5"
+  },
+  "Benzyl Alcohol": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "100-51-6"
+  },
+  "Bremelanotide": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "189691-06-3"
+  },
+  "CJC-1295 without DAC / Ipamorelin Blend": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "446262-90-4"
+  },
+  "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "446262-90-4"
+  },
+  "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg (80mg)": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "89030-95-5"
+  },
+  "Cagrilintide + Semaglutide": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "1415456-99-3"
+  },
+  "Cerebrolysin": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "12656-61-0"
+  },
+  "DSIP": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "62568-57-4"
+  },
+  "Dermorphin": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "77614-16-5"
+  },
+  "Dihexa": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "1401708-83-5"
+  },
+  "Epithalon": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "307297-39-8"
+  },
+  "FOXO4-DRI": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "2460055-10-9"
+  },
+  "GHK-Cu": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "89030-95-5"
+  },
+  "GHRP-2 Acetate": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "158861-67-7"
+  },
+  "GHRP-6 Acetate": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "87616-84-0"
+  },
+  "Glow BPC-157 + TB500 + GHK-Cu": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "137525-51-0"
+  },
+  "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg (70mg)": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "137525-51-0"
+  },
+  "Glutathione": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "70-18-8"
+  },
+  "Gonadorelin": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "33515-09-2"
+  },
+  "HCG": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "9002-61-3"
+  },
+  "HGH 191aa": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "12629-01-5"
+  },
+  "HMG": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "9002-68-0"
+  },
+  "Hexarelin Acetate": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "140703-51-1"
+  },
+  "Humanin": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "330936-69-1"
+  },
+  "IGF-1 LR3": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "946870-92-4"
+  },
+  "IGF-1 LR3 0.1mg": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "946870-92-4"
+  },
+  "KPV": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "67727-97-3"
+  },
+  "Kisspeptin-10": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "373566-79-9"
+  },
+  "L-Carnitine 600mg (10ml)": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "541-15-1"
+  },
+  "L-Glu": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "56-85-9"
+  },
+  "LL-37": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "154947-66-7"
+  },
+  "Lemon Bottle": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "83-88-5"
+  },
+  "Lipo-C": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "67-48-1"
+  },
+  "MGF": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "80214-83-1"
+  },
+  "MK-677": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "159752-10-0"
+  },
+  "MOTS-c": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "1627580-64-6"
+  },
+  "Mazdutide": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "2259884-03-0"
+  },
+  "Melanotan 1": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "75921-69-6"
+  },
+  "Melanotan 2": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "121062-08-6"
+  },
+  "NAD+": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "53-84-1"
+  },
+  "Oxytocin Acetate": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "50-56-6"
+  },
+  "PEG-MGF": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "108174-48-7"
+  },
+  "Pinealon": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "175175-23-2"
+  },
+  "Pinealon (Capsules) (100 count)": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "175175-23-2"
+  },
+  "SS-31": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "736992-21-5"
+  },
+  "Selank": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "129954-34-3"
+  },
+  "Semax": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "80714-61-0"
+  },
+  "Sermorelin": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "86168-78-7"
+  },
+  "Snap-8": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "868844-74-0"
+  },
+  "Survodutide": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "2805997-46-8"
+  },
+  "Thymalin": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "63958-90-7"
+  },
+  "Thymosin alpha-1": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "62304-98-7"
+  },
+  "VIP": {
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "cas_number": "37221-79-7"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "name": "TetravaLabs Label Template Generator",
+  "id": "tetravalabs-label-generator",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma", "figjam"],
+  "networkAccess": {
+    "allowedDomains": ["https://cdn.jsdelivr.net"]
+  }
+}

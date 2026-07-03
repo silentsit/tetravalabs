@@ -35,3 +35,19 @@ cursor_master_prompt_conversations.md
 /scrape_prices.py
 /search_snippets.py
 /tools/fix-tetravalabs-chats.js
+
+# Label pipeline generated artifacts
+/tools/label-pipeline/figma_labels/
+/tools/label-pipeline/curved_labels_rgba/
+/tools/label-pipeline/final_product_shots/
+/tools/label-pipeline/final_product_shots_blender/
+/tools/label-pipeline/assets/vial_template.blend
+/output/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local IDE / build scratch
+.cursor/
+*.tsbuildinfo

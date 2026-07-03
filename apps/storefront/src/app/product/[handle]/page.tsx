@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
 import { listProductReviews } from "@/lib/reviews"
 import { getRelatedProducts, slugifyCategory } from "@/lib/categories"
+import { shopNavLabel } from "@/lib/shop-filters"
 import { getProductImage, getProductPurity, getProductDisplayName, getProductDisplaySubtitle, getProductStrengthLabel, getProductFullName, strengthAlreadyInName } from "@/lib/revamp/product-visual"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
@@ -65,7 +66,7 @@ export default async function ProductPage({ params }: Props) {
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
-          { label: "Shop", href: "/shop" },
+          { label: shopNavLabel, href: "/shop" },
           { label: categoryLabel, href: `/category/${categorySlug}` },
           { label: productName }
         ]}
@@ -132,7 +133,7 @@ export default async function ProductPage({ params }: Props) {
           <h2 className="mb-6 font-serif text-2xl text-[#0F172A]">Related Compounds</h2>
           <div className="product-card-grid">
             {related.map((item) => (
-              <ProductCard key={item.id} product={item} />
+              <ProductCard key={item.id} product={item} variant="featured" />
             ))}
           </div>
         </section>

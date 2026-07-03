@@ -9,8 +9,10 @@ import { getFeaturedProductImage, getProductImage } from "@/lib/product-image-ma
 import {
   getPrimaryVariant,
   getProductDisplayName,
+  getProductDisplaySubtitle,
   getProductPrice,
-  isBlendProduct
+  isBlendProduct,
+  isCapsuleProduct
 } from "@/lib/revamp/product-visual"
 import {
   formatShelfPriceFromProduct,
@@ -25,8 +27,6 @@ interface ProductCardProps {
   variant?: "shop" | "default" | "featured"
   /** Optional override (e.g. photorealistic PNG on homepage featured row) */
   imageOverride?: string
-  /** Optional category line under price (shop grid) */
-  categoryLabel?: string
 }
 
 function productNeedsOptions(product: StoreProduct): boolean {
@@ -36,12 +36,12 @@ function productNeedsOptions(product: StoreProduct): boolean {
 export function ProductCard({
   product,
   variant = "shop",
-  imageOverride,
-  categoryLabel
+  imageOverride
 }: ProductCardProps) {
   const { addItem } = useCart()
   const variantRow = getPrimaryVariant(product)
   const displayName = getProductDisplayName(product)
+  const capsuleSubtitle = isCapsuleProduct(product) ? getProductDisplaySubtitle(product) : null
   const packTiers = packTiersFromVariants(product.variants || [])
   const cartPackTier = packTiers[0] ?? null
   const fallbackCartPrice = getProductPrice(product)
@@ -74,6 +74,7 @@ export function ProductCard({
   const shelfPrice = formatShelfPriceFromProduct(product)
   const needsOptions = productNeedsOptions(product)
   const productHref = `/product/${product.handle}`
+  const TitleTag = variant === "shop" ? "h2" : "h3"
 
   if (variant === "default") {
     return (
@@ -97,6 +98,9 @@ export function ProductCard({
             <h3 className="product-card-title text-[15px] leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
               {displayName}
             </h3>
+            {capsuleSubtitle ? (
+              <p className="mt-0.5 text-xs leading-snug text-[#64748B]">{capsuleSubtitle}</p>
+            ) : null}
           </Link>
           <div className="mt-auto flex items-end justify-between gap-2 pt-3">
             <ShelfPriceLabel shelf={shelfPrice} variant="default" />
@@ -136,15 +140,17 @@ export function ProductCard({
         </div>
 
         <div className="flex flex-col px-3.5 pb-2 pt-1">
-          <h3 className="product-card-title line-clamp-2 text-base font-bold leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488] min-[480px]:min-h-[2.5em]">
+          <TitleTag
+            className={`product-card-title line-clamp-2 text-base font-bold leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488] ${
+              capsuleSubtitle ? "" : "min-[480px]:min-h-[2.5em]"
+            }`}
+          >
             {displayName}
-          </h3>
-          <ShelfPriceLabel shelf={shelfPrice} variant="shop" />
-          {categoryLabel ? (
-            <p className="mt-1 text-xs font-medium uppercase tracking-wider text-[#94A3B8]">
-              {categoryLabel}
-            </p>
+          </TitleTag>
+          {capsuleSubtitle ? (
+            <p className="mt-0.5 text-sm leading-snug text-[#64748B]">{capsuleSubtitle}</p>
           ) : null}
+          <ShelfPriceLabel shelf={shelfPrice} variant="shop" />
         </div>
       </Link>
 

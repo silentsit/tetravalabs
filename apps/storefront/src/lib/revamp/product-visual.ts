@@ -379,19 +379,51 @@ export function isGlowBlendProduct(product: StoreProduct) {
   return GLOW_BLEND_HANDLES.has(product.handle) || product.handle.startsWith("glow-blend-")
 }
 
+const BPC_TB500_BLEND_NAMES: Record<string, string> = {
+  "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 Blend (10mg)",
+  "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 Blend (20mg)"
+}
+
+const CAPSULE_CARD_COPY: Record<string, { name: string; subtitle: string }> = {
+  "bpc-157-capsules-100-count-500mcg": {
+    name: "BPC-157 capsules",
+    subtitle: "100 capsules, (500mcg/capsule)"
+  },
+  "pinealon-capsules-100-count": {
+    name: "Pinealon capsules",
+    subtitle: "100 capsules"
+  }
+}
+
+export function isCapsuleProduct(product: StoreProduct) {
+  if (product.handle in CAPSULE_CARD_COPY) return true
+  const visual = String(product.metadata?.visual_type || "")
+  if (visual === "capsule") return true
+  if (product.handle.includes("capsule")) return true
+  return /capsule/i.test(product.title)
+}
+
 export function getProductDisplayName(product: StoreProduct) {
   if (isGlowBlendProduct(product)) return "Glow Blend"
+  const bpcTb500Name = BPC_TB500_BLEND_NAMES[product.handle]
+  if (bpcTb500Name) return bpcTb500Name
+  const capsuleCopy = CAPSULE_CARD_COPY[product.handle]
+  if (capsuleCopy) return capsuleCopy.name
   return product.title
 }
 
 export function getProductDisplaySubtitle(product: StoreProduct) {
   if (isGlowBlendProduct(product)) return "BPC-157 + TB-500 + GHK-Cu"
+  const capsuleCopy = CAPSULE_CARD_COPY[product.handle]
+  if (capsuleCopy) return capsuleCopy.subtitle
   return null
 }
 
 export function getProductStrengthLabel(product: StoreProduct) {
+  if (product.handle in BPC_TB500_BLEND_NAMES) return null
+  if (product.handle in CAPSULE_CARD_COPY) return null
   const fromMeta = product.metadata?.strength
-  if (fromMeta) return String(fromMeta)
+  if (fromMeta && fromMeta !== "Standard") return String(fromMeta)
   const match = product.handle.match(/(\d+mg)$/i)
   return match?.[1] || null
 }

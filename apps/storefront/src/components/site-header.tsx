@@ -2,13 +2,14 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import { ArrowRight, Menu, Search, ShoppingCart, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
+import { ShopNavMenu } from "@/components/shop-nav-menu"
 import { SiteLogo } from "@/components/site-logo"
+import { shopNavLabel } from "@/lib/shop-filters"
 
 const navLinks = [
-  { label: "Shop", href: "/shop" },
   { label: "How To Pay", href: "/payment" },
   { label: "Categories", href: "/categories" },
   { label: "Research Hub", href: "/blog" },
@@ -69,6 +70,15 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
+            <Suspense
+              fallback={
+                <Link href="/shop" className="text-sm text-[#475569] hover:text-[#0F172A]">
+                  {shopNavLabel}
+                </Link>
+              }
+            >
+              <ShopNavMenu variant="desktop" />
+            </Suspense>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -191,6 +201,9 @@ export function SiteHeader() {
               </button>
             </div>
             <nav className="mt-10 flex flex-col gap-6">
+              <Suspense fallback={<Link href="/shop" className="font-serif text-2xl text-[#0F172A]">{shopNavLabel}</Link>}>
+                <ShopNavMenu variant="mobile" onNavigate={() => setMobileOpen(false)} />
+              </Suspense>
               {navLinks.map((link) => (
                 <Link
                   key={link.href}

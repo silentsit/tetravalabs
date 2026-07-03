@@ -32,6 +32,14 @@ export const storefrontPills = [
   }
 ] as const
 
+export const shopNavLabel = "Buy Peptides"
+
+export const shopNavLinks = storefrontPills.map((pill) => ({
+  key: pill.key,
+  label: pill.label,
+  href: pill.key === "all" ? "/shop" : `/shop?category=${pill.key}`
+}))
+
 const LEGACY_PILL_ALIASES: Record<string, string> = {
   "glp-1-research": "glp-1",
   "glp-1-incretin": "glp-1",
@@ -119,17 +127,3 @@ export function groupBySourceCategory(
   return groups
 }
 
-/** Short uppercase label for shop product cards (Bangkok-style category line). */
-export function getShopCategoryLabel(product: FilterableProduct): string {
-  for (const pill of storefrontPills) {
-    if (pill.key === "all") continue
-    if (matchesPill(product, [...pill.matches])) {
-      return pill.label.toUpperCase()
-    }
-  }
-
-  const sourceCategory =
-    product.metadata?.source_category || product.collection?.title || ""
-
-  return sourceCategory ? sourceCategory.toUpperCase() : "ALL PEPTIDES"
-}

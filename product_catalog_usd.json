@@ -2849,8 +2849,8 @@
   },
   {
     "category": "Blends",
-    "name": "BPC-157 5mg + TB500 5mg (10mg)",
-    "strength": "5mg",
+    "name": "BPC-157 + TB-500 Blend (10mg)",
+    "strength": "",
     "price_usd": 495.0,
     "slug": "bpc-157-5mg-tb500-5mg-10mg",
     "storefront_category": "Research Blends",
@@ -2881,8 +2881,8 @@
   },
   {
     "category": "Blends",
-    "name": "BPC-157 5mg + TB500 5mg (20mg)",
-    "strength": "5mg",
+    "name": "BPC-157 + TB-500 Blend (20mg)",
+    "strength": "",
     "price_usd": 695.0,
     "slug": "bpc-157-5mg-tb500-5mg-20mg",
     "storefront_category": "Research Blends",

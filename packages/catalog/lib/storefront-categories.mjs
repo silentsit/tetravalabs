@@ -45,7 +45,7 @@ const SOURCE_CATEGORY_MAP = {
 
 /** Products sold as stacks — always Research Blends regardless of source sheet category. */
 const BLEND_PRODUCTS = new Set([
-  "BPC-157 5mg + TB500 5mg",
+  "BPC-157 + TB-500 Blend",
   "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
   "Glow BPC-157 + TB500 + GHK-Cu",
   "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg",
@@ -70,7 +70,9 @@ const GLP1_PRODUCTS = new Set([
 ])
 
 export function resolveStorefrontCategorySlug(name, sourceCategory) {
-  if (BLEND_PRODUCTS.has(name)) return "research-blends"
+  if (BLEND_PRODUCTS.has(name) || [...BLEND_PRODUCTS].some((blend) => name.startsWith(`${blend} `))) {
+    return "research-blends"
+  }
   if (sourceCategory === "GLP-1 / Incretin") {
     if (GROWTH_FROM_GLP1.has(name)) return "growth-factors"
     if (GLP1_PRODUCTS.has(name)) return "glp-1-research"

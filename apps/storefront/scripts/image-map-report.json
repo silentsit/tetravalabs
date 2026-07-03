@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-06-29T08:09:56.688Z",
+  "medusa_url": "https://tetrava-medusa.onrender.com",
+  "product_source": "catalog",
+  "total_products": 130,
+  "mapped": 129,
+  "unmapped": 1,
+  "unmapped_products": [
+    {
+      "handle": "vip-10mg",
+      "title": "vip-10mg"
+    }
+  ]
+}

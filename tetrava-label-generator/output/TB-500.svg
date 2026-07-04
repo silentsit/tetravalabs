@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="label_title label_description">
+  <title id="label_title">TetravaLabs TB-500 pharmaceutical label</title>
+  <desc id="label_description">Vector pharmaceutical label with editable product name, CAS number, and concentration text fields.</desc>
+  <defs>
+    <linearGradient id="background_gradient" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0%" stop-color="#f9f9f7"/>
+      <stop offset="45%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f2f4"/>
+    </linearGradient>
+    <linearGradient id="brand_gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2ea8a6"/>
+      <stop offset="100%" stop-color="#4a90e2"/>
+    </linearGradient>
+    <radialGradient id="logo_inner_gradient" cx="32%" cy="28%" r="72%">
+      <stop offset="0%" stop-color="#5fd4d2"/>
+      <stop offset="55%" stop-color="#2a8fc4"/>
+      <stop offset="100%" stop-color="#1a5f99"/>
+    </radialGradient>
+    <linearGradient id="blue_text_gradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b7fbe"/>
+      <stop offset="42%" stop-color="#075a95"/>
+      <stop offset="100%" stop-color="#002d5e"/>
+    </linearGradient>
+    <linearGradient id="badge_gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#003366"/>
+      <stop offset="48%" stop-color="#005bb7"/>
+      <stop offset="100%" stop-color="#003f82"/>
+    </linearGradient>
+    <linearGradient id="badge_gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.340"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.000"/>
+    </linearGradient>
+    <radialGradient id="molecule_node_gradient" cx="30%" cy="26%" r="72%">
+      <stop offset="0%" stop-color="#8ee4f8"/>
+      <stop offset="38%" stop-color="#2f8fc8"/>
+      <stop offset="100%" stop-color="#042b65"/>
+    </radialGradient>
+    <radialGradient id="molecule_node_alt" cx="34%" cy="30%" r="68%">
+      <stop offset="0%" stop-color="#b8ecff"/>
+      <stop offset="42%" stop-color="#4aa3d5"/>
+      <stop offset="100%" stop-color="#0a3f78"/>
+    </radialGradient>
+    <filter id="paper_texture" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" seed="17" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.96  0 0 0 0 0.96  0 0 0 0 0.95  0 0 0 0.045 0" result="grain"/>
+      <feBlend in="SourceGraphic" in2="grain" mode="multiply"/>
+    </filter>
+    <filter id="product_shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#091827" flood-opacity="0.18"/>
+    </filter>
+    <filter id="soft_shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#091827" flood-opacity="0.24"/>
+    </filter>
+    <filter id="tight_shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#061323" flood-opacity="0.28"/>
+    </filter>
+    <filter id="molecule_shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#091827" flood-opacity="0.14"/>
+    </filter>
+    <filter id="badge_text_inset" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="0.6" flood-color="#ffffff" flood-opacity="0.22"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="1.2" flood-color="#020b18" flood-opacity="0.55"/>
+    </filter>
+    <pattern id="molecule_stipple" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="0.9" fill="#ffffff" opacity="0.22"/>
+      <circle cx="4.5" cy="4.5" r="0.7" fill="#ffffff" opacity="0.14"/>
+    </pattern>
+  </defs>
+  <style>
+    .brand { font-family: Montserrat, Archivo Black, Arial, sans-serif; font-weight: 800; }
+    .heavy { font-family: Montserrat, Archivo Black, Arial, sans-serif; font-weight: 900; }
+    .medium { font-family: Montserrat, Archivo Black, Arial, sans-serif; font-weight: 700; }
+    .regular { font-family: Montserrat, Archivo Black, Arial, sans-serif; font-weight: 500; }
+    .badge-dose {
+      text-anchor: middle;
+      dominant-baseline: middle;
+      alignment-baseline: middle;
+    }
+  </style>
+  <g id="paper_background">
+    <rect x="0" y="0" width="1024" height="1024" fill="#f7f7f7"/>
+    <rect x="0" y="0" width="1024" height="1024" fill="url(#background_gradient)" filter="url(#paper_texture)"/>
+    <rect x="1" y="1" width="1022" height="1022" fill="none" stroke="#d1d1d1" stroke-width="2"/>
+    <circle cx="150" cy="820" r="250" fill="#ffffff" opacity="0.16"/>
+    <circle cx="870" cy="190" r="205" fill="#e8f4fb" opacity="0.34"/>
+  </g>
+  <g id="brand_header">
+    <g id="tetrava_logo" filter="url(#tight_shadow)">
+      <polygon points="110.0,46.0 156.8,73.0 156.8,127.0 110.0,154.0 63.2,127.0 63.2,73.0" fill="none" stroke="url(#brand_gradient)" stroke-width="9" stroke-linejoin="round"/>
+      <polygon points="110.0,70.0 136.0,85.0 136.0,115.0 110.0,130.0 84.0,115.0 84.0,85.0" fill="url(#logo_inner_gradient)" stroke="#1f7ea8" stroke-width="2"/>
+      <polygon points="110.0,82.0 125.6,91.0 125.6,109.0 110.0,118.0 94.4,109.0 94.4,91.0" fill="#ffffff" opacity="0.18"/>
+      <path d="M 94.0 76.0 Q 110.0 70.0 126.0 76.0" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.35" stroke-linecap="round"/>
+    </g>
+    <text x="191" y="130" class="brand" font-size="86" letter-spacing="-3">
+      <tspan fill="#050505">Tetrava</tspan><tspan fill="#4a90e2">Labs</tspan>
+    </text>
+  </g>
+  <clipPath id="molecule_clip">
+    <rect x="600" y="0" width="424" height="920"/>
+  </clipPath>
+  <g id="molecule_graphic" filter="url(#molecule_shadow)">
+    <g clip-path="url(#molecule_clip)">
+      <g id="molecule_bonds" stroke="#1a6394" stroke-width="5.5" stroke-linecap="round" opacity="0.95">
+      <line x1="898.6" y1="290.6" x2="881.1" y2="338.7"/>
+      <line x1="898.6" y1="290.6" x2="865.7" y2="251.2"/>
+      <line x1="898.6" y1="290.6" x2="867.4" y2="345.8"/>
+      <line x1="898.6" y1="290.6" x2="924.2" y2="330.7"/>
+      <line x1="881.1" y1="338.7" x2="830.5" y2="347.6"/>
+      <line x1="830.5" y1="347.6" x2="797.6" y2="308.3"/>
+      <line x1="797.6" y1="308.3" x2="815.2" y2="260.1"/>
+      <line x1="815.2" y1="260.1" x2="865.7" y2="251.2"/>
+      <line x1="865.7" y1="251.2" x2="924.2" y2="330.7"/>
+      <line x1="965.6" y1="372.3" x2="950.3" y2="429.0"/>
+      <line x1="965.6" y1="372.3" x2="924.2" y2="330.7"/>
+      <line x1="950.3" y1="429.0" x2="893.5" y2="444.1"/>
+      <line x1="893.5" y1="444.1" x2="852.1" y2="402.4"/>
+      <line x1="852.1" y1="402.4" x2="867.4" y2="345.8"/>
+      <line x1="867.4" y1="345.8" x2="924.2" y2="330.7"/>
+      <line x1="924.2" y1="330.7" x2="835.3" y2="424.8"/>
+      <line x1="911.1" y1="468.9" x2="885.7" y2="512.7"/>
+      <line x1="911.1" y1="468.9" x2="886.0" y2="425.0"/>
+      <line x1="885.7" y1="512.7" x2="835.0" y2="512.5"/>
+      <line x1="835.0" y1="512.5" x2="809.9" y2="468.6"/>
+      <line x1="809.9" y1="468.6" x2="835.3" y2="424.8"/>
+      <line x1="835.3" y1="424.8" x2="886.0" y2="425.0"/>
+      </g>
+      <g id="molecule_nodes">
+      <circle cx="898.6" cy="290.6" r="10.0" fill="url(#molecule_node_alt)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="881.1" cy="338.7" r="12.5" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="881.1" cy="338.7" r="9.0" fill="url(#molecule_stipple)" opacity="0.55"/>
+      <circle cx="830.5" cy="347.6" r="15.0" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="797.6" cy="308.3" r="17.5" fill="url(#molecule_node_alt)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="815.2" cy="260.1" r="10.0" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="865.7" cy="251.2" r="12.5" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="865.7" cy="251.2" r="9.0" fill="url(#molecule_stipple)" opacity="0.55"/>
+      <circle cx="965.6" cy="372.3" r="12.5" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="965.6" cy="372.3" r="9.0" fill="url(#molecule_stipple)" opacity="0.55"/>
+      <circle cx="950.3" cy="429.0" r="15.0" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="893.5" cy="444.1" r="17.5" fill="url(#molecule_node_alt)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="852.1" cy="402.4" r="10.0" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="867.4" cy="345.8" r="12.5" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="867.4" cy="345.8" r="9.0" fill="url(#molecule_stipple)" opacity="0.55"/>
+      <circle cx="924.2" cy="330.7" r="15.0" fill="url(#molecule_node_alt)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="911.1" cy="468.9" r="15.0" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="885.7" cy="512.7" r="17.5" fill="url(#molecule_node_alt)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="835.0" cy="512.5" r="10.0" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="809.9" cy="468.6" r="12.5" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="809.9" cy="468.6" r="9.0" fill="url(#molecule_stipple)" opacity="0.55"/>
+      <circle cx="835.3" cy="424.8" r="15.0" fill="url(#molecule_node_alt)" stroke="#07345f" stroke-width="2"/>
+      <circle cx="886.0" cy="425.0" r="17.5" fill="url(#molecule_node_gradient)" stroke="#07345f" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+  <g id="product_title">
+    <text id="product_name" class="heavy" font-size="132" x="58.0" y="402.7" text-anchor="start" dominant-baseline="alphabetic"
+      fill="url(#blue_text_gradient)" stroke="#002845" stroke-width="2.2" paint-order="stroke fill" filter="url(#product_shadow)">TB-500</text>
+  </g>
+  <g id="cas_block">
+    <text id="cas_number" class="regular" font-size="68" x="60.0" y="492.4" text-anchor="start" dominant-baseline="alphabetic"
+      fill="#1a365d" letter-spacing="1.2">885064-10-8</text>
+  </g>
+  <g id="dosage_badge" filter="url(#soft_shadow)">
+    <rect x="58" y="608" width="382" height="142" rx="22" fill="url(#badge_gradient)" stroke="#03284d" stroke-width="3.5"/>
+    <rect x="66" y="616" width="366" height="48.3" rx="16" fill="url(#badge_gloss)"/>
+    <rect x="63" y="613" width="372" height="132" rx="18" fill="none" stroke="#2f95cf" stroke-width="1.2" opacity="0.45"/>
+    <text id="concentration" class="heavy badge-dose" font-size="82" x="249.0" y="679.0" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle"
+      fill="#bdc3c7" filter="url(#badge_text_inset)" letter-spacing="-1">5MG</text>
+  </g>
+  <g id="purity_block">
+    <line x1="478" y1="616" x2="478" y2="742" stroke="#b0b0b0" stroke-width="2.5"/>
+    <text x="522" y="667.0" class="heavy" font-size="43" fill="#333333">PURITY &gt;99%</text>
+    <text x="522" y="713.0" class="regular" font-size="35" fill="#7f8c8d">LAB VERIFIED</text>
+  </g>
+  <g id="footer">
+    <line x1="58" y1="830" x2="966" y2="830" stroke="#d5d5d5" stroke-width="2"/>
+    <g id="flask_icon" transform="translate(58 848)" fill="none" stroke="#343434" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 0 H58"/>
+      <path d="M33 0 V31 L6 88 C1 98 8 108 20 108 H62 C74 108 81 98 76 88 L49 31 V0"/>
+      <path d="M22 78 C31 72 42 85 54 77 C60 73 66 74 72 78"/>
+      <circle cx="34" cy="86" r="3.5" fill="#343434" stroke="none"/>
+      <circle cx="51" cy="92" r="3.5" fill="#343434" stroke="none"/>
+      <circle cx="45" cy="72" r="3.5" fill="#343434" stroke="none"/>
+    </g>
+    <text x="142" y="878" class="heavy" font-size="37" fill="#333333" letter-spacing="1.2">RESEARCH PURPOSES ONLY</text>
+    <text x="142" y="924" class="regular" font-size="37" fill="#333333">NOT FOR HUMAN USE</text>
+  </g>
+</svg>

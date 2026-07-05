@@ -88,6 +88,17 @@ Output files are named from `product_name`:
 On Windows, CairoSVG requires the GTK runtime. The renderer auto-configures
 `C:\Program Files\Gtk-Runtime\bin` when present.
 
+## Fonts
+
+Montserrat (`assets/fonts/Montserrat-Variable.ttf`, OFL) drives all typography.
+
+- **SVG master** embeds a subset woff2 as a base64 `@font-face`, so labels render
+  identically in browsers, Illustrator and Inkscape with no font install. Text
+  stays live and editable.
+- **PNG export** uses CairoSVG, which ignores `@font-face`, so the bundled font is
+  registered for the current process only (GDI on Windows, fontconfig elsewhere)
+  in `generator/fonts.py`. No permanent system font install is required.
+
 Each row must include:
 
 - `product_name`

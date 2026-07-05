@@ -21,6 +21,31 @@ figma.ui.onmessage = async (msg) => {
   }
 };
 
+// Product-name auto-fit — long titles shrink so they never overflow the label.
+var PRODUCT_MAX_WIDTH = 918; // frame width 1062 - 72px margins each side
+var PRODUCT_MAX_SIZE = 96;
+var PRODUCT_MIN_SIZE = 34;
+
+async function autoFitProductName(instance) {
+  var node = instance.findOne(function (n) {
+    return (
+      n.type === "TEXT" &&
+      (n.name === "#product_name" || n.name.toLowerCase().indexOf("product") >= 0)
+    );
+  });
+  if (!node) return;
+  if (node.fontName === figma.mixed) return;
+
+  await figma.loadFontAsync(node.fontName);
+
+  var size = PRODUCT_MAX_SIZE;
+  node.fontSize = size;
+  while (node.width > PRODUCT_MAX_WIDTH && size > PRODUCT_MIN_SIZE) {
+    size -= 2;
+    node.fontSize = size;
+  }
+}
+
 async function loadFont(style) {
   await figma.loadFontAsync({ family: "Inter", style });
 }
@@ -188,6 +213,7 @@ async function batchImportLabels(rows) {
 
     const instance = component.createInstance();
     instance.setProperties(props);
+    await autoFitProductName(instance);
 
     const col = i % cols;
     const rowIdx = Math.floor(i / cols);

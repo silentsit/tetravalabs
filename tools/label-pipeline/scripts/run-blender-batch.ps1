@@ -20,7 +20,7 @@ $extra = @("--input", (Join-Path $Root $InputDir), "--tmp", (Join-Path $Root "cu
 if ($Limit -gt 0) { $extra += @("--limit", $Limit) }
 if ($Only) { $extra += @("--only", $Only) }
 
-& $BlenderExe --background "$Root\assets\vial_template.blend" --python "$Root\blender\render_vial_labels.py" -- @extra
+& $BlenderExe --background "$Root\assets\vial_template.blend" --python "$Root\blender\render_vial_labels.py" -- $extra
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 python "$Root\scripts\composite_vial_shots.py"

@@ -2,6 +2,7 @@
 
 __all__ = [
     "effects",
+    "fonts",
     "geometry",
     "label",
     "layout",

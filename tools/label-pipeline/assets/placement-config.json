@@ -1,0 +1,35 @@
+{
+  "vial": {
+    "plate": "Product Mockups/seashell-nice.png",
+    "native_size": [
+      682,
+      1024
+    ],
+    "label_box": [
+      201,
+      482,
+      280,
+      298
+    ],
+    "feather_radius": 4,
+    "blender": {
+      "figma_w": 1062,
+      "figma_h": 1112,
+      "label_h": 4,
+      "label_w": 3.8201,
+      "bend_angle_deg": 50,
+      "render_w": 560,
+      "render_h": 596
+    }
+  },
+  "pill": {
+    "plate": "Product Mockups/pill_bottle_clear.jpg",
+    "label_box": [
+      245,
+      458,
+      374,
+      365
+    ],
+    "warp_strength": 0.13
+  }
+}

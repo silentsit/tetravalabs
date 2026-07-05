@@ -4,15 +4,16 @@ from __future__ import annotations
 
 from html import escape
 
+from generator.fonts import font_face_css
 from generator.geometry import Point, points_attr, regular_polygon
 from generator.layout import LabelLayout
-from generator.molecule import build_molecule_graphic
+from generator.molecule import MoleculeConfig, build_molecule_graphic
 from generator.typography import FONT_FAMILY, TextFit, TextPlacement, fit_attrs, placement_attrs
 
 
 def render_styles() -> str:
     return f"""  <style>
-    .brand {{ font-family: {FONT_FAMILY}; font-weight: 800; }}
+{font_face_css()}    .brand {{ font-family: {FONT_FAMILY}; font-weight: 800; }}
     .heavy {{ font-family: {FONT_FAMILY}; font-weight: 900; }}
     .medium {{ font-family: {FONT_FAMILY}; font-weight: 700; }}
     .regular {{ font-family: {FONT_FAMILY}; font-weight: 500; }}
@@ -56,14 +57,14 @@ def render_brand_header(layout: LabelLayout) -> str:
 def render_product_title(product_name: str, placement: TextPlacement) -> str:
     return f"""  <g id="product_title">
     <text id="product_name" class="heavy" font-size="{placement.fit.font_size:.0f}" {placement_attrs(placement)}
-      fill="url(#blue_text_gradient)" stroke="#002845" stroke-width="2.2" paint-order="stroke fill" filter="url(#product_shadow)">{escape(product_name)}</text>
+      fill="url(#blue_text_gradient)" filter="url(#product_shadow)">{escape(product_name)}</text>
   </g>"""
 
 
 def render_cas_number(cas_number: str, placement: TextPlacement) -> str:
     return f"""  <g id="cas_block">
-    <text id="cas_number" class="regular" font-size="{placement.fit.font_size:.0f}" {placement_attrs(placement)}
-      fill="#1a365d" letter-spacing="1.2">{escape(cas_number)}</text>
+    <text id="cas_number" class="heavy" font-size="{placement.fit.font_size:.0f}" {placement_attrs(placement)}
+      fill="#000000" letter-spacing="1.2">{escape(cas_number)}</text>
   </g>"""
 
 
@@ -90,7 +91,7 @@ def render_purity_block(layout: LabelLayout) -> str:
     return f"""  <g id="purity_block">
     <line x1="{separator_x}" y1="{badge_y + 8}" x2="{separator_x}" y2="{badge_y + badge_h - 8}" stroke="#b0b0b0" stroke-width="2.5"/>
     <text x="{text_x}" y="{center_y - 12}" class="heavy" font-size="43" fill="#333333">PURITY &gt;99%</text>
-    <text x="{text_x}" y="{center_y + 34}" class="regular" font-size="35" fill="#7f8c8d">LAB VERIFIED</text>
+    <text x="{text_x}" y="{center_y + 34}" class="heavy" font-size="35" fill="#000000">LAB VERIFIED</text>
   </g>"""
 
 
@@ -108,13 +109,26 @@ def render_footer(layout: LabelLayout) -> str:
       <circle cx="45" cy="72" r="3.5" fill="#343434" stroke="none"/>
     </g>
     <text x="{x + 84}" y="{y + 30}" class="heavy" font-size="37" fill="#333333" letter-spacing="1.2">RESEARCH PURPOSES ONLY</text>
-    <text x="{x + 84}" y="{y + 76}" class="regular" font-size="37" fill="#333333">NOT FOR HUMAN USE</text>
+    <text x="{x + 84}" y="{y + 76}" class="medium" font-size="37" fill="#000000">NOT FOR HUMAN USE</text>
   </g>"""
 
 
-def render_molecule(layout: LabelLayout) -> str:
-    clip_x, clip_y, clip_w, clip_h = layout.molecule_clip
-    graphic = build_molecule_graphic()
+def render_molecule(layout: LabelLayout, compact: bool = False) -> str:
+    if compact:
+        clip_x, clip_y, clip_w, clip_h = layout.molecule_clip_compact
+        config = MoleculeConfig(
+            center=Point(*layout.molecule_center_compact),
+            nodes=layout.molecule_nodes_compact,
+            radius=layout.molecule_radius_compact,
+        )
+    else:
+        clip_x, clip_y, clip_w, clip_h = layout.molecule_clip
+        config = MoleculeConfig(
+            center=Point(*layout.molecule_center),
+            nodes=layout.molecule_nodes,
+            radius=layout.molecule_radius,
+        )
+    graphic = build_molecule_graphic(config)
     bond_lines = "\n".join(
         f'      <line x1="{graphic.nodes[start].point.x:.1f}" y1="{graphic.nodes[start].point.y:.1f}" '
         f'x2="{graphic.nodes[end].point.x:.1f}" y2="{graphic.nodes[end].point.y:.1f}"/>'

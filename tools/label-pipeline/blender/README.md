@@ -2,13 +2,13 @@
 
 The old Pillow 2D paste looked flat. This pipeline:
 1. **Blender** — bends the label in 3D (cylindrical curve)
-2. **Python** — composites it onto your **seashell photo plate** (1000×1500)
+2. **Python** — composites it onto your **seashell photo plate** (`assets/seashell-nice-cropped.png`, 534×805 — cropped tight from `Product Mockups/seashell-nice.png` via `scripts/crop_plate.py`)
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `assets/seashell-vial-1000x1500.png` | Blank vial on 2:3 white canvas |
+| `assets/seashell-nice-cropped.png` | Vial plate, cropped tight (534×805) |
 | `assets/vial_template.blend` | Curved label scene (auto-built) |
 | `figma_labels/` | Flat label JPGs from Figma |
 | `curved_labels_rgba/` | Intermediate bent labels (temp) |

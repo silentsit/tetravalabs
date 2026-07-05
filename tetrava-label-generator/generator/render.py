@@ -6,6 +6,7 @@ import os
 import sys
 from pathlib import Path
 
+from generator.fonts import load_bundled_fonts
 from generator.label import LabelProduct, build_label_svg, default_paths, load_products, slugify_product
 
 CANVAS_SIZE = 1024
@@ -44,6 +45,7 @@ def export_png(svg_path: Path, png_path: Path) -> Path:
     """Export a PNG from an SVG source using CairoSVG."""
 
     configure_cairo_runtime()
+    load_bundled_fonts()
     import cairosvg
 
     png_path.parent.mkdir(parents=True, exist_ok=True)

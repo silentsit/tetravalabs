@@ -27,4 +27,19 @@ class LabelLayout:
     cas_max_width: int = 480
     badge_text_max_width: int = 330
 
+    # Default (short-name) molecule — matches the original BPC-157 layout.
     molecule_clip: tuple[int, int, int, int] = (600, 0, 424, 920)
+    molecule_center: tuple[int, int] = (900, 470)
+    molecule_radius: float = 54
+    molecule_nodes: int = 18
+
+    # Long-name regime: widen the title and shift/shrink the molecule to fit.
+    product_max_width_wide: int = 732
+    molecule_clip_compact: tuple[int, int, int, int] = (792, 0, 232, 920)
+    molecule_center_compact: tuple[int, int] = (930, 470)
+    molecule_radius_compact: float = 38
+    molecule_nodes_compact: int = 14
+
+    # Very-long names: drop the molecule and use the full label width.
+    product_max_width_full: int = 908
+    product_min_font_full: int = 42

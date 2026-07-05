@@ -8,19 +8,38 @@ cd tools\label-pipeline
 powershell -File scripts\run-blender-batch.ps1
 ```
 
-Outputs: `final_product_shots_blender\` (1000×1500 PNG)
+## Label placement (do this first)
+
+Auto-detection is unreliable. **Mark the label area manually:**
+
+1. Open `scripts/mark-label-area.html` in your browser
+2. Load `Product Mockups/seashell-nice.png` (or the cropped plate)
+3. Drag a rectangle over the **blank white label** (inside the embossed lines)
+4. Optionally load a test label JPG to preview placement live
+5. Click **Download placement-config.json** → save to `assets/placement-config.json`
+6. Preview:
+
+```powershell
+python tools/label-pipeline/scripts/preview_placement.py --label output/retatrutide-20mg.jpg
+```
+
+7. When placement looks right, run the Blender batch.
+
+Outputs: `final_product_shots_blender\`
 
 ## Layout
 
 | Path | Purpose |
 |------|---------|
+| `scripts/mark-label-area.html` | **Manual label box tool** (browser) |
+| `assets/placement-config.json` | Saved coordinates — pipeline reads this |
+| `scripts/preview_placement.py` | Flat placement preview before Blender batch |
 | `figma-plugin/` | Figma template generator + CSV batch import |
-| `blender/` | Curved label render + seashell plate composite |
+| `blender/` | Curved label render + plate composite |
 | `scripts/` | Helper scripts and `run-blender-batch.ps1` |
-| `assets/seashell-vial-1000x1500.png` | 2:3 vial background plate |
 | `data/labels-batch.csv` | Google Sheet export for Figma |
 
-Mockup sources (repo root): `Product Mockups/seashell.jpeg`, `Product Mockups/pill_bottle_clear.jpg`
+Mockup sources: `Product Mockups/seashell-nice.png`, `Product Mockups/pill_bottle_clear.jpg`
 
 ## Flat labels (no 3D)
 

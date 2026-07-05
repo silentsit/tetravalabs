@@ -96,9 +96,9 @@ class EffectLibrary:
                 LinearGradientDef(
                     "background_gradient",
                     (
-                        GradientStop("0%", "#f9f9f7"),
+                        GradientStop("0%", "#ffffff"),
                         GradientStop("45%", "#ffffff"),
-                        GradientStop("100%", "#f0f2f4"),
+                        GradientStop("100%", "#fdfdfd"),
                     ),
                     x2="0.35",
                     y2="1",
@@ -122,9 +122,9 @@ class EffectLibrary:
                 LinearGradientDef(
                     "blue_text_gradient",
                     (
-                        GradientStop("0%", "#1b7fbe"),
-                        GradientStop("42%", "#075a95"),
-                        GradientStop("100%", "#002d5e"),
+                        GradientStop("0%", "#10507a"),
+                        GradientStop("42%", "#043559"),
+                        GradientStop("100%", "#00152b"),
                     ),
                     x2="0",
                     y2="1",

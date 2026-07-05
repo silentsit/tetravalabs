@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TetravaLabs — Mark Label Area</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0; padding: 16px 20px 32px;
+      background: #0f1117; color: #e8eaed;
+    }
+    h1 { font-size: 1.15rem; margin: 0 0 4px; }
+    .sub { color: #9aa0a6; font-size: 0.85rem; margin-bottom: 16px; }
+    .row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+    .panel { background: #1a1d27; border-radius: 10px; padding: 14px; min-width: 280px; }
+    .panel h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: #9aa0a6; margin: 0 0 10px; }
+    label { display: block; font-size: 0.82rem; margin-bottom: 6px; color: #bdc1c6; }
+    input[type=file], input[type=text], select {
+      width: 100%; margin-bottom: 10px; font-size: 0.82rem;
+      background: #252836; color: #e8eaed; border: 1px solid #3c4048; border-radius: 6px; padding: 6px 8px;
+    }
+    button {
+      background: #4a7cff; color: #fff; border: none; border-radius: 6px;
+      padding: 8px 14px; font-size: 0.85rem; cursor: pointer; margin-right: 6px; margin-bottom: 6px;
+    }
+    button.secondary { background: #3c4048; }
+    button:hover { filter: brightness(1.08); }
+    #canvas-wrap {
+      position: relative; display: inline-block; max-width: 100%;
+      border: 1px solid #3c4048; border-radius: 8px; overflow: hidden; cursor: crosshair;
+    }
+    canvas { display: block; max-width: 100%; height: auto; }
+    .coords {
+      font-family: ui-monospace, monospace; font-size: 0.82rem;
+      background: #252836; padding: 10px; border-radius: 6px; line-height: 1.6;
+    }
+    .coords strong { color: #8ab4ff; }
+    pre {
+      font-size: 0.72rem; background: #252836; padding: 10px; border-radius: 6px;
+      overflow: auto; max-height: 220px; white-space: pre-wrap; word-break: break-all;
+    }
+    .hint { font-size: 0.78rem; color: #9aa0a6; margin-top: 8px; line-height: 1.45; }
+    .warn { color: #f9ab00; }
+  </style>
+</head>
+<body>
+  <h1>Mark label area on vial plate</h1>
+  <p class="sub">Drag a rectangle over the <strong>blank white label</strong> on the vial. Save the JSON, then run <code>preview_placement.py</code>.</p>
+
+  <div class="row">
+    <div class="panel" style="flex: 0 0 300px;">
+      <h2>1 — Load images</h2>
+      <label>Vial plate (PNG/JPG)</label>
+      <input type="file" id="plateInput" accept="image/*" />
+
+      <label>Test label (optional — for live preview)</label>
+      <input type="file" id="labelInput" accept="image/*" />
+
+      <h2 style="margin-top:14px">2 — Plate path for config</h2>
+      <label>Relative path saved in placement-config.json</label>
+      <input type="text" id="platePath" value="Product Mockups/seashell-nice.png" />
+
+      <h2 style="margin-top:14px">3 — Bend angle (Blender)</h2>
+      <label>Degrees — adjust if label looks too flat / too curved</label>
+      <input type="text" id="bendAngle" value="50" />
+
+      <p class="hint">Suggested plates:<br>
+        <code>Product Mockups/seashell-nice.png</code> (682×1024)<br>
+        <code>assets/seashell-nice-cropped.png</code> (534×805)
+      </p>
+    </div>
+
+    <div>
+      <div id="canvas-wrap">
+        <canvas id="c"></canvas>
+      </div>
+      <p class="hint warn">Draw tight to the inner white label — inside the embossed top/bottom lines, not the glass shoulder.</p>
+    </div>
+
+    <div class="panel" style="flex: 0 0 300px;">
+      <h2>Coordinates</h2>
+      <div class="coords" id="coords">No box yet — click and drag on the image.</div>
+
+      <h2 style="margin-top:14px">Actions</h2>
+      <button id="btnClear" class="secondary">Clear box</button>
+      <button id="btnCopy">Copy JSON</button>
+      <button id="btnDownload">Download placement-config.json</button>
+
+      <h2 style="margin-top:14px">JSON preview</h2>
+      <pre id="jsonOut">{}</pre>
+
+      <p class="hint">
+        Save file to:<br>
+        <code>tools/label-pipeline/assets/placement-config.json</code><br><br>
+        Then preview:<br>
+        <code>python tools/label-pipeline/scripts/preview_placement.py</code>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("c");
+    const ctx = canvas.getContext("2d");
+    let plateImg = null, labelImg = null;
+    let box = null; // {x,y,w,h} in image pixels
+    let dragging = false, start = null;
+
+    function draw() {
+      if (!plateImg) return;
+      const maxW = Math.min(plateImg.width, window.innerWidth - 360);
+      const scale = plateImg.width > maxW ? maxW / plateImg.width : 1;
+      canvas.width = Math.round(plateImg.width * scale);
+      canvas.height = Math.round(plateImg.height * scale);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(plateImg, 0, 0, canvas.width, canvas.height);
+
+      if (labelImg && box) {
+        const { x, y, w, h } = box;
+        ctx.drawImage(labelImg, x * scale, y * scale, w * scale, h * scale);
+      }
+
+      if (box) {
+        const { x, y, w, h } = box;
+        ctx.strokeStyle = "#00e676";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x * scale, y * scale, w * scale, h * scale);
+        ctx.strokeStyle = "rgba(255,80,80,0.9)";
+        ctx.setLineDash([4, 4]);
+        ctx.strokeRect(x * scale, y * scale, w * scale, h * scale);
+        ctx.setLineDash([]);
+      }
+      updateUI();
+    }
+
+    function canvasToImage(cx, cy) {
+      const scale = canvas.width / plateImg.width;
+      return { x: cx / scale, y: cy / scale };
+    }
+
+    function updateUI() {
+      const coords = document.getElementById("coords");
+      const jsonOut = document.getElementById("jsonOut");
+      if (!box || !plateImg) {
+        coords.textContent = "No box yet — click and drag on the image.";
+        jsonOut.textContent = "{}";
+        return;
+      }
+      const { x, y, w, h } = box;
+      const ix = Math.round(x), iy = Math.round(y), iw = Math.round(w), ih = Math.round(h);
+      coords.innerHTML =
+        `<strong>x</strong> ${ix}<br><strong>y</strong> ${iy}<br>` +
+        `<strong>w</strong> ${iw}<br><strong>h</strong> ${ih}<br>` +
+        `<strong>aspect</strong> ${(iw/ih).toFixed(3)}<br>` +
+        `<strong>plate</strong> ${plateImg.width}×${plateImg.height}`;
+
+      const bend = parseFloat(document.getElementById("bendAngle").value) || 50;
+      const lw = iw, lh = ih;
+      const figmaW = 1062, figmaH = 1112;
+      const labelH = 4.0;
+      const labelW = labelH * (figmaW / figmaH);
+
+      const cfg = {
+        vial: {
+          plate: document.getElementById("platePath").value.trim(),
+          native_size: [plateImg.width, plateImg.height],
+          label_box: [ix, iy, iw, ih],
+          feather_radius: 4,
+          blender: {
+            figma_w: figmaW,
+            figma_h: figmaH,
+            label_h: labelH,
+            label_w: Math.round(labelW * 10000) / 10000,
+            bend_angle_deg: bend,
+            render_w: lw * 2,
+            render_h: lh * 2
+          }
+        },
+        pill: {
+          plate: "Product Mockups/pill_bottle_clear.jpg",
+          label_box: [245, 458, 374, 365],
+          warp_strength: 0.13
+        }
+      };
+      jsonOut.textContent = JSON.stringify(cfg, null, 2);
+      window._cfg = cfg;
+    }
+
+    canvas.addEventListener("mousedown", (e) => {
+      if (!plateImg) return;
+      const r = canvas.getBoundingClientRect();
+      const p = canvasToImage(e.clientX - r.left, e.clientY - r.top);
+      dragging = true;
+      start = p;
+      box = { x: p.x, y: p.y, w: 0, h: 0 };
+      draw();
+    });
+    canvas.addEventListener("mousemove", (e) => {
+      if (!dragging || !start) return;
+      const r = canvas.getBoundingClientRect();
+      const p = canvasToImage(e.clientX - r.left, e.clientY - r.top);
+      box = {
+        x: Math.min(start.x, p.x),
+        y: Math.min(start.y, p.y),
+        w: Math.abs(p.x - start.x),
+        h: Math.abs(p.y - start.y),
+      };
+      draw();
+    });
+    window.addEventListener("mouseup", () => { dragging = false; });
+
+    document.getElementById("plateInput").addEventListener("change", (e) => {
+      const f = e.target.files[0];
+      if (!f) return;
+      const img = new Image();
+      img.onload = () => { plateImg = img; box = null; draw(); };
+      img.src = URL.createObjectURL(f);
+    });
+
+    document.getElementById("labelInput").addEventListener("change", (e) => {
+      const f = e.target.files[0];
+      if (!f) return;
+      const img = new Image();
+      img.onload = () => { labelImg = img; draw(); };
+      img.src = URL.createObjectURL(f);
+    });
+
+    document.getElementById("platePath").addEventListener("input", updateUI);
+    document.getElementById("bendAngle").addEventListener("input", updateUI);
+
+    document.getElementById("btnClear").onclick = () => { box = null; draw(); };
+    document.getElementById("btnCopy").onclick = () => {
+      if (!window._cfg) return;
+      navigator.clipboard.writeText(JSON.stringify(window._cfg, null, 2));
+      alert("Copied placement-config.json to clipboard.");
+    };
+    document.getElementById("btnDownload").onclick = () => {
+      if (!window._cfg) return;
+      const blob = new Blob([JSON.stringify(window._cfg, null, 2) + "\n"], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "placement-config.json";
+      a.click();
+    };
+
+    window.addEventListener("resize", draw);
+  </script>
+</body>
+</html>

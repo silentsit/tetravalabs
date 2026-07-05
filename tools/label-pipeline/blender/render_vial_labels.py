@@ -57,7 +57,11 @@ def main() -> None:
         raise FileNotFoundError(f"Input missing: {args.input}")
 
     mat = find_label_material()
-    labels = sorted(args.input.glob("*.jpg")) + sorted(args.input.glob("*.jpeg"))
+    labels = (
+        sorted(args.input.glob("*.jpg"))
+        + sorted(args.input.glob("*.jpeg"))
+        + sorted(args.input.glob("*.png"))
+    )
     labels = [p for p in labels if not PILL_PATTERN.search(p.stem)]
 
     if args.only:

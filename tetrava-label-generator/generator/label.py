@@ -21,7 +21,7 @@ from generator.sections import (
     render_purity_block,
     render_styles,
 )
-from generator.typography import fit_single_line_text, placement_for_box
+from generator.typography import estimate_text_width, fit_single_line_text, placement_for_box
 
 
 SVG_NS = "http://www.w3.org/2000/svg"
@@ -50,31 +50,60 @@ class PharmaceuticalLabelRenderer:
 
     def render(self, product: LabelProduct) -> str:
         normalized = normalize_product(product)
-        placements = self._build_placements(normalized)
-        return "\n".join(
+        regime = self._title_regime(normalized.product_name)
+        placements = self._build_placements(normalized, regime)
+
+        sections = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            self._svg_open(normalized),
+            build_effect_defs(),
+            render_styles(),
+            render_paper_background(self.layout),
+            render_brand_header(self.layout),
+        ]
+        if regime != "full":
+            sections.append(render_molecule(self.layout, compact=(regime == "compact")))
+        sections.extend(
             [
-                '<?xml version="1.0" encoding="UTF-8"?>',
-                self._svg_open(normalized),
-                build_effect_defs(),
-                render_styles(),
-                render_paper_background(self.layout),
-                render_brand_header(self.layout),
-                render_molecule(self.layout),
                 render_product_title(normalized.product_name, placements["product"]),
-                render_cas_number(normalized.cas_number, placements["cas"]),
+                render_cas_number(placements["cas"].fit.text, placements["cas"]),
                 render_dosage_badge(self.layout, placements["concentration"].fit, placements["concentration"]),
                 render_purity_block(self.layout),
                 render_footer(self.layout),
                 "</svg>",
             ]
         )
+        return "\n".join(sections)
 
-    def _build_placements(self, product: LabelProduct):
+    def _title_regime(self, product_name: str) -> str:
+        """Pick a layout regime based on how much room the title needs.
+
+        - "short":   fits at full size in the base width (e.g. BPC-157). Original
+                     layout and molecule are preserved exactly.
+        - "compact": needs more room; widen the title and shift/shrink the
+                     molecule while keeping a safe gap between them.
+        - "full":    too long even then; drop the molecule and use the full
+                     label width so the title never overlaps it.
+        """
+
+        return "full"
+
+    def _build_placements(self, product: LabelProduct, regime: str = "short"):
         product_box = self.layout.product_box
         cas_box = self.layout.cas_box
         badge_box = self.layout.badge_box
-        product_fit = fit_single_line_text(product.product_name, self.layout.product_max_width, 132, 54)
-        cas_fit = fit_single_line_text(product.cas_number, self.layout.cas_max_width, 68, 38)
+        if regime == "full":
+            product_max_width = self.layout.product_max_width_full
+            product_min_font = self.layout.product_min_font_full
+        elif regime == "compact":
+            product_max_width = self.layout.product_max_width_wide
+            product_min_font = 54
+        else:
+            product_max_width = self.layout.product_max_width
+            product_min_font = 54
+        product_fit = fit_single_line_text(product.product_name, product_max_width, 132, product_min_font)
+        cas_display = f"CAS: {product.cas_number}" if product.cas_number else ""
+        cas_fit = fit_single_line_text(cas_display, self.layout.cas_max_width, 50, 36)
         concentration_fit = fit_single_line_text(
             product.concentration,
             self.layout.badge_text_max_width,
@@ -160,7 +189,11 @@ def load_products(csv_path: Path) -> list[LabelProduct]:
 
 
 def slugify_product(product: LabelProduct) -> str:
-    stem = product.product_name.strip()
+    parts = [product.product_name.strip()]
+    concentration = product.concentration.strip()
+    if concentration and concentration.lower() not in product.product_name.lower():
+        parts.append(concentration)
+    stem = "-".join(parts)
     stem = re.sub(r'[<>:"/\\|?*]', "-", stem)
     return stem or "label"
 

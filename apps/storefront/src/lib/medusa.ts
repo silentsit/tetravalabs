@@ -1,12 +1,18 @@
 import { filterToCatalogProducts, isCatalogProductHandle } from "@/lib/catalog-filter"
-import { STORE_PRODUCT_FIELDS } from "@/lib/product-price"
+import {
+  STORE_PRODUCT_DETAIL_FIELDS,
+  STORE_PRODUCT_LIST_FIELDS
+} from "@/lib/product-price"
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
 
-function productsUrl(params: Record<string, string>) {
+function productsUrl(
+  params: Record<string, string>,
+  fields = STORE_PRODUCT_LIST_FIELDS
+) {
   const url = new URL(`${MEDUSA_URL}/store/products`)
-  url.searchParams.set("fields", STORE_PRODUCT_FIELDS)
+  url.searchParams.set("fields", fields)
   for (const [key, value] of Object.entries(params)) {
     url.searchParams.set(key, value)
   }
@@ -18,6 +24,10 @@ export type StoreProduct = {
   title: string
   handle: string
   metadata?: Record<string, unknown>
+  collection?: {
+    title?: string
+    handle?: string
+  } | null
   variants?: Array<{
     id: string
     title: string
@@ -92,10 +102,13 @@ export async function listAllProducts() {
 
 export async function getProductByHandle(handle: string) {
   try {
-    const response = await fetch(productsUrl({ handle, limit: "1" }), {
-      headers: withHeaders(),
-      next: { revalidate: 300, tags: [`product:${handle}`] }
-    })
+    const response = await fetch(
+      productsUrl({ handle, limit: "1" }, STORE_PRODUCT_DETAIL_FIELDS),
+      {
+        headers: withHeaders(),
+        next: { revalidate: 300, tags: [`product:${handle}`] }
+      }
+    )
     if (!response.ok) throw new Error("Failed product request")
     const data = await response.json()
     const product = (data.products?.[0] || null) as StoreProduct | null

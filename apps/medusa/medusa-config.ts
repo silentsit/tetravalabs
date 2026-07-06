@@ -30,6 +30,33 @@ function resolveDatabaseUrl() {
 
 const DATABASE_URL = resolveDatabaseUrl()
 
+function resolveDatabaseDriverOptions(databaseUrl: string) {
+  const isRemote =
+    databaseUrl.includes("neon.tech") ||
+    databaseUrl.includes("supabase") ||
+    !databaseUrl.includes("localhost")
+
+  return {
+    ...(isRemote
+      ? {
+          ssl: { rejectUnauthorized: false },
+          connection: {
+            connectionTimeoutMillis: 10_000,
+            keepAlive: true,
+            keepAliveInitialDelayMillis: 10_000
+          }
+        }
+      : {}),
+    pool: {
+      min: 2,
+      max: 10,
+      idleTimeoutMillis: 20_000,
+      reapIntervalMillis: 1_000,
+      createRetryIntervalMillis: 200
+    }
+  }
+}
+
 function normalizeRedisUrlInput(raw: string) {
   let value = raw.trim()
 
@@ -152,6 +179,7 @@ export default defineConfig({
   },
   projectConfig: {
     databaseUrl: DATABASE_URL,
+    databaseDriverOptions: resolveDatabaseDriverOptions(DATABASE_URL),
     redisUrl: REDIS_URL,
     http: {
       storeCors: STORE_CORS,

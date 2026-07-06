@@ -7,12 +7,21 @@ export function getDbPool() {
   const connectionString = process.env.DATABASE_URL
   if (!connectionString) return null
 
+  const isRemote =
+    connectionString.includes("neon.tech") ||
+    connectionString.includes("supabase") ||
+    !connectionString.includes("localhost")
+
   pool = new Pool({
     connectionString,
-    ssl:
-      connectionString.includes("neon.tech") || connectionString.includes("supabase")
-        ? { rejectUnauthorized: false }
-        : undefined
+    max: 10,
+    idleTimeoutMillis: 20_000,
+    connectionTimeoutMillis: 10_000,
+    ssl: isRemote ? { rejectUnauthorized: false } : undefined
+  })
+
+  pool.on("error", (error) => {
+    console.warn("[db] idle pool connection dropped:", error.message)
   })
 
   return pool

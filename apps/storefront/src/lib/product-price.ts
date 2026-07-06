@@ -2,9 +2,16 @@ import type { StoreProduct } from "@/lib/medusa"
 
 export type StoreVariant = NonNullable<StoreProduct["variants"]>[number]
 
-/** Medusa v2 requires explicit fields for calculated_price and product metadata. */
-export const STORE_PRODUCT_FIELDS =
+/** Full fields for product detail pages. */
+export const STORE_PRODUCT_DETAIL_FIELDS =
   "*variants,*variants.calculated_price,+variants.prices,+variants.metadata,+metadata"
+
+/** Lean fields for shop/home/search pagination — skips full variant relation blobs. */
+export const STORE_PRODUCT_LIST_FIELDS =
+  "id,title,handle,+metadata,+collection.title,+variants.id,+variants.title,+variants.calculated_price,+variants.prices,+variants.metadata"
+
+/** @deprecated Prefer STORE_PRODUCT_DETAIL_FIELDS or STORE_PRODUCT_LIST_FIELDS. */
+export const STORE_PRODUCT_FIELDS = STORE_PRODUCT_DETAIL_FIELDS
 
 export function getVariantPriceCents(variant?: StoreVariant | null): number {
   if (!variant) return 0

@@ -1,7 +1,18 @@
 import dotenv from "dotenv"
 import pg from "pg"
+import { createRequire } from "node:module"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-dotenv.config()
+const require = createRequire(import.meta.url)
+const medusaRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..")
+const { applyDatabaseUrlEnv, pgSslOptions } = require(path.join(
+  medusaRoot,
+  "src/lib/database-url.cjs"
+))
+
+dotenv.config({ path: path.join(medusaRoot, ".env") })
+applyDatabaseUrlEnv()
 
 export default async function removeLegacyAdmin({ container }) {
   const { ContainerRegistrationKeys } = await import("@medusajs/framework/utils")
@@ -14,9 +25,10 @@ export default async function removeLegacyAdmin({ container }) {
     throw new Error(`Refusing to remove active admin email (${legacyEmail})`)
   }
 
+  const connectionString = process.env.DATABASE_URL
   const client = new pg.Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_URL?.includes("localhost") ? undefined : { rejectUnauthorized: false }
+    connectionString,
+    ssl: pgSslOptions(connectionString || "")
   })
 
   await client.connect()

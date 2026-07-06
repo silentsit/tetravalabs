@@ -1,23 +1,21 @@
 import { Pool } from "pg"
+import { normalizeDatabaseUrl, pgSslOptions } from "./database-url"
 
 let pool: Pool | null = null
 
 export function getDbPool() {
   if (pool) return pool
-  const connectionString = process.env.DATABASE_URL
-  if (!connectionString) return null
+  const raw = process.env.DATABASE_URL
+  if (!raw) return null
 
-  const isRemote =
-    connectionString.includes("neon.tech") ||
-    connectionString.includes("supabase") ||
-    !connectionString.includes("localhost")
+  const connectionString = normalizeDatabaseUrl(raw)
 
   pool = new Pool({
     connectionString,
     max: 10,
     idleTimeoutMillis: 20_000,
     connectionTimeoutMillis: 10_000,
-    ssl: isRemote ? { rejectUnauthorized: false } : undefined
+    ssl: pgSslOptions(connectionString)
   })
 
   pool.on("error", (error) => {

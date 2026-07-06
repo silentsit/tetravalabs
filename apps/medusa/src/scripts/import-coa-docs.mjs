@@ -3,6 +3,9 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import dotenv from "dotenv"
 import pg from "pg"
+import { createRequire } from "node:module"
+
+const require = createRequire(import.meta.url)
 
 const { Client } = pg
 
@@ -10,7 +13,13 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const medusaRoot = path.resolve(__dirname, "..", "..")
 const workspaceRoot = path.resolve(medusaRoot, "..", "..")
+const { applyDatabaseUrlEnv, pgSslOptions } = require(path.join(
+  medusaRoot,
+  "src/lib/database-url.cjs"
+))
+
 dotenv.config({ path: path.join(medusaRoot, ".env") })
+applyDatabaseUrlEnv()
 
 const samplePath = path.join(workspaceRoot, "packages", "catalog", "output", "coa-docs.sample.json")
 const connectionString = process.env.DATABASE_URL
@@ -24,10 +33,7 @@ const run = async () => {
   const docs = JSON.parse(await fs.readFile(samplePath, "utf8"))
   const client = new Client({
     connectionString,
-    ssl:
-      connectionString.includes("neon.tech") || connectionString.includes("supabase")
-        ? { rejectUnauthorized: false }
-        : undefined
+    ssl: pgSslOptions(connectionString)
   })
   await client.connect()
 

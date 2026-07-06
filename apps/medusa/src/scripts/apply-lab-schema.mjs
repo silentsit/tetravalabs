@@ -2,7 +2,11 @@ import fs from "node:fs/promises"
 import fsSync from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import { createRequire } from "node:module"
 import pg from "pg"
+
+const require = createRequire(import.meta.url)
+const { applyDatabaseUrlEnv, pgSslOptions } = require("../lib/database-url.cjs")
 
 const { Client } = pg
 
@@ -32,6 +36,8 @@ function loadEnvFile(filePath) {
 
 loadEnvFile(path.join(medusaRoot, ".env"))
 
+applyDatabaseUrlEnv()
+
 const sqlDir = path.resolve(__dirname, "..", "modules", "lab", "sql")
 
 const connectionString = process.env.DATABASE_URL
@@ -47,10 +53,7 @@ const run = async () => {
 
   const client = new Client({
     connectionString,
-    ssl:
-      connectionString.includes("neon.tech") || connectionString.includes("supabase")
-        ? { rejectUnauthorized: false }
-        : undefined
+    ssl: pgSslOptions(connectionString)
   })
 
   await client.connect()

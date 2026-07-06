@@ -1,26 +1,22 @@
 const { defineConfig, loadEnv } = require("@medusajs/framework/utils")
+const {
+  isRemoteDatabaseUrl,
+  normalizeDatabaseUrl
+} = require("./src/lib/database-url.cjs")
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
-function normalizeDatabaseUrl(raw) {
-  let url = raw.trim()
-
-  url = url
-    .replace(/([?&])channel_binding=require&/i, "$1")
-    .replace(/([?&])channel_binding=require(?=&|$)/i, "")
-    .replace(/\?&/, "?")
-    .replace(/[?&]$/, "")
-
-  return url
-}
-
 function resolveDatabaseUrl() {
   const raw = process.env.DATABASE_URL?.trim()
-  if (raw) return normalizeDatabaseUrl(raw)
+  if (raw) {
+    const url = normalizeDatabaseUrl(raw)
+    process.env.DATABASE_URL = url
+    return url
+  }
 
   if ((process.env.NODE_ENV || "development") === "production") {
     throw new Error(
-      "DATABASE_URL is missing. Set DATABASE_URL on Render to your Neon PostgreSQL connection string (Neon Dashboard → Connect → copy the pooled or direct URL with sslmode=require)."
+      "DATABASE_URL is missing. Set DATABASE_URL on Render to your PostgreSQL connection string (Neon or Render Postgres). Remote hosts require sslmode=require."
     )
   }
 
@@ -30,15 +26,15 @@ function resolveDatabaseUrl() {
 const DATABASE_URL = resolveDatabaseUrl()
 
 function resolveDatabaseDriverOptions(databaseUrl) {
-  const isRemote =
-    databaseUrl.includes("neon.tech") ||
-    databaseUrl.includes("supabase") ||
-    !databaseUrl.includes("localhost")
+  const isRemote = isRemoteDatabaseUrl(databaseUrl)
 
   return {
     ...(isRemote
       ? {
           ssl: { rejectUnauthorized: false },
+          connection: {
+            ssl: { rejectUnauthorized: false }
+          },
           connectionTimeoutMillis: 10_000,
           keepAlive: true,
           keepAliveInitialDelayMillis: 10_000

@@ -1,8 +1,12 @@
 import { defineConfig, loadEnv } from "@medusajs/framework/utils"
-import { createRequire } from "node:module"
 
-const require = createRequire(import.meta.url)
-const { isRemoteDatabaseUrl, normalizeDatabaseUrl } = require("./src/lib/database-url.cjs")
+const {
+  isRemoteDatabaseUrl,
+  normalizeDatabaseUrl
+} = require("./src/lib/database-url.cjs") as {
+  isRemoteDatabaseUrl: (url: string) => boolean
+  normalizeDatabaseUrl: (raw: string) => string
+}
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
 

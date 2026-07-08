@@ -20,7 +20,7 @@ export const siteConfig = {
   locale: "en_US",
   twitterHandle: "@tetravalabs",
   contactEmail: "info@tetravalabs.com",
-  defaultOgImage: "/brand/tetravalabs-icon.jpg",
+  defaultOgImage: "/brand/tetravalabs-icon.png",
   keywords: [
     "research peptides",
     "RUO peptides",

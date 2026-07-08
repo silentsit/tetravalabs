@@ -1,8 +1,8 @@
 import Image from "next/image"
 
 const LOGO_SRC = "/brand/tetravalabs-logo.png"
-const LOGO_WIDTH = 1454
-const LOGO_HEIGHT = 215
+const LOGO_WIDTH = 1024
+const LOGO_HEIGHT = 166
 
 type SiteLogoProps = {
   variant?: "default" | "footer"
@@ -16,9 +16,8 @@ export function SiteLogo({
   className = "",
   showWordmark = true
 }: SiteLogoProps) {
-  const sizeClass = showWordmark ? "h-8 w-[216px]" : "h-6 w-[162px]"
-  const variantClass =
-    variant === "footer" ? "brightness-0 invert opacity-90" : ""
+  const sizeClass = showWordmark ? "h-8 w-auto max-w-[220px]" : "h-6 w-auto max-w-[165px]"
+  const variantClass = variant === "footer" ? "opacity-95" : ""
 
   return (
     <Image

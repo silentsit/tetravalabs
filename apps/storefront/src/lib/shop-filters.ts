@@ -57,8 +57,8 @@ export interface FilterableProduct {
     [key: string]: unknown
   } | null
   collection?: {
-    handle: string
-    title: string
+    title?: string
+    handle?: string
   } | null
 }
 

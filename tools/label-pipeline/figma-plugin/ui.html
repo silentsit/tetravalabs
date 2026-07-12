@@ -9,65 +9,37 @@
       background: #fff;
       color: #333;
       padding: 20px;
-      width: 340px;
+      width: 360px;
     }
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
+    .header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
     .logo-hex {
-      width: 32px;
-      height: 28px;
-      background: #3D94D9;
+      width: 32px; height: 28px; background: #3D94D9;
       clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     }
     .header h1 { font-size: 15px; font-weight: 600; }
-    .section {
-      background: #f8f9fa;
-      border-radius: 8px;
-      padding: 14px;
-      margin-bottom: 12px;
-    }
+    .section { background: #f8f9fa; border-radius: 8px; padding: 14px; margin-bottom: 12px; }
     .section-title {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      color: #555;
-      margin-bottom: 8px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.4px; color: #555; margin-bottom: 8px;
     }
-    .section p {
-      font-size: 12px;
-      line-height: 1.45;
-      color: #666;
-      margin-bottom: 10px;
-    }
+    .section p { font-size: 12px; line-height: 1.45; color: #666; margin-bottom: 10px; }
     .prop-tag {
-      font-size: 11px;
-      font-family: "SF Mono", Monaco, monospace;
-      background: #f0f7ff;
-      border: 1px solid #d0e3f7;
-      border-radius: 5px;
-      padding: 4px 8px;
-      margin-bottom: 4px;
+      font-size: 11px; font-family: "SF Mono", Monaco, monospace;
+      background: #f0f7ff; border: 1px solid #d0e3f7; border-radius: 5px;
+      padding: 4px 8px; margin-bottom: 4px;
     }
     .btn {
-      width: 100%;
-      padding: 11px;
-      border: none;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 8px;
+      width: 100%; padding: 11px; border: none; border-radius: 8px;
+      font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 8px;
     }
     .btn-primary { background: #3D94D9; color: #fff; }
     .btn-secondary { background: #eef2f7; color: #333; width: auto; padding: 8px 12px; margin: 0; }
     .btn:disabled { opacity: 0.45; cursor: not-allowed; }
     .file-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 4px; }
-    .file-name { flex: 1; font-size: 11px; color: #666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-name {
+      flex: 1; font-size: 11px; color: #666;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
     input[type="file"] { display: none; }
     #status { font-size: 11px; text-align: center; margin-top: 10px; min-height: 16px; color: #888; }
     #status.ok { color: #27ae60; }
@@ -77,21 +49,25 @@
 <body>
   <div class="header">
     <div class="logo-hex"></div>
-    <h1>TetravaLabs Label</h1>
+    <h1>TetravaLabs Label Batch Import</h1>
   </div>
 
   <div class="section">
-    <div class="section-title">Step 1 — Template</div>
-    <p>Create the master label component (once).</p>
-    <button class="btn btn-primary" id="generate">Generate Label Template</button>
+    <div class="section-title">Prerequisites</div>
+    <p>Your Figma page must contain both components:</p>
+    <div class="prop-tag">#v1 (or LABEL-MAIN)</div>
+    <div class="prop-tag">#v2 (or LABEL-FLOWER)</div>
+    <p style="margin-top:8px">Rows with <code>#sub_name</code> use <strong>#v2</strong>. All others use <strong>#v1</strong>. Formula digits are coloured red automatically. Frames must be <em>Components</em> with text properties bound.</p>
   </div>
 
   <div class="section">
-    <div class="section-title">Step 2 — Batch import CSV</div>
-    <p>Download your Google Sheet as CSV, then import all rows.</p>
+    <div class="section-title">Batch import CSV</div>
+    <p>Use <code>data/labels-batch.csv</code> exported from your Excel sheet.</p>
     <div class="prop-tag">#product_name</div>
+    <div class="prop-tag">#sub_name</div>
     <div class="prop-tag">#cas_number</div>
-    <div class="prop-tag">#Concentration</div>
+    <div class="prop-tag">#formula</div>
+    <div class="prop-tag">#concentration</div>
     <div class="file-row">
       <button class="btn btn-secondary" id="pick-file">Choose CSV</button>
       <span class="file-name" id="file-name">No file selected</span>
@@ -147,11 +123,6 @@
       return out;
     }
 
-    document.getElementById("generate").onclick = function() {
-      setStatus("Generating template…");
-      parent.postMessage({ pluginMessage: { type: "generate" } }, "*");
-    };
-
     document.getElementById("pick-file").onclick = function() {
       document.getElementById("csv-file").click();
     };
@@ -179,8 +150,9 @@
     window.onmessage = function(event) {
       var msg = event.data.pluginMessage;
       if (!msg) return;
-      if (msg.type === "done") setStatus("Template ready. Choose CSV below.", "ok");
-      if (msg.type === "batch-done") setStatus("Done — " + msg.count + " labels created.", "ok");
+      if (msg.type === "batch-done") {
+        setStatus("Done — " + msg.count + " labels (" + msg.main + " main, " + msg.flower + " flower).", "ok");
+      }
       if (msg.type === "error") setStatus(msg.message, "err");
     };
   </script>

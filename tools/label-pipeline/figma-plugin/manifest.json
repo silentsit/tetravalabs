@@ -1,6 +1,6 @@
 {
-  "name": "TetravaLabs Label Template Generator",
-  "id": "tetravalabs-label-generator",
+  "name": "TetravaLabs Label Batch Import",
+  "id": "tetravalabs-label-batch-import-v2",
   "api": "1.0.0",
   "main": "code.js",
   "editorType": ["figma", "figjam"],

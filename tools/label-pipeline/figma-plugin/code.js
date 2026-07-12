@@ -167,36 +167,64 @@ function findLabelTemplates() {
   return templates;
 }
 
-function findTextLayerByNames(root, namePatterns) {
+function layerNameMatchesCas(layerName) {
+  const n = layerName.toLowerCase().trim();
+  if (n === "cas" || n === "#cas") return true;
+  if (n.indexOf("cas_number") >= 0 || n.indexOf("cass_number") >= 0) return true;
+  if (n.indexOf("cas number") >= 0) return true;
+  return false;
+}
+
+function layerNameMatchesPatterns(layerName, namePatterns) {
+  const lower = layerName.toLowerCase();
+  for (let p = 0; p < namePatterns.length; p++) {
+    const needle = namePatterns[p].toLowerCase();
+    if (lower === needle || lower.indexOf(needle) >= 0) return true;
+  }
+  return false;
+}
+
+function findAllTextLayersByNames(root, namePatterns, options) {
+  const opts = options || {};
+  const useCasMatcher = !!opts.casMatcher;
+  const seen = new Set();
+  const matches = [];
+
+  function add(node) {
+    if (!node || seen.has(node.id)) return;
+    seen.add(node.id);
+    matches.push(node);
+  }
+
   const texts = root.findAll(function (n) {
     return n.type === "TEXT";
   });
-  for (let p = 0; p < namePatterns.length; p++) {
-    const needle = namePatterns[p].toLowerCase();
-    for (let i = 0; i < texts.length; i++) {
-      const layerName = texts[i].name.toLowerCase();
-      if (layerName === needle || layerName.indexOf(needle) >= 0) {
-        return texts[i];
-      }
+  for (let i = 0; i < texts.length; i++) {
+    const layerName = texts[i].name;
+    if (useCasMatcher ? layerNameMatchesCas(layerName) : layerNameMatchesPatterns(layerName, namePatterns)) {
+      add(texts[i]);
     }
   }
 
   const containers = root.findAll(function (n) {
     return n.type === "FRAME" || n.type === "GROUP" || n.type === "COMPONENT";
   });
-  for (let p = 0; p < namePatterns.length; p++) {
-    const needle = namePatterns[p].toLowerCase();
-    for (let i = 0; i < containers.length; i++) {
-      const layerName = containers[i].name.toLowerCase();
-      if (layerName !== needle && layerName.indexOf(needle) < 0) continue;
-      const inner = containers[i].findOne(function (n) {
+  for (let i = 0; i < containers.length; i++) {
+    const layerName = containers[i].name;
+    if (useCasMatcher ? layerNameMatchesCas(layerName) : layerNameMatchesPatterns(layerName, namePatterns)) {
+      const inner = containers[i].findAll(function (n) {
         return n.type === "TEXT";
       });
-      if (inner) return inner;
+      for (let j = 0; j < inner.length; j++) add(inner[j]);
     }
   }
 
-  return null;
+  return matches;
+}
+
+function findTextLayerByNames(root, namePatterns) {
+  const matches = findAllTextLayersByNames(root, namePatterns);
+  return matches.length ? matches[0] : null;
 }
 
 function buildLayerBindings(component) {
@@ -293,8 +321,8 @@ function pickField(row, keys) {
 function formatCas(value) {
   if (!value) return "";
   const text = value.trim();
-  if (text.toUpperCase().indexOf("CAS") === 0) return text;
-  return "CAS " + text;
+  const number = text.replace(/^CAS\s*:?\s*/i, "");
+  return "CAS: " + number;
 }
 
 function usesFlowerTemplate(row) {
@@ -376,9 +404,38 @@ async function setInstanceText(instance, layerDef, value) {
   node.characters = value;
 }
 
+async function setAllCasText(instance, value) {
+  if (value === undefined || value === null || value === "") return;
+  const seen = new Set();
+  const nodes = findAllTextLayersByNames(instance, [], { casMatcher: true });
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i]) seen.add(nodes[i].id);
+  }
+
+  const texts = instance.findAll(function (n) {
+    return n.type === "TEXT";
+  });
+  for (let i = 0; i < texts.length; i++) {
+    const node = texts[i];
+    const content = (node.characters || "").trim();
+    if (!content || seen.has(node.id)) continue;
+    if (/^CAS[:\s]/i.test(content)) {
+      nodes.push(node);
+      seen.add(node.id);
+    }
+  }
+
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i];
+    if (!node || node.fontName === figma.mixed) continue;
+    await figma.loadFontAsync(node.fontName);
+    node.characters = value;
+  }
+}
+
 async function applySidePanelText(instance, binding, values, useFlower) {
   if (useFlower || !binding.layers) return;
-  await setInstanceText(instance, binding.layers.cas, values.cas);
+  await setAllCasText(instance, values.cas);
   if (binding.layers.formula && binding.layers.formula.node) {
     await setInstanceText(instance, binding.layers.formula, values.formula);
   }
@@ -404,7 +461,7 @@ async function applyRowToInstance(instance, binding, row, useFlower) {
   if (useFlower) {
     await setInstanceText(instance, binding.layers.sub, values.sub);
   } else {
-    await setInstanceText(instance, binding.layers.cas, values.cas);
+    await setAllCasText(instance, values.cas);
     if (binding.layers.formula.node) {
       await setInstanceText(instance, binding.layers.formula, values.formula);
     }

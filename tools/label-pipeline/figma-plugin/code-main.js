@@ -195,29 +195,7 @@ function findTextLayerByNames(root, namePatterns) {
   return null;
 }
 
-function resolveTemplateBinding(component, variant) {
-  const map = {};
-  for (const key of Object.keys(component.componentPropertyDefinitions)) {
-    const def = component.componentPropertyDefinitions[key];
-    if (def.type !== "TEXT") continue;
-    const lower = key.toLowerCase();
-    if (lower.indexOf("sub") >= 0 && lower.indexOf("name") >= 0) map.sub = key;
-    else if (lower.indexOf("product") >= 0) map.product = key;
-    else if (lower.indexOf("cas") >= 0) map.cas = key;
-    else if (lower.indexOf("formula") >= 0) map.formula = key;
-    else if (lower.indexOf("concentr") >= 0 || lower.indexOf("dosage") >= 0) {
-      map.conc = key;
-    }
-  }
-
-  const propsOk =
-    variant === "flower"
-      ? map.product && map.sub && map.conc
-      : map.product && map.cas && map.conc;
-  if (propsOk) {
-    return { mode: "properties", keys: map };
-  }
-
+function buildLayerBindings(component) {
   const layerDefs = {
     product: ["#product_name", "product_name"],
     cas: ["#cas_number", "#cass_number", "cas_number", "cass_number"],
@@ -233,6 +211,35 @@ function resolveTemplateBinding(component, variant) {
       node: findTextLayerByNames(component, layerDefs[key]),
     };
   });
+  return layers;
+}
+
+function resolveTemplateBinding(component, variant) {
+  const map = {};
+  for (const key of Object.keys(component.componentPropertyDefinitions)) {
+    const def = component.componentPropertyDefinitions[key];
+    if (def.type !== "TEXT") continue;
+    const lower = key.toLowerCase();
+    if (lower.indexOf("sub") >= 0 && lower.indexOf("name") >= 0) map.sub = key;
+    else if (lower.indexOf("product") >= 0) map.product = key;
+    else if (lower.indexOf("cas") >= 0) map.cas = key;
+    else if (lower.indexOf("formula") >= 0) map.formula = key;
+    else if (lower.indexOf("concentr") >= 0 || lower.indexOf("dosage") >= 0) {
+      map.conc = key;
+    }
+  }
+
+  const layers = buildLayerBindings(component);
+
+  const propsOk =
+    variant === "flower"
+      ? map.product && map.sub && map.conc
+      : map.product && map.cas && map.conc;
+  if (propsOk) {
+    // Keep layer bindings even in properties mode — side-panel #cas_number /
+    // #formula text is often not wired to component text properties.
+    return { mode: "properties", keys: map, layers: layers };
+  }
 
   const layersOk =
     variant === "flower"
@@ -365,21 +372,30 @@ async function setInstanceText(instance, layerDef, value) {
   node.characters = value;
 }
 
+async function applySidePanelText(instance, binding, values, useFlower) {
+  if (useFlower || !binding.layers) return;
+  await setInstanceText(instance, binding.layers.cas, values.cas);
+  if (binding.layers.formula && binding.layers.formula.node) {
+    await setInstanceText(instance, binding.layers.formula, values.formula);
+  }
+}
+
 async function applyRowToInstance(instance, binding, row, useFlower) {
+  const values = plainRowValues(row, useFlower);
   if (binding.mode === "properties") {
     const keys = binding.keys;
     const props = useFlower ? rowToFlowerProperties(row, keys) : rowToMainProperties(row, keys);
     instance.setProperties(props);
+    await applySidePanelText(instance, binding, values, useFlower);
     return {
       product: props[keys.product],
       conc: props[keys.conc],
       sub: keys.sub ? props[keys.sub] : "",
-      cas: keys.cas ? props[keys.cas] : "",
-      formula: keys.formula ? props[keys.formula] : "",
+      cas: keys.cas ? props[keys.cas] : values.cas,
+      formula: keys.formula ? props[keys.formula] : values.formula,
     };
   }
 
-  const values = plainRowValues(row, useFlower);
   await setInstanceText(instance, binding.layers.product, values.product);
   if (useFlower) {
     await setInstanceText(instance, binding.layers.sub, values.sub);

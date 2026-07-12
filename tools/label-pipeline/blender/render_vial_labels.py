@@ -6,6 +6,7 @@ import argparse
 import csv
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -16,6 +17,8 @@ DEFAULT_INPUT = ROOT / "figma_labels"
 DEFAULT_TMP = ROOT / "curved_labels_rgba"
 CONFIG_PATH = ROOT / "assets" / "placement-config.json"
 DEFAULT_CSV = ROOT / "data" / "labels-batch.csv"
+MANIFEST_PATH = ROOT / "data" / "labels-manifest.csv"
+CAPSULE_PATTERN = re.compile(r"capsules", re.IGNORECASE)
 
 
 def parse_args() -> argparse.Namespace:
@@ -47,9 +50,39 @@ def load_allowed_stems(csv_path: Path) -> set[str]:
     return allowed
 
 
-def load_views() -> list[dict]:
-    cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-    views = (cfg.get("vial", {}).get("blender", {}) or {}).get("views")
+def load_config() -> dict:
+    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+
+
+def load_manifest() -> dict[str, str]:
+    if not MANIFEST_PATH.is_file():
+        return {}
+    mapping: dict[str, str] = {}
+    with MANIFEST_PATH.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            name = (row.get("export_filename") or "").strip()
+            mockup = (row.get("mockup") or "").strip().lower()
+            if name and mockup:
+                mapping[name.lower()] = mockup
+    return mapping
+
+
+def is_capsule(stem: str, manifest: dict[str, str]) -> bool:
+    key = stem.lower()
+    mockup = manifest.get(key)
+    if mockup == "capsule":
+        return True
+    if mockup == "vial":
+        return False
+    return bool(CAPSULE_PATTERN.search(stem))
+
+
+def load_views(kind: str = "vial") -> list[dict]:
+    cfg = load_config()
+    section = cfg.get(kind) or {}
+    views = (section.get("blender") or {}).get("views")
+    if not views:
+        views = (cfg.get("vial", {}).get("blender", {}) or {}).get("views")
     if not views:
         views = [{"name": "front", "front_u": 0.5}]
     return views
@@ -90,7 +123,9 @@ def main() -> None:
     if not cyl:
         raise RuntimeError("LabelCylinder missing — run setup_vial_scene.py")
 
-    views = load_views()
+    manifest = load_manifest()
+    vial_views = load_views("vial")
+    capsule_views = load_views("capsule")
     all_files = (
         sorted(args.input.glob("*.jpg"))
         + sorted(args.input.glob("*.jpeg"))
@@ -120,12 +155,19 @@ def main() -> None:
 
     args.tmp.mkdir(parents=True, exist_ok=True)
     scene = bpy.context.scene
-    total = len(labels) * len(views)
-    print(f"Rendering {len(labels)} label(s) × {len(views)} view(s) = {total} -> {args.tmp}")
+    total = sum(
+        len(capsule_views if is_capsule(label_path.stem, manifest) else vial_views)
+        for label_path in labels
+    )
+    print(f"Rendering {len(labels)} label(s) -> {args.tmp}")
+    print(f"Vial views: {vial_views}")
+    print(f"Capsule views: {capsule_views}")
 
     n = 0
     for label_path in labels:
         set_label_texture(mat, label_path)
+        kind = "capsule" if is_capsule(label_path.stem, manifest) else "vial"
+        views = capsule_views if kind == "capsule" else vial_views
         for view in views:
             n += 1
             front_u = float(view.get("front_u", 0.5))
@@ -134,7 +176,7 @@ def main() -> None:
             out = args.tmp / f"{label_path.stem}__{view['name']}.png"
             scene.render.filepath = str(out)
             bpy.ops.render.render(write_still=True)
-            print(f"[{n}/{total}] {label_path.name} [{view['name']}] -> {out.name}")
+            print(f"[{n}/{total}] {label_path.name} [{kind}/{view['name']}] u={front_u} -> {out.name}")
 
     print("Done. Run composite_vial_shots.py next.")
 

@@ -37,7 +37,13 @@
       499,
       610
     ],
-    "feather_radius": 4
+    "feather_radius": 4,
+    "blender": {
+      "views": [
+        { "name": "front", "front_u": 0.55 },
+        { "name": "side", "front_u": 0.87 }
+      ]
+    }
   },
   "pill": {
     "plate": "Product Mockups/pill_bottle_clear.jpg",

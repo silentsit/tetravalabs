@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import math
-import re
 import sys
 from pathlib import Path
 
@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "figma_labels"
 DEFAULT_TMP = ROOT / "curved_labels_rgba"
 CONFIG_PATH = ROOT / "assets" / "placement-config.json"
-PILL_PATTERN = re.compile(r"capsules", re.IGNORECASE)
+DEFAULT_CSV = ROOT / "data" / "labels-batch.csv"
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,9 +24,27 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--tmp", type=Path, default=DEFAULT_TMP)
+    parser.add_argument("--csv", type=Path, default=DEFAULT_CSV, help="Product list (export_filename column)")
+    parser.add_argument(
+        "--no-product-list",
+        action="store_true",
+        help="Skip CSV filter (for template/preview renders only)",
+    )
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--only", type=str, default="")
     return parser.parse_args(argv)
+
+
+def load_allowed_stems(csv_path: Path) -> set[str]:
+    if not csv_path.is_file():
+        raise FileNotFoundError(f"Product list missing: {csv_path}")
+    allowed: set[str] = set()
+    with csv_path.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            name = (row.get("export_filename") or "").strip()
+            if name:
+                allowed.add(name.lower())
+    return allowed
 
 
 def load_views() -> list[dict]:
@@ -73,12 +91,22 @@ def main() -> None:
         raise RuntimeError("LabelCylinder missing — run setup_vial_scene.py")
 
     views = load_views()
-    labels = (
+    all_files = (
         sorted(args.input.glob("*.jpg"))
         + sorted(args.input.glob("*.jpeg"))
         + sorted(args.input.glob("*.png"))
     )
-    labels = [p for p in labels if not PILL_PATTERN.search(p.stem)]
+
+    if args.no_product_list:
+        labels = all_files
+        print("Product-list filter OFF (preview/template mode)")
+    else:
+        allowed = load_allowed_stems(args.csv.resolve())
+        labels = [p for p in all_files if p.stem.lower() in allowed]
+        missing_skus = len(allowed) - len({p.stem.lower() for p in labels})
+        print(f"Product list: {args.csv.name} ({len(allowed)} SKUs)")
+        if missing_skus:
+            print(f"Note: {missing_skus} CSV SKU(s) have no matching file in {args.input.name}/ yet.")
 
     if args.only:
         key = args.only.lower()
@@ -87,7 +115,7 @@ def main() -> None:
         labels = labels[: args.limit]
 
     if not labels:
-        print(f"No vial labels in {args.input}")
+        print(f"No labels to render in {args.input}")
         return
 
     args.tmp.mkdir(parents=True, exist_ok=True)

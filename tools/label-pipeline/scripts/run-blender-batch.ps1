@@ -23,5 +23,5 @@ if ($Only) { $extra += @("--only", $Only) }
 & $BlenderExe --background "$Root\assets\vial_template.blend" --python "$Root\blender\render_vial_labels.py" -- $extra
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-python "$Root\scripts\composite_vial_shots.py"
+python "$Root\scripts\composite_product_shots.py"
 exit $LASTEXITCODE

@@ -1,56 +1,34 @@
 # Blender vial label pipeline
 
-The old Pillow 2D paste looked flat. This pipeline:
-1. **Blender** — bends the label in 3D (cylindrical curve)
-2. **Python** — composites it onto your **seashell photo plate** (`assets/seashell-nice-cropped.png`, 534×805 — cropped tight from `Product Mockups/seashell-nice.png` via `scripts/crop_plate.py`)
+True-cylinder wrap with front + side views, composited onto photographic plates.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `assets/seashell-nice-cropped.png` | Vial plate, cropped tight (534×805) |
-| `assets/vial_template.blend` | Curved label scene (auto-built) |
-| `figma_labels/` | Flat label JPGs from Figma |
+| `assets/placement-config.json` | Vial + capsule label boxes and Blender settings |
+| `assets/vial_template.blend` | Cylinder label scene (auto-built) |
+| `figma_labels/` | Flat label PNGs from Figma |
 | `curved_labels_rgba/` | Intermediate bent labels (temp) |
-| `final_product_shots_blender/` | Final 1000×1500 PNGs |
+| `final_product_shots_blender/` | Final product PNGs (`__front` / `__side`) |
 
-## One-command batch (vials)
-
-```powershell
-cd c:\Users\user\Downloads\Kimi_Figma
-powershell -File scripts\run-blender-batch.ps1
-```
-
-## Test one label first
+## One-command batch
 
 ```powershell
-powershell -File scripts\run-blender-batch.ps1 -Only IPAMORELIN -Limit 1
+tools/label-pipeline/scripts/run-blender-batch.ps1
 ```
 
-Output: `final_product_shots_blender\IPAMORELIN-1.png`
-
-## Manual steps
+Test one SKU:
 
 ```powershell
-# 1. Build scene (once)
-& "C:\Program Files\Blender Foundation\Blender 5.1\blender.exe" --background --python blender\setup_vial_scene.py
-
-# 2. Render curved labels
-& "C:\Program Files\Blender Foundation\Blender 5.1\blender.exe" --background assets\vial_template.blend --python blender\render_vial_labels.py -- --input figma_labels
-
-# 3. Composite onto seashell plate
-python scripts\composite_vial_shots.py
+tools/label-pipeline/scripts/run-blender-batch.ps1 -Only "BPC-157 10mg"
 ```
 
-## Routing
+## Routing (compositing)
 
-| Filename contains | Base |
-|-------------------|------|
-| `capsules` | Pill bottle (not built yet) |
-| Everything else | Seashell vial plate |
+| Manifest `mockup` / filename | Plate |
+|------------------------------|-------|
+| `capsule` or `*capsules*` | `Product Mockups/chatgpt-capsule-bottle.png` |
+| `vial` (default) | `Product Mockups/Untitled Project.png` |
 
-Capsule SKUs: `BPC-157 (CAPSULES)`, `Pinealon (Capsules)` — pill Blender scene TBD.
-
-## Deprecated
-
-`scripts/batch-composite-products.py` — flat Pillow overlay; do not use for vials.
+Compositing: `scripts/composite_product_shots.py`

@@ -35,6 +35,24 @@ def resolve_path(relative: str) -> Path:
     raise FileNotFoundError(f"Plate not found: {relative}")
 
 
+def get_capsule() -> dict:
+    cfg = load_config()
+    capsule = cfg.get("capsule") or cfg.get("pill")
+    if not capsule:
+        raise KeyError("placement-config.json missing 'capsule' section")
+    box = capsule.get("label_box")
+    if not box or len(box) != 4:
+        raise ValueError("capsule.label_box is not set.")
+    plate = resolve_path(capsule["plate"])
+    native = tuple(capsule.get("native_size") or (0, 0))
+    return {
+        "plate": plate,
+        "label_box": tuple(int(v) for v in box),
+        "native_size": native,
+        "feather_radius": int(capsule.get("feather_radius", 4)),
+    }
+
+
 def get_vial() -> dict:
     cfg = load_config()
     vial = cfg.get("vial")

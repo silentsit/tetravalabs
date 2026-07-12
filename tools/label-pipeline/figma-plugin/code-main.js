@@ -163,7 +163,39 @@ function findLabelTemplates() {
   return templates;
 }
 
-function getPropertyMap(component, variant) {
+function findTextLayerByNames(root, namePatterns) {
+  const texts = root.findAll(function (n) {
+    return n.type === "TEXT";
+  });
+  for (let p = 0; p < namePatterns.length; p++) {
+    const needle = namePatterns[p].toLowerCase();
+    for (let i = 0; i < texts.length; i++) {
+      const layerName = texts[i].name.toLowerCase();
+      if (layerName === needle || layerName.indexOf(needle) >= 0) {
+        return texts[i];
+      }
+    }
+  }
+
+  const containers = root.findAll(function (n) {
+    return n.type === "FRAME" || n.type === "GROUP" || n.type === "COMPONENT";
+  });
+  for (let p = 0; p < namePatterns.length; p++) {
+    const needle = namePatterns[p].toLowerCase();
+    for (let i = 0; i < containers.length; i++) {
+      const layerName = containers[i].name.toLowerCase();
+      if (layerName !== needle && layerName.indexOf(needle) < 0) continue;
+      const inner = containers[i].findOne(function (n) {
+        return n.type === "TEXT";
+      });
+      if (inner) return inner;
+    }
+  }
+
+  return null;
+}
+
+function resolveTemplateBinding(component, variant) {
   const map = {};
   for (const key of Object.keys(component.componentPropertyDefinitions)) {
     const def = component.componentPropertyDefinitions[key];
@@ -178,19 +210,63 @@ function getPropertyMap(component, variant) {
     }
   }
 
-  if (variant === "flower") {
-    if (!map.product || !map.sub || !map.conc) {
-      throw new Error(
-        "v2 missing text properties. Bind #product_name, #sub_name, #concentration."
-      );
-    }
-  } else if (!map.product || !map.cas || !map.conc) {
-    throw new Error(
-      "v1 missing text properties. Bind #product_name, #cas_number, #concentration (and #formula)."
-    );
+  const propsOk =
+    variant === "flower"
+      ? map.product && map.sub && map.conc
+      : map.product && map.cas && map.conc;
+  if (propsOk) {
+    return { mode: "properties", keys: map };
   }
 
-  return map;
+  const layerDefs = {
+    product: ["#product_name", "product_name"],
+    cas: ["#cas_number", "#cass_number", "cas_number", "cass_number"],
+    formula: ["#formula", "formula"],
+    conc: ["#concentration", "concentration"],
+    sub: ["#sub_name", "sub_name"],
+  };
+
+  const layers = {};
+  Object.keys(layerDefs).forEach(function (key) {
+    layers[key] = {
+      patterns: layerDefs[key],
+      node: findTextLayerByNames(component, layerDefs[key]),
+    };
+  });
+
+  const layersOk =
+    variant === "flower"
+      ? layers.product.node && layers.sub.node && layers.conc.node
+      : layers.product.node && layers.cas.node && layers.conc.node;
+  if (layersOk) {
+    return { mode: "layers", layers: layers, keys: map };
+  }
+
+  const label = variant === "flower" ? "v2" : "v1";
+  const missing = [];
+  if (!map.product && !layers.product.node) missing.push("#product_name (text layer)");
+  if (variant === "flower") {
+    if (!map.sub && !layers.sub.node) missing.push("#sub_name (text layer)");
+  } else if (!map.cas && !layers.cas.node) {
+    missing.push("#cas_number (text layer — check for #cass_number typo)");
+  }
+  if (!map.conc && !layers.conc.node) {
+    missing.push("#concentration (text layer, or a frame named #concentration containing text)");
+  }
+
+  throw new Error(
+    label +
+      " setup incomplete. Either bind Component text properties, or add text layers named " +
+      (variant === "flower"
+        ? "#product_name, #sub_name, #concentration"
+        : "#product_name, #cas_number, #concentration, #formula") +
+      ". Missing: " +
+      missing.join("; ")
+  );
+}
+
+function getPropertyMap(component, variant) {
+  return resolveTemplateBinding(component, variant);
 }
 
 function pickField(row, keys) {
@@ -269,11 +345,57 @@ function rowToFlowerProperties(row, keys) {
   return props;
 }
 
-function instanceName(row, props, keys, variant) {
-  const product = props[keys.product] || pickField(row, ["#product_name"]);
-  const dose = props[keys.conc] || pickField(row, ["#concentration"]);
+function plainRowValues(row, useFlower) {
+  const values = {
+    product: pickField(row, ["#product_name", "product_name", "Product Name", "Peptide Name"]),
+    conc: pickField(row, ["#concentration", "#Concentration", "concentration", "dosage", "Dosage"]),
+    cas: formatCas(pickField(row, ["#cas_number", "#CAS_number", "cas_number", "CAS Number"])),
+    formula: pickField(row, ["#formula", "formula", "Chemical Formula", "chemical_formula"]),
+    sub: pickField(row, ["#sub_name", "sub_name", "Sub Name"]),
+  };
+  if (useFlower) return values;
+  return values;
+}
+
+async function setInstanceText(instance, layerDef, value) {
+  if (!layerDef || value === undefined || value === null || value === "") return;
+  const node = findTextLayerByNames(instance, layerDef.patterns);
+  if (!node || node.fontName === figma.mixed) return;
+  await figma.loadFontAsync(node.fontName);
+  node.characters = value;
+}
+
+async function applyRowToInstance(instance, binding, row, useFlower) {
+  if (binding.mode === "properties") {
+    const keys = binding.keys;
+    const props = useFlower ? rowToFlowerProperties(row, keys) : rowToMainProperties(row, keys);
+    instance.setProperties(props);
+    return {
+      product: props[keys.product],
+      conc: props[keys.conc],
+      sub: keys.sub ? props[keys.sub] : "",
+      cas: keys.cas ? props[keys.cas] : "",
+      formula: keys.formula ? props[keys.formula] : "",
+    };
+  }
+
+  const values = plainRowValues(row, useFlower);
+  await setInstanceText(instance, binding.layers.product, values.product);
+  if (useFlower) {
+    await setInstanceText(instance, binding.layers.sub, values.sub);
+  } else {
+    await setInstanceText(instance, binding.layers.cas, values.cas);
+    if (binding.layers.formula.node) {
+      await setInstanceText(instance, binding.layers.formula, values.formula);
+    }
+  }
+  await setInstanceText(instance, binding.layers.conc, values.conc);
+  return values;
+}
+
+function instanceNameFromValues(values, variant) {
   const prefix = variant === "capsule" ? "capsule" : variant === "flower" ? "flower" : "main";
-  return [prefix, product, dose].filter(Boolean).join(" — ");
+  return [prefix, values.product, values.conc].filter(Boolean).join(" — ");
 }
 
 async function batchImportLabels(rows) {
@@ -282,10 +404,10 @@ async function batchImportLabels(rows) {
   }
 
   const templates = findLabelTemplates();
-  const mainKeys = getPropertyMap(templates.main, "main");
-  const flowerKeys = getPropertyMap(templates.flower, "flower");
-  const capsuleKeys = templates.capsule
-    ? getPropertyMap(templates.capsule, "main")
+  const mainBinding = resolveTemplateBinding(templates.main, "main");
+  const flowerBinding = resolveTemplateBinding(templates.flower, "flower");
+  const capsuleBinding = templates.capsule
+    ? resolveTemplateBinding(templates.capsule, "main")
     : null;
 
   const gap = 80;
@@ -330,15 +452,15 @@ async function batchImportLabels(rows) {
       : useFlower
         ? templates.flower
         : templates.main;
-    const keys = useCapsule ? capsuleKeys : useFlower ? flowerKeys : mainKeys;
-    const props = useFlower
-      ? rowToFlowerProperties(row, keys)
-      : rowToMainProperties(row, keys);
-
-    if (!props[keys.product]) continue;
+    const binding = useCapsule ? capsuleBinding : useFlower ? flowerBinding : mainBinding;
 
     const instance = component.createInstance();
-    instance.setProperties(props);
+    const values = await applyRowToInstance(instance, binding, row, useFlower);
+    if (!values.product) {
+      instance.remove();
+      continue;
+    }
+
     await autoFitProductName(instance);
     if (!useFlower) await styleFormulaDigits(instance);
 
@@ -346,10 +468,8 @@ async function batchImportLabels(rows) {
     const rowIdx = Math.floor(i / cols);
     instance.x = startX + col * (component.width + gap);
     instance.y = startY + rowIdx * (component.height + gap);
-    instance.name = instanceName(
-      row,
-      props,
-      keys,
+    instance.name = instanceNameFromValues(
+      values,
       useCapsule ? "capsule" : useFlower ? "flower" : "main"
     );
 

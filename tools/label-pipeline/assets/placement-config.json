@@ -25,6 +25,20 @@
       ]
     }
   },
+  "capsule": {
+    "plate": "Product Mockups/chatgpt-capsule-bottle.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "label_box": [
+      378,
+      399,
+      499,
+      610
+    ],
+    "feather_radius": 4
+  },
   "pill": {
     "plate": "Product Mockups/pill_bottle_clear.jpg",
     "label_box": [

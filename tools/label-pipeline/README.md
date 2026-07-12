@@ -1,48 +1,62 @@
-# Label pipeline (Figma → Blender → product shots)
+# Label pipeline (Figma → product shots)
 
 ## Quick start
 
 ```powershell
-cd tools\label-pipeline
-# Drop Figma label JPGs into figma_labels\
-powershell -File scripts\run-blender-batch.ps1
+# 1) Export product list from Excel
+python tools/label-pipeline/scripts/export-figma-labels-csv.py
+
+# 2) In Figma: Plugins → Development → TetravaLabs Label Template Generator
+#    Choose data/labels-batch.csv → Batch Import CSV
+
+# 3) Export each label instance as PNG into figma_labels/ (use export_filename)
+
+# 4) Blender batch — cylindrical wrap + vial/capsule composite (front + side)
+tools/label-pipeline/scripts/run-blender-batch.ps1
 ```
 
-## Label placement (do this first)
+Outputs: `final_product_shots_blender/` as `{export_filename}__front.png` and `{export_filename}__side.png`.
 
-Auto-detection is unreliable. **Mark the label area manually:**
+## Templates
 
-1. Open `scripts/mark-label-area.html` in your browser
-2. Load `Product Mockups/seashell-nice.png` (or the cropped plate)
-3. Drag a rectangle over the **blank white label** (inside the embossed lines)
-4. Optionally load a test label JPG to preview placement live
-5. Click **Download placement-config.json** → save to `assets/placement-config.json`
-6. Preview:
+| Component | When used | Swappable fields |
+|-----------|-----------|------------------|
+| **LABEL-MAIN** | All products without a sub-name | `#product_name`, `#cas_number`, `#formula`, `#concentration` |
+| **LABEL-FLOWER** | Products with `#sub_name` (e.g. Glow Blend) | `#product_name`, `#sub_name`, `#concentration` |
 
-```powershell
-python tools/label-pipeline/scripts/preview_placement.py --label output/retatrutide-20mg.jpg
-```
+Formula digits are coloured **red** automatically on LABEL-MAIN imports.
 
-7. When placement looks right, run the Blender batch.
+## Mockup routing
 
-Outputs: `final_product_shots_blender\`
+| Product type | Base image |
+|--------------|------------|
+| Vials (default) | `Product Mockups/Untitled Project.png` |
+| Capsules | `Product Mockups/chatgpt-capsule-bottle.png` |
+
+Routing is driven by `data/labels-manifest.csv` (export_filename → `mockup` column).
 
 ## Layout
 
 | Path | Purpose |
 |------|---------|
-| `scripts/mark-label-area.html` | **Manual label box tool** (browser) |
-| `assets/placement-config.json` | Saved coordinates — pipeline reads this |
-| `scripts/preview_placement.py` | Flat placement preview before Blender batch |
-| `figma-plugin/` | Figma template generator + CSV batch import |
-| `blender/` | Curved label render + plate composite |
-| `scripts/` | Helper scripts and `run-blender-batch.ps1` |
-| `data/labels-batch.csv` | Google Sheet export for Figma |
+| `figma-plugin/` | Batch import plugin (LABEL-MAIN + LABEL-FLOWER) |
+| `data/labels-batch.csv` | Figma import file |
+| `data/labels-manifest.csv` | Mockup routing for compositor |
+| `assets/placement-config.json` | Label box + Blender settings (vial + capsule) |
+| `figma_labels/` | Flat label PNG exports from Figma |
+| `scripts/run-blender-batch.ps1` | Full batch: Blender wrap → composite |
+| `scripts/composite_product_shots.py` | Route vial vs capsule compositing |
+| `final_product_shots_blender/` | Output PNGs |
 
-Mockup sources: `Product Mockups/seashell-nice.png`, `Product Mockups/pill_bottle_clear.jpg`
+## Figma component setup
 
-## Flat labels (no 3D)
+Before batch import, ensure text layers are bound as component properties:
+
+- LABEL-MAIN: `#product_name`, `#cas_number`, `#formula`, `#concentration`
+- LABEL-FLOWER: `#product_name`, `#sub_name`, `#concentration`
+
+Rebuild plugin after code changes:
 
 ```powershell
-python scripts/generate-pharma-labels.py --csv scripts/labels.csv --logo apps/storefront/public/brand/logo.png
+python tools/label-pipeline/figma-plugin/build-plugin.py
 ```

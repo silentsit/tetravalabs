@@ -1,8 +1,10 @@
-"""Render curved label RGBA passes (Blender only — no Pillow)."""
+"""Render curved label RGBA passes for each configured view (Blender only)."""
 
 from __future__ import annotations
 
 import argparse
+import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -12,6 +14,7 @@ import bpy
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "figma_labels"
 DEFAULT_TMP = ROOT / "curved_labels_rgba"
+CONFIG_PATH = ROOT / "assets" / "placement-config.json"
 PILL_PATTERN = re.compile(r"capsules", re.IGNORECASE)
 
 
@@ -24,6 +27,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--only", type=str, default="")
     return parser.parse_args(argv)
+
+
+def load_views() -> list[dict]:
+    cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    views = (cfg.get("vial", {}).get("blender", {}) or {}).get("views")
+    if not views:
+        views = [{"name": "front", "front_u": 0.5}]
+    return views
 
 
 def find_label_material() -> bpy.types.Material:
@@ -57,6 +68,11 @@ def main() -> None:
         raise FileNotFoundError(f"Input missing: {args.input}")
 
     mat = find_label_material()
+    cyl = bpy.data.objects.get("LabelCylinder")
+    if not cyl:
+        raise RuntimeError("LabelCylinder missing — run setup_vial_scene.py")
+
+    views = load_views()
     labels = (
         sorted(args.input.glob("*.jpg"))
         + sorted(args.input.glob("*.jpeg"))
@@ -76,14 +92,21 @@ def main() -> None:
 
     args.tmp.mkdir(parents=True, exist_ok=True)
     scene = bpy.context.scene
-    print(f"Rendering {len(labels)} curved label(s) -> {args.tmp}")
+    total = len(labels) * len(views)
+    print(f"Rendering {len(labels)} label(s) × {len(views)} view(s) = {total} -> {args.tmp}")
 
-    for i, label_path in enumerate(labels, 1):
+    n = 0
+    for label_path in labels:
         set_label_texture(mat, label_path)
-        out = args.tmp / f"{label_path.stem}.png"
-        scene.render.filepath = str(out)
-        bpy.ops.render.render(write_still=True)
-        print(f"[{i}/{len(labels)}] {label_path.name} -> {out.name}")
+        for view in views:
+            n += 1
+            front_u = float(view.get("front_u", 0.5))
+            # u = 0 faces the camera; rotate to bring front_u to the front.
+            cyl.rotation_euler = (0.0, 0.0, -front_u * 2.0 * math.pi)
+            out = args.tmp / f"{label_path.stem}__{view['name']}.png"
+            scene.render.filepath = str(out)
+            bpy.ops.render.render(write_still=True)
+            print(f"[{n}/{total}] {label_path.name} [{view['name']}] -> {out.name}")
 
     print("Done. Run composite_vial_shots.py next.")
 

@@ -1,25 +1,28 @@
 {
   "vial": {
-    "plate": "Product Mockups/seashell-nice.png",
+    "plate": "Product Mockups/Untitled Project.png",
     "native_size": [
-      682,
-      1024
+      800,
+      800
     ],
     "label_box": [
-      201,
-      482,
-      280,
-      298
+      256,
+      292,
+      289,
+      346
     ],
     "feather_radius": 4,
     "blender": {
-      "figma_w": 1062,
-      "figma_h": 1112,
-      "label_h": 4,
-      "label_w": 3.8201,
-      "bend_angle_deg": 50,
-      "render_w": 560,
-      "render_h": 596
+      "figma_w": 3000,
+      "figma_h": 1200,
+      "label_h": 4.0,
+      "segments": 192,
+      "render_w": 578,
+      "render_h": 692,
+      "views": [
+        { "name": "front", "front_u": 0.35 },
+        { "name": "side", "front_u": 0.87 }
+      ]
     }
   },
   "pill": {

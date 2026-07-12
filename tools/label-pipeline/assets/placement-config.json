@@ -40,7 +40,7 @@
     "feather_radius": 4,
     "blender": {
       "views": [
-        { "name": "front", "front_u": 0.55 },
+        { "name": "front", "front_u": 0.31 },
         { "name": "side", "front_u": 0.87 }
       ]
     }

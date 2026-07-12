@@ -8,6 +8,8 @@ import re
 from pathlib import Path
 
 import openpyxl
+from openpyxl.cell.rich_text import CellRichText, TextBlock
+from openpyxl.cell.text import InlineFont
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
@@ -288,6 +290,88 @@ def lookup_formula(peptide_name: str, enrichment: dict[str, str]) -> str:
     return lookup_formula_single(peptide_name, enrichment)
 
 
+_SUBSCRIPT = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+_SKIP_SUBSCRIPT_MARKERS = (
+    "no single",
+    "multi-",
+    "glycoprotein",
+    "proprietary",
+    "pegylated",
+    "peptide complex",
+    "verify coa",
+    "not on file",
+    "formula not",
+)
+
+
+def format_formula_subscript(text: str) -> str:
+    """Render empirical formulas with subscript counts, e.g. C62H98N16O22 -> C₆₂H₉₈N₁₆O₂₂."""
+
+    if not text:
+        return text
+
+    value = str(text).strip()
+    lower = value.lower()
+    if any(marker in lower for marker in _SKIP_SUBSCRIPT_MARKERS):
+        return value
+
+    def convert_segment(segment: str) -> str:
+        out: list[str] = []
+        index = 0
+        while index < len(segment):
+            match = re.match(r"([A-Z][a-z]?)", segment[index:])
+            if match:
+                out.append(match.group(1))
+                index += len(match.group(1))
+                digits = re.match(r"(\d+)", segment[index:])
+                if digits:
+                    out.append(digits.group(1).translate(_SUBSCRIPT))
+                    index += len(digits.group(1))
+            else:
+                out.append(segment[index])
+                index += 1
+        return "".join(out)
+
+    return " | ".join(convert_segment(part.strip()) for part in value.split("|"))
+
+
+_SUBSCRIPT_DIGITS = set("0123456789" + "₀₁₂₃₄₅₆₇₈₉")
+_FORMULA_BASE_COLOR = "FFFFFFFF"
+_FORMULA_DIGIT_COLOR = "FFFF0000"
+
+
+def _is_formula_digit(char: str) -> bool:
+    return char in _SUBSCRIPT_DIGITS
+
+
+def formula_rich_text(text: str) -> CellRichText:
+    """Return a formula with subscript counts and red digit styling."""
+
+    formatted = format_formula_subscript(text)
+    if not formatted:
+        return CellRichText()
+
+    blocks: list[TextBlock] = []
+    chunk = ""
+    chunk_is_digit = _is_formula_digit(formatted[0])
+
+    for char in formatted:
+        flag = _is_formula_digit(char)
+        if chunk and flag != chunk_is_digit:
+            color = _FORMULA_DIGIT_COLOR if chunk_is_digit else _FORMULA_BASE_COLOR
+            blocks.append(TextBlock(InlineFont(color=color), chunk))
+            chunk = ""
+            chunk_is_digit = flag
+        chunk += char
+        chunk_is_digit = flag
+
+    if chunk:
+        color = _FORMULA_DIGIT_COLOR if chunk_is_digit else _FORMULA_BASE_COLOR
+        blocks.append(TextBlock(InlineFont(color=color), chunk))
+
+    return CellRichText(*blocks)
+
+
 def load_products() -> list[dict]:
     enrichment = load_enrichment_formulas()
     wb = openpyxl.load_workbook(PRICE_LIST, read_only=True, data_only=True)
@@ -356,7 +440,7 @@ def write_excel(rows: list[dict]) -> None:
     for i, row in enumerate(rows, start=2):
         values = [
             row["peptide_name"],
-            row["chemical_formula"],
+            formula_rich_text(row["chemical_formula"]),
             row["concentration"],
             row["vial_size"],
             row["color_code"],

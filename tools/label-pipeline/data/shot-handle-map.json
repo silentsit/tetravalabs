@@ -1,0 +1,770 @@
+{
+  "5-amino-1mq-10mg": {
+    "current": "/products/v2/5-amino-1mq-10mg.png",
+    "front_shot": "5-amino-1mq 10mg__front.png",
+    "side_shot": "5-amino-1mq 10mg__side.png",
+    "target_stem": "5-amino-1mq-10mg.png"
+  },
+  "5-amino-1mq-5mg": {
+    "current": "/products/v2/5-amino-1mq-5mg.png",
+    "front_shot": "5-amino-1mq 5mg__front.png",
+    "side_shot": "5-amino-1mq 5mg__side.png",
+    "target_stem": "5-amino-1mq-5mg.png"
+  },
+  "acetic-acid-water-3ml": {
+    "current": "/products/v2/acetic-acid-3ml.png",
+    "front_shot": "Acetic Acid Water 3ml__front.png",
+    "side_shot": "Acetic Acid Water 3ml__side.png",
+    "target_stem": "acetic-acid-3ml.png"
+  },
+  "adamax-10mg": {
+    "current": "/products/v2/adamax-10mg.png",
+    "front_shot": "Adamax 10mg__front.png",
+    "side_shot": "Adamax 10mg__side.png",
+    "target_stem": "adamax-10mg.png"
+  },
+  "adipotide-2mg": {
+    "current": "/products/v2/adipotide-2mg.png",
+    "front_shot": "Adipotide 2mg__front.png",
+    "side_shot": "Adipotide 2mg__side.png",
+    "target_stem": "adipotide-2mg.png"
+  },
+  "adipotide-5mg": {
+    "current": "/products/v2/adipotide-5mg.png",
+    "front_shot": "Adipotide 5mg__front.png",
+    "side_shot": "Adipotide 5mg__side.png",
+    "target_stem": "adipotide-5mg.png"
+  },
+  "aicar-50mg": {
+    "current": "/products/v2/aicar-50mg.png",
+    "front_shot": "AICAR 50mg__front.png",
+    "side_shot": "AICAR 50mg__side.png",
+    "target_stem": "aicar-50mg.png"
+  },
+  "aod-9604-10mg": {
+    "current": "/products/v2/aod9604-10mg.png",
+    "front_shot": "AOD-9604 10mg__front.png",
+    "side_shot": "AOD-9604 10mg__side.png",
+    "target_stem": "aod9604-10mg.png"
+  },
+  "aod-9604-5mg": {
+    "current": "/products/v2/aod9604-5mg.png",
+    "front_shot": "AOD-9604 5mg__front.png",
+    "side_shot": "AOD-9604 5mg__side.png",
+    "target_stem": "aod9604-5mg.png"
+  },
+  "ara-290-10mg": {
+    "current": "/products/v2/ara-290-10mg.png",
+    "front_shot": "ARA-290 10mg__front.png",
+    "side_shot": "ARA-290 10mg__side.png",
+    "target_stem": "ara-290-10mg.png"
+  },
+  "b-12-10mg": {
+    "current": "/products/v2/b-12-10mg.png",
+    "front_shot": "B-12 10mg__front.png",
+    "side_shot": "B-12 10mg__side.png",
+    "target_stem": "b-12-10mg.png"
+  },
+  "bacteriostatic-water-10ml": {
+    "current": "/products/v2/bac-water-10ml.png",
+    "front_shot": "Bacteriostatic Water 10ml__front.png",
+    "side_shot": "Bacteriostatic Water 10ml__side.png",
+    "target_stem": "bac-water-10ml.png"
+  },
+  "bacteriostatic-water-3ml": {
+    "current": "/products/v2/bacteriostatic-water-3ml.png",
+    "front_shot": "Bacteriostatic Water 3ml__front.png",
+    "side_shot": "Bacteriostatic Water 3ml__side.png",
+    "target_stem": "bacteriostatic-water-3ml.png"
+  },
+  "benzyl-alcohol-10ml": {
+    "current": "/products/v2/benzyl-alcohol-10ml.png",
+    "front_shot": "Benzyl Alcohol 10ml__front.png",
+    "side_shot": "Benzyl Alcohol 10ml__side.png",
+    "target_stem": "benzyl-alcohol-10ml.png"
+  },
+  "benzyl-alcohol-3ml": {
+    "current": "/products/v2/benzyl-alcohol-3ml.png",
+    "front_shot": "Benzyl Alcohol 3ml__front.png",
+    "side_shot": "Benzyl Alcohol 3ml__side.png",
+    "target_stem": "benzyl-alcohol-3ml.png"
+  },
+  "bpc-157-10mg": {
+    "current": "/products/v2/bpc-157-10mg.png",
+    "front_shot": "BPC-157 10mg__front.png",
+    "side_shot": "BPC-157 10mg__side.png",
+    "target_stem": "bpc-157-10mg.png"
+  },
+  "bpc-157-5mg": {
+    "current": "/products/v2/bpc-157-5mg.png",
+    "front_shot": "BPC-157 5mg__front.png",
+    "side_shot": "BPC-157 5mg__side.png",
+    "target_stem": "bpc-157-5mg.png"
+  },
+  "bpc-157-5mg-tb500-5mg-10mg": {
+    "current": "/products/v2/bpc-tb500-blend-10mg.png",
+    "front_shot": "BPC-157 + TB-500 10mg__front.png",
+    "side_shot": "BPC-157 + TB-500 10mg__side.png",
+    "target_stem": "bpc-tb500-blend-10mg.png"
+  },
+  "bpc-157-5mg-tb500-5mg-20mg": {
+    "current": "/products/v2/bpc157-tb500-blend-20mg.png",
+    "front_shot": "BPC-157 + TB-500 20mg__front.png",
+    "side_shot": "BPC-157 + TB-500 20mg__side.png",
+    "target_stem": "bpc157-tb500-blend-20mg.png"
+  },
+  "bpc-157-capsules-100-count-500mcg": {
+    "current": "/products/v2/bpc157-capsules.png",
+    "front_shot": "BPC-157 (Capsules) 500mcg__front.png",
+    "side_shot": "BPC-157 (Capsules) 500mcg__side.png",
+    "target_stem": "bpc157-capsules.png"
+  },
+  "bremelanotide-10mg": {
+    "current": "/products/v2/bremelanotide-10mg.png",
+    "front_shot": "Bremelanotide 10mg__front.png",
+    "side_shot": "Bremelanotide 10mg__side.png",
+    "target_stem": "bremelanotide-10mg.png"
+  },
+  "bremelanotide-5mg": {
+    "current": "/products/v2/bremelanotide-5mg.png",
+    "front_shot": "Bremelanotide 5mg__front.png",
+    "side_shot": "Bremelanotide 5mg__side.png",
+    "target_stem": "bremelanotide-5mg.png"
+  },
+  "cagrilintide-10mg": {
+    "current": "/products/v2/cagrilintide-10mg.png",
+    "front_shot": "Cagrilintide 10mg__front.png",
+    "side_shot": "Cagrilintide 10mg__side.png",
+    "target_stem": "cagrilintide-10mg.png"
+  },
+  "cagrilintide-5mg": {
+    "current": "/products/v2/cagrilintide-5mg.png",
+    "front_shot": "Cagrilintide 5mg__front.png",
+    "side_shot": "Cagrilintide 5mg__side.png",
+    "target_stem": "cagrilintide-5mg.png"
+  },
+  "cagrilintide-semaglutide-10mg": {
+    "current": "/products/v2/cagrilintide-semaglutide-10mg.png",
+    "front_shot": "Cagrilintide + Semaglutide 10mg__front.png",
+    "side_shot": "Cagrilintide + Semaglutide 10mg__side.png",
+    "target_stem": "cagrilintide-semaglutide-10mg.png"
+  },
+  "cagrilintide-semaglutide-5mg": {
+    "current": "/products/v2/cagrilintide-semaglutide-5mg.png",
+    "front_shot": "Cagrilintide + Semaglutide 5mg__front.png",
+    "side_shot": "Cagrilintide + Semaglutide 5mg__side.png",
+    "target_stem": "cagrilintide-semaglutide-5mg.png"
+  },
+  "cerebrolysin-10mg": {
+    "current": "/products/v2/cerebrolysin-10mg.png",
+    "front_shot": "Cerebrolysin 10mg__front.png",
+    "side_shot": "Cerebrolysin 10mg__side.png",
+    "target_stem": "cerebrolysin-10mg.png"
+  },
+  "cjc-1295-with-dac-10mg": {
+    "current": "/products/v2/cjc1295-dac-10mg.png",
+    "front_shot": "CJC-1295 + DAC 10mg__front.png",
+    "side_shot": "CJC-1295 + DAC 10mg__side.png",
+    "target_stem": "cjc1295-dac-10mg.png"
+  },
+  "cjc-1295-with-dac-5mg": {
+    "current": "/products/v2/cjc1295-dac-5mg.png",
+    "front_shot": "CJC-1295 + DAC 5mg__front.png",
+    "side_shot": "CJC-1295 + DAC 5mg__side.png",
+    "target_stem": "cjc1295-dac-5mg.png"
+  },
+  "cjc-1295-without-dac-10mg": {
+    "current": "/products/v2/cjc1295-no-dac-10mg.png",
+    "front_shot": "CJC-1295 [no DAC] 10mg__front.png",
+    "side_shot": "CJC-1295 [no DAC] 10mg__side.png",
+    "target_stem": "cjc1295-no-dac-10mg.png"
+  },
+  "cjc-1295-without-dac-5mg": {
+    "current": "/products/v2/cjc1295-no-dac-5mg.png",
+    "front_shot": "CJC-1295 [no DAC] 5mg__front.png",
+    "side_shot": "CJC-1295 [no DAC] 5mg__side.png",
+    "target_stem": "cjc1295-no-dac-5mg.png"
+  },
+  "cjc-1295-without-dac-ipamorelin-blend-10mg": {
+    "current": "/products/v2/cjc1295-ipa-blend-10mg.png",
+    "front_shot": "CJC-1295 [no DAC] + Ipamorelin 10mg__front.png",
+    "side_shot": "CJC-1295 [no DAC] + Ipamorelin 10mg__side.png",
+    "target_stem": "cjc1295-ipa-blend-10mg.png"
+  },
+  "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg": {
+    "current": "/products/v2/cjc-serm-ipa-blend-5mg.png",
+    "front_shot": "CJC-1295 [no DAC] + Ipamorelin + Sermorelin 5mg__front.png",
+    "side_shot": "CJC-1295 [no DAC] + Ipamorelin + Sermorelin 5mg__side.png",
+    "target_stem": "cjc-serm-ipa-blend-5mg.png"
+  },
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
+    "current": "/products/v2/copper-repair-80mg.png",
+    "front_shot": "Cu + TB-500 + BPC-157 + KPV 80mg__front.png",
+    "side_shot": "Cu + TB-500 + BPC-157 + KPV 80mg__side.png",
+    "target_stem": "copper-repair-80mg.png"
+  },
+  "dermorphin-5mg": {
+    "current": "/products/v2/dermorphin-5mg.png",
+    "front_shot": "Dermorphin 5mg__front.png",
+    "side_shot": "Dermorphin 5mg__side.png",
+    "target_stem": "dermorphin-5mg.png"
+  },
+  "dihexa-10mg": {
+    "current": "/products/v2/dihexa-10mg.png",
+    "front_shot": "Dihexa 10mg__front.png",
+    "side_shot": "Dihexa 10mg__side.png",
+    "target_stem": "dihexa-10mg.png"
+  },
+  "dsip-10mg": {
+    "current": "/products/v2/dsip-10mg.png",
+    "front_shot": "DSIP 10mg__front.png",
+    "side_shot": "DSIP 10mg__side.png",
+    "target_stem": "dsip-10mg.png"
+  },
+  "dsip-15mg": {
+    "current": "/products/v2/dsip-15mg.png",
+    "front_shot": "DSIP 15mg__front.png",
+    "side_shot": "DSIP 15mg__side.png",
+    "target_stem": "dsip-15mg.png"
+  },
+  "dsip-5mg": {
+    "current": "/products/v2/dsip-5mg.png",
+    "front_shot": "DSIP 5mg__front.png",
+    "side_shot": "DSIP 5mg__side.png",
+    "target_stem": "dsip-5mg.png"
+  },
+  "epithalon-10mg": {
+    "current": "/products/v2/epithalon-10mg.png",
+    "front_shot": "Epithalon 10mg__front.png",
+    "side_shot": "Epithalon 10mg__side.png",
+    "target_stem": "epithalon-10mg.png"
+  },
+  "epithalon-20mg": {
+    "current": "/products/v2/epithalon-20mg.png",
+    "front_shot": "Epithalon 20mg__front.png",
+    "side_shot": "Epithalon 20mg__side.png",
+    "target_stem": "epithalon-20mg.png"
+  },
+  "epithalon-50mg": {
+    "current": "/products/v2/epithalon-50mg.png",
+    "front_shot": "Epithalon 50mg__front.png",
+    "side_shot": "Epithalon 50mg__side.png",
+    "target_stem": "epithalon-50mg.png"
+  },
+  "foxo4-dri-10mg": {
+    "current": "/products/v2/foxo4-dri-10mg.png",
+    "front_shot": "FOXO4-DRI 10mg__front.png",
+    "side_shot": "FOXO4-DRI 10mg__side.png",
+    "target_stem": "foxo4-dri-10mg.png"
+  },
+  "ghk-cu-100mg": {
+    "current": "/products/v2/ghk-cu-100mg.png",
+    "front_shot": "GHK-Cu 100mg__front.png",
+    "side_shot": "GHK-Cu 100mg__side.png",
+    "target_stem": "ghk-cu-100mg.png"
+  },
+  "ghk-cu-50mg": {
+    "current": "/products/v2/ghk-cu-50mg.png",
+    "front_shot": "GHK-Cu 50mg__front.png",
+    "side_shot": "GHK-Cu 50mg__side.png",
+    "target_stem": "ghk-cu-50mg.png"
+  },
+  "ghrp-2-acetate-10mg": {
+    "current": "/products/v2/ghrp2-10mg.png",
+    "front_shot": "GHRP-2 Acetate 10mg__front.png",
+    "side_shot": "GHRP-2 Acetate 10mg__side.png",
+    "target_stem": "ghrp2-10mg.png"
+  },
+  "ghrp-2-acetate-5mg": {
+    "current": "/products/v2/ghrp2-5mg.png",
+    "front_shot": "GHRP-2 Acetate 5mg__front.png",
+    "side_shot": "GHRP-2 Acetate 5mg__side.png",
+    "target_stem": "ghrp2-5mg.png"
+  },
+  "ghrp-6-acetate-10mg": {
+    "current": "/products/v2/ghrp6-10mg.png",
+    "front_shot": "GHRP-6 Acetate 10mg__front.png",
+    "side_shot": "GHRP-6 Acetate 10mg__side.png",
+    "target_stem": "ghrp6-10mg.png"
+  },
+  "ghrp-6-acetate-5mg": {
+    "current": "/products/v2/ghrp6-5mg.png",
+    "front_shot": "GHRP-6 Acetate 5mg__front.png",
+    "side_shot": "GHRP-6 Acetate 5mg__side.png",
+    "target_stem": "ghrp6-5mg.png"
+  },
+  "glow-bpc-157-tb500-ghk-cu-30mg": {
+    "current": "/products/v2/glow-blend-30mg.png",
+    "front_shot": "Glow Blend 30mg__front.png",
+    "side_shot": "Glow Blend 30mg__side.png",
+    "target_stem": "glow-blend-30mg.png"
+  },
+  "glow-bpc-157-tb500-ghk-cu-85mg": {
+    "current": "/products/v2/glow-blend-85mg.png",
+    "front_shot": "Glow Blend 85mg__front.png",
+    "side_shot": "Glow Blend 85mg__side.png",
+    "target_stem": "glow-blend-85mg.png"
+  },
+  "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": {
+    "current": "/products/v2/glow-enhanced-70mg.png",
+    "front_shot": "Glow Blend 70mg__front.png",
+    "side_shot": "Glow Blend 70mg__side.png",
+    "target_stem": "glow-enhanced-70mg.png"
+  },
+  "glutathione-1500mg": {
+    "current": "/products/v2/glutathione-1500mg.png",
+    "front_shot": "Glutathione 1500mg__front.png",
+    "side_shot": "Glutathione 1500mg__side.png",
+    "target_stem": "glutathione-1500mg.png"
+  },
+  "glutathione-600mg": {
+    "current": "/products/v2/glutathione-600mg.png",
+    "front_shot": "Glutathione 600mg__front.png",
+    "side_shot": "Glutathione 600mg__side.png",
+    "target_stem": "glutathione-600mg.png"
+  },
+  "gonadorelin-10mg": {
+    "current": "/products/v2/gonadorelin-10mg.png",
+    "front_shot": "Gonadorelin 10mg__front.png",
+    "side_shot": "Gonadorelin 10mg__side.png",
+    "target_stem": "gonadorelin-10mg.png"
+  },
+  "gonadorelin-2mg": {
+    "current": "/products/v2/gonadorelin-2mg.png",
+    "front_shot": "Gonadorelin 2mg__front.png",
+    "side_shot": "Gonadorelin 2mg__side.png",
+    "target_stem": "gonadorelin-2mg.png"
+  },
+  "hcg-10000-iu": {
+    "current": "/products/v2/hcg-10000iu.png",
+    "front_shot": "HCG 10000 IU__front.png",
+    "side_shot": "HCG 10000 IU__side.png",
+    "target_stem": "hcg-10000iu.png"
+  },
+  "hcg-5000-iu": {
+    "current": "/products/v2/hcg-5000iu.png",
+    "front_shot": "HCG 5000 IU__front.png",
+    "side_shot": "HCG 5000 IU__side.png",
+    "target_stem": "hcg-5000iu.png"
+  },
+  "hexarelin-acetate-2mg": {
+    "current": "/products/v2/hexarelin-2mg.png",
+    "front_shot": "Hexarelin Acetate 2mg__front.png",
+    "side_shot": "Hexarelin Acetate 2mg__side.png",
+    "target_stem": "hexarelin-2mg.png"
+  },
+  "hexarelin-acetate-5mg": {
+    "current": "/products/v2/hexarelin-5mg.png",
+    "front_shot": "Hexarelin Acetate 5mg__front.png",
+    "side_shot": "Hexarelin Acetate 5mg__side.png",
+    "target_stem": "hexarelin-5mg.png"
+  },
+  "hgh-191aa-10-iu": {
+    "current": "/products/v2/hgh-10iu.png",
+    "front_shot": "HGH 191aa 10 IU__front.png",
+    "side_shot": "HGH 191aa 10 IU__side.png",
+    "target_stem": "hgh-10iu.png"
+  },
+  "hgh-191aa-12-iu": {
+    "current": "/products/v2/hgh-191aa-12iu.png",
+    "front_shot": "HGH 191aa 12 IU__front.png",
+    "side_shot": "HGH 191aa 12 IU__side.png",
+    "target_stem": "hgh-191aa-12iu.png"
+  },
+  "hgh-191aa-15-iu": {
+    "current": "/products/v2/hgh-191aa-15iu.png",
+    "front_shot": "HGH 191aa 15 IU__front.png",
+    "side_shot": "HGH 191aa 15 IU__side.png",
+    "target_stem": "hgh-191aa-15iu.png"
+  },
+  "hgh-191aa-24-iu": {
+    "current": "/products/v2/hgh-191aa-24iu.png",
+    "front_shot": "HGH 191aa 24 IU__front.png",
+    "side_shot": "HGH 191aa 24 IU__side.png",
+    "target_stem": "hgh-191aa-24iu.png"
+  },
+  "hgh-191aa-36-iu": {
+    "current": "/products/v2/hgh-191aa-36iu.png",
+    "front_shot": "HGH 191aa 36 IU__front.png",
+    "side_shot": "HGH 191aa 36 IU__side.png",
+    "target_stem": "hgh-191aa-36iu.png"
+  },
+  "hmg-75-iu": {
+    "current": "/products/v2/hmg-75iu.png",
+    "front_shot": "HMG 75 IU__front.png",
+    "side_shot": "HMG 75 IU__side.png",
+    "target_stem": "hmg-75iu.png"
+  },
+  "humanin-10mg": {
+    "current": "/products/v2/humanin-10mg.png",
+    "front_shot": "Humanin 10mg__front.png",
+    "side_shot": "Humanin 10mg__side.png",
+    "target_stem": "humanin-10mg.png"
+  },
+  "igf-1-lr3-0-1mg": {
+    "current": "/products/v2/igf-1-des-1mg.png",
+    "front_shot": "IGF-1 LR3 0.1mg__front.png",
+    "side_shot": "IGF-1 LR3 0.1mg__side.png",
+    "target_stem": "igf-1-des-1mg.png"
+  },
+  "igf-1-lr3-1mg": {
+    "current": "/products/v2/igf-1-lr3-1mg.png",
+    "front_shot": "IGF-1 LR3 1mg__front.png",
+    "side_shot": "IGF-1 LR3 1mg__side.png",
+    "target_stem": "igf-1-lr3-1mg.png"
+  },
+  "ipamorelin-10mg": {
+    "current": "/products/v2/ipamorelin-10mg.png",
+    "front_shot": "Ipamorelin 10mg__front.png",
+    "side_shot": "Ipamorelin 10mg__side.png",
+    "target_stem": "ipamorelin-10mg.png"
+  },
+  "ipamorelin-5mg": {
+    "current": "/products/v2/ipamorelin-5mg.png",
+    "front_shot": "Ipamorelin 5mg__front.png",
+    "side_shot": "Ipamorelin 5mg__side.png",
+    "target_stem": "ipamorelin-5mg.png"
+  },
+  "kisspeptin-10-10mg": {
+    "current": "/products/v2/kisspeptin-10-10mg.png",
+    "front_shot": "Kisspeptin-10 10mg__front.png",
+    "side_shot": "Kisspeptin-10 10mg__side.png",
+    "target_stem": "kisspeptin-10-10mg.png"
+  },
+  "kisspeptin-10-5mg": {
+    "current": "/products/v2/kisspeptin-10-5mg.png",
+    "front_shot": "Kisspeptin-10 5mg__front.png",
+    "side_shot": "Kisspeptin-10 5mg__side.png",
+    "target_stem": "kisspeptin-10-5mg.png"
+  },
+  "kpv-10mg": {
+    "current": "/products/v2/kpv-10mg.png",
+    "front_shot": "KPV 10mg__front.png",
+    "side_shot": "KPV 10mg__side.png",
+    "target_stem": "kpv-10mg.png"
+  },
+  "kpv-5mg": {
+    "current": "/products/v2/kpv-5mg.png",
+    "front_shot": "KPV 5mg__front.png",
+    "side_shot": "KPV 5mg__side.png",
+    "target_stem": "kpv-5mg.png"
+  },
+  "l-carnitine-600mg-10ml": {
+    "current": "/products/v2/l-carnitine-600mg.png",
+    "front_shot": "L-Carnitine 600mg (10ml)__front.png",
+    "side_shot": "L-Carnitine 600mg (10ml)__side.png",
+    "target_stem": "l-carnitine-600mg.png"
+  },
+  "l-glu-100mg": {
+    "current": "/products/v2/l-glu-100mg.png",
+    "front_shot": "L-Glu 100mg__front.png",
+    "side_shot": "L-Glu 100mg__side.png",
+    "target_stem": "l-glu-100mg.png"
+  },
+  "lemon-bottle-10ml": {
+    "current": "/products/v2/lemon-bottle-10ml.png",
+    "front_shot": "Lemon Bottle 10ml__front.png",
+    "side_shot": "Lemon Bottle 10ml__side.png",
+    "target_stem": "lemon-bottle-10ml.png"
+  },
+  "lipo-c-10ml": {
+    "current": "/products/v2/lipo-c-10ml.png",
+    "front_shot": "Lipo-C 10ml__front.png",
+    "side_shot": "Lipo-C 10ml__side.png",
+    "target_stem": "lipo-c-10ml.png"
+  },
+  "ll-37-5mg": {
+    "current": "/products/v2/ll-37-5mg.png",
+    "front_shot": "LL-37 5mg__front.png",
+    "side_shot": "LL-37 5mg__side.png",
+    "target_stem": "ll-37-5mg.png"
+  },
+  "mazdutide-10mg": {
+    "current": "/products/v2/mazdutide-10mg.png",
+    "front_shot": "Mazdutide 10mg__front.png",
+    "side_shot": "Mazdutide 10mg__side.png",
+    "target_stem": "mazdutide-10mg.png"
+  },
+  "mazdutide-5mg": {
+    "current": "/products/v2/mazdutide-5mg.png",
+    "front_shot": "Mazdutide 5mg__front.png",
+    "side_shot": "Mazdutide 5mg__side.png",
+    "target_stem": "mazdutide-5mg.png"
+  },
+  "melanotan-1-10mg": {
+    "current": "/products/v2/melanotan-i-10mg.png",
+    "front_shot": "Melanotan 1 10mg__front.png",
+    "side_shot": "Melanotan 1 10mg__side.png",
+    "target_stem": "melanotan-i-10mg.png"
+  },
+  "melanotan-2-10mg": {
+    "current": "/products/v2/melanotan-ii-10mg.png",
+    "front_shot": "Melanotan 2 10mg__front.png",
+    "side_shot": "Melanotan 2 10mg__side.png",
+    "target_stem": "melanotan-ii-10mg.png"
+  },
+  "mgf-2mg": {
+    "current": "/products/v2/mgf-2mg.png",
+    "front_shot": "MGF 2mg__front.png",
+    "side_shot": "MGF 2mg__side.png",
+    "target_stem": "mgf-2mg.png"
+  },
+  "mk-677-5mg": {
+    "current": "/products/v2/mk-677-5mg.png",
+    "front_shot": "MK-677 5mg__front.png",
+    "side_shot": "MK-677 5mg__side.png",
+    "target_stem": "mk-677-5mg.png"
+  },
+  "mots-c-10mg": {
+    "current": "/products/v2/mots-c-10mg.png",
+    "front_shot": "MOTS-c 10mg__front.png",
+    "side_shot": "MOTS-c 10mg__side.png",
+    "target_stem": "mots-c-10mg.png"
+  },
+  "mots-c-20mg": {
+    "current": "/products/v2/mots-c-20mg.png",
+    "front_shot": "MOTS-c 20mg__front.png",
+    "side_shot": "MOTS-c 20mg__side.png",
+    "target_stem": "mots-c-20mg.png"
+  },
+  "mots-c-40mg": {
+    "current": "/products/v2/mots-c-40mg.png",
+    "front_shot": "MOTS-c 40mg__front.png",
+    "side_shot": "MOTS-c 40mg__side.png",
+    "target_stem": "mots-c-40mg.png"
+  },
+  "mots-c-5mg": {
+    "current": "/products/v2/mots-c-5mg.png",
+    "front_shot": "MOTS-c 5mg__front.png",
+    "side_shot": "MOTS-c 5mg__side.png",
+    "target_stem": "mots-c-5mg.png"
+  },
+  "nad-1000mg": {
+    "current": "/products/v2/nad-1000mg.png",
+    "front_shot": "NAD 1000mg__front.png",
+    "side_shot": "NAD 1000mg__side.png",
+    "target_stem": "nad-1000mg.png"
+  },
+  "nad-100mg": {
+    "current": "/products/v2/nad-100mg.png",
+    "front_shot": "NAD 100mg__front.png",
+    "side_shot": "NAD 100mg__side.png",
+    "target_stem": "nad-100mg.png"
+  },
+  "nad-500mg": {
+    "current": "/products/v2/nad-500mg.png",
+    "front_shot": "NAD 500mg__front.png",
+    "side_shot": "NAD 500mg__side.png",
+    "target_stem": "nad-500mg.png"
+  },
+  "oxytocin-acetate-10mg": {
+    "current": "/products/v2/oxytocin-10mg.png",
+    "front_shot": "Oxytocin Acetate 10mg__front.png",
+    "side_shot": "Oxytocin Acetate 10mg__side.png",
+    "target_stem": "oxytocin-10mg.png"
+  },
+  "oxytocin-acetate-2mg": {
+    "current": "/products/v2/oxytocin-2mg.png",
+    "front_shot": "Oxytocin Acetate 2mg__front.png",
+    "side_shot": "Oxytocin Acetate 2mg__side.png",
+    "target_stem": "oxytocin-2mg.png"
+  },
+  "oxytocin-acetate-5mg": {
+    "current": "/products/v2/oxytocin-5mg.png",
+    "front_shot": "Oxytocin Acetate 5mg__front.png",
+    "side_shot": "Oxytocin Acetate 5mg__side.png",
+    "target_stem": "oxytocin-5mg.png"
+  },
+  "peg-mgf-2mg": {
+    "current": "/products/v2/peg-mgf-2mg.png",
+    "front_shot": "PEG-MGF 2mg__front.png",
+    "side_shot": "PEG-MGF 2mg__side.png",
+    "target_stem": "peg-mgf-2mg.png"
+  },
+  "pinealon-10mg": {
+    "current": "/products/v2/pinealon-10mg.png",
+    "front_shot": "Pinealon 10mg__front.png",
+    "side_shot": "Pinealon 10mg__side.png",
+    "target_stem": "pinealon-10mg.png"
+  },
+  "retatrutide-100mg": {
+    "current": "/products/v2/retatrutide-100mg.png",
+    "front_shot": "Retatrutide 100mg__front.png",
+    "side_shot": "Retatrutide 100mg__side.png",
+    "target_stem": "retatrutide-100mg.png"
+  },
+  "retatrutide-10mg": {
+    "current": "/products/v2/retatrutide-10mg.png",
+    "front_shot": "Retatrutide 10mg__front.png",
+    "side_shot": "Retatrutide 10mg__side.png",
+    "target_stem": "retatrutide-10mg.png"
+  },
+  "retatrutide-20mg": {
+    "current": "/products/v2/retatrutide-20mg.png",
+    "front_shot": "Retatrutide 20mg__front.png",
+    "side_shot": "Retatrutide 20mg__side.png",
+    "target_stem": "retatrutide-20mg.png"
+  },
+  "retatrutide-50mg": {
+    "current": "/products/v2/retatrutide-50mg.png",
+    "front_shot": "Retatrutide 50mg__front.png",
+    "side_shot": "Retatrutide 50mg__side.png",
+    "target_stem": "retatrutide-50mg.png"
+  },
+  "retatrutide-5mg": {
+    "current": "/products/v2/retatrutide-5mg.png",
+    "front_shot": "Retatrutide 5mg__front.png",
+    "side_shot": "Retatrutide 5mg__side.png",
+    "target_stem": "retatrutide-5mg.png"
+  },
+  "selank-10mg": {
+    "current": "/products/v2/selank-10mg.png",
+    "front_shot": "Selank 10mg__front.png",
+    "side_shot": "Selank 10mg__side.png",
+    "target_stem": "selank-10mg.png"
+  },
+  "selank-5mg": {
+    "current": "/products/v2/selank-5mg.png",
+    "front_shot": "Selank 5mg__front.png",
+    "side_shot": "Selank 5mg__side.png",
+    "target_stem": "selank-5mg.png"
+  },
+  "semaglutide-10mg": {
+    "current": "/products/v2/semaglutide-10mg.png",
+    "front_shot": "Semaglutide 10mg__front.png",
+    "side_shot": "Semaglutide 10mg__side.png",
+    "target_stem": "semaglutide-10mg.png"
+  },
+  "semaglutide-5mg": {
+    "current": "/products/v2/semaglutide-5mg.png",
+    "front_shot": "Semaglutide 5mg__front.png",
+    "side_shot": "Semaglutide 5mg__side.png",
+    "target_stem": "semaglutide-5mg.png"
+  },
+  "semax-10mg": {
+    "current": "/products/v2/semax-10mg.png",
+    "front_shot": "Semax 10mg__front.png",
+    "side_shot": "Semax 10mg__side.png",
+    "target_stem": "semax-10mg.png"
+  },
+  "semax-5mg": {
+    "current": "/products/v2/semax-5mg.png",
+    "front_shot": "Semax 5mg__front.png",
+    "side_shot": "Semax 5mg__side.png",
+    "target_stem": "semax-5mg.png"
+  },
+  "sermorelin-10mg": {
+    "current": "/products/v2/sermorelin-10mg.png",
+    "front_shot": "Sermorelin 10mg__front.png",
+    "side_shot": "Sermorelin 10mg__side.png",
+    "target_stem": "sermorelin-10mg.png"
+  },
+  "sermorelin-5mg": {
+    "current": "/products/v2/sermorelin-5mg.png",
+    "front_shot": "Sermorelin 5mg__front.png",
+    "side_shot": "Sermorelin 5mg__side.png",
+    "target_stem": "sermorelin-5mg.png"
+  },
+  "snap-8-10mg": {
+    "current": "/products/v2/snap-8-10mg.png",
+    "front_shot": "Snap-8 10mg__front.png",
+    "side_shot": "Snap-8 10mg__side.png",
+    "target_stem": "snap-8-10mg.png"
+  },
+  "ss-31-10mg": {
+    "current": "/products/v2/ss-31-10mg.png",
+    "front_shot": "SS-31 10mg__front.png",
+    "side_shot": "SS-31 10mg__side.png",
+    "target_stem": "ss-31-10mg.png"
+  },
+  "ss-31-25mg": {
+    "current": "/products/v2/ss-31-25mg.png",
+    "front_shot": "SS-31 25mg__front.png",
+    "side_shot": "SS-31 25mg__side.png",
+    "target_stem": "ss-31-25mg.png"
+  },
+  "ss-31-50mg": {
+    "current": "/products/v2/ss-31-50mg.png",
+    "front_shot": "SS-31 50mg__front.png",
+    "side_shot": "SS-31 50mg__side.png",
+    "target_stem": "ss-31-50mg.png"
+  },
+  "survodutide-10mg": {
+    "current": "/products/v2/survodutide-10mg.png",
+    "front_shot": "Survodutide 10mg__front.png",
+    "side_shot": "Survodutide 10mg__side.png",
+    "target_stem": "survodutide-10mg.png"
+  },
+  "tb500-10mg": {
+    "current": "/products/v2/tb500-10mg.png",
+    "front_shot": "TB-500 10mg__front.png",
+    "side_shot": "TB-500 10mg__side.png",
+    "target_stem": "tb500-10mg.png"
+  },
+  "tb500-5mg": {
+    "current": "/products/v2/tb500-5mg.png",
+    "front_shot": "TB-500 5mg__front.png",
+    "side_shot": "TB-500 5mg__side.png",
+    "target_stem": "tb500-5mg.png"
+  },
+  "tesamorelin-10mg": {
+    "current": "/products/v2/tesamorelin-10mg.png",
+    "front_shot": "Tesamorelin 10mg__front.png",
+    "side_shot": "Tesamorelin 10mg__side.png",
+    "target_stem": "tesamorelin-10mg.png"
+  },
+  "tesamorelin-20mg": {
+    "current": "/products/v2/tesamorelin-20mg.png",
+    "front_shot": "Tesamorelin 20mg__front.png",
+    "side_shot": "Tesamorelin 20mg__side.png",
+    "target_stem": "tesamorelin-20mg.png"
+  },
+  "tesamorelin-5mg": {
+    "current": "/products/v2/tesamorelin-5mg.png",
+    "front_shot": "Tesamorelin 5mg__front.png",
+    "side_shot": "Tesamorelin 5mg__side.png",
+    "target_stem": "tesamorelin-5mg.png"
+  },
+  "thymalin-10mg": {
+    "current": "/products/v2/thymalin-10mg.png",
+    "front_shot": "Thymalin 10mg__front.png",
+    "side_shot": "Thymalin 10mg__side.png",
+    "target_stem": "thymalin-10mg.png"
+  },
+  "thymosin-alpha-1-10mg": {
+    "current": "/products/v2/thymosin-alpha-1-10mg.png",
+    "front_shot": "Thymosin alpha-1 10mg__front.png",
+    "side_shot": "Thymosin alpha-1 10mg__side.png",
+    "target_stem": "thymosin-alpha-1-10mg.png"
+  },
+  "thymosin-alpha-1-5mg": {
+    "current": "/products/v2/thymosin-alpha-1-5mg.png",
+    "front_shot": "Thymosin alpha-1 5mg__front.png",
+    "side_shot": "Thymosin alpha-1 5mg__side.png",
+    "target_stem": "thymosin-alpha-1-5mg.png"
+  },
+  "tirzepatide-10mg": {
+    "current": "/products/v2/tirzepatide-10mg.png",
+    "front_shot": "Tirzepatide 10mg__front.png",
+    "side_shot": "Tirzepatide 10mg__side.png",
+    "target_stem": "tirzepatide-10mg.png"
+  },
+  "tirzepatide-20mg": {
+    "current": "/products/v2/tirzepatide-20mg.png",
+    "front_shot": "Tirzepatide 20mg__front.png",
+    "side_shot": "Tirzepatide 20mg__side.png",
+    "target_stem": "tirzepatide-20mg.png"
+  },
+  "tirzepatide-50mg": {
+    "current": "/products/v2/tirzepatide-50mg.png",
+    "front_shot": "Tirzepatide 50mg__front.png",
+    "side_shot": "Tirzepatide 50mg__side.png",
+    "target_stem": "tirzepatide-50mg.png"
+  },
+  "tirzepatide-5mg": {
+    "current": "/products/v2/tirzepatide-5mg.png",
+    "front_shot": "Tirzepatide 5mg__front.png",
+    "side_shot": "Tirzepatide 5mg__side.png",
+    "target_stem": "tirzepatide-5mg.png"
+  }
+}

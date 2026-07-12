@@ -1,0 +1,133 @@
+export_filename,label_template,mockup,#product_name,#concentration
+Acetic Acid Water 3ml,main,vial,Acetic Acid Water 3ml,N/A
+Bacteriostatic Water 3ml,main,vial,Bacteriostatic Water 3ml,N/A
+Bacteriostatic Water 10ml,main,vial,Bacteriostatic Water 10ml,N/A
+Benzyl Alcohol 3ml,main,vial,Benzyl Alcohol 3ml,N/A
+Benzyl Alcohol 10ml,main,vial,Benzyl Alcohol 10ml,N/A
+5-amino-1mq 5mg,main,vial,5-amino-1mq,5mg
+5-amino-1mq 10mg,main,vial,5-amino-1mq,10mg
+AOD-9604 5mg,main,vial,AOD-9604,5mg
+AOD-9604 10mg,main,vial,AOD-9604,10mg
+Cagrilintide 5mg,main,vial,Cagrilintide,5mg
+Cagrilintide 10mg,main,vial,Cagrilintide,10mg
+Cagrilintide + Semaglutide 5mg,main,vial,Cagrilintide + Semaglutide,5mg
+Cagrilintide + Semaglutide 10mg,main,vial,Cagrilintide + Semaglutide,10mg
+Mazdutide 5mg,main,vial,Mazdutide,5mg
+Mazdutide 10mg,main,vial,Mazdutide,10mg
+Retatrutide 5mg,main,vial,Retatrutide,5mg
+Retatrutide 10mg,main,vial,Retatrutide,10mg
+Retatrutide 20mg,main,vial,Retatrutide,20mg
+Retatrutide 50mg,main,vial,Retatrutide,50mg
+Retatrutide 100mg,main,vial,Retatrutide,100mg
+Semaglutide 5mg,main,vial,Semaglutide,5mg
+Semaglutide 10mg,main,vial,Semaglutide,10mg
+Sermorelin 5mg,main,vial,Sermorelin,5mg
+Sermorelin 10mg,main,vial,Sermorelin,10mg
+Survodutide 10mg,main,vial,Survodutide,10mg
+Tesamorelin 5mg,main,vial,Tesamorelin,5mg
+Tesamorelin 10mg,main,vial,Tesamorelin,10mg
+Tesamorelin 20mg,main,vial,Tesamorelin,20mg
+Tirzepatide 5mg,main,vial,Tirzepatide,5mg
+Tirzepatide 10mg,main,vial,Tirzepatide,10mg
+Tirzepatide 20mg,main,vial,Tirzepatide,20mg
+Tirzepatide 50mg,main,vial,Tirzepatide,50mg
+BPC-157 5mg,main,vial,BPC-157,5mg
+BPC-157 10mg,main,vial,BPC-157,10mg
+BPC-157 (Capsules) 500mcg,main,capsule,BPC-157 (Capsules),500mcg
+TB-500 5mg,main,vial,TB-500,5mg
+TB-500 10mg,main,vial,TB-500,10mg
+BPC-157 + TB-500 10mg,main,vial,BPC-157 + TB-500,10mg
+BPC-157 + TB-500 20mg,main,vial,BPC-157 + TB-500,20mg
+Cu + TB-500 + BPC-157 + KPV 80mg,main,vial,Cu + TB-500 + BPC-157 + KPV,80mg
+Glow Blend 30mg,flower,vial,Glow Blend,30mg
+Glow Blend 70mg,flower,vial,Glow Blend,70mg
+Glow Blend 85mg,flower,vial,Glow Blend,85mg
+CJC-1295 + DAC 5mg,main,vial,CJC-1295 + DAC,5mg
+CJC-1295 + DAC 10mg,main,vial,CJC-1295 + DAC,10mg
+CJC-1295 [no DAC] 5mg,main,vial,CJC-1295 [no DAC],5mg
+CJC-1295 [no DAC] 10mg,main,vial,CJC-1295 [no DAC],10mg
+CJC-1295 [no DAC] + Ipamorelin 10mg,main,vial,CJC-1295 [no DAC] + Ipamorelin,10mg
+CJC-1295 [no DAC] + Ipamorelin + Sermorelin 5mg,main,vial,CJC-1295 [no DAC] + Ipamorelin + Sermorelin,5mg
+GHRP-2 Acetate 5mg,main,vial,GHRP-2 Acetate,5mg
+GHRP-2 Acetate 10mg,main,vial,GHRP-2 Acetate,10mg
+GHRP-6 Acetate 5mg,main,vial,GHRP-6 Acetate,5mg
+GHRP-6 Acetate 10mg,main,vial,GHRP-6 Acetate,10mg
+Hexarelin Acetate 2mg,main,vial,Hexarelin Acetate,2mg
+Hexarelin Acetate 5mg,main,vial,Hexarelin Acetate,5mg
+Ipamorelin 5mg,main,vial,Ipamorelin,5mg
+Ipamorelin 10mg,main,vial,Ipamorelin,10mg
+Gonadorelin 2mg,main,vial,Gonadorelin,2mg
+Gonadorelin 10mg,main,vial,Gonadorelin,10mg
+HCG 5000 IU,main,vial,HCG,5000 IU
+HCG 10000 IU,main,vial,HCG,10000 IU
+HGH 191aa 10 IU,main,vial,HGH 191aa,10 IU
+HGH 191aa 12 IU,main,vial,HGH 191aa,12 IU
+HGH 191aa 15 IU,main,vial,HGH 191aa,15 IU
+HGH 191aa 24 IU,main,vial,HGH 191aa,24 IU
+HGH 191aa 36 IU,main,vial,HGH 191aa,36 IU
+HMG 75 IU,main,vial,HMG,75 IU
+IGF-1 LR3 0.1mg,main,vial,IGF-1 LR3,0.1mg
+IGF-1 LR3 1mg,main,vial,IGF-1 LR3,1mg
+MGF 2mg,main,vial,MGF,2mg
+PEG-MGF 2mg,main,vial,PEG-MGF,2mg
+Adipotide 2mg,main,vial,Adipotide,2mg
+Adipotide 5mg,main,vial,Adipotide,5mg
+AICAR 50mg,main,vial,AICAR,50mg
+MOTS-c 5mg,main,vial,MOTS-c,5mg
+MOTS-c 10mg,main,vial,MOTS-c,10mg
+MOTS-c 20mg,main,vial,MOTS-c,20mg
+MOTS-c 40mg,main,vial,MOTS-c,40mg
+SS-31 10mg,main,vial,SS-31,10mg
+SS-31 25mg,main,vial,SS-31,25mg
+SS-31 50mg,main,vial,SS-31,50mg
+GHK-Cu 50mg,main,vial,GHK-Cu,50mg
+GHK-Cu 100mg,main,vial,GHK-Cu,100mg
+Melanotan 1 10mg,main,vial,Melanotan 1,10mg
+Melanotan 2 10mg,main,vial,Melanotan 2,10mg
+Snap-8 10mg,main,vial,Snap-8,10mg
+ARA-290 10mg,main,vial,ARA-290,10mg
+Bremelanotide 5mg,main,vial,Bremelanotide,5mg
+Bremelanotide 10mg,main,vial,Bremelanotide,10mg
+Dermorphin 5mg,main,vial,Dermorphin,5mg
+DSIP 5mg,main,vial,DSIP,5mg
+DSIP 10mg,main,vial,DSIP,10mg
+DSIP 15mg,main,vial,DSIP,15mg
+Epithalon 10mg,main,vial,Epithalon,10mg
+Epithalon 20mg,main,vial,Epithalon,20mg
+Epithalon 50mg,main,vial,Epithalon,50mg
+FOXO4-DRI 10mg,main,vial,FOXO4-DRI,10mg
+Kisspeptin-10 5mg,main,vial,Kisspeptin-10,5mg
+Kisspeptin-10 10mg,main,vial,Kisspeptin-10,10mg
+KPV 5mg,main,vial,KPV,5mg
+KPV 10mg,main,vial,KPV,10mg
+LL-37 5mg,main,vial,LL-37,5mg
+NAD 100mg,main,vial,NAD,100mg
+NAD 500mg,main,vial,NAD,500mg
+NAD 1000mg,main,vial,NAD,1000mg
+Oxytocin Acetate 2mg,main,vial,Oxytocin Acetate,2mg
+Oxytocin Acetate 5mg,main,vial,Oxytocin Acetate,5mg
+Oxytocin Acetate 10mg,main,vial,Oxytocin Acetate,10mg
+Selank 5mg,main,vial,Selank,5mg
+Selank 10mg,main,vial,Selank,10mg
+Semax 5mg,main,vial,Semax,5mg
+Semax 10mg,main,vial,Semax,10mg
+Thymalin 10mg,main,vial,Thymalin,10mg
+Thymosin alpha-1 5mg,main,vial,Thymosin alpha-1,5mg
+Thymosin alpha-1 10mg,main,vial,Thymosin alpha-1,10mg
+VIP 10mg,main,vial,VIP,10mg
+Pinealon 10mg,main,vial,Pinealon,10mg
+Humanin 10mg,main,vial,Humanin,10mg
+Adamax 10mg,main,vial,Adamax,10mg
+Dihexa 10mg,main,vial,Dihexa,10mg
+Cerebrolysin 10mg,main,vial,Cerebrolysin,10mg
+B-12 10mg,main,vial,B-12,10mg
+Glutathione 600mg,main,vial,Glutathione,600mg
+Glutathione 1500mg,main,vial,Glutathione,1500mg
+L-Carnitine 600mg (10ml),main,vial,L-Carnitine,600mg (10ml)
+Lemon Bottle 10ml,main,vial,Lemon Bottle 10ml,N/A
+Lipo-C 10ml,main,vial,Lipo-C 10ml,N/A
+MK-677 5mg,main,vial,MK-677,5mg
+L-Glu 100mg,main,vial,L-Glu,100mg
+Pinealon (Capsules),main,capsule,Pinealon (Capsules),N/A
+Selank Nasal Spray 10mg,main,vial,Selank Nasal Spray,10mg
+Semax Nasal Spray 10mg,main,vial,Semax Nasal Spray,10mg

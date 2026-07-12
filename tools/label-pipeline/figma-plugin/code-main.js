@@ -1,5 +1,5 @@
 // ============================================================
-// TetravaLabs Label Batch Import — LABEL-MAIN + LABEL-FLOWER
+// TetravaLabs Label Batch Import — #v1 / #v2 / #v3
 // ============================================================
 
 figma.ui.onmessage = async (msg) => {
@@ -20,7 +20,7 @@ figma.ui.onmessage = async (msg) => {
           result.flower +
           " v2, " +
           (result.capsule || 0) +
-          " v3 capsules)"
+          " v3)"
       );
       figma.ui.postMessage({ type: "batch-done", count: result.total, ...result });
     }
@@ -139,7 +139,7 @@ function findComponentByNames(names) {
     throw new Error(
       'Component not found. Looked for: ' +
         names.join(", ") +
-        ". On this page, convert your #v1 / #v2 frames to Components (right-click → Create component) if needed."
+        ". On this page, add Components named #v1, #v2, and #v3 (right-click frame → Create component)."
     );
   }
   matches.sort(function (a, b) {
@@ -181,12 +181,12 @@ function getPropertyMap(component, variant) {
   if (variant === "flower") {
     if (!map.product || !map.sub || !map.conc) {
       throw new Error(
-        "v2 / LABEL-FLOWER missing text properties. Bind #product_name, #sub_name, #concentration."
+        "v2 missing text properties. Bind #product_name, #sub_name, #concentration."
       );
     }
   } else if (!map.product || !map.cas || !map.conc) {
     throw new Error(
-      "v1 / LABEL-MAIN missing text properties. Bind #product_name, #cas_number, #concentration (and #formula)."
+      "v1 missing text properties. Bind #product_name, #cas_number, #concentration (and #formula)."
     );
   }
 
@@ -417,5 +417,5 @@ async function createLabelTemplate() {
 
   figma.currentPage.selection = [component];
   figma.viewport.scrollAndZoomIntoView([component]);
-  figma.notify("Legacy template created — prefer your LABEL-MAIN / LABEL-FLOWER components");
+  figma.notify("Legacy template created — prefer your #v1 / #v2 / #v3 components");
 }

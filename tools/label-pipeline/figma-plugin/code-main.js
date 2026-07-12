@@ -288,9 +288,8 @@ function pickField(row, keys) {
 
 function formatCas(value) {
   if (!value) return "";
-  const text = value.trim();
-  const number = text.replace(/^CAS\s*:?\s*/i, "");
-  return "CAS: " + number;
+  // Templates already show a static "CAS:" label — write the bare number only.
+  return value.trim().replace(/^CAS\s*:?\s*/i, "");
 }
 
 function usesFlowerTemplate(row) {
@@ -374,8 +373,13 @@ async function setInstanceText(instance, layerDef, value) {
 
 async function applySidePanelText(instance, binding, values, useFlower) {
   if (useFlower || !binding.layers) return;
-  await setInstanceText(instance, binding.layers.cas, values.cas);
-  if (binding.layers.formula && binding.layers.formula.node) {
+  const keys = binding.keys || {};
+  // Skip fields already driven by component properties — writing both causes
+  // duplicate overlapping text (e.g. "CAS: CAS:").
+  if (!keys.cas) {
+    await setInstanceText(instance, binding.layers.cas, values.cas);
+  }
+  if (binding.layers.formula && binding.layers.formula.node && !keys.formula) {
     await setInstanceText(instance, binding.layers.formula, values.formula);
   }
 }

@@ -3,9 +3,8 @@
 import Image from "next/image"
 import { useCallback, useRef, useState } from "react"
 
-const ZOOM_LEVEL = 2.25
-const LENS_SIZE = 128
-const IMAGE_PADDING = 16
+const ZOOM_LEVEL = 2.4
+const THUMB_SIZE = 72
 
 type Props = {
   src: string
@@ -13,102 +12,55 @@ type Props = {
   priority?: boolean
 }
 
-type ImageMetrics = {
-  naturalWidth: number
-  naturalHeight: number
-}
-
-type LensState = {
+type ZoomPos = {
   x: number
   y: number
-  offsetX: number
-  offsetY: number
-  renderWidth: number
-  renderHeight: number
 }
 
-function getRenderedImageRect(
-  containerWidth: number,
-  containerHeight: number,
-  imageWidth: number,
-  imageHeight: number
-) {
-  const innerWidth = Math.max(containerWidth - IMAGE_PADDING * 2, 1)
-  const innerHeight = Math.max(containerHeight - IMAGE_PADDING * 2, 1)
-  const imageAspect = imageWidth / imageHeight
-  const innerAspect = innerWidth / innerHeight
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value))
+}
 
-  if (imageAspect > innerAspect) {
-    const width = innerWidth
-    const height = innerWidth / imageAspect
-    return {
-      x: IMAGE_PADDING,
-      y: IMAGE_PADDING + (innerHeight - height) / 2,
-      width,
-      height
-    }
-  }
-
-  const height = innerHeight
-  const width = innerHeight * imageAspect
-  return {
-    x: IMAGE_PADDING + (innerWidth - width) / 2,
-    y: IMAGE_PADDING,
-    width,
-    height
-  }
+function canHoverZoom() {
+  return window.matchMedia("(hover: hover) and (pointer: fine)").matches
 }
 
 export function ProductImageZoom({ src, alt, priority = false }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [metrics, setMetrics] = useState<ImageMetrics | null>(null)
   const [active, setActive] = useState(false)
-  const [lens, setLens] = useState<LensState | null>(null)
+  const [pos, setPos] = useState<ZoomPos>({ x: 50, y: 50 })
 
-  const updateLens = useCallback(
-    (clientX: number, clientY: number) => {
-      const box = containerRef.current
-      if (!box || !metrics) return
+  const updatePos = useCallback((clientX: number, clientY: number) => {
+    const box = containerRef.current
+    if (!box) return
 
-      const rect = box.getBoundingClientRect()
-      const rendered = getRenderedImageRect(rect.width, rect.height, metrics.naturalWidth, metrics.naturalHeight)
-      const half = LENS_SIZE / 2
-      const pointerX = clientX - rect.left
-      const pointerY = clientY - rect.top
-      const relativeX = pointerX - rendered.x
-      const relativeY = pointerY - rendered.y
-      const clampedX = Math.max(0, Math.min(rendered.width, relativeX))
-      const clampedY = Math.max(0, Math.min(rendered.height, relativeY))
+    const rect = box.getBoundingClientRect()
+    if (rect.width <= 0 || rect.height <= 0) return
 
-      setLens({
-        x: Math.max(half, Math.min(rect.width - half, pointerX)),
-        y: Math.max(half, Math.min(rect.height - half, pointerY)),
-        offsetX: clampedX * ZOOM_LEVEL - half,
-        offsetY: clampedY * ZOOM_LEVEL - half,
-        renderWidth: rendered.width,
-        renderHeight: rendered.height
-      })
-    },
-    [metrics]
-  )
+    setPos({
+      x: clamp(((clientX - rect.left) / rect.width) * 100, 0, 100),
+      y: clamp(((clientY - rect.top) / rect.height) * 100, 0, 100)
+    })
+  }, [])
 
   const handleEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      setActive(true)
-      updateLens(event.clientX, event.clientY)
-    }
+    if (!canHoverZoom()) return
+    setActive(true)
+    updatePos(event.clientX, event.clientY)
   }
 
   return (
     <div
       ref={containerRef}
-      className={`relative h-full w-full overflow-hidden ${active ? "cursor-none" : "cursor-zoom-in"}`}
+      className={`relative h-full w-full overflow-hidden bg-[#F8FAFC] ${
+        active ? "cursor-crosshair" : "cursor-zoom-in"
+      }`}
       onMouseEnter={handleEnter}
-      onMouseLeave={() => {
-        setActive(false)
-        setLens(null)
+      onMouseLeave={() => setActive(false)}
+      onMouseMove={(event) => {
+        if (!active) return
+        updatePos(event.clientX, event.clientY)
       }}
-      onMouseMove={(event) => updateLens(event.clientX, event.clientY)}
     >
       <Image
         src={src}
@@ -116,42 +68,44 @@ export function ProductImageZoom({ src, alt, priority = false }: Props) {
         fill
         priority={priority}
         sizes="(max-width: 1024px) 280px, 320px"
-        className="object-contain p-4"
+        className={`object-contain p-4 transition-opacity duration-150 ${
+          active ? "opacity-0" : "opacity-100"
+        }`}
         draggable={false}
-        onLoad={(event) => {
-          const image = event.currentTarget
-          setMetrics({
-            naturalWidth: image.naturalWidth,
-            naturalHeight: image.naturalHeight
-          })
-        }}
       />
 
-      {active && lens ? (
-        <div
-          className="pointer-events-none absolute z-10 overflow-hidden rounded-full border-2 border-white bg-white shadow-[0_8px_24px_rgba(15,23,42,0.18)] ring-1 ring-[#CBD5E1]"
-          style={{
-            width: LENS_SIZE,
-            height: LENS_SIZE,
-            left: lens.x - LENS_SIZE / 2,
-            top: lens.y - LENS_SIZE / 2
-          }}
-          aria-hidden
-        >
+      {active ? (
+        <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={src}
             alt=""
             draggable={false}
-            className="absolute max-w-none select-none"
+            aria-hidden
+            className="product-image-zoom-layer pointer-events-none absolute max-w-none select-none object-contain p-0"
             style={{
-              width: lens.renderWidth * ZOOM_LEVEL,
-              height: lens.renderHeight * ZOOM_LEVEL,
-              left: -lens.offsetX,
-              top: -lens.offsetY
+              width: `${ZOOM_LEVEL * 100}%`,
+              height: `${ZOOM_LEVEL * 100}%`,
+              left: `${-pos.x * (ZOOM_LEVEL - 1)}%`,
+              top: `${-pos.y * (ZOOM_LEVEL - 1)}%`
             }}
           />
-        </div>
+
+          <div
+            className="pointer-events-none absolute left-3 top-3 z-10 overflow-hidden rounded-lg border-2 border-[#0D9488] bg-white shadow-sm"
+            style={{ width: THUMB_SIZE, height: THUMB_SIZE }}
+            aria-hidden
+          >
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes={`${THUMB_SIZE}px`}
+              className="product-image-zoom-thumb object-contain p-1"
+              draggable={false}
+            />
+          </div>
+        </>
       ) : null}
     </div>
   )

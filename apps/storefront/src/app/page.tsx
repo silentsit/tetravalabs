@@ -10,6 +10,8 @@ import {
 } from "lucide-react"
 import type { Metadata } from "next"
 import { FeaturedProducts } from "@/components/home/featured-products"
+import { HeroProductStage } from "@/components/home/hero-product-stage"
+import { HeroTrustStrip } from "@/components/home/hero-trust-strip"
 import { BlogPostCard } from "@/components/blog-post-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
@@ -87,20 +89,13 @@ export default async function HomePage() {
               <LiveVisitorCounter />
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-sm">
-              <Image
-                src="/v2/hero-products.jpg"
-                alt="Research peptide vials"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+          <div className="flex items-end justify-center lg:items-center">
+            <HeroProductStage />
           </div>
         </div>
       </section>
+
+      <HeroTrustStrip />
 
       <section className="section-padding bg-white">
         <div className="page-container">

@@ -70,8 +70,13 @@ def export_labels(
         sub_name = cell_text(ws.cell(row_idx, sub_col).value) if sub_col else ""
         concentration = cell_text(ws.cell(row_idx, concentration_col).value)
         vial_size = cell_text(ws.cell(row_idx, vial_col).value) if vial_col else ""
-        label_template = "flower" if sub_name else "main"
         mockup = "capsule" if is_capsule(product, vial_size) else "vial"
+        if mockup == "capsule":
+            label_template = "capsule"
+        elif sub_name:
+            label_template = "flower"
+        else:
+            label_template = "main"
         export_name = slug_filename(product, concentration)
 
         rows.append(

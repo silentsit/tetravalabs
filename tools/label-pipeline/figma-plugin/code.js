@@ -38,6 +38,9 @@ figma.ui.onmessage = async (msg) => {
 var PRODUCT_MAX_WIDTH = 918;
 var PRODUCT_MAX_SIZE = 96;
 var PRODUCT_MIN_SIZE = 34;
+var FORMULA_MAX_WIDTH = 560;
+var FORMULA_MAX_SIZE = 32;
+var FORMULA_MIN_SIZE = 8;
 var FORMULA_RED = { r: 0.86, g: 0.15, b: 0.15 };
 var FORMULA_DIGITS = "0123456789₀₁₂₃₄₅₆₇₈₉";
 
@@ -57,6 +60,60 @@ async function autoFitProductName(instance) {
   while (node.width > PRODUCT_MAX_WIDTH && size > PRODUCT_MIN_SIZE) {
     size -= 2;
     node.fontSize = size;
+  }
+}
+
+function formulaMaxWidth(node) {
+  var parent = node.parent;
+  while (
+    parent &&
+    parent.type !== "FRAME" &&
+    parent.type !== "GROUP" &&
+    parent.type !== "COMPONENT" &&
+    parent.type !== "INSTANCE"
+  ) {
+    parent = parent.parent;
+  }
+  if (!parent) return FORMULA_MAX_WIDTH;
+
+  // Side-panel formula is usually rotated inside a strip; use the longer
+  // parent edge as the fit bound, unless the parent is the whole label.
+  var longer = Math.max(parent.width, parent.height);
+  var shorter = Math.min(parent.width, parent.height);
+  if (longer > 1500 && shorter > 800) return FORMULA_MAX_WIDTH;
+  if (longer < 40) return FORMULA_MAX_WIDTH;
+  return Math.max(40, longer - 8);
+}
+
+async function autoFitFormula(instance) {
+  var node = instance.findOne(function (n) {
+    return n.type === "TEXT" && n.name.toLowerCase().indexOf("formula") >= 0;
+  });
+  if (!node || !node.characters || node.fontName === figma.mixed) return;
+
+  await figma.loadFontAsync(node.fontName);
+
+  var maxWidth = formulaMaxWidth(node);
+  var start =
+    typeof node.fontSize === "number" && node.fontSize > 0
+      ? Math.min(FORMULA_MAX_SIZE, node.fontSize)
+      : FORMULA_MAX_SIZE;
+  var size = start;
+  node.fontSize = size;
+
+  // Ensure width grows with content so we can measure overflow.
+  var prevResize = node.textAutoResize;
+  if (node.textAutoResize === "NONE" || node.textAutoResize === "HEIGHT") {
+    node.textAutoResize = "WIDTH_AND_HEIGHT";
+  }
+
+  while (node.width > maxWidth && size > FORMULA_MIN_SIZE) {
+    size -= 1;
+    node.fontSize = size;
+  }
+
+  if (prevResize && prevResize !== node.textAutoResize) {
+    node.textAutoResize = prevResize;
   }
 }
 
@@ -486,7 +543,10 @@ async function batchImportLabels(rows) {
     }
 
     await autoFitProductName(instance);
-    if (!useFlower) await styleFormulaDigits(instance);
+    if (!useFlower) {
+      await autoFitFormula(instance);
+      await styleFormulaDigits(instance);
+    }
 
     const col = i % cols;
     const rowIdx = Math.floor(i / cols);

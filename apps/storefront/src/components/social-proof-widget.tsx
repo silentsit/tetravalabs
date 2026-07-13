@@ -13,7 +13,12 @@ const notifications = [
   { name: "Marcus T.", location: "Atlanta, GA", product: "Ipamorelin 5mg", time: "52 min ago" },
   { name: "Dr. Sarah Chen", location: "Palo Alto, CA", product: "BPC-157 / TB-500 Blend", time: "1 hr ago" },
   { name: "BioNova Group", location: "Phoenix, AZ", product: "Retatrutide 5mg", time: "1 hr ago" },
-  { name: "Elena R.", location: "Miami, FL", product: "Bacteriostatic Water 10ml", time: "2 hr ago" }
+  { name: "Elena R.", location: "Miami, FL", product: "Bacteriostatic Water 10ml", time: "2 hr ago" },
+  { name: "Dr. Rebecca Park", location: "Nashville, TN", product: "Selank Nasal Spray 10mg", time: "8 min ago" },
+  { name: "Thomas H.", location: "Portland, OR", product: "Epithalon 10mg", time: "15 min ago" },
+  { name: "Amanda W.", location: "Raleigh, NC", product: "BPC-157 Capsules", time: "22 min ago" },
+  { name: "David Okoro", location: "Houston, TX", product: "MOTS-c 10mg", time: "29 min ago" },
+  { name: "Rachel M.", location: "Minneapolis, MN", product: "Selank 10mg", time: "36 min ago" }
 ]
 
 const reviews = [
@@ -52,6 +57,30 @@ const reviews = [
     institution: "Contract research",
     rating: 5,
     text: "Fast fulfillment and responsive support on compound specifications."
+  },
+  {
+    name: "Dr. Rebecca Park",
+    institution: "Vanderbilt Research",
+    rating: 5,
+    text: "Lot-linked COAs make our peptide validation workflow much faster."
+  },
+  {
+    name: "Thomas Hartley",
+    institution: "Oregon State Lab",
+    rating: 5,
+    text: "Shipping has been reliable even for temperature-sensitive compounds."
+  },
+  {
+    name: "Amanda Weiss",
+    institution: "Duke Molecular",
+    rating: 5,
+    text: "Clear labeling and documentation — exactly what we need for RUO work."
+  },
+  {
+    name: "David Okoro",
+    institution: "Houston Analytical",
+    rating: 5,
+    text: "Purity results have been consistent across every batch we've ordered."
   }
 ]
 
@@ -133,7 +162,7 @@ export function SocialProofReviews() {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {reviews.map((review) => (
-        <div key={review.name} className="rounded-xl border border-[#E2E8F0] bg-white p-6">
+        <div key={`${review.name}-${review.institution}`} className="rounded-xl border border-[#E2E8F0] bg-white p-6">
           <div className="mb-3 flex gap-0.5">
             {Array.from({ length: review.rating }).map((_, i) => (
               <Star key={i} className="h-4 w-4 fill-[#F59E0B] text-[#F59E0B]" />
@@ -152,10 +181,14 @@ function randomResearchersOnline() {
   return Math.floor(Math.random() * 36) + 15
 }
 
+const INITIAL_RESEARCHERS_ONLINE = 32
+
 export function LiveVisitorCounter() {
-  const [count, setCount] = useState(randomResearchersOnline)
+  const [count, setCount] = useState(INITIAL_RESEARCHERS_ONLINE)
 
   useEffect(() => {
+    setCount(randomResearchersOnline())
+
     let cancelled = false
     let timeoutId: number
 

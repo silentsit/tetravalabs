@@ -4,29 +4,29 @@ import Link from "next/link"
 const HERO_PRODUCTS = [
   {
     slot: "back" as const,
-    src: "/products/v2/bpc157-capsules.png",
+    src: "/products/v2/hero/bpc157-capsules.png",
     href: "/product/bpc-157-capsules-100-count-500mcg",
     label: "BPC-157 Capsules",
-    width: 1024,
-    height: 1024,
+    width: 503,
+    height: 1002,
     priority: false
   },
   {
     slot: "mid" as const,
-    src: "/products/v2/selank-nasal-spray-10mg.png",
+    src: "/products/v2/hero/selank-nasal-spray-10mg.png",
     href: "/product/selank-nasal-spray-10mg",
     label: "Selank Nasal Spray 10mg",
-    width: 1024,
-    height: 1024,
+    width: 289,
+    height: 1090,
     priority: false
   },
   {
     slot: "front" as const,
-    src: "/products/v2/retatrutide-5mg.png",
+    src: "/products/v2/hero/retatrutide-5mg.png",
     href: "/product/retatrutide-5mg",
     label: "Retatrutide 5mg",
-    width: 800,
-    height: 800,
+    width: 361,
+    height: 717,
     priority: true
   }
 ]

@@ -40,6 +40,29 @@ var FORMULA_MIN_SIZE = 8;
 var FORMULA_RED = { r: 0.86, g: 0.15, b: 0.15 };
 var FORMULA_DIGITS = "0123456789₀₁₂₃₄₅₆₇₈₉";
 
+function productNameMaxWidth(node, fallbackWidth) {
+  var parent = node.parent;
+  while (
+    parent &&
+    parent.type !== "FRAME" &&
+    parent.type !== "GROUP" &&
+    parent.type !== "COMPONENT" &&
+    parent.type !== "INSTANCE"
+  ) {
+    parent = parent.parent;
+  }
+  // Prefer the text box / parent width when it looks like a name slot,
+  // otherwise fall back to the label front-panel max.
+  if (typeof fallbackWidth === "number" && fallbackWidth > 80 && fallbackWidth < 2000) {
+    return fallbackWidth;
+  }
+  if (parent) {
+    var w = parent.width;
+    if (w > 80 && w < 2000) return w;
+  }
+  return PRODUCT_MAX_WIDTH;
+}
+
 async function autoFitProductName(instance) {
   var node = instance.findOne(function (n) {
     return (
@@ -47,15 +70,36 @@ async function autoFitProductName(instance) {
       (n.name === "#product_name" || n.name.toLowerCase().indexOf("product") >= 0)
     );
   });
-  if (!node || node.fontName === figma.mixed) return;
+  if (!node || !node.characters || node.fontName === figma.mixed) return;
 
   await figma.loadFontAsync(node.fontName);
 
+  // Always start from the largest size, then shrink only until the name fits.
+  // Fixed-size text boxes report node.width as the box width (not content),
+  // so temporarily switch to WIDTH_AND_HEIGHT to measure the true text width.
+  var prevResize = node.textAutoResize;
+  var prevWidth = node.width;
+  var prevHeight = node.height;
+  var maxWidth = productNameMaxWidth(node, prevWidth);
+
+  node.textAutoResize = "WIDTH_AND_HEIGHT";
+
   var size = PRODUCT_MAX_SIZE;
   node.fontSize = size;
-  while (node.width > PRODUCT_MAX_WIDTH && size > PRODUCT_MIN_SIZE) {
-    size -= 2;
+  while (node.width > maxWidth && size > PRODUCT_MIN_SIZE) {
+    size -= 1;
     node.fontSize = size;
+  }
+
+  if (prevResize && prevResize !== "WIDTH_AND_HEIGHT") {
+    node.textAutoResize = prevResize;
+    if (prevResize === "NONE" || prevResize === "HEIGHT") {
+      try {
+        node.resize(prevWidth, Math.max(node.height, prevHeight));
+      } catch (_e) {
+        // Some text nodes reject resize after auto-resize mode changes.
+      }
+    }
   }
 }
 

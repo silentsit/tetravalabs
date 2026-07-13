@@ -1,9 +1,9 @@
 export_filename,label_template,mockup,#product_name,#concentration
-Acetic Acid Water 3ml,main,vial,Acetic Acid Water 3ml,N/A
-Bacteriostatic Water 3ml,main,vial,Bacteriostatic Water 3ml,N/A
-Bacteriostatic Water 10ml,main,vial,Bacteriostatic Water 10ml,N/A
-Benzyl Alcohol 3ml,main,vial,Benzyl Alcohol 3ml,N/A
-Benzyl Alcohol 10ml,main,vial,Benzyl Alcohol 10ml,N/A
+Acetic Acid Water 3ml,main,vial,Acetic Acid Water,3ml
+Bacteriostatic Water 3ml,main,vial,Bacteriostatic Water,3ml
+Bacteriostatic Water 10ml,main,vial,Bacteriostatic Water,10ml
+Benzyl Alcohol 3ml,main,vial,Benzyl Alcohol,3ml
+Benzyl Alcohol 10ml,main,vial,Benzyl Alcohol 10ml,10ml
 5-amino-1mq 5mg,main,vial,5-amino-1mq,5mg
 5-amino-1mq 10mg,main,vial,5-amino-1mq,10mg
 AOD-9604 5mg,main,vial,AOD-9604,5mg
@@ -33,12 +33,12 @@ Tirzepatide 20mg,main,vial,Tirzepatide,20mg
 Tirzepatide 50mg,main,vial,Tirzepatide,50mg
 BPC-157 5mg,main,vial,BPC-157,5mg
 BPC-157 10mg,main,vial,BPC-157,10mg
-BPC-157 (Capsules) 500mcg,capsule,capsule,BPC-157 (Capsules),500mcg
+BPC-157 500mcg,capsule,capsule,BPC-157,500mcg
 TB-500 5mg,main,vial,TB-500,5mg
 TB-500 10mg,main,vial,TB-500,10mg
 BPC-157 + TB-500 10mg,main,vial,BPC-157 + TB-500,10mg
 BPC-157 + TB-500 20mg,main,vial,BPC-157 + TB-500,20mg
-Cu + TB-500 + BPC-157 + KPV 80mg,main,vial,Cu + TB-500 + BPC-157 + KPV,80mg
+BPC-157 + TB-500 + Cu + KPV 80mg,main,vial,BPC-157 + TB-500 + Cu + KPV,80mg
 Glow Blend 30mg,flower,vial,Glow Blend,30mg
 Glow Blend 70mg,flower,vial,Glow Blend,70mg
 Glow Blend 85mg,flower,vial,Glow Blend,85mg
@@ -124,8 +124,8 @@ B-12 10mg,main,vial,B-12,10mg
 Glutathione 600mg,main,vial,Glutathione,600mg
 Glutathione 1500mg,main,vial,Glutathione,1500mg
 L-Carnitine 600mg (10ml),main,vial,L-Carnitine,600mg (10ml)
-Lemon Bottle 10ml,main,vial,Lemon Bottle 10ml,N/A
-Lipo-C 10ml,main,vial,Lipo-C 10ml,N/A
+Lemon Bottle 10ml,main,vial,Lemon Bottle,10ml
+Lipo-C 10ml,main,vial,Lipo-C,10ml
 MK-677 5mg,main,vial,MK-677,5mg
 L-Glu 100mg,main,vial,L-Glu,100mg
 Pinealon (Capsules),capsule,capsule,Pinealon (Capsules),N/A

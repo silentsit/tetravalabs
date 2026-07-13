@@ -1,9 +1,9 @@
 #product_name,#sub_name,#cas_number,#formula,#concentration,label_template,export_filename
-Acetic Acid Water 3ml,,CAS 64-19-7,C₂H₄O₂ (in H₂O),N/A,main,Acetic Acid Water 3ml
-Bacteriostatic Water 3ml,,CAS 7732-18-5,H₂O,N/A,main,Bacteriostatic Water 3ml
-Bacteriostatic Water 10ml,,CAS 7732-18-5,H₂O,N/A,main,Bacteriostatic Water 10ml
-Benzyl Alcohol 3ml,,CAS 100-51-6,C₇H₈O (in H₂O),N/A,main,Benzyl Alcohol 3ml
-Benzyl Alcohol 10ml,,CAS 100-51-6,C₇H₈O (in H₂O),N/A,main,Benzyl Alcohol 10ml
+Acetic Acid Water,,CAS 64-19-7,C₂H₄O₂ (in H₂O),3ml,main,Acetic Acid Water 3ml
+Bacteriostatic Water,,CAS 7732-18-5,H₂O,3ml,main,Bacteriostatic Water 3ml
+Bacteriostatic Water,,CAS 7732-18-5,H₂O,10ml,main,Bacteriostatic Water 10ml
+Benzyl Alcohol,,CAS 100-51-6,C₇H₈O (in H₂O),3ml,main,Benzyl Alcohol 3ml
+Benzyl Alcohol 10ml,,CAS 100-51-6,C₇H₈O (in H₂O),10ml,main,Benzyl Alcohol 10ml
 5-amino-1mq,,CAS 42437-96-7,C₁₀H₁₁N₃,5mg,main,5-amino-1mq 5mg
 5-amino-1mq,,CAS 42437-96-7,C₁₀H₁₁N₃,10mg,main,5-amino-1mq 10mg
 AOD-9604,,CAS 221231-10-3,C₇₈H₁₂₃N₂₁O₂₃S,5mg,main,AOD-9604 5mg
@@ -33,12 +33,12 @@ Tirzepatide,,CAS 2023788-19-2,C₂₂₅H₃₄₈N₄₈O₆₈,20mg,main,Tirze
 Tirzepatide,,CAS 2023788-19-2,C₂₂₅H₃₄₈N₄₈O₆₈,50mg,main,Tirzepatide 50mg
 BPC-157,,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂,5mg,main,BPC-157 5mg
 BPC-157,,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂,10mg,main,BPC-157 10mg
-BPC-157 (Capsules),,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂,500mcg,capsule,BPC-157 (Capsules) 500mcg
+BPC-157,,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂,500mcg,capsule,BPC-157 500mcg
 TB-500,,CAS 77591-33-4,C₂₁₂H₃₅₀N₅₆O₇₈S,5mg,main,TB-500 5mg
 TB-500,,CAS 77591-33-4,C₂₁₂H₃₅₀N₅₆O₇₈S,10mg,main,TB-500 10mg
 BPC-157 + TB-500,,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂ | C₂₁₂H₃₅₀N₅₆O₇₈S,10mg,main,BPC-157 + TB-500 10mg
 BPC-157 + TB-500,,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂ | C₂₁₂H₃₅₀N₅₆O₇₈S,20mg,main,BPC-157 + TB-500 20mg
-Cu + TB-500 + BPC-157 + KPV,,CAS 89030-95-5,C₁₄H₂₄CuN₆O₄ | C₂₁₂H₃₅₀N₅₆O₇₈S | C₆₂H₉₈N₁₆O₂₂ | C₁₆H₃₀N₄O₄,80mg,main,Cu + TB-500 + BPC-157 + KPV 80mg
+BPC-157 + TB-500 + Cu + KPV,,CAS 89030-95-5,C₁₄H₂₄CuN₆O₄ | C₂₁₂H₃₅₀N₅₆O₇₈S | C₆₂H₉₈N₁₆O₂₂ | C₁₆H₃₀N₄O₄,80mg,main,BPC-157 + TB-500 + Cu + KPV 80mg
 Glow Blend,BPC-157 + TB-500 + GHK-Cu,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂ | C₂₁₂H₃₅₀N₅₆O₇₈S | C₁₄H₂₄CuN₆O₄,30mg,flower,Glow Blend 30mg
 Glow Blend,BPC-157 + TB-500 + GHK-Cu,CAS 137525-51-0,C₆₂H₉₈N₁₆O₂₂ | C₂₁₂H₃₅₀N₅₆O₇₈S | C₁₄H₂₄CuN₆O₄,70mg,flower,Glow Blend 70mg
 Glow Blend,BPC-157 + TB-500 + GHK-Cu,CAS 137525-51-0,C₂₁₂H₃₅₀N₅₆O₇₈S | C₆₂H₉₈N₁₆O₂₂ | C₁₄H₂₄CuN₆O₄,85mg,flower,Glow Blend 85mg
@@ -58,18 +58,18 @@ Ipamorelin,,CAS 170851-70-4,C₃₈H₄₉N₉O₅,5mg,main,Ipamorelin 5mg
 Ipamorelin,,CAS 170851-70-4,C₃₈H₄₉N₉O₅,10mg,main,Ipamorelin 10mg
 Gonadorelin,,CAS 33515-09-2,C₅₅H₇₅N₁₇O₁₃,2mg,main,Gonadorelin 2mg
 Gonadorelin,,CAS 33515-09-2,C₅₅H₇₅N₁₇O₁₃,10mg,main,Gonadorelin 10mg
-HCG,,CAS 9002-61-3,Glycoprotein hormone (no single empirical formula),5000 IU,main,HCG 5000 IU
-HCG,,CAS 9002-61-3,Glycoprotein hormone (no single empirical formula),10000 IU,main,HCG 10000 IU
+HCG,,CAS 9002-61-3,—,5000 IU,main,HCG 5000 IU
+HCG,,CAS 9002-61-3,—,10000 IU,main,HCG 10000 IU
 HGH 191aa,,CAS 12629-01-5,C₉₉₀H₁₅₂₈N₂₆₂O₃₀₀S₇,10 IU,main,HGH 191aa 10 IU
 HGH 191aa,,CAS 12629-01-5,C₉₉₀H₁₅₂₈N₂₆₂O₃₀₀S₇,12 IU,main,HGH 191aa 12 IU
 HGH 191aa,,CAS 12629-01-5,C₉₉₀H₁₅₂₈N₂₆₂O₃₀₀S₇,15 IU,main,HGH 191aa 15 IU
 HGH 191aa,,CAS 12629-01-5,C₉₉₀H₁₅₂₈N₂₆₂O₃₀₀S₇,24 IU,main,HGH 191aa 24 IU
 HGH 191aa,,CAS 12629-01-5,C₉₉₀H₁₅₂₈N₂₆₂O₃₀₀S₇,36 IU,main,HGH 191aa 36 IU
-HMG,,CAS 9002-68-0,Glycoprotein hormone (no single empirical formula),75 IU,main,HMG 75 IU
+HMG,,CAS 9002-68-0,—,75 IU,main,HMG 75 IU
 IGF-1 LR3,,CAS 946870-92-4,C₄₇₃H₇₁₁N₁₃₁O₁₀₁S₁₀,0.1mg,main,IGF-1 LR3 0.1mg
 IGF-1 LR3,,CAS 946870-92-4,C₄₇₃H₇₁₁N₁₃₁O₁₀₁S₁₀,1mg,main,IGF-1 LR3 1mg
-MGF,,CAS 80214-83-1,PEGylated splice variant (no single formula),2mg,main,MGF 2mg
-PEG-MGF,,CAS 108174-48-7,PEGylated splice variant (no single formula),2mg,main,PEG-MGF 2mg
+MGF,,CAS 80214-83-1,—,2mg,main,MGF 2mg
+PEG-MGF,,CAS 108174-48-7,—,2mg,main,PEG-MGF 2mg
 Adipotide,,CAS 859216-15-2,C₁₅₂H₂₅₂N₄₄O₄₂,2mg,main,Adipotide 2mg
 Adipotide,,CAS 859216-15-2,C₁₅₂H₂₅₂N₄₄O₄₂,5mg,main,Adipotide 5mg
 AICAR,,CAS 2627-69-2,C₉H₁₄N₄O₅,50mg,main,AICAR 50mg
@@ -95,7 +95,7 @@ DSIP,,CAS 62568-57-4,C₃₅H₄₈N₁₀O₁₅,15mg,main,DSIP 15mg
 Epithalon,,CAS 307297-39-8,C₁₄H₂₂N₄O₉,10mg,main,Epithalon 10mg
 Epithalon,,CAS 307297-39-8,C₁₄H₂₂N₄O₉,20mg,main,Epithalon 20mg
 Epithalon,,CAS 307297-39-8,C₁₄H₂₂N₄O₉,50mg,main,Epithalon 50mg
-FOXO4-DRI,,CAS 2460055-10-9,Proprietary D-retro-inverso peptide (verify COA),10mg,main,FOXO4-DRI 10mg
+FOXO4-DRI,,CAS 2460055-10-9,—,10mg,main,FOXO4-DRI 10mg
 Kisspeptin-10,,CAS 373566-79-9,C₆₃H₈₃N₁₇O₁₄,5mg,main,Kisspeptin-10 5mg
 Kisspeptin-10,,CAS 373566-79-9,C₆₃H₈₃N₁₇O₁₄,10mg,main,Kisspeptin-10 10mg
 KPV,,CAS 67727-97-3,C₁₆H₃₀N₄O₄,5mg,main,KPV 5mg
@@ -111,7 +111,7 @@ Selank,,CAS 129954-34-3,C₃₃H₅₇N₁₁O₉,5mg,main,Selank 5mg
 Selank,,CAS 129954-34-3,C₃₃H₅₇N₁₁O₉,10mg,main,Selank 10mg
 Semax,,CAS 80714-61-0,C₃₅H₅₂N₁₂O₉,5mg,main,Semax 5mg
 Semax,,CAS 80714-61-0,C₃₅H₅₂N₁₂O₉,10mg,main,Semax 10mg
-Thymalin,,CAS 63958-90-7,Peptide complex (no single formula),10mg,main,Thymalin 10mg
+Thymalin,,CAS 63958-90-7,—,10mg,main,Thymalin 10mg
 Thymosin alpha-1,,CAS 62304-98-7,C₁₂₉H₂₁₅N₃₃O₅₅,5mg,main,Thymosin alpha-1 5mg
 Thymosin alpha-1,,CAS 62304-98-7,C₁₂₉H₂₁₅N₃₃O₅₅,10mg,main,Thymosin alpha-1 10mg
 VIP,,CAS 37221-79-7,C₁₄₇H₂₃₇N₄₃O₄₃S,10mg,main,VIP 10mg
@@ -119,13 +119,13 @@ Pinealon,,CAS 175175-23-2,C₁₄H₂₂N₄O₉,10mg,main,Pinealon 10mg
 Humanin,,CAS 330936-69-1,C₁₁₉H₂₀₄N₃₆O₃₂,10mg,main,Humanin 10mg
 Adamax,,CAS 2920938-90-3,C₃₇H₅₄N₁₂O₁₀,10mg,main,Adamax 10mg
 Dihexa,,CAS 1401708-83-5,C₂₇H₃₂N₆O₅,10mg,main,Dihexa 10mg
-Cerebrolysin,,CAS 12656-61-0,Multi-peptide mixture (no single formula),10mg,main,Cerebrolysin 10mg
+Cerebrolysin,,CAS 12656-61-0,—,10mg,main,Cerebrolysin 10mg
 B-12,,CAS 68-19-9,C₆₃H₈₈CoN₁₄O₁₄P,10mg,main,B-12 10mg
 Glutathione,,CAS 70-18-8,C₁₀H₁₇N₃O₆S,600mg,main,Glutathione 600mg
 Glutathione,,CAS 70-18-8,C₁₀H₁₇N₃O₆S,1500mg,main,Glutathione 1500mg
 L-Carnitine,,CAS 541-15-1,C₇H₁₅NO₃,600mg (10ml),main,L-Carnitine 600mg (10ml)
-Lemon Bottle 10ml,,CAS 83-88-5,Multi-component solution (no single formula),N/A,main,Lemon Bottle 10ml
-Lipo-C 10ml,,CAS 67-48-1,Multi-component lipotropic blend (no single formula),N/A,main,Lipo-C 10ml
+Lemon Bottle,,CAS 83-88-5,—,10ml,main,Lemon Bottle 10ml
+Lipo-C,,CAS 67-48-1,—,10ml,main,Lipo-C 10ml
 MK-677,,CAS 159752-10-0,C₂₇H₃₆N₄O₅,5mg,main,MK-677 5mg
 L-Glu,,CAS 56-85-9,C₅H₉NO₄,100mg,main,L-Glu 100mg
 Pinealon (Capsules),,CAS 175175-23-2,C₁₄H₂₂N₄O₉,N/A,capsule,Pinealon (Capsules)

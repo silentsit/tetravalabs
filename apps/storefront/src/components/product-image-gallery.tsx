@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 import type { StoreCoaDocument } from "@/lib/medusa"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
+import { ProductImageZoom } from "@/components/product-image-zoom"
 
 type GalleryItem = {
   id: string
@@ -91,16 +92,7 @@ function GalleryMain({ item }: { item: GalleryItem }) {
   }
 
   if (item.kind === "product") {
-    return (
-      <Image
-        src={item.src}
-        alt={item.label}
-        fill
-        priority
-        sizes="(max-width: 1024px) 280px, 320px"
-        className="object-contain p-4"
-      />
-    )
+    return <ProductImageZoom src={item.src} alt={item.label} priority />
   }
 
   return <img src={item.src} alt={item.label} className="h-full w-full object-contain p-4" />

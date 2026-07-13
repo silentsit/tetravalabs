@@ -176,138 +176,406 @@
   animation: mesh-drift-3 18s ease-in-out infinite;
 }
 
-/* Homepage hero — SwissChems-style three-vial stage */
-.hero-vial-stage {
+/* Homepage hero — overlapping product cluster */
+.hero-stage {
   position: relative;
   width: 100%;
-  max-width: 620px;
+  max-width: 640px;
   margin: 0 auto;
-  min-height: 360px;
-  height: clamp(340px, 42vw, 440px);
+  height: clamp(360px, 44vw, 480px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-.hero-vial-slot {
+.hero-stage-glow {
   position: absolute;
-  transform-origin: center bottom;
+  top: 46%;
+  left: 50%;
+  width: 78%;
+  height: 78%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    closest-side,
+    rgb(13 148 136 / 0.16),
+    rgb(37 99 235 / 0.08) 55%,
+    transparent 78%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-stage-cluster {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-stage-floor {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 5%, 44px);
+  width: 74%;
+  height: 34px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgb(15 23 42 / 0.18),
+    transparent 72%
+  );
+  filter: blur(3px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-prod {
+  position: absolute;
+  bottom: 0;
   display: block;
-  transition: filter 0.25s ease;
+  transform-origin: center bottom;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.hero-vial-slot:hover {
-  filter: brightness(1.03);
-}
-
-.hero-vial-prod {
+.hero-prod-img {
   display: block;
   width: auto;
   height: auto;
   max-width: none;
-  transform-origin: center bottom;
   will-change: transform;
   backface-visibility: hidden;
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 14px 28px rgb(15 23 42 / 0.14));
 }
 
-.hero-vial-left {
-  left: 4%;
-  bottom: -8px;
+/* Capsule bottle — back layer, largest, anchored right */
+.hero-prod-back {
+  right: 2%;
   z-index: 1;
-  transform: rotate(-6deg);
+  transform: rotate(5deg);
+  animation: hero-rise 1.1s cubic-bezier(0.16, 0.84, 0.3, 1) 0.28s both;
 }
 
-.hero-vial-left .hero-vial-prod {
-  height: clamp(220px, 24vw, 300px);
-  width: auto;
-  animation:
-    hero-vial-rise 1.1s cubic-bezier(0.16, 0.84, 0.3, 1) 0.3s both,
-    hero-vial-zoom-side 9s ease-in-out 3.6s infinite;
+.hero-prod-back .hero-prod-img {
+  height: clamp(272px, 34vw, 404px);
+  filter: drop-shadow(-8px 20px 30px rgb(15 23 42 / 0.16));
 }
 
-.hero-vial-center {
-  left: 28%;
-  bottom: 0;
+.hero-prod-back:hover {
+  transform: rotate(5deg) translateY(-6px);
+}
+
+/* Nasal spray — mid layer, tall, left-back */
+.hero-prod-mid {
+  left: 1%;
   z-index: 2;
+  transform: rotate(-6deg);
+  animation: hero-rise 1.1s cubic-bezier(0.16, 0.84, 0.3, 1) 0.16s both;
 }
 
-.hero-vial-center .hero-vial-prod {
-  height: clamp(250px, 28vw, 340px);
-  width: auto;
-  animation:
-    hero-vial-rise 1.1s cubic-bezier(0.16, 0.84, 0.3, 1) 0.18s both,
-    hero-vial-zoom-side 9s ease-in-out 2s infinite;
+.hero-prod-mid .hero-prod-img {
+  height: clamp(268px, 33vw, 396px);
+  filter: drop-shadow(6px 18px 26px rgb(15 23 42 / 0.16));
 }
 
-.hero-vial-right {
-  right: 0;
-  bottom: -12px;
+.hero-prod-mid:hover {
+  transform: rotate(-6deg) translateY(-6px);
+}
+
+/* Vial — front hero layer, centered, overlapping both */
+.hero-prod-front {
+  left: 50%;
   z-index: 3;
-  transform: rotate(6deg);
+  transform: translateX(-50%) rotate(-1deg);
+  animation: hero-rise-front 1.2s cubic-bezier(0.16, 0.84, 0.3, 1) 0.05s both;
 }
 
-.hero-vial-right .hero-vial-prod {
-  height: clamp(280px, 32vw, 386px);
-  width: auto;
-  animation:
-    hero-vial-rise 1.2s cubic-bezier(0.16, 0.84, 0.3, 1) 0.06s both,
-    hero-vial-zoom-front 9s ease-in-out 0.55s infinite;
+.hero-prod-front .hero-prod-img {
+  height: clamp(300px, 37vw, 440px);
+  filter: drop-shadow(0 22px 34px rgb(15 23 42 / 0.2));
 }
 
-@keyframes hero-vial-rise {
+.hero-prod-front:hover {
+  transform: translateX(-50%) rotate(-1deg) translateY(-8px);
+}
+
+@keyframes hero-rise {
   0% {
-    transform: translateY(22px) scale(0.965);
-    opacity: 0.85;
+    opacity: 0;
+    translate: 0 26px;
   }
   100% {
-    transform: translateY(0) scale(1);
     opacity: 1;
+    translate: 0 0;
   }
 }
 
-@keyframes hero-vial-zoom-front {
-  0%,
+@keyframes hero-rise-front {
+  0% {
+    opacity: 0;
+    translate: 0 30px;
+  }
   100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.075);
-  }
-}
-
-@keyframes hero-vial-zoom-side {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.04);
+    opacity: 1;
+    translate: 0 0;
   }
 }
 
 @media (max-width: 980px) {
-  .hero-vial-stage {
-    max-width: 460px;
-    min-height: 300px;
-    height: 320px;
-  }
-
-  .hero-vial-left .hero-vial-prod {
-    height: 224px;
-  }
-
-  .hero-vial-center .hero-vial-prod {
-    height: 252px;
-  }
-
-  .hero-vial-right .hero-vial-prod {
-    height: 288px;
+  .hero-stage {
+    max-width: 480px;
+    height: clamp(320px, 62vw, 400px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-vial-prod {
+  .hero-prod {
     animation: none !important;
     opacity: 1;
-    transform: none;
+  }
+}
+
+/* Homepage trust strip — animated icons (SwissChems-style) */
+.hero-trust-tbox {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.trust-ico {
+  width: 36px;
+  height: 36px;
+  overflow: visible;
+}
+
+@keyframes trust-drive {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes trust-wheel {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes trust-trail {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.trust-ico-truck .trust-truck-body {
+  animation: trust-drive 3s ease-in-out infinite;
+}
+
+.trust-ico-truck .trust-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: trust-wheel 1.1s linear infinite;
+}
+
+.trust-ico-truck .trust-trail line {
+  opacity: 0;
+  animation: trust-trail 3s ease-in-out infinite;
+}
+
+@keyframes trust-ring {
+  0%,
+  68%,
+  100% {
+    transform: rotate(0deg);
+  }
+  76% {
+    transform: rotate(-3deg);
+  }
+  84% {
+    transform: rotate(3deg);
+  }
+  92% {
+    transform: rotate(-2deg);
+  }
+}
+
+@keyframes trust-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes trust-notif {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.7;
+  }
+  80%,
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.trust-ico-phone .trust-p-phone {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: trust-ring 2.4s ease-in-out infinite;
+}
+
+.trust-ico-phone .trust-p-24 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: trust-pulse 2s ease-in-out infinite;
+}
+
+.trust-ico-phone .trust-p-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: trust-notif 2s ease-out infinite;
+}
+
+@keyframes trust-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes trust-bubble {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-9px);
+    opacity: 0;
+  }
+}
+
+@keyframes trust-smoke {
+  0% {
+    opacity: 0;
+    transform: translateY(2px) scale(0.7);
+  }
+  25% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-7px) scale(1.15);
+  }
+}
+
+.trust-ico-flask .trust-f-float {
+  animation: trust-float 3s ease-in-out infinite;
+}
+
+.trust-ico-flask .trust-f-b1 {
+  transform-box: fill-box;
+  animation: trust-bubble 3s ease-in infinite;
+}
+
+.trust-ico-flask .trust-f-b2 {
+  transform-box: fill-box;
+  animation: trust-bubble 3s ease-in 0.6s infinite;
+}
+
+.trust-ico-flask .trust-f-smoke path {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: trust-smoke 3s ease-out infinite;
+}
+
+.trust-ico-flask .trust-f-s2 {
+  animation-delay: 0.5s;
+}
+
+@keyframes trust-draw {
+  0% {
+    stroke-dashoffset: 26;
+  }
+  45%,
+  80% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 26;
+  }
+}
+
+@keyframes trust-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.55));
+    transform: scale(1.04);
+  }
+}
+
+.trust-ico-shield .trust-s-shield {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: trust-glow 3s ease-in-out infinite;
+}
+
+.trust-ico-shield .trust-s-check {
+  stroke-dasharray: 26;
+  stroke-dashoffset: 26;
+  animation: trust-draw 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-trust-strip .trust-truck-body,
+  .hero-trust-strip .trust-wheel,
+  .hero-trust-strip .trust-trail line,
+  .hero-trust-strip .trust-p-phone,
+  .hero-trust-strip .trust-p-24,
+  .hero-trust-strip .trust-p-ring,
+  .hero-trust-strip .trust-f-float,
+  .hero-trust-strip .trust-f-b1,
+  .hero-trust-strip .trust-f-b2,
+  .hero-trust-strip .trust-f-smoke path,
+  .hero-trust-strip .trust-s-shield {
+    animation: none !important;
+  }
+
+  .hero-trust-strip .trust-s-check {
+    stroke-dashoffset: 0;
+    animation: none !important;
   }
 }

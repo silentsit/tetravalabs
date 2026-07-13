@@ -1,58 +1,61 @@
 import Image from "next/image"
 import Link from "next/link"
 
-const HERO_VIALS = [
+const HERO_PRODUCTS = [
   {
-    slot: "left" as const,
-    src: "/products/v2/bpc-157-5mg.png",
-    href: "/product/bpc-157-5mg",
-    label: "BPC-157 5mg",
-    width: 400,
-    height: 600,
+    slot: "back" as const,
+    src: "/products/v2/bpc157-capsules.png",
+    href: "/product/bpc-157-capsules-100-count-500mcg",
+    label: "BPC-157 Capsules",
+    width: 1024,
+    height: 1024,
     priority: false
   },
   {
-    slot: "center" as const,
-    src: "/products/v2/semaglutide-5mg.png",
-    href: "/product/semaglutide-5mg",
-    label: "Semaglutide 5mg",
-    width: 400,
-    height: 600,
+    slot: "mid" as const,
+    src: "/products/v2/selank-nasal-spray-10mg.png",
+    href: "/product/selank-nasal-spray-10mg",
+    label: "Selank Nasal Spray 10mg",
+    width: 1024,
+    height: 1024,
     priority: false
   },
   {
-    slot: "right" as const,
+    slot: "front" as const,
     src: "/products/v2/retatrutide-5mg.png",
     href: "/product/retatrutide-5mg",
     label: "Retatrutide 5mg",
-    width: 400,
-    height: 600,
+    width: 800,
+    height: 800,
     priority: true
   }
 ]
 
 export function HeroProductStage() {
   return (
-    <div className="hero-vial-stage" aria-hidden="true">
-      {HERO_VIALS.map((vial) => (
-        <Link
-          key={vial.slot}
-          href={vial.href}
-          className={`hero-vial-slot hero-vial-${vial.slot}`}
-          tabIndex={-1}
-        >
-          <Image
-            src={vial.src}
-            alt=""
-            width={vial.width}
-            height={vial.height}
-            priority={vial.priority}
-            sizes="(max-width: 980px) 40vw, 220px"
-            className="hero-vial-prod"
-          />
-          <span className="sr-only">{vial.label}</span>
-        </Link>
-      ))}
+    <div className="hero-stage">
+      <div className="hero-stage-glow" aria-hidden="true" />
+      <div className="hero-stage-cluster">
+        {HERO_PRODUCTS.map((product) => (
+          <Link
+            key={product.slot}
+            href={product.href}
+            className={`hero-prod hero-prod-${product.slot}`}
+            aria-label={product.label}
+          >
+            <Image
+              src={product.src}
+              alt=""
+              width={product.width}
+              height={product.height}
+              priority={product.priority}
+              sizes="(max-width: 980px) 44vw, 300px"
+              className="hero-prod-img"
+            />
+          </Link>
+        ))}
+        <div className="hero-stage-floor" aria-hidden="true" />
+      </div>
     </div>
   )
 }

@@ -180,9 +180,9 @@
 .hero-stage {
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 600px;
   margin: 0 auto;
-  height: clamp(360px, 44vw, 480px);
+  height: clamp(320px, 38vw, 430px);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -256,7 +256,7 @@
 }
 
 .hero-prod-back .hero-prod-img {
-  height: clamp(244px, 30vw, 360px);
+  height: clamp(220px, 27vw, 322px);
   filter: drop-shadow(-6px 16px 24px rgb(15 23 42 / 0.22));
 }
 
@@ -273,7 +273,7 @@
 }
 
 .hero-prod-mid .hero-prod-img {
-  height: clamp(292px, 35vw, 418px);
+  height: clamp(262px, 31vw, 374px);
   filter: drop-shadow(6px 16px 24px rgb(15 23 42 / 0.22));
 }
 
@@ -290,7 +290,7 @@
 }
 
 .hero-prod-front .hero-prod-img {
-  height: clamp(286px, 35vw, 418px);
+  height: clamp(256px, 31vw, 374px);
   filter: drop-shadow(0 20px 30px rgb(15 23 42 / 0.26));
 }
 

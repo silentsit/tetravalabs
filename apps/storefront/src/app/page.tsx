@@ -61,23 +61,23 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-[#F8FAFC]">
+      <section className="relative flex items-center overflow-hidden bg-[#F8FAFC] lg:min-h-[calc(100vh-11.5rem)]">
         <div className="absolute inset-0 overflow-hidden">
           <div className="animate-mesh-1 absolute -left-20 -top-20 h-96 w-96 rounded-full bg-[#0D9488]/10 blur-3xl" />
           <div className="animate-mesh-2 absolute -right-20 top-20 h-80 w-80 rounded-full bg-[#2563EB]/10 blur-3xl" />
           <div className="animate-mesh-3 absolute bottom-10 left-1/3 h-72 w-72 rounded-full bg-[#0D9488]/10 blur-3xl" />
         </div>
-        <div className="page-container relative grid gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:py-24">
+        <div className="page-container relative grid w-full items-center gap-8 py-10 sm:py-12 lg:grid-cols-2 lg:gap-10 lg:py-6">
           <div className="flex flex-col justify-center">
             <span className="section-label mb-4">Research-Grade Peptides</span>
-            <h1 className="font-serif text-4xl leading-[1.1] text-[#0F172A] sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="font-serif text-4xl leading-[1.1] text-[#0F172A] sm:text-5xl lg:text-[3.25rem]">
               Verified. Documented. Delivered.
             </h1>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-[#475569]">
+            <p className="mt-4 max-w-md text-base leading-relaxed text-[#475569]">
               99%+ purity. HPLC-MS tested. Lot-linked COAs. Cold-chain shipping worldwide. Every batch
               verified by independent third-party laboratories.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link href="/shop" className="btn-cta gap-2">
                 Shop Catalog <ArrowRight className="h-4 w-4" />
               </Link>
@@ -85,7 +85,7 @@ export default async function HomePage() {
                 <FileCheck className="h-4 w-4" /> View COA Library
               </Link>
             </div>
-            <div className="mt-6">
+            <div className="mt-5">
               <LiveVisitorCounter />
             </div>
           </div>

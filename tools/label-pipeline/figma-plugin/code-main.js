@@ -32,8 +32,8 @@ figma.ui.onmessage = async (msg) => {
 };
 
 var PRODUCT_MAX_WIDTH = 918;
+var PRODUCT_START_SIZE = 45;
 var PRODUCT_MAX_SIZE = 96;
-var PRODUCT_MIN_SIZE = 34;
 var FORMULA_MAX_WIDTH = 560;
 var FORMULA_MAX_SIZE = 32;
 var FORMULA_MIN_SIZE = 8;
@@ -74,7 +74,7 @@ async function autoFitProductName(instance) {
 
   await figma.loadFontAsync(node.fontName);
 
-  // Always start from the largest size, then shrink only until the name fits.
+  // Start at 45px and grow to the largest size that still fits the slot.
   // Fixed-size text boxes report node.width as the box width (not content),
   // so temporarily switch to WIDTH_AND_HEIGHT to measure the true text width.
   var prevResize = node.textAutoResize;
@@ -84,12 +84,16 @@ async function autoFitProductName(instance) {
 
   node.textAutoResize = "WIDTH_AND_HEIGHT";
 
-  var size = PRODUCT_MAX_SIZE;
+  var size = PRODUCT_START_SIZE;
+  var best = size;
   node.fontSize = size;
-  while (node.width > maxWidth && size > PRODUCT_MIN_SIZE) {
-    size -= 1;
+  while (size < PRODUCT_MAX_SIZE) {
+    size += 1;
     node.fontSize = size;
+    if (node.width > maxWidth) break;
+    best = size;
   }
+  node.fontSize = best;
 
   if (prevResize && prevResize !== "WIDTH_AND_HEIGHT") {
     node.textAutoResize = prevResize;

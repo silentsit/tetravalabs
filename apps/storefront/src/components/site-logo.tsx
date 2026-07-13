@@ -1,8 +1,12 @@
 import Image from "next/image"
 
-const LOGO_SRC = "/brand/tetravalabs-logo.png"
-const LOGO_WIDTH = 1024
-const LOGO_HEIGHT = 166
+const LOGO_SRC = "/brand/Tetrava-Labs-Logo-white-bg.png"
+const LOGO_WIDTH = 1632
+const LOGO_HEIGHT = 248
+
+const FOOTER_LOGO_SRC = "/brand/Tetrava-labs-logo-footer-white-font.png"
+const FOOTER_LOGO_WIDTH = 1654
+const FOOTER_LOGO_HEIGHT = 272
 
 type SiteLogoProps = {
   variant?: "default" | "footer"
@@ -18,13 +22,16 @@ export function SiteLogo({
 }: SiteLogoProps) {
   const sizeClass = showWordmark ? "h-8 w-auto max-w-[220px]" : "h-6 w-auto max-w-[165px]"
   const variantClass = variant === "footer" ? "opacity-95" : ""
+  const src = variant === "footer" ? FOOTER_LOGO_SRC : LOGO_SRC
+  const width = variant === "footer" ? FOOTER_LOGO_WIDTH : LOGO_WIDTH
+  const height = variant === "footer" ? FOOTER_LOGO_HEIGHT : LOGO_HEIGHT
 
   return (
     <Image
-      src={LOGO_SRC}
+      src={src}
       alt="TETRAVA Labs"
-      width={LOGO_WIDTH}
-      height={LOGO_HEIGHT}
+      width={width}
+      height={height}
       priority={variant === "default"}
       className={`${sizeClass} ${variantClass} ${className}`.trim()}
     />

@@ -98,10 +98,10 @@
     @apply relative mx-auto w-full max-w-[280px];
     aspect-ratio: 4 / 5;
   }
-  .product-detail-image-wrapper img:not(.product-image-zoom-layer):not(.product-image-zoom-thumb) {
+  .product-detail-image-wrapper img {
     @apply h-full w-full object-contain object-center p-6;
   }
-  .product-detail-image-wrapper-compact img:not(.product-image-zoom-layer):not(.product-image-zoom-thumb) {
+  .product-detail-image-wrapper-compact img {
     @apply p-4;
   }
   .scrollbar-hide {

@@ -53,6 +53,24 @@ def get_capsule() -> dict:
     }
 
 
+def get_nasal_spray() -> dict:
+    cfg = load_config()
+    nasal = cfg.get("nasal_spray")
+    if not nasal:
+        raise KeyError("placement-config.json missing 'nasal_spray' section")
+    box = nasal.get("label_box")
+    if not box or len(box) != 4:
+        raise ValueError("nasal_spray.label_box is not set.")
+    plate = resolve_path(nasal["plate"])
+    native = tuple(nasal.get("native_size") or (0, 0))
+    return {
+        "plate": plate,
+        "label_box": tuple(int(v) for v in box),
+        "native_size": native,
+        "feather_radius": int(nasal.get("feather_radius", 4)),
+    }
+
+
 def get_vial() -> dict:
     cfg = load_config()
     vial = cfg.get("vial")

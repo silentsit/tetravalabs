@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "data" / "labels-manifest.csv"
 CAPSULE_PATTERN = re.compile(r"capsules", re.IGNORECASE)
+NASAL_PATTERN = re.compile(r"nasal\s*spray", re.IGNORECASE)
 
 
 def load_manifest(path: Path = DEFAULT_MANIFEST) -> dict[str, str]:
@@ -31,6 +32,17 @@ def is_capsule(stem: str, manifest: dict[str, str] | None = None) -> bool:
     mockup = manifest.get(key)
     if mockup == "capsule":
         return True
-    if mockup == "vial":
+    if mockup in ("vial", "nasal_spray"):
         return False
     return bool(CAPSULE_PATTERN.search(stem))
+
+
+def is_nasal_spray(stem: str, manifest: dict[str, str] | None = None) -> bool:
+    manifest = manifest if manifest is not None else load_manifest()
+    key = stem.lower()
+    mockup = manifest.get(key)
+    if mockup == "nasal_spray":
+        return True
+    if mockup in ("vial", "capsule"):
+        return False
+    return bool(NASAL_PATTERN.search(stem))

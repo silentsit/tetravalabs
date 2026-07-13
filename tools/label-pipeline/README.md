@@ -32,6 +32,7 @@ Formula digits are coloured **red** automatically on LABEL-MAIN imports.
 |--------------|------------|
 | Vials (default) | `Product Mockups/Untitled Project.png` |
 | Capsules | `Product Mockups/chatgpt-capsule-bottle.png` |
+| Nasal sprays | `Product Mockups/nasal-spray-chatgpt.png` |
 
 Routing is driven by `data/labels-manifest.csv` (export_filename → `mockup` column).
 

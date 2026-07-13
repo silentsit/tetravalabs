@@ -15,7 +15,7 @@ const PACK_TITLE_RE = /^\d+\s+vials?$/i
 
 export function isPackTierVariant(variant: StoreVariant): boolean {
   const packQty = variant.metadata?.pack_qty
-  if (packQty != null && Number(packQty) > 0) return true
+  if (packQty != null && Number(packQty) > 1) return true
   return PACK_TITLE_RE.test(variant.title.trim())
 }
 

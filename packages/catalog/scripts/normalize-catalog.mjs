@@ -35,8 +35,11 @@ const isWaterSolution = (name, strength) =>
 
 const isBlend = (name) => /(blend|\+)/i.test(name)
 
+const isNasalSpray = (name) => /nasal\s*spray/i.test(name)
+
 const visualType = (name, strength) => {
   if (isCapsule(name, strength)) return "capsule"
+  if (isNasalSpray(name)) return "nasal_spray"
   if (isWaterSolution(name, strength)) return "water_solution"
   if (isBlend(name)) return "blend"
   return "vial"
@@ -89,25 +92,34 @@ const run = async () => {
           enrichment[enrichmentKey]?.appearance ||
           (isCapsule(row.name, row.strength)
             ? "White capsule"
+            : isNasalSpray(row.name)
+              ? "Clear nasal solution"
             : isWaterSolution(row.name, row.strength)
               ? "Clear solution"
               : "White lyophilized powder")
       },
-      variants: tiers.map((tier) => ({
-        id: slugify(`${row.slug}-${tier.qty}-pack`),
-        title: tier.tier,
-        sku: `${row.slug.replace(/-/g, "_").toUpperCase()}_${tier.qty}PK`,
-        handle: `${row.slug}-${tier.qty}-pack`,
-        amount_usd: Number(tier.price_usd),
-        currency_code: "usd",
-        metadata: {
-          pack_qty: tier.qty,
-          per_unit_usd: Number(tier.per_unit_usd),
-          savings_pct: Number(tier.savings_pct || 0),
+      variants: tiers.map((tier) => {
+        const qty = Number(tier.qty)
+        const isSimpleUnit = qty <= 1
+        const variantMeta = {
           catalog_slug: row.slug,
           strength: row.strength
         }
-      }))
+        if (!isSimpleUnit) {
+          variantMeta.pack_qty = qty
+          variantMeta.per_unit_usd = Number(tier.per_unit_usd)
+          variantMeta.savings_pct = Number(tier.savings_pct || 0)
+        }
+        return {
+          id: slugify(`${row.slug}-${tier.qty}-pack`),
+          title: isSimpleUnit ? "Standard" : tier.tier,
+          sku: `${row.slug.replace(/-/g, "_").toUpperCase()}_${tier.qty}PK`,
+          handle: `${row.slug}-${tier.qty}-pack`,
+          amount_usd: Number(tier.price_usd),
+          currency_code: "usd",
+          metadata: variantMeta
+        }
+      })
     })
   }
 

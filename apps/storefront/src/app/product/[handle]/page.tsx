@@ -5,6 +5,7 @@ import { listProductReviews } from "@/lib/reviews"
 import { getRelatedProducts, slugifyCategory } from "@/lib/categories"
 import { shopNavLabel } from "@/lib/shop-filters"
 import { getProductImage, getProductPurity, getProductDisplayName, getProductDisplaySubtitle, getProductStrengthLabel, getProductFullName, strengthAlreadyInName } from "@/lib/revamp/product-visual"
+import { getProductGalleryImages } from "@/lib/product-image-map"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
 import { ProductDetailTabs } from "@/components/product-detail-tabs"
@@ -57,6 +58,7 @@ export default async function ProductPage({ params }: Props) {
   const productName = getProductFullName(displayName, strengthLabel)
   const showStrengthSeparately = strengthLabel && !strengthAlreadyInName(displayName, strengthLabel)
   const image = getProductImage(product)
+  const galleryImages = getProductGalleryImages(handle)
   const categoryLabel = String(product.metadata?.source_category || "Research Product")
   const categorySlug = slugifyCategory(categoryLabel)
   const related = getRelatedProducts(product, allProducts)
@@ -75,7 +77,7 @@ export default async function ProductPage({ params }: Props) {
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
         <div className="card overflow-hidden p-4 lg:max-w-md">
           <ProductImageGallery
-            productImage={image}
+            productImages={galleryImages.length ? galleryImages : [image]}
             productName={displayName}
             coas={coas}
           />

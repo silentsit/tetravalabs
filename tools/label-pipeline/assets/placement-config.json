@@ -45,6 +45,33 @@
       ]
     }
   },
+  "nasal_spray": {
+    "plate": "Product Mockups/nasal-spray-chatgpt.png",
+    "native_size": [
+      1254,
+      1254
+    ],
+    "label_box": [
+      491,
+      723,
+      272,
+      400
+    ],
+    "feather_radius": 4,
+    "blender": {
+      "figma_w": 1062,
+      "figma_h": 1112,
+      "label_h": 4.0,
+      "label_w": 3.817,
+      "bend_angle_deg": 50,
+      "render_w": 544,
+      "render_h": 800,
+      "views": [
+        { "name": "front", "front_u": 0.35 },
+        { "name": "side", "front_u": 0.87 }
+      ]
+    }
+  },
   "pill": {
     "plate": "Product Mockups/pill_bottle_clear.jpg",
     "label_box": [

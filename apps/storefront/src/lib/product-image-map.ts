@@ -3,8 +3,10 @@
  * Source archive: v2-photos-white/ at repo root (npm run sync:v2-images).
  * Regenerate mappings: npm run map:images
  * Homepage featured row uses the same PNG map for curated heroes.
+ * Gallery front+side: tools/label-pipeline/scripts/apply-shots-to-storefront.py
  */
 import generatedMap from "@/lib/product-image-map.generated.json"
+import galleryMap from "@/lib/product-gallery-images.generated.json"
 
 const V2_BASE = "/products/v2"
 const GENERIC_FALLBACK = "/v2/vial-single.jpg"
@@ -21,6 +23,7 @@ export const FEATURED_PRODUCT_HANDLES = [
 ]
 
 const productImageMap = generatedMap as Record<string, string>
+const productGalleryMap = galleryMap as Record<string, string[]>
 
 /** Legacy Medusa base handles → default v2 image. */
 const LEGACY_BASE_IMAGES: Record<string, string> = {
@@ -64,6 +67,16 @@ export function getV2ProductImage(handle: string): string | null {
 /** Primary resolver for shop, PDP, cart, and search. */
 export function getProductImage(handle: string): string {
   return getV2ProductImage(handle) ?? GENERIC_FALLBACK
+}
+
+/**
+ * PDP gallery images: primary (front) + optional side shot.
+ * Shop/cart keep using getProductImage() (front only).
+ */
+export function getProductGalleryImages(handle: string): string[] {
+  const mapped = productGalleryMap[handle]
+  if (mapped?.length) return mapped
+  return [getProductImage(handle)]
 }
 
 /** Featured row — same v2-photos PNG as shop when mapped. */

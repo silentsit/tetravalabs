@@ -1985,6 +1985,42 @@
   },
   {
     "category": "Longevity / Thymic / Neuropeptides",
+    "name": "Selank Nasal Spray",
+    "strength": "10mg",
+    "price_usd": 79.0,
+    "slug": "selank-nasal-spray-10mg",
+    "storefront_category": "Growth Factors",
+    "ref_price_usd": 79.0,
+    "pack_tiers": [
+      {
+        "tier": "1 unit",
+        "qty": 1,
+        "price_usd": 79.0,
+        "per_unit_usd": 79.0,
+        "savings_pct": 0
+      }
+    ]
+  },
+  {
+    "category": "Longevity / Thymic / Neuropeptides",
+    "name": "Semax Nasal Spray",
+    "strength": "10mg",
+    "price_usd": 79.0,
+    "slug": "semax-nasal-spray-10mg",
+    "storefront_category": "Growth Factors",
+    "ref_price_usd": 79.0,
+    "pack_tiers": [
+      {
+        "tier": "1 unit",
+        "qty": 1,
+        "price_usd": 79.0,
+        "per_unit_usd": 79.0,
+        "savings_pct": 0
+      }
+    ]
+  },
+  {
+    "category": "Longevity / Thymic / Neuropeptides",
     "name": "Semax",
     "strength": "5mg",
     "price_usd": 160.0,

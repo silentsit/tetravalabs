@@ -14,7 +14,9 @@ type GalleryItem = {
 }
 
 type Props = {
-  productImage: string
+  /** @deprecated Prefer productImages — kept for single-image callers. */
+  productImage?: string
+  productImages?: string[]
   productName: string
   coas?: StoreCoaDocument[]
 }
@@ -41,18 +43,25 @@ function getCoaPreviewSrc(doc: StoreCoaDocument): string | undefined {
 }
 
 function buildGalleryItems(
-  productImage: string,
+  productImages: string[],
   productName: string,
   coas: StoreCoaDocument[]
 ): GalleryItem[] {
-  const items: GalleryItem[] = [
-    {
-      id: "product",
+  const items: GalleryItem[] = productImages.filter(Boolean).map((src, index) => ({
+    id: index === 0 ? "product-front" : `product-${index}`,
+    label: index === 0 ? productName : `${productName} (side)`,
+    kind: "product" as const,
+    src
+  }))
+
+  if (!items.length) {
+    items.push({
+      id: "product-front",
       label: productName,
       kind: "product",
-      src: productImage
-    }
-  ]
+      src: "/v2/vial-single.jpg"
+    })
+  }
 
   const coaDocs = coas.filter((doc) => doc.document_type === "coa" && doc.document_url)
 
@@ -125,15 +134,20 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
   return <img src={item.src} alt="" className="h-full w-full object-contain object-top p-0.5" aria-hidden />
 }
 
-export function ProductImageGallery({ productImage, productName, coas = [] }: Props) {
-  const items = useMemo(
-    () => buildGalleryItems(productImage, productName, coas),
-    [productImage, productName, coas]
-  )
-  const [activeId, setActiveId] = useState(items[0]?.id ?? "product")
+export function ProductImageGallery({
+  productImage,
+  productImages,
+  productName,
+  coas = []
+}: Props) {
+  const items = useMemo(() => {
+    const images = productImages?.length ? productImages : productImage ? [productImage] : []
+    return buildGalleryItems(images, productName, coas)
+  }, [productImage, productImages, productName, coas])
+  const [activeId, setActiveId] = useState(items[0]?.id ?? "product-front")
 
   useEffect(() => {
-    setActiveId(items[0]?.id ?? "product")
+    setActiveId(items[0]?.id ?? "product-front")
   }, [items])
 
   const active = items.find((item) => item.id === activeId) ?? items[0]

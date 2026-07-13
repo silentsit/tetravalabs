@@ -115,8 +115,8 @@
   },
   "bpc-157-capsules-100-count-500mcg": {
     "current": "/products/v2/bpc157-capsules.png",
-    "front_shot": "BPC-157 (Capsules) 500mcg__front.png",
-    "side_shot": "BPC-157 (Capsules) 500mcg__side.png",
+    "front_shot": "BPC-157 500mcg__front.png",
+    "side_shot": "BPC-157 500mcg__side.png",
     "target_stem": "bpc157-capsules.png"
   },
   "bremelanotide-10mg": {
@@ -199,8 +199,8 @@
   },
   "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
     "current": "/products/v2/copper-repair-80mg.png",
-    "front_shot": "Cu + TB-500 + BPC-157 + KPV 80mg__front.png",
-    "side_shot": "Cu + TB-500 + BPC-157 + KPV 80mg__side.png",
+    "front_shot": "BPC-157 + TB-500 + Cu + KPV 80mg__front.png",
+    "side_shot": "BPC-157 + TB-500 + Cu + KPV 80mg__side.png",
     "target_stem": "copper-repair-80mg.png"
   },
   "dermorphin-5mg": {
@@ -587,6 +587,12 @@
     "side_shot": "Pinealon 10mg__side.png",
     "target_stem": "pinealon-10mg.png"
   },
+  "pinealon-capsules-100-count": {
+    "current": "/products/v2/pinealon-capsules.png",
+    "front_shot": "Pinealon (Capsules)__front.png",
+    "side_shot": "Pinealon (Capsules)__side.png",
+    "target_stem": "pinealon-capsules.png"
+  },
   "retatrutide-100mg": {
     "current": "/products/v2/retatrutide-100mg.png",
     "front_shot": "Retatrutide 100mg__front.png",
@@ -629,6 +635,12 @@
     "side_shot": "Selank 5mg__side.png",
     "target_stem": "selank-5mg.png"
   },
+  "selank-nasal-spray-10mg": {
+    "current": "/products/v2/selank-nasal-spray-10mg.png",
+    "front_shot": "Selank Nasal Spray 10mg__front.png",
+    "side_shot": "Selank Nasal Spray 10mg__side.png",
+    "target_stem": "selank-nasal-spray-10mg.png"
+  },
   "semaglutide-10mg": {
     "current": "/products/v2/semaglutide-10mg.png",
     "front_shot": "Semaglutide 10mg__front.png",
@@ -652,6 +664,12 @@
     "front_shot": "Semax 5mg__front.png",
     "side_shot": "Semax 5mg__side.png",
     "target_stem": "semax-5mg.png"
+  },
+  "semax-nasal-spray-10mg": {
+    "current": "/products/v2/semax-nasal-spray-10mg.png",
+    "front_shot": "Semax Nasal Spray 10mg__front.png",
+    "side_shot": "Semax Nasal Spray 10mg__side.png",
+    "target_stem": "semax-nasal-spray-10mg.png"
   },
   "sermorelin-10mg": {
     "current": "/products/v2/sermorelin-10mg.png",
@@ -766,5 +784,11 @@
     "front_shot": "Tirzepatide 5mg__front.png",
     "side_shot": "Tirzepatide 5mg__side.png",
     "target_stem": "tirzepatide-5mg.png"
+  },
+  "vip-10mg": {
+    "current": "/products/v2/vip-10mg.png",
+    "front_shot": "VIP 10mg__front.png",
+    "side_shot": "VIP 10mg__side.png",
+    "target_stem": "vip-10mg.png"
   }
 }

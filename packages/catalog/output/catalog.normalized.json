@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T12:36:50.335Z",
+  "generated_at": "2026-07-13T12:54:08.365Z",
   "products": [
     {
       "id": "5-amino-1mq-10mg",
@@ -27,11 +27,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "5-amino-1mq-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "5-amino-1mq-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -42,11 +42,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "5-amino-1mq-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "5-amino-1mq-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -57,11 +57,11 @@
           "amount_usd": 580,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "5-amino-1mq-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 29,
-            "savings_pct": 0.4082,
-            "catalog_slug": "5-amino-1mq-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4082
           }
         }
       ]
@@ -92,11 +92,11 @@
           "amount_usd": 125,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "5-amino-1mq-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "5-amino-1mq-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -107,11 +107,11 @@
           "amount_usd": 190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "5-amino-1mq-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 19,
-            "savings_pct": 0.3448,
-            "catalog_slug": "5-amino-1mq-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3448
           }
         },
         {
@@ -122,11 +122,11 @@
           "amount_usd": 220,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "5-amino-1mq-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 11,
-            "savings_pct": 0.6207,
-            "catalog_slug": "5-amino-1mq-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.6207
           }
         }
       ]
@@ -157,11 +157,11 @@
           "amount_usd": 445,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aod-9604-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 89,
-            "savings_pct": 0.0632,
-            "catalog_slug": "aod-9604-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0632
           }
         },
         {
@@ -172,11 +172,11 @@
           "amount_usd": 850,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aod-9604-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 85,
-            "savings_pct": 0.1053,
-            "catalog_slug": "aod-9604-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1053
           }
         },
         {
@@ -187,11 +187,11 @@
           "amount_usd": 1580,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aod-9604-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 79,
-            "savings_pct": 0.1684,
-            "catalog_slug": "aod-9604-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1684
           }
         }
       ]
@@ -222,11 +222,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aod-9604-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1091,
-            "catalog_slug": "aod-9604-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1091
           }
         },
         {
@@ -237,11 +237,11 @@
           "amount_usd": 450,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aod-9604-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 45,
-            "savings_pct": 0.1818,
-            "catalog_slug": "aod-9604-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1818
           }
         },
         {
@@ -252,11 +252,11 @@
           "amount_usd": 800,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aod-9604-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 40,
-            "savings_pct": 0.2727,
-            "catalog_slug": "aod-9604-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2727
           }
         }
       ]
@@ -287,11 +287,11 @@
           "amount_usd": 1295,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 259,
-            "savings_pct": 0.1038,
-            "catalog_slug": "cagrilintide-semaglutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1038
           }
         },
         {
@@ -302,11 +302,11 @@
           "amount_usd": 2290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 229,
-            "savings_pct": 0.2076,
-            "catalog_slug": "cagrilintide-semaglutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2076
           }
         },
         {
@@ -317,11 +317,11 @@
           "amount_usd": 4180,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 209,
-            "savings_pct": 0.2768,
-            "catalog_slug": "cagrilintide-semaglutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2768
           }
         }
       ]
@@ -352,11 +352,11 @@
           "amount_usd": 695,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 139,
-            "savings_pct": 0.1258,
-            "catalog_slug": "cagrilintide-semaglutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1258
           }
         },
         {
@@ -367,11 +367,11 @@
           "amount_usd": 1090,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 109,
-            "savings_pct": 0.3145,
-            "catalog_slug": "cagrilintide-semaglutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3145
           }
         },
         {
@@ -382,11 +382,11 @@
           "amount_usd": 1780,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 89,
-            "savings_pct": 0.4403,
-            "catalog_slug": "cagrilintide-semaglutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.4403
           }
         }
       ]
@@ -417,11 +417,11 @@
           "amount_usd": 725,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 145,
-            "savings_pct": 0.0268,
-            "catalog_slug": "cagrilintide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0268
           }
         },
         {
@@ -432,11 +432,11 @@
           "amount_usd": 1390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 139,
-            "savings_pct": 0.0671,
-            "catalog_slug": "cagrilintide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0671
           }
         },
         {
@@ -447,11 +447,11 @@
           "amount_usd": 2580,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 129,
-            "savings_pct": 0.1342,
-            "catalog_slug": "cagrilintide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1342
           }
         }
       ]
@@ -482,11 +482,11 @@
           "amount_usd": 375,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 75,
-            "savings_pct": 0.0506,
-            "catalog_slug": "cagrilintide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0506
           }
         },
         {
@@ -497,11 +497,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.1266,
-            "catalog_slug": "cagrilintide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1266
           }
         },
         {
@@ -512,11 +512,11 @@
           "amount_usd": 1180,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cagrilintide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 59,
-            "savings_pct": 0.2532,
-            "catalog_slug": "cagrilintide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2532
           }
         }
       ]
@@ -547,11 +547,11 @@
           "amount_usd": 575,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mazdutide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 115,
-            "savings_pct": 0.0336,
-            "catalog_slug": "mazdutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0336
           }
         },
         {
@@ -562,11 +562,11 @@
           "amount_usd": 1090,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mazdutide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 109,
-            "savings_pct": 0.084,
-            "catalog_slug": "mazdutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.084
           }
         },
         {
@@ -577,11 +577,11 @@
           "amount_usd": 1980,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mazdutide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 99,
-            "savings_pct": 0.1681,
-            "catalog_slug": "mazdutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1681
           }
         }
       ]
@@ -612,11 +612,11 @@
           "amount_usd": 375,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mazdutide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 75,
-            "savings_pct": 0.0506,
-            "catalog_slug": "mazdutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0506
           }
         },
         {
@@ -627,11 +627,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mazdutide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.1266,
-            "catalog_slug": "mazdutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1266
           }
         },
         {
@@ -642,11 +642,11 @@
           "amount_usd": 1180,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mazdutide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 59,
-            "savings_pct": 0.2532,
-            "catalog_slug": "mazdutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2532
           }
         }
       ]
@@ -677,11 +677,11 @@
           "amount_usd": 3995,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-100mg",
+            "strength": "100mg",
             "pack_qty": 5,
             "per_unit_usd": 799,
-            "savings_pct": 0.121,
-            "catalog_slug": "retatrutide-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.121
           }
         },
         {
@@ -692,11 +692,11 @@
           "amount_usd": 6990,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-100mg",
+            "strength": "100mg",
             "pack_qty": 10,
             "per_unit_usd": 699,
-            "savings_pct": 0.231,
-            "catalog_slug": "retatrutide-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.231
           }
         },
         {
@@ -707,11 +707,11 @@
           "amount_usd": 11500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-100mg",
+            "strength": "100mg",
             "pack_qty": 20,
             "per_unit_usd": 575,
-            "savings_pct": 0.3674,
-            "catalog_slug": "retatrutide-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.3674
           }
         }
       ]
@@ -742,11 +742,11 @@
           "amount_usd": 545,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 109,
-            "savings_pct": 0.155,
-            "catalog_slug": "retatrutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.155
           }
         },
         {
@@ -757,11 +757,11 @@
           "amount_usd": 890,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 89,
-            "savings_pct": 0.3101,
-            "catalog_slug": "retatrutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3101
           }
         },
         {
@@ -772,11 +772,11 @@
           "amount_usd": 1500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 75,
-            "savings_pct": 0.4186,
-            "catalog_slug": "retatrutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4186
           }
         }
       ]
@@ -807,11 +807,11 @@
           "amount_usd": 895,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-20mg",
+            "strength": "20mg",
             "pack_qty": 5,
             "per_unit_usd": 179,
-            "savings_pct": 0.1435,
-            "catalog_slug": "retatrutide-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.1435
           }
         },
         {
@@ -822,11 +822,11 @@
           "amount_usd": 1490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-20mg",
+            "strength": "20mg",
             "pack_qty": 10,
             "per_unit_usd": 149,
-            "savings_pct": 0.2871,
-            "catalog_slug": "retatrutide-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.2871
           }
         },
         {
@@ -837,11 +837,11 @@
           "amount_usd": 2500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-20mg",
+            "strength": "20mg",
             "pack_qty": 20,
             "per_unit_usd": 125,
-            "savings_pct": 0.4019,
-            "catalog_slug": "retatrutide-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.4019
           }
         }
       ]
@@ -872,11 +872,11 @@
           "amount_usd": 2045,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-50mg",
+            "strength": "50mg",
             "pack_qty": 5,
             "per_unit_usd": 409,
-            "savings_pct": 0.1089,
-            "catalog_slug": "retatrutide-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.1089
           }
         },
         {
@@ -887,11 +887,11 @@
           "amount_usd": 3590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-50mg",
+            "strength": "50mg",
             "pack_qty": 10,
             "per_unit_usd": 359,
-            "savings_pct": 0.2179,
-            "catalog_slug": "retatrutide-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.2179
           }
         },
         {
@@ -902,11 +902,11 @@
           "amount_usd": 6300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-50mg",
+            "strength": "50mg",
             "pack_qty": 20,
             "per_unit_usd": 315,
-            "savings_pct": 0.3137,
-            "catalog_slug": "retatrutide-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.3137
           }
         }
       ]
@@ -937,11 +937,11 @@
           "amount_usd": 395,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 79,
-            "savings_pct": 0.2752,
-            "catalog_slug": "retatrutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2752
           }
         },
         {
@@ -952,11 +952,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.4587,
-            "catalog_slug": "retatrutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.4587
           }
         },
         {
@@ -967,11 +967,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "retatrutide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.5872,
-            "catalog_slug": "retatrutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.5872
           }
         }
       ]
@@ -1002,11 +1002,11 @@
           "amount_usd": 595,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semaglutide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 119,
-            "savings_pct": 0.0775,
-            "catalog_slug": "semaglutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0775
           }
         },
         {
@@ -1017,11 +1017,11 @@
           "amount_usd": 990,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semaglutide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 99,
-            "savings_pct": 0.2326,
-            "catalog_slug": "semaglutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2326
           }
         },
         {
@@ -1032,11 +1032,11 @@
           "amount_usd": 1700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semaglutide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 85,
-            "savings_pct": 0.3411,
-            "catalog_slug": "semaglutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3411
           }
         }
       ]
@@ -1067,11 +1067,11 @@
           "amount_usd": 425,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semaglutide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 85,
-            "savings_pct": 0.0449,
-            "catalog_slug": "semaglutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0449
           }
         },
         {
@@ -1082,11 +1082,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semaglutide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.2247,
-            "catalog_slug": "semaglutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2247
           }
         },
         {
@@ -1097,11 +1097,11 @@
           "amount_usd": 1180,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semaglutide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 59,
-            "savings_pct": 0.3371,
-            "catalog_slug": "semaglutide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3371
           }
         }
       ]
@@ -1132,11 +1132,11 @@
           "amount_usd": 495,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "sermorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 99,
-            "savings_pct": 0.0917,
-            "catalog_slug": "sermorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0917
           }
         },
         {
@@ -1147,11 +1147,11 @@
           "amount_usd": 890,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "sermorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 89,
-            "savings_pct": 0.1835,
-            "catalog_slug": "sermorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1835
           }
         },
         {
@@ -1162,11 +1162,11 @@
           "amount_usd": 1600,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "sermorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 80,
-            "savings_pct": 0.2661,
-            "catalog_slug": "sermorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2661
           }
         }
       ]
@@ -1197,11 +1197,11 @@
           "amount_usd": 250,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "sermorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 50,
-            "savings_pct": 0.1525,
-            "catalog_slug": "sermorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1525
           }
         },
         {
@@ -1212,11 +1212,11 @@
           "amount_usd": 450,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "sermorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 45,
-            "savings_pct": 0.2373,
-            "catalog_slug": "sermorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2373
           }
         },
         {
@@ -1227,11 +1227,11 @@
           "amount_usd": 800,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "sermorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 40,
-            "savings_pct": 0.322,
-            "catalog_slug": "sermorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.322
           }
         }
       ]
@@ -1262,11 +1262,11 @@
           "amount_usd": 995,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "survodutide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 199,
-            "savings_pct": 0.0478,
-            "catalog_slug": "survodutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0478
           }
         },
         {
@@ -1277,11 +1277,11 @@
           "amount_usd": 1790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "survodutide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 179,
-            "savings_pct": 0.1435,
-            "catalog_slug": "survodutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1435
           }
         },
         {
@@ -1292,11 +1292,11 @@
           "amount_usd": 3300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "survodutide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 165,
-            "savings_pct": 0.2105,
-            "catalog_slug": "survodutide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2105
           }
         }
       ]
@@ -1327,11 +1327,11 @@
           "amount_usd": 600,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 120,
-            "savings_pct": 0.0698,
-            "catalog_slug": "tesamorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0698
           }
         },
         {
@@ -1342,11 +1342,11 @@
           "amount_usd": 1090,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 109,
-            "savings_pct": 0.155,
-            "catalog_slug": "tesamorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.155
           }
         },
         {
@@ -1357,11 +1357,11 @@
           "amount_usd": 1980,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 99,
-            "savings_pct": 0.2326,
-            "catalog_slug": "tesamorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2326
           }
         }
       ]
@@ -1392,11 +1392,11 @@
           "amount_usd": 1095,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-20mg",
+            "strength": "20mg",
             "pack_qty": 5,
             "per_unit_usd": 219,
-            "savings_pct": 0.0837,
-            "catalog_slug": "tesamorelin-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.0837
           }
         },
         {
@@ -1407,11 +1407,11 @@
           "amount_usd": 1990,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-20mg",
+            "strength": "20mg",
             "pack_qty": 10,
             "per_unit_usd": 199,
-            "savings_pct": 0.1674,
-            "catalog_slug": "tesamorelin-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.1674
           }
         },
         {
@@ -1422,11 +1422,11 @@
           "amount_usd": 3700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-20mg",
+            "strength": "20mg",
             "pack_qty": 20,
             "per_unit_usd": 185,
-            "savings_pct": 0.2259,
-            "catalog_slug": "tesamorelin-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.2259
           }
         }
       ]
@@ -1457,11 +1457,11 @@
           "amount_usd": 325,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 65,
-            "savings_pct": 0.058,
-            "catalog_slug": "tesamorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.058
           }
         },
         {
@@ -1472,11 +1472,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.1449,
-            "catalog_slug": "tesamorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1449
           }
         },
         {
@@ -1487,11 +1487,11 @@
           "amount_usd": 1000,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tesamorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 50,
-            "savings_pct": 0.2754,
-            "catalog_slug": "tesamorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2754
           }
         }
       ]
@@ -1522,11 +1522,11 @@
           "amount_usd": 345,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 69,
-            "savings_pct": 0.2247,
-            "catalog_slug": "tirzepatide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2247
           }
         },
         {
@@ -1537,11 +1537,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.3371,
-            "catalog_slug": "tirzepatide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3371
           }
         },
         {
@@ -1552,11 +1552,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.4944,
-            "catalog_slug": "tirzepatide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4944
           }
         }
       ]
@@ -1587,11 +1587,11 @@
           "amount_usd": 745,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-20mg",
+            "strength": "20mg",
             "pack_qty": 5,
             "per_unit_usd": 149,
-            "savings_pct": 0.1676,
-            "catalog_slug": "tirzepatide-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.1676
           }
         },
         {
@@ -1602,11 +1602,11 @@
           "amount_usd": 1190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-20mg",
+            "strength": "20mg",
             "pack_qty": 10,
             "per_unit_usd": 119,
-            "savings_pct": 0.3352,
-            "catalog_slug": "tirzepatide-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.3352
           }
         },
         {
@@ -1617,11 +1617,11 @@
           "amount_usd": 2100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-20mg",
+            "strength": "20mg",
             "pack_qty": 20,
             "per_unit_usd": 105,
-            "savings_pct": 0.4134,
-            "catalog_slug": "tirzepatide-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.4134
           }
         }
       ]
@@ -1652,11 +1652,11 @@
           "amount_usd": 1895,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-50mg",
+            "strength": "50mg",
             "pack_qty": 5,
             "per_unit_usd": 379,
-            "savings_pct": 0.1166,
-            "catalog_slug": "tirzepatide-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.1166
           }
         },
         {
@@ -1667,11 +1667,11 @@
           "amount_usd": 3290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-50mg",
+            "strength": "50mg",
             "pack_qty": 10,
             "per_unit_usd": 329,
-            "savings_pct": 0.2331,
-            "catalog_slug": "tirzepatide-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.2331
           }
         },
         {
@@ -1682,11 +1682,11 @@
           "amount_usd": 5980,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-50mg",
+            "strength": "50mg",
             "pack_qty": 20,
             "per_unit_usd": 299,
-            "savings_pct": 0.303,
-            "catalog_slug": "tirzepatide-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.303
           }
         }
       ]
@@ -1717,11 +1717,11 @@
           "amount_usd": 195,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "tirzepatide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -1732,11 +1732,11 @@
           "amount_usd": 330,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 33,
-            "savings_pct": 0.3265,
-            "catalog_slug": "tirzepatide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3265
           }
         },
         {
@@ -1747,11 +1747,11 @@
           "amount_usd": 580,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tirzepatide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 29,
-            "savings_pct": 0.4082,
-            "catalog_slug": "tirzepatide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.4082
           }
         }
       ]
@@ -1782,11 +1782,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aicar-50mg",
+            "strength": "50mg",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1091,
-            "catalog_slug": "aicar-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.1091
           }
         },
         {
@@ -1797,11 +1797,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aicar-50mg",
+            "strength": "50mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2909,
-            "catalog_slug": "aicar-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.2909
           }
         },
         {
@@ -1812,11 +1812,11 @@
           "amount_usd": 600,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "aicar-50mg",
+            "strength": "50mg",
             "pack_qty": 20,
             "per_unit_usd": 30,
-            "savings_pct": 0.4545,
-            "catalog_slug": "aicar-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.4545
           }
         }
       ]
@@ -1847,11 +1847,11 @@
           "amount_usd": 125,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adipotide-2mg",
+            "strength": "2mg",
             "pack_qty": 5,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "adipotide-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -1862,11 +1862,11 @@
           "amount_usd": 230,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adipotide-2mg",
+            "strength": "2mg",
             "pack_qty": 10,
             "per_unit_usd": 23,
-            "savings_pct": 0.2069,
-            "catalog_slug": "adipotide-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.2069
           }
         },
         {
@@ -1877,11 +1877,11 @@
           "amount_usd": 420,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adipotide-2mg",
+            "strength": "2mg",
             "pack_qty": 20,
             "per_unit_usd": 21,
-            "savings_pct": 0.2759,
-            "catalog_slug": "adipotide-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.2759
           }
         }
       ]
@@ -1912,11 +1912,11 @@
           "amount_usd": 375,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adipotide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 75,
-            "savings_pct": 0.0506,
-            "catalog_slug": "adipotide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0506
           }
         },
         {
@@ -1927,11 +1927,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adipotide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.1266,
-            "catalog_slug": "adipotide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1266
           }
         },
         {
@@ -1942,11 +1942,11 @@
           "amount_usd": 1300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adipotide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 65,
-            "savings_pct": 0.1772,
-            "catalog_slug": "adipotide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1772
           }
         }
       ]
@@ -1977,11 +1977,11 @@
           "amount_usd": 345,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 69,
-            "savings_pct": 0.1375,
-            "catalog_slug": "mots-c-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1375
           }
         },
         {
@@ -1992,11 +1992,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.2625,
-            "catalog_slug": "mots-c-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2625
           }
         },
         {
@@ -2007,11 +2007,11 @@
           "amount_usd": 980,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 49,
-            "savings_pct": 0.3875,
-            "catalog_slug": "mots-c-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3875
           }
         }
       ]
@@ -2042,11 +2042,11 @@
           "amount_usd": 445,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-20mg",
+            "strength": "20mg",
             "pack_qty": 5,
             "per_unit_usd": 89,
-            "savings_pct": 0.11,
-            "catalog_slug": "mots-c-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.11
           }
         },
         {
@@ -2057,11 +2057,11 @@
           "amount_usd": 790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-20mg",
+            "strength": "20mg",
             "pack_qty": 10,
             "per_unit_usd": 79,
-            "savings_pct": 0.21,
-            "catalog_slug": "mots-c-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.21
           }
         },
         {
@@ -2072,11 +2072,11 @@
           "amount_usd": 1380,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-20mg",
+            "strength": "20mg",
             "pack_qty": 20,
             "per_unit_usd": 69,
-            "savings_pct": 0.31,
-            "catalog_slug": "mots-c-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.31
           }
         }
       ]
@@ -2107,11 +2107,11 @@
           "amount_usd": 795,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-40mg",
+            "strength": "40mg",
             "pack_qty": 5,
             "per_unit_usd": 159,
-            "savings_pct": 0.0647,
-            "catalog_slug": "mots-c-40mg",
-            "strength": "40mg"
+            "savings_pct": 0.0647
           }
         },
         {
@@ -2122,11 +2122,11 @@
           "amount_usd": 1490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-40mg",
+            "strength": "40mg",
             "pack_qty": 10,
             "per_unit_usd": 149,
-            "savings_pct": 0.1235,
-            "catalog_slug": "mots-c-40mg",
-            "strength": "40mg"
+            "savings_pct": 0.1235
           }
         },
         {
@@ -2137,11 +2137,11 @@
           "amount_usd": 2700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-40mg",
+            "strength": "40mg",
             "pack_qty": 20,
             "per_unit_usd": 135,
-            "savings_pct": 0.2059,
-            "catalog_slug": "mots-c-40mg",
-            "strength": "40mg"
+            "savings_pct": 0.2059
           }
         }
       ]
@@ -2172,11 +2172,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.1,
-            "catalog_slug": "mots-c-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1
           }
         },
         {
@@ -2187,11 +2187,11 @@
           "amount_usd": 400,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 40,
-            "savings_pct": 0.2,
-            "catalog_slug": "mots-c-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2
           }
         },
         {
@@ -2202,11 +2202,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mots-c-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.3,
-            "catalog_slug": "mots-c-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3
           }
         }
       ]
@@ -2237,11 +2237,11 @@
           "amount_usd": 325,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 65,
-            "savings_pct": 0.058,
-            "catalog_slug": "ss-31-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.058
           }
         },
         {
@@ -2252,11 +2252,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.1449,
-            "catalog_slug": "ss-31-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1449
           }
         },
         {
@@ -2267,11 +2267,11 @@
           "amount_usd": 1100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 55,
-            "savings_pct": 0.2029,
-            "catalog_slug": "ss-31-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2029
           }
         }
       ]
@@ -2302,11 +2302,11 @@
           "amount_usd": 475,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-25mg",
+            "strength": "25mg",
             "pack_qty": 5,
             "per_unit_usd": 95,
-            "savings_pct": 0.1284,
-            "catalog_slug": "ss-31-25mg",
-            "strength": "25mg"
+            "savings_pct": 0.1284
           }
         },
         {
@@ -2317,11 +2317,11 @@
           "amount_usd": 890,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-25mg",
+            "strength": "25mg",
             "pack_qty": 10,
             "per_unit_usd": 89,
-            "savings_pct": 0.1835,
-            "catalog_slug": "ss-31-25mg",
-            "strength": "25mg"
+            "savings_pct": 0.1835
           }
         },
         {
@@ -2332,11 +2332,11 @@
           "amount_usd": 1500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-25mg",
+            "strength": "25mg",
             "pack_qty": 20,
             "per_unit_usd": 75,
-            "savings_pct": 0.3119,
-            "catalog_slug": "ss-31-25mg",
-            "strength": "25mg"
+            "savings_pct": 0.3119
           }
         }
       ]
@@ -2367,11 +2367,11 @@
           "amount_usd": 945,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-50mg",
+            "strength": "50mg",
             "pack_qty": 5,
             "per_unit_usd": 189,
-            "savings_pct": 0.0503,
-            "catalog_slug": "ss-31-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.0503
           }
         },
         {
@@ -2382,11 +2382,11 @@
           "amount_usd": 1790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-50mg",
+            "strength": "50mg",
             "pack_qty": 10,
             "per_unit_usd": 179,
-            "savings_pct": 0.1005,
-            "catalog_slug": "ss-31-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.1005
           }
         },
         {
@@ -2397,11 +2397,11 @@
           "amount_usd": 3380,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ss-31-50mg",
+            "strength": "50mg",
             "pack_qty": 20,
             "per_unit_usd": 169,
-            "savings_pct": 0.1508,
-            "catalog_slug": "ss-31-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.1508
           }
         }
       ]
@@ -2432,11 +2432,11 @@
           "amount_usd": 275,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ara-290-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 55,
-            "savings_pct": 0.0678,
-            "catalog_slug": "ara-290-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0678
           }
         },
         {
@@ -2447,11 +2447,11 @@
           "amount_usd": 490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ara-290-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 49,
-            "savings_pct": 0.1695,
-            "catalog_slug": "ara-290-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1695
           }
         },
         {
@@ -2462,11 +2462,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ara-290-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.2373,
-            "catalog_slug": "ara-290-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2373
           }
         }
       ]
@@ -2497,11 +2497,11 @@
           "amount_usd": 275,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bremelanotide-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 55,
-            "savings_pct": 0.0678,
-            "catalog_slug": "bremelanotide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0678
           }
         },
         {
@@ -2512,11 +2512,11 @@
           "amount_usd": 490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bremelanotide-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 49,
-            "savings_pct": 0.1695,
-            "catalog_slug": "bremelanotide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1695
           }
         },
         {
@@ -2527,11 +2527,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bremelanotide-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.2373,
-            "catalog_slug": "bremelanotide-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2373
           }
         }
       ]
@@ -2562,11 +2562,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bremelanotide-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "bremelanotide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -2577,11 +2577,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bremelanotide-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "bremelanotide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -2592,11 +2592,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bremelanotide-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.2857,
-            "catalog_slug": "bremelanotide-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -2627,11 +2627,11 @@
           "amount_usd": 210,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 42,
-            "savings_pct": 0.0667,
-            "catalog_slug": "dsip-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0667
           }
         },
         {
@@ -2642,11 +2642,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.1333,
-            "catalog_slug": "dsip-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1333
           }
         },
         {
@@ -2657,11 +2657,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.2222,
-            "catalog_slug": "dsip-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2222
           }
         }
       ]
@@ -2692,11 +2692,11 @@
           "amount_usd": 375,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-15mg",
+            "strength": "15mg",
             "pack_qty": 5,
             "per_unit_usd": 75,
-            "savings_pct": 0.0625,
-            "catalog_slug": "dsip-15mg",
-            "strength": "15mg"
+            "savings_pct": 0.0625
           }
         },
         {
@@ -2707,11 +2707,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-15mg",
+            "strength": "15mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.1375,
-            "catalog_slug": "dsip-15mg",
-            "strength": "15mg"
+            "savings_pct": 0.1375
           }
         },
         {
@@ -2722,11 +2722,11 @@
           "amount_usd": 1300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-15mg",
+            "strength": "15mg",
             "pack_qty": 20,
             "per_unit_usd": 65,
-            "savings_pct": 0.1875,
-            "catalog_slug": "dsip-15mg",
-            "strength": "15mg"
+            "savings_pct": 0.1875
           }
         }
       ]
@@ -2757,11 +2757,11 @@
           "amount_usd": 135,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 27,
-            "savings_pct": 0.1,
-            "catalog_slug": "dsip-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1
           }
         },
         {
@@ -2772,11 +2772,11 @@
           "amount_usd": 250,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 25,
-            "savings_pct": 0.1667,
-            "catalog_slug": "dsip-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1667
           }
         },
         {
@@ -2787,11 +2787,11 @@
           "amount_usd": 460,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dsip-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 23,
-            "savings_pct": 0.2333,
-            "catalog_slug": "dsip-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2333
           }
         }
       ]
@@ -2822,11 +2822,11 @@
           "amount_usd": 345,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dermorphin-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 69,
-            "savings_pct": 0.1266,
-            "catalog_slug": "dermorphin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1266
           }
         },
         {
@@ -2837,11 +2837,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dermorphin-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.2532,
-            "catalog_slug": "dermorphin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2532
           }
         },
         {
@@ -2852,11 +2852,11 @@
           "amount_usd": 980,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dermorphin-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 49,
-            "savings_pct": 0.3797,
-            "catalog_slug": "dermorphin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3797
           }
         }
       ]
@@ -2887,11 +2887,11 @@
           "amount_usd": 195,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 39,
-            "savings_pct": 0.1333,
-            "catalog_slug": "epithalon-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1333
           }
         },
         {
@@ -2902,11 +2902,11 @@
           "amount_usd": 350,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 35,
-            "savings_pct": 0.2222,
-            "catalog_slug": "epithalon-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2222
           }
         },
         {
@@ -2917,11 +2917,11 @@
           "amount_usd": 600,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 30,
-            "savings_pct": 0.3333,
-            "catalog_slug": "epithalon-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3333
           }
         }
       ]
@@ -2952,11 +2952,11 @@
           "amount_usd": 325,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-20mg",
+            "strength": "20mg",
             "pack_qty": 5,
             "per_unit_usd": 65,
-            "savings_pct": 0.0714,
-            "catalog_slug": "epithalon-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.0714
           }
         },
         {
@@ -2967,11 +2967,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-20mg",
+            "strength": "20mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.1571,
-            "catalog_slug": "epithalon-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.1571
           }
         },
         {
@@ -2982,11 +2982,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-20mg",
+            "strength": "20mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.3571,
-            "catalog_slug": "epithalon-20mg",
-            "strength": "20mg"
+            "savings_pct": 0.3571
           }
         }
       ]
@@ -3017,11 +3017,11 @@
           "amount_usd": 545,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-50mg",
+            "strength": "50mg",
             "pack_qty": 5,
             "per_unit_usd": 109,
-            "savings_pct": 0.0917,
-            "catalog_slug": "epithalon-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.0917
           }
         },
         {
@@ -3032,11 +3032,11 @@
           "amount_usd": 990,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-50mg",
+            "strength": "50mg",
             "pack_qty": 10,
             "per_unit_usd": 99,
-            "savings_pct": 0.175,
-            "catalog_slug": "epithalon-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.175
           }
         },
         {
@@ -3047,11 +3047,11 @@
           "amount_usd": 1800,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "epithalon-50mg",
+            "strength": "50mg",
             "pack_qty": 20,
             "per_unit_usd": 90,
-            "savings_pct": 0.25,
-            "catalog_slug": "epithalon-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.25
           }
         }
       ]
@@ -3082,11 +3082,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "foxo4-dri-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 140,
-            "savings_pct": 0.0604,
-            "catalog_slug": "foxo4-dri-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0604
           }
         },
         {
@@ -3097,11 +3097,11 @@
           "amount_usd": 1290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "foxo4-dri-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 129,
-            "savings_pct": 0.1342,
-            "catalog_slug": "foxo4-dri-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1342
           }
         },
         {
@@ -3112,11 +3112,11 @@
           "amount_usd": 2400,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "foxo4-dri-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 120,
-            "savings_pct": 0.1946,
-            "catalog_slug": "foxo4-dri-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1946
           }
         }
       ]
@@ -3147,11 +3147,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kpv-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1091,
-            "catalog_slug": "kpv-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1091
           }
         },
         {
@@ -3162,11 +3162,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kpv-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2909,
-            "catalog_slug": "kpv-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2909
           }
         },
         {
@@ -3177,11 +3177,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kpv-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.3636,
-            "catalog_slug": "kpv-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3636
           }
         }
       ]
@@ -3212,11 +3212,11 @@
           "amount_usd": 160,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kpv-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 32,
-            "savings_pct": 0.0857,
-            "catalog_slug": "kpv-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0857
           }
         },
         {
@@ -3227,11 +3227,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kpv-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.1714,
-            "catalog_slug": "kpv-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1714
           }
         },
         {
@@ -3242,11 +3242,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kpv-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.2857,
-            "catalog_slug": "kpv-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -3277,11 +3277,11 @@
           "amount_usd": 295,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kisspeptin-10-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 59,
-            "savings_pct": 0.0923,
-            "catalog_slug": "kisspeptin-10-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0923
           }
         },
         {
@@ -3292,11 +3292,11 @@
           "amount_usd": 490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kisspeptin-10-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 49,
-            "savings_pct": 0.2462,
-            "catalog_slug": "kisspeptin-10-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2462
           }
         },
         {
@@ -3307,11 +3307,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kisspeptin-10-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.3077,
-            "catalog_slug": "kisspeptin-10-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3077
           }
         }
       ]
@@ -3342,11 +3342,11 @@
           "amount_usd": 110,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kisspeptin-10-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 22,
-            "savings_pct": 0.12,
-            "catalog_slug": "kisspeptin-10-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.12
           }
         },
         {
@@ -3357,11 +3357,11 @@
           "amount_usd": 190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kisspeptin-10-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 19,
-            "savings_pct": 0.24,
-            "catalog_slug": "kisspeptin-10-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.24
           }
         },
         {
@@ -3372,11 +3372,11 @@
           "amount_usd": 340,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "kisspeptin-10-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 17,
-            "savings_pct": 0.32,
-            "catalog_slug": "kisspeptin-10-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.32
           }
         }
       ]
@@ -3407,11 +3407,11 @@
           "amount_usd": 325,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ll-37-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 65,
-            "savings_pct": 0.058,
-            "catalog_slug": "ll-37-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.058
           }
         },
         {
@@ -3422,11 +3422,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ll-37-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.1449,
-            "catalog_slug": "ll-37-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1449
           }
         },
         {
@@ -3437,11 +3437,11 @@
           "amount_usd": 1100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ll-37-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 55,
-            "savings_pct": 0.2029,
-            "catalog_slug": "ll-37-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2029
           }
         }
       ]
@@ -3472,11 +3472,11 @@
           "amount_usd": 695,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-1000mg",
+            "strength": "1000mg",
             "pack_qty": 5,
             "per_unit_usd": 139,
-            "savings_pct": 0.0733,
-            "catalog_slug": "nad-1000mg",
-            "strength": "1000mg"
+            "savings_pct": 0.0733
           }
         },
         {
@@ -3487,11 +3487,11 @@
           "amount_usd": 1190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-1000mg",
+            "strength": "1000mg",
             "pack_qty": 10,
             "per_unit_usd": 119,
-            "savings_pct": 0.2067,
-            "catalog_slug": "nad-1000mg",
-            "strength": "1000mg"
+            "savings_pct": 0.2067
           }
         },
         {
@@ -3502,11 +3502,11 @@
           "amount_usd": 2100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-1000mg",
+            "strength": "1000mg",
             "pack_qty": 20,
             "per_unit_usd": 105,
-            "savings_pct": 0.3,
-            "catalog_slug": "nad-1000mg",
-            "strength": "1000mg"
+            "savings_pct": 0.3
           }
         }
       ]
@@ -3537,11 +3537,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-100mg",
+            "strength": "100mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.125,
-            "catalog_slug": "nad-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.125
           }
         },
         {
@@ -3552,11 +3552,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-100mg",
+            "strength": "100mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.275,
-            "catalog_slug": "nad-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.275
           }
         },
         {
@@ -3567,11 +3567,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-100mg",
+            "strength": "100mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.375,
-            "catalog_slug": "nad-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.375
           }
         }
       ]
@@ -3602,11 +3602,11 @@
           "amount_usd": 345,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-500mg",
+            "strength": "500mg",
             "pack_qty": 5,
             "per_unit_usd": 69,
-            "savings_pct": 0.08,
-            "catalog_slug": "nad-500mg",
-            "strength": "500mg"
+            "savings_pct": 0.08
           }
         },
         {
@@ -3617,11 +3617,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-500mg",
+            "strength": "500mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.2133,
-            "catalog_slug": "nad-500mg",
-            "strength": "500mg"
+            "savings_pct": 0.2133
           }
         },
         {
@@ -3632,11 +3632,11 @@
           "amount_usd": 1100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "nad-500mg",
+            "strength": "500mg",
             "pack_qty": 20,
             "per_unit_usd": 55,
-            "savings_pct": 0.2667,
-            "catalog_slug": "nad-500mg",
-            "strength": "500mg"
+            "savings_pct": 0.2667
           }
         }
       ]
@@ -3667,11 +3667,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "oxytocin-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -3682,11 +3682,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "oxytocin-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -3697,11 +3697,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.2857,
-            "catalog_slug": "oxytocin-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -3732,11 +3732,11 @@
           "amount_usd": 110,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-2mg",
+            "strength": "2mg",
             "pack_qty": 5,
             "per_unit_usd": 22,
-            "savings_pct": 0.12,
-            "catalog_slug": "oxytocin-acetate-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.12
           }
         },
         {
@@ -3747,11 +3747,11 @@
           "amount_usd": 190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-2mg",
+            "strength": "2mg",
             "pack_qty": 10,
             "per_unit_usd": 19,
-            "savings_pct": 0.24,
-            "catalog_slug": "oxytocin-acetate-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.24
           }
         },
         {
@@ -3762,11 +3762,11 @@
           "amount_usd": 300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-2mg",
+            "strength": "2mg",
             "pack_qty": 20,
             "per_unit_usd": 15,
-            "savings_pct": 0.4,
-            "catalog_slug": "oxytocin-acetate-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.4
           }
         }
       ]
@@ -3797,11 +3797,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "oxytocin-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -3812,11 +3812,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.2564,
-            "catalog_slug": "oxytocin-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2564
           }
         },
         {
@@ -3827,11 +3827,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "oxytocin-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "oxytocin-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -3862,11 +3862,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "selank-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.1,
-            "catalog_slug": "selank-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1
           }
         },
         {
@@ -3877,11 +3877,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "selank-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.22,
-            "catalog_slug": "selank-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.22
           }
         },
         {
@@ -3892,11 +3892,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "selank-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.3,
-            "catalog_slug": "selank-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3
           }
         }
       ]
@@ -3927,11 +3927,11 @@
           "amount_usd": 160,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "selank-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 32,
-            "savings_pct": 0.0857,
-            "catalog_slug": "selank-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0857
           }
         },
         {
@@ -3942,11 +3942,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "selank-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.1714,
-            "catalog_slug": "selank-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1714
           }
         },
         {
@@ -3957,11 +3957,11 @@
           "amount_usd": 440,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "selank-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 22,
-            "savings_pct": 0.3714,
-            "catalog_slug": "selank-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3714
           }
         }
       ]
@@ -3992,11 +3992,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semax-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1091,
-            "catalog_slug": "semax-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1091
           }
         },
         {
@@ -4007,11 +4007,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semax-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2909,
-            "catalog_slug": "semax-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2909
           }
         },
         {
@@ -4022,10 +4022,74 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semax-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.3636,
-            "catalog_slug": "semax-10mg",
+            "savings_pct": 0.3636
+          }
+        }
+      ]
+    },
+    {
+      "id": "selank-nasal-spray-10mg",
+      "title": "Selank Nasal Spray 10mg",
+      "category": "Growth Factors",
+      "source_category": "Longevity / Thymic / Neuropeptides",
+      "handle": "selank-nasal-spray-10mg",
+      "visual_type": "nasal_spray",
+      "metadata": {
+        "source": "Tiered_Pricing_5_10_20_Vials.xlsx",
+        "ruo": true,
+        "strength": "10mg",
+        "cas_number": "129954-34-3",
+        "molecular_formula": "C33H57N11O9",
+        "molecular_weight": null,
+        "storage": "2-8°C refrigerated",
+        "appearance": "Clear nasal solution"
+      },
+      "variants": [
+        {
+          "id": "selank-nasal-spray-10mg-1-pack",
+          "title": "Standard",
+          "sku": "SELANK_NASAL_SPRAY_10MG_1PK",
+          "handle": "selank-nasal-spray-10mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "selank-nasal-spray-10mg",
+            "strength": "10mg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "semax-nasal-spray-10mg",
+      "title": "Semax Nasal Spray 10mg",
+      "category": "Growth Factors",
+      "source_category": "Longevity / Thymic / Neuropeptides",
+      "handle": "semax-nasal-spray-10mg",
+      "visual_type": "nasal_spray",
+      "metadata": {
+        "source": "Tiered_Pricing_5_10_20_Vials.xlsx",
+        "ruo": true,
+        "strength": "10mg",
+        "cas_number": "80714-61-0",
+        "molecular_formula": "C37H51N9O10S",
+        "molecular_weight": null,
+        "storage": "2-8°C refrigerated",
+        "appearance": "Clear nasal solution"
+      },
+      "variants": [
+        {
+          "id": "semax-nasal-spray-10mg-1-pack",
+          "title": "Standard",
+          "sku": "SEMAX_NASAL_SPRAY_10MG_1PK",
+          "handle": "semax-nasal-spray-10mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "semax-nasal-spray-10mg",
             "strength": "10mg"
           }
         }
@@ -4057,11 +4121,11 @@
           "amount_usd": 160,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semax-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 32,
-            "savings_pct": 0.0857,
-            "catalog_slug": "semax-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0857
           }
         },
         {
@@ -4072,11 +4136,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semax-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.1714,
-            "catalog_slug": "semax-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1714
           }
         },
         {
@@ -4087,11 +4151,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "semax-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.2857,
-            "catalog_slug": "semax-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -4122,11 +4186,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymalin-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "thymalin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -4137,11 +4201,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymalin-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.2564,
-            "catalog_slug": "thymalin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2564
           }
         },
         {
@@ -4152,11 +4216,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymalin-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "thymalin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -4187,11 +4251,11 @@
           "amount_usd": 545,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymosin-alpha-1-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 109,
-            "savings_pct": 0.084,
-            "catalog_slug": "thymosin-alpha-1-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.084
           }
         },
         {
@@ -4202,11 +4266,11 @@
           "amount_usd": 990,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymosin-alpha-1-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 99,
-            "savings_pct": 0.1681,
-            "catalog_slug": "thymosin-alpha-1-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1681
           }
         },
         {
@@ -4217,11 +4281,11 @@
           "amount_usd": 1700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymosin-alpha-1-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 85,
-            "savings_pct": 0.2857,
-            "catalog_slug": "thymosin-alpha-1-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -4252,11 +4316,11 @@
           "amount_usd": 275,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymosin-alpha-1-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 55,
-            "savings_pct": 0.0678,
-            "catalog_slug": "thymosin-alpha-1-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0678
           }
         },
         {
@@ -4267,11 +4331,11 @@
           "amount_usd": 490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymosin-alpha-1-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 49,
-            "savings_pct": 0.1695,
-            "catalog_slug": "thymosin-alpha-1-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1695
           }
         },
         {
@@ -4282,11 +4346,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "thymosin-alpha-1-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.2373,
-            "catalog_slug": "thymosin-alpha-1-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2373
           }
         }
       ]
@@ -4317,11 +4381,11 @@
           "amount_usd": 450,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "vip-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 90,
-            "savings_pct": 0.0909,
-            "catalog_slug": "vip-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0909
           }
         },
         {
@@ -4332,11 +4396,11 @@
           "amount_usd": 790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "vip-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 79,
-            "savings_pct": 0.202,
-            "catalog_slug": "vip-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.202
           }
         },
         {
@@ -4347,11 +4411,11 @@
           "amount_usd": 1400,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "vip-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 70,
-            "savings_pct": 0.2929,
-            "catalog_slug": "vip-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2929
           }
         }
       ]
@@ -4382,11 +4446,11 @@
           "amount_usd": 345,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "pinealon-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 69,
-            "savings_pct": 0.08,
-            "catalog_slug": "pinealon-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.08
           }
         },
         {
@@ -4397,11 +4461,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "pinealon-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.2133,
-            "catalog_slug": "pinealon-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2133
           }
         },
         {
@@ -4412,11 +4476,11 @@
           "amount_usd": 1100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "pinealon-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 55,
-            "savings_pct": 0.2667,
-            "catalog_slug": "pinealon-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2667
           }
         }
       ]
@@ -4447,11 +4511,11 @@
           "amount_usd": 595,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "humanin-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 119,
-            "savings_pct": 0.0775,
-            "catalog_slug": "humanin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0775
           }
         },
         {
@@ -4462,11 +4526,11 @@
           "amount_usd": 1090,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "humanin-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 109,
-            "savings_pct": 0.155,
-            "catalog_slug": "humanin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.155
           }
         },
         {
@@ -4477,11 +4541,11 @@
           "amount_usd": 2100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "humanin-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 105,
-            "savings_pct": 0.186,
-            "catalog_slug": "humanin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.186
           }
         }
       ]
@@ -4512,11 +4576,11 @@
           "amount_usd": 375,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adamax-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 75,
-            "savings_pct": 0.0506,
-            "catalog_slug": "adamax-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0506
           }
         },
         {
@@ -4527,11 +4591,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adamax-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.1266,
-            "catalog_slug": "adamax-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1266
           }
         },
         {
@@ -4542,11 +4606,11 @@
           "amount_usd": 1300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "adamax-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 65,
-            "savings_pct": 0.1772,
-            "catalog_slug": "adamax-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1772
           }
         }
       ]
@@ -4577,11 +4641,11 @@
           "amount_usd": 445,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dihexa-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 89,
-            "savings_pct": 0.101,
-            "catalog_slug": "dihexa-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.101
           }
         },
         {
@@ -4592,11 +4656,11 @@
           "amount_usd": 790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dihexa-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 79,
-            "savings_pct": 0.202,
-            "catalog_slug": "dihexa-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.202
           }
         },
         {
@@ -4607,11 +4671,11 @@
           "amount_usd": 1380,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "dihexa-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 69,
-            "savings_pct": 0.303,
-            "catalog_slug": "dihexa-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.303
           }
         }
       ]
@@ -4642,11 +4706,11 @@
           "amount_usd": 325,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cerebrolysin-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 65,
-            "savings_pct": 0.058,
-            "catalog_slug": "cerebrolysin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.058
           }
         },
         {
@@ -4657,11 +4721,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cerebrolysin-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.1449,
-            "catalog_slug": "cerebrolysin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1449
           }
         },
         {
@@ -4672,11 +4736,11 @@
           "amount_usd": 1100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cerebrolysin-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 55,
-            "savings_pct": 0.2029,
-            "catalog_slug": "cerebrolysin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2029
           }
         }
       ]
@@ -4707,11 +4771,11 @@
           "amount_usd": 45,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "acetic-acid-water-3ml",
+            "strength": "3ml",
             "pack_qty": 5,
             "per_unit_usd": 9,
-            "savings_pct": 0.1811,
-            "catalog_slug": "acetic-acid-water-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.1811
           }
         },
         {
@@ -4722,11 +4786,11 @@
           "amount_usd": 50,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "acetic-acid-water-3ml",
+            "strength": "3ml",
             "pack_qty": 10,
             "per_unit_usd": 5,
-            "savings_pct": 0.545,
-            "catalog_slug": "acetic-acid-water-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.545
           }
         },
         {
@@ -4737,11 +4801,11 @@
           "amount_usd": 60,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "acetic-acid-water-3ml",
+            "strength": "3ml",
             "pack_qty": 20,
             "per_unit_usd": 3,
-            "savings_pct": 0.727,
-            "catalog_slug": "acetic-acid-water-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.727
           }
         }
       ]
@@ -4772,11 +4836,11 @@
           "amount_usd": 45,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bacteriostatic-water-10ml",
+            "strength": "10ml",
             "pack_qty": 5,
             "per_unit_usd": 9,
-            "savings_pct": 0.1811,
-            "catalog_slug": "bacteriostatic-water-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.1811
           }
         },
         {
@@ -4787,11 +4851,11 @@
           "amount_usd": 70,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bacteriostatic-water-10ml",
+            "strength": "10ml",
             "pack_qty": 10,
             "per_unit_usd": 7,
-            "savings_pct": 0.3631,
-            "catalog_slug": "bacteriostatic-water-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.3631
           }
         },
         {
@@ -4802,11 +4866,11 @@
           "amount_usd": 80,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bacteriostatic-water-10ml",
+            "strength": "10ml",
             "pack_qty": 20,
             "per_unit_usd": 4,
-            "savings_pct": 0.636,
-            "catalog_slug": "bacteriostatic-water-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.636
           }
         }
       ]
@@ -4837,11 +4901,11 @@
           "amount_usd": 35,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bacteriostatic-water-3ml",
+            "strength": "3ml",
             "pack_qty": 5,
             "per_unit_usd": 7,
-            "savings_pct": 0.2214,
-            "catalog_slug": "bacteriostatic-water-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.2214
           }
         },
         {
@@ -4852,11 +4916,11 @@
           "amount_usd": 50,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bacteriostatic-water-3ml",
+            "strength": "3ml",
             "pack_qty": 10,
             "per_unit_usd": 5,
-            "savings_pct": 0.4438,
-            "catalog_slug": "bacteriostatic-water-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.4438
           }
         },
         {
@@ -4867,11 +4931,11 @@
           "amount_usd": 60,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bacteriostatic-water-3ml",
+            "strength": "3ml",
             "pack_qty": 20,
             "per_unit_usd": 3,
-            "savings_pct": 0.6663,
-            "catalog_slug": "bacteriostatic-water-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.6663
           }
         }
       ]
@@ -4902,11 +4966,11 @@
           "amount_usd": 45,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "benzyl-alcohol-10ml",
+            "strength": "10ml",
             "pack_qty": 5,
             "per_unit_usd": 9,
-            "savings_pct": 0.0991,
-            "catalog_slug": "benzyl-alcohol-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.0991
           }
         },
         {
@@ -4917,11 +4981,11 @@
           "amount_usd": 70,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "benzyl-alcohol-10ml",
+            "strength": "10ml",
             "pack_qty": 10,
             "per_unit_usd": 7,
-            "savings_pct": 0.2993,
-            "catalog_slug": "benzyl-alcohol-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.2993
           }
         },
         {
@@ -4932,11 +4996,11 @@
           "amount_usd": 80,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "benzyl-alcohol-10ml",
+            "strength": "10ml",
             "pack_qty": 20,
             "per_unit_usd": 4,
-            "savings_pct": 0.5996,
-            "catalog_slug": "benzyl-alcohol-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.5996
           }
         }
       ]
@@ -4967,11 +5031,11 @@
           "amount_usd": 35,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "benzyl-alcohol-3ml",
+            "strength": "3ml",
             "pack_qty": 5,
             "per_unit_usd": 7,
-            "savings_pct": 0.1239,
-            "catalog_slug": "benzyl-alcohol-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.1239
           }
         },
         {
@@ -4982,11 +5046,11 @@
           "amount_usd": 50,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "benzyl-alcohol-3ml",
+            "strength": "3ml",
             "pack_qty": 10,
             "per_unit_usd": 5,
-            "savings_pct": 0.3742,
-            "catalog_slug": "benzyl-alcohol-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.3742
           }
         },
         {
@@ -4997,11 +5061,11 @@
           "amount_usd": 60,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "benzyl-alcohol-3ml",
+            "strength": "3ml",
             "pack_qty": 20,
             "per_unit_usd": 3,
-            "savings_pct": 0.6245,
-            "catalog_slug": "benzyl-alcohol-3ml",
-            "strength": "3ml"
+            "savings_pct": 0.6245
           }
         }
       ]
@@ -5032,11 +5096,11 @@
           "amount_usd": 125,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "b-12-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "b-12-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -5047,11 +5111,11 @@
           "amount_usd": 190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "b-12-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 19,
-            "savings_pct": 0.3448,
-            "catalog_slug": "b-12-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.3448
           }
         },
         {
@@ -5062,11 +5126,11 @@
           "amount_usd": 300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "b-12-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 15,
-            "savings_pct": 0.4828,
-            "catalog_slug": "b-12-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4828
           }
         }
       ]
@@ -5097,11 +5161,11 @@
           "amount_usd": 395,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glutathione-1500mg",
+            "strength": "1500mg",
             "pack_qty": 5,
             "per_unit_usd": 79,
-            "savings_pct": 0.202,
-            "catalog_slug": "glutathione-1500mg",
-            "strength": "1500mg"
+            "savings_pct": 0.202
           }
         },
         {
@@ -5112,11 +5176,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glutathione-1500mg",
+            "strength": "1500mg",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.404,
-            "catalog_slug": "glutathione-1500mg",
-            "strength": "1500mg"
+            "savings_pct": 0.404
           }
         },
         {
@@ -5127,11 +5191,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glutathione-1500mg",
+            "strength": "1500mg",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.5455,
-            "catalog_slug": "glutathione-1500mg",
-            "strength": "1500mg"
+            "savings_pct": 0.5455
           }
         }
       ]
@@ -5162,11 +5226,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glutathione-600mg",
+            "strength": "600mg",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1695,
-            "catalog_slug": "glutathione-600mg",
-            "strength": "600mg"
+            "savings_pct": 0.1695
           }
         },
         {
@@ -5177,11 +5241,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glutathione-600mg",
+            "strength": "600mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.339,
-            "catalog_slug": "glutathione-600mg",
-            "strength": "600mg"
+            "savings_pct": 0.339
           }
         },
         {
@@ -5192,11 +5256,11 @@
           "amount_usd": 580,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glutathione-600mg",
+            "strength": "600mg",
             "pack_qty": 20,
             "per_unit_usd": 29,
-            "savings_pct": 0.5085,
-            "catalog_slug": "glutathione-600mg",
-            "strength": "600mg"
+            "savings_pct": 0.5085
           }
         }
       ]
@@ -5227,11 +5291,11 @@
           "amount_usd": 135,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "l-carnitine-600mg-10ml",
+            "strength": "600mg",
             "pack_qty": 5,
             "per_unit_usd": 27,
-            "savings_pct": 0.069,
-            "catalog_slug": "l-carnitine-600mg-10ml",
-            "strength": "600mg"
+            "savings_pct": 0.069
           }
         },
         {
@@ -5242,11 +5306,11 @@
           "amount_usd": 250,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "l-carnitine-600mg-10ml",
+            "strength": "600mg",
             "pack_qty": 10,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "l-carnitine-600mg-10ml",
-            "strength": "600mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -5257,11 +5321,11 @@
           "amount_usd": 460,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "l-carnitine-600mg-10ml",
+            "strength": "600mg",
             "pack_qty": 20,
             "per_unit_usd": 23,
-            "savings_pct": 0.2069,
-            "catalog_slug": "l-carnitine-600mg-10ml",
-            "strength": "600mg"
+            "savings_pct": 0.2069
           }
         }
       ]
@@ -5292,11 +5356,11 @@
           "amount_usd": 185,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "lemon-bottle-10ml",
+            "strength": "10ml",
             "pack_qty": 5,
             "per_unit_usd": 37,
-            "savings_pct": 0.0513,
-            "catalog_slug": "lemon-bottle-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.0513
           }
         },
         {
@@ -5307,11 +5371,11 @@
           "amount_usd": 350,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "lemon-bottle-10ml",
+            "strength": "10ml",
             "pack_qty": 10,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "lemon-bottle-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -5322,11 +5386,11 @@
           "amount_usd": 640,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "lemon-bottle-10ml",
+            "strength": "10ml",
             "pack_qty": 20,
             "per_unit_usd": 32,
-            "savings_pct": 0.1795,
-            "catalog_slug": "lemon-bottle-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.1795
           }
         }
       ]
@@ -5357,11 +5421,11 @@
           "amount_usd": 295,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "lipo-c-10ml",
+            "strength": "10ml",
             "pack_qty": 5,
             "per_unit_usd": 59,
-            "savings_pct": 0.1449,
-            "catalog_slug": "lipo-c-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.1449
           }
         },
         {
@@ -5372,11 +5436,11 @@
           "amount_usd": 490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "lipo-c-10ml",
+            "strength": "10ml",
             "pack_qty": 10,
             "per_unit_usd": 49,
-            "savings_pct": 0.2899,
-            "catalog_slug": "lipo-c-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.2899
           }
         },
         {
@@ -5387,11 +5451,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "lipo-c-10ml",
+            "strength": "10ml",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.3478,
-            "catalog_slug": "lipo-c-10ml",
-            "strength": "10ml"
+            "savings_pct": 0.3478
           }
         }
       ]
@@ -5422,11 +5486,11 @@
           "amount_usd": 195,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mk-677-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 39,
-            "savings_pct": 0.2909,
-            "catalog_slug": "mk-677-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2909
           }
         },
         {
@@ -5437,11 +5501,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mk-677-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.4727,
-            "catalog_slug": "mk-677-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.4727
           }
         },
         {
@@ -5452,11 +5516,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mk-677-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.5455,
-            "catalog_slug": "mk-677-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.5455
           }
         }
       ]
@@ -5487,11 +5551,11 @@
           "amount_usd": 395,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-capsules-100-count-500mcg",
+            "strength": "100 count (500mcg)",
             "pack_qty": 5,
             "per_unit_usd": 79,
-            "savings_pct": 0.1124,
-            "catalog_slug": "bpc-157-capsules-100-count-500mcg",
-            "strength": "100 count (500mcg)"
+            "savings_pct": 0.1124
           }
         },
         {
@@ -5502,11 +5566,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-capsules-100-count-500mcg",
+            "strength": "100 count (500mcg)",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.3371,
-            "catalog_slug": "bpc-157-capsules-100-count-500mcg",
-            "strength": "100 count (500mcg)"
+            "savings_pct": 0.3371
           }
         },
         {
@@ -5517,11 +5581,11 @@
           "amount_usd": 1000,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-capsules-100-count-500mcg",
+            "strength": "100 count (500mcg)",
             "pack_qty": 20,
             "per_unit_usd": 50,
-            "savings_pct": 0.4382,
-            "catalog_slug": "bpc-157-capsules-100-count-500mcg",
-            "strength": "100 count (500mcg)"
+            "savings_pct": 0.4382
           }
         }
       ]
@@ -5552,11 +5616,11 @@
           "amount_usd": 275,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 55,
-            "savings_pct": 0.2029,
-            "catalog_slug": "bpc-157-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2029
           }
         },
         {
@@ -5567,11 +5631,11 @@
           "amount_usd": 490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 49,
-            "savings_pct": 0.2899,
-            "catalog_slug": "bpc-157-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2899
           }
         },
         {
@@ -5582,11 +5646,11 @@
           "amount_usd": 800,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 40,
-            "savings_pct": 0.4203,
-            "catalog_slug": "bpc-157-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4203
           }
         }
       ]
@@ -5617,11 +5681,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "bpc-157-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -5632,11 +5696,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.2564,
-            "catalog_slug": "bpc-157-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2564
           }
         },
         {
@@ -5647,11 +5711,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "bpc-157-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -5682,11 +5746,11 @@
           "amount_usd": 425,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tb500-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 85,
-            "savings_pct": 0.0449,
-            "catalog_slug": "tb500-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0449
           }
         },
         {
@@ -5697,11 +5761,11 @@
           "amount_usd": 790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tb500-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 79,
-            "savings_pct": 0.1124,
-            "catalog_slug": "tb500-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1124
           }
         },
         {
@@ -5712,11 +5776,11 @@
           "amount_usd": 1500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tb500-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 75,
-            "savings_pct": 0.1573,
-            "catalog_slug": "tb500-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1573
           }
         }
       ]
@@ -5747,11 +5811,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tb500-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "tb500-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -5762,11 +5826,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tb500-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "tb500-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -5777,11 +5841,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "tb500-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.2857,
-            "catalog_slug": "tb500-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -5812,11 +5876,11 @@
           "amount_usd": 495,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-10mg",
+            "strength": "",
             "pack_qty": 5,
             "per_unit_usd": 99,
-            "savings_pct": 0.0917,
-            "catalog_slug": "bpc-157-5mg-tb500-5mg-10mg",
-            "strength": ""
+            "savings_pct": 0.0917
           }
         },
         {
@@ -5827,11 +5891,11 @@
           "amount_usd": 890,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-10mg",
+            "strength": "",
             "pack_qty": 10,
             "per_unit_usd": 89,
-            "savings_pct": 0.1835,
-            "catalog_slug": "bpc-157-5mg-tb500-5mg-10mg",
-            "strength": ""
+            "savings_pct": 0.1835
           }
         },
         {
@@ -5842,11 +5906,11 @@
           "amount_usd": 1580,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-10mg",
+            "strength": "",
             "pack_qty": 20,
             "per_unit_usd": 79,
-            "savings_pct": 0.2752,
-            "catalog_slug": "bpc-157-5mg-tb500-5mg-10mg",
-            "strength": ""
+            "savings_pct": 0.2752
           }
         }
       ]
@@ -5877,11 +5941,11 @@
           "amount_usd": 695,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-20mg",
+            "strength": "",
             "pack_qty": 5,
             "per_unit_usd": 139,
-            "savings_pct": 0.0671,
-            "catalog_slug": "bpc-157-5mg-tb500-5mg-20mg",
-            "strength": ""
+            "savings_pct": 0.0671
           }
         },
         {
@@ -5892,11 +5956,11 @@
           "amount_usd": 1290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-20mg",
+            "strength": "",
             "pack_qty": 10,
             "per_unit_usd": 129,
-            "savings_pct": 0.1342,
-            "catalog_slug": "bpc-157-5mg-tb500-5mg-20mg",
-            "strength": ""
+            "savings_pct": 0.1342
           }
         },
         {
@@ -5907,11 +5971,11 @@
           "amount_usd": 2400,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-20mg",
+            "strength": "",
             "pack_qty": 20,
             "per_unit_usd": 120,
-            "savings_pct": 0.1946,
-            "catalog_slug": "bpc-157-5mg-tb500-5mg-20mg",
-            "strength": ""
+            "savings_pct": 0.1946
           }
         }
       ]
@@ -5942,11 +6006,11 @@
           "amount_usd": 1045,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+            "strength": "50mg",
             "pack_qty": 5,
             "per_unit_usd": 209,
-            "savings_pct": 0.0873,
-            "catalog_slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
-            "strength": "50mg"
+            "savings_pct": 0.0873
           }
         },
         {
@@ -5957,11 +6021,11 @@
           "amount_usd": 1890,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+            "strength": "50mg",
             "pack_qty": 10,
             "per_unit_usd": 189,
-            "savings_pct": 0.1747,
-            "catalog_slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
-            "strength": "50mg"
+            "savings_pct": 0.1747
           }
         },
         {
@@ -5972,11 +6036,11 @@
           "amount_usd": 3500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+            "strength": "50mg",
             "pack_qty": 20,
             "per_unit_usd": 175,
-            "savings_pct": 0.2358,
-            "catalog_slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
-            "strength": "50mg"
+            "savings_pct": 0.2358
           }
         }
       ]
@@ -6007,11 +6071,11 @@
           "amount_usd": 395,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
+            "strength": "30mg",
             "pack_qty": 5,
             "per_unit_usd": 79,
-            "savings_pct": 0.1124,
-            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
-            "strength": "30mg"
+            "savings_pct": 0.1124
           }
         },
         {
@@ -6022,11 +6086,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
+            "strength": "30mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.2247,
-            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
-            "strength": "30mg"
+            "savings_pct": 0.2247
           }
         },
         {
@@ -6037,11 +6101,11 @@
           "amount_usd": 1200,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
+            "strength": "30mg",
             "pack_qty": 20,
             "per_unit_usd": 60,
-            "savings_pct": 0.3258,
-            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
-            "strength": "30mg"
+            "savings_pct": 0.3258
           }
         }
       ]
@@ -6072,11 +6136,11 @@
           "amount_usd": 845,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
+            "strength": "85mg",
             "pack_qty": 5,
             "per_unit_usd": 169,
-            "savings_pct": 0.1058,
-            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
-            "strength": "85mg"
+            "savings_pct": 0.1058
           }
         },
         {
@@ -6087,11 +6151,11 @@
           "amount_usd": 1490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
+            "strength": "85mg",
             "pack_qty": 10,
             "per_unit_usd": 149,
-            "savings_pct": 0.2116,
-            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
-            "strength": "85mg"
+            "savings_pct": 0.2116
           }
         },
         {
@@ -6102,11 +6166,11 @@
           "amount_usd": 2600,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
+            "strength": "85mg",
             "pack_qty": 20,
             "per_unit_usd": 130,
-            "savings_pct": 0.3122,
-            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
-            "strength": "85mg"
+            "savings_pct": 0.3122
           }
         }
       ]
@@ -6137,11 +6201,11 @@
           "amount_usd": 695,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 139,
-            "savings_pct": 0.0671,
-            "catalog_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
-            "strength": "10mg"
+            "savings_pct": 0.0671
           }
         },
         {
@@ -6152,11 +6216,11 @@
           "amount_usd": 1290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 129,
-            "savings_pct": 0.1342,
-            "catalog_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
-            "strength": "10mg"
+            "savings_pct": 0.1342
           }
         },
         {
@@ -6167,11 +6231,11 @@
           "amount_usd": 2400,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 120,
-            "savings_pct": 0.1946,
-            "catalog_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
-            "strength": "10mg"
+            "savings_pct": 0.1946
           }
         }
       ]
@@ -6202,11 +6266,11 @@
           "amount_usd": 1195,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 239,
-            "savings_pct": 0.0772,
-            "catalog_slug": "cjc-1295-with-dac-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0772
           }
         },
         {
@@ -6217,11 +6281,11 @@
           "amount_usd": 2090,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 209,
-            "savings_pct": 0.1931,
-            "catalog_slug": "cjc-1295-with-dac-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1931
           }
         },
         {
@@ -6232,11 +6296,11 @@
           "amount_usd": 3900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 195,
-            "savings_pct": 0.2471,
-            "catalog_slug": "cjc-1295-with-dac-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2471
           }
         }
       ]
@@ -6267,11 +6331,11 @@
           "amount_usd": 645,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 129,
-            "savings_pct": 0.0719,
-            "catalog_slug": "cjc-1295-with-dac-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0719
           }
         },
         {
@@ -6282,11 +6346,11 @@
           "amount_usd": 1190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 119,
-            "savings_pct": 0.1439,
-            "catalog_slug": "cjc-1295-with-dac-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1439
           }
         },
         {
@@ -6297,11 +6361,11 @@
           "amount_usd": 2180,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 109,
-            "savings_pct": 0.2158,
-            "catalog_slug": "cjc-1295-with-dac-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2158
           }
         }
       ]
@@ -6332,11 +6396,11 @@
           "amount_usd": 375,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 75,
-            "savings_pct": 0.0506,
-            "catalog_slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0506
           }
         },
         {
@@ -6347,11 +6411,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.1266,
-            "catalog_slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1266
           }
         },
         {
@@ -6362,11 +6426,11 @@
           "amount_usd": 1200,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 60,
-            "savings_pct": 0.2405,
-            "catalog_slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2405
           }
         }
       ]
@@ -6397,11 +6461,11 @@
           "amount_usd": 475,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 95,
-            "savings_pct": 0.1284,
-            "catalog_slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1284
           }
         },
         {
@@ -6412,11 +6476,11 @@
           "amount_usd": 790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 79,
-            "savings_pct": 0.2752,
-            "catalog_slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2752
           }
         },
         {
@@ -6427,11 +6491,11 @@
           "amount_usd": 1300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 65,
-            "savings_pct": 0.4037,
-            "catalog_slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.4037
           }
         }
       ]
@@ -6462,11 +6526,11 @@
           "amount_usd": 425,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 85,
-            "savings_pct": 0.0449,
-            "catalog_slug": "cjc-1295-without-dac-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0449
           }
         },
         {
@@ -6477,11 +6541,11 @@
           "amount_usd": 790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 79,
-            "savings_pct": 0.1124,
-            "catalog_slug": "cjc-1295-without-dac-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1124
           }
         },
         {
@@ -6492,11 +6556,11 @@
           "amount_usd": 1400,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 70,
-            "savings_pct": 0.2135,
-            "catalog_slug": "cjc-1295-without-dac-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2135
           }
         }
       ]
@@ -6527,11 +6591,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "cjc-1295-without-dac-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -6542,11 +6606,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "cjc-1295-without-dac-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -6557,11 +6621,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.2857,
-            "catalog_slug": "cjc-1295-without-dac-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -6592,11 +6656,11 @@
           "amount_usd": 195,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-2-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "ghrp-2-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -6607,11 +6671,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-2-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.4082,
-            "catalog_slug": "ghrp-2-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4082
           }
         },
         {
@@ -6622,11 +6686,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-2-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.4898,
-            "catalog_slug": "ghrp-2-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4898
           }
         }
       ]
@@ -6657,11 +6721,11 @@
           "amount_usd": 125,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-2-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "ghrp-2-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -6672,11 +6736,11 @@
           "amount_usd": 220,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-2-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 22,
-            "savings_pct": 0.2414,
-            "catalog_slug": "ghrp-2-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2414
           }
         },
         {
@@ -6687,11 +6751,11 @@
           "amount_usd": 380,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-2-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 19,
-            "savings_pct": 0.3448,
-            "catalog_slug": "ghrp-2-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.3448
           }
         }
       ]
@@ -6722,11 +6786,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-6-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1695,
-            "catalog_slug": "ghrp-6-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1695
           }
         },
         {
@@ -6737,11 +6801,11 @@
           "amount_usd": 450,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-6-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 45,
-            "savings_pct": 0.2373,
-            "catalog_slug": "ghrp-6-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2373
           }
         },
         {
@@ -6752,11 +6816,11 @@
           "amount_usd": 780,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-6-acetate-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 39,
-            "savings_pct": 0.339,
-            "catalog_slug": "ghrp-6-acetate-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.339
           }
         }
       ]
@@ -6787,11 +6851,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-6-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "ghrp-6-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -6802,11 +6866,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-6-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.2564,
-            "catalog_slug": "ghrp-6-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2564
           }
         },
         {
@@ -6817,11 +6881,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghrp-6-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "ghrp-6-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -6852,11 +6916,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hexarelin-acetate-2mg",
+            "strength": "2mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "hexarelin-acetate-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -6867,11 +6931,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hexarelin-acetate-2mg",
+            "strength": "2mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.2564,
-            "catalog_slug": "hexarelin-acetate-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.2564
           }
         },
         {
@@ -6882,11 +6946,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hexarelin-acetate-2mg",
+            "strength": "2mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "hexarelin-acetate-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -6917,11 +6981,11 @@
           "amount_usd": 295,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hexarelin-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 59,
-            "savings_pct": 0.1449,
-            "catalog_slug": "hexarelin-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1449
           }
         },
         {
@@ -6932,11 +6996,11 @@
           "amount_usd": 550,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hexarelin-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 55,
-            "savings_pct": 0.2029,
-            "catalog_slug": "hexarelin-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2029
           }
         },
         {
@@ -6947,11 +7011,11 @@
           "amount_usd": 1000,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hexarelin-acetate-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 50,
-            "savings_pct": 0.2754,
-            "catalog_slug": "hexarelin-acetate-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2754
           }
         }
       ]
@@ -6982,11 +7046,11 @@
           "amount_usd": 250,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ipamorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 50,
-            "savings_pct": 0.1525,
-            "catalog_slug": "ipamorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1525
           }
         },
         {
@@ -6997,11 +7061,11 @@
           "amount_usd": 450,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ipamorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 45,
-            "savings_pct": 0.2373,
-            "catalog_slug": "ipamorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2373
           }
         },
         {
@@ -7012,11 +7076,11 @@
           "amount_usd": 780,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ipamorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 39,
-            "savings_pct": 0.339,
-            "catalog_slug": "ipamorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.339
           }
         }
       ]
@@ -7047,11 +7111,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ipamorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "ipamorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -7062,11 +7126,11 @@
           "amount_usd": 300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ipamorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 10,
             "per_unit_usd": 30,
-            "savings_pct": 0.2308,
-            "catalog_slug": "ipamorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.2308
           }
         },
         {
@@ -7077,11 +7141,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ipamorelin-5mg",
+            "strength": "5mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "ipamorelin-5mg",
-            "strength": "5mg"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -7112,11 +7176,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghk-cu-100mg",
+            "strength": "100mg",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1695,
-            "catalog_slug": "ghk-cu-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.1695
           }
         },
         {
@@ -7127,11 +7191,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghk-cu-100mg",
+            "strength": "100mg",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.339,
-            "catalog_slug": "ghk-cu-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.339
           }
         },
         {
@@ -7142,11 +7206,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghk-cu-100mg",
+            "strength": "100mg",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.4068,
-            "catalog_slug": "ghk-cu-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.4068
           }
         }
       ]
@@ -7177,11 +7241,11 @@
           "amount_usd": 195,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghk-cu-50mg",
+            "strength": "50mg",
             "pack_qty": 5,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "ghk-cu-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -7192,11 +7256,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghk-cu-50mg",
+            "strength": "50mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.4082,
-            "catalog_slug": "ghk-cu-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.4082
           }
         },
         {
@@ -7207,11 +7271,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "ghk-cu-50mg",
+            "strength": "50mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.4898,
-            "catalog_slug": "ghk-cu-50mg",
-            "strength": "50mg"
+            "savings_pct": 0.4898
           }
         }
       ]
@@ -7242,11 +7306,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "melanotan-1-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "melanotan-1-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -7257,11 +7321,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "melanotan-1-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.2564,
-            "catalog_slug": "melanotan-1-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2564
           }
         },
         {
@@ -7272,11 +7336,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "melanotan-1-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "melanotan-1-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -7307,11 +7371,11 @@
           "amount_usd": 160,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "melanotan-2-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 32,
-            "savings_pct": 0.0857,
-            "catalog_slug": "melanotan-2-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0857
           }
         },
         {
@@ -7322,11 +7386,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "melanotan-2-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.1714,
-            "catalog_slug": "melanotan-2-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1714
           }
         },
         {
@@ -7337,11 +7401,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "melanotan-2-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.2857,
-            "catalog_slug": "melanotan-2-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -7372,11 +7436,11 @@
           "amount_usd": 160,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "snap-8-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 32,
-            "savings_pct": 0.0857,
-            "catalog_slug": "snap-8-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.0857
           }
         },
         {
@@ -7387,11 +7451,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "snap-8-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.1714,
-            "catalog_slug": "snap-8-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1714
           }
         },
         {
@@ -7402,11 +7466,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "snap-8-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.2857,
-            "catalog_slug": "snap-8-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -7437,11 +7501,11 @@
           "amount_usd": 395,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "gonadorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 5,
             "per_unit_usd": 79,
-            "savings_pct": 0.1124,
-            "catalog_slug": "gonadorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.1124
           }
         },
         {
@@ -7452,11 +7516,11 @@
           "amount_usd": 690,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "gonadorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 10,
             "per_unit_usd": 69,
-            "savings_pct": 0.2247,
-            "catalog_slug": "gonadorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.2247
           }
         },
         {
@@ -7467,11 +7531,11 @@
           "amount_usd": 1000,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "gonadorelin-10mg",
+            "strength": "10mg",
             "pack_qty": 20,
             "per_unit_usd": 50,
-            "savings_pct": 0.4382,
-            "catalog_slug": "gonadorelin-10mg",
-            "strength": "10mg"
+            "savings_pct": 0.4382
           }
         }
       ]
@@ -7502,11 +7566,11 @@
           "amount_usd": 125,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "gonadorelin-2mg",
+            "strength": "2mg",
             "pack_qty": 5,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "gonadorelin-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -7517,11 +7581,11 @@
           "amount_usd": 200,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "gonadorelin-2mg",
+            "strength": "2mg",
             "pack_qty": 10,
             "per_unit_usd": 20,
-            "savings_pct": 0.3103,
-            "catalog_slug": "gonadorelin-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.3103
           }
         },
         {
@@ -7532,11 +7596,11 @@
           "amount_usd": 360,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "gonadorelin-2mg",
+            "strength": "2mg",
             "pack_qty": 20,
             "per_unit_usd": 18,
-            "savings_pct": 0.3793,
-            "catalog_slug": "gonadorelin-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.3793
           }
         }
       ]
@@ -7567,11 +7631,11 @@
           "amount_usd": 325,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hcg-10000-iu",
+            "strength": "10000 IU",
             "pack_qty": 5,
             "per_unit_usd": 65,
-            "savings_pct": 0.058,
-            "catalog_slug": "hcg-10000-iu",
-            "strength": "10000 IU"
+            "savings_pct": 0.058
           }
         },
         {
@@ -7582,11 +7646,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hcg-10000-iu",
+            "strength": "10000 IU",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.1449,
-            "catalog_slug": "hcg-10000-iu",
-            "strength": "10000 IU"
+            "savings_pct": 0.1449
           }
         },
         {
@@ -7597,11 +7661,11 @@
           "amount_usd": 1100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hcg-10000-iu",
+            "strength": "10000 IU",
             "pack_qty": 20,
             "per_unit_usd": 55,
-            "savings_pct": 0.2029,
-            "catalog_slug": "hcg-10000-iu",
-            "strength": "10000 IU"
+            "savings_pct": 0.2029
           }
         }
       ]
@@ -7632,11 +7696,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hcg-5000-iu",
+            "strength": "5000 IU",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "hcg-5000-iu",
-            "strength": "5000 IU"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -7647,11 +7711,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hcg-5000-iu",
+            "strength": "5000 IU",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "hcg-5000-iu",
-            "strength": "5000 IU"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -7662,11 +7726,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hcg-5000-iu",
+            "strength": "5000 IU",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.2857,
-            "catalog_slug": "hcg-5000-iu",
-            "strength": "5000 IU"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -7697,11 +7761,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-10-iu",
+            "strength": "10 IU",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "hgh-191aa-10-iu",
-            "strength": "10 IU"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -7712,11 +7776,11 @@
           "amount_usd": 390,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-10-iu",
+            "strength": "10 IU",
             "pack_qty": 10,
             "per_unit_usd": 39,
-            "savings_pct": 0.2041,
-            "catalog_slug": "hgh-191aa-10-iu",
-            "strength": "10 IU"
+            "savings_pct": 0.2041
           }
         },
         {
@@ -7727,11 +7791,11 @@
           "amount_usd": 700,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-10-iu",
+            "strength": "10 IU",
             "pack_qty": 20,
             "per_unit_usd": 35,
-            "savings_pct": 0.2857,
-            "catalog_slug": "hgh-191aa-10-iu",
-            "strength": "10 IU"
+            "savings_pct": 0.2857
           }
         }
       ]
@@ -7762,11 +7826,11 @@
           "amount_usd": 245,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-12-iu",
+            "strength": "12 IU",
             "pack_qty": 5,
             "per_unit_usd": 49,
-            "savings_pct": 0.1091,
-            "catalog_slug": "hgh-191aa-12-iu",
-            "strength": "12 IU"
+            "savings_pct": 0.1091
           }
         },
         {
@@ -7777,11 +7841,11 @@
           "amount_usd": 450,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-12-iu",
+            "strength": "12 IU",
             "pack_qty": 10,
             "per_unit_usd": 45,
-            "savings_pct": 0.1818,
-            "catalog_slug": "hgh-191aa-12-iu",
-            "strength": "12 IU"
+            "savings_pct": 0.1818
           }
         },
         {
@@ -7792,11 +7856,11 @@
           "amount_usd": 780,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-12-iu",
+            "strength": "12 IU",
             "pack_qty": 20,
             "per_unit_usd": 39,
-            "savings_pct": 0.2909,
-            "catalog_slug": "hgh-191aa-12-iu",
-            "strength": "12 IU"
+            "savings_pct": 0.2909
           }
         }
       ]
@@ -7827,11 +7891,11 @@
           "amount_usd": 275,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-15-iu",
+            "strength": "15 IU",
             "pack_qty": 5,
             "per_unit_usd": 55,
-            "savings_pct": 0.0678,
-            "catalog_slug": "hgh-191aa-15-iu",
-            "strength": "15 IU"
+            "savings_pct": 0.0678
           }
         },
         {
@@ -7842,11 +7906,11 @@
           "amount_usd": 490,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-15-iu",
+            "strength": "15 IU",
             "pack_qty": 10,
             "per_unit_usd": 49,
-            "savings_pct": 0.1695,
-            "catalog_slug": "hgh-191aa-15-iu",
-            "strength": "15 IU"
+            "savings_pct": 0.1695
           }
         },
         {
@@ -7857,11 +7921,11 @@
           "amount_usd": 900,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-15-iu",
+            "strength": "15 IU",
             "pack_qty": 20,
             "per_unit_usd": 45,
-            "savings_pct": 0.2373,
-            "catalog_slug": "hgh-191aa-15-iu",
-            "strength": "15 IU"
+            "savings_pct": 0.2373
           }
         }
       ]
@@ -7892,11 +7956,11 @@
           "amount_usd": 350,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-24-iu",
+            "strength": "24 IU",
             "pack_qty": 5,
             "per_unit_usd": 70,
-            "savings_pct": 0.1139,
-            "catalog_slug": "hgh-191aa-24-iu",
-            "strength": "24 IU"
+            "savings_pct": 0.1139
           }
         },
         {
@@ -7907,11 +7971,11 @@
           "amount_usd": 590,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-24-iu",
+            "strength": "24 IU",
             "pack_qty": 10,
             "per_unit_usd": 59,
-            "savings_pct": 0.2532,
-            "catalog_slug": "hgh-191aa-24-iu",
-            "strength": "24 IU"
+            "savings_pct": 0.2532
           }
         },
         {
@@ -7922,11 +7986,11 @@
           "amount_usd": 1100,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-24-iu",
+            "strength": "24 IU",
             "pack_qty": 20,
             "per_unit_usd": 55,
-            "savings_pct": 0.3038,
-            "catalog_slug": "hgh-191aa-24-iu",
-            "strength": "24 IU"
+            "savings_pct": 0.3038
           }
         }
       ]
@@ -7957,11 +8021,11 @@
           "amount_usd": 395,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-36-iu",
+            "strength": "36 IU",
             "pack_qty": 5,
             "per_unit_usd": 79,
-            "savings_pct": 0.0706,
-            "catalog_slug": "hgh-191aa-36-iu",
-            "strength": "36 IU"
+            "savings_pct": 0.0706
           }
         },
         {
@@ -7972,11 +8036,11 @@
           "amount_usd": 750,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-36-iu",
+            "strength": "36 IU",
             "pack_qty": 10,
             "per_unit_usd": 75,
-            "savings_pct": 0.1176,
-            "catalog_slug": "hgh-191aa-36-iu",
-            "strength": "36 IU"
+            "savings_pct": 0.1176
           }
         },
         {
@@ -7987,11 +8051,11 @@
           "amount_usd": 1380,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hgh-191aa-36-iu",
+            "strength": "36 IU",
             "pack_qty": 20,
             "per_unit_usd": 69,
-            "savings_pct": 0.1882,
-            "catalog_slug": "hgh-191aa-36-iu",
-            "strength": "36 IU"
+            "savings_pct": 0.1882
           }
         }
       ]
@@ -8022,11 +8086,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hmg-75-iu",
+            "strength": "75 IU",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.1026,
-            "catalog_slug": "hmg-75-iu",
-            "strength": "75 IU"
+            "savings_pct": 0.1026
           }
         },
         {
@@ -8037,11 +8101,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hmg-75-iu",
+            "strength": "75 IU",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.2564,
-            "catalog_slug": "hmg-75-iu",
-            "strength": "75 IU"
+            "savings_pct": 0.2564
           }
         },
         {
@@ -8052,11 +8116,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "hmg-75-iu",
+            "strength": "75 IU",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.359,
-            "catalog_slug": "hmg-75-iu",
-            "strength": "75 IU"
+            "savings_pct": 0.359
           }
         }
       ]
@@ -8087,11 +8151,11 @@
           "amount_usd": 125,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "igf-1-lr3-0-1mg",
+            "strength": "1mg",
             "pack_qty": 5,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "igf-1-lr3-0-1mg",
-            "strength": "1mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -8102,11 +8166,11 @@
           "amount_usd": 190,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "igf-1-lr3-0-1mg",
+            "strength": "1mg",
             "pack_qty": 10,
             "per_unit_usd": 19,
-            "savings_pct": 0.3448,
-            "catalog_slug": "igf-1-lr3-0-1mg",
-            "strength": "1mg"
+            "savings_pct": 0.3448
           }
         },
         {
@@ -8117,11 +8181,11 @@
           "amount_usd": 300,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "igf-1-lr3-0-1mg",
+            "strength": "1mg",
             "pack_qty": 20,
             "per_unit_usd": 15,
-            "savings_pct": 0.4828,
-            "catalog_slug": "igf-1-lr3-0-1mg",
-            "strength": "1mg"
+            "savings_pct": 0.4828
           }
         }
       ]
@@ -8152,11 +8216,11 @@
           "amount_usd": 695,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "igf-1-lr3-1mg",
+            "strength": "1mg",
             "pack_qty": 5,
             "per_unit_usd": 139,
-            "savings_pct": 0.0733,
-            "catalog_slug": "igf-1-lr3-1mg",
-            "strength": "1mg"
+            "savings_pct": 0.0733
           }
         },
         {
@@ -8167,11 +8231,11 @@
           "amount_usd": 1290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "igf-1-lr3-1mg",
+            "strength": "1mg",
             "pack_qty": 10,
             "per_unit_usd": 129,
-            "savings_pct": 0.14,
-            "catalog_slug": "igf-1-lr3-1mg",
-            "strength": "1mg"
+            "savings_pct": 0.14
           }
         },
         {
@@ -8182,11 +8246,11 @@
           "amount_usd": 2400,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "igf-1-lr3-1mg",
+            "strength": "1mg",
             "pack_qty": 20,
             "per_unit_usd": 120,
-            "savings_pct": 0.2,
-            "catalog_slug": "igf-1-lr3-1mg",
-            "strength": "1mg"
+            "savings_pct": 0.2
           }
         }
       ]
@@ -8217,11 +8281,11 @@
           "amount_usd": 125,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mgf-2mg",
+            "strength": "2mg",
             "pack_qty": 5,
             "per_unit_usd": 25,
-            "savings_pct": 0.1379,
-            "catalog_slug": "mgf-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.1379
           }
         },
         {
@@ -8232,11 +8296,11 @@
           "amount_usd": 200,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mgf-2mg",
+            "strength": "2mg",
             "pack_qty": 10,
             "per_unit_usd": 20,
-            "savings_pct": 0.3103,
-            "catalog_slug": "mgf-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.3103
           }
         },
         {
@@ -8247,11 +8311,11 @@
           "amount_usd": 360,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "mgf-2mg",
+            "strength": "2mg",
             "pack_qty": 20,
             "per_unit_usd": 18,
-            "savings_pct": 0.3793,
-            "catalog_slug": "mgf-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.3793
           }
         }
       ]
@@ -8282,11 +8346,11 @@
           "amount_usd": 225,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "peg-mgf-2mg",
+            "strength": "2mg",
             "pack_qty": 5,
             "per_unit_usd": 45,
-            "savings_pct": 0.0816,
-            "catalog_slug": "peg-mgf-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.0816
           }
         },
         {
@@ -8297,11 +8361,11 @@
           "amount_usd": 420,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "peg-mgf-2mg",
+            "strength": "2mg",
             "pack_qty": 10,
             "per_unit_usd": 42,
-            "savings_pct": 0.1429,
-            "catalog_slug": "peg-mgf-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.1429
           }
         },
         {
@@ -8312,11 +8376,11 @@
           "amount_usd": 760,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "peg-mgf-2mg",
+            "strength": "2mg",
             "pack_qty": 20,
             "per_unit_usd": 38,
-            "savings_pct": 0.2245,
-            "catalog_slug": "peg-mgf-2mg",
-            "strength": "2mg"
+            "savings_pct": 0.2245
           }
         }
       ]
@@ -8347,11 +8411,11 @@
           "amount_usd": 175,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "l-glu-100mg",
+            "strength": "100mg",
             "pack_qty": 5,
             "per_unit_usd": 35,
-            "savings_pct": 0.125,
-            "catalog_slug": "l-glu-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.125
           }
         },
         {
@@ -8362,11 +8426,11 @@
           "amount_usd": 290,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "l-glu-100mg",
+            "strength": "100mg",
             "pack_qty": 10,
             "per_unit_usd": 29,
-            "savings_pct": 0.275,
-            "catalog_slug": "l-glu-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.275
           }
         },
         {
@@ -8377,11 +8441,11 @@
           "amount_usd": 500,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "l-glu-100mg",
+            "strength": "100mg",
             "pack_qty": 20,
             "per_unit_usd": 25,
-            "savings_pct": 0.375,
-            "catalog_slug": "l-glu-100mg",
-            "strength": "100mg"
+            "savings_pct": 0.375
           }
         }
       ]
@@ -8412,11 +8476,11 @@
           "amount_usd": 445,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "pinealon-capsules-100-count",
+            "strength": "100 count)",
             "pack_qty": 5,
             "per_unit_usd": 89,
-            "savings_pct": 0.101,
-            "catalog_slug": "pinealon-capsules-100-count",
-            "strength": "100 count)"
+            "savings_pct": 0.101
           }
         },
         {
@@ -8427,11 +8491,11 @@
           "amount_usd": 790,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "pinealon-capsules-100-count",
+            "strength": "100 count)",
             "pack_qty": 10,
             "per_unit_usd": 79,
-            "savings_pct": 0.202,
-            "catalog_slug": "pinealon-capsules-100-count",
-            "strength": "100 count)"
+            "savings_pct": 0.202
           }
         },
         {
@@ -8442,11 +8506,11 @@
           "amount_usd": 1380,
           "currency_code": "usd",
           "metadata": {
+            "catalog_slug": "pinealon-capsules-100-count",
+            "strength": "100 count)",
             "pack_qty": 20,
             "per_unit_usd": 69,
-            "savings_pct": 0.303,
-            "catalog_slug": "pinealon-capsules-100-count",
-            "strength": "100 count)"
+            "savings_pct": 0.303
           }
         }
       ]

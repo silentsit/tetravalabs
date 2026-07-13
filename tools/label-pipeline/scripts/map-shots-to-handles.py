@@ -31,11 +31,11 @@ HANDLE_TO_EXPORT = {
     "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg": "CJC-1295 [no DAC] + Ipamorelin + Sermorelin 5mg",
     "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 10mg",
     "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 20mg",
-    "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "Cu + TB-500 + BPC-157 + KPV 80mg",
+    "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "BPC-157 + TB-500 + Cu + KPV 80mg",
     "glow-bpc-157-tb500-ghk-cu-30mg": "Glow Blend 30mg",
     "glow-bpc-157-tb500-ghk-cu-85mg": "Glow Blend 85mg",
     "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": "Glow Blend 70mg",
-    "bpc-157-capsules-100-count-500mcg": "BPC-157 (Capsules) 500mcg",
+    "bpc-157-capsules-100-count-500mcg": "BPC-157 500mcg",
     "pinealon-capsules-100-count": "Pinealon (Capsules)",
 }
 

@@ -45,6 +45,10 @@ def is_capsule(product: str, vial_size: str) -> bool:
     return "capsule" in combined or re.search(r"\b\d+\s*count\b", combined) is not None
 
 
+def is_nasal_spray(product: str, vial_size: str) -> bool:
+    return "nasal spray" in f"{product} {vial_size}".lower()
+
+
 def export_labels(
     xlsx_path: Path = DEFAULT_XLSX,
     batch_csv: Path = DEFAULT_BATCH_CSV,
@@ -70,7 +74,13 @@ def export_labels(
         sub_name = cell_text(ws.cell(row_idx, sub_col).value) if sub_col else ""
         concentration = cell_text(ws.cell(row_idx, concentration_col).value)
         vial_size = cell_text(ws.cell(row_idx, vial_col).value) if vial_col else ""
-        mockup = "capsule" if is_capsule(product, vial_size) else "vial"
+        mockup = (
+            "capsule"
+            if is_capsule(product, vial_size)
+            else "nasal_spray"
+            if is_nasal_spray(product, vial_size)
+            else "vial"
+        )
         if mockup == "capsule":
             label_template = "capsule"
         elif sub_name:

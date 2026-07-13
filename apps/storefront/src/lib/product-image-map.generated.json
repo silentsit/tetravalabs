@@ -105,10 +105,12 @@
   "retatrutide-5mg": "/products/v2/retatrutide-5mg.png",
   "selank-10mg": "/products/v2/selank-10mg.png",
   "selank-5mg": "/products/v2/selank-5mg.png",
+  "selank-nasal-spray-10mg": "/products/v2/selank-nasal-spray-10mg.png",
   "semaglutide-10mg": "/products/v2/semaglutide-10mg.png",
   "semaglutide-5mg": "/products/v2/semaglutide-5mg.png",
   "semax-10mg": "/products/v2/semax-10mg.png",
   "semax-5mg": "/products/v2/semax-5mg.png",
+  "semax-nasal-spray-10mg": "/products/v2/semax-nasal-spray-10mg.png",
   "sermorelin-10mg": "/products/v2/sermorelin-10mg.png",
   "sermorelin-5mg": "/products/v2/sermorelin-5mg.png",
   "snap-8-10mg": "/products/v2/snap-8-10mg.png",
@@ -127,5 +129,6 @@
   "tirzepatide-10mg": "/products/v2/tirzepatide-10mg.png",
   "tirzepatide-20mg": "/products/v2/tirzepatide-20mg.png",
   "tirzepatide-50mg": "/products/v2/tirzepatide-50mg.png",
-  "tirzepatide-5mg": "/products/v2/tirzepatide-5mg.png"
+  "tirzepatide-5mg": "/products/v2/tirzepatide-5mg.png",
+  "vip-10mg": "/products/v2/vip-10mg.png"
 }

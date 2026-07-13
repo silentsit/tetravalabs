@@ -373,10 +373,22 @@
     "appearance": "White lyophilized powder",
     "cas_number": "129954-34-3"
   },
+  "Selank Nasal Spray": {
+    "storage": "2-8°C refrigerated",
+    "appearance": "Clear nasal solution",
+    "cas_number": "129954-34-3",
+    "molecular_formula": "C33H57N11O9"
+  },
   "Semax": {
     "storage": "-20C lyophilized",
     "appearance": "White lyophilized powder",
     "cas_number": "80714-61-0"
+  },
+  "Semax Nasal Spray": {
+    "storage": "2-8°C refrigerated",
+    "appearance": "Clear nasal solution",
+    "cas_number": "80714-61-0",
+    "molecular_formula": "C37H51N9O10S"
   },
   "Sermorelin": {
     "storage": "-20C lyophilized",

@@ -84,7 +84,7 @@ Required env: see `apps/storefront/.env.example`
 
 - Blueprint: `render.yaml` at repo root (single web service: `tetrava-medusa`)
 - Search: **Typesense Cloud** — configure `TYPESENSE_*` on Medusa; do not run Typesense on Render
-- `preDeployCommand` runs `db:migrate`, `db:lab-schema`, and `typesense:index`
+- `preDeployCommand` runs `db:migrate` and `db:lab-schema` only (`typesense:index` is optional — run manually after fixing Typesense credentials)
 - Required env: see `apps/medusa/.env.example`
 - Print full mapping: `npm run deploy:env`
 

@@ -22,6 +22,30 @@ const catalogHandlesPath = path.join(
 )
 const dryRun = process.argv.includes("--dry-run")
 const fresh = process.argv.includes("--fresh")
+const strict = process.argv.includes("--strict")
+
+function isSkippableTypesenseError(error) {
+  if (strict) return false
+
+  const message = error?.message || String(error)
+  const httpStatus =
+    error?.httpStatus ?? error?.statusCode ?? error?.status ?? error?.response?.status
+
+  if (httpStatus === 401 || httpStatus === 403) return true
+  if (/HTTP code (401|403)/i.test(message)) return true
+  if (/forbidden/i.test(message)) return true
+  if (/unauthorized/i.test(message)) return true
+
+  return false
+}
+
+function warnAndSkipTypesense(message) {
+  console.warn(message)
+  console.warn(
+    "Deploy continues — storefront search falls back to the catalog until Typesense is configured. Fix TYPESENSE_HOST / TYPESENSE_API_KEY on Render (admin key, cluster active), then run `npm run typesense:index`."
+  )
+  process.exit(0)
+}
 
 let catalogHandles = null
 async function loadCatalogHandles() {
@@ -224,6 +248,11 @@ async function run() {
 run().catch((error) => {
   const message = error?.message || String(error)
   const code = error?.code || error?.cause?.code || ""
+
+  if (isSkippableTypesenseError(error)) {
+    warnAndSkipTypesense(`Typesense indexing skipped (${message}).`)
+  }
+
   const networkCodes = new Set(["ECONNREFUSED", "ENOTFOUND", "ETIMEDOUT", "EAI_AGAIN"])
   if (
     networkCodes.has(code) ||

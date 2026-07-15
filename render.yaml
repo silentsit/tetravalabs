@@ -1,6 +1,6 @@
 # Tetrava Labs — Render Blueprint
 # Storefront: Vercel (apps/storefront). Commerce API: Medusa on Render.
-# Search: Typesense Cloud — set TYPESENSE_* on tetrava-medusa (not a Render service).
+# Search: storefront uses the built-in catalog fallback; no managed search service required.
 
 envVarGroups:
   - name: tetrava-medusa-shared
@@ -22,7 +22,7 @@ services:
     plan: starter
     rootDir: .
     buildCommand: node scripts/render-build.mjs
-    preDeployCommand: npm run db:migrate --workspace=@tetrava/medusa -- --execute-all-links && npm run db:lab-schema --workspace=@tetrava/medusa && npm run typesense:index
+    preDeployCommand: npm run db:migrate --workspace=@tetrava/medusa -- --execute-all-links && npm run db:lab-schema --workspace=@tetrava/medusa
     startCommand: npm run medusa:start
     healthCheckPath: /health
     envVars:

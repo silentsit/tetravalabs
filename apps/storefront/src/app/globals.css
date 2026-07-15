@@ -243,9 +243,9 @@
 
 /* ── Left slot: Retatrutide vial (small, back, z-1) ── */
 .hero-slot-left {
-  left: 8%;
+  left: 2%;
   bottom: -26px;
-  transform: rotate(-6deg);
+  transform: rotate(-8deg);
   z-index: 1;
 }
 
@@ -259,7 +259,7 @@
 
 /* ── Center slot: Selank Nasal Spray (tall, mid, z-2) ── */
 .hero-slot-center {
-  left: 31%;
+  left: 19%;
   bottom: -15px;
   z-index: 2;
 }
@@ -274,7 +274,7 @@
 
 /* ── Right slot: BPC-157 Capsules (largest, front, z-3) ── */
 .hero-slot-right {
-  right: -1%;
+  left: 30%;
   bottom: -34px;
   transform: rotate(6deg);
   z-index: 3;
@@ -289,7 +289,7 @@
 }
 
 /* ── Hover lifts ── */
-.hero-slot-left:hover  { transform: rotate(-6deg) translateY(-6px); }
+.hero-slot-left:hover  { transform: rotate(-8deg) translateY(-6px); }
 .hero-slot-center:hover { transform: translateY(-6px); }
 .hero-slot-right:hover { transform: rotate(6deg) translateY(-8px); }
 

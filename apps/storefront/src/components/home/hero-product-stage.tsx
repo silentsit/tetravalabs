@@ -3,30 +3,30 @@ import Link from "next/link"
 
 const HERO_PRODUCTS = [
   {
-    slot: "back" as const,
-    src: "/products/v2/hero/bpc157-capsules.png",
-    href: "/product/bpc-157-capsules-100-count-500mcg",
-    label: "BPC-157 Capsules",
-    width: 503,
-    height: 1002,
+    slot: "left" as const,
+    src: "/products/v2/hero/retatrutide-20mg.png",
+    href: "/product/retatrutide-20mg",
+    label: "Retatrutide 20mg",
+    width: 334,
+    height: 750,
     priority: false
   },
   {
-    slot: "mid" as const,
+    slot: "center" as const,
     src: "/products/v2/hero/selank-nasal-spray-10mg.png",
     href: "/product/selank-nasal-spray-10mg",
     label: "Selank Nasal Spray 10mg",
-    width: 289,
-    height: 1090,
+    width: 314,
+    height: 1125,
     priority: false
   },
   {
-    slot: "front" as const,
-    src: "/products/v2/hero/retatrutide-5mg.png",
-    href: "/product/retatrutide-5mg",
-    label: "Retatrutide 5mg",
-    width: 361,
-    height: 717,
+    slot: "right" as const,
+    src: "/products/v2/hero/bpc-157-capsules.png",
+    href: "/product/bpc-157-capsules-100-count-500mcg",
+    label: "BPC-157 Capsules",
+    width: 540,
+    height: 1028,
     priority: true
   }
 ]
@@ -37,22 +37,20 @@ export function HeroProductStage() {
       <div className="hero-stage-glow" aria-hidden="true" />
       <div className="hero-stage-cluster">
         {HERO_PRODUCTS.map((product) => (
-          <Link
-            key={product.slot}
-            href={product.href}
-            className={`hero-prod hero-prod-${product.slot}`}
-            aria-label={product.label}
-          >
-            <Image
-              src={product.src}
-              alt=""
-              width={product.width}
-              height={product.height}
-              priority={product.priority}
-              sizes="(max-width: 980px) 44vw, 300px"
-              className="hero-prod-img"
-            />
-          </Link>
+          <div key={product.slot} className={`hero-slot hero-slot-${product.slot}`}>
+            <Link href={product.href} aria-label={product.label}>
+              <Image
+                src={product.src}
+                alt={product.label}
+                width={product.width}
+                height={product.height}
+                priority={product.priority}
+                unoptimized
+                sizes="(max-width: 980px) 44vw, 360px"
+                className="hero-prod-img"
+              />
+            </Link>
+          </div>
         ))}
         <div className="hero-stage-floor" aria-hidden="true" />
       </div>

@@ -138,7 +138,7 @@ function TrustIcon({ type }: { type: (typeof items)[number]["icon"] }) {
 
 export function HeroTrustStrip() {
   return (
-    <section className="hero-trust-strip bg-[#0D9488]" aria-label="Trust highlights">
+    <section className="hero-trust-strip relative z-10 bg-[#0D9488]" aria-label="Trust highlights">
       <div className="page-container">
         <div className="grid grid-cols-2 gap-y-5 py-5 sm:py-6 lg:grid-cols-4 lg:gap-0 lg:py-5">
           {items.map((item, index) => (

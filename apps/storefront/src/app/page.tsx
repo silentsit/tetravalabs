@@ -61,7 +61,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative flex items-center overflow-hidden bg-[#F8FAFC] lg:min-h-[calc(100vh-11.5rem)]">
+      <section className="relative z-10 flex items-center bg-[#F8FAFC] lg:min-h-[calc(100vh-11.5rem)]">
         <div className="absolute inset-0 overflow-hidden">
           <div className="animate-mesh-1 absolute -left-20 -top-20 h-96 w-96 rounded-full bg-[#0D9488]/10 blur-3xl" />
           <div className="animate-mesh-2 absolute -right-20 top-20 h-80 w-80 rounded-full bg-[#2563EB]/10 blur-3xl" />
@@ -89,7 +89,7 @@ export default async function HomePage() {
               <LiveVisitorCounter />
             </div>
           </div>
-          <div className="flex items-end justify-center lg:items-center">
+          <div className="relative flex items-end justify-center overflow-visible pb-0 lg:h-full">
             <HeroProductStage />
           </div>
         </div>

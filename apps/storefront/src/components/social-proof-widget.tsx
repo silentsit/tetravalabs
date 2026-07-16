@@ -161,7 +161,7 @@ export function SocialProofToast() {
 export function SocialProofReviews() {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {reviews.map((review) => (
+      {reviews.slice(0, 6).map((review) => (
         <div key={`${review.name}-${review.institution}`} className="rounded-xl border border-[#E2E8F0] bg-white p-6">
           <div className="mb-3 flex gap-0.5">
             {Array.from({ length: review.rating }).map((_, i) => (

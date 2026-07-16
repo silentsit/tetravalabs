@@ -3,6 +3,7 @@ import { headers } from "next/headers"
 import { Cormorant_Garamond, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import "@/lib/json-ld-registry"
+import { AnnouncementBar } from "@/components/announcement-bar"
 import { CartDrawer } from "@/components/cart-drawer"
 import { CartProvider } from "@/components/cart-provider"
 import { JsonLd } from "@/components/json-ld"
@@ -10,7 +11,6 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { SocialProofToast } from "@/components/social-proof-widget"
-import { TrustBar } from "@/components/trust-bar"
 import { resolvePageJsonLd } from "@/lib/json-ld-store"
 import {
   clampMetaDescription,
@@ -110,8 +110,8 @@ export default async function RootLayout({
         className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${jetbrainsMono.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}
       >
         <CartProvider>
+          <AnnouncementBar />
           <SiteHeader />
-          <TrustBar />
           <main>{children}</main>
           <SiteFooter />
           <CartDrawer />

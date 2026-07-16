@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { headers } from "next/headers"
-import { Cormorant_Garamond, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google"
+import { Cormorant_Garamond, Inter, JetBrains_Mono, Jost, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import "@/lib/json-ld-registry"
 import { AnnouncementBar } from "@/components/announcement-bar"
@@ -45,6 +45,13 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono"
+})
+
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  variable: "--font-jost"
 })
 
 const defaultSiteTitle = resolveMetaTitles({
@@ -107,7 +114,7 @@ export default async function RootLayout({
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
       </head>
       <body
-        className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${jetbrainsMono.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}
+        className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${jetbrainsMono.variable} ${jost.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}
       >
         <CartProvider>
           <AnnouncementBar />

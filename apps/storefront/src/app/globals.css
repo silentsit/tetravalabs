@@ -49,6 +49,10 @@
   .font-mono {
     font-family: var(--font-mono), monospace;
   }
+
+  .font-jost {
+    font-family: var(--font-jost), sans-serif;
+  }
 }
 
 @layer components {

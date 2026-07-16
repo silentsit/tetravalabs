@@ -5,7 +5,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        product: ['"Cormorant Garamond"', '"Playfair Display"', "serif"]
+        sans: ["var(--font-jost)", "sans-serif"],
+        serif: ["var(--font-lora)", "serif"],
+        product: ["var(--font-lora)", "serif"]
       },
       keyframes: {
         "accordion-down": {

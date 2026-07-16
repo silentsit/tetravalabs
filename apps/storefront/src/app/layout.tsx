@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { headers } from "next/headers"
-import { Cormorant_Garamond, Inter, JetBrains_Mono, Jost, Playfair_Display } from "next/font/google"
+import { JetBrains_Mono, Jost, Lora } from "next/font/google"
 import "./globals.css"
 import "@/lib/json-ld-registry"
 import { AnnouncementBar } from "@/components/announcement-bar"
@@ -22,36 +22,24 @@ import {
 } from "@/lib/seo"
 import Script from "next/script"
 
-const inter = Inter({
+const jost = Jost({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-inter"
+  variable: "--font-jost"
 })
 
-const playfair = Playfair_Display({
+const lora = Lora({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-playfair"
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-  variable: "--font-cormorant"
+  variable: "--font-lora"
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono"
-})
-
-const jost = Jost({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  display: "swap",
-  variable: "--font-jost"
 })
 
 const defaultSiteTitle = resolveMetaTitles({
@@ -114,7 +102,7 @@ export default async function RootLayout({
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
       </head>
       <body
-        className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${jetbrainsMono.variable} ${jost.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}
+        className={`${jost.variable} ${lora.variable} ${jetbrainsMono.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}
       >
         <CartProvider>
           <AnnouncementBar />

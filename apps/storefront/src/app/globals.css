@@ -30,7 +30,7 @@
   }
 
   body {
-    font-family: var(--font-inter), sans-serif;
+    font-family: var(--font-jost), sans-serif;
     background-color: #f8fafc;
     color: #0f172a;
     -webkit-font-smoothing: antialiased;
@@ -42,16 +42,12 @@
   h3,
   h4,
   h5 {
-    font-family: var(--font-playfair), serif;
+    font-family: var(--font-lora), serif;
   }
 
   code,
   .font-mono {
     font-family: var(--font-mono), monospace;
-  }
-
-  .font-jost {
-    font-family: var(--font-jost), sans-serif;
   }
 }
 
@@ -125,7 +121,7 @@
     @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
   }
   .product-card-title {
-    font-family: var(--font-cormorant), var(--font-playfair), serif;
+    font-family: var(--font-lora), serif;
     font-weight: 600;
     letter-spacing: 0.01em;
   }

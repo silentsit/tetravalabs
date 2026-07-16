@@ -115,6 +115,49 @@ export default async function HomePage() {
 
       <section className="section-padding bg-white">
         <div className="page-container">
+          <div className="mb-10 text-center">
+            <span className="section-label">Payments</span>
+            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Simple Payment System</h2>
+            <p className="mt-2 text-[#475569]">Two paths. Zero friction.</p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="card p-8">
+              <Wallet className="mb-4 h-10 w-10 text-[#0D9488]" />
+              <h3 className="font-serif text-xl text-[#0F172A]">Have Crypto?</h3>
+              <p className="mt-4 text-sm text-[#475569]">Pay with BTC, USDT, ETH and more at checkout.</p>
+            </div>
+            <div className="card p-8">
+              <CreditCard className="mb-4 h-10 w-10 text-[#2563EB]" />
+              <h3 className="font-serif text-xl text-[#0F172A]">New to Crypto?</h3>
+              <p className="mt-4 text-sm text-[#475569]">
+                Follow our payment guide to fund a wallet and complete your order.
+              </p>
+              <Link href="/payment" className="mt-4 inline-flex text-sm font-medium text-[#0D9488]">
+                View payment guide →
+              </Link>
+            </div>
+          </div>
+          <div className="mt-6 flex items-center gap-3 rounded-xl border border-[#FDE68A] bg-[#FEF3C7] p-4">
+            <Copy className="h-5 w-5 shrink-0 text-[#D97706]" />
+            <p className="text-sm text-[#D97706]/80">
+              When prompted, paste our wallet address exactly as shown at checkout.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-[#F8FAFC]">
+        <div className="page-container">
+          <div className="mb-10 text-center">
+            <span className="section-label">Trust</span>
+            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Why Researchers Choose Tetrava</h2>
+          </div>
+          <TrustBadgesRow />
+        </div>
+      </section>
+
+      <section className="section-padding bg-white">
+        <div className="page-container">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <span className="section-label">Transparency</span>
@@ -155,17 +198,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="section-padding bg-[#F1F5F9]">
-        <div className="page-container">
-          <div className="mb-10 text-center">
-            <span className="section-label">Trust</span>
-            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Why Researchers Choose Tetrava</h2>
-          </div>
-          <TrustBadgesRow />
-        </div>
-      </section>
-
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-[#F8FAFC]">
         <div className="page-container">
           <div className="mb-10">
             <span className="section-label">Browse</span>
@@ -179,7 +212,7 @@ export default async function HomePage() {
                 href={`/shop?category=${cat.slug}`}
                 className="card card-hover group flex flex-col overflow-hidden"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#F8FAFC]">
+                <div className="relative aspect-[16/10] overflow-hidden bg-white">
                   <Image
                     src={cat.image}
                     alt={cat.name}
@@ -199,39 +232,6 @@ export default async function HomePage() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-[#F8FAFC]">
-        <div className="page-container">
-          <div className="mb-10 text-center">
-            <span className="section-label">Payments</span>
-            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Simple Payment System</h2>
-            <p className="mt-2 text-[#475569]">Two paths. Zero friction.</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="card p-8">
-              <Wallet className="mb-4 h-10 w-10 text-[#0D9488]" />
-              <h3 className="font-serif text-xl text-[#0F172A]">Have Crypto?</h3>
-              <p className="mt-4 text-sm text-[#475569]">Pay with BTC, USDT, ETH and more at checkout.</p>
-            </div>
-            <div className="card p-8">
-              <CreditCard className="mb-4 h-10 w-10 text-[#2563EB]" />
-              <h3 className="font-serif text-xl text-[#0F172A]">New to Crypto?</h3>
-              <p className="mt-4 text-sm text-[#475569]">
-                Follow our payment guide to fund a wallet and complete your order.
-              </p>
-              <Link href="/payment" className="mt-4 inline-flex text-sm font-medium text-[#0D9488]">
-                View payment guide →
-              </Link>
-            </div>
-          </div>
-          <div className="mt-6 flex items-center gap-3 rounded-xl border border-[#FDE68A] bg-[#FEF3C7] p-4">
-            <Copy className="h-5 w-5 shrink-0 text-[#D97706]" />
-            <p className="text-sm text-[#D97706]/80">
-              When prompted, paste our wallet address exactly as shown at checkout.
-            </p>
           </div>
         </div>
       </section>
@@ -258,7 +258,7 @@ export default async function HomePage() {
       </section>
       ) : null}
 
-      <section className="section-padding bg-white">
+      <section className={`section-padding ${latestPosts.length > 0 ? "bg-[#F8FAFC]" : "bg-white"}`}>
         <div className="page-container max-w-3xl">
           <div className="mb-8 text-center">
             <span className="section-label">Support</span>

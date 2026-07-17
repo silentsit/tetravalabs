@@ -22,6 +22,7 @@ export const siteConfig = {
   contactEmail: "info@tetravalabs.com",
   defaultOgImage: "/brand/tetravalabs-icon.png",
   keywords: [
+    "buy peptides online",
     "research peptides",
     "RUO peptides",
     "certificate of analysis",

@@ -5,7 +5,6 @@ import {
   CheckCircle,
   Copy,
   CreditCard,
-  FileCheck,
   Wallet
 } from "lucide-react"
 import type { Metadata } from "next"
@@ -27,9 +26,9 @@ import { buildPageMetadata } from "@/lib/seo"
 
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Research Peptides — Verified & Documented",
+  title: "Buy Peptides Online • Tetrava Labs",
   description:
-    "Shop HPLC-MS verified research peptides with lot-linked COAs, cold-chain shipping, and crypto checkout for qualified laboratories.",
+    "Buy peptides online from Tetrava Labs. Research-grade peptides with verified purity and third-party lab testing.",
   path: "/"
 })
 
@@ -69,20 +68,16 @@ export default async function HomePage() {
         </div>
         <div className="page-container relative grid w-full items-center gap-6 overflow-visible py-6 sm:py-8 lg:grid-cols-2 lg:gap-8 lg:py-4">
           <div className="flex flex-col justify-center">
-            <span className="section-label mb-4">Research-Grade Peptides</span>
+            <span className="section-label mb-4">≥99% Purity Guaranteed</span>
             <h1 className="font-serif text-4xl leading-[1.1] text-[#0F172A] sm:text-5xl lg:text-[3.25rem]">
-              Verified. Documented. Delivered.
+              Buy Peptides Online • Tetrava Labs
             </h1>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-[#475569]">
-              99%+ purity. HPLC-MS tested. Lot-linked COAs. Cold-chain shipping worldwide. Every batch
-              verified by independent third-party laboratories.
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-[#475569]">
+              Research-grade peptides with verified 99%+ purity — and shipping you can count on.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link href="/shop" className="btn-cta gap-2">
-                Shop Catalog <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/coa-library" className="btn-secondary gap-2">
-                <FileCheck className="h-4 w-4" /> View COA Library
+                Buy Peptides <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="mt-5">
@@ -150,7 +145,14 @@ export default async function HomePage() {
         <div className="page-container">
           <div className="mb-10 text-center">
             <span className="section-label">Trust</span>
-            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Why Researchers Choose Tetrava</h2>
+            <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">
+              The Best Place to Buy Peptides Online
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-[#475569]">
+              Looking for the best place to buy peptides online? Tetrava Labs supplies research-grade
+              peptides with verified purity, third-party lab testing, and lot-linked COAs — so you know
+              exactly what you&apos;re ordering before it ships.
+            </p>
           </div>
           <TrustBadgesRow />
         </div>

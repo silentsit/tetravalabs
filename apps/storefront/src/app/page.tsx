@@ -61,13 +61,13 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative z-10 flex items-center bg-[#F8FAFC]">
+      <section className="relative z-10 flex items-center overflow-visible bg-[#F8FAFC]">
         <div className="absolute inset-0 overflow-hidden">
           <div className="animate-mesh-1 absolute -left-20 -top-20 h-96 w-96 rounded-full bg-[#0D9488]/10 blur-3xl" />
           <div className="animate-mesh-2 absolute -right-20 top-20 h-80 w-80 rounded-full bg-[#2563EB]/10 blur-3xl" />
           <div className="animate-mesh-3 absolute bottom-10 left-1/3 h-72 w-72 rounded-full bg-[#0D9488]/10 blur-3xl" />
         </div>
-        <div className="page-container relative grid w-full items-center gap-6 py-6 sm:py-8 lg:grid-cols-2 lg:gap-8 lg:py-4">
+        <div className="page-container relative grid w-full items-center gap-6 overflow-visible py-6 sm:py-8 lg:grid-cols-2 lg:gap-8 lg:py-4">
           <div className="flex flex-col justify-center">
             <span className="section-label mb-4">Research-Grade Peptides</span>
             <h1 className="font-serif text-4xl leading-[1.1] text-[#0F172A] sm:text-5xl lg:text-[3.25rem]">

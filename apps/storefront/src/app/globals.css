@@ -43,6 +43,7 @@
   h4,
   h5 {
     font-family: var(--font-lora), serif;
+    font-weight: 600;
   }
 
   code,

@@ -1808,8 +1808,8 @@
         {
           "tier": "1 unit",
           "qty": 1,
-          "price_usd": 79.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 1.0,
+          "per_unit_usd": 1.0,
           "savings_pct": 0
         }
       ]

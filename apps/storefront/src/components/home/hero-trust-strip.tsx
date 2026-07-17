@@ -20,7 +20,7 @@ const items = [
   {
     id: "secure",
     title: "100% Secure",
-    subtitle: "Safe & discreet checkout",
+    subtitle: "Safe & secure checkout",
     icon: "shield"
   }
 ] as const

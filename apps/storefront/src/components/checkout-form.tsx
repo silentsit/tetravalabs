@@ -11,6 +11,7 @@ import {
   type CheckoutCryptoOption
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
+import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { CHECKOUT_US_STATES, normalizeUsStateCode } from "@/lib/checkout-us-states"
 import { getProductImage } from "@/lib/product-image-map"
 import { storePaymentUrl } from "@/components/payment-confirmation"
@@ -35,7 +36,6 @@ type CheckoutOrder = {
 type PaymentMethod = "card" | "crypto"
 
 const ORDERS_KEY = "tetrava_orders_v1"
-const DEFAULT_SHIPPING_USD = 15
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const US_ZIP_PATTERN = /^\d{5}(-\d{4})?$/
 const PHONE_PATTERN = /^[\d\s()+\-.]{7,}$/
@@ -591,7 +591,8 @@ export function CheckoutForm() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
   const [selectedAsset, setSelectedAsset] = useState("BTC")
 
-  const estimatedTotal = subtotal + DEFAULT_SHIPPING_USD
+  const shippingUsd = resolveShippingUsd(items)
+  const estimatedTotal = subtotal + shippingUsd
 
   const billingValues = useMemo<AddressValues>(
     () => ({
@@ -891,6 +892,7 @@ export function CheckoutForm() {
           items: items.map((item) => ({
             variantId: item.variantId,
             quantity: item.quantity,
+            handle: item.handle,
             title: item.title,
             variantTitle: item.variantTitle,
             unitPrice: item.unitPrice
@@ -1216,7 +1218,7 @@ export function CheckoutForm() {
               </div>
               <div className="flex items-center justify-between">
                 <span>Shipping</span>
-                <span className="tabular-nums">${DEFAULT_SHIPPING_USD.toFixed(2)}</span>
+                <span className="tabular-nums">${shippingUsd.toFixed(2)}</span>
               </div>
               <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
                 <span>Total</span>

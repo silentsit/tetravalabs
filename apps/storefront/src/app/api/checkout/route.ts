@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import Medusa from "@medusajs/js-sdk"
 import { isRestrictedCountry } from "@/lib/shipping-compliance"
+import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
 import { sendOrderConfirmationEmail, type OrderEmailItem } from "@/lib/send-order-confirmation"
@@ -8,6 +9,7 @@ import { sendOrderConfirmationEmail, type OrderEmailItem } from "@/lib/send-orde
 type CheckoutItem = {
   variantId: string
   quantity: number
+  handle?: string
   title?: string
   variantTitle?: string
   unitPrice?: number
@@ -163,9 +165,25 @@ export async function POST(req: Request) {
     }
 
     const order = completion.order
-    const total = order.total ?? order.subtotal ?? 0
-    const shippingUsd = typeof shippingTotal === "number" ? shippingTotal / 100 : 15
-    const totalUsd = typeof total === "number" ? total / 100 : 0
+    const medusaSubtotalCents =
+      typeof order.subtotal === "number"
+        ? order.subtotal
+        : typeof order.item_total === "number"
+          ? order.item_total
+          : 0
+    const medusaShippingCents =
+      typeof shippingTotal === "number"
+        ? shippingTotal
+        : typeof order.shipping_total === "number"
+          ? order.shipping_total
+          : 1500
+    const shippingUsd = resolveShippingUsd(items)
+    const subtotalUsd = medusaSubtotalCents / 100
+    // Selank Nasal Spray-only carts use $9 shipping for payment; Medusa flat rate stays $15 for other carts.
+    const totalUsd =
+      shippingUsd === medusaShippingCents / 100
+        ? (typeof order.total === "number" ? order.total : medusaSubtotalCents + medusaShippingCents) / 100
+        : subtotalUsd + shippingUsd
 
     const emailItems: OrderEmailItem[] = items
       .filter((item) => item.title && item.unitPrice != null)

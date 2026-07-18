@@ -43,8 +43,12 @@ const packQtyFromMedusaVariant = (variant) => {
   const titleMatch = String(variant.title || "").match(/^(\d+)\s+vials?$/i)
   if (titleMatch) return Number(titleMatch[1])
 
-  const skuMatch = String(variant.sku || "").match(/_(\d+)PK$/i)
-  if (skuMatch) return Number(skuMatch[1])
+  const opaqueMatch = String(variant.sku || "").match(/^TV-\d{4}-(\d{2})$/i)
+  if (opaqueMatch) return Number(opaqueMatch[1])
+
+  // Legacy name-based SKUs (pre opaque scheme).
+  const legacyMatch = String(variant.sku || "").match(/_(\d+)PK$/i)
+  if (legacyMatch) return Number(legacyMatch[1])
 
   return null
 }

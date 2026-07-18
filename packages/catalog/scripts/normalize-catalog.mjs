@@ -1,6 +1,7 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import { formatOpaqueSku, resolveProductCodeRegistry } from "../lib/opaque-sku.mjs"
 import { resolveStorefrontCategoryName, resolveStorefrontCategorySlug } from "../lib/storefront-categories.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -9,6 +10,14 @@ const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
 const sourcePath = path.join(workspaceRoot, "product_catalog_usd.json")
 const outputDir = path.join(workspaceRoot, "packages", "catalog", "output")
 const outputPath = path.join(outputDir, "catalog.normalized.json")
+const skuRegistryPath = path.join(outputDir, "sku-registry.json")
+const productCodeRegistryPath = path.join(
+  workspaceRoot,
+  "packages",
+  "catalog",
+  "data",
+  "product-sku-ids.json"
+)
 const storefrontHandlesPath = path.join(
   workspaceRoot,
   "apps",
@@ -24,6 +33,14 @@ const categorySlugsPath = path.join(
   "src",
   "lib",
   "category-slugs.generated.json"
+)
+const skuLookupPath = path.join(
+  workspaceRoot,
+  "apps",
+  "storefront",
+  "src",
+  "lib",
+  "catalog-skus.generated.json"
 )
 const enrichmentPath = path.join(workspaceRoot, "packages", "catalog", "data", "product-enrichment.json")
 
@@ -74,14 +91,23 @@ const readJsonFile = async (filePath) => {
 const run = async () => {
   const raw = await readJsonFile(sourcePath)
   const enrichment = await readJsonFile(enrichmentPath)
+  const handles = raw.map((row) => row.slug).filter(Boolean)
+  const codeRegistry = await resolveProductCodeRegistry(handles, productCodeRegistryPath, fs)
+
   const products = []
   const categorySlugsByHandle = {}
+  const skuRegistry = {}
 
   for (const row of raw) {
     const tiers = row.pack_tiers?.length ? row.pack_tiers : defaultPackTiers(row)
     const title = productTitle(row.name, row.strength)
     const enrichmentKey = row.name
     const productHandle = slugify(row.name)
+    const productCode = Number(codeRegistry.products[row.slug])
+
+    if (!Number.isFinite(productCode) || productCode < 1) {
+      throw new Error(`Missing opaque product code for handle: ${row.slug}`)
+    }
 
     categorySlugsByHandle[productHandle] = resolveStorefrontCategorySlug(row.name, row.category)
 
@@ -96,6 +122,7 @@ const run = async () => {
         source: "Tiered_Pricing_5_10_20_Vials.xlsx",
         ruo: true,
         strength: row.strength,
+        product_code: productCode,
         cas_number: enrichment[enrichmentKey]?.cas_number || null,
         molecular_formula: enrichment[enrichmentKey]?.molecular_formula || null,
         molecular_weight: enrichment[enrichmentKey]?.molecular_weight || null,
@@ -113,19 +140,28 @@ const run = async () => {
       variants: tiers.map((tier) => {
         const qty = Number(tier.qty)
         const isSimpleUnit = qty <= 1
+        const packQty = isSimpleUnit ? 1 : qty
+        const sku = formatOpaqueSku(productCode, packQty)
         const variantMeta = {
           catalog_slug: row.slug,
-          strength: row.strength
+          strength: row.strength,
+          product_code: productCode
         }
         if (!isSimpleUnit) {
           variantMeta.pack_qty = qty
           variantMeta.per_unit_usd = Number(tier.per_unit_usd)
           variantMeta.savings_pct = Number(tier.savings_pct || 0)
         }
+        skuRegistry[sku] = {
+          handle: row.slug,
+          title,
+          pack_qty: packQty,
+          variant_title: isSimpleUnit ? "Standard" : tier.tier
+        }
         return {
           id: slugify(`${row.slug}-${tier.qty}-pack`),
           title: isSimpleUnit ? "Standard" : tier.tier,
-          sku: `${row.slug.replace(/-/g, "_").toUpperCase()}_${tier.qty}PK`,
+          sku,
           handle: `${row.slug}-${tier.qty}-pack`,
           amount_usd: Number(tier.price_usd),
           currency_code: "usd",
@@ -137,26 +173,54 @@ const run = async () => {
 
   const catalog = {
     generated_at: new Date().toISOString(),
+    sku_scheme: "TV-####-##",
     products
   }
 
   await fs.mkdir(outputDir, { recursive: true })
   await fs.writeFile(outputPath, JSON.stringify(catalog, null, 2), "utf8")
-  const handles = products.map((product) => product.handle).sort()
-  await fs.writeFile(storefrontHandlesPath, `${JSON.stringify(handles, null, 2)}\n`, "utf8")
+  await fs.writeFile(skuRegistryPath, `${JSON.stringify(skuRegistry, null, 2)}\n`, "utf8")
+
+  const sortedHandles = products.map((product) => product.handle).sort()
+  const skuByKey = {}
+  const productCodes = {}
+  for (const product of products) {
+    const productCode = Number(product.metadata.product_code)
+    productCodes[product.handle] = productCode
+    for (const variant of product.variants) {
+      const packQty = Number(variant.metadata?.pack_qty) > 0 ? Number(variant.metadata.pack_qty) : 1
+      skuByKey[`${product.handle}:${packQty}`] = variant.sku
+      skuByKey[`${product.handle}::${variant.title}`] = variant.sku
+    }
+  }
+
+  const storefrontSkuPayload = {
+    scheme: "TV-####-##",
+    generated_at: catalog.generated_at,
+    skus: skuByKey,
+    productCodes
+  }
+
+  await fs.writeFile(storefrontHandlesPath, `${JSON.stringify(sortedHandles, null, 2)}\n`, "utf8")
   await fs.writeFile(categorySlugsPath, `${JSON.stringify(categorySlugsByHandle, null, 2)}\n`, "utf8")
+  await fs.writeFile(skuLookupPath, `${JSON.stringify(storefrontSkuPayload, null, 2)}\n`, "utf8")
+
   console.log(
-    `Normalized ${catalog.products.length} tiered products to ${outputPath.replaceAll(
+    `Normalized ${catalog.products.length} tiered products to ${outputPath.replaceAll("\\", "/")}`
+  )
+  console.log(
+    `Opaque SKU scheme TV-####-## — ${Object.keys(skuRegistry).length} variant SKUs`
+  )
+  console.log(
+    `Wrote stable product codes to ${productCodeRegistryPath.replaceAll("\\", "/")}`
+  )
+  console.log(
+    `Wrote ${sortedHandles.length} storefront catalog handles to ${storefrontHandlesPath.replaceAll(
       "\\",
       "/"
     )}`
   )
-  console.log(
-    `Wrote ${handles.length} storefront catalog handles to ${storefrontHandlesPath.replaceAll(
-      "\\",
-      "/"
-    )}`
-  )
+  console.log(`Wrote SKU lookup to ${skuLookupPath.replaceAll("\\", "/")}`)
 }
 
 run().catch((error) => {

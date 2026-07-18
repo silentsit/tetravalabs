@@ -27,7 +27,7 @@ const legalLinks = [
   { label: "Terms of Service", href: "/terms" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "RUO Disclaimer", href: "/ruo" },
-  { label: "Refund Policy", href: "/refund" }
+  { label: "Refund & Delivery Policy", href: "/refund" }
 ]
 
 export function SiteFooter() {

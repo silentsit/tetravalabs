@@ -4,11 +4,11 @@ export type StoreVariant = NonNullable<StoreProduct["variants"]>[number]
 
 /** Full fields for product detail pages. */
 export const STORE_PRODUCT_DETAIL_FIELDS =
-  "*variants,*variants.calculated_price,+variants.prices,+variants.metadata,+metadata"
+  "*variants,*variants.calculated_price,+variants.prices,+variants.metadata,+variants.sku,+variants.inventory_quantity,+variants.manage_inventory,+variants.allow_backorder,+metadata"
 
 /** Lean fields for shop/home/search pagination — skips full variant relation blobs. */
 export const STORE_PRODUCT_LIST_FIELDS =
-  "id,title,handle,+metadata,+collection.title,+variants.id,+variants.title,+variants.calculated_price,+variants.prices,+variants.metadata"
+  "id,title,handle,+metadata,+collection.title,+variants.id,+variants.title,+variants.sku,+variants.calculated_price,+variants.prices,+variants.metadata,+variants.inventory_quantity,+variants.manage_inventory,+variants.allow_backorder"
 
 /** @deprecated Prefer STORE_PRODUCT_DETAIL_FIELDS or STORE_PRODUCT_LIST_FIELDS. */
 export const STORE_PRODUCT_FIELDS = STORE_PRODUCT_DETAIL_FIELDS

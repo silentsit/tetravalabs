@@ -4,6 +4,7 @@ import { isRestrictedCountry } from "@/lib/shipping-compliance"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
+import { buildPeptidepayProductName } from "@/lib/product-sku"
 import { sendOrderConfirmationEmail, type OrderEmailItem } from "@/lib/send-order-confirmation"
 
 type CheckoutItem = {
@@ -196,10 +197,8 @@ export async function POST(req: Request) {
 
     const paymentMethod = body.payment_method === "crypto" ? "crypto" : "card"
     const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "BTC"
-    const productName =
-      items.length === 1 && items[0].title
-        ? items[0].title.slice(0, 80)
-        : `Tetrava Labs order (${items.length} items)`
+    // Card processor descriptor: SKU codes only — never human product names.
+    const peptidepayProductName = buildPeptidepayProductName(items)
 
     let paymentUrl: string | null = null
     let paymentProvider: string | null = null
@@ -211,7 +210,7 @@ export async function POST(req: Request) {
         email,
         amountUsd: totalUsd,
         currency: "USD",
-        productName
+        productName: peptidepayProductName
       })
       paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
       paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"

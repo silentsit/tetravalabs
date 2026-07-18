@@ -70,7 +70,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link href="/shop" className="btn-cta gap-2.5">
-                Buy Peptides <ArrowRight className="h-5 w-5" />
+                Buy Peptides <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="mt-5">

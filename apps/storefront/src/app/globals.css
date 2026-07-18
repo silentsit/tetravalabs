@@ -60,7 +60,7 @@
     @apply inline-flex items-center justify-center rounded-lg border border-[#E2E8F0] bg-white px-6 py-3 text-sm font-medium text-[#0F172A] transition-colors hover:border-[#0D9488] hover:text-[#0D9488];
   }
   .btn-cta {
-    @apply inline-flex items-center justify-center rounded-lg bg-[#D97706] px-10 py-3.5 text-base font-semibold text-white sm:min-w-[220px] sm:px-12 sm:text-lg;
+    @apply inline-flex items-center justify-center rounded-lg bg-[#D97706] px-10 py-3 text-base font-semibold text-white sm:min-w-[220px] sm:px-12;
     box-shadow:
       0 4px 0 #9a3412,
       0 8px 16px rgb(15 23 42 / 0.18);

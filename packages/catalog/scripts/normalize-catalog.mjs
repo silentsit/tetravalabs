@@ -1,7 +1,7 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import { resolveStorefrontCategoryName } from "../lib/storefront-categories.mjs"
+import { resolveStorefrontCategoryName, resolveStorefrontCategorySlug } from "../lib/storefront-categories.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -16,6 +16,14 @@ const storefrontHandlesPath = path.join(
   "src",
   "lib",
   "catalog-handles.generated.json"
+)
+const categorySlugsPath = path.join(
+  workspaceRoot,
+  "apps",
+  "storefront",
+  "src",
+  "lib",
+  "category-slugs.generated.json"
 )
 const enrichmentPath = path.join(workspaceRoot, "packages", "catalog", "data", "product-enrichment.json")
 
@@ -67,16 +75,20 @@ const run = async () => {
   const raw = await readJsonFile(sourcePath)
   const enrichment = await readJsonFile(enrichmentPath)
   const products = []
+  const categorySlugsByHandle = {}
 
   for (const row of raw) {
     const tiers = row.pack_tiers?.length ? row.pack_tiers : defaultPackTiers(row)
     const title = productTitle(row.name, row.strength)
     const enrichmentKey = row.name
+    const productHandle = slugify(row.name)
+
+    categorySlugsByHandle[productHandle] = resolveStorefrontCategorySlug(row.name, row.category)
 
     products.push({
       id: slugify(row.slug),
       title,
-      category: row.storefront_category || resolveStorefrontCategoryName(title, row.category),
+      category: resolveStorefrontCategoryName(row.name, row.category),
       source_category: row.category,
       handle: row.slug,
       visual_type: visualType(row.name, row.strength),
@@ -132,6 +144,7 @@ const run = async () => {
   await fs.writeFile(outputPath, JSON.stringify(catalog, null, 2), "utf8")
   const handles = products.map((product) => product.handle).sort()
   await fs.writeFile(storefrontHandlesPath, `${JSON.stringify(handles, null, 2)}\n`, "utf8")
+  await fs.writeFile(categorySlugsPath, `${JSON.stringify(categorySlugsByHandle, null, 2)}\n`, "utf8")
   console.log(
     `Normalized ${catalog.products.length} tiered products to ${outputPath.replaceAll(
       "\\",

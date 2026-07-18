@@ -14,11 +14,28 @@ export const categoryArt: CategoryArt[] = [
     image: "/v2/cat-metabolic.jpg"
   },
   {
-    slug: "growth-factors",
-    name: "Growth Factors",
-    description:
-      "BPC-157, TB-500, GHK-Cu, growth hormone secretagogues, IGF-1, neuropeptides, and other tissue repair research peptides.",
+    slug: "tissue-repair",
+    name: "Tissue Repair",
+    description: "BPC-157, TB-500, GHK-Cu, and related tissue repair research peptides.",
+    image: "/v2/cat-tissue.jpg"
+  },
+  {
+    slug: "growth-hormone-axis",
+    name: "Growth Hormone Axis",
+    description: "CJC-1295, Ipamorelin, GHRP, Sermorelin, and growth hormone secretagogues.",
     image: "/v2/cat-growth.jpg"
+  },
+  {
+    slug: "longevity-neuropeptides",
+    name: "Longevity & Neuropeptides",
+    description: "Epithalon, Selank, Semax, thymic peptides, and neuropeptide research compounds.",
+    image: "/v2/cat-tissue.jpg"
+  },
+  {
+    slug: "metabolic-mitochondrial",
+    name: "Metabolic & Mitochondrial",
+    description: "MOTS-c, NAD+, SS-31, injectables, and mitochondrial research compounds.",
+    image: "/v2/cat-metabolic.jpg"
   },
   {
     slug: "research-blends",

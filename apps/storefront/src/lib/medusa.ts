@@ -32,6 +32,9 @@ export type StoreProduct = {
     id: string
     title: string
     metadata?: Record<string, unknown>
+    inventory_quantity?: number | null
+    manage_inventory?: boolean | null
+    allow_backorder?: boolean | null
     prices?: Array<{
       amount: number
       currency_code: string
@@ -148,4 +151,46 @@ export async function listRecentCoas(limit = 50) {
   } catch {
     return []
   }
+}
+
+const FEATURED_COA_PRODUCT_HANDLES = [
+  "bpc-157",
+  "bpc-157-capsules",
+  "retatrutide",
+  "cagrilintide",
+  "epithalon",
+  "ghk-cu"
+] as const
+
+function isPreviewableCoa(doc: StoreCoaDocument) {
+  return doc.document_type === "coa" && Boolean(doc.document_url)
+}
+
+export type FeaturedCoaPreview = {
+  document: StoreCoaDocument
+  productHandle: string | null
+  productTitle: string | null
+}
+
+/** Prefer catalog products with uploaded COA PDFs for homepage trust preview. */
+export async function getFeaturedCoaDocument(
+  products: StoreProduct[]
+): Promise<FeaturedCoaPreview | null> {
+  for (const handle of FEATURED_COA_PRODUCT_HANDLES) {
+    const product = products.find((item) => item.handle === handle)
+    const variantId = product?.variants?.[0]?.id
+    if (!variantId) continue
+
+    const coas = await listCoasByVariant(variantId)
+    const document = coas.find(isPreviewableCoa)
+    if (document) {
+      return { document, productHandle: handle, productTitle: product.title }
+    }
+  }
+
+  const recent = await listRecentCoas(50)
+  const document = recent.find(isPreviewableCoa)
+  if (!document) return null
+
+  return { document, productHandle: null, productTitle: null }
 }

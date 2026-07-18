@@ -19,15 +19,15 @@ REVAMP_PACK_PATH = ROOT / "revamp" / "app" / "src" / "data" / "pack-pricing.ts"
 STOREFRONT_BY_SOURCE = {
     "Supplies & Reconstitution": "Lab Supplies",
     "GLP-1 / Incretin": "GLP-1 Research",
-    "BPC-157 / TB500": "Growth Factors",
+    "BPC-157 / TB500": "Tissue Repair",
     "Blends": "Research Blends",
-    "CJC / Ipamorelin / GHRP": "Growth Factors",
-    "Growth Hormone Axis": "Growth Factors",
-    "Mitochondrial / Metabolic Other": "Growth Factors",
-    "Cosmetic / Copper / Tanning": "Growth Factors",
-    "Longevity / Thymic / Neuropeptides": "Growth Factors",
-    "Vitamins & Injectables": "Growth Factors",
-    "Legacy Catalog": "Growth Factors",
+    "CJC / Ipamorelin / GHRP": "Growth Hormone Axis",
+    "Growth Hormone Axis": "Growth Hormone Axis",
+    "Mitochondrial / Metabolic Other": "Metabolic & Mitochondrial",
+    "Cosmetic / Copper / Tanning": "Tissue Repair",
+    "Longevity / Thymic / Neuropeptides": "Longevity & Neuropeptides",
+    "Vitamins & Injectables": "Metabolic & Mitochondrial",
+    "Legacy Catalog": "Longevity & Neuropeptides",
 }
 
 

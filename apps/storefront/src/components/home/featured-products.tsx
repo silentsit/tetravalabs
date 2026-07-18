@@ -19,9 +19,9 @@ export function FeaturedProducts({ products }: Props) {
       <div className="mb-10 flex items-end justify-between">
         <div>
           <span className="section-label">Popular</span>
-          <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Shop Our Best Peptides</h2>
+          <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Best Selling Peptides</h2>
           <p className="mt-2 text-[#475569]">
-            Frequently reordered research peptides from the Tetrava Labs catalog
+            Best selling peptides from the Tetrava Labs catalog
           </p>
         </div>
         <Link

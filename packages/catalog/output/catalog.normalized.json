@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T14:31:06.338Z",
+  "generated_at": "2026-07-18T18:24:36.755Z",
   "products": [
     {
       "id": "5-amino-1mq-10mg",
       "title": "5-amino-1mq 10mg",
-      "category": "GLP-1 Research",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "GLP-1 / Incretin",
       "handle": "5-amino-1mq-10mg",
       "visual_type": "vial",
@@ -69,7 +69,7 @@
     {
       "id": "5-amino-1mq-5mg",
       "title": "5-amino-1mq 5mg",
-      "category": "GLP-1 Research",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "GLP-1 / Incretin",
       "handle": "5-amino-1mq-5mg",
       "visual_type": "vial",
@@ -1109,7 +1109,7 @@
     {
       "id": "sermorelin-10mg",
       "title": "Sermorelin 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "GLP-1 / Incretin",
       "handle": "sermorelin-10mg",
       "visual_type": "vial",
@@ -1174,7 +1174,7 @@
     {
       "id": "sermorelin-5mg",
       "title": "Sermorelin 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "GLP-1 / Incretin",
       "handle": "sermorelin-5mg",
       "visual_type": "vial",
@@ -1304,7 +1304,7 @@
     {
       "id": "tesamorelin-10mg",
       "title": "Tesamorelin 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "GLP-1 / Incretin",
       "handle": "tesamorelin-10mg",
       "visual_type": "vial",
@@ -1369,7 +1369,7 @@
     {
       "id": "tesamorelin-20mg",
       "title": "Tesamorelin 20mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "GLP-1 / Incretin",
       "handle": "tesamorelin-20mg",
       "visual_type": "vial",
@@ -1434,7 +1434,7 @@
     {
       "id": "tesamorelin-5mg",
       "title": "Tesamorelin 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "GLP-1 / Incretin",
       "handle": "tesamorelin-5mg",
       "visual_type": "vial",
@@ -1759,7 +1759,7 @@
     {
       "id": "aicar-50mg",
       "title": "AICAR 50mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "aicar-50mg",
       "visual_type": "vial",
@@ -1824,7 +1824,7 @@
     {
       "id": "adipotide-2mg",
       "title": "Adipotide 2mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "adipotide-2mg",
       "visual_type": "vial",
@@ -1889,7 +1889,7 @@
     {
       "id": "adipotide-5mg",
       "title": "Adipotide 5mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "adipotide-5mg",
       "visual_type": "vial",
@@ -1954,7 +1954,7 @@
     {
       "id": "mots-c-10mg",
       "title": "MOTS-c 10mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "mots-c-10mg",
       "visual_type": "vial",
@@ -2019,7 +2019,7 @@
     {
       "id": "mots-c-20mg",
       "title": "MOTS-c 20mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "mots-c-20mg",
       "visual_type": "vial",
@@ -2084,7 +2084,7 @@
     {
       "id": "mots-c-40mg",
       "title": "MOTS-c 40mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "mots-c-40mg",
       "visual_type": "vial",
@@ -2149,7 +2149,7 @@
     {
       "id": "mots-c-5mg",
       "title": "MOTS-c 5mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "mots-c-5mg",
       "visual_type": "vial",
@@ -2214,7 +2214,7 @@
     {
       "id": "ss-31-10mg",
       "title": "SS-31 10mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "ss-31-10mg",
       "visual_type": "vial",
@@ -2279,7 +2279,7 @@
     {
       "id": "ss-31-25mg",
       "title": "SS-31 25mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "ss-31-25mg",
       "visual_type": "vial",
@@ -2344,7 +2344,7 @@
     {
       "id": "ss-31-50mg",
       "title": "SS-31 50mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Mitochondrial / Metabolic Other",
       "handle": "ss-31-50mg",
       "visual_type": "vial",
@@ -2409,7 +2409,7 @@
     {
       "id": "ara-290-10mg",
       "title": "ARA-290 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "ara-290-10mg",
       "visual_type": "vial",
@@ -2474,7 +2474,7 @@
     {
       "id": "bremelanotide-10mg",
       "title": "Bremelanotide 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "bremelanotide-10mg",
       "visual_type": "vial",
@@ -2539,7 +2539,7 @@
     {
       "id": "bremelanotide-5mg",
       "title": "Bremelanotide 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "bremelanotide-5mg",
       "visual_type": "vial",
@@ -2604,7 +2604,7 @@
     {
       "id": "dsip-10mg",
       "title": "DSIP 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "dsip-10mg",
       "visual_type": "vial",
@@ -2669,7 +2669,7 @@
     {
       "id": "dsip-15mg",
       "title": "DSIP 15mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "dsip-15mg",
       "visual_type": "vial",
@@ -2734,7 +2734,7 @@
     {
       "id": "dsip-5mg",
       "title": "DSIP 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "dsip-5mg",
       "visual_type": "vial",
@@ -2799,7 +2799,7 @@
     {
       "id": "dermorphin-5mg",
       "title": "Dermorphin 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "dermorphin-5mg",
       "visual_type": "vial",
@@ -2864,7 +2864,7 @@
     {
       "id": "epithalon-10mg",
       "title": "Epithalon 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "epithalon-10mg",
       "visual_type": "vial",
@@ -2929,7 +2929,7 @@
     {
       "id": "epithalon-20mg",
       "title": "Epithalon 20mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "epithalon-20mg",
       "visual_type": "vial",
@@ -2994,7 +2994,7 @@
     {
       "id": "epithalon-50mg",
       "title": "Epithalon 50mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "epithalon-50mg",
       "visual_type": "vial",
@@ -3059,7 +3059,7 @@
     {
       "id": "foxo4-dri-10mg",
       "title": "FOXO4-DRI 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "foxo4-dri-10mg",
       "visual_type": "vial",
@@ -3124,7 +3124,7 @@
     {
       "id": "kpv-10mg",
       "title": "KPV 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "kpv-10mg",
       "visual_type": "vial",
@@ -3189,7 +3189,7 @@
     {
       "id": "kpv-5mg",
       "title": "KPV 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "kpv-5mg",
       "visual_type": "vial",
@@ -3254,7 +3254,7 @@
     {
       "id": "kisspeptin-10-10mg",
       "title": "Kisspeptin-10 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "kisspeptin-10-10mg",
       "visual_type": "vial",
@@ -3319,7 +3319,7 @@
     {
       "id": "kisspeptin-10-5mg",
       "title": "Kisspeptin-10 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "kisspeptin-10-5mg",
       "visual_type": "vial",
@@ -3384,7 +3384,7 @@
     {
       "id": "ll-37-5mg",
       "title": "LL-37 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "ll-37-5mg",
       "visual_type": "vial",
@@ -3449,7 +3449,7 @@
     {
       "id": "nad-1000mg",
       "title": "NAD+ 1000mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "nad-1000mg",
       "visual_type": "blend",
@@ -3514,7 +3514,7 @@
     {
       "id": "nad-100mg",
       "title": "NAD+ 100mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "nad-100mg",
       "visual_type": "blend",
@@ -3579,7 +3579,7 @@
     {
       "id": "nad-500mg",
       "title": "NAD+ 500mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "nad-500mg",
       "visual_type": "blend",
@@ -3644,7 +3644,7 @@
     {
       "id": "oxytocin-acetate-10mg",
       "title": "Oxytocin Acetate 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "oxytocin-acetate-10mg",
       "visual_type": "vial",
@@ -3709,7 +3709,7 @@
     {
       "id": "oxytocin-acetate-2mg",
       "title": "Oxytocin Acetate 2mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "oxytocin-acetate-2mg",
       "visual_type": "vial",
@@ -3774,7 +3774,7 @@
     {
       "id": "oxytocin-acetate-5mg",
       "title": "Oxytocin Acetate 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "oxytocin-acetate-5mg",
       "visual_type": "vial",
@@ -3839,7 +3839,7 @@
     {
       "id": "selank-10mg",
       "title": "Selank 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "selank-10mg",
       "visual_type": "vial",
@@ -3904,7 +3904,7 @@
     {
       "id": "selank-5mg",
       "title": "Selank 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "selank-5mg",
       "visual_type": "vial",
@@ -3969,7 +3969,7 @@
     {
       "id": "semax-10mg",
       "title": "Semax 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "semax-10mg",
       "visual_type": "vial",
@@ -4034,7 +4034,7 @@
     {
       "id": "selank-nasal-spray-10mg",
       "title": "Selank Nasal Spray 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "selank-nasal-spray-10mg",
       "visual_type": "nasal_spray",
@@ -4066,7 +4066,7 @@
     {
       "id": "semax-nasal-spray-10mg",
       "title": "Semax Nasal Spray 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "semax-nasal-spray-10mg",
       "visual_type": "nasal_spray",
@@ -4098,7 +4098,7 @@
     {
       "id": "semax-5mg",
       "title": "Semax 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "semax-5mg",
       "visual_type": "vial",
@@ -4163,7 +4163,7 @@
     {
       "id": "thymalin-10mg",
       "title": "Thymalin 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "thymalin-10mg",
       "visual_type": "vial",
@@ -4228,7 +4228,7 @@
     {
       "id": "thymosin-alpha-1-10mg",
       "title": "Thymosin alpha-1 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "thymosin-alpha-1-10mg",
       "visual_type": "vial",
@@ -4293,7 +4293,7 @@
     {
       "id": "thymosin-alpha-1-5mg",
       "title": "Thymosin alpha-1 5mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "thymosin-alpha-1-5mg",
       "visual_type": "vial",
@@ -4358,7 +4358,7 @@
     {
       "id": "vip-10mg",
       "title": "VIP 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "vip-10mg",
       "visual_type": "vial",
@@ -4423,7 +4423,7 @@
     {
       "id": "pinealon-10mg",
       "title": "Pinealon 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "pinealon-10mg",
       "visual_type": "vial",
@@ -4488,7 +4488,7 @@
     {
       "id": "humanin-10mg",
       "title": "Humanin 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "humanin-10mg",
       "visual_type": "vial",
@@ -4553,7 +4553,7 @@
     {
       "id": "adamax-10mg",
       "title": "Adamax 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "adamax-10mg",
       "visual_type": "vial",
@@ -4618,7 +4618,7 @@
     {
       "id": "dihexa-10mg",
       "title": "Dihexa 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "dihexa-10mg",
       "visual_type": "vial",
@@ -4683,7 +4683,7 @@
     {
       "id": "cerebrolysin-10mg",
       "title": "Cerebrolysin 10mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Longevity / Thymic / Neuropeptides",
       "handle": "cerebrolysin-10mg",
       "visual_type": "vial",
@@ -5073,7 +5073,7 @@
     {
       "id": "b-12-10mg",
       "title": "B-12 10mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Vitamins & Injectables",
       "handle": "b-12-10mg",
       "visual_type": "vial",
@@ -5138,7 +5138,7 @@
     {
       "id": "glutathione-1500mg",
       "title": "Glutathione 1500mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Vitamins & Injectables",
       "handle": "glutathione-1500mg",
       "visual_type": "vial",
@@ -5203,7 +5203,7 @@
     {
       "id": "glutathione-600mg",
       "title": "Glutathione 600mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Vitamins & Injectables",
       "handle": "glutathione-600mg",
       "visual_type": "vial",
@@ -5268,7 +5268,7 @@
     {
       "id": "l-carnitine-600mg-10ml",
       "title": "L-Carnitine 600mg (10ml) 600mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Vitamins & Injectables",
       "handle": "l-carnitine-600mg-10ml",
       "visual_type": "water_solution",
@@ -5333,7 +5333,7 @@
     {
       "id": "lemon-bottle-10ml",
       "title": "Lemon Bottle 10ml",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Vitamins & Injectables",
       "handle": "lemon-bottle-10ml",
       "visual_type": "water_solution",
@@ -5398,7 +5398,7 @@
     {
       "id": "lipo-c-10ml",
       "title": "Lipo-C 10ml",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Vitamins & Injectables",
       "handle": "lipo-c-10ml",
       "visual_type": "water_solution",
@@ -5463,7 +5463,7 @@
     {
       "id": "mk-677-5mg",
       "title": "MK-677 5mg",
-      "category": "Growth Factors",
+      "category": "Metabolic & Mitochondrial",
       "source_category": "Vitamins & Injectables",
       "handle": "mk-677-5mg",
       "visual_type": "vial",
@@ -5528,7 +5528,7 @@
     {
       "id": "bpc-157-capsules-100-count-500mcg",
       "title": "BPC-157 (Capsules) 100 count (500mcg)",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "BPC-157 / TB500",
       "handle": "bpc-157-capsules-100-count-500mcg",
       "visual_type": "capsule",
@@ -5593,7 +5593,7 @@
     {
       "id": "bpc-157-10mg",
       "title": "BPC-157 10mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "BPC-157 / TB500",
       "handle": "bpc-157-10mg",
       "visual_type": "vial",
@@ -5658,7 +5658,7 @@
     {
       "id": "bpc-157-5mg",
       "title": "BPC-157 5mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "BPC-157 / TB500",
       "handle": "bpc-157-5mg",
       "visual_type": "vial",
@@ -5723,7 +5723,7 @@
     {
       "id": "tb500-10mg",
       "title": "TB500 10mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "BPC-157 / TB500",
       "handle": "tb500-10mg",
       "visual_type": "vial",
@@ -5788,7 +5788,7 @@
     {
       "id": "tb500-5mg",
       "title": "TB500 5mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "BPC-157 / TB500",
       "handle": "tb500-5mg",
       "visual_type": "vial",
@@ -6243,7 +6243,7 @@
     {
       "id": "cjc-1295-with-dac-10mg",
       "title": "CJC-1295 with DAC 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "cjc-1295-with-dac-10mg",
       "visual_type": "vial",
@@ -6308,7 +6308,7 @@
     {
       "id": "cjc-1295-with-dac-5mg",
       "title": "CJC-1295 with DAC 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "cjc-1295-with-dac-5mg",
       "visual_type": "vial",
@@ -6503,7 +6503,7 @@
     {
       "id": "cjc-1295-without-dac-10mg",
       "title": "CJC-1295 without DAC 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "cjc-1295-without-dac-10mg",
       "visual_type": "vial",
@@ -6568,7 +6568,7 @@
     {
       "id": "cjc-1295-without-dac-5mg",
       "title": "CJC-1295 without DAC 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "cjc-1295-without-dac-5mg",
       "visual_type": "vial",
@@ -6633,7 +6633,7 @@
     {
       "id": "ghrp-2-acetate-10mg",
       "title": "GHRP-2 Acetate 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "ghrp-2-acetate-10mg",
       "visual_type": "vial",
@@ -6698,7 +6698,7 @@
     {
       "id": "ghrp-2-acetate-5mg",
       "title": "GHRP-2 Acetate 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "ghrp-2-acetate-5mg",
       "visual_type": "vial",
@@ -6763,7 +6763,7 @@
     {
       "id": "ghrp-6-acetate-10mg",
       "title": "GHRP-6 Acetate 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "ghrp-6-acetate-10mg",
       "visual_type": "vial",
@@ -6828,7 +6828,7 @@
     {
       "id": "ghrp-6-acetate-5mg",
       "title": "GHRP-6 Acetate 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "ghrp-6-acetate-5mg",
       "visual_type": "vial",
@@ -6893,7 +6893,7 @@
     {
       "id": "hexarelin-acetate-2mg",
       "title": "Hexarelin Acetate 2mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "hexarelin-acetate-2mg",
       "visual_type": "vial",
@@ -6958,7 +6958,7 @@
     {
       "id": "hexarelin-acetate-5mg",
       "title": "Hexarelin Acetate 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "hexarelin-acetate-5mg",
       "visual_type": "vial",
@@ -7023,7 +7023,7 @@
     {
       "id": "ipamorelin-10mg",
       "title": "Ipamorelin 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "ipamorelin-10mg",
       "visual_type": "vial",
@@ -7088,7 +7088,7 @@
     {
       "id": "ipamorelin-5mg",
       "title": "Ipamorelin 5mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "CJC / Ipamorelin / GHRP",
       "handle": "ipamorelin-5mg",
       "visual_type": "vial",
@@ -7153,7 +7153,7 @@
     {
       "id": "ghk-cu-100mg",
       "title": "GHK-Cu 100mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "Cosmetic / Copper / Tanning",
       "handle": "ghk-cu-100mg",
       "visual_type": "vial",
@@ -7218,7 +7218,7 @@
     {
       "id": "ghk-cu-50mg",
       "title": "GHK-Cu 50mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "Cosmetic / Copper / Tanning",
       "handle": "ghk-cu-50mg",
       "visual_type": "vial",
@@ -7283,7 +7283,7 @@
     {
       "id": "melanotan-1-10mg",
       "title": "Melanotan 1 10mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "Cosmetic / Copper / Tanning",
       "handle": "melanotan-1-10mg",
       "visual_type": "vial",
@@ -7348,7 +7348,7 @@
     {
       "id": "melanotan-2-10mg",
       "title": "Melanotan 2 10mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "Cosmetic / Copper / Tanning",
       "handle": "melanotan-2-10mg",
       "visual_type": "vial",
@@ -7413,7 +7413,7 @@
     {
       "id": "snap-8-10mg",
       "title": "Snap-8 10mg",
-      "category": "Growth Factors",
+      "category": "Tissue Repair",
       "source_category": "Cosmetic / Copper / Tanning",
       "handle": "snap-8-10mg",
       "visual_type": "vial",
@@ -7478,7 +7478,7 @@
     {
       "id": "gonadorelin-10mg",
       "title": "Gonadorelin 10mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "gonadorelin-10mg",
       "visual_type": "vial",
@@ -7543,7 +7543,7 @@
     {
       "id": "gonadorelin-2mg",
       "title": "Gonadorelin 2mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "gonadorelin-2mg",
       "visual_type": "vial",
@@ -7608,7 +7608,7 @@
     {
       "id": "hcg-10000-iu",
       "title": "HCG 10000 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hcg-10000-iu",
       "visual_type": "vial",
@@ -7673,7 +7673,7 @@
     {
       "id": "hcg-5000-iu",
       "title": "HCG 5000 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hcg-5000-iu",
       "visual_type": "vial",
@@ -7738,7 +7738,7 @@
     {
       "id": "hgh-191aa-10-iu",
       "title": "HGH 191aa 10 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hgh-191aa-10-iu",
       "visual_type": "vial",
@@ -7803,7 +7803,7 @@
     {
       "id": "hgh-191aa-12-iu",
       "title": "HGH 191aa 12 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hgh-191aa-12-iu",
       "visual_type": "vial",
@@ -7868,7 +7868,7 @@
     {
       "id": "hgh-191aa-15-iu",
       "title": "HGH 191aa 15 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hgh-191aa-15-iu",
       "visual_type": "vial",
@@ -7933,7 +7933,7 @@
     {
       "id": "hgh-191aa-24-iu",
       "title": "HGH 191aa 24 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hgh-191aa-24-iu",
       "visual_type": "vial",
@@ -7998,7 +7998,7 @@
     {
       "id": "hgh-191aa-36-iu",
       "title": "HGH 191aa 36 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hgh-191aa-36-iu",
       "visual_type": "vial",
@@ -8063,7 +8063,7 @@
     {
       "id": "hmg-75-iu",
       "title": "HMG 75 IU",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "hmg-75-iu",
       "visual_type": "vial",
@@ -8128,7 +8128,7 @@
     {
       "id": "igf-1-lr3-0-1mg",
       "title": "IGF-1 LR3 0.1mg 1mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "igf-1-lr3-0-1mg",
       "visual_type": "vial",
@@ -8193,7 +8193,7 @@
     {
       "id": "igf-1-lr3-1mg",
       "title": "IGF-1 LR3 1mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "igf-1-lr3-1mg",
       "visual_type": "vial",
@@ -8258,7 +8258,7 @@
     {
       "id": "mgf-2mg",
       "title": "MGF 2mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "mgf-2mg",
       "visual_type": "vial",
@@ -8323,7 +8323,7 @@
     {
       "id": "peg-mgf-2mg",
       "title": "PEG-MGF 2mg",
-      "category": "Growth Factors",
+      "category": "Growth Hormone Axis",
       "source_category": "Growth Hormone Axis",
       "handle": "peg-mgf-2mg",
       "visual_type": "vial",
@@ -8388,7 +8388,7 @@
     {
       "id": "l-glu-100mg",
       "title": "L-Glu 100mg",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Legacy Catalog",
       "handle": "l-glu-100mg",
       "visual_type": "vial",
@@ -8453,7 +8453,7 @@
     {
       "id": "pinealon-capsules-100-count",
       "title": "Pinealon (Capsules) (100 count) 100 count)",
-      "category": "Growth Factors",
+      "category": "Longevity & Neuropeptides",
       "source_category": "Legacy Catalog",
       "handle": "pinealon-capsules-100-count",
       "visual_type": "capsule",

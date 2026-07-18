@@ -16,10 +16,10 @@ import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
 import { LiveVisitorCounter, SocialProofReviews } from "@/components/social-proof-widget"
-import { categoryArt, categoryArtForSlug } from "@/lib/revamp/category-art"
+import { categoryArt } from "@/lib/revamp/category-art"
 import { groupProductsByCategory } from "@/lib/categories"
 import { faqItems } from "@/lib/faq-content"
-import { listProducts, listRecentCoas } from "@/lib/medusa"
+import { listProducts, getFeaturedCoaDocument } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata } from "@/lib/seo"
@@ -33,34 +33,26 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 export default async function HomePage() {
-  const [products, recentCoas, blogPosts] = await Promise.all([
-    listProducts(),
-    listRecentCoas(3),
+  const productsPromise = listProducts()
+  const [products, featuredCoa, blogPosts] = await Promise.all([
+    productsPromise,
+    productsPromise.then(getFeaturedCoaDocument),
     listBlogPosts()
   ])
   const latestPosts = blogPosts.slice(0, 3)
   const grouped = groupProductsByCategory(products)
+  const groupedBySlug = new Map(grouped.map((group) => [group.slug, group]))
 
-  const categories = grouped.slice(0, 4).map((group) => {
-    const art = categoryArtForSlug(group.slug, group.name)
-    return { ...art, name: group.name, slug: group.slug, productCount: group.count }
-  })
-
-  const fallbackCategories =
-    categories.length >= 4
-      ? categories
-      : categoryArt.map((item) => ({
-          ...item,
-          productCount: products.filter((p) =>
-            String(p.metadata?.source_category || "")
-              .toLowerCase()
-              .includes(item.name.split(" ")[0].toLowerCase())
-          ).length
-        }))
+  const homepageCategories = categoryArt
+    .map((item) => ({
+      ...item,
+      productCount: groupedBySlug.get(item.slug)?.count ?? 0
+    }))
+    .filter((item) => item.productCount > 0)
 
   return (
     <>
-      <section className="relative z-10 flex items-center overflow-visible bg-[#F8FAFC]">
+      <section className="relative z-10 flex items-center overflow-x-clip overflow-y-visible bg-[#F8FAFC]">
         <div className="absolute inset-0 overflow-hidden">
           <div className="animate-mesh-1 absolute -left-20 -top-20 h-96 w-96 rounded-full bg-[#0D9488]/10 blur-3xl" />
           <div className="animate-mesh-2 absolute -right-20 top-20 h-80 w-80 rounded-full bg-[#2563EB]/10 blur-3xl" />
@@ -112,31 +104,34 @@ export default async function HomePage() {
       <section className="section-padding bg-white">
         <div className="page-container">
           <div className="mb-10 text-center">
-            <span className="section-label">Payments</span>
+            <span className="section-label">How to Pay</span>
             <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Simple Payment System</h2>
-            <p className="mt-2 text-[#475569]">Two paths. Zero friction.</p>
+            <p className="mt-2 text-[#475569]">Card or crypto at checkout. Your choice.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="card p-8">
-              <Wallet className="mb-4 h-10 w-10 text-[#0D9488]" />
-              <h3 className="font-serif text-xl text-[#0F172A]">Have Crypto?</h3>
-              <p className="mt-4 text-sm text-[#475569]">Pay with BTC, USDT, ETH and more at checkout.</p>
-            </div>
-            <div className="card p-8">
               <CreditCard className="mb-4 h-10 w-10 text-[#2563EB]" />
-              <h3 className="font-serif text-xl text-[#0F172A]">New to Crypto?</h3>
+              <h3 className="font-serif text-xl text-[#0F172A]">Credit &amp; Debit Cards</h3>
               <p className="mt-4 text-sm text-[#475569]">
-                Follow our payment guide to fund a wallet and complete your order.
+                Pay with Visa, Mastercard, Amex, Apple Pay, or Google Pay through our secure hosted
+                checkout page.
               </p>
               <Link href="/payment" className="mt-4 inline-flex text-sm font-medium text-[#0D9488]">
                 View payment guide →
               </Link>
             </div>
+            <div className="card p-8">
+              <Wallet className="mb-4 h-10 w-10 text-[#0D9488]" />
+              <h3 className="font-serif text-xl text-[#0F172A]">Cryptocurrency</h3>
+              <p className="mt-4 text-sm text-[#475569]">
+                Prefer crypto? Pay with BTC, USDT, ETH, and other supported assets at checkout.
+              </p>
+            </div>
           </div>
           <div className="mt-6 flex items-center gap-3 rounded-xl border border-[#FDE68A] bg-[#FEF3C7] p-4">
             <Copy className="h-5 w-5 shrink-0 text-[#D97706]" />
             <p className="text-sm text-[#D97706]/80">
-              When prompted, paste our wallet address exactly as shown at checkout.
+              For crypto orders, paste our wallet address exactly as shown at checkout.
             </p>
           </div>
         </div>
@@ -187,11 +182,17 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 shadow-sm">
-              {recentCoas.length > 0 ? (
+              {featuredCoa ? (
                 <div className="grid gap-4">
-                  {recentCoas.slice(0, 1).map((doc) => (
-                    <CoaDocumentPreview key={doc.id} document={doc} compact />
-                  ))}
+                  <CoaDocumentPreview document={featuredCoa.document} compact />
+                  {featuredCoa.productHandle ? (
+                    <Link
+                      href={`/product/${featuredCoa.productHandle}`}
+                      className="inline-flex items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E]"
+                    >
+                      View {featuredCoa.productTitle || "product"} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ) : null}
                 </div>
               ) : (
                 <img src="/v2/coa-preview.jpg" alt="Certificate of Analysis preview" className="rounded-xl" />
@@ -209,10 +210,10 @@ export default async function HomePage() {
             <p className="mt-2 text-[#475569]">Specialized compounds organized by application</p>
           </div>
           <div className="product-card-grid">
-            {fallbackCategories.slice(0, 4).map((cat) => (
+            {homepageCategories.slice(0, 6).map((cat) => (
               <Link
                 key={cat.slug}
-                href={`/shop?category=${cat.slug}`}
+                href={`/category/${cat.slug}`}
                 className="card card-hover group flex flex-col overflow-hidden"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-white">
@@ -252,7 +253,7 @@ export default async function HomePage() {
               View all articles <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {latestPosts.map((post) => (
               <BlogPostCard key={post.slug} post={post} compact />
             ))}

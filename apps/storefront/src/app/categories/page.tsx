@@ -9,7 +9,7 @@ export const revalidate = 300
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Product categories",
-  description: "Browse research peptides and compounds by category — GLP-1, tissue repair, growth, and blends.",
+  description: "Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies.",
   path: "/categories"
 })
 

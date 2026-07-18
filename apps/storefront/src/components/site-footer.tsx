@@ -2,18 +2,25 @@ import Link from "next/link"
 import { SiteLogo } from "@/components/site-logo"
 
 const shopLinks = [
-  { label: "GLP-1 Research", href: "/shop?category=glp-1-research" },
-  { label: "Growth Factors", href: "/shop?category=growth-factors" },
-  { label: "Research Blends", href: "/shop?category=research-blends" },
-  { label: "Lab Supplies", href: "/shop?category=lab-supplies" }
+  { label: "All Products", href: "/shop" },
+  { label: "Categories", href: "/categories" },
+  { label: "GLP-1 Research", href: "/category/glp-1-research" },
+  { label: "Tissue Repair", href: "/category/tissue-repair" },
+  { label: "Growth Hormone Axis", href: "/category/growth-hormone-axis" },
+  { label: "Longevity & Neuropeptides", href: "/category/longevity-neuropeptides" },
+  { label: "Metabolic & Mitochondrial", href: "/category/metabolic-mitochondrial" },
+  { label: "Research Blends", href: "/category/research-blends" },
+  { label: "Lab Supplies", href: "/category/lab-supplies" }
 ]
 
 const supportLinks = [
   { label: "COA Library", href: "/coa-library" },
   { label: "Research Hub", href: "/blog" },
+  { label: "How To Pay", href: "/payment" },
   { label: "Shipping", href: "/shipping" },
   { label: "Contact", href: "/contact" },
-  { label: "FAQ", href: "/faq" }
+  { label: "FAQ", href: "/faq" },
+  { label: "About", href: "/about" }
 ]
 
 const legalLinks = [

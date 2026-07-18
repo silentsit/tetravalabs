@@ -1,35 +1,15 @@
+import { normalizeCategorySlug, resolveProductCategorySlug } from "@/lib/categories"
+import type { StoreProduct } from "@/lib/medusa"
+
 export const storefrontPills = [
-  { key: "all", label: "All Products", matches: [] as string[] },
-  {
-    key: "glp-1",
-    label: "GLP-1 Research",
-    matches: ["GLP-1 Research", "GLP-1 / Incretin"]
-  },
-  {
-    key: "growth-factors",
-    label: "Growth Factors",
-    matches: [
-      "Growth Factors",
-      "BPC-157 / TB500",
-      "CJC / Ipamorelin / GHRP",
-      "Growth Hormone Axis",
-      "Longevity / Thymic / Neuropeptides",
-      "Mitochondrial / Metabolic Other",
-      "Cosmetic / Copper / Tanning",
-      "Vitamins & Injectables",
-      "Legacy Catalog"
-    ]
-  },
-  {
-    key: "blends",
-    label: "Research Blends",
-    matches: ["Research Blends", "Blends"]
-  },
-  {
-    key: "supplies",
-    label: "Lab Supplies",
-    matches: ["Lab Supplies", "Supplies & Reconstitution"]
-  }
+  { key: "all", label: "All Products" },
+  { key: "glp-1-research", label: "GLP-1 Research" },
+  { key: "tissue-repair", label: "Tissue Repair" },
+  { key: "growth-hormone-axis", label: "Growth Hormone Axis" },
+  { key: "longevity-neuropeptides", label: "Longevity & Neuropeptides" },
+  { key: "metabolic-mitochondrial", label: "Metabolic & Mitochondrial" },
+  { key: "research-blends", label: "Research Blends" },
+  { key: "lab-supplies", label: "Lab Supplies" }
 ] as const
 
 export const shopNavLabel = "Buy Peptides"
@@ -41,11 +21,11 @@ export const shopNavLinks = storefrontPills.map((pill) => ({
 }))
 
 const LEGACY_PILL_ALIASES: Record<string, string> = {
-  "glp-1-research": "glp-1",
-  "glp-1-incretin": "glp-1",
-  "research-blends": "blends",
-  "lab-supplies": "supplies",
-  "supplies-reconstitution": "supplies"
+  "glp-1": "glp-1-research",
+  "glp-1-incretin": "glp-1-research",
+  blends: "research-blends",
+  supplies: "lab-supplies",
+  "growth-factors": "growth-factors"
 }
 
 export interface FilterableProduct {
@@ -54,6 +34,7 @@ export interface FilterableProduct {
   title: string
   metadata?: {
     source_category?: string
+    strength?: string
     [key: string]: unknown
   } | null
   collection?: {
@@ -69,31 +50,18 @@ export function isShopPillKey(value: string): boolean {
 export function normalizeShopCategoryPill(category?: string): string | undefined {
   if (!category) return undefined
   if (isShopPillKey(category)) return category
-  return LEGACY_PILL_ALIASES[category]
+  return LEGACY_PILL_ALIASES[category] || LEGACY_PILL_ALIASES[normalizeCategorySlug(category) as string]
 }
 
 /** Map URL `category` param (pill key or category slug) to active filter pill. */
 export function resolveActiveShopPill(category?: string): string {
   if (!category) return "all"
+  if (category === "growth-factors") return "growth-factors"
   const pill = normalizeShopCategoryPill(category)
-  if (pill) return pill
-  if (isShopPillKey(category)) return category
-  const slugToPill: Record<string, string> = {
-    "glp-1-research": "glp-1",
-    "growth-factors": "growth-factors",
-    "research-blends": "blends",
-    "lab-supplies": "supplies"
-  }
-  return slugToPill[category] || "all"
-}
-
-function matchesPill(product: FilterableProduct, pillCategories: string[]): boolean {
-  const sourceCategory =
-    product.metadata?.source_category || product.collection?.title || ""
-
-  return pillCategories.some(
-    (cat) => sourceCategory.toLowerCase() === cat.toLowerCase()
-  )
+  if (pill && isShopPillKey(pill)) return pill
+  const slug = normalizeCategorySlug(category)
+  if (isShopPillKey(slug)) return slug
+  return "all"
 }
 
 export function filterByPill<T extends FilterableProduct>(
@@ -103,10 +71,16 @@ export function filterByPill<T extends FilterableProduct>(
   const pillKey = normalizeShopCategoryPill(activePill)
   if (!pillKey || pillKey === "all") return products
 
-  const pill = storefrontPills.find((p) => p.key === pillKey)
-  if (!pill || pill.key === "all") return products
+  if (pillKey === "growth-factors") {
+    return products.filter((product) => {
+      const slug = resolveProductCategorySlug(product as StoreProduct)
+      return !["glp-1-research", "research-blends", "lab-supplies"].includes(slug)
+    })
+  }
 
-  return products.filter((p) => matchesPill(p, [...pill.matches]))
+  return products.filter(
+    (product) => resolveProductCategorySlug(product as StoreProduct) === pillKey
+  )
 }
 
 export function groupBySourceCategory(
@@ -126,4 +100,3 @@ export function groupBySourceCategory(
 
   return groups
 }
-

@@ -95,7 +95,18 @@ function GalleryMain({ item }: { item: GalleryItem }) {
     return <ProductImageZoom src={item.src} alt={item.label} priority />
   }
 
-  return <img src={item.src} alt={item.label} className="h-full w-full object-contain p-4" />
+  return (
+    <div className="relative h-full w-full">
+      <Image
+        src={item.src}
+        alt={item.label}
+        fill
+        unoptimized={item.src.startsWith("http")}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-contain p-4"
+      />
+    </div>
+  )
 }
 
 function GalleryThumb({ item }: { item: GalleryItem }) {
@@ -123,7 +134,17 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
     )
   }
 
-  return <img src={item.src} alt="" className="h-full w-full object-contain object-top p-0.5" aria-hidden />
+  return (
+    <Image
+      src={item.src}
+      alt=""
+      fill
+      unoptimized={item.src.startsWith("http")}
+      sizes="64px"
+      className="object-contain object-top p-0.5"
+      aria-hidden
+    />
+  )
 }
 
 export function ProductImageGallery({

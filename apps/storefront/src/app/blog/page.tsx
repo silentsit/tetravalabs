@@ -1,3 +1,4 @@
+import Image from "next/image"
 import type { Metadata } from "next"
 import { listBlogPosts } from "@/lib/sanity"
 import { Breadcrumbs } from "@/components/breadcrumbs"
@@ -28,11 +29,14 @@ export default async function BlogPage() {
               Protocols, analytical methods, and compliance guidance for qualified research buyers.
             </p>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-[#E2E8F0] shadow-sm">
-            <img
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-[#E2E8F0] shadow-sm">
+            <Image
               src="/v2/blog-research.jpg"
               alt="Laboratory research documentation"
-              className="aspect-[16/10] w-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
             />
           </div>
         </div>

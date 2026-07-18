@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { useCart } from "@/components/cart-provider"
 import { getProductImage } from "@/lib/product-image-map"
@@ -18,10 +19,12 @@ export function CartPanel() {
             {items.map((item) => (
               <li key={item.id} className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3">
                 <div className="flex gap-3">
-                  <img
+                  <Image
                     src={getProductImage(item.handle)}
                     alt={item.title}
-                    className="h-14 w-14 rounded-lg object-contain bg-white"
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 rounded-lg bg-white object-contain"
                   />
                   <div className="flex flex-1 flex-col">
                     <div className="flex items-start justify-between gap-2">

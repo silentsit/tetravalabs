@@ -20,9 +20,9 @@ export default function CheckoutPage() {
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#475569]">
           Pay securely by card or cryptocurrency. All orders require RUO acknowledgment before
           fulfillment.{" "}
-          <a href="/payment" className="text-[#0D9488] hover:underline">
+          <Link href="/payment" className="text-[#0D9488] hover:underline">
             Payment guide
-          </a>
+          </Link>
         </p>
       </div>
       <p className="rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm text-[#475569]">

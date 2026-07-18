@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Clock } from "lucide-react"
 import type { BlogPost } from "@/lib/sanity"
@@ -16,12 +17,13 @@ export function BlogPostCard({ post, compact = false }: Props) {
       href={`/blog/${post.slug}`}
       className={`card card-hover group flex flex-col overflow-hidden ${compact ? "" : "h-full"}`}
     >
-      <div className={`overflow-hidden bg-[#F8FAFC] ${compact ? "aspect-[16/9]" : "aspect-video"}`}>
-        <img
+      <div className={`relative overflow-hidden bg-[#F8FAFC] ${compact ? "aspect-[16/9]" : "aspect-video"}`}>
+        <Image
           src={image}
           alt={post.title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
       <div className="flex flex-1 flex-col p-5">

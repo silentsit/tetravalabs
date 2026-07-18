@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import type { SearchResult } from "@/lib/search"
 import { formatShelfPriceFromUnitCents } from "@/lib/pack-pricing"
@@ -41,11 +42,12 @@ export function SearchResultCard({ result }: Props) {
       className="card card-hover group flex flex-col overflow-hidden"
     >
       <div className="product-card-media">
-        <img
+        <Image
           src={image}
           alt={result.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
           className="product-card-media-image"
-          loading="lazy"
         />
       </div>
       <div className="flex flex-1 flex-col border-t border-[#E2E8F0] p-4">

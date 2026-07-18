@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { FileText } from "lucide-react"
 import { formatCoaCompound, formatCoaStrength } from "@/lib/coa-display"
@@ -26,10 +27,13 @@ export function CoaDocumentPreview({ document, compact = false }: Props) {
             className="h-full w-full border-0"
           />
         ) : document.document_url ? (
-          <img
+          <Image
             src={document.document_url}
             alt={`COA batch ${document.batch_number}`}
-            className="h-full w-full object-contain p-2"
+            fill
+            unoptimized
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-contain p-2"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-sm text-[#94A3B8]">

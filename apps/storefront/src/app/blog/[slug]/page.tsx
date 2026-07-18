@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Clock } from "lucide-react"
 import { getBlogPostBySlug, listBlogPosts } from "@/lib/sanity"
@@ -75,8 +76,15 @@ export default async function BlogArticlePage({ params }: Props) {
         {post.excerpt ? <p className="mt-4 text-lg text-[#475569]">{post.excerpt}</p> : null}
       </header>
 
-      <div className="overflow-hidden rounded-xl border border-[#E2E8F0]">
-        <img src={heroImage} alt={post.title} className="aspect-video w-full object-cover" />
+      <div className="relative aspect-video overflow-hidden rounded-xl border border-[#E2E8F0]">
+        <Image
+          src={heroImage}
+          alt={post.title}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
+        />
       </div>
 
       <div className="card space-y-4 p-6 text-base leading-relaxed text-[#475569]">

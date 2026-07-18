@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useState } from "react"
 import { Download } from "lucide-react"
 import type { StoreCoaDocument } from "@/lib/medusa"
@@ -175,9 +176,9 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
               <p>
                 Packages are shipped in plain, unmarked outer packaging. Tracking is provided when
                 your carrier supports it. See our{" "}
-                <a href="/shipping" className="text-[#0D9488] hover:underline">
+                <Link href="/shipping" className="text-[#0D9488] hover:underline">
                   shipping policy
-                </a>{" "}
+                </Link>{" "}
                 for restricted regions.
               </p>
             </div>

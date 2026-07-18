@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { FormEvent, useEffect, useMemo, useState, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
@@ -1189,9 +1190,11 @@ export function CheckoutForm() {
               <ul className="divide-y divide-[#E2E8F0]">
                 {items.map((item) => (
                   <li key={item.id} className="flex gap-3 px-4 py-4">
-                    <img
+                    <Image
                       src={getProductImage(item.handle)}
                       alt={item.title}
+                      width={56}
+                      height={56}
                       className="h-14 w-14 shrink-0 rounded-lg bg-white object-contain"
                     />
                     <div className="flex min-w-0 flex-1 items-start justify-between gap-3">

@@ -195,7 +195,13 @@ export default async function HomePage() {
                   ) : null}
                 </div>
               ) : (
-                <img src="/v2/coa-preview.jpg" alt="Certificate of Analysis preview" className="rounded-xl" />
+                <Image
+                  src="/v2/coa-preview.jpg"
+                  alt="Certificate of Analysis preview"
+                  width={800}
+                  height={600}
+                  className="h-auto w-full rounded-xl"
+                />
               )}
             </div>
           </div>

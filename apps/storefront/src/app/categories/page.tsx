@@ -1,3 +1,4 @@
+import Image from "next/image"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { listProducts } from "@/lib/medusa"
@@ -38,11 +39,13 @@ export default async function CategoriesPage() {
                 href={`/category/${category.slug}`}
                 className="card card-hover group overflow-hidden"
               >
-                <div className="aspect-[16/10] overflow-hidden bg-[#F8FAFC]">
-                  <img
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#F8FAFC]">
+                  <Image
                     src={art.image}
                     alt={category.name}
-                    className="h-full w-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-6">

@@ -69,8 +69,10 @@ export default async function HomePage() {
         <div className="page-container relative grid w-full items-center gap-6 overflow-visible py-6 sm:py-8 lg:grid-cols-2 lg:gap-8 lg:py-4">
           <div className="flex flex-col justify-center">
             <span className="section-label mb-4">≥ 99%+ Purity Verified</span>
-            <h1 className="font-serif whitespace-nowrap text-[clamp(1.15rem,3.6vw,2.35rem)] leading-tight tracking-tight text-[#0F172A]">
-              Buy Peptides Online
+            <h1 className="font-serif text-4xl leading-[1.15] tracking-tight text-[#0F172A] sm:text-5xl lg:text-[3.25rem]">
+              Buy Peptides. Online.
+              <br />
+              Peptides People Trust.
             </h1>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-[#475569]">
               Research-grade peptides with verified 99%+ purity — and shipping you can count on.

@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FileText } from "lucide-react"
+import { CoaPdfPreview } from "@/components/coa-pdf-preview"
 import { formatCoaCompound, formatCoaStrength, isCoaPdfPreviewUrl } from "@/lib/coa-display"
 import type { StoreCoaDocument } from "@/lib/medusa"
 
@@ -17,10 +18,10 @@ export function CoaDocumentPreview({ document, compact = false }: Props) {
     <div className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm">
       <div className={`relative ${previewHeight} bg-[#F1F5F9]`}>
         {document.document_url && isCoaPdfPreviewUrl(document.document_url) ? (
-          <iframe
-            title={`COA preview batch ${document.batch_number}`}
-            src={`${document.document_url}#toolbar=0&navpanes=0`}
-            className="h-full w-full border-0"
+          <CoaPdfPreview
+            url={document.document_url}
+            alt={`COA batch ${document.batch_number}`}
+            className="absolute inset-0"
           />
         ) : document.document_url ? (
           <Image

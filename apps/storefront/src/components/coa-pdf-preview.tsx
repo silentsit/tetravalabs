@@ -30,15 +30,17 @@ export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
   const [status, setStatus] = useState<"loading" | "ready" | "failed">("loading")
 
   useEffect(() => {
-    const host = canvasHostRef.current
-    if (!host) return
+    if (!canvasHostRef.current) return
 
     let cancelled = false
 
     async function renderPreview() {
       try {
         setStatus("loading")
-        host.replaceChildren()
+        const canvasHost = canvasHostRef.current
+        if (!canvasHost) return
+
+        canvasHost.replaceChildren()
         await ensurePdfWorker()
 
         const response = await fetch(url, { credentials: "same-origin" })
@@ -52,9 +54,11 @@ export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
         const pdf = await pdfjs.getDocument({ data }).promise
         const page = await pdf.getPage(1)
 
-        if (cancelled || !canvasHostRef.current) return
+        if (cancelled) return
+        const renderHost = canvasHostRef.current
+        if (!renderHost) return
 
-        const width = canvasHostRef.current.clientWidth || 280
+        const width = renderHost.clientWidth || 280
         const baseViewport = page.getViewport({ scale: 1 })
         const renderScale = scale ?? Math.max(width / baseViewport.width, 0.5)
         const viewport = page.getViewport({ scale: renderScale })
@@ -71,9 +75,11 @@ export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
 
         await page.render({ canvasContext: context, viewport }).promise
 
-        if (cancelled || !canvasHostRef.current) return
+        if (cancelled) return
+        const readyHost = canvasHostRef.current
+        if (!readyHost) return
 
-        canvasHostRef.current.replaceChildren(canvas)
+        readyHost.replaceChildren(canvas)
         setStatus("ready")
       } catch {
         if (!cancelled) {

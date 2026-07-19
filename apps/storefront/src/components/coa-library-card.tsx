@@ -52,6 +52,7 @@ export function CoaLibraryCard({ document }: Props) {
       {previewUrl ? (
         <Link
           href={previewUrl}
+          prefetch={false}
           target="_blank"
           rel="noreferrer"
           className="relative block aspect-[4/5] max-h-[200px] overflow-hidden bg-[#F8FAFC]"
@@ -86,6 +87,7 @@ export function CoaLibraryCard({ document }: Props) {
         {previewUrl ? (
           <Link
             href={previewUrl}
+            prefetch={false}
             target="_blank"
             rel="noreferrer"
             className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium text-[#0D9488] hover:text-[#0F766E]"

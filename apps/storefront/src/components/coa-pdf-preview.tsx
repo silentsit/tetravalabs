@@ -26,18 +26,19 @@ function ensurePdfWorker() {
 }
 
 export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const canvasHostRef = useRef<HTMLDivElement>(null)
   const [status, setStatus] = useState<"loading" | "ready" | "failed">("loading")
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const host = canvasHostRef.current
+    if (!host) return
 
     let cancelled = false
 
     async function renderPreview() {
       try {
         setStatus("loading")
+        host.replaceChildren()
         await ensurePdfWorker()
 
         const response = await fetch(url, { credentials: "same-origin" })
@@ -51,9 +52,9 @@ export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
         const pdf = await pdfjs.getDocument({ data }).promise
         const page = await pdf.getPage(1)
 
-        if (cancelled || !containerRef.current) return
+        if (cancelled || !canvasHostRef.current) return
 
-        const width = containerRef.current.clientWidth || 280
+        const width = canvasHostRef.current.clientWidth || 280
         const baseViewport = page.getViewport({ scale: 1 })
         const renderScale = scale ?? Math.max(width / baseViewport.width, 0.5)
         const viewport = page.getViewport({ scale: renderScale })
@@ -70,12 +71,15 @@ export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
 
         await page.render({ canvasContext: context, viewport }).promise
 
-        if (cancelled || !containerRef.current) return
+        if (cancelled || !canvasHostRef.current) return
 
-        containerRef.current.replaceChildren(canvas)
+        canvasHostRef.current.replaceChildren(canvas)
         setStatus("ready")
       } catch {
-        if (!cancelled) setStatus("failed")
+        if (!cancelled) {
+          canvasHostRef.current?.replaceChildren()
+          setStatus("failed")
+        }
       }
     }
 
@@ -83,19 +87,20 @@ export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
 
     return () => {
       cancelled = true
+      canvasHostRef.current?.replaceChildren()
     }
   }, [url, scale, alt])
 
   return (
     <div
-      ref={containerRef}
       className={`relative flex h-full w-full items-start justify-center overflow-hidden bg-white ${className}`}
     >
+      <div ref={canvasHostRef} className="h-full w-full" />
       {status === "loading" ? (
         <div className="absolute inset-0 animate-pulse bg-[#E2E8F0]/50" aria-hidden="true" />
       ) : null}
       {status === "failed" ? (
-        <div className="flex h-full min-h-[120px] w-full flex-col items-center justify-center gap-1 bg-[#F8FAFC] text-[#64748B]">
+        <div className="absolute inset-0 flex min-h-[120px] w-full flex-col items-center justify-center gap-1 bg-[#F8FAFC] text-[#64748B]">
           <FileText className="h-4 w-4" />
           <span className="text-[10px] font-medium uppercase tracking-wide">Preview unavailable</span>
         </div>

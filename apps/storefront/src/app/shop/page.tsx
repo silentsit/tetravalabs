@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
+import { ProductFilters } from "@/components/product-filters"
 import { ProductSort } from "@/components/product-sort"
 import { listProducts } from "@/lib/medusa"
 import { filterProductsByCategorySlug } from "@/lib/categories"
@@ -79,7 +80,7 @@ export default async function ShopPage({ searchParams }: Props) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <span className="section-label">Catalog</span>
-            <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Research Compounds</h1>
+            <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Shop Research Peptides</h1>
             <p className="mt-2 text-sm text-[#64748B]">
               {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
               {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
@@ -89,10 +90,15 @@ export default async function ShopPage({ searchParams }: Props) {
             <ProductSort currentSort={sortKey} />
           </Suspense>
         </div>
+        <div className="mt-5">
+          <Suspense fallback={null}>
+            <ProductFilters products={products} activePill={categoryPill ?? "all"} />
+          </Suspense>
+        </div>
       </div>
 
       {displayProducts.length > 0 ? (
-        <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 xl:gap-6 [&>*]:min-w-0">
+        <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6 [&>*]:min-w-0">
           {displayProducts.map((product) => (
             <ProductCard key={product.id} product={product} variant="shop" />
           ))}

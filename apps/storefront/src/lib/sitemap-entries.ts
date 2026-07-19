@@ -33,8 +33,7 @@ const STATIC_PAGE_ROUTES: Array<{
   { path: "/terms", changeFrequency: "yearly", priority: 0.4 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.4 },
   { path: "/refund", changeFrequency: "yearly", priority: 0.4 },
-  { path: "/ruo", changeFrequency: "yearly", priority: 0.4 },
-  { path: "/search", changeFrequency: "weekly", priority: 0.5 }
+  { path: "/ruo", changeFrequency: "yearly", priority: 0.4 }
 ]
 
 export function getSitemapBaseUrl() {

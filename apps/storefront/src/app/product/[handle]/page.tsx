@@ -21,7 +21,13 @@ type Props = { params: Promise<{ handle: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params
   const product = await getProductByHandle(handle)
-  if (!product) return { title: "Product Not Found" }
+  if (!product) {
+    return buildPageMetadata({
+      title: "Product Not Found",
+      path: `/product/${handle}`,
+      noIndex: true
+    })
+  }
   const category = String(product.metadata?.source_category || "Research peptide")
   const cas = product.metadata?.cas_number ? ` CAS ${product.metadata.cas_number}.` : ""
   const displayName = getProductDisplayName(product)
@@ -30,7 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     title: `${productName} — ${category}`,
     description: `${productName} for laboratory research (RUO). ${getProductPurity(product)} purity with lot-linked COA.${cas}`,
-    path: `/product/${handle}`
+    path: `/product/${handle}`,
+    image: getProductImage(product)
   })
 }
 

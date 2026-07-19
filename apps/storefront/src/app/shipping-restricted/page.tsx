@@ -5,7 +5,10 @@ import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Shipping Restricted",
-  path: "/shipping-restricted"
+  description:
+    "Checkout is unavailable for your location due to Tetrava Labs shipping compliance restrictions.",
+  path: "/shipping-restricted",
+  noIndex: true
 })
 
 export default function ShippingRestrictedPage() {

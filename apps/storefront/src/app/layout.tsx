@@ -55,7 +55,6 @@ export const metadata: Metadata = {
   },
   description: defaultSiteDescription,
   keywords: siteConfig.keywords,
-  alternates: { canonical: siteConfig.url },
   openGraph: {
     title: defaultSiteTitle,
     description: defaultSiteDescription,

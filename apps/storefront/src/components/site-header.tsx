@@ -14,8 +14,12 @@ const navLinks = [
   { label: "Categories", href: "/categories" },
   { label: "Research Hub", href: "/blog" },
   { label: "COA Library", href: "/coa-library" },
+  { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" }
 ]
+
+const iconButtonClass =
+  "inline-flex h-11 w-11 items-center justify-center text-[#475569] transition-colors hover:text-[#0F172A]"
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
@@ -51,6 +55,15 @@ export function SiteHeader() {
     if (searchOpen) searchInputRef.current?.focus()
   }, [searchOpen])
 
+  useEffect(() => {
+    const locked = mobileOpen || searchOpen
+    const previous = document.body.style.overflow
+    document.body.style.overflow = locked ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [mobileOpen, searchOpen])
+
   const submitSearch = () => {
     const q = searchQuery.trim()
     setSearchOpen(false)
@@ -69,7 +82,7 @@ export function SiteHeader() {
             <SiteLogo className="w-[156px] sm:w-[216px]" />
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-5 lg:flex xl:gap-8">
             <Suspense
               fallback={
                 <Link href="/shop" className="text-sm text-[#475569] hover:text-[#0F172A]">
@@ -94,15 +107,16 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1 sm:gap-2">
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="text-[#475569] transition-colors hover:text-[#0F172A]"
+              className={iconButtonClass}
+              aria-label="Search catalog"
             >
               <Search className="h-5 w-5" />
             </button>
-            <Link href="/account" className="text-[#475569] transition-colors hover:text-[#0F172A]">
+            <Link href="/account" className={iconButtonClass} aria-label="Account">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -121,11 +135,12 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="relative text-[#475569] transition-colors hover:text-[#0F172A]"
+              className={`relative ${iconButtonClass}`}
+              aria-label="Open cart"
             >
               <ShoppingCart className="h-5 w-5" />
               <span
-                className={`absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-medium text-white transition-opacity ${
+                className={`absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-medium text-white transition-opacity ${
                   totalItems > 0 ? "bg-[#0D9488] opacity-100" : "bg-[#0D9488] opacity-0"
                 }`}
                 aria-hidden={totalItems === 0}
@@ -135,8 +150,9 @@ export function SiteHeader() {
             </button>
             <button
               type="button"
-              className="text-[#475569] transition-colors hover:text-[#0F172A] md:hidden"
+              className={`${iconButtonClass} lg:hidden`}
               onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -170,7 +186,8 @@ export function SiteHeader() {
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
-                  className="text-[#94A3B8] hover:text-[#0F172A]"
+                  className="inline-flex h-11 w-11 items-center justify-center text-[#94A3B8] hover:text-[#0F172A]"
+                  aria-label="Close search"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -190,17 +207,22 @@ export function SiteHeader() {
       ) : null}
 
       {mobileOpen ? (
-        <div className="fixed inset-0 z-[60] bg-white">
-          <div className="flex h-full flex-col p-6">
+        <div className="fixed inset-0 z-[60] overflow-y-auto overscroll-contain bg-white">
+          <div className="flex min-h-full flex-col p-6 pb-10">
             <div className="flex items-center justify-between">
               <Link href="/" className="flex shrink-0 items-center">
                 <SiteLogo className="w-[180px] sm:w-[216px]" />
               </Link>
-              <button type="button" onClick={() => setMobileOpen(false)} className="text-[#475569]">
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex h-11 w-11 items-center justify-center text-[#475569]"
+                aria-label="Close menu"
+              >
                 <X className="h-6 w-6" />
               </button>
             </div>
-            <nav className="mt-10 flex flex-col gap-6">
+            <nav className="mt-8 flex flex-1 flex-col gap-5">
               <Suspense fallback={<Link href="/shop" className="font-serif text-2xl text-[#0F172A]">{shopNavLabel}</Link>}>
                 <ShopNavMenu variant="mobile" onNavigate={() => setMobileOpen(false)} />
               </Suspense>
@@ -215,16 +237,18 @@ export function SiteHeader() {
                 </Link>
               ))}
             </nav>
-            <div className="mt-auto flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/account"
-                className="inline-flex justify-center rounded-lg border border-[#0D9488] px-6 py-2.5 text-sm font-medium text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
+                className="inline-flex min-h-11 justify-center rounded-lg border border-[#0D9488] px-6 py-2.5 text-sm font-medium text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
+                onClick={() => setMobileOpen(false)}
               >
                 Sign In
               </Link>
               <Link
                 href="/account"
-                className="inline-flex justify-center rounded-lg bg-[#0D9488] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0F766E]"
+                className="inline-flex min-h-11 justify-center rounded-lg bg-[#0D9488] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0F766E]"
+                onClick={() => setMobileOpen(false)}
               >
                 Register
               </Link>

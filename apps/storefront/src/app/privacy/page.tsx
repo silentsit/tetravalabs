@@ -4,6 +4,8 @@ import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Policy",
+  description:
+    "How Tetrava Labs collects, uses, and protects order and account information for research-use customers.",
   path: "/privacy"
 })
 

@@ -54,7 +54,7 @@ export function ProductFilters({ products, activePill = "all" }: ProductFiltersP
             type="button"
             onClick={() => handlePillClick(pill.key)}
             className={cn(
-              "relative flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
+              "relative min-h-11 flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-200",
               isActive
                 ? "bg-[#0F172A] text-white shadow-sm"
                 : "bg-[#F8FAFC] text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"

@@ -5,6 +5,8 @@ import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Terms of Service",
+  description:
+    "Terms governing Tetrava Labs website use and research-compound purchases, including RUO requirements and order conditions.",
   path: "/terms"
 })
 

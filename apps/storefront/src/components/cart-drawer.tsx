@@ -6,6 +6,9 @@ import { Lock, Minus, Plus, Trash2, Truck, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import { getProductImage } from "@/lib/product-image-map"
 
+const iconBtn =
+  "inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[#E2E8F0] text-[#475569] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
+
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQty, subtotal } = useCart()
   if (!isOpen) return null
@@ -19,7 +22,12 @@ export function CartDrawer() {
       <div className="fixed bottom-0 right-0 top-0 z-[80] flex w-full max-w-md flex-col bg-white shadow-2xl">
         <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-4">
           <h2 className="font-serif text-xl text-[#0F172A]">Your Cart</h2>
-          <button type="button" onClick={() => setIsOpen(false)} className="text-[#94A3B8] hover:text-[#0F172A]">
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            className="inline-flex h-11 w-11 items-center justify-center text-[#94A3B8] hover:text-[#0F172A]"
+            aria-label="Close cart"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -32,7 +40,7 @@ export function CartDrawer() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="mt-4 text-sm text-[#0D9488] hover:underline"
+                className="mt-4 min-h-11 text-sm text-[#0D9488] hover:underline"
               >
                 Continue Shopping
               </button>
@@ -59,7 +67,8 @@ export function CartDrawer() {
                       <button
                         type="button"
                         onClick={() => removeItem(item.id)}
-                        className="text-[#CBD5E1] hover:text-red-500"
+                        className="inline-flex h-11 w-11 shrink-0 items-center justify-center text-[#CBD5E1] hover:text-red-500"
+                        aria-label={`Remove ${item.title}`}
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -69,17 +78,19 @@ export function CartDrawer() {
                         <button
                           type="button"
                           onClick={() => updateQty(item.id, item.quantity - 1)}
-                          className="flex h-7 w-7 items-center justify-center rounded border border-[#E2E8F0] text-[#475569] hover:border-[#0D9488] hover:text-[#0D9488]"
+                          className={iconBtn}
+                          aria-label="Decrease quantity"
                         >
-                          <Minus className="h-3 w-3" />
+                          <Minus className="h-4 w-4" />
                         </button>
-                        <span className="w-6 text-center text-sm text-[#0F172A]">{item.quantity}</span>
+                        <span className="min-w-8 text-center text-sm text-[#0F172A]">{item.quantity}</span>
                         <button
                           type="button"
                           onClick={() => updateQty(item.id, item.quantity + 1)}
-                          className="flex h-7 w-7 items-center justify-center rounded border border-[#E2E8F0] text-[#475569] hover:border-[#0D9488] hover:text-[#0D9488]"
+                          className={iconBtn}
+                          aria-label="Increase quantity"
                         >
-                          <Plus className="h-3 w-3" />
+                          <Plus className="h-4 w-4" />
                         </button>
                       </div>
                       <p className="text-sm font-medium text-[#0F172A]">
@@ -93,7 +104,7 @@ export function CartDrawer() {
           )}
         </div>
         {items.length > 0 ? (
-          <div className="border-t border-[#E2E8F0] px-4 py-4 sm:px-6">
+          <div className="border-t border-[#E2E8F0] px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
             <div className="mb-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-[#475569]">Subtotal</span>
@@ -108,7 +119,7 @@ export function CartDrawer() {
                 <span className="font-medium text-[#0F172A]">${subtotal.toFixed(2)}</span>
               </div>
             </div>
-            <Link href="/checkout" onClick={() => setIsOpen(false)} className="btn-primary w-full gap-2">
+            <Link href="/checkout" onClick={() => setIsOpen(false)} className="btn-primary w-full min-h-11 gap-2">
               <Lock className="h-4 w-4" /> Proceed to Checkout
             </Link>
           </div>

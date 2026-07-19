@@ -14,7 +14,8 @@ export const dynamic = "force-dynamic"
 export const metadata: Metadata = buildPageMetadata({
   title: "Search research compounds",
   description: "Search the Tetrava Labs catalog by peptide name, CAS number, formula, or sequence.",
-  path: "/search"
+  path: "/search",
+  noIndex: true
 })
 
 export default async function SearchPage({ searchParams }: Props) {

@@ -6,6 +6,8 @@ import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Research Use Only Policy",
+  description:
+    "Tetrava Labs Research Use Only (RUO) policy — compounds are for qualified laboratory research, not human consumption.",
   path: "/ruo"
 })
 

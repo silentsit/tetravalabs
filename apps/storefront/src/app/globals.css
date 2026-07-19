@@ -345,6 +345,41 @@
   .hero-slot-right  .hero-prod-img { height: clamp(302px, 43vw, 384px); }
 }
 
+@media (max-width: 480px) {
+  .hero-stage {
+    max-width: 100%;
+    height: clamp(240px, 70vw, 300px);
+    transform: translateY(clamp(8px, 3vw, 20px));
+  }
+
+  .hero-slot-left {
+    left: 0;
+    bottom: -12px;
+  }
+
+  .hero-slot-center {
+    left: 22%;
+    bottom: -8px;
+  }
+
+  .hero-slot-right {
+    left: 38%;
+    bottom: -16px;
+  }
+
+  .hero-slot-left .hero-prod-img {
+    height: clamp(180px, 48vw, 220px);
+  }
+
+  .hero-slot-center .hero-prod-img {
+    height: clamp(200px, 52vw, 240px);
+  }
+
+  .hero-slot-right .hero-prod-img {
+    height: clamp(220px, 58vw, 260px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-slot .hero-prod-img,
   .hero-slot-left .hero-prod-img,

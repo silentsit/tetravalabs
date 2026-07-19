@@ -1,8 +1,17 @@
 export const dynamic = "force-dynamic"
 
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { CartPanel } from "@/components/cart-panel"
+import { buildPageMetadata } from "@/lib/seo"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Cart",
+  description: "Review your selected research compounds before checkout.",
+  path: "/cart",
+  noIndex: true
+})
 
 export default function CartPage() {
   return (

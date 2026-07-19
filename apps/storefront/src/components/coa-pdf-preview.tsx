@@ -95,8 +95,8 @@ export function CoaPdfPreview({ url, alt, scale, className = "" }: Props) {
         <div className="absolute inset-0 animate-pulse bg-[#E2E8F0]/50" aria-hidden="true" />
       ) : null}
       {status === "failed" ? (
-        <div className="flex h-full min-h-[180px] w-full flex-col items-center justify-center gap-1 bg-[#F8FAFC] text-[#64748B]">
-          <FileText className="h-5 w-5" />
+        <div className="flex h-full min-h-[120px] w-full flex-col items-center justify-center gap-1 bg-[#F8FAFC] text-[#64748B]">
+          <FileText className="h-4 w-4" />
           <span className="text-[10px] font-medium uppercase tracking-wide">Preview unavailable</span>
         </div>
       ) : null}

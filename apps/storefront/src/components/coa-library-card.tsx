@@ -24,8 +24,7 @@ export function CoaLibraryCard({ document }: Props) {
         <CoaPdfPreview
           url={previewUrl}
           alt={`COA batch ${document.batch_number}`}
-          scale={0.52}
-          className="h-full w-full object-contain object-top transition-transform duration-300 group-hover:scale-[1.02]"
+          className="absolute inset-0 transition-transform duration-300 group-hover:scale-[1.02]"
         />
       ) : previewUrl ? (
         <Image
@@ -55,13 +54,13 @@ export function CoaLibraryCard({ document }: Props) {
           href={previewUrl}
           target="_blank"
           rel="noreferrer"
-          className="relative block aspect-[3/4] overflow-hidden bg-[#F8FAFC]"
+          className="relative block aspect-[3/4] min-h-[240px] overflow-hidden bg-[#F8FAFC]"
           aria-label={`Open COA for ${compound} batch ${document.batch_number}`}
         >
           {preview}
         </Link>
       ) : (
-        <div className="relative aspect-[3/4] overflow-hidden bg-[#F8FAFC]">{preview}</div>
+        <div className="relative aspect-[3/4] min-h-[240px] overflow-hidden bg-[#F8FAFC]">{preview}</div>
       )}
 
       <div className="flex flex-1 flex-col gap-3 p-4">

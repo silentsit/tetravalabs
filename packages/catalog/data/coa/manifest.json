@@ -12,7 +12,7 @@
       "variant": "10mg",
       "source_filename": "COA_5-Amino-1MQ_10mg_Injectable.pdf"
     },
-    "local_file": "5-amino-1mq-10mg.pdf"
+    "local_file": "COA_5-Amino-1MQ_10mg_Injectable.pdf"
   },
   {
     "id": "coa_5_amino_1mq_5mg_batch_a001",
@@ -66,7 +66,7 @@
       "variant": "5mg",
       "source_filename": "COA_Adipotide_5mg.pdf"
     },
-    "local_file": "adipotide-5mg.pdf"
+    "local_file": "COA_Adipotide_5mg.pdf"
   },
   {
     "id": "coa_aicar_50mg_batch_a001",
@@ -107,7 +107,7 @@
       "variant": "5mg",
       "source_filename": "COA_AOD-9604_5mg.pdf"
     },
-    "local_file": "aod-9604-5mg.pdf"
+    "local_file": "COA_AOD-9604_5mg.pdf"
   },
   {
     "id": "coa_ara_290_10mg_batch_a001",
@@ -145,8 +145,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Bacteriostatic Water",
-      "variant": "10ml"
-    }
+      "variant": "10ml",
+      "source_filename": "COA_Reconstitution_Solution_10ml.pdf"
+    },
+    "local_file": "COA_Reconstitution_Solution_10ml.pdf"
   },
   {
     "id": "coa_bacteriostatic_water_3ml_batch_a001",
@@ -200,7 +202,7 @@
       "variant": "10mg",
       "source_filename": "COA_BPC-157_10mg.pdf"
     },
-    "local_file": "bpc-157-10mg.pdf"
+    "local_file": "COA_BPC-157_10mg.pdf"
   },
   {
     "id": "coa_bpc_157_5mg_batch_a001",
@@ -215,7 +217,7 @@
       "variant": "5mg",
       "source_filename": "COA_BPC-157_5mg.pdf"
     },
-    "local_file": "bpc-157-5mg.pdf"
+    "local_file": "COA_BPC-157_5mg.pdf"
   },
   {
     "id": "coa_bpc_157_capsules_100ct_batch_a001",
@@ -230,7 +232,7 @@
       "variant": "100 count (500mcg)",
       "source_filename": "COA_BPC-157_500mcg_Tablet.pdf"
     },
-    "local_file": "bpc-157-capsules-500mcg.pdf"
+    "local_file": "COA_BPC-157_500mcg_Tablet.pdf"
   },
   {
     "id": "coa_bpc_157_tb500_blend_10mg_batch_a001",
@@ -297,7 +299,7 @@
       "variant": "10mg",
       "source_filename": "COA_Cagrilintide_10mg.pdf"
     },
-    "local_file": "cagrilintide-10mg.pdf"
+    "local_file": "COA_Cagrilintide_10mg.pdf"
   },
   {
     "id": "coa_cagrilintide_5mg_batch_a001",
@@ -312,7 +314,7 @@
       "variant": "5mg",
       "source_filename": "COA_Cagrilintide_5mg.pdf"
     },
-    "local_file": "cagrilintide-5mg.pdf"
+    "local_file": "COA_Cagrilintide_5mg.pdf"
   },
   {
     "id": "coa_cagrilintide_semaglutide_10mg_batch_a001",
@@ -339,6 +341,21 @@
       "compound": "Cagrilintide + Semaglutide",
       "variant": "5mg"
     }
+  },
+  {
+    "id": "coa_cerebrolysin_10mg_batch_a001",
+    "product_handle": "cerebrolysin",
+    "variant_handle": "cerebrolysin-10mg",
+    "batch_number": "A001",
+    "purity_percent": 99,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "coa",
+    "metadata": {
+      "compound": "Cerebrolysin",
+      "variant": "10mg",
+      "source_filename": "COA_Cerebroprotein_Hydrolysate_60mg.pdf"
+    },
+    "local_file": "COA_Cerebroprotein_Hydrolysate_60mg.pdf"
   },
   {
     "id": "coa_cjc_1295_ipamorelin_blend_10mg_batch_a001",
@@ -457,7 +474,7 @@
       "variant": "10mg",
       "source_filename": "COA_DSIP_10mg.pdf"
     },
-    "local_file": "dsip-10mg.pdf"
+    "local_file": "COA_DSIP_10mg.pdf"
   },
   {
     "id": "coa_dsip_15mg_batch_a001",
@@ -498,7 +515,7 @@
       "variant": "10mg",
       "source_filename": "COA_Epithalon_10mg.pdf"
     },
-    "local_file": "epithalon-10mg.pdf"
+    "local_file": "COA_Epithalon_10mg.pdf"
   },
   {
     "id": "coa_epithalon_20mg_batch_a001",
@@ -565,7 +582,7 @@
       "variant": "50mg",
       "source_filename": "COA_GHK-Cu_50mg.pdf"
     },
-    "local_file": "ghk-cu-50mg.pdf"
+    "local_file": "COA_GHK-Cu_50mg.pdf"
   },
   {
     "id": "coa_ghrp_2_acetate_10mg_batch_a001",
@@ -681,8 +698,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Glutathione",
-      "variant": "600mg"
-    }
+      "variant": "600mg",
+      "source_filename": "COA_Reduced_Glutathione_600mg.pdf"
+    },
+    "local_file": "COA_Reduced_Glutathione_600mg.pdf"
   },
   {
     "id": "coa_gonadorelin_10mg_batch_a001",
@@ -902,8 +921,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Kisspeptin-10",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Kisspeptin-10_10mg.pdf"
+    },
+    "local_file": "COA_Kisspeptin-10_10mg.pdf"
   },
   {
     "id": "coa_kisspeptin_10_5mg_batch_a001",
@@ -928,8 +949,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "KPV",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_KPV_10mg.pdf"
+    },
+    "local_file": "COA_KPV_10mg.pdf"
   },
   {
     "id": "coa_kpv_5mg_batch_a001",
@@ -954,8 +977,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "L-Carnitine",
-      "variant": "600mg (10ml)"
-    }
+      "variant": "600mg (10ml)",
+      "source_filename": "COA_L-Carnitine_500mg.pdf"
+    },
+    "local_file": "COA_L-Carnitine_500mg.pdf"
   },
   {
     "id": "coa_l_glu_100mg_batch_a001",
@@ -1006,8 +1031,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "LL-37",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_LL-37_5mg.pdf"
+    },
+    "local_file": "COA_LL-37_5mg.pdf"
   },
   {
     "id": "coa_mazdutide_10mg_batch_a001",
@@ -1045,8 +1072,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Melanotan 1",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Melanotan_1_10mg.pdf"
+    },
+    "local_file": "COA_Melanotan_1_10mg.pdf"
   },
   {
     "id": "coa_melanotan_2_10mg_batch_a001",
@@ -1058,8 +1087,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Melanotan 2",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Melanotan_2_10mg.pdf"
+    },
+    "local_file": "COA_Melanotan_2_10mg.pdf"
   },
   {
     "id": "coa_mgf_2mg_batch_a001",
@@ -1097,8 +1128,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "MOTS-c",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_MOTS-C_10mg.pdf"
+    },
+    "local_file": "COA_MOTS-C_10mg.pdf"
   },
   {
     "id": "coa_mots_c_20mg_batch_a001",
@@ -1110,8 +1143,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "MOTS-c",
-      "variant": "20mg"
-    }
+      "variant": "20mg",
+      "source_filename": "COA_MOTS-C_20mg.pdf"
+    },
+    "local_file": "COA_MOTS-C_20mg.pdf"
   },
   {
     "id": "coa_mots_c_40mg_batch_a001",
@@ -1149,8 +1184,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "NAD+",
-      "variant": "1000mg"
-    }
+      "variant": "1000mg",
+      "source_filename": "COA_NAD__1000mg.pdf"
+    },
+    "local_file": "COA_NAD__1000mg.pdf"
   },
   {
     "id": "coa_nad_plus_100mg_batch_a001",
@@ -1162,8 +1199,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "NAD+",
-      "variant": "100mg"
-    }
+      "variant": "100mg",
+      "source_filename": "COA_NAD__100mg.pdf"
+    },
+    "local_file": "COA_NAD__100mg.pdf"
   },
   {
     "id": "coa_nad_plus_500mg_batch_a001",
@@ -1175,8 +1214,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "NAD+",
-      "variant": "500mg"
-    }
+      "variant": "500mg",
+      "source_filename": "COA_NAD__500mg.pdf"
+    },
+    "local_file": "COA_NAD__500mg.pdf"
   },
   {
     "id": "coa_oxytocin_acetate_10mg_batch_a001",
@@ -1231,6 +1272,21 @@
     }
   },
   {
+    "id": "coa_pinealon_10mg_batch_a001",
+    "product_handle": "pinealon",
+    "variant_handle": "pinealon-10mg",
+    "batch_number": "A001",
+    "purity_percent": 99,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "coa",
+    "metadata": {
+      "compound": "Pinealon",
+      "variant": "10mg",
+      "source_filename": "COA_Pinealon_10mg.pdf"
+    },
+    "local_file": "COA_Pinealon_10mg.pdf"
+  },
+  {
     "id": "coa_pinealon_capsules_100ct_batch_a001",
     "product_handle": "pinealon-capsules",
     "variant_handle": "pinealon-capsules-100ct",
@@ -1269,7 +1325,7 @@
       "variant": "10mg",
       "source_filename": "COA_GLP-2_TR_10mg.pdf"
     },
-    "local_file": "retatrutide-10mg.pdf"
+    "local_file": "COA_GLP-2_TR_10mg.pdf"
   },
   {
     "id": "coa_retatrutide_20mg_batch_a001",
@@ -1284,7 +1340,7 @@
       "variant": "20mg",
       "source_filename": "COA_GLP-2_TR_20mg.pdf"
     },
-    "local_file": "retatrutide-20mg.pdf"
+    "local_file": "COA_GLP-2_TR_20mg.pdf"
   },
   {
     "id": "coa_retatrutide_50mg_batch_a001",
@@ -1312,7 +1368,7 @@
       "variant": "5mg",
       "source_filename": "COA_GLP-2_TR_5mg.pdf"
     },
-    "local_file": "retatrutide-5mg.pdf"
+    "local_file": "COA_GLP-2_TR_5mg.pdf"
   },
   {
     "id": "coa_selank_10mg_batch_a001",
@@ -1402,8 +1458,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Sermorelin",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Sermorelin_10mg.pdf"
+    },
+    "local_file": "COA_Sermorelin_10mg.pdf"
   },
   {
     "id": "coa_sermorelin_5mg_batch_a001",
@@ -1415,8 +1473,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Sermorelin",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_Sermorelin_5mg.pdf"
+    },
+    "local_file": "COA_Sermorelin_5mg.pdf"
   },
   {
     "id": "coa_snap_8_10mg_batch_a001",
@@ -1441,8 +1501,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "SS-31",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_SS-31_10mg.pdf"
+    },
+    "local_file": "COA_SS-31_10mg.pdf"
   },
   {
     "id": "coa_ss_31_25mg_batch_a001",
@@ -1454,8 +1516,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "SS-31",
-      "variant": "25mg"
-    }
+      "variant": "25mg",
+      "source_filename": "COA_SS-31_20mg.pdf"
+    },
+    "local_file": "COA_SS-31_20mg.pdf"
   },
   {
     "id": "coa_ss_31_50mg_batch_a001",
@@ -1467,8 +1531,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "SS-31",
-      "variant": "50mg"
-    }
+      "variant": "50mg",
+      "source_filename": "COA_SS-31_30mg.pdf"
+    },
+    "local_file": "COA_SS-31_30mg.pdf"
   },
   {
     "id": "coa_survodutide_10mg_batch_a001",
@@ -1493,8 +1559,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "TB500",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Thymosin_Beta-4_TB-500_10mg.pdf"
+    },
+    "local_file": "COA_Thymosin_Beta-4_TB-500_10mg.pdf"
   },
   {
     "id": "coa_tb500_5mg_batch_a001",
@@ -1506,8 +1574,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "TB500",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_Thymosin_Beta-4_TB-500_5mg (1).pdf"
+    },
+    "local_file": "COA_Thymosin_Beta-4_TB-500_5mg (1).pdf"
   },
   {
     "id": "coa_tesamorelin_10mg_batch_a001",
@@ -1519,8 +1589,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Tesamorelin",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Tesamorelin_10mg.pdf"
+    },
+    "local_file": "COA_Tesamorelin_10mg.pdf"
   },
   {
     "id": "coa_tesamorelin_20mg_batch_a001",
@@ -1545,8 +1617,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Tesamorelin",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_Tesamorelin_5mg.pdf"
+    },
+    "local_file": "COA_Tesamorelin_5mg.pdf"
   },
   {
     "id": "coa_thymalin_10mg_batch_a001",
@@ -1558,8 +1632,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Thymalin",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Thymalin_10mg.pdf"
+    },
+    "local_file": "COA_Thymalin_10mg.pdf"
   },
   {
     "id": "coa_thymosin_alpha_1_10mg_batch_a001",
@@ -1597,8 +1673,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Tirzepatide",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_GLP-3_RT_10mg.pdf"
+    },
+    "local_file": "COA_GLP-3_RT_10mg.pdf"
   },
   {
     "id": "coa_tirzepatide_20mg_batch_a001",
@@ -1610,8 +1688,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Tirzepatide",
-      "variant": "20mg"
-    }
+      "variant": "20mg",
+      "source_filename": "COA_GLP-3_RT_15mg.pdf"
+    },
+    "local_file": "COA_GLP-3_RT_15mg.pdf"
   },
   {
     "id": "coa_tirzepatide_50mg_batch_a001",
@@ -1623,8 +1703,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Tirzepatide",
-      "variant": "50mg"
-    }
+      "variant": "50mg",
+      "source_filename": "COA_GLP-3_RT_30mg.pdf"
+    },
+    "local_file": "COA_GLP-3_RT_30mg.pdf"
   },
   {
     "id": "coa_tirzepatide_5mg_batch_a001",
@@ -1636,8 +1718,10 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Tirzepatide",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_GLP-3_RT_5mg.pdf"
+    },
+    "local_file": "COA_GLP-3_RT_5mg.pdf"
   },
   {
     "id": "coa_vip_10mg_batch_a001",
@@ -1975,6 +2059,19 @@
     "metadata": {
       "compound": "Cagrilintide + Semaglutide",
       "variant": "5mg"
+    }
+  },
+  {
+    "id": "hplc_cerebrolysin_10mg_batch_a001",
+    "product_handle": "cerebrolysin",
+    "variant_handle": "cerebrolysin-10mg",
+    "batch_number": "A001",
+    "purity_percent": 99,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "hplc",
+    "metadata": {
+      "compound": "Cerebrolysin",
+      "variant": "10mg"
     }
   },
   {
@@ -2859,6 +2956,19 @@
     "metadata": {
       "compound": "PEG-MGF",
       "variant": "2mg"
+    }
+  },
+  {
+    "id": "hplc_pinealon_10mg_batch_a001",
+    "product_handle": "pinealon",
+    "variant_handle": "pinealon-10mg",
+    "batch_number": "A001",
+    "purity_percent": 99,
+    "tested_at": "2026-06-01T00:00:00.000Z",
+    "document_type": "hplc",
+    "metadata": {
+      "compound": "Pinealon",
+      "variant": "10mg"
     }
   },
   {

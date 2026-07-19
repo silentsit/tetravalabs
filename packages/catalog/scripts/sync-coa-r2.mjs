@@ -117,22 +117,42 @@ function buildStorageKey(entry, variantId, ext) {
 }
 
 async function fetchProducts() {
-  const response = await fetch(`${medusaUrl}/store/products?limit=100`, {
-    headers: {
-      ...(publishableKey ? { "x-publishable-api-key": publishableKey } : {})
+  const products = []
+  const limit = 100
+  let offset = 0
+
+  while (true) {
+    const response = await fetch(`${medusaUrl}/store/products?limit=${limit}&offset=${offset}`, {
+      headers: {
+        ...(publishableKey ? { "x-publishable-api-key": publishableKey } : {})
+      }
+    })
+    if (!response.ok) {
+      throw new Error(`Failed to load products from Medusa (${response.status})`)
     }
-  })
-  if (!response.ok) {
-    throw new Error(`Failed to load products from Medusa (${response.status})`)
+    const data = await response.json()
+    const page = data.products || []
+    products.push(...page)
+    if (page.length < limit) break
+    offset += limit
   }
-  const data = await response.json()
-  return data.products || []
+
+  return products
+}
+
+const HANDLE_ALIASES = {
+  "bpc-157-capsules-100ct": "bpc-157-capsules-100-count-500mcg",
+  "nad-plus-1000mg": "nad-1000mg",
+  "nad-plus-100mg": "nad-100mg",
+  "nad-plus-500mg": "nad-500mg",
+  "pinealon-capsules-100ct": "pinealon-capsules-100-count"
 }
 
 function resolveVariantId(products, entry) {
   if (entry.variant_id) return entry.variant_id
 
-  const handle = entry.variant_handle || entry.product_handle
+  const rawHandle = entry.variant_handle || entry.product_handle
+  const handle = HANDLE_ALIASES[rawHandle] || rawHandle
   if (!handle) return null
 
   for (const product of products) {

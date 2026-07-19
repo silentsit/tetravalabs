@@ -9,8 +9,12 @@ type Props = {
   compact?: boolean
 }
 
-function isPdfUrl(url: string) {
-  return /\.pdf(\?|$)/i.test(url) || url.includes("/file")
+function isPdfPreviewUrl(url: string) {
+  return (
+    /\.pdf(\?|$)/i.test(url) ||
+    url.includes("/file") ||
+    url.startsWith("/api/coa-file")
+  )
 }
 
 export function CoaDocumentPreview({ document, compact = false }: Props) {
@@ -20,7 +24,7 @@ export function CoaDocumentPreview({ document, compact = false }: Props) {
   return (
     <div className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm">
       <div className={`relative ${previewHeight} bg-[#F1F5F9]`}>
-        {document.document_url && isPdfUrl(document.document_url) ? (
+        {document.document_url && isPdfPreviewUrl(document.document_url) ? (
           <iframe
             title={`COA preview batch ${document.batch_number}`}
             src={`${document.document_url}#toolbar=0&navpanes=0`}

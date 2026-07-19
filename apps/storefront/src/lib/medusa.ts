@@ -203,7 +203,7 @@ export async function getFeaturedCoaDocument(
       purity_percent: 99,
       tested_at: "2026-06-01T00:00:00.000Z",
       document_type: "coa",
-      document_url: coaViewerUrl("coa_bpc_157_10mg_batch_a001"),
+      document_url: "/v2/coa-preview.jpg",
       metadata: { compound: "BPC-157", variant: "10mg" }
     },
     productHandle: "bpc-157",

@@ -42,6 +42,8 @@ type PageMetaInput = {
   noIndex?: boolean
   type?: "website" | "article"
   publishedTime?: string
+  /** Optional social preview image path or absolute URL. */
+  image?: string
   /** Extra schema.org graphs for this route (registered for `<head>` injection). */
   jsonLd?: JsonLdGraph | JsonLdGraph[]
   /** When true (default), auto-register a WebPage graph for `path`. */
@@ -111,7 +113,7 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
   })
   const description = clampMetaDescription(input.description || siteConfig.description)
   const url = pageUrl(input.path)
-  const ogImage = pageUrl(siteConfig.defaultOgImage)
+  const ogImage = pageUrl(input.image || siteConfig.defaultOgImage)
 
   if (input.path && !input.noIndex) {
     const graphs: JsonLdGraph[] = []
@@ -151,8 +153,22 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [ogImage]
+      images: [ogImage],
+      ...(siteConfig.twitterHandle ? { site: siteConfig.twitterHandle } : {})
     }
+  }
+}
+
+export function breadcrumbJsonLd(items: Array<{ label: string; href?: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.label,
+      ...(item.href ? { item: pageUrl(item.href) } : {})
+    }))
   }
 }
 

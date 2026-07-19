@@ -13,8 +13,8 @@ export const metadata: Metadata = buildPageMetadata({
 export default function RefundPage() {
   return (
     <LegalPageShell eyebrow="Legal" title="Refund & Delivery Policy">
-      <div className="space-y-6 text-sm leading-relaxed text-[#8A8AA0]">
-        <p className="text-base text-[#E8E8F0]">
+      <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
+        <p className="text-base text-[#0F172A]">
           <strong>We guarantee delivery.</strong> If your order does not arrive, we will resend it.
         </p>
         <p>
@@ -23,7 +23,7 @@ export default function RefundPage() {
         </p>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Delivery guarantee</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Delivery guarantee</h2>
           <p>
             If your package is lost in transit, delayed beyond a reasonable carrier window, or never
             delivered for reasons outside your control, we will <strong>resend the order</strong>.
@@ -35,7 +35,7 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Customs exception</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Customs exception</h2>
           <p>
             Some countries enforce strict customs rules that refuse peptide research materials.
           </p>
@@ -45,7 +45,7 @@ export default function RefundPage() {
             <li>Reshipment to the same address may not be possible</li>
             <li>
               Please check our{" "}
-              <Link href="/shipping-restricted" className="text-[#5EEAD4] hover:underline">
+              <Link href="/shipping-restricted" className="text-[#0D9488] hover:underline">
                 shipping restrictions
               </Link>{" "}
               before ordering
@@ -55,7 +55,7 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Returns</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Returns</h2>
           <p>
             Peptides are temperature- and light-sensitive and cannot be restocked once shipped.
           </p>
@@ -66,7 +66,7 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">
+          <h2 className="text-base font-medium text-[#0F172A]">
             When we will help (wrong / damaged / missing)
           </h2>
           <p>Contact us within <strong>7 days of delivery</strong> if:</p>
@@ -82,7 +82,7 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Refunds</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Refunds</h2>
           <p>
             Where a refund is approved instead of a reshipment, a{" "}
             <strong>$15 USD processing fee</strong> applies and will be deducted from the refund
@@ -95,7 +95,7 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Cancellations</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Cancellations</h2>
           <p>
             You may request a cancellation only while the order is still processing and has not been
             handed to the carrier.
@@ -104,7 +104,7 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Quick summary</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Quick summary</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>
               <strong>Lost / not delivered</strong> — We resend
@@ -127,10 +127,10 @@ export default function RefundPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Contact</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Contact</h2>
           <p>
             To open a claim or request a reship, contact{" "}
-            <Link href="/contact" className="text-[#5EEAD4] hover:underline">
+            <Link href="/contact" className="text-[#0D9488] hover:underline">
               support
             </Link>{" "}
             with your order number within 7 days of the delivery date (or expected delivery date for

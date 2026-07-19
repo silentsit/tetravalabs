@@ -2,7 +2,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { FileText } from "lucide-react"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
-import { formatCoaCompound, formatCoaStrength, isCoaPdfPreviewUrl } from "@/lib/coa-display"
+import {
+  formatCoaCompound,
+  formatCoaStrength,
+  getCoaCardPreviewUrl,
+  isCoaPdfPreviewUrl
+} from "@/lib/coa-display"
 import type { StoreCoaDocument } from "@/lib/medusa"
 
 type Props = {
@@ -13,19 +18,27 @@ type Props = {
 export function CoaDocumentPreview({ document, compact = false }: Props) {
   const previewHeight = compact ? "h-48" : "h-72"
   const strength = formatCoaStrength(document)
+  const thumbnailUrl = getCoaCardPreviewUrl(document)
+  const pdfUrl = document.document_url
 
   return (
     <div className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm">
       <div className={`relative ${previewHeight} bg-[#F1F5F9]`}>
-        {document.document_url && isCoaPdfPreviewUrl(document.document_url) ? (
-          <CoaPdfPreview
-            url={document.document_url}
-            alt={`COA batch ${document.batch_number}`}
-            className="absolute inset-0"
-          />
-        ) : document.document_url ? (
+        {thumbnailUrl ? (
           <Image
-            src={document.document_url}
+            src={thumbnailUrl}
+            alt={`COA batch ${document.batch_number}`}
+            fill
+            unoptimized
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-contain object-top p-2"
+          />
+        ) : pdfUrl && isCoaPdfPreviewUrl(pdfUrl) ? (
+          <CoaPdfPreview url={pdfUrl} alt={`COA batch ${document.batch_number}`} className="absolute inset-0" />
+        ) : pdfUrl ? (
+          <Image
+            src={pdfUrl}
             alt={`COA batch ${document.batch_number}`}
             fill
             unoptimized
@@ -54,9 +67,9 @@ export function CoaDocumentPreview({ document, compact = false }: Props) {
             <span>Tested {new Date(document.tested_at).toLocaleDateString()}</span>
           ) : null}
         </div>
-        {document.document_url ? (
+        {pdfUrl ? (
           <Link
-            href={document.document_url}
+            href={pdfUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex text-sm text-[#0D9488] hover:underline"

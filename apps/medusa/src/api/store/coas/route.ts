@@ -15,6 +15,11 @@ type LabDocumentRow = {
 }
 
 function mapDocument(row: LabDocumentRow) {
+  const metadata = row.metadata || {}
+  const previewStorageKey =
+    typeof metadata.preview_storage_key === "string" ? metadata.preview_storage_key.trim() : ""
+  const previewUrl = previewStorageKey ? resolveCoaDocumentUrl("", previewStorageKey) : null
+
   return {
     id: row.id,
     variant_id: row.variant_id,
@@ -23,8 +28,9 @@ function mapDocument(row: LabDocumentRow) {
     tested_at: row.tested_at,
     document_type: row.document_type,
     document_url: resolveCoaDocumentUrl(row.document_url, row.storage_key),
+    preview_url: previewUrl,
     storage_key: row.storage_key || null,
-    metadata: row.metadata || {}
+    metadata
   }
 }
 

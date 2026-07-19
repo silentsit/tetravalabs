@@ -71,3 +71,8 @@ export function isCoaPdfPreviewUrl(url: string) {
     url.startsWith("/api/coa-file")
   )
 }
+
+export function getCoaCardPreviewUrl(doc: { preview_url?: string | null }) {
+  const url = doc.preview_url?.trim()
+  return url || null
+}

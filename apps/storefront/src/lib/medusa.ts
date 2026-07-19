@@ -55,6 +55,7 @@ export type StoreCoaDocument = {
   tested_at: string | null
   document_type: "coa" | "hplc"
   document_url: string
+  preview_url?: string | null
   storage_key?: string | null
   metadata?: Record<string, unknown>
 }
@@ -64,9 +65,30 @@ export function coaViewerUrl(documentId: string) {
   return `/api/coa-file?id=${encodeURIComponent(documentId)}`
 }
 
+/** Same-origin proxy for pre-generated card thumbnails. */
+export function coaPreviewUrl(documentId: string) {
+  return `/api/coa-preview?id=${encodeURIComponent(documentId)}`
+}
+
+function hasPreviewAsset(doc: StoreCoaDocument) {
+  const metadata = doc.metadata || {}
+  return Boolean(
+    doc.preview_url ||
+      (typeof metadata.preview_storage_key === "string" && metadata.preview_storage_key.trim())
+  )
+}
+
 function normalizeCoaDocumentUrl(doc: StoreCoaDocument): StoreCoaDocument {
   if (!doc.id) return doc
-  return { ...doc, document_url: coaViewerUrl(doc.id) }
+
+  const directPreview =
+    typeof doc.preview_url === "string" && doc.preview_url.startsWith("http") ? doc.preview_url : null
+
+  return {
+    ...doc,
+    document_url: coaViewerUrl(doc.id),
+    preview_url: directPreview || (hasPreviewAsset(doc) ? coaPreviewUrl(doc.id) : null)
+  }
 }
 
 const withHeaders = (headers: HeadersInit = {}) => ({

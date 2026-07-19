@@ -5,6 +5,7 @@ import { CoaPdfPreview } from "@/components/coa-pdf-preview"
 import {
   formatCoaCompound,
   formatCoaStrength,
+  getCoaCardPreviewUrl,
   isCoaPdfPreviewUrl
 } from "@/lib/coa-display"
 import type { StoreCoaDocument } from "@/lib/medusa"
@@ -16,22 +17,34 @@ type Props = {
 export function CoaLibraryCard({ document }: Props) {
   const strength = formatCoaStrength(document)
   const compound = formatCoaCompound(document)
-  const previewUrl = document.document_url
+  const thumbnailUrl = getCoaCardPreviewUrl(document)
+  const pdfUrl = document.document_url
 
   const preview = (
     <>
-      {previewUrl && isCoaPdfPreviewUrl(previewUrl) ? (
-        <CoaPdfPreview
-          url={previewUrl}
-          alt={`COA batch ${document.batch_number}`}
-          className="absolute inset-0 transition-transform duration-300 group-hover:scale-[1.02]"
-        />
-      ) : previewUrl ? (
+      {thumbnailUrl ? (
         <Image
-          src={previewUrl}
+          src={thumbnailUrl}
           alt={`COA batch ${document.batch_number}`}
           fill
           unoptimized
+          loading="lazy"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+          className="object-contain object-top p-1 transition-transform duration-300 group-hover:scale-[1.02]"
+        />
+      ) : pdfUrl && isCoaPdfPreviewUrl(pdfUrl) ? (
+        <CoaPdfPreview
+          url={pdfUrl}
+          alt={`COA batch ${document.batch_number}`}
+          className="absolute inset-0 transition-transform duration-300 group-hover:scale-[1.02]"
+        />
+      ) : pdfUrl ? (
+        <Image
+          src={pdfUrl}
+          alt={`COA batch ${document.batch_number}`}
+          fill
+          unoptimized
+          loading="lazy"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
         />
@@ -49,14 +62,14 @@ export function CoaLibraryCard({ document }: Props) {
 
   return (
     <article className="card card-hover group flex flex-col overflow-hidden">
-      {previewUrl ? (
+      {pdfUrl ? (
         <Link
-          href={previewUrl}
+          href={pdfUrl}
           prefetch={false}
           target="_blank"
           rel="noreferrer"
           className="relative block aspect-[4/5] max-h-[200px] overflow-hidden bg-[#F8FAFC]"
-          aria-label={`Open COA for ${compound} batch ${document.batch_number}`}
+          aria-label={`Open COA PDF for ${compound} batch ${document.batch_number}`}
         >
           {preview}
         </Link>
@@ -84,9 +97,9 @@ export function CoaLibraryCard({ document }: Props) {
           ) : null}
         </div>
 
-        {previewUrl ? (
+        {pdfUrl ? (
           <Link
-            href={previewUrl}
+            href={pdfUrl}
             prefetch={false}
             target="_blank"
             rel="noreferrer"

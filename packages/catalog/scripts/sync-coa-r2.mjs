@@ -8,14 +8,17 @@
  * Usage:
  *   npm run coa:sync-r2
  *   npm run coa:sync-r2 -- --dry-run
+ *   npm run coa:generate-previews
+ *   npm run coa:generate-previews -- --force-previews
  */
 
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import dotenv from "dotenv"
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
+import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
 import pg from "pg"
+import { buildPreviewStorageKey, renderPdfPreviewJpeg } from "./lib/coa-preview-image.mjs"
 
 const { Client: PgClient } = pg
 
@@ -28,6 +31,8 @@ const manifestPath = path.join(workspaceRoot, "packages", "catalog", "data", "co
 const filesDir = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "files")
 const dryRun = process.argv.includes("--dry-run")
 const includePlaceholders = process.argv.includes("--include-placeholders")
+const backfillPreviewsOnly = process.argv.includes("--backfill-previews-only")
+const skipBackfillPreviews = process.argv.includes("--skip-backfill-previews")
 
 const medusaUrl = (process.env.MEDUSA_ADMIN_URL || process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(
   /\/$/,
@@ -175,7 +180,7 @@ function resolveVariantId(products, entry) {
   return product.variants[0].id
 }
 
-async function upsertDocument(client, entry, variantId, storageKey, documentUrl, mediaType) {
+async function upsertDocument(client, entry, variantId, storageKey, documentUrl, mediaType, previewStorageKey) {
   await client.query(
     `
     INSERT INTO lab_batch_documents (
@@ -204,10 +209,126 @@ async function upsertDocument(client, entry, variantId, storageKey, documentUrl,
       {
         ...(entry.metadata || {}),
         ...(entry.variant_handle ? { variant_handle: entry.variant_handle } : {}),
-        media_type: mediaType
+        media_type: mediaType,
+        preview_storage_key: previewStorageKey
       }
     ]
   )
+}
+
+async function readR2Object(s3, bucket, key) {
+  const response = await s3.send(
+    new GetObjectCommand({
+      Bucket: bucket,
+      Key: key.replace(/^\/+/, "")
+    })
+  )
+  const body = await response.Body?.transformToByteArray()
+  if (!body?.length) throw new Error(`Object empty: ${key}`)
+  return {
+    body: Buffer.from(body),
+    contentType: response.ContentType || "application/octet-stream"
+  }
+}
+
+async function uploadPreviewObject(s3, bucket, previewStorageKey, previewBody, previewContentType) {
+  await s3.send(
+    new PutObjectCommand({
+      Bucket: bucket,
+      Key: previewStorageKey,
+      Body: previewBody,
+      ContentType: previewContentType
+    })
+  )
+}
+
+async function buildPreviewPayload(body, ext, contentType, storageKey) {
+  const previewStorageKey = buildPreviewStorageKey(storageKey)
+
+  if (ext !== ".pdf") {
+    return {
+      previewStorageKey,
+      previewBody: body,
+      previewContentType: contentType
+    }
+  }
+
+  const previewBody = await renderPdfPreviewJpeg(body)
+  return {
+    previewStorageKey,
+    previewBody,
+    previewContentType: "image/jpeg"
+  }
+}
+
+async function backfillMissingPreviews(pgClient, s3, bucket, r2) {
+  const result = await pgClient.query(`
+    SELECT id, storage_key, metadata
+    FROM lab_batch_documents
+    WHERE storage_key IS NOT NULL AND storage_key <> ''
+    ORDER BY updated_at DESC
+  `)
+
+  let generated = 0
+  let skipped = 0
+
+  for (const row of result.rows) {
+    const storageKey = String(row.storage_key || "").trim()
+    if (!storageKey) {
+      skipped += 1
+      continue
+    }
+
+    const metadata = row.metadata || {}
+    const existingPreviewKey =
+      typeof metadata.preview_storage_key === "string" ? metadata.preview_storage_key.trim() : ""
+    const previewStorageKey = existingPreviewKey || buildPreviewStorageKey(storageKey)
+
+    if (existingPreviewKey && !process.argv.includes("--force-previews")) {
+      skipped += 1
+      continue
+    }
+
+    try {
+      const { body, contentType } = await readR2Object(s3, bucket, storageKey)
+      const ext = extensionFromFilename(storageKey)
+      const { previewBody, previewContentType } = await buildPreviewPayload(
+        body,
+        ext,
+        contentType,
+        storageKey
+      )
+
+      if (dryRun) {
+        console.log(`[dry-run] preview ${row.id} -> ${previewStorageKey}`)
+        continue
+      }
+
+      if (ext === ".pdf" || previewStorageKey !== storageKey) {
+        await uploadPreviewObject(s3, bucket, previewStorageKey, previewBody, previewContentType)
+      }
+
+      await pgClient.query(
+        `
+        UPDATE lab_batch_documents
+        SET metadata = COALESCE(metadata, '{}'::jsonb) || $2::jsonb,
+            updated_at = NOW()
+        WHERE id = $1
+      `,
+        [row.id, JSON.stringify({ preview_storage_key: previewStorageKey })]
+      )
+
+      generated += 1
+      const previewUrl = buildPublicUrl(previewStorageKey, r2.publicBaseUrl)
+      console.log(`[preview] ${row.id} -> ${previewUrl}`)
+    } catch (error) {
+      skipped += 1
+      const message = error instanceof Error ? error.message : String(error)
+      console.warn(`[preview-skip] ${row.id}: ${message}`)
+    }
+  }
+
+  return { generated, skipped }
 }
 
 async function run() {
@@ -251,49 +372,70 @@ async function run() {
   let uploaded = 0
   let skipped = 0
 
-  for (const entry of manifest) {
-    const variantId = resolveVariantId(products, entry)
-    if (!variantId) {
-      console.warn(`[skip] ${entry.id}: could not resolve variant for handle ${entry.variant_handle || entry.product_handle}`)
-      skipped += 1
-      continue
+  if (!backfillPreviewsOnly) {
+    for (const entry of manifest) {
+      const variantId = resolveVariantId(products, entry)
+      if (!variantId) {
+        console.warn(`[skip] ${entry.id}: could not resolve variant for handle ${entry.variant_handle || entry.product_handle}`)
+        skipped += 1
+        continue
+      }
+
+      if (!entry.local_file && !includePlaceholders) {
+        skipped += 1
+        continue
+      }
+
+      const { body, ext, contentType, source } = await loadDocumentBody(entry)
+      const storageKey = buildStorageKey(entry, variantId, ext)
+      const documentUrl = buildPublicUrl(storageKey, r2.publicBaseUrl)
+      const mediaType = ext === ".pdf" ? "pdf" : "image"
+      const { previewStorageKey, previewBody, previewContentType } = await buildPreviewPayload(
+        body,
+        ext,
+        contentType,
+        storageKey
+      )
+
+      if (dryRun) {
+        console.log(`[dry-run] ${entry.id} -> ${storageKey} (${contentType}, ${source}) + ${previewStorageKey}`)
+        continue
+      }
+
+      await s3.send(
+        new PutObjectCommand({
+          Bucket: r2.bucket,
+          Key: storageKey,
+          Body: body,
+          ContentType: contentType
+        })
+      )
+
+      if (ext === ".pdf" || previewStorageKey !== storageKey) {
+        await uploadPreviewObject(s3, r2.bucket, previewStorageKey, previewBody, previewContentType)
+      }
+
+      await upsertDocument(pgClient, entry, variantId, storageKey, documentUrl, mediaType, previewStorageKey)
+      uploaded += 1
+      console.log(`[ok] ${entry.id} -> ${documentUrl}`)
     }
+  }
 
-    if (!entry.local_file && !includePlaceholders) {
-      skipped += 1
-      continue
-    }
-
-    const { body, ext, contentType, source } = await loadDocumentBody(entry)
-    const storageKey = buildStorageKey(entry, variantId, ext)
-    const documentUrl = buildPublicUrl(storageKey, r2.publicBaseUrl)
-    const mediaType = ext === ".pdf" ? "pdf" : "image"
-
-    if (dryRun) {
-      console.log(`[dry-run] ${entry.id} -> ${storageKey} (${contentType}, ${source})`)
-      continue
-    }
-
-    await s3.send(
-      new PutObjectCommand({
-        Bucket: r2.bucket,
-        Key: storageKey,
-        Body: body,
-        ContentType: contentType
-      })
-    )
-
-    await upsertDocument(pgClient, entry, variantId, storageKey, documentUrl, mediaType)
-    uploaded += 1
-    console.log(`[ok] ${entry.id} -> ${documentUrl}`)
+  let previewStats = { generated: 0, skipped: 0 }
+  if (!skipBackfillPreviews || backfillPreviewsOnly) {
+    previewStats = await backfillMissingPreviews(pgClient, s3, r2.bucket, r2)
   }
 
   await pgClient.end()
 
   if (dryRun) {
     console.log(`\nDry run complete for ${manifest.length} manifest entries (${skipped} skipped).`)
+  } else if (backfillPreviewsOnly) {
+    console.log(`\nGenerated ${previewStats.generated} COA preview(s) (${previewStats.skipped} skipped).`)
   } else {
-    console.log(`\nSynced ${uploaded} COA/HPLC document(s) to R2 (${skipped} skipped).`)
+    console.log(
+      `\nSynced ${uploaded} COA/HPLC document(s) to R2 (${skipped} skipped). Generated ${previewStats.generated} preview(s) (${previewStats.skipped} skipped).`
+    )
   }
 }
 

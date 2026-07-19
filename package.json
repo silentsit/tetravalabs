@@ -28,6 +28,7 @@
   "sanity:bootstrap": "node scripts/sanity-bootstrap.mjs",
     "sanity:studio": "npm run dev --workspace=@tetrava/sanity-studio",
     "coa:sync-r2": "node packages/catalog/scripts/sync-coa-r2.mjs",
+    "coa:generate-previews": "node packages/catalog/scripts/sync-coa-r2.mjs -- --backfill-previews-only",
     "coa:manifest:generate": "node packages/catalog/scripts/generate-coa-manifest.mjs",
     "coa:ingest-morgan": "node packages/catalog/scripts/ingest-morgan-coas.mjs",
     "coa:wire-local": "node packages/catalog/scripts/wire-coa-local-files.mjs",

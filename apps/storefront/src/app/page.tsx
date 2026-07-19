@@ -182,27 +182,17 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 shadow-sm">
-              {featuredCoa ? (
-                <div className="grid gap-4">
-                  <CoaDocumentPreview document={featuredCoa.document} compact />
-                  {featuredCoa.productHandle ? (
-                    <Link
-                      href={`/product/${featuredCoa.productHandle}`}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E]"
-                    >
-                      View {featuredCoa.productTitle || "product"} <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  ) : null}
-                </div>
-              ) : (
-                <Image
-                  src="/v2/coa-preview.jpg"
-                  alt="Certificate of Analysis preview"
-                  width={800}
-                  height={600}
-                  className="h-auto w-full rounded-xl"
-                />
-              )}
+              <div className="grid gap-4">
+                <CoaDocumentPreview document={featuredCoa.document} compact />
+                {featuredCoa.productHandle ? (
+                  <Link
+                    href={`/product/${featuredCoa.productHandle}`}
+                    className="inline-flex items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E]"
+                  >
+                    View {featuredCoa.productTitle || "product"} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>

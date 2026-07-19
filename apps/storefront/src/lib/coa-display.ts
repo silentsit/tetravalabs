@@ -63,3 +63,11 @@ export function formatCoaSearchText(doc: StoreCoaDocument): string {
     .filter(Boolean)
     .join(" ")
 }
+
+export function isCoaPdfPreviewUrl(url: string) {
+  return (
+    /\.pdf(\?|$)/i.test(url) ||
+    url.includes("/file") ||
+    url.startsWith("/api/coa-file")
+  )
+}

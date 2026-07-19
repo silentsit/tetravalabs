@@ -47,12 +47,7 @@ const LEGACY_STOREFRONT_TO_SHEET: Record<string, string> = {
   "Lab Supplies": "Supplies & Reconstitution"
 }
 
-function normalizeSourceCategory(raw: string) {
-  if (SOURCE_SHEET_CATEGORIES.has(raw)) return raw
-  if (LEGACY_STOREFRONT_TO_SHEET[raw]) return LEGACY_STOREFRONT_TO_SHEET[raw]
-  if (raw === "Growth Factors") return ""
-  return raw
-}
+const SOURCE_SHEET_CATEGORIES = new Set([
   "GLP-1 / Incretin",
   "BPC-157 / TB500",
   "Blends",
@@ -157,7 +152,9 @@ function compoundNameFromProduct(product: StoreProduct) {
 
 function normalizeSourceCategory(raw: string) {
   if (SOURCE_SHEET_CATEGORIES.has(raw)) return raw
-  return LEGACY_STOREFRONT_NAMES[raw] ? "" : raw
+  if (LEGACY_STOREFRONT_TO_SHEET[raw]) return LEGACY_STOREFRONT_TO_SHEET[raw]
+  if (raw === "Growth Factors") return ""
+  return raw
 }
 
 /** Mirrors packages/catalog/lib/storefront-categories.mjs */

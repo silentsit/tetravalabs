@@ -7,7 +7,7 @@ type CatalogSkuPayload = {
 }
 
 const PAYLOAD = catalogSkus as CatalogSkuPayload
-const SKU_BY_KEY = PAYLOAD.skus || (catalogSkus as Record<string, string>)
+const SKU_BY_KEY: Record<string, string> = PAYLOAD.skus ?? {}
 const PRODUCT_CODES = PAYLOAD.productCodes || {}
 const PRODUCT_NAME_MAX = 80
 

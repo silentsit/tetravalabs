@@ -8,8 +8,9 @@ type OrderItem = {
 type OrderEmailInput = {
   orderLabel: string
   total: number
-  paymentUrl?: string | null
+  paymentUrl: string
   paymentPageUrl: string
+  paymentMethod?: "crypto" | "card"
   items?: OrderItem[]
 }
 
@@ -24,6 +25,20 @@ function escapeHtml(value: string) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;")
+}
+
+function paymentCopy(paymentMethod: "crypto" | "card") {
+  if (paymentMethod === "card") {
+    return {
+      intro: "Complete your card payment to confirm fulfillment.",
+      button: "Complete payment"
+    }
+  }
+
+  return {
+    intro: "Complete your crypto payment to confirm fulfillment.",
+    button: "Pay with crypto"
+  }
 }
 
 function renderItems(items: OrderItem[]) {
@@ -57,27 +72,7 @@ function renderItems(items: OrderItem[]) {
 
 export function buildOrderConfirmationEmail(input: OrderEmailInput) {
   const { orderLabel, total, paymentUrl, paymentPageUrl, items = [] } = input
-  const hasLivePayment = Boolean(paymentUrl && !paymentUrl.includes("example.com"))
-
-  const paymentBlock = hasLivePayment
-    ? `
-      <p style="margin:0 0 16px;color:#E8E8F0;font-size:15px;line-height:1.5;">
-        Complete your crypto payment to confirm fulfillment.
-      </p>
-      <a href="${escapeHtml(paymentUrl!)}"
-         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
-        Pay with Crypto
-      </a>
-      <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
-        Or open your <a href="${escapeHtml(paymentPageUrl)}" style="color:#5EEAD4;">order payment page</a> on Tetrava Labs.
-      </p>`
-    : `
-      <p style="margin:0;color:#FBBF24;font-size:14px;line-height:1.5;">
-        Crypto checkout is not live yet. Your order is recorded — payment instructions will follow separately.
-      </p>
-      <p style="margin:12px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
-        Track status: <a href="${escapeHtml(paymentPageUrl)}" style="color:#5EEAD4;">${escapeHtml(paymentPageUrl)}</a>
-      </p>`
+  const copy = paymentCopy(input.paymentMethod || "crypto")
 
   const html = `
 <!DOCTYPE html>
@@ -93,7 +88,16 @@ export function buildOrderConfirmationEmail(input: OrderEmailInput) {
       <p style="margin:0 0 20px;color:#E8E8F0;font-size:16px;">
         Total due: <strong>${formatMoney(total)}</strong>
       </p>
-      ${paymentBlock}
+      <p style="margin:0 0 16px;color:#E8E8F0;font-size:15px;line-height:1.5;">
+        ${copy.intro}
+      </p>
+      <a href="${escapeHtml(paymentUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        ${copy.button}
+      </a>
+      <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
+        Or open your <a href="${escapeHtml(paymentPageUrl)}" style="color:#5EEAD4;">order payment page</a> on Tetrava Labs.
+      </p>
       <hr style="margin:28px 0;border:none;border-top:1px solid rgba(255,255,255,0.1);" />
       <p style="margin:0;color:#8A8AA0;font-size:11px;line-height:1.5;">
         Research Use Only — not for human consumption. Questions? Reply to this email or visit
@@ -103,9 +107,8 @@ export function buildOrderConfirmationEmail(input: OrderEmailInput) {
   </body>
 </html>`.trim()
 
-  const subject = hasLivePayment
-    ? `Complete payment for ${orderLabel}`
-    : `Order received: ${orderLabel}`
-
-  return { subject, html }
+  return {
+    subject: `Complete payment for ${orderLabel}`,
+    html
+  }
 }

@@ -13,6 +13,8 @@ envVarGroups:
         value: "true"
       - key: ADMIN_CORS
         value: https://tetrava-medusa-i44n.onrender.com
+      - key: ORDER_EMAIL_CRON_SECRET
+        generateValue: true
 
 services:
   - type: web
@@ -87,3 +89,18 @@ services:
         sync: false
       - key: MEDUSA_PUBLISHABLE_KEY
         sync: false
+
+  - type: cron
+    name: tetrava-order-emails
+    runtime: node
+    region: oregon
+    schedule: "*/5 * * * *"
+    buildCommand: echo "cron"
+    startCommand: node scripts/process-order-emails.mjs
+    envVars:
+      - fromGroup: tetrava-medusa-shared
+      - key: MEDUSA_PUBLIC_URL
+        fromService:
+          type: web
+          name: tetrava-medusa
+          property: host

@@ -10,6 +10,7 @@ import {
   type PaymentoIpnPayload
 } from "../../../../lib/paymento"
 import { sendPaymentReceivedEmail } from "../../../../lib/resend"
+import { cancelOrderEmailSchedule } from "../../../../lib/order-email-schedule"
 import { captureOrderPayment } from "../../../../lib/capture-order-payment"
 import { getWebhookRawBody } from "../../../../lib/webhook-raw-body"
 
@@ -160,6 +161,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         orderId,
         amountUsd: intentAmount
       })
+      await cancelOrderEmailSchedule(orderId)
     }
 
     return res.status(200).json({

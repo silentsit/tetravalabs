@@ -1,4 +1,4 @@
-import { buildOrderConfirmationEmail } from "@/lib/order-confirmation-email"
+import { buildOrderConfirmationEmail as buildOrderConfirmationEmailContent } from "./order-confirmation-email"
 
 export type OrderEmailItem = {
   title: string
@@ -13,6 +13,7 @@ export type SendOrderConfirmationInput = {
   displayId?: number
   total: number
   paymentUrl?: string | null
+  paymentMethod?: "crypto" | "card"
   items?: OrderEmailItem[]
 }
 
@@ -35,14 +36,20 @@ export async function sendOrderConfirmationEmail(
     return { ok: true, emailed: false, skipped: "RESEND_API_KEY not configured" }
   }
 
+  const paymentUrl = input.paymentUrl
+  if (!paymentUrl || paymentUrl.includes("example.com")) {
+    return { ok: true, emailed: false, skipped: "Live payment URL required" }
+  }
+
   const orderLabel = input.displayId ? `Order #${input.displayId}` : input.orderId
   const paymentPageUrl = buildPaymentPageUrl(input.orderId, input.displayId, input.total)
 
-  const { subject, html } = buildOrderConfirmationEmail({
+  const { subject, html } = buildOrderConfirmationEmailContent({
     orderLabel,
     total: input.total,
-    paymentUrl: input.paymentUrl,
+    paymentUrl,
     paymentPageUrl,
+    paymentMethod: input.paymentMethod || "crypto",
     items: input.items || []
   })
 

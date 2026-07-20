@@ -5,7 +5,7 @@ import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
 import { buildPeptidepayProductName } from "@/lib/product-sku"
-import { sendOrderConfirmationEmail, type OrderEmailItem } from "@/lib/send-order-confirmation"
+import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
 
 type CheckoutItem = {
   variantId: string
@@ -186,7 +186,7 @@ export async function POST(req: Request) {
         ? (typeof order.total === "number" ? order.total : medusaSubtotalCents + medusaShippingCents) / 100
         : subtotalUsd + shippingUsd
 
-    const emailItems: OrderEmailItem[] = items
+    const emailItems = items
       .filter((item) => item.title && item.unitPrice != null)
       .map((item) => ({
         title: item.title!,
@@ -228,16 +228,18 @@ export async function POST(req: Request) {
       paymentError = intent?.ok === false ? intent.message || "Crypto payment setup failed" : null
     }
 
-    void sendOrderConfirmationEmail({
-      email,
-      orderId: order.id,
-      displayId: order.display_id,
-      total: totalUsd,
-      paymentUrl,
-      items: emailItems
-    }).catch(() => {
-      // Email failure must not block checkout.
-    })
+    if (paymentUrl && !paymentUrl.includes("example.com")) {
+      void scheduleOrderEmails({
+        orderId: order.id,
+        email,
+        displayId: order.display_id,
+        totalUsd,
+        paymentMethod,
+        items: emailItems
+      }).catch(() => {
+        // Email scheduling failure must not block checkout.
+      })
+    }
 
     return NextResponse.json({
       ok: true,

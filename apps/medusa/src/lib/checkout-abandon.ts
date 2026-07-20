@@ -46,6 +46,9 @@ async function sendHtmlEmail(input: { to: string; subject: string; html: string 
   return { sent: true }
 }
 
+type ScheduleResult = { ok: true } | { ok: false; reason: string }
+type CancelResult = { ok: true } | { ok: false }
+
 export async function scheduleCheckoutAbandon(input: {
   sessionId: string
   email: string
@@ -57,7 +60,7 @@ export async function scheduleCheckoutAbandon(input: {
     return { ok: false as const, reason: "session_id and email are required" }
   }
 
-  return withDb(
+  return withDb<ScheduleResult>(
     async (db) => {
       await db.query(
         `
@@ -99,7 +102,7 @@ export async function scheduleCheckoutAbandon(input: {
 export async function cancelCheckoutAbandon(sessionId: string) {
   if (!sessionId) return { ok: false as const }
 
-  return withDb(
+  return withDb<CancelResult>(
     async (db) => {
       await db.query(
         `

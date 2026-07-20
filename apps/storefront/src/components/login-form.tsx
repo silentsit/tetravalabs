@@ -161,7 +161,10 @@ export function LoginForm({ returnUrl = "/account", layout = "default" }: Props)
       )}
 
       {isAccount ? (
-        <Link href="/contact" className="inline-block text-sm text-[#0F172A] underline underline-offset-2">
+        <Link
+          href="/account/forgot-password"
+          className="inline-block text-sm text-[#0F172A] underline underline-offset-2"
+        >
           Lost your password?
         </Link>
       ) : null}

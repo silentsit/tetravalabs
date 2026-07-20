@@ -67,7 +67,7 @@ export function AccountDetailsForm() {
     try {
       await sdk.auth.resetPassword("customer", "emailpass", { identifier: email })
       setPasswordStatus(
-        "If password reset is enabled for your email, you will receive instructions shortly."
+        "If an account exists for that email, you will receive a password reset link shortly."
       )
     } catch (error) {
       const fetchError = error as FetchError

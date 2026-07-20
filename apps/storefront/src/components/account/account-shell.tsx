@@ -18,6 +18,8 @@ export function AccountShell({ children }: Props) {
   const pathname = usePathname()
   const router = useRouter()
   const isOAuthRoute = pathname.startsWith("/account/oauth")
+  const isPublicAccountRoute =
+    pathname === "/account/forgot-password" || pathname === "/account/reset-password"
   const [customer, setCustomer] = useState<StoreCustomer | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -41,7 +43,7 @@ export function AccountShell({ children }: Props) {
   }, [pathname])
 
   useEffect(() => {
-    if (loading || customer || pathname === "/account" || isOAuthRoute) return
+    if (loading || customer || pathname === "/account" || isOAuthRoute || isPublicAccountRoute) return
     router.replace(`/account?returnUrl=${encodeURIComponent(pathname)}`)
   }, [customer, isOAuthRoute, loading, pathname, router])
 
@@ -49,7 +51,7 @@ export function AccountShell({ children }: Props) {
     return <p className="text-sm text-[#475569]">Loading account...</p>
   }
 
-  if (isOAuthRoute) {
+  if (isOAuthRoute || isPublicAccountRoute) {
     return <>{children}</>
   }
 

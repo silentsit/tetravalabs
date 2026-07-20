@@ -1,7 +1,14 @@
+import { buildPasswordResetEmail } from "./password-reset-email"
+
 type PaymentReceivedInput = {
   email: string
   orderId: string
   amountUsd: number
+}
+
+type PasswordResetInput = {
+  email: string
+  resetUrl: string
 }
 
 function escapeHtml(value: string) {
@@ -55,6 +62,38 @@ export async function sendPaymentReceivedEmail(input: PaymentReceivedInput) {
       from,
       to: [input.email],
       subject: `Payment confirmed: ${input.orderId}`,
+      html
+    })
+  })
+
+  if (!response.ok) {
+    const error = await response.text()
+    return { sent: false, reason: error }
+  }
+
+  return { sent: true }
+}
+
+export async function sendPasswordResetEmail(input: PasswordResetInput) {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.RESEND_FROM || "Tetrava Labs <orders@tetravalabs.com>"
+  if (!apiKey) return { sent: false, reason: "RESEND_API_KEY not configured" }
+
+  const { subject, html } = buildPasswordResetEmail({
+    resetUrl: input.resetUrl,
+    email: input.email
+  })
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [input.email],
+      subject,
       html
     })
   })

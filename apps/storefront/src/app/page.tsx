@@ -71,7 +71,7 @@ export default async function HomePage() {
         </div>
         <div className="page-container relative grid w-full items-center gap-6 overflow-visible py-6 sm:py-8 lg:grid-cols-2 lg:gap-8 lg:py-4">
           <div className="flex flex-col justify-center">
-            <span className="section-label mb-4">≥ 99%+ Purity Verified</span>
+            <span className="section-label mb-4">Research-Grade Peptides</span>
             <h1 className="font-serif text-4xl leading-[1.15] tracking-tight text-[#0F172A] sm:text-5xl lg:text-[3.25rem]">
               Buy Peptides Online.
               <span className="mt-2 block sm:mt-2.5">Peptides People Trust.</span>

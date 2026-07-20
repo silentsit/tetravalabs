@@ -11,7 +11,8 @@ export const metadata: Metadata = buildPageMetadata({
   title: "Research Hub — articles & protocols",
   description:
     "Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers.",
-  path: "/blog"
+  path: "/blog",
+  pageType: "CollectionPage"
 })
 
 export default async function BlogPage() {

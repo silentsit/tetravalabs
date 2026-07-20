@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import dynamic from "next/dynamic"
 import {
   ArrowRight,
   CheckCircle,
@@ -15,21 +16,31 @@ import { BlogPostCard } from "@/components/blog-post-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
-import { LiveVisitorCounter, SocialProofReviews } from "@/components/social-proof-widget"
 import { categoryArt } from "@/lib/revamp/category-art"
 import { groupProductsByCategory } from "@/lib/categories"
 import { faqItems } from "@/lib/faq-content"
 import { listProducts, getFeaturedCoaDocument } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
-import { buildPageMetadata } from "@/lib/seo"
+import { buildPageMetadata, faqJsonLd } from "@/lib/seo"
+
+const LiveVisitorCounter = dynamic(
+  () => import("@/components/social-proof-widget").then((mod) => mod.LiveVisitorCounter),
+  { loading: () => <span className="inline-block h-5 w-40 animate-pulse rounded bg-[#E2E8F0]" /> }
+)
+
+const SocialProofReviews = dynamic(
+  () => import("@/components/social-proof-widget").then((mod) => mod.SocialProofReviews),
+  { loading: () => <div className="h-48 animate-pulse rounded-xl bg-[#E2E8F0]" /> }
+)
 
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Buy Peptides Online",
   description:
     "Buy peptides online from Tetrava Labs. Research-grade peptides with verified purity and third-party lab testing.",
-  path: "/"
+  path: "/",
+  jsonLd: faqJsonLd(faqItems.slice(0, 4), "/")
 })
 
 export default async function HomePage() {
@@ -217,6 +228,7 @@ export default async function HomePage() {
                     src={cat.image}
                     alt={cat.name}
                     fill
+                    loading="lazy"
                     sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
                     className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
                   />

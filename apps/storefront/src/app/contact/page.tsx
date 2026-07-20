@@ -1,46 +1,17 @@
-"use client"
-
-import { FormEvent, useState } from "react"
+import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { ContactForm } from "@/components/contact-form"
+import { buildPageMetadata } from "@/lib/seo"
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Contact",
+  description:
+    "Contact Tetrava Labs for research support, order questions, COA documents, and compliance inquiries.",
+  path: "/contact",
+  pageType: "ContactPage"
+})
 
 export default function ContactPage() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [subject, setSubject] = useState("")
-  const [message, setMessage] = useState("")
-  const [status, setStatus] = useState("")
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-
-  const onSubmit = async (event: FormEvent) => {
-    event.preventDefault()
-    setLoading(true)
-    setError("")
-    setStatus("")
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message })
-      })
-      const json = await response.json()
-      if (!response.ok || !json?.ok) {
-        setError(json?.message || "Unable to send message.")
-        return
-      }
-      setStatus(json.skipped ? "Message recorded locally (email not configured)." : "Message sent. We will reply soon.")
-      setName("")
-      setEmail("")
-      setSubject("")
-      setMessage("")
-    } catch {
-      setError("Could not reach contact API.")
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
     <section className="page-container mx-auto max-w-4xl space-y-8 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
@@ -52,45 +23,7 @@ export default function ContactPage() {
         </p>
       </div>
       <div className="grid gap-10 lg:grid-cols-[1fr_280px]">
-        <form onSubmit={onSubmit} className="space-y-4">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <input
-              required
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Your name"
-              className="input-field"
-            />
-            <input
-              required
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="Email address"
-              className="input-field"
-            />
-          </div>
-          <input
-            required
-            value={subject}
-            onChange={(event) => setSubject(event.target.value)}
-            placeholder="Subject"
-            className="input-field w-full"
-          />
-          <textarea
-            required
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            placeholder="How can we help?"
-            rows={6}
-            className="input-field w-full resize-none"
-          />
-          <button type="submit" disabled={loading} className="btn-primary disabled:opacity-60">
-            {loading ? "Sending..." : "Send message"}
-          </button>
-          {error ? <p className="text-xs text-red-600">{error}</p> : null}
-          {status ? <p className="text-xs text-[#475569]">{status}</p> : null}
-        </form>
+        <ContactForm />
         <aside className="space-y-4 text-sm text-[#475569]">
           <div className="card p-4">
             <p className="font-medium text-[#0F172A]">Research support</p>

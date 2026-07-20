@@ -7,26 +7,26 @@ const HERO_PRODUCTS = [
     src: "/products/v2/hero/retatrutide-20mg.png",
     href: "/product/retatrutide-20mg",
     label: "Retatrutide 20mg",
-    width: 334,
-    height: 750,
+    width: 280,
+    height: 560,
     priority: false
   },
   {
     slot: "center" as const,
-    src: "/products/v2/hero/selank-nasal-spray-10mg.png",
+    src: "/products/v2/hero/selank-nasal-spray-10mg-v2.png",
     href: "/product/selank-nasal-spray-10mg",
     label: "Selank Nasal Spray 10mg",
-    width: 314,
-    height: 1125,
+    width: 220,
+    height: 420,
     priority: false
   },
   {
     slot: "right" as const,
-    src: "/products/v2/hero/bpc-157-capsules.png",
+    src: "/products/v2/hero/bpc157-capsules-v2.png",
     href: "/product/bpc-157-capsules-100-count-500mcg",
     label: "BPC-157 Capsules",
-    width: 540,
-    height: 1028,
+    width: 320,
+    height: 480,
     priority: true
   }
 ]
@@ -45,8 +45,8 @@ export function HeroProductStage() {
                 width={product.width}
                 height={product.height}
                 priority={product.priority}
-                unoptimized
-                sizes="(max-width: 980px) 44vw, 360px"
+                fetchPriority={product.priority ? "high" : "auto"}
+                sizes="(max-width: 640px) 38vw, (max-width: 1024px) 30vw, 280px"
                 className="hero-prod-img"
               />
             </Link>

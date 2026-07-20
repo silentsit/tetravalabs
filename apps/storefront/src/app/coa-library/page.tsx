@@ -9,7 +9,8 @@ export const metadata: Metadata = buildPageMetadata({
   title: "COA library — batch certificates",
   description:
     "Search lot-linked Certificates of Analysis (COA) and HPLC documents for Tetrava Labs research peptides.",
-  path: "/coa-library"
+  path: "/coa-library",
+  pageType: "CollectionPage"
 })
 
 export default async function CoaLibraryPage() {

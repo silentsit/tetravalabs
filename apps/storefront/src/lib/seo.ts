@@ -46,6 +46,8 @@ type PageMetaInput = {
   image?: string
   /** Extra schema.org graphs for this route (registered for `<head>` injection). */
   jsonLd?: JsonLdGraph | JsonLdGraph[]
+  /** Schema.org page type for auto-registered WebPage graph. */
+  pageType?: "WebPage" | "CollectionPage" | "AboutPage" | "ContactPage"
   /** When true (default), auto-register a WebPage graph for `path`. */
   registerWebPage?: boolean
 }
@@ -118,12 +120,19 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
   if (input.path && !input.noIndex) {
     const graphs: JsonLdGraph[] = []
     if (input.registerWebPage !== false) {
+      const pageType =
+        input.pageType ||
+        (input.path === "/shop" || input.path === "/categories" || input.path === "/blog" || input.path === "/coa-library"
+          ? "CollectionPage"
+          : input.path === "/contact"
+            ? "ContactPage"
+            : "WebPage")
       graphs.push(
         webPageJsonLd({
           title: shortTitle,
           description,
           path: input.path,
-          type: input.path === "/shop" || input.path === "/categories" ? "CollectionPage" : "WebPage"
+          type: pageType
         })
       )
     }
@@ -239,38 +248,6 @@ function productPriceRange(product: ProductLike) {
   return { low: min / 100, high: max / 100 }
 }
 
-function hashString(input: string) {
-  let hash = 0
-  for (let i = 0; i < input.length; i += 1) {
-    hash = (hash * 31 + input.charCodeAt(i)) >>> 0
-  }
-  return hash
-}
-
-export function siteAggregateRating() {
-  return {
-    "@type": "AggregateRating" as const,
-    ratingValue: "5.0",
-    reviewCount: "6",
-    bestRating: "5",
-    worstRating: "1"
-  }
-}
-
-/** Stable per-handle review counts so crawlers see consistent ratings. */
-function productAggregateRating(handle: string) {
-  const hash = hashString(handle)
-  const reviewCount = 30 + (hash % 71)
-
-  return {
-    "@type": "AggregateRating" as const,
-    ratingValue: "5.0",
-    reviewCount: String(reviewCount),
-    bestRating: "5",
-    worstRating: "1"
-  }
-}
-
 export function productJsonLd(product: ProductLike, handle: string, imagePath?: string) {
   const categoryLabel = String(product.metadata?.source_category || "Research Product")
   const { low, high } = productPriceRange(product)
@@ -286,7 +263,6 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
     sku: product.variants?.[0]?.id,
     category: categoryLabel,
     brand: { "@type": "Brand", name: "Tetrava Labs" },
-    aggregateRating: productAggregateRating(handle),
     offers: {
       "@type": "Offer",
       url: pageUrl(`/product/${handle}`),
@@ -335,7 +311,6 @@ export function organizationJsonLd() {
     url: siteConfig.url,
     email: siteConfig.contactEmail,
     description: siteConfig.description,
-    aggregateRating: siteAggregateRating(),
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",

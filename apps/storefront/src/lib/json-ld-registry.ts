@@ -2,7 +2,8 @@ import { categoryLabelFromSlug } from "@/lib/categories"
 import { getBlogPostBySlug } from "@/lib/sanity"
 import { getProductByHandle, listProducts } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
-import { articleJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
+import { articleJsonLd, faqJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
+import { productFaqItems } from "@/lib/faq-content"
 import { getProductImage } from "@/lib/revamp/product-visual"
 
 registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
@@ -19,7 +20,8 @@ registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
       title: `${product.title} — ${category}`,
       description: `${product.title} for laboratory research (RUO).`,
       path: `/product/${handle}`
-    })
+    }),
+    faqJsonLd(productFaqItems, `/product/${handle}`)
   ]
 })
 

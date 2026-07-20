@@ -1,10 +1,43 @@
 import { NextResponse } from "next/server"
+import { buildContactAutoresponderEmail } from "@/lib/contact-autoresponder-email"
 
 type ContactBody = {
   name?: string
   email?: string
   subject?: string
   message?: string
+}
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
+
+async function sendResendEmail(input: {
+  apiKey: string
+  from: string
+  to: string
+  subject: string
+  html: string
+  replyTo?: string
+}) {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${input.apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from: input.from,
+      to: [input.to],
+      ...(input.replyTo ? { reply_to: input.replyTo } : {}),
+      subject: input.subject,
+      html: input.html
+    })
+  })
+
+  if (!response.ok) {
+    return { ok: false as const, error: await response.text() }
+  }
+
+  return { ok: true as const }
 }
 
 export async function POST(req: Request) {
@@ -27,25 +60,38 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, skipped: "RESEND_API_KEY or CONTACT_TO_EMAIL not configured" })
   }
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: email,
-      subject: `[Contact] ${subject}`,
-      html: `<p><strong>${name}</strong> (${email})</p><p>${message.replace(/\n/g, "<br/>")}</p>`
-    })
+  const staffResult = await sendResendEmail({
+    apiKey,
+    from,
+    to,
+    replyTo: email,
+    subject: `[Contact] ${subject}`,
+    html: `<p><strong>${name}</strong> (${email})</p><p>${message.replace(/\n/g, "<br/>")}</p>`
   })
 
-  if (!response.ok) {
-    const error = await response.text()
-    return NextResponse.json({ ok: false, message: error }, { status: 502 })
+  if (!staffResult.ok) {
+    return NextResponse.json({ ok: false, message: staffResult.error }, { status: 502 })
   }
 
-  return NextResponse.json({ ok: true })
+  const autoresponder = buildContactAutoresponderEmail({
+    name,
+    subject,
+    contactUrl: `${SITE_URL}/contact`
+  })
+
+  const customerResult = await sendResendEmail({
+    apiKey,
+    from,
+    to: email,
+    subject: autoresponder.subject,
+    html: autoresponder.html
+  })
+
+  if (!customerResult.ok) {
+    console.warn("[contact] autoresponder failed:", customerResult.error)
+    // Staff inbox already received the message — do not fail the form.
+    return NextResponse.json({ ok: true, autoresponder: false })
+  }
+
+  return NextResponse.json({ ok: true, autoresponder: true })
 }

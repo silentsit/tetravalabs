@@ -226,6 +226,21 @@ export async function recordOrderShipmentAndNotify(input: {
 
   row = await loadFulfillmentRow(input.orderId)
   if (row?.shipped_email_sent_at) {
+    await withDb(
+      async (db) => {
+        await db.query(
+          `
+          UPDATE order_fulfillment_emails
+          SET
+            review_due_at = COALESCE(review_due_at, NOW() + ($2 || ' days')::interval),
+            updated_at = NOW()
+          WHERE order_id = $1 AND review_sent_at IS NULL AND review_due_at IS NULL
+        `,
+          [input.orderId, String(REVIEW_REQUEST_DELAY_DAYS)]
+        )
+      },
+      async () => undefined
+    )
     return { ok: true as const, emailed: false, reason: "already_sent" as const }
   }
 

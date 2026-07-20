@@ -18,6 +18,10 @@ import { getProductImage } from "@/lib/product-image-map"
 import { storePaymentUrl } from "@/components/payment-confirmation"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import type { ParsedAddress } from "@/lib/google-places"
+import {
+  cancelCheckoutAbandonIntent,
+  scheduleCheckoutAbandonIntent
+} from "@/lib/checkout-abandon"
 
 type CheckoutOrder = {
   id: string
@@ -642,6 +646,22 @@ export function CheckoutForm() {
       else delete next[field]
       return next
     })
+
+    if (field === "email" && !message && email.trim() && items.length) {
+      void scheduleCheckoutAbandonIntent({
+        email: email.trim(),
+        items: items.map((item) => ({
+          title: item.title,
+          variantTitle: item.variantTitle,
+          quantity: item.quantity,
+          unitPrice: item.unitPrice,
+          handle: item.handle
+        })),
+        subtotalUsd: subtotal
+      }).catch(() => {
+        // Non-blocking marketing capture.
+      })
+    }
   }
 
   const handleShippingBlur = (field: AddressFieldKey) => {
@@ -732,6 +752,28 @@ export function CheckoutForm() {
     })
   }, [])
 
+  useEffect(() => {
+    if (!email.trim() || !EMAIL_PATTERN.test(email.trim()) || !items.length) return
+
+    const timer = window.setTimeout(() => {
+      void scheduleCheckoutAbandonIntent({
+        email: email.trim(),
+        items: items.map((item) => ({
+          title: item.title,
+          variantTitle: item.variantTitle,
+          quantity: item.quantity,
+          unitPrice: item.unitPrice,
+          handle: item.handle
+        })),
+        subtotalUsd: subtotal
+      }).catch(() => {
+        // Non-blocking.
+      })
+    }, 2500)
+
+    return () => window.clearTimeout(timer)
+  }, [email, items, subtotal])
+
   const availableCountries = useMemo(
     () => CHECKOUT_COUNTRIES.filter((entry) => !restrictedCountries.includes(entry.code)),
     [restrictedCountries]
@@ -739,7 +781,7 @@ export function CheckoutForm() {
 
   const submitLabel = useMemo(() => {
     if (loading) return "Processing…"
-    if (paymentMethod === "card") return "Place order"
+    if (paymentMethod === "card") return "Continue to card payment"
     return "Continue to crypto payment"
   }, [loading, paymentMethod])
 
@@ -969,6 +1011,9 @@ export function CheckoutForm() {
     }
 
     persistLocalOrder(order)
+    void cancelCheckoutAbandonIntent().catch(() => {
+      // Non-blocking.
+    })
     clear()
 
     if (paymentUrl && (paymentProvider === "peptidepay" || resolvedPaymentMethod === "card")) {

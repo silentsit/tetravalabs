@@ -6,6 +6,7 @@ export type OrderEmailItem = {
   variantTitle?: string
   quantity: number
   unitPrice: number
+  handle?: string
 }
 
 export async function scheduleOrderEmails(input: {

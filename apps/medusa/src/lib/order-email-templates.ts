@@ -1,6 +1,9 @@
 export const PAYMENT_REMINDER_DELAY_MINUTES = 20
 export const PAYMENT_FOLLOWUP_DELAY_MINUTES = 30
 export const TRACKING_SLA_HOURS = 72
+export const CHECKOUT_ABANDON_REMINDER_MINUTES = 60
+export const CHECKOUT_ABANDON_FOLLOWUP_HOURS = 24
+export const REVIEW_REQUEST_DELAY_DAYS = 14
 
 /** @deprecated Use PAYMENT_REMINDER_DELAY_MINUTES */
 export const ORDER_CONFIRMATION_DELAY_MINUTES = PAYMENT_REMINDER_DELAY_MINUTES
@@ -10,6 +13,7 @@ export type OrderEmailItem = {
   variantTitle?: string
   quantity: number
   unitPrice: number
+  handle?: string
 }
 
 export type PaymentMethod = "crypto" | "card"
@@ -319,6 +323,79 @@ export function buildTrackingSlaEmail(input: TrackingSlaEmailInput) {
   }
 }
 
+type CheckoutAbandonInput = {
+  items?: OrderEmailItem[]
+  subtotal: number
+  checkoutUrl: string
+  contactUrl: string
+}
+
+/** C1 email 1 — checkout started, no order yet (+1h). */
+export function buildCheckoutAbandonReminderEmail(input: CheckoutAbandonInput) {
+  const { items = [], subtotal, checkoutUrl, contactUrl } = input
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Still want to finish checkout?</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        You left items in your Tetrava Labs cart. Your session is still available whenever you are ready.
+      </p>
+      ${renderItems(items)}
+      <p style="margin:0 0 20px;color:#E8E8F0;font-size:16px;">
+        Cart subtotal: <strong>${formatMoney(subtotal)}</strong>
+      </p>
+      <a href="${escapeHtml(checkoutUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Return to checkout
+      </a>
+      <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
+        Questions about payment or shipping?
+        <a href="${escapeHtml(contactUrl)}" style="color:#5EEAD4;">Contact us anytime</a>.
+      </p>
+      ${ruoFooter(contactUrl)}
+  `)
+
+  return {
+    subject: "Your Tetrava Labs checkout is waiting",
+    html
+  }
+}
+
+/** C1 email 2 — still no order (+24h after first reminder). */
+export function buildCheckoutAbandonFollowupEmail(input: CheckoutAbandonInput) {
+  const { items = [], subtotal, checkoutUrl, contactUrl } = input
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Your cart is still saved</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Just a quick reminder — the research compounds below are still in your cart.
+        No discount needed; pick up where you left off when you are ready.
+      </p>
+      ${renderItems(items)}
+      <p style="margin:0 0 20px;color:#E8E8F0;font-size:16px;">
+        Cart subtotal: <strong>${formatMoney(subtotal)}</strong>
+      </p>
+      <a href="${escapeHtml(checkoutUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Complete checkout
+      </a>
+      <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
+        If something blocked checkout (payment method, shipping, or compliance),
+        <a href="${escapeHtml(contactUrl)}" style="color:#5EEAD4;">tell us</a> — we are happy to help.
+      </p>
+      ${ruoFooter(contactUrl)}
+  `)
+
+  return {
+    subject: "Your cart is still saved at Tetrava Labs",
+    html
+  }
+}
+
+export function buildCheckoutUrl() {
+  const storefront = (process.env.STOREFRONT_URL || "https://tetravalabs.com").replace(/\/$/, "")
+  return `${storefront}/checkout`
+}
+
 export function buildPaymentPageUrl(orderId: string, displayId?: number | null, total?: number) {
   const storefront = (process.env.STOREFRONT_URL || "https://tetravalabs.com").replace(/\/$/, "")
   const params = new URLSearchParams({ order_id: orderId })
@@ -356,10 +433,60 @@ export function normalizeOrderEmailItems(value: unknown): OrderEmailItem[] {
       title: item.title,
       variantTitle: item.variantTitle,
       quantity: item.quantity,
-      unitPrice: item.unitPrice
+      unitPrice: item.unitPrice,
+      handle: typeof item.handle === "string" && item.handle.trim() ? item.handle.trim() : undefined
     }))
 }
 
 export function orderLabelFrom(displayId: number | null | undefined, orderId: string) {
   return displayId ? `Order #${displayId}` : orderId
+}
+
+export function firstProductHandle(items: OrderEmailItem[]) {
+  return items.find((item) => item.handle)?.handle || null
+}
+
+export function buildProductReviewUrl(handle: string) {
+  const storefront = (process.env.STOREFRONT_URL || "https://tetravalabs.com").replace(/\/$/, "")
+  return `${storefront}/product/${encodeURIComponent(handle)}#reviews`
+}
+
+type ReviewRequestInput = {
+  orderLabel: string
+  items?: OrderEmailItem[]
+  reviewUrl: string
+  ordersUrl: string
+  contactUrl: string
+}
+
+/** P1 — soft review request (+14 days after ship). Packaging/delivery only — no use claims. */
+export function buildReviewRequestEmail(input: ReviewRequestInput) {
+  const { orderLabel, items = [], reviewUrl, ordersUrl, contactUrl } = input
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">How was packaging &amp; delivery?</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        We hope <strong style="color:#E8E8F0;">${escapeHtml(orderLabel)}</strong> arrived in good condition.
+        If you have a moment, a short review about packaging, shipping speed, or overall experience helps other researchers.
+      </p>
+      ${renderItems(items)}
+      <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Sign in to leave a review on the product page. Please keep feedback about fulfillment and product presentation —
+        not laboratory results or personal use.
+      </p>
+      <a href="${escapeHtml(reviewUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Leave a review
+      </a>
+      <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
+        Or view your orders:
+        <a href="${escapeHtml(ordersUrl)}" style="color:#5EEAD4;">order history</a>.
+      </p>
+      ${ruoFooter(contactUrl)}
+  `)
+
+  return {
+    subject: `Quick feedback on ${orderLabel}?`,
+    html
+  }
 }

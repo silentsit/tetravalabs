@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Download } from "lucide-react"
 import type { StoreCoaDocument } from "@/lib/medusa"
 import type { ProductReviewsResponse } from "@/lib/reviews"
@@ -39,6 +39,13 @@ type TabId = (typeof tabs)[number]
 export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("Overview")
   const primaryCoa = coas[0]
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    if (window.location.hash.replace(/^#/, "").toLowerCase() === "reviews") {
+      setActiveTab("Reviews")
+    }
+  }, [])
 
   return (
     <section className="space-y-8">
@@ -185,11 +192,13 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
           ) : null}
 
           {activeTab === "Reviews" ? (
-            <ProductReviewsPanel
-              productId={productId}
-              productHandle={product.handle}
-              initialData={reviews}
-            />
+            <div id="reviews">
+              <ProductReviewsPanel
+                productId={productId}
+                productHandle={product.handle}
+                initialData={reviews}
+              />
+            </div>
           ) : null}
         </div>
       </div>

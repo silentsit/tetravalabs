@@ -192,7 +192,8 @@ export async function POST(req: Request) {
         title: item.title!,
         variantTitle: item.variantTitle,
         quantity: item.quantity,
-        unitPrice: item.unitPrice!
+        unitPrice: item.unitPrice!,
+        handle: item.handle
       }))
 
     const paymentMethod = body.payment_method === "crypto" ? "crypto" : "card"

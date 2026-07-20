@@ -3,7 +3,7 @@ import { processDueOrderEmails } from "../../../../lib/order-email-schedule"
 
 /**
  * POST /hooks/order-emails/process
- * Processes due unpaid payment reminders/follow-ups and 72h tracking SLA emails.
+ * Processes unpaid payment reminders, tracking SLA, review requests, and checkout abandon emails.
  * Requires x-order-email-cron-secret header (Render cron or manual ops).
  */
 export const POST = async (req: MedusaRequest, res: MedusaResponse) => {

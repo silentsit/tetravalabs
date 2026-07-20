@@ -1,5 +1,10 @@
 import { withDb } from "./db"
-import { processDueTrackingSlaEmails, scheduleTrackingSlaEmail } from "./order-fulfillment-emails"
+import { processDueCheckoutAbandonEmails } from "./checkout-abandon"
+import {
+  processDueReviewRequestEmails,
+  processDueTrackingSlaEmails,
+  scheduleTrackingSlaEmail
+} from "./order-fulfillment-emails"
 import {
   buildPaidOrderConfirmationEmail,
   buildPaymentFollowupEmail,
@@ -381,5 +386,17 @@ export async function processDueOrderEmails() {
   summary.tracking_sla_sent = sla.tracking_sla_sent
   summary.tracking_sla_failed = sla.failed
 
-  return summary
+  const review = await processDueReviewRequestEmails()
+  const abandon = await processDueCheckoutAbandonEmails()
+  return {
+    ...summary,
+    review_scanned: review.scanned,
+    review_sent: review.review_sent,
+    review_skipped: review.skipped_reviewed,
+    review_failed: review.failed,
+    checkout_abandon_scanned: abandon.scanned,
+    checkout_abandon_reminder_sent: abandon.reminder_sent,
+    checkout_abandon_followup_sent: abandon.followup_sent,
+    checkout_abandon_failed: abandon.failed
+  }
 }

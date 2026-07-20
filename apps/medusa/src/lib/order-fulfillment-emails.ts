@@ -1,11 +1,15 @@
 import { withDb } from "./db"
 import {
   buildOrderShippedEmail,
+  buildProductReviewUrl,
+  buildReviewRequestEmail,
   buildStorefrontContactUrl,
   buildStorefrontOrdersUrl,
   buildTrackingSlaEmail,
+  firstProductHandle,
   normalizeOrderEmailItems,
   orderLabelFrom,
+  REVIEW_REQUEST_DELAY_DAYS,
   TRACKING_SLA_HOURS,
   type OrderEmailItem
 } from "./order-email-templates"
@@ -20,6 +24,8 @@ type FulfillmentRow = {
   tracking_number: string | null
   tracking_url: string | null
   carrier: string | null
+  review_due_at: string | null
+  review_sent_at: string | null
 }
 
 async function sendHtmlEmail(input: { to: string; subject: string; html: string }) {
@@ -244,16 +250,143 @@ export async function recordOrderShipmentAndNotify(input: {
       await db.query(
         `
         UPDATE order_fulfillment_emails
-        SET shipped_email_sent_at = NOW(), updated_at = NOW()
+        SET
+          shipped_email_sent_at = NOW(),
+          review_due_at = COALESCE(review_due_at, NOW() + ($2 || ' days')::interval),
+          updated_at = NOW()
         WHERE order_id = $1 AND shipped_email_sent_at IS NULL
       `,
-        [input.orderId]
+        [input.orderId, String(REVIEW_REQUEST_DELAY_DAYS)]
       )
     },
     async () => undefined
   )
 
   return { ok: true as const, emailed: true }
+}
+
+async function customerAlreadyReviewed(email: string, handles: string[]) {
+  if (!handles.length) return false
+
+  return withDb(
+    async (db) => {
+      try {
+        const result = await db.query(
+          `
+          SELECT 1
+          FROM product_reviews pr
+          INNER JOIN customer c ON c.id = pr.customer_id
+          WHERE lower(c.email) = lower($1)
+            AND pr.product_handle = ANY($2::text[])
+          LIMIT 1
+        `,
+          [email, handles]
+        )
+        return Boolean(result.rowCount)
+      } catch {
+        // customer table shape may differ across Medusa versions — do not block send.
+        return false
+      }
+    },
+    async () => false
+  )
+}
+
+export async function processDueReviewRequestEmails() {
+  const due = await withDb(
+    async (db) => {
+      const result = await db.query<FulfillmentRow>(
+        `
+        SELECT *
+        FROM order_fulfillment_emails
+        WHERE review_sent_at IS NULL
+          AND shipped_email_sent_at IS NOT NULL
+          AND review_due_at IS NOT NULL
+          AND review_due_at <= NOW()
+        ORDER BY review_due_at ASC
+        LIMIT 50
+      `
+      )
+      return result.rows
+    },
+    async () => []
+  )
+
+  const summary = {
+    scanned: due.length,
+    review_sent: 0,
+    skipped_reviewed: 0,
+    failed: 0
+  }
+
+  for (const row of due) {
+    const items = normalizeOrderEmailItems(row.items)
+    const handles = items.map((item) => item.handle).filter((handle): handle is string => Boolean(handle))
+
+    if (await customerAlreadyReviewed(row.email, handles)) {
+      await withDb(
+        async (db) => {
+          await db.query(
+            `
+            UPDATE order_fulfillment_emails
+            SET review_sent_at = NOW(), updated_at = NOW()
+            WHERE order_id = $1 AND review_sent_at IS NULL
+          `,
+            [row.order_id]
+          )
+        },
+        async () => undefined
+      )
+      summary.skipped_reviewed += 1
+      continue
+    }
+
+    const handle = firstProductHandle(items)
+    const reviewUrl = handle
+      ? buildProductReviewUrl(handle)
+      : buildStorefrontOrdersUrl()
+    const orderLabel = orderLabelFrom(row.display_id, row.order_id)
+
+    const { subject, html } = buildReviewRequestEmail({
+      orderLabel,
+      items,
+      reviewUrl,
+      ordersUrl: buildStorefrontOrdersUrl(),
+      contactUrl: buildStorefrontContactUrl()
+    })
+
+    const result = await sendHtmlEmail({
+      to: row.email,
+      subject,
+      html
+    })
+
+    if (!result.sent) {
+      summary.failed += 1
+      console.warn("[fulfillment-email] review request failed:", row.order_id, result.reason)
+      continue
+    }
+
+    const marked = await withDb(
+      async (db) => {
+        const update = await db.query(
+          `
+          UPDATE order_fulfillment_emails
+          SET review_sent_at = NOW(), updated_at = NOW()
+          WHERE order_id = $1 AND review_sent_at IS NULL
+          RETURNING order_id
+        `,
+          [row.order_id]
+        )
+        return Boolean(update.rowCount)
+      },
+      async () => false
+    )
+
+    if (marked) summary.review_sent += 1
+  }
+
+  return summary
 }
 
 export async function processDueTrackingSlaEmails() {

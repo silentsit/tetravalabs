@@ -13,7 +13,7 @@ const HERO_PRODUCTS = [
   },
   {
     slot: "center" as const,
-    src: "/products/v2/hero/selank-nasal-spray-10mg-v2.png",
+    src: "/products/v2/hero/selank-nasal-spray-10mg.png",
     href: "/product/selank-nasal-spray-10mg",
     label: "Selank Nasal Spray 10mg",
     width: 220,
@@ -22,7 +22,7 @@ const HERO_PRODUCTS = [
   },
   {
     slot: "right" as const,
-    src: "/products/v2/hero/bpc157-capsules-v2.png",
+    src: "/products/v2/hero/bpc-157-capsules.png",
     href: "/product/bpc-157-capsules-100-count-500mcg",
     label: "BPC-157 Capsules",
     width: 320,

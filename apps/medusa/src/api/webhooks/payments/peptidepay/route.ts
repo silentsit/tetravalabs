@@ -9,7 +9,6 @@ import {
   verifyPeptidepayWebhookSignature
 } from "../../../../lib/peptidepay"
 import { sendPaymentReceivedEmail } from "../../../../lib/resend"
-import { cancelOrderEmailSchedule } from "../../../../lib/order-email-schedule"
 import { getWebhookRawBody } from "../../../../lib/webhook-raw-body"
 
 export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
@@ -126,7 +125,6 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         orderId,
         amountUsd: intentAmount
       })
-      await cancelOrderEmailSchedule(orderId)
     }
 
     return res.status(200).json({

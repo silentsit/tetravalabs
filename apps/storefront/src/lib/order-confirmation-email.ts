@@ -30,13 +30,13 @@ function escapeHtml(value: string) {
 function paymentCopy(paymentMethod: "crypto" | "card") {
   if (paymentMethod === "card") {
     return {
-      intro: "Complete your card payment to confirm fulfillment.",
-      button: "Complete payment"
+      intro: "Use the secure link below to finish card payment and confirm your order.",
+      button: "Complete card payment"
     }
   }
 
   return {
-    intro: "Complete your crypto payment to confirm fulfillment.",
+    intro: "Use the secure link below to finish crypto payment and confirm your order.",
     button: "Pay with crypto"
   }
 }
@@ -70,6 +70,7 @@ function renderItems(items: OrderItem[]) {
     </table>`
 }
 
+/** Manual / notify endpoint — unpaid payment reminder (aligned with Medusa T2). */
 export function buildOrderConfirmationEmail(input: OrderEmailInput) {
   const { orderLabel, total, paymentUrl, paymentPageUrl, items = [] } = input
   const copy = paymentCopy(input.paymentMethod || "crypto")
@@ -80,13 +81,14 @@ export function buildOrderConfirmationEmail(input: OrderEmailInput) {
   <body style="margin:0;padding:24px;background:#050508;font-family:Inter,Segoe UI,sans-serif;">
     <div style="max-width:560px;margin:0 auto;background:#0A0A10;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;">
       <p style="margin:0 0 8px;color:#5EEAD4;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;">Tetrava Labs</p>
-      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Order received</h1>
-      <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
-        Thank you. <strong style="color:#E8E8F0;">${escapeHtml(orderLabel)}</strong> has been placed for research use only.
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Your payment is still open</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        <strong style="color:#E8E8F0;">${escapeHtml(orderLabel)}</strong> is ready whenever you are.
+        Complete payment to start fulfillment — your checkout session is waiting.
       </p>
       ${renderItems(items)}
       <p style="margin:0 0 20px;color:#E8E8F0;font-size:16px;">
-        Total due: <strong>${formatMoney(total)}</strong>
+        Amount due: <strong>${formatMoney(total)}</strong>
       </p>
       <p style="margin:0 0 16px;color:#E8E8F0;font-size:15px;line-height:1.5;">
         ${copy.intro}
@@ -96,7 +98,8 @@ export function buildOrderConfirmationEmail(input: OrderEmailInput) {
         ${copy.button}
       </a>
       <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
-        Or open your <a href="${escapeHtml(paymentPageUrl)}" style="color:#5EEAD4;">order payment page</a> on Tetrava Labs.
+        Prefer to return to the site?
+        <a href="${escapeHtml(paymentPageUrl)}" style="color:#5EEAD4;">Open your payment page</a>.
       </p>
       <hr style="margin:28px 0;border:none;border-top:1px solid rgba(255,255,255,0.1);" />
       <p style="margin:0;color:#8A8AA0;font-size:11px;line-height:1.5;">
@@ -108,7 +111,7 @@ export function buildOrderConfirmationEmail(input: OrderEmailInput) {
 </html>`.trim()
 
   return {
-    subject: `Complete payment for ${orderLabel}`,
+    subject: `Payment still open for ${orderLabel}`,
     html
   }
 }

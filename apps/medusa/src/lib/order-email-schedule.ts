@@ -1,10 +1,16 @@
 import { withDb } from "./db"
+import { processDueTrackingSlaEmails, scheduleTrackingSlaEmail } from "./order-fulfillment-emails"
 import {
-  buildOrderConfirmationEmail,
+  buildPaidOrderConfirmationEmail,
   buildPaymentFollowupEmail,
+  buildPaymentReminderEmail,
+  buildStorefrontContactUrl,
+  buildStorefrontOrdersUrl,
   buildPaymentPageUrl,
   isLivePaymentUrl,
-  ORDER_CONFIRMATION_DELAY_MINUTES,
+  normalizeOrderEmailItems,
+  orderLabelFrom,
+  PAYMENT_REMINDER_DELAY_MINUTES,
   PAYMENT_FOLLOWUP_DELAY_MINUTES,
   type OrderEmailItem,
   type PaymentMethod
@@ -63,7 +69,7 @@ async function sendHtmlEmail(input: { to: string; subject: string; html: string 
 }
 
 function orderLabelFor(row: ScheduleRow) {
-  return row.display_id ? `Order #${row.display_id}` : row.order_id
+  return orderLabelFrom(row.display_id, row.order_id)
 }
 
 async function loadPaymentIntent(orderId: string) {
@@ -79,8 +85,11 @@ async function loadPaymentIntent(orderId: string) {
   )
 }
 
+type ScheduleResult = { ok: true } | { ok: false; reason: string }
+type CancelResult = { ok: true } | { ok: false }
+
 export async function scheduleOrderEmails(input: ScheduleInput) {
-  return withDb(
+  return withDb<ScheduleResult>(
     async (db) => {
       await db.query(
         `
@@ -116,18 +125,18 @@ export async function scheduleOrderEmails(input: ScheduleInput) {
           input.totalUsd,
           input.paymentMethod,
           JSON.stringify(input.items),
-          String(ORDER_CONFIRMATION_DELAY_MINUTES)
+          String(PAYMENT_REMINDER_DELAY_MINUTES)
         ]
       )
 
-      return { ok: true as const }
+      return { ok: true }
     },
-    async () => ({ ok: false as const, reason: "database unavailable" })
+    async () => ({ ok: false, reason: "database unavailable" })
   )
 }
 
 export async function cancelOrderEmailSchedule(orderId: string) {
-  return withDb(
+  return withDb<CancelResult>(
     async (db) => {
       await db.query(
         `
@@ -137,9 +146,9 @@ export async function cancelOrderEmailSchedule(orderId: string) {
       `,
         [orderId]
       )
-      return { ok: true as const }
+      return { ok: true }
     },
-    async () => ({ ok: false as const })
+    async () => ({ ok: false })
   )
 }
 
@@ -203,11 +212,11 @@ async function loadScheduleRow(orderId: string) {
 async function listDueSchedules(limit = 50) {
   return withDb(
     async (db) => {
-      const result = await db.query<{ order_id: string; kind: "confirmation" | "followup" }>(
+      const result = await db.query<{ order_id: string; kind: "reminder" | "followup" }>(
         `
         SELECT s.order_id,
           CASE
-            WHEN s.confirmation_sent_at IS NULL THEN 'confirmation'
+            WHEN s.confirmation_sent_at IS NULL THEN 'reminder'
             ELSE 'followup'
           END AS kind
         FROM order_email_schedules s
@@ -236,17 +245,17 @@ async function listDueSchedules(limit = 50) {
 
 async function sendScheduledEmail(
   row: ScheduleRow,
-  kind: "confirmation" | "followup",
+  kind: "reminder" | "followup",
   paymentUrl: string
 ) {
   const orderLabel = orderLabelFor(row)
   const total = Number(row.total_usd)
   const paymentPageUrl = buildPaymentPageUrl(row.order_id, row.display_id, total)
-  const items = Array.isArray(row.items) ? row.items : []
+  const items = normalizeOrderEmailItems(row.items)
 
   const email =
-    kind === "confirmation"
-      ? buildOrderConfirmationEmail({
+    kind === "reminder"
+      ? buildPaymentReminderEmail({
           orderLabel,
           total,
           paymentUrl,
@@ -270,15 +279,57 @@ async function sendScheduledEmail(
   })
 }
 
+/**
+ * Immediate post-payment order confirmation (also acts as payment confirmation).
+ * Cancels any pending unpaid reminder / follow-up emails for the order.
+ */
+export async function sendPaidOrderConfirmationEmail(input: {
+  orderId: string
+  email: string
+  amountUsd: number
+}) {
+  const schedule = await loadScheduleRow(input.orderId)
+  const orderLabel = schedule
+    ? orderLabelFor(schedule)
+    : input.orderId
+  const total = schedule ? Number(schedule.total_usd) : input.amountUsd
+  const items = normalizeOrderEmailItems(schedule?.items)
+
+  const { subject, html } = buildPaidOrderConfirmationEmail({
+    orderLabel,
+    total,
+    items,
+    ordersUrl: buildStorefrontOrdersUrl(),
+    contactUrl: buildStorefrontContactUrl()
+  })
+
+  const result = await sendHtmlEmail({
+    to: input.email,
+    subject,
+    html
+  })
+
+  await cancelOrderEmailSchedule(input.orderId)
+  await scheduleTrackingSlaEmail({
+    orderId: input.orderId,
+    email: input.email,
+    displayId: schedule?.display_id,
+    items
+  })
+  return result
+}
+
 export async function processDueOrderEmails() {
   const due = await listDueSchedules()
   const summary = {
     scanned: due.length,
-    confirmation_sent: 0,
+    reminder_sent: 0,
     followup_sent: 0,
     skipped_paid: 0,
     skipped_no_payment_url: 0,
-    failed: 0
+    failed: 0,
+    tracking_sla_sent: 0,
+    tracking_sla_failed: 0
   }
 
   for (const entry of due) {
@@ -296,19 +347,19 @@ export async function processDueOrderEmails() {
 
     const paymentUrl = intent!.provider_url
 
-    if (entry.kind === "confirmation") {
+    if (entry.kind === "reminder") {
       const row = await loadScheduleRow(entry.order_id)
       if (!row || row.confirmation_sent_at || row.cancelled_at) continue
 
-      const result = await sendScheduledEmail(row, "confirmation", paymentUrl)
+      const result = await sendScheduledEmail(row, "reminder", paymentUrl)
       if (!result.sent) {
         summary.failed += 1
-        console.warn("[order-email] confirmation failed:", entry.order_id, result.reason)
+        console.warn("[order-email] payment reminder failed:", entry.order_id, result.reason)
         continue
       }
 
       const marked = await markConfirmationSent(entry.order_id)
-      if (marked) summary.confirmation_sent += 1
+      if (marked) summary.reminder_sent += 1
       continue
     }
 
@@ -325,6 +376,10 @@ export async function processDueOrderEmails() {
     const marked = await markFollowupSent(entry.order_id)
     if (marked) summary.followup_sent += 1
   }
+
+  const sla = await processDueTrackingSlaEmails()
+  summary.tracking_sla_sent = sla.tracking_sla_sent
+  summary.tracking_sla_failed = sla.failed
 
   return summary
 }

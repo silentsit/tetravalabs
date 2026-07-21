@@ -8,7 +8,7 @@ import type {
   ProductReviewsResponse,
   ReviewViewerContext
 } from "@/lib/reviews"
-import { deleteProductReview, listProductReviews, submitProductReview } from "@/lib/reviews"
+import { deleteProductReview, listProductReviews, PRODUCT_REVIEWS_DISPLAY_LIMIT, submitProductReview } from "@/lib/reviews"
 import { isStoreAdminEmail } from "@/lib/admin-access"
 import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
 import { StarRating } from "@/components/star-rating"
@@ -222,7 +222,13 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
       </form>
 
       {reviews.length > 0 ? (
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="space-y-3">
+          {aggregate.reviewCount > PRODUCT_REVIEWS_DISPLAY_LIMIT ? (
+            <p className="text-xs text-[#64748B]">
+              Showing latest {PRODUCT_REVIEWS_DISPLAY_LIMIT} of {aggregate.reviewCount} reviews
+            </p>
+          ) : null}
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => (
             <li key={review.id} className="flex h-full flex-col rounded-xl border border-[#E2E8F0] bg-white p-4">
               <div className="flex items-start justify-between gap-2">
@@ -253,7 +259,8 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
               <p className="mt-3 line-clamp-6 flex-1 text-sm leading-relaxed text-[#475569]">{review.body}</p>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
       ) : null}
     </div>
   )

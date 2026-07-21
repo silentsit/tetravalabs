@@ -1,6 +1,8 @@
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
 
+export const PRODUCT_REVIEWS_DISPLAY_LIMIT = 6
+
 export type ProductReview = {
   id: string
   product_id: string
@@ -50,7 +52,7 @@ export async function listProductReviews(input: {
 }): Promise<ProductReviewsResponse> {
   const params = new URLSearchParams({
     product_handle: input.productHandle,
-    limit: String(input.limit ?? 50)
+    limit: String(input.limit ?? PRODUCT_REVIEWS_DISPLAY_LIMIT)
   })
   if (input.productId) params.set("product_id", input.productId)
 

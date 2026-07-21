@@ -9,6 +9,7 @@ import { getProductGalleryImages } from "@/lib/product-image-map"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchaseBox } from "@/components/product-purchase-box"
 import { ProductDetailTabs } from "@/components/product-detail-tabs"
+import { ProductReviewSummary } from "@/components/product-review-summary"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
 import { ProductCard } from "@/components/product-card"
 import { Breadcrumbs } from "@/components/breadcrumbs"
@@ -105,6 +106,7 @@ export default async function ProductPage({ params }: Props) {
             <p className="mt-3 inline-flex rounded-full bg-[#CCFBF1] px-3 py-1 font-mono text-xs text-[#0D9488]">
               {getProductPurity(product)} purity
             </p>
+            <ProductReviewSummary aggregate={reviews.aggregate} />
           </div>
           <ProductPurchaseBox
             productId={product.id}

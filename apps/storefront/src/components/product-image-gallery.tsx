@@ -1,9 +1,10 @@
 "use client"
 
 import Image from "next/image"
+import { FileText } from "lucide-react"
 import { useEffect, useMemo, useState } from "react"
 import type { StoreCoaDocument } from "@/lib/medusa"
-import { coaViewerUrl } from "@/lib/medusa"
+import { coaViewerUrl, coaPreviewUrl } from "@/lib/medusa"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
 import { getCoaCardPreviewUrl } from "@/lib/coa-display"
 import { ProductImageZoom } from "@/components/product-image-zoom"
@@ -11,7 +12,7 @@ import { ProductImageZoom } from "@/components/product-image-zoom"
 type GalleryItem = {
   id: string
   label: string
-  kind: "product" | "coa"
+  kind: "product" | "coa" | "coa-unavailable"
   src: string
   pdfUrl?: string
   previewUrl?: string
@@ -33,6 +34,11 @@ function getCoaPreviewSrc(doc: StoreCoaDocument): string | undefined {
   const previewUrl = getCoaCardPreviewUrl(doc)
   if (previewUrl) return previewUrl
 
+  const metadata = doc.metadata || {}
+  if (typeof metadata.preview_storage_key === "string" && metadata.preview_storage_key.trim()) {
+    return coaPreviewUrl(doc.id)
+  }
+
   if (isImageUrl(doc.document_url)) return doc.document_url
   return undefined
 }
@@ -42,35 +48,44 @@ function buildGalleryItems(
   productName: string,
   coas: StoreCoaDocument[]
 ): GalleryItem[] {
-  const items: GalleryItem[] = productImages.filter(Boolean).map((src, index) => ({
-    id: index === 0 ? "product-front" : `product-${index}`,
-    label: index === 0 ? productName : `${productName} (side)`,
-    kind: "product" as const,
-    src
-  }))
+  const images = productImages.filter(Boolean)
+  const front = images[0] || "/v2/vial-single.jpg"
+  const side = images[1] || front
 
-  if (!items.length) {
-    items.push({
+  const items: GalleryItem[] = [
+    {
       id: "product-front",
       label: productName,
       kind: "product",
-      src: "/v2/vial-single.jpg"
-    })
-  }
+      src: front
+    },
+    {
+      id: "product-side",
+      label: `${productName} (side)`,
+      kind: "product",
+      src: side
+    }
+  ]
 
-  const coaDocs = coas.filter((doc) => doc.document_type === "coa" && doc.document_url)
-
-  for (const doc of coaDocs.slice(0, 4)) {
-    const previewUrl = getCoaPreviewSrc(doc)
-    const pdfUrl = coaViewerUrl(doc.id)
+  const primaryCoa = coas.find((doc) => doc.document_type === "coa" && doc.document_url)
+  if (primaryCoa) {
+    const previewUrl = getCoaPreviewSrc(primaryCoa)
+    const pdfUrl = coaViewerUrl(primaryCoa.id)
 
     items.push({
-      id: doc.id,
-      label: `COA batch ${doc.batch_number}`,
+      id: primaryCoa.id,
+      label: `COA batch ${primaryCoa.batch_number}`,
       kind: "coa",
       src: previewUrl || pdfUrl,
       previewUrl,
       pdfUrl
+    })
+  } else {
+    items.push({
+      id: "coa-unavailable",
+      label: "Certificate of Analysis",
+      kind: "coa-unavailable",
+      src: ""
     })
   }
 
@@ -78,7 +93,33 @@ function buildGalleryItems(
 }
 
 function GalleryMain({ item }: { item: GalleryItem }) {
+  if (item.kind === "coa-unavailable") {
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-[#F8FAFC] p-6 text-center">
+        <FileText className="h-10 w-10 text-[#94A3B8]" aria-hidden />
+        <p className="text-sm font-medium text-[#475569]">COA preview not available yet</p>
+        <p className="text-xs text-[#94A3B8]">Check the COA tab for batch documents when published.</p>
+      </div>
+    )
+  }
+
   if (item.kind === "coa") {
+    // Prefer PDF render for the large gallery pane — card JPEG previews are ~480px
+    // and look soft when upscaled. Keep JPEG for thumbnails only.
+    if (item.pdfUrl) {
+      return (
+        <div className="flex h-full w-full items-start justify-center overflow-auto bg-white p-2">
+          <CoaPdfPreview
+            url={item.pdfUrl}
+            alt={item.label}
+            scale={1.1}
+            lazy={false}
+            className="max-h-full w-auto"
+          />
+        </div>
+      )
+    }
+
     if (item.previewUrl) {
       return (
         <div className="relative h-full w-full bg-white">
@@ -89,20 +130,6 @@ function GalleryMain({ item }: { item: GalleryItem }) {
             unoptimized
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain object-top p-2"
-          />
-        </div>
-      )
-    }
-
-    if (item.pdfUrl) {
-      return (
-        <div className="flex h-full w-full items-start justify-center overflow-auto bg-white p-2">
-          <CoaPdfPreview
-            url={item.pdfUrl}
-            alt={item.label}
-            scale={1.1}
-            lazy={false}
-            className="max-h-full w-auto"
           />
         </div>
       )
@@ -128,6 +155,15 @@ function GalleryMain({ item }: { item: GalleryItem }) {
 }
 
 function GalleryThumb({ item }: { item: GalleryItem }) {
+  if (item.kind === "coa-unavailable") {
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center gap-0.5 bg-[#F8FAFC] text-[#94A3B8]">
+        <FileText className="h-4 w-4" aria-hidden />
+        <span className="text-[9px] font-medium uppercase tracking-wide">COA</span>
+      </div>
+    )
+  }
+
   if (item.kind === "product") {
     return (
       <Image
@@ -205,29 +241,33 @@ export function ProductImageGallery({
         <GalleryMain item={active} />
       </div>
 
-      {items.length > 1 ? (
-        <div className="flex flex-wrap gap-2">
-          {items.map((item) => {
-            const selected = item.id === activeId
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActiveId(item.id)}
-                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border bg-white transition-colors ${
-                  selected
+      <div className="grid grid-cols-3 gap-2">
+        {items.map((item) => {
+          const selected = item.id === activeId
+          const disabled = item.kind === "coa-unavailable"
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => {
+                if (!disabled) setActiveId(item.id)
+              }}
+              disabled={disabled}
+              className={`relative h-16 w-full overflow-hidden rounded-lg border bg-white transition-colors ${
+                disabled
+                  ? "cursor-not-allowed border-[#E2E8F0] opacity-70"
+                  : selected
                     ? "border-[#0D9488] ring-2 ring-[#0D9488]/20"
                     : "border-[#E2E8F0] hover:border-[#CBD5E1]"
-                }`}
-                aria-label={item.label}
-                aria-pressed={selected}
-              >
-                <GalleryThumb item={item} />
-              </button>
-            )
-          })}
-        </div>
-      ) : null}
+              }`}
+              aria-label={item.label}
+              aria-pressed={selected}
+            >
+              <GalleryThumb item={item} />
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }

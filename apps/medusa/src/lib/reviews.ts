@@ -113,23 +113,50 @@ export async function deleteReviewById(db: Pool, id: string): Promise<boolean> {
   return (result.rowCount || 0) > 0
 }
 
-export async function upsertReview(db: Pool, input: CreateReviewInput): Promise<ProductReviewRow> {
+export async function insertReview(db: Pool, input: CreateReviewInput): Promise<ProductReviewRow> {
   const id = randomUUID()
   const result = await db.query<ProductReviewRow>(
     `
     INSERT INTO product_reviews (
       id, product_id, product_handle, customer_id, author_name, rating, body
     ) VALUES ($1, $2, $3, $4, $5, $6, $7)
-    ON CONFLICT (product_id, customer_id) DO UPDATE SET
-      author_name = EXCLUDED.author_name,
-      rating = EXCLUDED.rating,
-      body = EXCLUDED.body,
-      updated_at = NOW()
     RETURNING id, product_id, product_handle, customer_id, author_name, rating, body, created_at, updated_at
     `,
     [id, input.productId, input.productHandle, input.customerId, input.authorName, input.rating, input.body]
   )
   return result.rows[0]
+}
+
+export async function updateReviewContent(
+  db: Pool,
+  reviewId: string,
+  customerId: string,
+  input: { authorName: string; rating: number; body: string }
+): Promise<ProductReviewRow | null> {
+  const result = await db.query<ProductReviewRow>(
+    `
+    UPDATE product_reviews
+    SET author_name = $3, rating = $4, body = $5, updated_at = NOW()
+    WHERE id = $1 AND customer_id = $2
+    RETURNING id, product_id, product_handle, customer_id, author_name, rating, body, created_at, updated_at
+    `,
+    [reviewId, customerId, input.authorName, input.rating, input.body]
+  )
+  return result.rows[0] || null
+}
+
+/** @deprecated Use insertReview + updateReviewContent for explicit buyer/admin paths. */
+export async function upsertReview(db: Pool, input: CreateReviewInput): Promise<ProductReviewRow> {
+  const existing = await getCustomerReviewForProduct(db, input.productId, input.customerId)
+  if (existing) {
+    const updated = await updateReviewContent(db, existing.id, input.customerId, {
+      authorName: input.authorName,
+      rating: input.rating,
+      body: input.body
+    })
+    if (updated) return updated
+  }
+  return insertReview(db, input)
 }
 
 export async function getCustomerEmail(scope: MedusaContainer, customerId: string): Promise<string | null> {
@@ -190,8 +217,8 @@ export async function buildViewerContext(
     is_admin: isAdmin,
     purchased,
     can_review: isAdmin || purchased,
-    has_review: Boolean(existingReview),
-    existing_review: existingReview ? mapReviewRow(existingReview) : null
+    has_review: isAdmin ? false : Boolean(existingReview),
+    existing_review: isAdmin ? null : existingReview ? mapReviewRow(existingReview) : null
   }
 }
 
@@ -201,14 +228,32 @@ export function normalizeRating(value: unknown): number | null {
   return Math.round(rating)
 }
 
+export function normalizeAdminRating(value: unknown): number | null {
+  const rating = Number(value)
+  if (!Number.isFinite(rating) || rating < 1) return null
+  return Math.round(rating)
+}
+
 export function normalizeBody(value: unknown): string | null {
   const body = String(value || "").trim()
   if (body.length < 10 || body.length > 2000) return null
   return body
 }
 
+export function normalizeAdminBody(value: unknown): string | null {
+  const body = String(value || "").trim()
+  if (!body.length) return null
+  return body
+}
+
 export function normalizeAuthorName(value: unknown): string | null {
   const name = String(value || "").trim()
   if (name.length < 2 || name.length > 80) return null
+  return name
+}
+
+export function normalizeAdminAuthorName(value: unknown): string | null {
+  const name = String(value || "").trim()
+  if (!name.length || name.length > 120) return null
   return name
 }

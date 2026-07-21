@@ -36,6 +36,11 @@ type Props = {
 const tabs = ["Overview", "Specifications", "Storage", "COA", "Shipping", "Reviews"] as const
 type TabId = (typeof tabs)[number]
 
+function tabLabel(tab: TabId, reviewCount: number) {
+  if (tab === "Reviews" && reviewCount > 0) return `Reviews (${reviewCount})`
+  return tab
+}
+
 export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("Overview")
   const primaryCoa = coas[0]
@@ -62,7 +67,7 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
                   : "border-transparent text-[#94A3B8] hover:text-[#475569]"
               }`}
             >
-              {tab}
+              {tabLabel(tab, reviews.aggregate.reviewCount)}
             </button>
           ))}
         </div>

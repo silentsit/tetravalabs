@@ -8,10 +8,15 @@ import {
   getReviewAggregate,
   listReviewsByHandle,
   mapReviewRow,
+  insertReview,
+  updateReviewContent,
+  normalizeAdminAuthorName,
+  normalizeAdminBody,
+  normalizeAdminRating,
   normalizeAuthorName,
   normalizeBody,
   normalizeRating,
-  upsertReview
+  getCustomerReviewForProduct
 } from "../../../lib/reviews"
 import { isStoreAdminEmail } from "../../../lib/store-admin"
 
@@ -73,7 +78,7 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
 
 /**
  * POST /store/reviews
- * Verified purchasers may review once per product. Admins may post under a custom name.
+ * Verified purchasers may review once per product. Admins may post unlimited reviews under custom names.
  */
 export const POST = async (req: AuthenticatedMedusaRequest<PostBody>, res: MedusaResponse) => {
   const customerId = req.auth_context?.actor_id
@@ -83,32 +88,40 @@ export const POST = async (req: AuthenticatedMedusaRequest<PostBody>, res: Medus
 
   const productId = String(req.body?.product_id || "").trim()
   const productHandle = String(req.body?.product_handle || "").trim()
-  const rating = normalizeRating(req.body?.rating)
-  const body = normalizeBody(req.body?.body)
-
-  if (!productId || !productHandle) {
-    return res.status(400).json({ message: "product_id and product_handle are required" })
-  }
-  if (!rating) {
-    return res.status(400).json({ message: "rating must be between 1 and 5" })
-  }
-  if (!body) {
-    return res.status(400).json({ message: "Review must be between 10 and 2000 characters" })
-  }
 
   const email = await getCustomerEmail(req.scope, customerId)
   const isAdmin = isStoreAdminEmail(email)
   const purchased = await customerPurchasedProduct(req.scope, customerId, productHandle, productId)
 
+  if (!productId || !productHandle) {
+    return res.status(400).json({ message: "product_id and product_handle are required" })
+  }
+
   if (!isAdmin && !purchased) {
-    return res.status(403).json({ message: "Only verified purchasers can review this product." })
+    return res.status(403).json({
+      message: "Only accounts that have purchased this product before can post a review."
+    })
+  }
+
+  const rating = isAdmin ? normalizeAdminRating(req.body?.rating) : normalizeRating(req.body?.rating)
+  const body = isAdmin ? normalizeAdminBody(req.body?.body) : normalizeBody(req.body?.body)
+
+  if (!rating) {
+    return res.status(400).json({
+      message: isAdmin ? "rating must be at least 1" : "rating must be between 1 and 5"
+    })
+  }
+  if (!body) {
+    return res.status(400).json({
+      message: isAdmin ? "Review text is required" : "Review must be between 10 and 2000 characters"
+    })
   }
 
   let authorName: string | null = null
   if (isAdmin) {
-    authorName = normalizeAuthorName(req.body?.author_name)
+    authorName = normalizeAdminAuthorName(req.body?.author_name)
     if (!authorName) {
-      return res.status(400).json({ message: "Admin reviews require a display name (2–80 characters)." })
+      return res.status(400).json({ message: "Admin reviews require a display name." })
     }
   } else {
     const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -128,15 +141,36 @@ export const POST = async (req: AuthenticatedMedusaRequest<PostBody>, res: Medus
   }
 
   const review = await withDb(
-    async (db) =>
-      upsertReview(db, {
+    async (db) => {
+      if (isAdmin) {
+        return insertReview(db, {
+          productId,
+          productHandle,
+          customerId,
+          authorName: authorName!,
+          rating,
+          body
+        })
+      }
+
+      const existing = await getCustomerReviewForProduct(db, productId, customerId)
+      if (existing) {
+        return updateReviewContent(db, existing.id, customerId, {
+          authorName: authorName!,
+          rating,
+          body
+        })
+      }
+
+      return insertReview(db, {
         productId,
         productHandle,
         customerId,
         authorName: authorName!,
         rating,
         body
-      }),
+      })
+    },
     async () => null
   )
 

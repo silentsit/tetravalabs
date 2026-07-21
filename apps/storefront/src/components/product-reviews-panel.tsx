@@ -12,6 +12,7 @@ import { deleteProductReview, listProductReviews, submitProductReview } from "@/
 import { isStoreAdminEmail } from "@/lib/admin-access"
 import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
 import { StarRating } from "@/components/star-rating"
+import { ReviewRatingDisplay } from "@/components/review-rating-display"
 
 type Props = {
   productId: string
@@ -47,15 +48,18 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
       setReviews(fresh.items)
       setAggregate(fresh.aggregate)
       setViewer(fresh.viewer)
-      if (fresh.viewer?.existing_review) {
+      if (fresh.viewer?.existing_review && !isStoreAdminEmail(customer?.email)) {
         setRating(fresh.viewer.existing_review.rating)
         setBody(fresh.viewer.existing_review.body)
-        if (isStoreAdminEmail(customer?.email)) {
-          setAuthorName(fresh.viewer.existing_review.author_name)
-        }
       }
     })()
   }, [productHandle, productId])
+
+  const resetAdminForm = () => {
+    setRating(5)
+    setBody("")
+    setAuthorName("")
+  }
 
   const refreshReviews = async () => {
     const authToken = readAuthToken()
@@ -71,10 +75,18 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
     setStatus("")
     setSubmitting(true)
 
+    const ineligibleMessage = "Only accounts that have purchased this product before can post a review."
+
     try {
       const authToken = readAuthToken()
       if (!authToken) {
         setError("Sign in to leave a review.")
+        return
+      }
+
+      const postingAsAdmin = isAdmin || Boolean(viewer?.is_admin)
+      if (!postingAsAdmin && viewer && !viewer.can_review) {
+        setError(ineligibleMessage)
         return
       }
 
@@ -83,14 +95,24 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
         productHandle,
         rating,
         body,
-        authorName: isAdmin ? authorName : undefined,
+        authorName: postingAsAdmin ? authorName : undefined,
         authToken
       })
 
-      setStatus(viewer?.has_review ? "Review updated." : "Review submitted. Thank you.")
+      if (postingAsAdmin) {
+        setStatus("Review posted.")
+        resetAdminForm()
+      } else {
+        setStatus(viewer?.has_review ? "Review updated." : "Review submitted. Thank you.")
+      }
       await refreshReviews()
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : "Could not submit review.")
+      const message = submitError instanceof Error ? submitError.message : "Could not submit review."
+      if (/only verified purchasers|not eligible|purchase/i.test(message)) {
+        setError(ineligibleMessage)
+      } else {
+        setError(message)
+      }
     } finally {
       setSubmitting(false)
     }
@@ -110,7 +132,7 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
     }
   }
 
-  const showForm = signedIn && viewer?.can_review
+  const adminAccess = isAdmin || Boolean(viewer?.is_admin)
 
   return (
     <div className="space-y-8">
@@ -131,60 +153,73 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
         </div>
       </div>
 
-      {showForm ? (
-        <form onSubmit={onSubmit} className="card space-y-4 p-5">
-          <p className="text-sm font-medium text-[#0F172A]">
-            {viewer?.has_review ? "Update your review" : "Share your experience"}
+      <form onSubmit={onSubmit} className="card space-y-4 p-5">
+        <p className="text-sm font-medium text-[#0F172A]">
+          {adminAccess
+            ? "Post a review (admin)"
+            : viewer?.has_review
+              ? "Update your review"
+              : "Share your experience"}
+        </p>
+        {adminAccess ? (
+          <p className="text-xs text-[#64748B]">
+            Admins can post unlimited reviews with any display name on any product.
           </p>
-          {isAdmin ? (
-            <div>
-              <label className="block text-xs text-[#475569]">Display name (admin)</label>
-              <input
-                required
-                value={authorName}
-                onChange={(event) => setAuthorName(event.target.value)}
-                className="input-field mt-1"
-                placeholder="Custom reviewer name"
-              />
-            </div>
-          ) : null}
+        ) : signedIn === false ? (
+          <p className="text-xs text-[#64748B]">
+            <Link href={`/login?returnUrl=/product/${productHandle}`} className="text-[#0D9488] hover:underline">
+              Sign in
+            </Link>{" "}
+            before submitting. Reviews are limited to verified purchasers.
+          </p>
+        ) : null}
+        {adminAccess ? (
           <div>
-            <label className="block text-xs text-[#475569]">Rating</label>
-            <div className="mt-2">
-              <StarRating value={rating} onChange={setRating} />
-            </div>
-          </div>
-          <div>
-            <label className="block text-xs text-[#475569]">Review</label>
-            <textarea
+            <label className="block text-xs text-[#475569]">Display name (admin)</label>
+            <input
               required
-              value={body}
-              onChange={(event) => setBody(event.target.value)}
-              rows={4}
-              minLength={10}
-              maxLength={2000}
-              className="input-field mt-1 min-h-28"
-              placeholder="Describe product quality, packaging, or lab results."
+              value={authorName}
+              onChange={(event) => setAuthorName(event.target.value)}
+              className="input-field mt-1"
+              placeholder="Any custom reviewer name"
             />
           </div>
-          <button type="submit" disabled={submitting} className="btn-primary disabled:opacity-60">
-            {submitting ? "Saving..." : viewer?.has_review ? "Update review" : "Submit review"}
-          </button>
-          {status ? <p className="text-xs text-[#0D9488]">{status}</p> : null}
-          {error ? <p className="text-xs text-red-600">{error}</p> : null}
-        </form>
-      ) : signedIn === false ? (
-        <p className="text-sm text-[#475569]">
-          <Link href={`/login?returnUrl=/product/${productHandle}`} className="text-[#0D9488] hover:underline">
-            Sign in
-          </Link>{" "}
-          to leave a review after purchasing this product.
-        </p>
-      ) : signedIn && viewer && !viewer.can_review ? (
-        <p className="text-sm text-[#475569]">
-          Verified purchasers can review this product once. Place an order to unlock review access.
-        </p>
-      ) : null}
+        ) : null}
+        <div>
+          <label className="block text-xs text-[#475569]">Rating</label>
+          <div className="mt-2">
+            <StarRating value={rating} onChange={setRating} />
+          </div>
+        </div>
+        <div>
+          <label className="block text-xs text-[#475569]">Review</label>
+          <textarea
+            required
+            value={body}
+            onChange={(event) => setBody(event.target.value)}
+            rows={4}
+            minLength={adminAccess ? undefined : 10}
+            maxLength={adminAccess ? undefined : 2000}
+            className="input-field mt-1 min-h-28"
+            placeholder={
+              adminAccess
+                ? "Admin review — no character limit."
+                : "Describe product quality, packaging, or lab results."
+            }
+          />
+        </div>
+        <button type="submit" disabled={submitting} className="btn-primary disabled:opacity-60">
+          {submitting
+            ? "Saving..."
+            : adminAccess
+              ? "Post review"
+              : viewer?.has_review
+                ? "Update review"
+                : "Submit review"}
+        </button>
+        {status ? <p className="text-xs text-[#0D9488]">{status}</p> : null}
+        {error ? <p className="text-xs text-red-600">{error}</p> : null}
+      </form>
 
       {reviews.length > 0 ? (
         <ul className="space-y-4">
@@ -202,8 +237,8 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <StarRating value={review.rating} readOnly size="sm" />
-                  {isAdmin ? (
+                  <ReviewRatingDisplay rating={review.rating} size="sm" />
+                  {adminAccess ? (
                     <button
                       type="button"
                       onClick={() => void onDelete(review.id)}

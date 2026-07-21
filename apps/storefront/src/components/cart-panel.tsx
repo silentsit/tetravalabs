@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useCart } from "@/components/cart-provider"
+import { getProductHref } from "@/lib/compound-product"
 import { getProductImage } from "@/lib/product-image-map"
 
 export function CartPanel() {
@@ -29,7 +30,7 @@ export function CartPanel() {
                   <div className="flex flex-1 flex-col">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <Link href={`/product/${item.handle}`} className="text-sm font-medium text-[#0F172A]">
+                        <Link href={getProductHref(item.handle)} className="text-sm font-medium text-[#0F172A]">
                           {item.title}
                         </Link>
                         <p className="text-xs text-[#94A3B8]">{item.variantTitle}</p>

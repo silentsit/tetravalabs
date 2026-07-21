@@ -1,4 +1,5 @@
 import { groupProductsByCategory } from "@/lib/categories"
+import { getProductHref } from "@/lib/compound-product"
 import { listAllProducts } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 
@@ -152,10 +153,14 @@ export async function getAllProductSitemapEntries(): Promise<SitemapUrlEntry[]> 
   const products = await listAllProducts()
   const now = new Date()
 
-  return products.map((product) => ({
-    loc: `${baseUrl}/product/${product.handle}`,
+  const locs = new Set(
+    products.map((product) => `${baseUrl}${getProductHref(product.handle)}`)
+  )
+
+  return [...locs].map((loc) => ({
+    loc,
     lastModified: now,
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: 0.8
   }))
 }

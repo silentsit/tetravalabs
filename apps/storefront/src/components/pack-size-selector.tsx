@@ -1,16 +1,29 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import type { PackTier } from "@/lib/pack-pricing"
 
 type Props = {
   tiers: PackTier[]
   unitLabel?: "vial" | "unit"
+  /** Controlled selection (pack qty). */
+  value?: number
   onChange?: (tier: PackTier) => void
 }
 
-export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props) {
-  const [selectedQty, setSelectedQty] = useState(tiers[0]?.qty || 5)
+export function PackSizeSelector({
+  tiers,
+  unitLabel = "vial",
+  value,
+  onChange
+}: Props) {
+  const [internalQty, setInternalQty] = useState(value ?? tiers[0]?.qty ?? 5)
+
+  useEffect(() => {
+    if (value != null) setInternalQty(value)
+  }, [value])
+
+  const selectedQty = value ?? internalQty
   const selected = useMemo(
     () => tiers.find((tier) => tier.qty === selectedQty) || tiers[0],
     [selectedQty, tiers]
@@ -28,7 +41,7 @@ export function PackSizeSelector({ tiers, unitLabel = "vial", onChange }: Props)
       : `$${selected.perUnit.toFixed(2)}`
 
   const pickTier = (tier: PackTier) => {
-    setSelectedQty(tier.qty)
+    if (value == null) setInternalQty(tier.qty)
     onChange?.(tier)
   }
 

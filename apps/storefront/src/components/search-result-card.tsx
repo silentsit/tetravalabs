@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import type { SearchResult } from "@/lib/search"
 import { formatShelfPriceFromUnitCents } from "@/lib/pack-pricing"
+import { getProductHref } from "@/lib/compound-product"
 import { getProductImage } from "@/lib/product-image-map"
 import { ShelfPriceLabel } from "@/components/shelf-price-label"
 
@@ -38,7 +39,7 @@ export function SearchResultCard({ result }: Props) {
 
   return (
     <Link
-      href={`/product/${result.handle}`}
+      href={getProductHref(result.handle)}
       className="card card-hover group flex flex-col overflow-hidden"
     >
       <div className="product-card-media">

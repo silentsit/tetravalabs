@@ -19,6 +19,7 @@ import {
   packTiersFromVariants,
   resolveProductPurchaseLayout
 } from "@/lib/pack-pricing"
+import { getProductHref } from "@/lib/compound-product"
 import { ShelfPriceLabel } from "@/components/shelf-price-label"
 
 interface ProductCardProps {
@@ -73,13 +74,13 @@ export function ProductCard({
 
   const shelfPrice = formatShelfPriceFromProduct(product)
   const needsOptions = productNeedsOptions(product)
-  const productHref = `/product/${product.handle}`
+  const productHref = getProductHref(product.handle)
   const TitleTag = variant === "shop" ? "h2" : "h3"
 
   if (variant === "default") {
     return (
       <div className="card card-hover group flex flex-col overflow-hidden">
-        <Link href={`/product/${product.handle}`} className="product-card-media">
+        <Link href={productHref} className="product-card-media">
           <Image
             src={imageUrl}
             alt={displayName}
@@ -94,7 +95,7 @@ export function ProductCard({
           ) : null}
         </Link>
         <div className="flex flex-1 flex-col border-t border-[#E2E8F0] p-4">
-          <Link href={`/product/${product.handle}`}>
+          <Link href={productHref}>
             <h3 className="product-card-title text-[15px] leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
               {displayName}
             </h3>

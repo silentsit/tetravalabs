@@ -153,7 +153,7 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
         </div>
       </div>
 
-      <form onSubmit={onSubmit} className="card space-y-4 p-5">
+      <form onSubmit={onSubmit} className="card max-w-md space-y-3 p-4">
         <p className="text-sm font-medium text-[#0F172A]">
           {adminAccess
             ? "Post a review (admin)"
@@ -197,10 +197,10 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
             required
             value={body}
             onChange={(event) => setBody(event.target.value)}
-            rows={4}
+            rows={3}
             minLength={adminAccess ? undefined : 10}
             maxLength={adminAccess ? undefined : 2000}
-            className="input-field mt-1 min-h-28"
+            className="input-field mt-1 min-h-20"
             placeholder={
               adminAccess
                 ? "Admin review — no character limit."
@@ -222,12 +222,12 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
       </form>
 
       {reviews.length > 0 ? (
-        <ul className="space-y-4">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => (
-            <li key={review.id} className="rounded-xl border border-[#E2E8F0] bg-white p-4">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="font-medium text-[#0F172A]">{review.author_name}</p>
+            <li key={review.id} className="flex h-full flex-col rounded-xl border border-[#E2E8F0] bg-white p-4">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="truncate font-medium text-[#0F172A]">{review.author_name}</p>
                   <p className="mt-1 text-xs text-[#94A3B8]">
                     {new Date(review.created_at).toLocaleDateString(undefined, {
                       year: "numeric",
@@ -236,7 +236,7 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
                     })}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex shrink-0 items-center gap-1">
                   <ReviewRatingDisplay rating={review.rating} size="sm" />
                   {adminAccess ? (
                     <button
@@ -250,7 +250,7 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
                   ) : null}
                 </div>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-[#475569]">{review.body}</p>
+              <p className="mt-3 line-clamp-6 flex-1 text-sm leading-relaxed text-[#475569]">{review.body}</p>
             </li>
           ))}
         </ul>

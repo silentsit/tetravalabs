@@ -182,8 +182,8 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
             <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-[#475569]">
               <p>
                 Lyophilized peptides ship in temperature-controlled packaging with cold packs where
-                required. Domestic orders typically arrive within 2–5 business days; international
-                delivery varies by destination and customs processing.
+                required. Orders are processed within 12 hours; delivery times vary by region
+                (see our shipping page for international windows).
               </p>
               <p>
                 Packages are shipped in plain, unmarked outer packaging. Tracking is provided when

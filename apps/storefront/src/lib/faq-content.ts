@@ -12,7 +12,7 @@ export const productFaqItems: FaqItem[] = [
   {
     question: "How is this compound shipped?",
     answer:
-      "Lyophilized peptides are shipped in temperature-controlled packaging with cold packs where required. Packages are discreet and unmarked. Tracking is provided when available."
+      "Lyophilized peptides ship via USPS in temperature-controlled packaging with cold packs where required. Packages are discreet and unmarked. Tracking is emailed when the carrier label is generated. See the Shipping page for rates and delivery windows."
   },
   {
     question: "How should I store this product?",
@@ -35,7 +35,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What shipping methods do you use?",
     answer:
-      "We ship using temperature-controlled packaging where appropriate for lyophilized peptides. Domestic orders typically arrive within 2–5 business days. International shipping times vary by destination. All packages are discreet and unmarked."
+      "We ship with temperature-controlled packaging where appropriate for lyophilized peptides. Orders are processed within 12 hours; delivery times vary by region (e.g. 5–11 business days to USA, Canada, Australia, and UK). Shipping rate is shown at checkout. Tracking is emailed after dispatch — use Post Track or 17 Track for the most accurate updates."
   },
   {
     question: "How should peptides be stored?",
@@ -45,7 +45,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Do you ship internationally?",
     answer:
-      "International shipping availability depends on destination and compliance policy. Customs fees and import duties are the responsibility of the recipient. Contact support before placing large international orders."
+      "Yes, where your destination is not restricted. Typical delivery windows: 5–11 business days (USA, Canada, Australia, UK), 3–5 business days (South-East Asia), 7–14 business days (rest of world). Customs fees and import duties are the recipient’s responsibility. See our Shipping page for tracking guidance."
   },
   {
     question: "What is your return policy?",

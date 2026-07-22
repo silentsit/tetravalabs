@@ -82,7 +82,10 @@ export function SiteFooter() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#1E293B] pt-8 sm:flex-row">
           <p className="text-xs text-[#64748B]">&copy; {new Date().getFullYear()} Tetrava Labs. All rights reserved.</p>
-          <p className="text-xs text-[#D97706]/80">Research Use Only. Not for human consumption.</p>
+          <p className="max-w-xl text-center text-xs leading-relaxed text-[#D97706]/80 sm:text-right">
+            FDA Disclaimer: All products are for laboratory, developmental, analytical, and/or research
+            use only. Not for human consumption.
+          </p>
         </div>
       </div>
     </footer>

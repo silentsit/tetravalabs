@@ -1,14 +1,22 @@
 import { withDb } from "./db"
 import {
+  buildCoaTrustEmail,
   buildOrderShippedEmail,
   buildProductReviewUrl,
+  buildReplenishmentEmail,
   buildReviewRequestEmail,
+  buildStorefrontCoaLibraryUrl,
   buildStorefrontContactUrl,
   buildStorefrontOrdersUrl,
+  buildStorefrontShopUrl,
   buildTrackingSlaEmail,
+  COA_TRUST_DELAY_DAYS,
   firstProductHandle,
   normalizeOrderEmailItems,
   orderLabelFrom,
+  REPLENISHMENT_R1_DAYS,
+  REPLENISHMENT_R2_DAYS_AFTER_R1,
+  REPLENISHMENT_R3_DAYS_AFTER_R2,
   REVIEW_REQUEST_DELAY_DAYS,
   TRACKING_SLA_HOURS,
   type OrderEmailItem
@@ -26,6 +34,15 @@ type FulfillmentRow = {
   carrier: string | null
   review_due_at: string | null
   review_sent_at: string | null
+  r1_due_at: string | null
+  r1_sent_at: string | null
+  r2_due_at: string | null
+  r2_sent_at: string | null
+  r3_due_at: string | null
+  r3_sent_at: string | null
+  replenishment_cancelled_at: string | null
+  coa_trust_due_at: string | null
+  coa_trust_sent_at: string | null
 }
 
 async function sendHtmlEmail(input: { to: string; subject: string; html: string }) {
@@ -233,10 +250,22 @@ export async function recordOrderShipmentAndNotify(input: {
           UPDATE order_fulfillment_emails
           SET
             review_due_at = COALESCE(review_due_at, NOW() + ($2 || ' days')::interval),
+            r1_due_at = COALESCE(r1_due_at, NOW() + ($3 || ' days')::interval),
+            coa_trust_due_at = COALESCE(coa_trust_due_at, NOW() + ($4 || ' days')::interval),
             updated_at = NOW()
-          WHERE order_id = $1 AND review_sent_at IS NULL AND review_due_at IS NULL
+          WHERE order_id = $1
+            AND (
+              (review_sent_at IS NULL AND review_due_at IS NULL)
+              OR (r1_sent_at IS NULL AND r1_due_at IS NULL AND replenishment_cancelled_at IS NULL)
+              OR (coa_trust_sent_at IS NULL AND coa_trust_due_at IS NULL)
+            )
         `,
-          [input.orderId, String(REVIEW_REQUEST_DELAY_DAYS)]
+          [
+            input.orderId,
+            String(REVIEW_REQUEST_DELAY_DAYS),
+            String(REPLENISHMENT_R1_DAYS),
+            String(COA_TRUST_DELAY_DAYS)
+          ]
         )
       },
       async () => undefined
@@ -268,16 +297,271 @@ export async function recordOrderShipmentAndNotify(input: {
         SET
           shipped_email_sent_at = NOW(),
           review_due_at = COALESCE(review_due_at, NOW() + ($2 || ' days')::interval),
+          r1_due_at = COALESCE(r1_due_at, NOW() + ($3 || ' days')::interval),
+          coa_trust_due_at = COALESCE(coa_trust_due_at, NOW() + ($4 || ' days')::interval),
           updated_at = NOW()
         WHERE order_id = $1 AND shipped_email_sent_at IS NULL
       `,
-        [input.orderId, String(REVIEW_REQUEST_DELAY_DAYS)]
+        [
+          input.orderId,
+          String(REVIEW_REQUEST_DELAY_DAYS),
+          String(REPLENISHMENT_R1_DAYS),
+          String(COA_TRUST_DELAY_DAYS)
+        ]
       )
     },
     async () => undefined
   )
 
   return { ok: true as const, emailed: true }
+}
+
+/** Cancel open R1–R3 for a customer after a new paid order. */
+export async function cancelReplenishmentEmailsOnPaidOrder(input: {
+  email?: string | null
+  excludeOrderId?: string | null
+}) {
+  const email = input.email?.trim().toLowerCase() || null
+  if (!email) return { ok: false as const }
+
+  type CancelResult = { ok: true } | { ok: false }
+
+  return withDb<CancelResult>(
+    async (db) => {
+      await db.query(
+        `
+        UPDATE order_fulfillment_emails
+        SET replenishment_cancelled_at = NOW(), updated_at = NOW()
+        WHERE lower(email) = $1
+          AND replenishment_cancelled_at IS NULL
+          AND (
+            (r1_sent_at IS NULL AND r1_due_at IS NOT NULL)
+            OR (r1_sent_at IS NOT NULL AND r2_sent_at IS NULL)
+            OR (r2_sent_at IS NOT NULL AND r3_sent_at IS NULL)
+          )
+          AND ($2::text IS NULL OR order_id <> $2)
+      `,
+        [email, input.excludeOrderId || null]
+      )
+      return { ok: true as const }
+    },
+    async () => ({ ok: false as const })
+  )
+}
+
+export async function processDueReplenishmentEmails() {
+  const due = await withDb(
+    async (db) => {
+      const result = await db.query<FulfillmentRow & { kind: "r1" | "r2" | "r3" }>(
+        `
+        SELECT *,
+          CASE
+            WHEN r1_sent_at IS NULL THEN 'r1'
+            WHEN r2_sent_at IS NULL THEN 'r2'
+            ELSE 'r3'
+          END AS kind
+        FROM order_fulfillment_emails
+        WHERE replenishment_cancelled_at IS NULL
+          AND shipped_email_sent_at IS NOT NULL
+          AND (
+            (r1_sent_at IS NULL AND r1_due_at IS NOT NULL AND r1_due_at <= NOW())
+            OR (
+              r1_sent_at IS NOT NULL
+              AND r2_sent_at IS NULL
+              AND r2_due_at IS NOT NULL
+              AND r2_due_at <= NOW()
+            )
+            OR (
+              r2_sent_at IS NOT NULL
+              AND r3_sent_at IS NULL
+              AND r3_due_at IS NOT NULL
+              AND r3_due_at <= NOW()
+            )
+          )
+        ORDER BY COALESCE(r1_due_at, r2_due_at, r3_due_at) ASC
+        LIMIT 50
+      `
+      )
+      return result.rows
+    },
+    async () => []
+  )
+
+  const summary = {
+    scanned: due.length,
+    r1_sent: 0,
+    r2_sent: 0,
+    r3_sent: 0,
+    failed: 0
+  }
+
+  for (const row of due) {
+    const step = row.kind === "r1" ? 1 : row.kind === "r2" ? 2 : 3
+    const items = normalizeOrderEmailItems(row.items)
+    const orderLabel = orderLabelFrom(row.display_id, row.order_id)
+
+    const { subject, html } = buildReplenishmentEmail({
+      orderLabel,
+      items,
+      ordersUrl: buildStorefrontOrdersUrl(),
+      shopUrl: buildStorefrontShopUrl(),
+      contactUrl: buildStorefrontContactUrl(),
+      step
+    })
+
+    const result = await sendHtmlEmail({
+      to: row.email,
+      subject,
+      html
+    })
+
+    if (!result.sent) {
+      summary.failed += 1
+      console.warn("[fulfillment-email] replenishment failed:", row.order_id, row.kind, result.reason)
+      continue
+    }
+
+    if (row.kind === "r1") {
+      const marked = await withDb(
+        async (db) => {
+          const update = await db.query(
+            `
+            UPDATE order_fulfillment_emails
+            SET
+              r1_sent_at = NOW(),
+              r2_due_at = NOW() + ($2 || ' days')::interval,
+              updated_at = NOW()
+            WHERE order_id = $1
+              AND r1_sent_at IS NULL
+              AND replenishment_cancelled_at IS NULL
+            RETURNING order_id
+          `,
+            [row.order_id, String(REPLENISHMENT_R2_DAYS_AFTER_R1)]
+          )
+          return Boolean(update.rowCount)
+        },
+        async () => false
+      )
+      if (marked) summary.r1_sent += 1
+      continue
+    }
+
+    if (row.kind === "r2") {
+      const marked = await withDb(
+        async (db) => {
+          const update = await db.query(
+            `
+            UPDATE order_fulfillment_emails
+            SET
+              r2_sent_at = NOW(),
+              r3_due_at = NOW() + ($2 || ' days')::interval,
+              updated_at = NOW()
+            WHERE order_id = $1
+              AND r2_sent_at IS NULL
+              AND replenishment_cancelled_at IS NULL
+            RETURNING order_id
+          `,
+            [row.order_id, String(REPLENISHMENT_R3_DAYS_AFTER_R2)]
+          )
+          return Boolean(update.rowCount)
+        },
+        async () => false
+      )
+      if (marked) summary.r2_sent += 1
+      continue
+    }
+
+    const marked = await withDb(
+      async (db) => {
+        const update = await db.query(
+          `
+          UPDATE order_fulfillment_emails
+          SET r3_sent_at = NOW(), updated_at = NOW()
+          WHERE order_id = $1
+            AND r3_sent_at IS NULL
+            AND replenishment_cancelled_at IS NULL
+          RETURNING order_id
+        `,
+          [row.order_id]
+        )
+        return Boolean(update.rowCount)
+      },
+      async () => false
+    )
+    if (marked) summary.r3_sent += 1
+  }
+
+  return summary
+}
+
+export async function processDueCoaTrustEmails() {
+  const due = await withDb(
+    async (db) => {
+      const result = await db.query<FulfillmentRow>(
+        `
+        SELECT *
+        FROM order_fulfillment_emails
+        WHERE coa_trust_sent_at IS NULL
+          AND shipped_email_sent_at IS NOT NULL
+          AND coa_trust_due_at IS NOT NULL
+          AND coa_trust_due_at <= NOW()
+        ORDER BY coa_trust_due_at ASC
+        LIMIT 50
+      `
+      )
+      return result.rows
+    },
+    async () => []
+  )
+
+  const summary = {
+    scanned: due.length,
+    coa_trust_sent: 0,
+    failed: 0
+  }
+
+  for (const row of due) {
+    const orderLabel = orderLabelFrom(row.display_id, row.order_id)
+    const { subject, html } = buildCoaTrustEmail({
+      orderLabel,
+      items: normalizeOrderEmailItems(row.items),
+      coaLibraryUrl: buildStorefrontCoaLibraryUrl(),
+      ordersUrl: buildStorefrontOrdersUrl(),
+      contactUrl: buildStorefrontContactUrl()
+    })
+
+    const result = await sendHtmlEmail({
+      to: row.email,
+      subject,
+      html
+    })
+
+    if (!result.sent) {
+      summary.failed += 1
+      console.warn("[fulfillment-email] COA trust failed:", row.order_id, result.reason)
+      continue
+    }
+
+    const marked = await withDb(
+      async (db) => {
+        const update = await db.query(
+          `
+          UPDATE order_fulfillment_emails
+          SET coa_trust_sent_at = NOW(), updated_at = NOW()
+          WHERE order_id = $1 AND coa_trust_sent_at IS NULL
+          RETURNING order_id
+        `,
+          [row.order_id]
+        )
+        return Boolean(update.rowCount)
+      },
+      async () => false
+    )
+
+    if (marked) summary.coa_trust_sent += 1
+  }
+
+  return summary
 }
 
 async function customerAlreadyReviewed(email: string, handles: string[]) {

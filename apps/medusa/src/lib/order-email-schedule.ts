@@ -1,6 +1,10 @@
 import { withDb } from "./db"
 import { processDueCheckoutAbandonEmails } from "./checkout-abandon"
+import { cancelCustomerLifecycleOnPaidOrder, processDueCustomerLifecycleEmails } from "./customer-lifecycle-emails"
 import {
+  cancelReplenishmentEmailsOnPaidOrder,
+  processDueCoaTrustEmails,
+  processDueReplenishmentEmails,
   processDueReviewRequestEmails,
   processDueTrackingSlaEmails,
   scheduleTrackingSlaEmail
@@ -321,6 +325,11 @@ export async function sendPaidOrderConfirmationEmail(input: {
     displayId: schedule?.display_id,
     items
   })
+  await cancelCustomerLifecycleOnPaidOrder({ email: input.email })
+  await cancelReplenishmentEmailsOnPaidOrder({
+    email: input.email,
+    excludeOrderId: input.orderId
+  })
   return result
 }
 
@@ -388,6 +397,9 @@ export async function processDueOrderEmails() {
 
   const review = await processDueReviewRequestEmails()
   const abandon = await processDueCheckoutAbandonEmails()
+  const lifecycle = await processDueCustomerLifecycleEmails()
+  const replenishment = await processDueReplenishmentEmails()
+  const coaTrust = await processDueCoaTrustEmails()
   return {
     ...summary,
     review_scanned: review.scanned,
@@ -397,6 +409,21 @@ export async function processDueOrderEmails() {
     checkout_abandon_scanned: abandon.scanned,
     checkout_abandon_reminder_sent: abandon.reminder_sent,
     checkout_abandon_followup_sent: abandon.followup_sent,
-    checkout_abandon_failed: abandon.failed
+    checkout_abandon_final_sent: abandon.final_sent,
+    checkout_abandon_failed: abandon.failed,
+    lifecycle_scanned: lifecycle.scanned,
+    lifecycle_welcome_1_sent: lifecycle.welcome_1_sent,
+    lifecycle_welcome_2_sent: lifecycle.welcome_2_sent,
+    lifecycle_winback_1_sent: lifecycle.winback_1_sent,
+    lifecycle_skipped_ordered: lifecycle.skipped_ordered,
+    lifecycle_failed: lifecycle.failed,
+    replenishment_scanned: replenishment.scanned,
+    replenishment_r1_sent: replenishment.r1_sent,
+    replenishment_r2_sent: replenishment.r2_sent,
+    replenishment_r3_sent: replenishment.r3_sent,
+    replenishment_failed: replenishment.failed,
+    coa_trust_scanned: coaTrust.scanned,
+    coa_trust_sent: coaTrust.coa_trust_sent,
+    coa_trust_failed: coaTrust.failed
   }
 }

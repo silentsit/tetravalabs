@@ -3,7 +3,17 @@ export const PAYMENT_FOLLOWUP_DELAY_MINUTES = 30
 export const TRACKING_SLA_HOURS = 72
 export const CHECKOUT_ABANDON_REMINDER_MINUTES = 60
 export const CHECKOUT_ABANDON_FOLLOWUP_HOURS = 24
+/** Hours after abandon session start for C1c (third email). */
+export const CHECKOUT_ABANDON_FINAL_HOURS = 48
 export const REVIEW_REQUEST_DELAY_DAYS = 14
+export const WINBACK_DELAY_DAYS = 60
+export const WELCOME_FOLLOWUP_DAYS = 2
+export const REPLENISHMENT_R1_DAYS = 30
+export const REPLENISHMENT_R2_DAYS_AFTER_R1 = 45
+export const REPLENISHMENT_R3_DAYS_AFTER_R2 = 15
+export const COA_TRUST_DELAY_DAYS = 5
+
+export type LifecycleEmailKind = "welcome_1" | "welcome_2" | "winback_1" | "winback_2"
 
 /** @deprecated Use PAYMENT_REMINDER_DELAY_MINUTES */
 export const ORDER_CONFIRMATION_DELAY_MINUTES = PAYMENT_REMINDER_DELAY_MINUTES
@@ -99,6 +109,39 @@ function ruoFooter(contactUrl: string) {
         Research Use Only — not for human consumption. Questions? Reply to this email or visit
         <a href="${escapeHtml(contactUrl)}" style="color:#5EEAD4;">contact</a>.
       </p>`
+}
+
+/** Optional promo block when env code is set (Medusa Admin promo must match). */
+export function renderPromoBlock(envKey: string) {
+  const code = (process.env[envKey] || "").trim()
+  if (!code) return ""
+  return `
+      <p style="margin:0 0 16px;color:#E8E8F0;font-size:14px;line-height:1.5;">
+        Small thank-you for researchers: use code
+        <strong style="color:#5EEAD4;">${escapeHtml(code)}</strong>
+        at checkout for a limited discount.
+      </p>`
+}
+
+function storefrontUrl(path = "") {
+  const base = (process.env.STOREFRONT_URL || "https://tetravalabs.com").replace(/\/$/, "")
+  return `${base}${path}`
+}
+
+function renderProductReorderLinks(items: OrderEmailItem[]) {
+  const withHandles = items.filter((item) => item.handle)
+  if (!withHandles.length) return ""
+  const rows = withHandles
+    .map((item) => {
+      const url = storefrontUrl(`/product/${encodeURIComponent(item.handle!)}`)
+      return `
+        <li style="margin:0 0 8px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+          <a href="${escapeHtml(url)}" style="color:#5EEAD4;">${escapeHtml(item.title)}</a>
+          ${item.variantTitle ? ` · ${escapeHtml(item.variantTitle)}` : ""}
+        </li>`
+    })
+    .join("")
+  return `<ul style="margin:16px 0 20px;padding-left:18px;">${rows}</ul>`
 }
 
 function renderItems(items: OrderEmailItem[]) {
@@ -489,4 +532,312 @@ export function buildReviewRequestEmail(input: ReviewRequestInput) {
     subject: `Quick feedback on ${orderLabel}?`,
     html
   }
+}
+
+/** C1c — third checkout abandon (~48h after session start). */
+export function buildCheckoutAbandonFinalEmail(input: CheckoutAbandonInput) {
+  const { items = [], subtotal, checkoutUrl, contactUrl } = input
+  const promo = renderPromoBlock("EMAIL_PROMO_CHECKOUT_ABANDON")
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Closing the loop on your cart</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Your cart is still saved, but we will not keep emailing about this session.
+      </p>
+      ${renderItems(items)}
+      <p style="margin:0 0 16px;color:#E8E8F0;font-size:16px;">
+        Cart subtotal: <strong>${formatMoney(subtotal)}</strong>
+      </p>
+      ${promo}
+      <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        If you still need these compounds for research, you can finish checkout now.
+        If not, no action is needed — you can return to the shop anytime.
+      </p>
+      <a href="${escapeHtml(checkoutUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Return to checkout
+      </a>
+      <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
+        Questions?
+        <a href="${escapeHtml(contactUrl)}" style="color:#5EEAD4;">Contact us</a> — happy to help with payment or shipping.
+      </p>
+      ${ruoFooter(contactUrl)}
+  `)
+
+  return {
+    subject: "Last reminder: your Tetrava Labs cart",
+    html
+  }
+}
+
+type WelcomeEmailInput = {
+  firstName?: string | null
+  shopUrl: string
+  blogUrl: string
+  contactUrl: string
+}
+
+/** W1 — welcome on account create. */
+export function buildWelcomeEmail(input: WelcomeEmailInput) {
+  const firstName = (input.firstName || "").trim() || "there"
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Welcome to Tetrava Labs</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)}, thanks for creating an account.
+      </p>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        We supply research-grade peptides with lot-linked Certificates of Analysis where published —
+        for laboratory research use only, not for human consumption.
+      </p>
+      <p style="margin:0 0 12px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        What you can do next:
+      </p>
+      <ul style="margin:0 0 20px;padding-left:18px;color:#8A8AA0;font-size:14px;line-height:1.6;">
+        <li>Browse the catalog by research category</li>
+        <li>Open any product page for purity specs and available COA documents</li>
+        <li>Checkout with crypto or card when your lab is ready to order</li>
+      </ul>
+      <a href="${escapeHtml(input.shopUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Shop research compounds
+      </a>
+      ${ruoFooter(input.contactUrl)}
+  `)
+
+  return {
+    subject: "Welcome to Tetrava Labs",
+    html
+  }
+}
+
+/** W2 — welcome follow-up (+2 days, no order yet). */
+export function buildWelcomeFollowupEmail(input: WelcomeEmailInput) {
+  const firstName = (input.firstName || "").trim() || "there"
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Finding the right research compounds</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)} — if you are still mapping what your lab needs, these shortcuts help:
+      </p>
+      <ul style="margin:0 0 20px;padding-left:18px;color:#8A8AA0;font-size:14px;line-height:1.6;">
+        <li><strong style="color:#E8E8F0;">Shop</strong> — full catalog with strength variants</li>
+        <li><strong style="color:#E8E8F0;">Research hub</strong> — storage, handling, and compliance articles</li>
+        <li><strong style="color:#E8E8F0;">COA library</strong> — lot-linked analytical documents when available</li>
+      </ul>
+      <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        No rush. Your account is ready whenever you place an order.
+      </p>
+      <a href="${escapeHtml(input.shopUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
+        Browse the shop
+      </a>
+      <a href="${escapeHtml(input.blogUrl)}"
+         style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
+        Read the research hub
+      </a>
+      ${ruoFooter(input.contactUrl)}
+  `)
+
+  return {
+    subject: "Finding the right research compounds",
+    html
+  }
+}
+
+type WinbackEmailInput = {
+  firstName?: string | null
+  shopUrl: string
+  contactUrl: string
+}
+
+/** WB1 — winback (+60 days, account, 0 orders). */
+export function buildWinbackEmail(input: WinbackEmailInput) {
+  const firstName = (input.firstName || "").trim() || "there"
+  const promo = renderPromoBlock("EMAIL_PROMO_WINBACK")
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Still researching with Tetrava Labs?</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)}, you created a Tetrava Labs account a while ago and have not placed an order yet —
+        totally fine.
+      </p>
+      <p style="margin:0 0 12px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Whenever your lab is ready:
+      </p>
+      <ul style="margin:0 0 16px;padding-left:18px;color:#8A8AA0;font-size:14px;line-height:1.6;">
+        <li>Every listed product is for <strong style="color:#E8E8F0;">research use only</strong></li>
+        <li>Product pages include strength options, purity specs, and COA access when published</li>
+        <li>Shipping is discreet, with tracking when your carrier supports it</li>
+      </ul>
+      ${promo}
+      <a href="${escapeHtml(input.shopUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Browse the catalog
+      </a>
+      <p style="margin:16px 0 0;color:#8A8AA0;font-size:12px;line-height:1.5;">
+        If something blocked you earlier (compliance questions, payment, or shipping regions),
+        <a href="${escapeHtml(input.contactUrl)}" style="color:#5EEAD4;">just reply</a> — we are happy to clarify.
+      </p>
+      ${ruoFooter(input.contactUrl)}
+  `)
+
+  return {
+    subject: "Still researching with Tetrava Labs?",
+    html
+  }
+}
+
+type ReplenishmentEmailInput = {
+  firstName?: string | null
+  orderLabel: string
+  items?: OrderEmailItem[]
+  ordersUrl: string
+  shopUrl: string
+  contactUrl: string
+  step: 1 | 2 | 3
+}
+
+/** R1–R3 soft replenishment (reorder prior SKUs). */
+export function buildReplenishmentEmail(input: ReplenishmentEmailInput) {
+  const firstName = (input.firstName || "").trim() || "there"
+  const items = input.items || []
+  const productLinks = renderProductReorderLinks(items)
+  const promo = input.step === 2 ? renderPromoBlock("EMAIL_PROMO_REPLENISHMENT") : ""
+
+  if (input.step === 1) {
+    const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Need to restock research materials?</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)}, about a month ago we shipped
+        <strong style="color:#E8E8F0;">${escapeHtml(input.orderLabel)}</strong>.
+        If your lab needs the same compounds again, you can reorder from the product pages below.
+      </p>
+      ${productLinks || renderItems(items)}
+      <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        This is not an automated refill schedule — just a soft reminder in case you are planning another research order.
+      </p>
+      <a href="${escapeHtml(input.ordersUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
+        View order history
+      </a>
+      <a href="${escapeHtml(input.shopUrl)}"
+         style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
+        Shop all compounds
+      </a>
+      ${ruoFooter(input.contactUrl)}
+  `)
+    return {
+      subject: "Reorder from your recent Tetrava Labs shipment?",
+      html
+    }
+  }
+
+  if (input.step === 2) {
+    const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Quick reorder reminder</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)}, checking in once more on compounds from
+        <strong style="color:#E8E8F0;">${escapeHtml(input.orderLabel)}</strong>.
+      </p>
+      <p style="margin:0 0 8px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        If stock planning for your lab still includes any of these SKUs, the links below go straight to the product pages:
+      </p>
+      ${productLinks || renderItems(items)}
+      ${promo}
+      <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        If you already reordered elsewhere or do not need more, you can ignore this email.
+      </p>
+      <a href="${escapeHtml(input.shopUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Reorder from catalog
+      </a>
+      ${ruoFooter(input.contactUrl)}
+  `)
+    return {
+      subject: `Still need compounds from ${input.orderLabel}?`,
+      html
+    }
+  }
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Closing this reorder series</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)}, this is the last email about restocking items from
+        <strong style="color:#E8E8F0;">${escapeHtml(input.orderLabel)}</strong>.
+      </p>
+      ${productLinks || renderItems(items)}
+      <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Your account and order history stay available whenever you need them.
+        We will not send further reminders for this shipment.
+      </p>
+      <a href="${escapeHtml(input.ordersUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
+        View past orders
+      </a>
+      <a href="${escapeHtml(input.shopUrl)}"
+         style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
+        Browse shop
+      </a>
+      ${ruoFooter(input.contactUrl)}
+  `)
+
+  return {
+    subject: `Final reorder note for ${input.orderLabel}`,
+    html
+  }
+}
+
+type CoaTrustEmailInput = {
+  firstName?: string | null
+  orderLabel: string
+  items?: OrderEmailItem[]
+  coaLibraryUrl: string
+  ordersUrl: string
+  contactUrl: string
+}
+
+/** P2 — COA / batch trust (~5 days after ship). */
+export function buildCoaTrustEmail(input: CoaTrustEmailInput) {
+  const firstName = (input.firstName || "").trim() || "there"
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Your batch documentation</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)}, we hope
+        <strong style="color:#E8E8F0;">${escapeHtml(input.orderLabel)}</strong>
+        arrived safely for your lab.
+      </p>
+      ${renderItems(input.items || [])}
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Lot-linked Certificates of Analysis are published on product pages and in our COA library when available —
+        useful for documenting batch identity and analytical testing for research records.
+      </p>
+      <a href="${escapeHtml(input.coaLibraryUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
+        Browse COA library
+      </a>
+      <a href="${escapeHtml(input.ordersUrl)}"
+         style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
+        View order history
+      </a>
+      ${ruoFooter(input.contactUrl)}
+  `)
+
+  return {
+    subject: `COA & batch docs for ${input.orderLabel}`,
+    html
+  }
+}
+
+export function buildStorefrontShopUrl() {
+  return storefrontUrl("/shop")
+}
+
+export function buildStorefrontBlogUrl() {
+  return storefrontUrl("/blog")
+}
+
+export function buildStorefrontCoaLibraryUrl() {
+  return storefrontUrl("/coa-library")
 }

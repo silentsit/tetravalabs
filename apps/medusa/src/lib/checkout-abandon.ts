@@ -1,9 +1,11 @@
 import { withDb } from "./db"
 import {
+  buildCheckoutAbandonFinalEmail,
   buildCheckoutAbandonFollowupEmail,
   buildCheckoutAbandonReminderEmail,
   buildCheckoutUrl,
   buildStorefrontContactUrl,
+  CHECKOUT_ABANDON_FINAL_HOURS,
   CHECKOUT_ABANDON_FOLLOWUP_HOURS,
   CHECKOUT_ABANDON_REMINDER_MINUTES,
   normalizeOrderEmailItems,
@@ -15,8 +17,10 @@ type AbandonRow = {
   email: string
   items: OrderEmailItem[]
   subtotal_usd: string
+  started_at: string
   reminder_sent_at: string | null
   followup_sent_at: string | null
+  final_sent_at: string | null
   cancelled_at: string | null
 }
 
@@ -82,6 +86,8 @@ export async function scheduleCheckoutAbandon(input: {
           reminder_sent_at = NULL,
           followup_due_at = NULL,
           followup_sent_at = NULL,
+          final_due_at = NULL,
+          final_sent_at = NULL,
           cancelled_at = NULL,
           updated_at = NOW()
       `,
@@ -121,12 +127,16 @@ export async function cancelCheckoutAbandon(sessionId: string) {
 export async function processDueCheckoutAbandonEmails() {
   const due = await withDb(
     async (db) => {
-      const result = await db.query<{ session_id: string; kind: "reminder" | "followup" }>(
+      const result = await db.query<{
+        session_id: string
+        kind: "reminder" | "followup" | "final"
+      }>(
         `
         SELECT session_id,
           CASE
             WHEN reminder_sent_at IS NULL THEN 'reminder'
-            ELSE 'followup'
+            WHEN followup_sent_at IS NULL THEN 'followup'
+            ELSE 'final'
           END AS kind
         FROM checkout_abandon_schedules
         WHERE cancelled_at IS NULL
@@ -137,6 +147,12 @@ export async function processDueCheckoutAbandonEmails() {
               AND followup_sent_at IS NULL
               AND followup_due_at IS NOT NULL
               AND followup_due_at <= NOW()
+            )
+            OR (
+              followup_sent_at IS NOT NULL
+              AND final_sent_at IS NULL
+              AND final_due_at IS NOT NULL
+              AND final_due_at <= NOW()
             )
           )
         ORDER BY reminder_due_at ASC
@@ -152,6 +168,7 @@ export async function processDueCheckoutAbandonEmails() {
     scanned: due.length,
     reminder_sent: 0,
     followup_sent: 0,
+    final_sent: 0,
     failed: 0
   }
 
@@ -179,12 +196,19 @@ export async function processDueCheckoutAbandonEmails() {
             checkoutUrl: buildCheckoutUrl(),
             contactUrl: buildStorefrontContactUrl()
           })
-        : buildCheckoutAbandonFollowupEmail({
-            items,
-            subtotal,
-            checkoutUrl: buildCheckoutUrl(),
-            contactUrl: buildStorefrontContactUrl()
-          })
+        : entry.kind === "followup"
+          ? buildCheckoutAbandonFollowupEmail({
+              items,
+              subtotal,
+              checkoutUrl: buildCheckoutUrl(),
+              contactUrl: buildStorefrontContactUrl()
+            })
+          : buildCheckoutAbandonFinalEmail({
+              items,
+              subtotal,
+              checkoutUrl: buildCheckoutUrl(),
+              contactUrl: buildStorefrontContactUrl()
+            })
 
     const result = await sendHtmlEmail({
       to: row.email,
@@ -223,14 +247,39 @@ export async function processDueCheckoutAbandonEmails() {
       continue
     }
 
+    if (entry.kind === "followup") {
+      const marked = await withDb(
+        async (db) => {
+          const update = await db.query(
+            `
+            UPDATE checkout_abandon_schedules
+            SET
+              followup_sent_at = NOW(),
+              final_due_at = started_at + ($2 || ' hours')::interval,
+              updated_at = NOW()
+            WHERE session_id = $1
+              AND followup_sent_at IS NULL
+              AND cancelled_at IS NULL
+            RETURNING session_id
+          `,
+            [entry.session_id, String(CHECKOUT_ABANDON_FINAL_HOURS)]
+          )
+          return Boolean(update.rowCount)
+        },
+        async () => false
+      )
+      if (marked) summary.followup_sent += 1
+      continue
+    }
+
     const marked = await withDb(
       async (db) => {
         const update = await db.query(
           `
           UPDATE checkout_abandon_schedules
-          SET followup_sent_at = NOW(), updated_at = NOW()
+          SET final_sent_at = NOW(), updated_at = NOW()
           WHERE session_id = $1
-            AND followup_sent_at IS NULL
+            AND final_sent_at IS NULL
             AND cancelled_at IS NULL
           RETURNING session_id
         `,
@@ -240,7 +289,7 @@ export async function processDueCheckoutAbandonEmails() {
       },
       async () => false
     )
-    if (marked) summary.followup_sent += 1
+    if (marked) summary.final_sent += 1
   }
 
   return summary

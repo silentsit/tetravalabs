@@ -23,14 +23,24 @@ Cron: `scripts/process-order-emails.mjs` → `POST /hooks/order-emails/process` 
 | **F3** | Contact autoresponder | Contact form submit | Immediate | `apps/storefront/src/lib/contact-autoresponder-email.ts` |
 | **C1a** | Checkout abandon reminder | Email captured on checkout | +1h | `order-email-templates.ts` |
 | **C1b** | Checkout abandon follow-up | After C1a | +24h after C1a | same |
+| **C1c** | Checkout abandon final | After C1b | ~48h after abandon start | same |
+| **W1** | Welcome #1 | `customer.created` | Immediate (cron due) | same |
+| **W2** | Welcome #2 | Same, no order | +2 days | same |
+| **WB1** | Winback | Account, 0 orders | +60 days after create | same |
+| **R1** | Replenishment #1 | After ship | +30 days post-ship | same |
+| **R2** | Replenishment #2 | After R1 | +45 days after R1 | same |
+| **R3** | Replenishment #3 | After R2 | +15 days after R2 | same |
 | **P1** | Soft review request | After ship, no review yet | +14 days after ship | same |
+| **P2** | COA / batch trust | After ship | +5 days after ship | same |
 | **Auth** | Password reset | Auth password-reset event | Immediate | `password-reset-email.ts` |
 | **Staff** | Contact inbox notify | Contact form | Immediate | inline in `contact/route.ts` |
 
 **Key files:**
 - Templates / delays: `apps/medusa/src/lib/order-email-templates.ts`
-- Orchestration: `apps/medusa/src/lib/order-email-schedule.ts`, `order-fulfillment-emails.ts`, `checkout-abandon.ts`
+- Orchestration: `apps/medusa/src/lib/order-email-schedule.ts`, `order-fulfillment-emails.ts`, `checkout-abandon.ts`, `customer-lifecycle-emails.ts`
+- Subscriber: `apps/medusa/src/subscribers/customer-created.ts`
 - Cron: `scripts/process-order-emails.mjs`, `render.yaml` (`tetrava-order-emails`)
+- Optional promo env: `EMAIL_PROMO_CHECKOUT_ABANDON`, `EMAIL_PROMO_WINBACK`, `EMAIL_PROMO_REPLENISHMENT`
 
 ---
 
@@ -40,19 +50,19 @@ Cron: `scripts/process-order-emails.mjs` → `POST /hooks/order-emails/process` 
 
 | ID | Flow | Audience | Timing | Notes |
 |----|------|----------|--------|-------|
-| **W1** | Welcome #1 | New customer account created | Immediate | Brand, RUO disclaimer, COA / lab-testing story, shop CTA |
-| **W2** | Welcome #2 | Same, no order yet | +2 days after W1 | Research hub / category browse; cancel if they order |
+| **W1** | Welcome #1 | New customer account created | Immediate | **Shipped** |
+| **W2** | Welcome #2 | Same, no order yet | +2 days after W1 | **Shipped**; cancel if they order |
 | **T1r** | Returning post-purchase | Customer with ≥1 prior paid order | Immediate on payment (variant of T1) | Shorter thank-you + reorder links for prior SKUs |
-| **C1c** | Checkout abandon #3 | Abandoned checkout | +48–72h after C1a start | Soft close; no coupon. Cancel on purchase / C1 cancel |
+| **C1c** | Checkout abandon #3 | Abandoned checkout | ~48h after session start | **Shipped**; optional promo via `EMAIL_PROMO_CHECKOUT_ABANDON` |
 
 ### Phase 2 — Lifecycle (priority)
 
 | ID | Flow | Audience | Timing | Notes |
 |----|------|----------|--------|-------|
-| **WB1** | Winback | Account exists, **never placed an order** | **+60 days** after account creation (see §3) | Single primary email; optional WB2 at +90d later |
-| **R1** | Replenishment #1 | Has **≥1 shipped** (or paid) order | **+30 days post-ship** | Soft reorder of prior line items |
-| **R2** | Replenishment #2 | Same order, still no reorder | **+45 days after R1** (= ~75d post-ship) | Second nudge if no new order |
-| **R3** | Replenishment #3 | Same, still no reorder | **+15 days after R2** (= **60 days after R1**, ~90d post-ship) | Final touch for that ship cycle |
+| **WB1** | Winback | Account exists, **never placed an order** | **+60 days** after account creation | **Shipped**; optional promo via `EMAIL_PROMO_WINBACK` |
+| **R1** | Replenishment #1 | Has **≥1 shipped** order | **+30 days post-ship** | **Shipped** |
+| **R2** | Replenishment #2 | Same order, still no reorder | **+45 days after R1** | **Shipped**; optional promo via `EMAIL_PROMO_REPLENISHMENT` |
+| **R3** | Replenishment #3 | Same, still no reorder | **+15 days after R2** | **Shipped** |
 
 > Replenishment cadence (from ship date): **R1 @ 30d → R2 @ 75d → R3 @ 90d**.  
 > Equivalently from R1: **R2 = R1 + 45d**, **R3 = R1 + 60d**.
@@ -62,9 +72,9 @@ Cron: `scripts/process-order-emails.mjs` → `POST /hooks/order-emails/process` 
 | ID | Flow | Notes |
 |----|------|-------|
 | **VIP** | Repeat / high-LTV labs | Only after clear segment rules (e.g. 3+ orders or $X) |
-| **Browse abandon** | Product-view → email | Needs browse tracking; low priority for peptides |
-| **C1d** | Checkout abandon #4 | Optional; avoid discounts |
-| **P2** | COA / batch trust post-purchase | Deferred |
+| **Browse abandon** | Product-view → email | **Skipped** — no view-tracking |
+| **C1d** | Checkout abandon #4 | Optional |
+| **P2** | COA / batch trust post-purchase | **Shipped** at ship +5d |
 | **P3** | Simple reorder nudge (legacy name) | Superseded by **R1–R3** |
 
 ---
@@ -105,6 +115,8 @@ Convert signed-up customers who never completed a first purchase.
 1. On customer create (subscriber or post-register hook): insert WB1 row `due_at = created_at + 60 days`
 2. Cron branch in `processDueOrderEmails` (or sibling processor): send due WB rows
 3. On first paid order webhook / T1 path: cancel open WB rows for that `customer_id`
+
+**Status:** **Shipped** — `008_customer_lifecycle_emails.sql`, `customer-created.ts`, `customer-lifecycle-emails.ts`.
 
 ---
 
@@ -157,6 +169,8 @@ Nudge prior buyers to reorder compounds they already purchased — lab reorder t
 4. On any new paid order for that customer: cancel open R\* rows (and optional: cancel WB if somehow open)
 5. Cron: process due R1/R2/R3 alongside existing email processor
 
+**Status:** **Shipped** — `009_order_replenishment.sql` + processors in `order-fulfillment-emails.ts`.
+
 ---
 
 ## 5. Welcome (W) — summary
@@ -174,9 +188,9 @@ Audience overlaps with future WB only if they never buy; WB is the long-tail for
 
 | ID | Timing | Notes |
 |----|--------|-------|
-| C1c | ~48–72h after abandon session start | Third email; cancel with existing `cancelCheckoutAbandon` |
+| C1c | ~48h after abandon session start | **Shipped**; optional promo via `EMAIL_PROMO_CHECKOUT_ABANDON` |
 
-Keep current C1a (+1h) and C1b (+24h). No discount codes.
+Keep current C1a (+1h) and C1b (+24h).
 
 ---
 
@@ -187,19 +201,19 @@ Keep current C1a (+1h) and C1b (+24h). No discount codes.
 - [ ] Transactional (T1, T2, T3, F1, F2, Auth) remain separate from marketing suppression where possible
 - [ ] `STORE_ADMIN_EMAILS` / ops not used as test spam — use staging Resend
 - [ ] Cron secret unchanged: `ORDER_EMAIL_CRON_SECRET`
-- [ ] Document env vars in `apps/medusa/.env.example` when implementing
+- [x] Document env vars in `apps/medusa/.env.example` when implementing
 
 ---
 
 ## 8. Suggested build order
 
-1. **Schema** for replenishment columns/table + winback schedule table  
-2. **R1–R3** (hooks into existing ship + cron — highest revenue relevance)  
-3. **WB1** @ 60 days (customer create + cron)  
-4. **W1/W2** welcome  
-5. **T1r** returning confirmation variant  
-6. **C1c** third abandon email  
-7. Phase 3 items as needed  
+1. ~~Schema for replenishment columns/table + winback schedule table~~ **done** (`008`–`011`)
+2. ~~**R1–R3**~~ **done**
+3. ~~**WB1** @ 60 days~~ **done**
+4. ~~**W1/W2** welcome~~ **done**
+5. **T1r** returning confirmation variant — still open
+6. ~~**C1c** third abandon email~~ **done**
+7. ~~**P2** COA trust~~ **done**; other Phase 3 as needed
 
 ---
 
@@ -208,8 +222,8 @@ Keep current C1a (+1h) and C1b (+24h). No discount codes.
 - Browse abandonment series  
 - VIP program emails  
 - Subscription / auto-replenish billing  
-- Discount-based winback or abandon ladders  
-- P2 COA trust drip (unless product asks for it later)
+- Full discount ladders (occasional env promo codes on C1c / WB1 / R2 only)  
+- Separate P3 product (use R1–R3)
 
 ---
 
@@ -218,7 +232,11 @@ Keep current C1a (+1h) and C1b (+24h). No discount codes.
 | Item | Status |
 |------|--------|
 | Live transactional + C1 + P1 + F3 | **Live** |
-| This plan (doc) | **Draft approved for planning** |
-| Implementation of W / WB / R / C1c / T1r | **Not started** |
+| W1 / W2 / WB1 | **Shipped** |
+| R1–R3 | **Shipped** |
+| P2 COA trust | **Shipped** |
+| C1c + optional promo env | **Shipped** |
+| T1r returning confirmation | **Not started** |
+| Browse abandon | **Skipped** |
 
-Update this doc when flows ship (add IDs to §1 and mark §8 steps done).
+**Copy drafts (live + proposed):** see [`doc/email-copy-drafts.md`](email-copy-drafts.md).

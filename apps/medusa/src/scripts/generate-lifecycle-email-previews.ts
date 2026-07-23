@@ -1,6 +1,5 @@
 import fs from "node:fs"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
 import {
   buildCheckoutAbandonFinalEmail,
   buildCheckoutUrl,
@@ -99,6 +98,6 @@ const emails = built.map((email) => ({
   text: "Preview of Tetrava Labs lifecycle email. View in an HTML client for the full design."
 }))
 
-const out = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "tmp-lifecycle-previews.json")
+const out = path.resolve(process.cwd(), "tmp-lifecycle-previews.json")
 fs.writeFileSync(out, JSON.stringify(emails))
 console.log(`Wrote ${emails.length} emails to ${out}`)

@@ -22,6 +22,8 @@
     "node_modules",
     ".medusa/server",
     ".medusa/admin",
-    "src/admin"
+    "src/admin",
+    "src/scripts/generate-lifecycle-email-previews.ts",
+    "src/scripts/send-lifecycle-email-previews.ts"
   ]
 }

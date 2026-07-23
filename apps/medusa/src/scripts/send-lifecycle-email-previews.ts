@@ -1,11 +1,9 @@
 /**
  * One-off: send preview copies of lifecycle emails to a test inbox.
- * Usage: node --import tsx ./src/scripts/send-lifecycle-email-previews.ts
- * Or: npx ts-node --esm ./src/scripts/send-lifecycle-email-previews.ts
+ * Usage (from apps/medusa): npx tsx ./src/scripts/send-lifecycle-email-previews.ts
  */
 import fs from "node:fs"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
 import {
   buildCheckoutAbandonFinalEmail,
   buildCheckoutUrl,
@@ -21,8 +19,7 @@ import {
   buildWinbackEmail
 } from "../lib/order-email-templates"
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const medusaRoot = path.resolve(__dirname, "..", "..")
+const medusaRoot = process.cwd()
 
 function loadEnvFile(filePath: string) {
   if (!fs.existsSync(filePath)) return

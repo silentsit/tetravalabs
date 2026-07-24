@@ -30,16 +30,9 @@ function getCompoundParentHandle(handle: string): string | null {
 
 /** Parent handle for any catalog row (merged parent or legacy strength slug). */
 export function resolveCatalogParentHandle(handle: string): string | null {
-  // Prefer compound family parent so unmerged strength SKUs collapse on the shop.
-  const compoundParent = getCompoundParentHandle(handle)
-  if (
-    compoundParent &&
-    (COMPOUND_PARENTS.has(compoundParent) || isCatalogProductHandle(compoundParent))
-  ) {
-    return compoundParent
-  }
   if (isCatalogProductHandle(handle)) return handle
-  return null
+  const parent = getCompoundParentHandle(handle)
+  return parent && isCatalogProductHandle(parent) ? parent : null
 }
 
 /** Keep canonical catalog parents; legacy strength slugs stay until Medusa merge finishes. */

@@ -5,6 +5,7 @@
  * Homepage featured row uses the same PNG map for curated heroes.
  * Gallery front+side: tools/label-pipeline/scripts/apply-shots-to-storefront.py
  */
+import compoundFamilies from "@/lib/compound-families.generated.json"
 import generatedMap from "@/lib/product-image-map.generated.json"
 import galleryMap from "@/lib/product-gallery-images.generated.json"
 
@@ -25,18 +26,44 @@ export const FEATURED_PRODUCT_HANDLES = [
 const productImageMap = generatedMap as Record<string, string>
 const productGalleryMap = galleryMap as Record<string, string[]>
 
-/** Legacy Medusa base handles → default v2 image. */
+type FamilyMember = { legacy_slug: string; strength_key: string }
+
+/** Non-compound / single-SKU base handles → default v2 image. */
 const LEGACY_BASE_IMAGES: Record<string, string> = {
-  "bpc-157": `${V2_BASE}/bpc-157-5mg.png`,
-  "semaglutide": `${V2_BASE}/semaglutide-5mg.png`,
-  "tirzepatide": `${V2_BASE}/tirzepatide-5mg.png`,
-  "retatrutide": `${V2_BASE}/retatrutide-5mg.png`,
-  "ghk-cu": `${V2_BASE}/ghk-cu-50mg.png`,
-  "ipamorelin": `${V2_BASE}/ipamorelin-5mg.png`,
-  "tb500": `${V2_BASE}/tb500-5mg.png`,
-  "hgh-191aa": `${V2_BASE}/hgh-10iu.png`,
   "bacteriostatic-water": `${V2_BASE}/bac-water-10ml.png`,
   "nad": `${V2_BASE}/nad-100mg.png`
+}
+
+function strengthSortKey(strengthKey: string): number {
+  const iu = strengthKey.match(/^(\d+)-iu$/i)
+  if (iu) return Number(iu[1])
+  const decimalMg = strengthKey.match(/^(\d+)-(\d+)mg$/i)
+  if (decimalMg) return Number(`${decimalMg[1]}.${decimalMg[2]}`)
+  const num = strengthKey.match(/^(\d+(?:\.\d+)?)/)
+  return num ? Number(num[1]) : 0
+}
+
+/**
+ * Shelf/PDP image for a consolidated parent: mid strength when the family
+ * has an odd count, otherwise the smallest strength.
+ */
+export function getCompoundShelfImageHandle(parentHandle: string): string | null {
+  const family = (compoundFamilies as Record<string, { members: FamilyMember[] }>)[
+    parentHandle
+  ]
+  if (!family?.members?.length) return null
+
+  const sorted = [...family.members].sort(
+    (a, b) => strengthSortKey(a.strength_key) - strengthSortKey(b.strength_key)
+  )
+  const index = sorted.length % 2 === 1 ? Math.floor(sorted.length / 2) : 0
+  return sorted[index]?.legacy_slug || null
+}
+
+function compoundFamilyImage(handle: string): string | null {
+  const memberHandle = getCompoundShelfImageHandle(handle)
+  if (!memberHandle) return null
+  return productImageMap[memberHandle] || null
 }
 
 function autoMatchImage(handle: string): string | null {
@@ -60,6 +87,8 @@ function autoMatchImage(handle: string): string | null {
 /** Returns mapped v2 asset (PNG preferred via generated map). */
 export function getV2ProductImage(handle: string): string | null {
   if (productImageMap[handle]) return productImageMap[handle]
+  const fromFamily = compoundFamilyImage(handle)
+  if (fromFamily) return fromFamily
   if (LEGACY_BASE_IMAGES[handle]) return LEGACY_BASE_IMAGES[handle]
   return autoMatchImage(handle)
 }
@@ -76,6 +105,15 @@ export function getProductImage(handle: string): string {
 export function getProductGalleryImages(handle: string): string[] {
   const mapped = productGalleryMap[handle]
   if (mapped?.length) return mapped
+
+  const memberHandle = getCompoundShelfImageHandle(handle)
+  if (memberHandle) {
+    const memberGallery = productGalleryMap[memberHandle]
+    if (memberGallery?.length) return memberGallery
+    const memberImage = productImageMap[memberHandle]
+    if (memberImage) return [memberImage]
+  }
+
   return [getProductImage(handle)]
 }
 

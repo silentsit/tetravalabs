@@ -69,5 +69,6 @@ export function consolidateListingProducts(products: StoreProduct[]): StoreProdu
 }
 
 export function filterAndConsolidateCatalogProducts(products: StoreProduct[]): StoreProduct[] {
-  return consolidateListingProducts(filterToCatalogProducts(products))
+  // Keep per-strength Medusa rows as separate shop cards until merge is intentional.
+  return filterToCatalogProducts(products)
 }

@@ -1,6 +1,12 @@
 import compoundFamilies from "@/lib/compound-families.generated.json"
 import compoundLegacyRedirects from "@/lib/compound-legacy-redirects.generated.json"
-import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
+import {
+  getProductByHandle,
+  listCoasByVariant,
+  listProducts,
+  type StoreCoaDocument,
+  type StoreProduct
+} from "@/lib/medusa"
 import { listProductReviews, type ProductReviewsResponse } from "@/lib/reviews"
 import {
   getProductDisplayName,

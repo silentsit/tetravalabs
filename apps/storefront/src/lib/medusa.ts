@@ -1,4 +1,7 @@
-import { filterAndConsolidateCatalogProducts, isCatalogProductHandle } from "@/lib/catalog-filter"
+import {
+  filterAndConsolidateCatalogProducts,
+  resolveCatalogParentHandle
+} from "@/lib/catalog-filter"
 import {
   STORE_PRODUCT_DETAIL_FIELDS,
   STORE_PRODUCT_LIST_FIELDS
@@ -137,7 +140,8 @@ export async function getProductByHandle(handle: string) {
     if (!response.ok) throw new Error("Failed product request")
     const data = await response.json()
     const product = (data.products?.[0] || null) as StoreProduct | null
-    if (!product || !isCatalogProductHandle(product.handle)) return null
+    // Allow legacy strength slugs while Medusa still has unmerged variants.
+    if (!product || !resolveCatalogParentHandle(product.handle)) return null
     return product
   } catch {
     return null

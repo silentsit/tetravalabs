@@ -1,4 +1,4 @@
-import { filterToCatalogProducts, isCatalogProductHandle } from "@/lib/catalog-filter"
+import { filterAndConsolidateCatalogProducts, isCatalogProductHandle } from "@/lib/catalog-filter"
 import {
   STORE_PRODUCT_DETAIL_FIELDS,
   STORE_PRODUCT_LIST_FIELDS
@@ -122,7 +122,7 @@ export async function listAllProducts() {
     console.error("[medusa] unable to paginate products from", MEDUSA_URL, error)
   }
 
-  return filterToCatalogProducts(all)
+  return filterAndConsolidateCatalogProducts(all)
 }
 
 export async function getProductByHandle(handle: string) {

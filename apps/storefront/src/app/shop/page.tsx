@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/product-card"
 import { ProductFilters } from "@/components/product-filters"
 import { ProductSort } from "@/components/product-sort"
 import { listProducts } from "@/lib/medusa"
+import { resolveCatalogParentHandle } from "@/lib/catalog-filter"
 import { filterProductsByCategorySlug } from "@/lib/categories"
 import { filterByPill, normalizeShopCategoryPill, shopNavLabel } from "@/lib/shop-filters"
 import { searchProducts } from "@/lib/search"
@@ -62,7 +63,11 @@ export default async function ShopPage({ searchParams }: Props) {
 
   if (useSearch) {
     const { results } = await searchProducts(q, { priceMin, priceMax })
-    const handles = new Set(results.map((result) => result.handle))
+    const handles = new Set(
+      results
+        .map((result) => resolveCatalogParentHandle(result.handle))
+        .filter((handle): handle is string => Boolean(handle))
+    )
     displayProducts = displayProducts.filter((product) => handles.has(product.handle))
     displayProducts =
       sortKey === "featured"

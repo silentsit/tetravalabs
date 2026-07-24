@@ -64,6 +64,10 @@ export async function resolveAdminToken() {
       )
       return login()
     } catch (registerError) {
+      const status = registerError.response?.status
+      if (status === 401 || status === 409 || status === 422) {
+        return login()
+      }
       throw registerError.response ? registerError : loginError
     }
   }

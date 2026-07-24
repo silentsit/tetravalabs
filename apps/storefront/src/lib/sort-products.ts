@@ -1,5 +1,6 @@
 import type { StoreProduct } from "@/lib/medusa"
 import { getDisplaySortPriceCents } from "@/lib/pack-pricing"
+import { resolveCatalogParentHandle } from "@/lib/catalog-filter"
 import type { SearchResult } from "@/lib/search"
 
 export type ProductSort = "featured" | "price-asc" | "price-desc" | "name-asc" | "name-desc"
@@ -81,7 +82,14 @@ export function orderProductsBySearchResults(
   products: StoreProduct[],
   results: SearchResult[]
 ): StoreProduct[] {
-  const rank = new Map(results.map((result, index) => [result.handle, index]))
+  const rank = new Map(
+    results
+      .map((result, index) => {
+        const handle = resolveCatalogParentHandle(result.handle)
+        return handle ? ([handle, index] as const) : null
+      })
+      .filter((entry): entry is readonly [string, number] => Boolean(entry))
+  )
   return [...products].sort(
     (a, b) => (rank.get(a.handle) ?? Number.MAX_SAFE_INTEGER) - (rank.get(b.handle) ?? Number.MAX_SAFE_INTEGER)
   )

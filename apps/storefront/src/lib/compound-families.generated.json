@@ -1,0 +1,855 @@
+{
+  "5-amino-1mq": {
+    "title": "5-amino-1mq",
+    "members": [
+      {
+        "legacy_slug": "5-amino-1mq-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 2
+      },
+      {
+        "legacy_slug": "5-amino-1mq-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 1
+      }
+    ]
+  },
+  "aod-9604": {
+    "title": "AOD-9604",
+    "members": [
+      {
+        "legacy_slug": "aod-9604-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 9
+      },
+      {
+        "legacy_slug": "aod-9604-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 8
+      }
+    ]
+  },
+  "cagrilintide-semaglutide": {
+    "title": "Cagrilintide + Semaglutide",
+    "members": [
+      {
+        "legacy_slug": "cagrilintide-semaglutide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 26
+      },
+      {
+        "legacy_slug": "cagrilintide-semaglutide-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 25
+      }
+    ]
+  },
+  "cagrilintide": {
+    "title": "Cagrilintide",
+    "members": [
+      {
+        "legacy_slug": "cagrilintide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 24
+      },
+      {
+        "legacy_slug": "cagrilintide-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 23
+      }
+    ]
+  },
+  "mazdutide": {
+    "title": "Mazdutide",
+    "members": [
+      {
+        "legacy_slug": "mazdutide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 82
+      },
+      {
+        "legacy_slug": "mazdutide-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 81
+      }
+    ]
+  },
+  "retatrutide": {
+    "title": "Retatrutide",
+    "members": [
+      {
+        "legacy_slug": "retatrutide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 104
+      },
+      {
+        "legacy_slug": "retatrutide-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 101
+      },
+      {
+        "legacy_slug": "retatrutide-20mg",
+        "strength_key": "20mg",
+        "strength_label": "20mg",
+        "strength_option": "20mg",
+        "product_code": 102
+      },
+      {
+        "legacy_slug": "retatrutide-50mg",
+        "strength_key": "50mg",
+        "strength_label": "50mg",
+        "strength_option": "50mg",
+        "product_code": 103
+      },
+      {
+        "legacy_slug": "retatrutide-100mg",
+        "strength_key": "100mg",
+        "strength_label": "100mg",
+        "strength_option": "100mg",
+        "product_code": 100
+      }
+    ]
+  },
+  "semaglutide": {
+    "title": "Semaglutide",
+    "members": [
+      {
+        "legacy_slug": "semaglutide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 109
+      },
+      {
+        "legacy_slug": "semaglutide-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 108
+      }
+    ]
+  },
+  "sermorelin": {
+    "title": "Sermorelin",
+    "members": [
+      {
+        "legacy_slug": "sermorelin-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 114
+      },
+      {
+        "legacy_slug": "sermorelin-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 113
+      }
+    ]
+  },
+  "tesamorelin": {
+    "title": "Tesamorelin",
+    "members": [
+      {
+        "legacy_slug": "tesamorelin-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 124
+      },
+      {
+        "legacy_slug": "tesamorelin-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 122
+      },
+      {
+        "legacy_slug": "tesamorelin-20mg",
+        "strength_key": "20mg",
+        "strength_label": "20mg",
+        "strength_option": "20mg",
+        "product_code": 123
+      }
+    ]
+  },
+  "tirzepatide": {
+    "title": "Tirzepatide",
+    "members": [
+      {
+        "legacy_slug": "tirzepatide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 131
+      },
+      {
+        "legacy_slug": "tirzepatide-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 128
+      },
+      {
+        "legacy_slug": "tirzepatide-20mg",
+        "strength_key": "20mg",
+        "strength_label": "20mg",
+        "strength_option": "20mg",
+        "product_code": 129
+      },
+      {
+        "legacy_slug": "tirzepatide-50mg",
+        "strength_key": "50mg",
+        "strength_label": "50mg",
+        "strength_option": "50mg",
+        "product_code": 130
+      }
+    ]
+  },
+  "adipotide": {
+    "title": "Adipotide",
+    "members": [
+      {
+        "legacy_slug": "adipotide-2mg",
+        "strength_key": "2mg",
+        "strength_label": "2mg",
+        "strength_option": "2mg",
+        "product_code": 5
+      },
+      {
+        "legacy_slug": "adipotide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 6
+      }
+    ]
+  },
+  "mots-c": {
+    "title": "MOTS-c",
+    "members": [
+      {
+        "legacy_slug": "mots-c-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 90
+      },
+      {
+        "legacy_slug": "mots-c-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 87
+      },
+      {
+        "legacy_slug": "mots-c-20mg",
+        "strength_key": "20mg",
+        "strength_label": "20mg",
+        "strength_option": "20mg",
+        "product_code": 88
+      },
+      {
+        "legacy_slug": "mots-c-40mg",
+        "strength_key": "40mg",
+        "strength_label": "40mg",
+        "strength_option": "40mg",
+        "product_code": 89
+      }
+    ]
+  },
+  "ss-31": {
+    "title": "SS-31",
+    "members": [
+      {
+        "legacy_slug": "ss-31-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 116
+      },
+      {
+        "legacy_slug": "ss-31-25mg",
+        "strength_key": "25mg",
+        "strength_label": "25mg",
+        "strength_option": "25mg",
+        "product_code": 117
+      },
+      {
+        "legacy_slug": "ss-31-50mg",
+        "strength_key": "50mg",
+        "strength_label": "50mg",
+        "strength_option": "50mg",
+        "product_code": 118
+      }
+    ]
+  },
+  "bremelanotide": {
+    "title": "Bremelanotide",
+    "members": [
+      {
+        "legacy_slug": "bremelanotide-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 22
+      },
+      {
+        "legacy_slug": "bremelanotide-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 21
+      }
+    ]
+  },
+  "dsip": {
+    "title": "DSIP",
+    "members": [
+      {
+        "legacy_slug": "dsip-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 39
+      },
+      {
+        "legacy_slug": "dsip-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 37
+      },
+      {
+        "legacy_slug": "dsip-15mg",
+        "strength_key": "15mg",
+        "strength_label": "15mg",
+        "strength_option": "15mg",
+        "product_code": 38
+      }
+    ]
+  },
+  "epithalon": {
+    "title": "Epithalon",
+    "members": [
+      {
+        "legacy_slug": "epithalon-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 40
+      },
+      {
+        "legacy_slug": "epithalon-20mg",
+        "strength_key": "20mg",
+        "strength_label": "20mg",
+        "strength_option": "20mg",
+        "product_code": 41
+      },
+      {
+        "legacy_slug": "epithalon-50mg",
+        "strength_key": "50mg",
+        "strength_label": "50mg",
+        "strength_option": "50mg",
+        "product_code": 42
+      }
+    ]
+  },
+  "kpv": {
+    "title": "KPV",
+    "members": [
+      {
+        "legacy_slug": "kpv-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 75
+      },
+      {
+        "legacy_slug": "kpv-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 74
+      }
+    ]
+  },
+  "kisspeptin-10": {
+    "title": "Kisspeptin-10",
+    "members": [
+      {
+        "legacy_slug": "kisspeptin-10-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 73
+      },
+      {
+        "legacy_slug": "kisspeptin-10-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 72
+      }
+    ]
+  },
+  "nad": {
+    "title": "NAD+",
+    "members": [
+      {
+        "legacy_slug": "nad-100mg",
+        "strength_key": "100mg",
+        "strength_label": "100mg",
+        "strength_option": "100mg",
+        "product_code": 92
+      },
+      {
+        "legacy_slug": "nad-500mg",
+        "strength_key": "500mg",
+        "strength_label": "500mg",
+        "strength_option": "500mg",
+        "product_code": 93
+      },
+      {
+        "legacy_slug": "nad-1000mg",
+        "strength_key": "1000mg",
+        "strength_label": "1000mg",
+        "strength_option": "1000mg",
+        "product_code": 91
+      }
+    ]
+  },
+  "oxytocin-acetate": {
+    "title": "Oxytocin Acetate",
+    "members": [
+      {
+        "legacy_slug": "oxytocin-acetate-2mg",
+        "strength_key": "2mg",
+        "strength_label": "2mg",
+        "strength_option": "2mg",
+        "product_code": 95
+      },
+      {
+        "legacy_slug": "oxytocin-acetate-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 96
+      },
+      {
+        "legacy_slug": "oxytocin-acetate-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 94
+      }
+    ]
+  },
+  "selank": {
+    "title": "Selank",
+    "members": [
+      {
+        "legacy_slug": "selank-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 106
+      },
+      {
+        "legacy_slug": "selank-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 105
+      }
+    ]
+  },
+  "semax": {
+    "title": "Semax",
+    "members": [
+      {
+        "legacy_slug": "semax-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 111
+      },
+      {
+        "legacy_slug": "semax-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 110
+      }
+    ]
+  },
+  "thymosin-alpha-1": {
+    "title": "Thymosin alpha-1",
+    "members": [
+      {
+        "legacy_slug": "thymosin-alpha-1-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 127
+      },
+      {
+        "legacy_slug": "thymosin-alpha-1-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 126
+      }
+    ]
+  },
+  "bacteriostatic-water": {
+    "title": "Bacteriostatic Water",
+    "members": [
+      {
+        "legacy_slug": "bacteriostatic-water-3ml",
+        "strength_key": "3ml",
+        "strength_label": "3ml",
+        "strength_option": "3ml",
+        "product_code": 13
+      },
+      {
+        "legacy_slug": "bacteriostatic-water-10ml",
+        "strength_key": "10ml",
+        "strength_label": "10ml",
+        "strength_option": "10ml",
+        "product_code": 12
+      }
+    ]
+  },
+  "benzyl-alcohol": {
+    "title": "Benzyl Alcohol",
+    "members": [
+      {
+        "legacy_slug": "benzyl-alcohol-3ml",
+        "strength_key": "3ml",
+        "strength_label": "3ml",
+        "strength_option": "3ml",
+        "product_code": 15
+      },
+      {
+        "legacy_slug": "benzyl-alcohol-10ml",
+        "strength_key": "10ml",
+        "strength_label": "10ml",
+        "strength_option": "10ml",
+        "product_code": 14
+      }
+    ]
+  },
+  "glutathione": {
+    "title": "Glutathione",
+    "members": [
+      {
+        "legacy_slug": "glutathione-600mg",
+        "strength_key": "600mg",
+        "strength_label": "600mg",
+        "strength_option": "600mg",
+        "product_code": 54
+      },
+      {
+        "legacy_slug": "glutathione-1500mg",
+        "strength_key": "1500mg",
+        "strength_label": "1500mg",
+        "strength_option": "1500mg",
+        "product_code": 53
+      }
+    ]
+  },
+  "bpc-157": {
+    "title": "BPC-157",
+    "members": [
+      {
+        "legacy_slug": "bpc-157-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 17
+      },
+      {
+        "legacy_slug": "bpc-157-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 16
+      }
+    ]
+  },
+  "tb500": {
+    "title": "TB500",
+    "members": [
+      {
+        "legacy_slug": "tb500-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 121
+      },
+      {
+        "legacy_slug": "tb500-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 120
+      }
+    ]
+  },
+  "glow-bpc-157-tb500-ghk-cu": {
+    "title": "Glow BPC-157 + TB500 + GHK-Cu",
+    "members": [
+      {
+        "legacy_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
+        "strength_key": "30mg",
+        "strength_label": "30mg",
+        "strength_option": "30mg",
+        "product_code": 50
+      },
+      {
+        "legacy_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
+        "strength_key": "85mg",
+        "strength_label": "85mg",
+        "strength_option": "85mg",
+        "product_code": 51
+      }
+    ]
+  },
+  "cjc-1295-with-dac": {
+    "title": "CJC-1295 with DAC",
+    "members": [
+      {
+        "legacy_slug": "cjc-1295-with-dac-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 29
+      },
+      {
+        "legacy_slug": "cjc-1295-with-dac-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 28
+      }
+    ]
+  },
+  "cjc-1295-without-dac": {
+    "title": "CJC-1295 without DAC",
+    "members": [
+      {
+        "legacy_slug": "cjc-1295-without-dac-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 31
+      },
+      {
+        "legacy_slug": "cjc-1295-without-dac-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 30
+      }
+    ]
+  },
+  "ghrp-2-acetate": {
+    "title": "GHRP-2 Acetate",
+    "members": [
+      {
+        "legacy_slug": "ghrp-2-acetate-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 47
+      },
+      {
+        "legacy_slug": "ghrp-2-acetate-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 46
+      }
+    ]
+  },
+  "ghrp-6-acetate": {
+    "title": "GHRP-6 Acetate",
+    "members": [
+      {
+        "legacy_slug": "ghrp-6-acetate-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 49
+      },
+      {
+        "legacy_slug": "ghrp-6-acetate-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 48
+      }
+    ]
+  },
+  "hexarelin-acetate": {
+    "title": "Hexarelin Acetate",
+    "members": [
+      {
+        "legacy_slug": "hexarelin-acetate-2mg",
+        "strength_key": "2mg",
+        "strength_label": "2mg",
+        "strength_option": "2mg",
+        "product_code": 59
+      },
+      {
+        "legacy_slug": "hexarelin-acetate-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 60
+      }
+    ]
+  },
+  "ipamorelin": {
+    "title": "Ipamorelin",
+    "members": [
+      {
+        "legacy_slug": "ipamorelin-5mg",
+        "strength_key": "5mg",
+        "strength_label": "5mg",
+        "strength_option": "5mg",
+        "product_code": 71
+      },
+      {
+        "legacy_slug": "ipamorelin-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 70
+      }
+    ]
+  },
+  "ghk-cu": {
+    "title": "GHK-Cu",
+    "members": [
+      {
+        "legacy_slug": "ghk-cu-50mg",
+        "strength_key": "50mg",
+        "strength_label": "50mg",
+        "strength_option": "50mg",
+        "product_code": 45
+      },
+      {
+        "legacy_slug": "ghk-cu-100mg",
+        "strength_key": "100mg",
+        "strength_label": "100mg",
+        "strength_option": "100mg",
+        "product_code": 44
+      }
+    ]
+  },
+  "gonadorelin": {
+    "title": "Gonadorelin",
+    "members": [
+      {
+        "legacy_slug": "gonadorelin-2mg",
+        "strength_key": "2mg",
+        "strength_label": "2mg",
+        "strength_option": "2mg",
+        "product_code": 56
+      },
+      {
+        "legacy_slug": "gonadorelin-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 55
+      }
+    ]
+  },
+  "hcg": {
+    "title": "HCG",
+    "members": [
+      {
+        "legacy_slug": "hcg-5000-iu",
+        "strength_key": "5000-iu",
+        "strength_label": "5000 IU",
+        "strength_option": "5000 IU",
+        "product_code": 58
+      },
+      {
+        "legacy_slug": "hcg-10000-iu",
+        "strength_key": "10000-iu",
+        "strength_label": "10000 IU",
+        "strength_option": "10000 IU",
+        "product_code": 57
+      }
+    ]
+  },
+  "hgh-191aa": {
+    "title": "HGH 191aa",
+    "members": [
+      {
+        "legacy_slug": "hgh-191aa-10-iu",
+        "strength_key": "10-iu",
+        "strength_label": "10 IU",
+        "strength_option": "10 IU",
+        "product_code": 61
+      },
+      {
+        "legacy_slug": "hgh-191aa-12-iu",
+        "strength_key": "12-iu",
+        "strength_label": "12 IU",
+        "strength_option": "12 IU",
+        "product_code": 62
+      },
+      {
+        "legacy_slug": "hgh-191aa-15-iu",
+        "strength_key": "15-iu",
+        "strength_label": "15 IU",
+        "strength_option": "15 IU",
+        "product_code": 63
+      },
+      {
+        "legacy_slug": "hgh-191aa-24-iu",
+        "strength_key": "24-iu",
+        "strength_label": "24 IU",
+        "strength_option": "24 IU",
+        "product_code": 64
+      },
+      {
+        "legacy_slug": "hgh-191aa-36-iu",
+        "strength_key": "36-iu",
+        "strength_label": "36 IU",
+        "strength_option": "36 IU",
+        "product_code": 65
+      }
+    ]
+  }
+}

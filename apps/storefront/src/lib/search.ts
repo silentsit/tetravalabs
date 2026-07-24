@@ -1,4 +1,5 @@
 import { listProducts } from "@/lib/medusa"
+import { resolveCatalogParentHandle } from "@/lib/catalog-filter"
 import { getProductPerUnitPriceRangeCents } from "@/lib/pack-pricing"
 import { getProductPriceRangeCents } from "@/lib/product-price"
 
@@ -31,6 +32,20 @@ export type SearchSource = "typesense" | "catalog"
 export type SearchResponse = {
   results: SearchResult[]
   source: SearchSource
+}
+
+function normalizeSearchResults(results: SearchResult[]): SearchResult[] {
+  const seen = new Set<string>()
+  const normalized: SearchResult[] = []
+
+  for (const result of results) {
+    const parent = resolveCatalogParentHandle(result.handle)
+    if (!parent || seen.has(parent)) continue
+    seen.add(parent)
+    normalized.push(parent === result.handle ? result : { ...result, handle: parent })
+  }
+
+  return normalized
 }
 
 export function isTypesenseConfigured() {
@@ -79,7 +94,7 @@ async function searchViaMedusaProxy(
     return {
       status: "success",
       response: {
-        results: data.results ?? [],
+        results: normalizeSearchResults(data.results ?? []),
         source: "typesense"
       }
     }
@@ -193,8 +208,8 @@ export async function searchProducts(
 
   const typesenseResults = await searchViaTypesenseDirect(query, filters)
   if (typesenseResults !== null) {
-    return { results: typesenseResults, source: "typesense" }
+    return { results: normalizeSearchResults(typesenseResults), source: "typesense" }
   }
 
-  return { results: await searchViaMedusaFallback(query, filters), source: "catalog" }
+  return { results: normalizeSearchResults(await searchViaMedusaFallback(query, filters)), source: "catalog" }
 }

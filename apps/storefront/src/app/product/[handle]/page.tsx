@@ -1,10 +1,10 @@
 import { notFound, redirect } from "next/navigation"
 import type { Metadata } from "next"
 import {
+  buildCompoundProductPath,
   compoundSeoName,
   findRelatedCompoundProducts,
   getCompoundProductView,
-  getProductHref,
   loadStrengthSideData,
   pickDefaultStrengthKey,
   resolveCompoundRedirect
@@ -49,7 +49,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const selected = view.strengths.find((item) => item.strengthKey === strengthKey) || view.strengths[0]
   const productName = compoundSeoName(view, strengthKey)
   const cas = view.casNumber !== "N/A" ? ` CAS ${view.casNumber}.` : ""
-  const path = getProductHref(selected?.handle || handle)
+  const path = buildCompoundProductPath(view.parentHandle, strengthKey)
 
   return buildPageMetadata({
     title: `${productName} — ${view.categoryLabel}`,

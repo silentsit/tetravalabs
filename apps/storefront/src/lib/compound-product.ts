@@ -1,5 +1,5 @@
-import catalogHandles from "@/lib/catalog-handles.generated.json"
-import type { StoreProduct, StoreCoaDocument } from "@/lib/medusa"
+import compoundFamilies from "@/lib/compound-families.generated.json"
+import compoundLegacyRedirects from "@/lib/compound-legacy-redirects.generated.json"
 import { getProductByHandle, listCoasByVariant, listProducts } from "@/lib/medusa"
 import { listProductReviews, type ProductReviewsResponse } from "@/lib/reviews"
 import {
@@ -11,15 +11,30 @@ import {
   getProductStrengthLabel
 } from "@/lib/revamp/product-visual"
 import { getProductGalleryImages } from "@/lib/product-image-map"
-import { packTiersFromVariants, type PackTier } from "@/lib/pack-pricing"
+import {
+  groupVariantsByStrength,
+  packTiersFromVariants,
+  type PackTier
+} from "@/lib/pack-pricing"
 import type { StoreVariant } from "@/lib/product-price"
 
-/**
- * Trailing strength token on tiered catalog handles.
- * Keep this strict so compound codes like `bpc-157-5mg` resolve to parent `bpc-157`
- * (not `bpc` + `157-5mg`). Decimal masses use `0-1mg` → 0.1mg.
- */
 const STRENGTH_SUFFIX_RE = /-((?:0-\d+mg)|\d+mg|\d+ml|\d+mcg|\d+-iu)$/i
+
+type GeneratedFamilyMember = {
+  legacy_slug: string
+  strength_key: string
+  strength_label: string
+}
+
+type GeneratedFamily = {
+  title: string
+  members: GeneratedFamilyMember[]
+}
+
+type LegacyRedirect = {
+  parent: string
+  strength: string
+}
 
 export type CompoundMember = {
   handle: string
@@ -37,6 +52,7 @@ export type CompoundStrengthOption = {
   strengthLabel: string
   productId: string
   handle: string
+  imageHandle: string
   title: string
   image: string
   galleryImages: string[]
@@ -83,31 +99,6 @@ export function parseStrengthHandle(
   return { parentHandle, strengthKey }
 }
 
-function buildFamilyIndex(handles: string[]): Map<string, CompoundFamily> {
-  const buckets = new Map<string, CompoundMember[]>()
-
-  for (const handle of handles) {
-    const parsed = parseStrengthHandle(handle)
-    if (!parsed) continue
-    const member: CompoundMember = {
-      handle,
-      strengthKey: parsed.strengthKey,
-      strengthLabel: formatStrengthLabel(parsed.strengthKey)
-    }
-    const list = buckets.get(parsed.parentHandle) || []
-    list.push(member)
-    buckets.set(parsed.parentHandle, list)
-  }
-
-  const families = new Map<string, CompoundFamily>()
-  for (const [parentHandle, members] of buckets) {
-    if (members.length < 2) continue
-    members.sort((a, b) => strengthSortKey(a.strengthKey) - strengthSortKey(b.strengthKey))
-    families.set(parentHandle, { parentHandle, members })
-  }
-  return families
-}
-
 function strengthSortKey(strengthKey: string): number {
   const iu = strengthKey.match(/^(\d+)-iu$/i)
   if (iu) return Number(iu[1])
@@ -117,13 +108,34 @@ function strengthSortKey(strengthKey: string): number {
   return num ? Number(num[1]) : 0
 }
 
-const FAMILY_INDEX = buildFamilyIndex(catalogHandles as string[])
+function buildFamilyIndex(): Map<string, CompoundFamily> {
+  const families = new Map<string, CompoundFamily>()
+  const source = compoundFamilies as Record<string, GeneratedFamily>
+
+  for (const [parentHandle, family] of Object.entries(source)) {
+    const members = family.members
+      .map((member) => ({
+        handle: member.legacy_slug,
+        strengthKey: member.strength_key,
+        strengthLabel: member.strength_label || formatStrengthLabel(member.strength_key)
+      }))
+      .sort((a, b) => strengthSortKey(a.strengthKey) - strengthSortKey(b.strengthKey))
+
+    if (members.length >= 2) {
+      families.set(parentHandle, { parentHandle, members })
+    }
+  }
+
+  return families
+}
+
+const FAMILY_INDEX = buildFamilyIndex()
 
 const MEMBER_TO_PARENT = new Map<string, string>()
-for (const family of FAMILY_INDEX.values()) {
-  for (const member of family.members) {
-    MEMBER_TO_PARENT.set(member.handle, family.parentHandle)
-  }
+for (const [legacyHandle, redirect] of Object.entries(
+  compoundLegacyRedirects as Record<string, LegacyRedirect>
+)) {
+  MEMBER_TO_PARENT.set(legacyHandle, redirect.parent)
 }
 
 export function getCompoundFamily(parentHandle: string): CompoundFamily | null {
@@ -143,14 +155,17 @@ export function isCompoundMemberHandle(handle: string): boolean {
   return MEMBER_TO_PARENT.has(handle)
 }
 
-/** Shop/card href: consolidated parents get ?strength= */
 export function getProductHref(handle: string, packQty?: number): string {
   const parent = getCompoundParentHandle(handle)
   if (!parent) return `/product/${handle}`
 
   const family = getCompoundFamily(parent)
+  const redirect = (compoundLegacyRedirects as Record<string, LegacyRedirect>)[handle]
   const member = family?.members.find((m) => m.handle === handle)
-  const strength = member?.strengthKey || parseStrengthHandle(handle)?.strengthKey
+  const strength =
+    member?.strengthKey ||
+    redirect?.strength ||
+    parseStrengthHandle(handle)?.strengthKey
   if (!strength) return `/product/${parent}`
 
   const params = new URLSearchParams({ strength })
@@ -174,13 +189,16 @@ export function resolveCompoundRedirect(
   handle: string,
   searchParams?: { strength?: string; pack?: string }
 ): string | null {
-  const parent = MEMBER_TO_PARENT.get(handle)
-  if (!parent) return null
+  const redirect = (compoundLegacyRedirects as Record<string, LegacyRedirect>)[handle]
+  if (!redirect) return null
 
-  const parsed = parseStrengthHandle(handle)
-  const strength = searchParams?.strength || parsed?.strengthKey
+  const strength = searchParams?.strength || redirect.strength
   const pack = searchParams?.pack ? Number(searchParams.pack) : undefined
-  return buildCompoundProductPath(parent, strength, Number.isFinite(pack) ? pack : undefined)
+  return buildCompoundProductPath(
+    redirect.parent,
+    strength,
+    Number.isFinite(pack) ? pack : undefined
+  )
 }
 
 function stripStrengthFromTitle(title: string): string {
@@ -199,6 +217,20 @@ function researchSummaryFor(product: StoreProduct, displayName: string): string 
   return `${displayName} is supplied for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing where COA documents are published.`
 }
 
+function primaryVariantForCoa(variants: StoreVariant[]): StoreVariant | undefined {
+  const single = variants.find((variant) => {
+    const packQty = variant.metadata?.pack_qty
+    return packQty == null || Number(packQty) <= 1
+  })
+  return single || variants[0]
+}
+
+function isMergedMedusaProduct(product: StoreProduct): boolean {
+  if (product.metadata?.compound_merged) return true
+  const variants = (product.variants || []) as StoreVariant[]
+  return groupVariantsByStrength(variants).size > 1
+}
+
 function toStrengthOption(product: StoreProduct): CompoundStrengthOption {
   const parsed = parseStrengthHandle(product.handle)
   const strengthKey =
@@ -212,6 +244,7 @@ function toStrengthOption(product: StoreProduct): CompoundStrengthOption {
     strengthLabel,
     productId: product.id,
     handle: product.handle,
+    imageHandle: product.handle,
     title: getProductDisplayName(product),
     image: getProductImage(product),
     galleryImages: getProductGalleryImages(product.handle),
@@ -220,6 +253,92 @@ function toStrengthOption(product: StoreProduct): CompoundStrengthOption {
     packTiers: packTiersFromVariants(variants),
     metadata: (product.metadata || {}) as Record<string, unknown>
   }
+}
+
+function toStrengthOptionFromMerged(
+  product: StoreProduct,
+  member: CompoundMember,
+  variants: StoreVariant[]
+): CompoundStrengthOption {
+  const legacyHandle =
+    String(
+      variants.find((variant) => variant.metadata?.legacy_product_handle)?.metadata
+        ?.legacy_product_handle || member.handle
+    ) || member.handle
+
+  return {
+    strengthKey: member.strengthKey,
+    strengthLabel: member.strengthLabel,
+    productId: product.id,
+    handle: product.handle,
+    imageHandle: legacyHandle,
+    title: getProductDisplayName(product),
+    image: getProductImage(product),
+    galleryImages: getProductGalleryImages(legacyHandle),
+    purity: getProductPurity(product),
+    variants,
+    packTiers: packTiersFromVariants(variants),
+    metadata: (product.metadata || {}) as Record<string, unknown>
+  }
+}
+
+function buildCompoundView(
+  parentHandle: string,
+  primary: StoreProduct,
+  strengths: CompoundStrengthOption[]
+): CompoundProductView {
+  const displayName = stripStrengthFromTitle(getProductDisplayName(primary))
+
+  return {
+    parentHandle,
+    displayName,
+    displaySubtitle: getProductDisplaySubtitle(primary),
+    categoryLabel: String(primary.metadata?.source_category || "Research Product"),
+    isCompound: strengths.length > 1,
+    strengths,
+    casNumber: String(primary.metadata?.cas_number || "N/A"),
+    molecularFormula: String(primary.metadata?.molecular_formula || "N/A"),
+    molecularWeight: String(primary.metadata?.molecular_weight || "N/A"),
+    storage: String(primary.metadata?.storage || "-20°C lyophilized"),
+    appearance: String(primary.metadata?.appearance || "Lyophilized powder"),
+    sequence: String(primary.metadata?.sequence || "N/A"),
+    researchSummary: researchSummaryFor(primary, displayName)
+  }
+}
+
+function viewFromMergedProduct(
+  product: StoreProduct,
+  family: CompoundFamily
+): CompoundProductView | null {
+  const byStrength = groupVariantsByStrength((product.variants || []) as StoreVariant[])
+  const strengths = family.members.flatMap((member) => {
+    const variants = byStrength.get(member.strengthKey) || []
+    return variants.length ? [toStrengthOptionFromMerged(product, member, variants)] : []
+  })
+
+  if (!strengths.length) return null
+  return buildCompoundView(family.parentHandle, product, strengths)
+}
+
+async function loadLegacyCompoundView(
+  family: CompoundFamily
+): Promise<CompoundProductView | null> {
+  const products = await Promise.all(
+    family.members.map((member) => getProductByHandle(member.handle))
+  )
+  const loaded = products.filter(Boolean) as StoreProduct[]
+  if (!loaded.length) return null
+
+  const strengths = family.members.flatMap((member) => {
+    const product = loaded.find((item) => item.handle === member.handle)
+    return product ? [toStrengthOption(product)] : []
+  })
+
+  if (!strengths.length) return null
+
+  const primary =
+    loaded.find((item) => item.handle === strengths[0]?.handle) || loaded[0]
+  return buildCompoundView(family.parentHandle, primary, strengths)
 }
 
 export function pickDefaultStrengthKey(
@@ -260,38 +379,11 @@ export async function getCompoundProductView(
 ): Promise<CompoundProductView | null> {
   const family = getCompoundFamily(handle)
   if (family) {
-    const products = await Promise.all(
-      family.members.map((member) => getProductByHandle(member.handle))
-    )
-    const loaded = products.filter(Boolean) as StoreProduct[]
-    if (!loaded.length) return null
-
-    const strengths = family.members.flatMap((member) => {
-      const product = loaded.find((item) => item.handle === member.handle)
-      return product ? [toStrengthOption(product)] : []
-    })
-
-    if (!strengths.length) return null
-
-    const primary =
-      loaded.find((item) => item.handle === strengths[0]?.handle) || loaded[0]
-    const displayName = stripStrengthFromTitle(getProductDisplayName(primary))
-
-    return {
-      parentHandle: family.parentHandle,
-      displayName,
-      displaySubtitle: getProductDisplaySubtitle(primary),
-      categoryLabel: String(primary.metadata?.source_category || "Research Product"),
-      isCompound: strengths.length > 1,
-      strengths,
-      casNumber: String(primary.metadata?.cas_number || "N/A"),
-      molecularFormula: String(primary.metadata?.molecular_formula || "N/A"),
-      molecularWeight: String(primary.metadata?.molecular_weight || "N/A"),
-      storage: String(primary.metadata?.storage || "-20°C lyophilized"),
-      appearance: String(primary.metadata?.appearance || "Lyophilized powder"),
-      sequence: String(primary.metadata?.sequence || "N/A"),
-      researchSummary: researchSummaryFor(primary, displayName)
+    const parentProduct = await getProductByHandle(family.parentHandle)
+    if (parentProduct && isMergedMedusaProduct(parentProduct)) {
+      return viewFromMergedProduct(parentProduct, family)
     }
+    return loadLegacyCompoundView(family)
   }
 
   const product = await getProductByHandle(handle)
@@ -321,15 +413,33 @@ export async function loadStrengthSideData(strengths: CompoundStrengthOption[]) 
   const coasByStrength: Record<string, StoreCoaDocument[]> = {}
   const reviewsByStrength: Record<string, ProductReviewsResponse> = {}
 
+  const sharedProductId = strengths[0]?.productId
+  const sharedHandle = strengths[0]?.handle
+  const sharedReviews =
+    sharedProductId &&
+    strengths.every(
+      (strength) =>
+        strength.productId === sharedProductId && strength.handle === sharedHandle
+    )
+      ? await listProductReviews({
+          productHandle: sharedHandle,
+          productId: sharedProductId
+        })
+      : null
+
   await Promise.all(
     strengths.map(async (strength) => {
-      const primaryVariantId = strength.variants[0]?.id
+      const primaryVariant = primaryVariantForCoa(strength.variants)
       const [coas, reviews] = await Promise.all([
-        primaryVariantId ? listCoasByVariant(primaryVariantId) : Promise.resolve([]),
-        listProductReviews({
-          productHandle: strength.handle,
-          productId: strength.productId
-        })
+        primaryVariant?.id
+          ? listCoasByVariant(primaryVariant.id)
+          : Promise.resolve([]),
+        sharedReviews
+          ? Promise.resolve(sharedReviews)
+          : listProductReviews({
+              productHandle: strength.handle,
+              productId: strength.productId
+            })
       ])
       coasByStrength[strength.strengthKey] = coas
       reviewsByStrength[strength.strengthKey] = reviews
@@ -351,7 +461,6 @@ export function compoundSeoName(view: CompoundProductView, strengthKey: string):
   )
 }
 
-/** Prefer consolidated parent product when listing related cards. */
 export function dedupeProductsByCompound(products: StoreProduct[]): StoreProduct[] {
   const seenParents = new Set<string>()
   const result: StoreProduct[] = []
@@ -371,7 +480,6 @@ export function listCompoundParentHandles(): string[] {
   return [...FAMILY_INDEX.keys()].sort()
 }
 
-/** Warm path: resolve related from already-listed catalog products. */
 export async function findRelatedCompoundProducts(
   view: CompoundProductView,
   limit = 4

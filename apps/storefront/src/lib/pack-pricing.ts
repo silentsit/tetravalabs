@@ -9,6 +9,29 @@ export type PackTier = {
   perUnit: number
   savingsPct: number
   variantId: string
+  /** MOQ list unit price used as compare-at for volume discounts. */
+  compareAtPerUnit?: number
+  /** compareAtPerUnit * qty */
+  compareAtPack?: number
+  /** compareAtPack - price; only meaningful when > 0 */
+  savingsUsd?: number
+}
+
+/** Handles that show Loti-style compare-at strikethrough (design preview). */
+export const COMPARE_AT_PREVIEW_HANDLES = new Set(["cagrilintide"])
+
+export function showCompareAtPricingForHandle(handle: string | null | undefined): boolean {
+  if (!handle) return false
+  const normalized = handle.trim().toLowerCase()
+  if (COMPARE_AT_PREVIEW_HANDLES.has(normalized)) return true
+  // Member handles like cagrilintide-5mg (not cagrilintide-semaglutide)
+  for (const parent of COMPARE_AT_PREVIEW_HANDLES) {
+    const prefix = `${parent}-`
+    if (normalized.startsWith(prefix) && /^\d/.test(normalized.slice(prefix.length))) {
+      return true
+    }
+  }
+  return false
 }
 
 const PACK_TITLE_RE = /^\d+\s+vials?$/i
@@ -63,6 +86,27 @@ export function packTiersFromVariants(variants: StoreVariant[]): PackTier[] {
     .sort((a, b) => a.qty - b.qty)
 }
 
+/**
+ * Enrich pack tiers with MOQ-based compare-at prices for strikethrough UI.
+ * MOQ = lowest-qty tier in the list (usually 5 vials).
+ */
+export function withCompareAt(tiers: PackTier[]): PackTier[] {
+  if (!tiers.length) return tiers
+  const moq = [...tiers].sort((a, b) => a.qty - b.qty)[0]
+  const compareAtPerUnit = moq.perUnit
+
+  return tiers.map((tier) => {
+    const compareAtPack = Number((compareAtPerUnit * tier.qty).toFixed(2))
+    const savingsUsd = Number(Math.max(0, compareAtPack - tier.price).toFixed(2))
+    return {
+      ...tier,
+      compareAtPerUnit,
+      compareAtPack,
+      savingsUsd
+    }
+  })
+}
+
 export function strengthVariantsFromList(variants: StoreVariant[]): StoreVariant[] {
   const strengths = new Set(
     variants.map((v) => String(v.metadata?.strength || "")).filter(Boolean)
@@ -79,6 +123,8 @@ export function strengthVariantsFromList(variants: StoreVariant[]): StoreVariant
 }
 
 export function getVariantStrengthKey(variant: StoreVariant): string {
+  const fromKey = variant.metadata?.strength_key
+  if (fromKey) return String(fromKey)
   return String(variant.metadata?.strength || variant.title)
 }
 
@@ -259,17 +305,7 @@ export function getDisplaySortPriceCents(product: StoreProduct): number {
   return min
 }
 
-/** Hide consolidated legacy SKUs when per-strength tiered products exist (e.g. bpc-157 vs bpc-157-5mg). */
+/** @deprecated Listing consolidation lives in catalog-filter.consolidateListingProducts. */
 export function filterSupersededLegacyProducts(products: StoreProduct[]): StoreProduct[] {
-  const tieredParentHandles = new Set<string>()
-  for (const product of products) {
-    if (packTiersFromVariants(product.variants || []).length < 2) continue
-    const match = product.handle.match(/^(.+)-(\d+(?:\.\d+)?(?:mg|ml|iu|mcg))$/i)
-    if (match) tieredParentHandles.add(match[1])
-  }
-
-  return products.filter((product) => {
-    if (packTiersFromVariants(product.variants || []).length >= 2) return true
-    return !tieredParentHandles.has(product.handle)
-  })
+  return products
 }

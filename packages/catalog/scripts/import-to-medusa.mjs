@@ -3,6 +3,11 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import dotenv from "dotenv"
 import axios from "axios"
+import {
+  buildProductOptions,
+  catalogVariantPayload,
+  isMergedCatalogProduct
+} from "../lib/catalog-medusa-options.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -131,6 +136,7 @@ const run = async () => {
       product.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")
     )
 
+    const merged = isMergedCatalogProduct(product)
     const payload = {
       title: product.title,
       subtitle: "Research Use Only",
@@ -142,31 +148,16 @@ const run = async () => {
         visual_type: product.visual_type,
         source_category: product.category
       },
-      options: [
-        {
-          title: "Pack Size",
-          values: product.variants.map((variant) => variant.title)
-        }
-      ],
-      variants: product.variants.map((variant) => ({
-        title: variant.title,
-        sku: variant.sku,
-        manage_inventory: false,
-        options: { "Pack Size": variant.title },
-        prices: [
-          {
-            amount: Math.round(variant.amount_usd * 100),
-            currency_code: "usd"
-          }
-        ],
-        metadata: variant.metadata
-      })),
+      options: buildProductOptions(product),
+      variants: product.variants.map((variant) =>
+        catalogVariantPayload(variant, merged)
+      ),
       sales_channels: [{ id: salesChannelId }]
     }
 
     await client.post("/admin/products", payload)
     createdProducts += 1
-    console.log(`Imported ${product.handle}`)
+    console.log(`Imported ${product.handle}${merged ? " (merged)" : ""}`)
   }
 
   console.log(

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import type { PackTier } from "@/lib/pack-pricing"
+import { withCompareAt, type PackTier } from "@/lib/pack-pricing"
 
 type Props = {
   tiers: PackTier[]
@@ -9,15 +9,23 @@ type Props = {
   /** Controlled selection (pack qty). */
   value?: number
   onChange?: (tier: PackTier) => void
+  /** Loti-style compare-at strikethrough + You save (preview). */
+  showCompareAtPricing?: boolean
 }
 
 export function PackSizeSelector({
   tiers,
   unitLabel = "vial",
   value,
-  onChange
+  onChange,
+  showCompareAtPricing = false
 }: Props) {
-  const [internalQty, setInternalQty] = useState(value ?? tiers[0]?.qty ?? 5)
+  const displayTiers = useMemo(
+    () => (showCompareAtPricing ? withCompareAt(tiers) : tiers),
+    [showCompareAtPricing, tiers]
+  )
+
+  const [internalQty, setInternalQty] = useState(value ?? displayTiers[0]?.qty ?? 5)
 
   useEffect(() => {
     if (value != null) setInternalQty(value)
@@ -25,16 +33,16 @@ export function PackSizeSelector({
 
   const selectedQty = value ?? internalQty
   const selected = useMemo(
-    () => tiers.find((tier) => tier.qty === selectedQty) || tiers[0],
-    [selectedQty, tiers]
+    () => displayTiers.find((tier) => tier.qty === selectedQty) || displayTiers[0],
+    [selectedQty, displayTiers]
   )
 
   if (!selected) return null
 
   const unitSuffix = unitLabel === "vial" ? "/vial" : "/unit"
   const unitWord = unitLabel === "vial" ? "vial" : "unit"
-  const moqQty = tiers[0]?.qty ?? 5
-  const perUnits = tiers.map((tier) => tier.perUnit)
+  const moqQty = displayTiers[0]?.qty ?? 5
+  const perUnits = displayTiers.map((tier) => tier.perUnit)
   const perUnitRange =
     perUnits.length > 1 && Math.min(...perUnits) !== Math.max(...perUnits)
       ? `$${Math.min(...perUnits).toFixed(2)} – $${Math.max(...perUnits).toFixed(2)}`
@@ -44,6 +52,12 @@ export function PackSizeSelector({
     if (value == null) setInternalQty(tier.qty)
     onChange?.(tier)
   }
+
+  const selectedSavings = selected.savingsUsd ?? 0
+  const selectedCompareAt =
+    showCompareAtPricing &&
+    selected.compareAtPerUnit != null &&
+    selected.compareAtPerUnit > selected.perUnit
 
   return (
     <div className="space-y-4">
@@ -61,10 +75,19 @@ export function PackSizeSelector({
       </div>
 
       <div className="space-y-3">
-        {tiers.map((tier) => {
+        {displayTiers.map((tier) => {
           const active = selected.qty === tier.qty
           const savingsLabel =
             tier.savingsPct > 0 ? `save ${Math.round(tier.savingsPct * 100)}%` : null
+          const showCardCompare =
+            showCompareAtPricing &&
+            tier.compareAtPerUnit != null &&
+            tier.compareAtPerUnit > tier.perUnit
+          const showPackCompare =
+            showCompareAtPricing &&
+            (tier.savingsUsd ?? 0) > 0 &&
+            tier.compareAtPack != null
+
           return (
             <button
               key={tier.qty}
@@ -104,9 +127,26 @@ export function PackSizeSelector({
                     </span>
                   ) : null}
                 </div>
-                <p className="mt-1 font-mono text-xs text-[#64748B]">${tier.price.toFixed(2)} pack total</p>
+                <p className="mt-1 font-mono text-xs text-[#64748B]">
+                  {showPackCompare ? (
+                    <>
+                      <span className="mr-1.5 text-[#94A3B8] line-through">
+                        ${tier.compareAtPack!.toFixed(2)}
+                      </span>
+                      ${tier.price.toFixed(2)} pack total
+                    </>
+                  ) : (
+                    <>${tier.price.toFixed(2)} pack total</>
+                  )}
+                </p>
               </div>
               <div className="shrink-0 text-left sm:text-right">
+                {showCardCompare ? (
+                  <p className="font-mono text-xs tabular-nums text-[#94A3B8] line-through">
+                    ${tier.compareAtPerUnit!.toFixed(2)}
+                    {unitSuffix}
+                  </p>
+                ) : null}
                 <p className="text-lg font-bold tabular-nums text-[#0F172A]">
                   ${tier.perUnit.toFixed(2)}
                   <span className="text-xs font-semibold text-[#64748B]">{unitSuffix}</span>
@@ -117,13 +157,28 @@ export function PackSizeSelector({
         })}
       </div>
 
-      <p className="text-2xl font-bold tabular-nums text-[#0F172A]">
-        ${selected.perUnit.toFixed(2)}
-        <span className="text-base font-semibold text-[#64748B]">{unitSuffix}</span>
-      </p>
-      <p className="text-sm text-[#64748B]">
-        ${selected.price.toFixed(2)} pack total · {selected.tier}
-      </p>
+      <div>
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <p className="text-2xl font-bold tabular-nums text-[#0F172A]">
+            ${selected.perUnit.toFixed(2)}
+            <span className="text-base font-semibold text-[#64748B]">{unitSuffix}</span>
+          </p>
+          {selectedCompareAt ? (
+            <p className="text-base tabular-nums text-[#94A3B8] line-through">
+              ${selected.compareAtPerUnit!.toFixed(2)}
+              {unitSuffix}
+            </p>
+          ) : null}
+        </div>
+        <p className="mt-1 text-sm text-[#64748B]">
+          ${selected.price.toFixed(2)} pack total · {selected.tier}
+        </p>
+        {showCompareAtPricing && selectedSavings > 0 ? (
+          <p className="mt-1 text-sm font-medium text-[#0D9488]">
+            You save ${selectedSavings.toFixed(2)}
+          </p>
+        ) : null}
+      </div>
     </div>
   )
 }

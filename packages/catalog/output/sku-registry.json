@@ -1,22 +1,4 @@
 {
-  "TV-0001-05": {
-    "handle": "5-amino-1mq-10mg",
-    "title": "5-amino-1mq 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0001-10": {
-    "handle": "5-amino-1mq-10mg",
-    "title": "5-amino-1mq 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0001-20": {
-    "handle": "5-amino-1mq-10mg",
-    "title": "5-amino-1mq 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
   "TV-0002-05": {
     "handle": "5-amino-1mq-5mg",
     "title": "5-amino-1mq 5mg",
@@ -35,21 +17,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0008-05": {
-    "handle": "aod-9604-10mg",
-    "title": "AOD-9604 10mg",
+  "TV-0001-05": {
+    "handle": "5-amino-1mq-10mg",
+    "title": "5-amino-1mq 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0008-10": {
-    "handle": "aod-9604-10mg",
-    "title": "AOD-9604 10mg",
+  "TV-0001-10": {
+    "handle": "5-amino-1mq-10mg",
+    "title": "5-amino-1mq 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0008-20": {
-    "handle": "aod-9604-10mg",
-    "title": "AOD-9604 10mg",
+  "TV-0001-20": {
+    "handle": "5-amino-1mq-10mg",
+    "title": "5-amino-1mq 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -71,21 +53,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0025-05": {
-    "handle": "cagrilintide-semaglutide-10mg",
-    "title": "Cagrilintide + Semaglutide 10mg",
+  "TV-0008-05": {
+    "handle": "aod-9604-10mg",
+    "title": "AOD-9604 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0025-10": {
-    "handle": "cagrilintide-semaglutide-10mg",
-    "title": "Cagrilintide + Semaglutide 10mg",
+  "TV-0008-10": {
+    "handle": "aod-9604-10mg",
+    "title": "AOD-9604 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0025-20": {
-    "handle": "cagrilintide-semaglutide-10mg",
-    "title": "Cagrilintide + Semaglutide 10mg",
+  "TV-0008-20": {
+    "handle": "aod-9604-10mg",
+    "title": "AOD-9604 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -107,21 +89,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0023-05": {
-    "handle": "cagrilintide-10mg",
-    "title": "Cagrilintide 10mg",
+  "TV-0025-05": {
+    "handle": "cagrilintide-semaglutide-10mg",
+    "title": "Cagrilintide + Semaglutide 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0023-10": {
-    "handle": "cagrilintide-10mg",
-    "title": "Cagrilintide 10mg",
+  "TV-0025-10": {
+    "handle": "cagrilintide-semaglutide-10mg",
+    "title": "Cagrilintide + Semaglutide 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0023-20": {
-    "handle": "cagrilintide-10mg",
-    "title": "Cagrilintide 10mg",
+  "TV-0025-20": {
+    "handle": "cagrilintide-semaglutide-10mg",
+    "title": "Cagrilintide + Semaglutide 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -143,21 +125,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0081-05": {
-    "handle": "mazdutide-10mg",
-    "title": "Mazdutide 10mg",
+  "TV-0023-05": {
+    "handle": "cagrilintide-10mg",
+    "title": "Cagrilintide 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0081-10": {
-    "handle": "mazdutide-10mg",
-    "title": "Mazdutide 10mg",
+  "TV-0023-10": {
+    "handle": "cagrilintide-10mg",
+    "title": "Cagrilintide 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0081-20": {
-    "handle": "mazdutide-10mg",
-    "title": "Mazdutide 10mg",
+  "TV-0023-20": {
+    "handle": "cagrilintide-10mg",
+    "title": "Cagrilintide 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -179,21 +161,39 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0100-05": {
-    "handle": "retatrutide-100mg",
-    "title": "Retatrutide 100mg",
+  "TV-0081-05": {
+    "handle": "mazdutide-10mg",
+    "title": "Mazdutide 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0100-10": {
-    "handle": "retatrutide-100mg",
-    "title": "Retatrutide 100mg",
+  "TV-0081-10": {
+    "handle": "mazdutide-10mg",
+    "title": "Mazdutide 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0100-20": {
-    "handle": "retatrutide-100mg",
-    "title": "Retatrutide 100mg",
+  "TV-0081-20": {
+    "handle": "mazdutide-10mg",
+    "title": "Mazdutide 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0104-05": {
+    "handle": "retatrutide-5mg",
+    "title": "Retatrutide 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0104-10": {
+    "handle": "retatrutide-5mg",
+    "title": "Retatrutide 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0104-20": {
+    "handle": "retatrutide-5mg",
+    "title": "Retatrutide 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -251,39 +251,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0104-05": {
-    "handle": "retatrutide-5mg",
-    "title": "Retatrutide 5mg",
+  "TV-0100-05": {
+    "handle": "retatrutide-100mg",
+    "title": "Retatrutide 100mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0104-10": {
-    "handle": "retatrutide-5mg",
-    "title": "Retatrutide 5mg",
+  "TV-0100-10": {
+    "handle": "retatrutide-100mg",
+    "title": "Retatrutide 100mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0104-20": {
-    "handle": "retatrutide-5mg",
-    "title": "Retatrutide 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0108-05": {
-    "handle": "semaglutide-10mg",
-    "title": "Semaglutide 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0108-10": {
-    "handle": "semaglutide-10mg",
-    "title": "Semaglutide 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0108-20": {
-    "handle": "semaglutide-10mg",
-    "title": "Semaglutide 10mg",
+  "TV-0100-20": {
+    "handle": "retatrutide-100mg",
+    "title": "Retatrutide 100mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -305,21 +287,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0113-05": {
-    "handle": "sermorelin-10mg",
-    "title": "Sermorelin 10mg",
+  "TV-0108-05": {
+    "handle": "semaglutide-10mg",
+    "title": "Semaglutide 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0113-10": {
-    "handle": "sermorelin-10mg",
-    "title": "Sermorelin 10mg",
+  "TV-0108-10": {
+    "handle": "semaglutide-10mg",
+    "title": "Semaglutide 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0113-20": {
-    "handle": "sermorelin-10mg",
-    "title": "Sermorelin 10mg",
+  "TV-0108-20": {
+    "handle": "semaglutide-10mg",
+    "title": "Semaglutide 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -341,21 +323,39 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0119-05": {
-    "handle": "survodutide-10mg",
-    "title": "Survodutide 10mg",
+  "TV-0113-05": {
+    "handle": "sermorelin-10mg",
+    "title": "Sermorelin 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0119-10": {
-    "handle": "survodutide-10mg",
-    "title": "Survodutide 10mg",
+  "TV-0113-10": {
+    "handle": "sermorelin-10mg",
+    "title": "Sermorelin 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0119-20": {
-    "handle": "survodutide-10mg",
-    "title": "Survodutide 10mg",
+  "TV-0113-20": {
+    "handle": "sermorelin-10mg",
+    "title": "Sermorelin 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0124-05": {
+    "handle": "tesamorelin-5mg",
+    "title": "Tesamorelin 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0124-10": {
+    "handle": "tesamorelin-5mg",
+    "title": "Tesamorelin 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0124-20": {
+    "handle": "tesamorelin-5mg",
+    "title": "Tesamorelin 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -395,21 +395,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0124-05": {
-    "handle": "tesamorelin-5mg",
-    "title": "Tesamorelin 5mg",
+  "TV-0131-05": {
+    "handle": "tirzepatide-5mg",
+    "title": "Tirzepatide 5mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0124-10": {
-    "handle": "tesamorelin-5mg",
-    "title": "Tesamorelin 5mg",
+  "TV-0131-10": {
+    "handle": "tirzepatide-5mg",
+    "title": "Tirzepatide 5mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0124-20": {
-    "handle": "tesamorelin-5mg",
-    "title": "Tesamorelin 5mg",
+  "TV-0131-20": {
+    "handle": "tirzepatide-5mg",
+    "title": "Tirzepatide 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -467,42 +467,6 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0131-05": {
-    "handle": "tirzepatide-5mg",
-    "title": "Tirzepatide 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0131-10": {
-    "handle": "tirzepatide-5mg",
-    "title": "Tirzepatide 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0131-20": {
-    "handle": "tirzepatide-5mg",
-    "title": "Tirzepatide 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0007-05": {
-    "handle": "aicar-50mg",
-    "title": "AICAR 50mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0007-10": {
-    "handle": "aicar-50mg",
-    "title": "AICAR 50mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0007-20": {
-    "handle": "aicar-50mg",
-    "title": "AICAR 50mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
   "TV-0005-05": {
     "handle": "adipotide-2mg",
     "title": "Adipotide 2mg",
@@ -536,6 +500,24 @@
   "TV-0006-20": {
     "handle": "adipotide-5mg",
     "title": "Adipotide 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0090-05": {
+    "handle": "mots-c-5mg",
+    "title": "MOTS-c 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0090-10": {
+    "handle": "mots-c-5mg",
+    "title": "MOTS-c 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0090-20": {
+    "handle": "mots-c-5mg",
+    "title": "MOTS-c 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -593,24 +575,6 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0090-05": {
-    "handle": "mots-c-5mg",
-    "title": "MOTS-c 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0090-10": {
-    "handle": "mots-c-5mg",
-    "title": "MOTS-c 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0090-20": {
-    "handle": "mots-c-5mg",
-    "title": "MOTS-c 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
   "TV-0116-05": {
     "handle": "ss-31-10mg",
     "title": "SS-31 10mg",
@@ -665,21 +629,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0010-05": {
-    "handle": "ara-290-10mg",
-    "title": "ARA-290 10mg",
+  "TV-0022-05": {
+    "handle": "bremelanotide-5mg",
+    "title": "Bremelanotide 5mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0010-10": {
-    "handle": "ara-290-10mg",
-    "title": "ARA-290 10mg",
+  "TV-0022-10": {
+    "handle": "bremelanotide-5mg",
+    "title": "Bremelanotide 5mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0010-20": {
-    "handle": "ara-290-10mg",
-    "title": "ARA-290 10mg",
+  "TV-0022-20": {
+    "handle": "bremelanotide-5mg",
+    "title": "Bremelanotide 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -701,21 +665,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0022-05": {
-    "handle": "bremelanotide-5mg",
-    "title": "Bremelanotide 5mg",
+  "TV-0039-05": {
+    "handle": "dsip-5mg",
+    "title": "DSIP 5mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0022-10": {
-    "handle": "bremelanotide-5mg",
-    "title": "Bremelanotide 5mg",
+  "TV-0039-10": {
+    "handle": "dsip-5mg",
+    "title": "DSIP 5mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0022-20": {
-    "handle": "bremelanotide-5mg",
-    "title": "Bremelanotide 5mg",
+  "TV-0039-20": {
+    "handle": "dsip-5mg",
+    "title": "DSIP 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -752,42 +716,6 @@
   "TV-0038-20": {
     "handle": "dsip-15mg",
     "title": "DSIP 15mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0039-05": {
-    "handle": "dsip-5mg",
-    "title": "DSIP 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0039-10": {
-    "handle": "dsip-5mg",
-    "title": "DSIP 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0039-20": {
-    "handle": "dsip-5mg",
-    "title": "DSIP 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0035-05": {
-    "handle": "dermorphin-5mg",
-    "title": "Dermorphin 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0035-10": {
-    "handle": "dermorphin-5mg",
-    "title": "Dermorphin 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0035-20": {
-    "handle": "dermorphin-5mg",
-    "title": "Dermorphin 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -845,21 +773,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0043-05": {
-    "handle": "foxo4-dri-10mg",
-    "title": "FOXO4-DRI 10mg",
+  "TV-0075-05": {
+    "handle": "kpv-5mg",
+    "title": "KPV 5mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0043-10": {
-    "handle": "foxo4-dri-10mg",
-    "title": "FOXO4-DRI 10mg",
+  "TV-0075-10": {
+    "handle": "kpv-5mg",
+    "title": "KPV 5mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0043-20": {
-    "handle": "foxo4-dri-10mg",
-    "title": "FOXO4-DRI 10mg",
+  "TV-0075-20": {
+    "handle": "kpv-5mg",
+    "title": "KPV 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -881,42 +809,6 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0075-05": {
-    "handle": "kpv-5mg",
-    "title": "KPV 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0075-10": {
-    "handle": "kpv-5mg",
-    "title": "KPV 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0075-20": {
-    "handle": "kpv-5mg",
-    "title": "KPV 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0072-05": {
-    "handle": "kisspeptin-10-10mg",
-    "title": "Kisspeptin-10 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0072-10": {
-    "handle": "kisspeptin-10-10mg",
-    "title": "Kisspeptin-10 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0072-20": {
-    "handle": "kisspeptin-10-10mg",
-    "title": "Kisspeptin-10 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
   "TV-0073-05": {
     "handle": "kisspeptin-10-5mg",
     "title": "Kisspeptin-10 5mg",
@@ -935,39 +827,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0080-05": {
-    "handle": "ll-37-5mg",
-    "title": "LL-37 5mg",
+  "TV-0072-05": {
+    "handle": "kisspeptin-10-10mg",
+    "title": "Kisspeptin-10 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0080-10": {
-    "handle": "ll-37-5mg",
-    "title": "LL-37 5mg",
+  "TV-0072-10": {
+    "handle": "kisspeptin-10-10mg",
+    "title": "Kisspeptin-10 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0080-20": {
-    "handle": "ll-37-5mg",
-    "title": "LL-37 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0091-05": {
-    "handle": "nad-1000mg",
-    "title": "NAD+ 1000mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0091-10": {
-    "handle": "nad-1000mg",
-    "title": "NAD+ 1000mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0091-20": {
-    "handle": "nad-1000mg",
-    "title": "NAD+ 1000mg",
+  "TV-0072-20": {
+    "handle": "kisspeptin-10-10mg",
+    "title": "Kisspeptin-10 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -1007,21 +881,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0094-05": {
-    "handle": "oxytocin-acetate-10mg",
-    "title": "Oxytocin Acetate 10mg",
+  "TV-0091-05": {
+    "handle": "nad-1000mg",
+    "title": "NAD+ 1000mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0094-10": {
-    "handle": "oxytocin-acetate-10mg",
-    "title": "Oxytocin Acetate 10mg",
+  "TV-0091-10": {
+    "handle": "nad-1000mg",
+    "title": "NAD+ 1000mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0094-20": {
-    "handle": "oxytocin-acetate-10mg",
-    "title": "Oxytocin Acetate 10mg",
+  "TV-0091-20": {
+    "handle": "nad-1000mg",
+    "title": "NAD+ 1000mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -1061,21 +935,21 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0105-05": {
-    "handle": "selank-10mg",
-    "title": "Selank 10mg",
+  "TV-0094-05": {
+    "handle": "oxytocin-acetate-10mg",
+    "title": "Oxytocin Acetate 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0105-10": {
-    "handle": "selank-10mg",
-    "title": "Selank 10mg",
+  "TV-0094-10": {
+    "handle": "oxytocin-acetate-10mg",
+    "title": "Oxytocin Acetate 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0105-20": {
-    "handle": "selank-10mg",
-    "title": "Selank 10mg",
+  "TV-0094-20": {
+    "handle": "oxytocin-acetate-10mg",
+    "title": "Oxytocin Acetate 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -1097,35 +971,23 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0110-05": {
-    "handle": "semax-10mg",
-    "title": "Semax 10mg",
+  "TV-0105-05": {
+    "handle": "selank-10mg",
+    "title": "Selank 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0110-10": {
-    "handle": "semax-10mg",
-    "title": "Semax 10mg",
+  "TV-0105-10": {
+    "handle": "selank-10mg",
+    "title": "Selank 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0110-20": {
-    "handle": "semax-10mg",
-    "title": "Semax 10mg",
+  "TV-0105-20": {
+    "handle": "selank-10mg",
+    "title": "Selank 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
-  },
-  "TV-0107-01": {
-    "handle": "selank-nasal-spray-10mg",
-    "title": "Selank Nasal Spray 10mg",
-    "pack_qty": 1,
-    "variant_title": "Standard"
-  },
-  "TV-0112-01": {
-    "handle": "semax-nasal-spray-10mg",
-    "title": "Semax Nasal Spray 10mg",
-    "pack_qty": 1,
-    "variant_title": "Standard"
   },
   "TV-0111-05": {
     "handle": "semax-5mg",
@@ -1145,21 +1007,39 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0125-05": {
-    "handle": "thymalin-10mg",
-    "title": "Thymalin 10mg",
+  "TV-0110-05": {
+    "handle": "semax-10mg",
+    "title": "Semax 10mg",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0125-10": {
-    "handle": "thymalin-10mg",
-    "title": "Thymalin 10mg",
+  "TV-0110-10": {
+    "handle": "semax-10mg",
+    "title": "Semax 10mg",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0125-20": {
-    "handle": "thymalin-10mg",
-    "title": "Thymalin 10mg",
+  "TV-0110-20": {
+    "handle": "semax-10mg",
+    "title": "Semax 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0127-05": {
+    "handle": "thymosin-alpha-1-5mg",
+    "title": "Thymosin alpha-1 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0127-10": {
+    "handle": "thymosin-alpha-1-5mg",
+    "title": "Thymosin alpha-1 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0127-20": {
+    "handle": "thymosin-alpha-1-5mg",
+    "title": "Thymosin alpha-1 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -1181,21 +1061,771 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0127-05": {
-    "handle": "thymosin-alpha-1-5mg",
-    "title": "Thymosin alpha-1 5mg",
+  "TV-0013-05": {
+    "handle": "bacteriostatic-water-3ml",
+    "title": "Bacteriostatic Water 3ml",
     "pack_qty": 5,
     "variant_title": "5 vials"
   },
-  "TV-0127-10": {
-    "handle": "thymosin-alpha-1-5mg",
-    "title": "Thymosin alpha-1 5mg",
+  "TV-0013-10": {
+    "handle": "bacteriostatic-water-3ml",
+    "title": "Bacteriostatic Water 3ml",
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
-  "TV-0127-20": {
-    "handle": "thymosin-alpha-1-5mg",
-    "title": "Thymosin alpha-1 5mg",
+  "TV-0013-20": {
+    "handle": "bacteriostatic-water-3ml",
+    "title": "Bacteriostatic Water 3ml",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0012-05": {
+    "handle": "bacteriostatic-water-10ml",
+    "title": "Bacteriostatic Water 10ml",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0012-10": {
+    "handle": "bacteriostatic-water-10ml",
+    "title": "Bacteriostatic Water 10ml",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0012-20": {
+    "handle": "bacteriostatic-water-10ml",
+    "title": "Bacteriostatic Water 10ml",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0015-05": {
+    "handle": "benzyl-alcohol-3ml",
+    "title": "Benzyl Alcohol 3ml",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0015-10": {
+    "handle": "benzyl-alcohol-3ml",
+    "title": "Benzyl Alcohol 3ml",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0015-20": {
+    "handle": "benzyl-alcohol-3ml",
+    "title": "Benzyl Alcohol 3ml",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0014-05": {
+    "handle": "benzyl-alcohol-10ml",
+    "title": "Benzyl Alcohol 10ml",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0014-10": {
+    "handle": "benzyl-alcohol-10ml",
+    "title": "Benzyl Alcohol 10ml",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0014-20": {
+    "handle": "benzyl-alcohol-10ml",
+    "title": "Benzyl Alcohol 10ml",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0054-05": {
+    "handle": "glutathione-600mg",
+    "title": "Glutathione 600mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0054-10": {
+    "handle": "glutathione-600mg",
+    "title": "Glutathione 600mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0054-20": {
+    "handle": "glutathione-600mg",
+    "title": "Glutathione 600mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0053-05": {
+    "handle": "glutathione-1500mg",
+    "title": "Glutathione 1500mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0053-10": {
+    "handle": "glutathione-1500mg",
+    "title": "Glutathione 1500mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0053-20": {
+    "handle": "glutathione-1500mg",
+    "title": "Glutathione 1500mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0017-05": {
+    "handle": "bpc-157-5mg",
+    "title": "BPC-157 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0017-10": {
+    "handle": "bpc-157-5mg",
+    "title": "BPC-157 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0017-20": {
+    "handle": "bpc-157-5mg",
+    "title": "BPC-157 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0016-05": {
+    "handle": "bpc-157-10mg",
+    "title": "BPC-157 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0016-10": {
+    "handle": "bpc-157-10mg",
+    "title": "BPC-157 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0016-20": {
+    "handle": "bpc-157-10mg",
+    "title": "BPC-157 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0121-05": {
+    "handle": "tb500-5mg",
+    "title": "TB500 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0121-10": {
+    "handle": "tb500-5mg",
+    "title": "TB500 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0121-20": {
+    "handle": "tb500-5mg",
+    "title": "TB500 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0120-05": {
+    "handle": "tb500-10mg",
+    "title": "TB500 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0120-10": {
+    "handle": "tb500-10mg",
+    "title": "TB500 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0120-20": {
+    "handle": "tb500-10mg",
+    "title": "TB500 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0050-05": {
+    "handle": "glow-bpc-157-tb500-ghk-cu-30mg",
+    "title": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0050-10": {
+    "handle": "glow-bpc-157-tb500-ghk-cu-30mg",
+    "title": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0050-20": {
+    "handle": "glow-bpc-157-tb500-ghk-cu-30mg",
+    "title": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0051-05": {
+    "handle": "glow-bpc-157-tb500-ghk-cu-85mg",
+    "title": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0051-10": {
+    "handle": "glow-bpc-157-tb500-ghk-cu-85mg",
+    "title": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0051-20": {
+    "handle": "glow-bpc-157-tb500-ghk-cu-85mg",
+    "title": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0029-05": {
+    "handle": "cjc-1295-with-dac-5mg",
+    "title": "CJC-1295 with DAC 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0029-10": {
+    "handle": "cjc-1295-with-dac-5mg",
+    "title": "CJC-1295 with DAC 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0029-20": {
+    "handle": "cjc-1295-with-dac-5mg",
+    "title": "CJC-1295 with DAC 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0028-05": {
+    "handle": "cjc-1295-with-dac-10mg",
+    "title": "CJC-1295 with DAC 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0028-10": {
+    "handle": "cjc-1295-with-dac-10mg",
+    "title": "CJC-1295 with DAC 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0028-20": {
+    "handle": "cjc-1295-with-dac-10mg",
+    "title": "CJC-1295 with DAC 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0031-05": {
+    "handle": "cjc-1295-without-dac-5mg",
+    "title": "CJC-1295 without DAC 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0031-10": {
+    "handle": "cjc-1295-without-dac-5mg",
+    "title": "CJC-1295 without DAC 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0031-20": {
+    "handle": "cjc-1295-without-dac-5mg",
+    "title": "CJC-1295 without DAC 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0030-05": {
+    "handle": "cjc-1295-without-dac-10mg",
+    "title": "CJC-1295 without DAC 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0030-10": {
+    "handle": "cjc-1295-without-dac-10mg",
+    "title": "CJC-1295 without DAC 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0030-20": {
+    "handle": "cjc-1295-without-dac-10mg",
+    "title": "CJC-1295 without DAC 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0047-05": {
+    "handle": "ghrp-2-acetate-5mg",
+    "title": "GHRP-2 Acetate 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0047-10": {
+    "handle": "ghrp-2-acetate-5mg",
+    "title": "GHRP-2 Acetate 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0047-20": {
+    "handle": "ghrp-2-acetate-5mg",
+    "title": "GHRP-2 Acetate 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0046-05": {
+    "handle": "ghrp-2-acetate-10mg",
+    "title": "GHRP-2 Acetate 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0046-10": {
+    "handle": "ghrp-2-acetate-10mg",
+    "title": "GHRP-2 Acetate 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0046-20": {
+    "handle": "ghrp-2-acetate-10mg",
+    "title": "GHRP-2 Acetate 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0049-05": {
+    "handle": "ghrp-6-acetate-5mg",
+    "title": "GHRP-6 Acetate 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0049-10": {
+    "handle": "ghrp-6-acetate-5mg",
+    "title": "GHRP-6 Acetate 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0049-20": {
+    "handle": "ghrp-6-acetate-5mg",
+    "title": "GHRP-6 Acetate 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0048-05": {
+    "handle": "ghrp-6-acetate-10mg",
+    "title": "GHRP-6 Acetate 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0048-10": {
+    "handle": "ghrp-6-acetate-10mg",
+    "title": "GHRP-6 Acetate 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0048-20": {
+    "handle": "ghrp-6-acetate-10mg",
+    "title": "GHRP-6 Acetate 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0059-05": {
+    "handle": "hexarelin-acetate-2mg",
+    "title": "Hexarelin Acetate 2mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0059-10": {
+    "handle": "hexarelin-acetate-2mg",
+    "title": "Hexarelin Acetate 2mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0059-20": {
+    "handle": "hexarelin-acetate-2mg",
+    "title": "Hexarelin Acetate 2mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0060-05": {
+    "handle": "hexarelin-acetate-5mg",
+    "title": "Hexarelin Acetate 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0060-10": {
+    "handle": "hexarelin-acetate-5mg",
+    "title": "Hexarelin Acetate 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0060-20": {
+    "handle": "hexarelin-acetate-5mg",
+    "title": "Hexarelin Acetate 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0071-05": {
+    "handle": "ipamorelin-5mg",
+    "title": "Ipamorelin 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0071-10": {
+    "handle": "ipamorelin-5mg",
+    "title": "Ipamorelin 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0071-20": {
+    "handle": "ipamorelin-5mg",
+    "title": "Ipamorelin 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0070-05": {
+    "handle": "ipamorelin-10mg",
+    "title": "Ipamorelin 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0070-10": {
+    "handle": "ipamorelin-10mg",
+    "title": "Ipamorelin 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0070-20": {
+    "handle": "ipamorelin-10mg",
+    "title": "Ipamorelin 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0045-05": {
+    "handle": "ghk-cu-50mg",
+    "title": "GHK-Cu 50mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0045-10": {
+    "handle": "ghk-cu-50mg",
+    "title": "GHK-Cu 50mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0045-20": {
+    "handle": "ghk-cu-50mg",
+    "title": "GHK-Cu 50mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0044-05": {
+    "handle": "ghk-cu-100mg",
+    "title": "GHK-Cu 100mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0044-10": {
+    "handle": "ghk-cu-100mg",
+    "title": "GHK-Cu 100mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0044-20": {
+    "handle": "ghk-cu-100mg",
+    "title": "GHK-Cu 100mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0056-05": {
+    "handle": "gonadorelin-2mg",
+    "title": "Gonadorelin 2mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0056-10": {
+    "handle": "gonadorelin-2mg",
+    "title": "Gonadorelin 2mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0056-20": {
+    "handle": "gonadorelin-2mg",
+    "title": "Gonadorelin 2mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0055-05": {
+    "handle": "gonadorelin-10mg",
+    "title": "Gonadorelin 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0055-10": {
+    "handle": "gonadorelin-10mg",
+    "title": "Gonadorelin 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0055-20": {
+    "handle": "gonadorelin-10mg",
+    "title": "Gonadorelin 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0058-05": {
+    "handle": "hcg-5000-iu",
+    "title": "HCG 5000 IU",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0058-10": {
+    "handle": "hcg-5000-iu",
+    "title": "HCG 5000 IU",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0058-20": {
+    "handle": "hcg-5000-iu",
+    "title": "HCG 5000 IU",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0057-05": {
+    "handle": "hcg-10000-iu",
+    "title": "HCG 10000 IU",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0057-10": {
+    "handle": "hcg-10000-iu",
+    "title": "HCG 10000 IU",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0057-20": {
+    "handle": "hcg-10000-iu",
+    "title": "HCG 10000 IU",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0061-05": {
+    "handle": "hgh-191aa-10-iu",
+    "title": "HGH 191aa 10 IU",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0061-10": {
+    "handle": "hgh-191aa-10-iu",
+    "title": "HGH 191aa 10 IU",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0061-20": {
+    "handle": "hgh-191aa-10-iu",
+    "title": "HGH 191aa 10 IU",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0062-05": {
+    "handle": "hgh-191aa-12-iu",
+    "title": "HGH 191aa 12 IU",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0062-10": {
+    "handle": "hgh-191aa-12-iu",
+    "title": "HGH 191aa 12 IU",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0062-20": {
+    "handle": "hgh-191aa-12-iu",
+    "title": "HGH 191aa 12 IU",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0063-05": {
+    "handle": "hgh-191aa-15-iu",
+    "title": "HGH 191aa 15 IU",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0063-10": {
+    "handle": "hgh-191aa-15-iu",
+    "title": "HGH 191aa 15 IU",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0063-20": {
+    "handle": "hgh-191aa-15-iu",
+    "title": "HGH 191aa 15 IU",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0064-05": {
+    "handle": "hgh-191aa-24-iu",
+    "title": "HGH 191aa 24 IU",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0064-10": {
+    "handle": "hgh-191aa-24-iu",
+    "title": "HGH 191aa 24 IU",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0064-20": {
+    "handle": "hgh-191aa-24-iu",
+    "title": "HGH 191aa 24 IU",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0065-05": {
+    "handle": "hgh-191aa-36-iu",
+    "title": "HGH 191aa 36 IU",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0065-10": {
+    "handle": "hgh-191aa-36-iu",
+    "title": "HGH 191aa 36 IU",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0065-20": {
+    "handle": "hgh-191aa-36-iu",
+    "title": "HGH 191aa 36 IU",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0119-05": {
+    "handle": "survodutide-10mg",
+    "title": "Survodutide 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0119-10": {
+    "handle": "survodutide-10mg",
+    "title": "Survodutide 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0119-20": {
+    "handle": "survodutide-10mg",
+    "title": "Survodutide 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0007-05": {
+    "handle": "aicar-50mg",
+    "title": "AICAR 50mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0007-10": {
+    "handle": "aicar-50mg",
+    "title": "AICAR 50mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0007-20": {
+    "handle": "aicar-50mg",
+    "title": "AICAR 50mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0010-05": {
+    "handle": "ara-290-10mg",
+    "title": "ARA-290 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0010-10": {
+    "handle": "ara-290-10mg",
+    "title": "ARA-290 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0010-20": {
+    "handle": "ara-290-10mg",
+    "title": "ARA-290 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0035-05": {
+    "handle": "dermorphin-5mg",
+    "title": "Dermorphin 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0035-10": {
+    "handle": "dermorphin-5mg",
+    "title": "Dermorphin 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0035-20": {
+    "handle": "dermorphin-5mg",
+    "title": "Dermorphin 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0043-05": {
+    "handle": "foxo4-dri-10mg",
+    "title": "FOXO4-DRI 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0043-10": {
+    "handle": "foxo4-dri-10mg",
+    "title": "FOXO4-DRI 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0043-20": {
+    "handle": "foxo4-dri-10mg",
+    "title": "FOXO4-DRI 10mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0080-05": {
+    "handle": "ll-37-5mg",
+    "title": "LL-37 5mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0080-10": {
+    "handle": "ll-37-5mg",
+    "title": "LL-37 5mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0080-20": {
+    "handle": "ll-37-5mg",
+    "title": "LL-37 5mg",
+    "pack_qty": 20,
+    "variant_title": "20 vials"
+  },
+  "TV-0107-01": {
+    "handle": "selank-nasal-spray-10mg",
+    "title": "Selank Nasal Spray 10mg",
+    "pack_qty": 1,
+    "variant_title": "Standard"
+  },
+  "TV-0112-01": {
+    "handle": "semax-nasal-spray-10mg",
+    "title": "Semax Nasal Spray 10mg",
+    "pack_qty": 1,
+    "variant_title": "Standard"
+  },
+  "TV-0125-05": {
+    "handle": "thymalin-10mg",
+    "title": "Thymalin 10mg",
+    "pack_qty": 5,
+    "variant_title": "5 vials"
+  },
+  "TV-0125-10": {
+    "handle": "thymalin-10mg",
+    "title": "Thymalin 10mg",
+    "pack_qty": 10,
+    "variant_title": "10 vials"
+  },
+  "TV-0125-20": {
+    "handle": "thymalin-10mg",
+    "title": "Thymalin 10mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -1325,78 +1955,6 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0012-05": {
-    "handle": "bacteriostatic-water-10ml",
-    "title": "Bacteriostatic Water 10ml",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0012-10": {
-    "handle": "bacteriostatic-water-10ml",
-    "title": "Bacteriostatic Water 10ml",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0012-20": {
-    "handle": "bacteriostatic-water-10ml",
-    "title": "Bacteriostatic Water 10ml",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0013-05": {
-    "handle": "bacteriostatic-water-3ml",
-    "title": "Bacteriostatic Water 3ml",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0013-10": {
-    "handle": "bacteriostatic-water-3ml",
-    "title": "Bacteriostatic Water 3ml",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0013-20": {
-    "handle": "bacteriostatic-water-3ml",
-    "title": "Bacteriostatic Water 3ml",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0014-05": {
-    "handle": "benzyl-alcohol-10ml",
-    "title": "Benzyl Alcohol 10ml",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0014-10": {
-    "handle": "benzyl-alcohol-10ml",
-    "title": "Benzyl Alcohol 10ml",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0014-20": {
-    "handle": "benzyl-alcohol-10ml",
-    "title": "Benzyl Alcohol 10ml",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0015-05": {
-    "handle": "benzyl-alcohol-3ml",
-    "title": "Benzyl Alcohol 3ml",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0015-10": {
-    "handle": "benzyl-alcohol-3ml",
-    "title": "Benzyl Alcohol 3ml",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0015-20": {
-    "handle": "benzyl-alcohol-3ml",
-    "title": "Benzyl Alcohol 3ml",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
   "TV-0011-05": {
     "handle": "b-12-10mg",
     "title": "B-12 10mg",
@@ -1412,42 +1970,6 @@
   "TV-0011-20": {
     "handle": "b-12-10mg",
     "title": "B-12 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0053-05": {
-    "handle": "glutathione-1500mg",
-    "title": "Glutathione 1500mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0053-10": {
-    "handle": "glutathione-1500mg",
-    "title": "Glutathione 1500mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0053-20": {
-    "handle": "glutathione-1500mg",
-    "title": "Glutathione 1500mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0054-05": {
-    "handle": "glutathione-600mg",
-    "title": "Glutathione 600mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0054-10": {
-    "handle": "glutathione-600mg",
-    "title": "Glutathione 600mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0054-20": {
-    "handle": "glutathione-600mg",
-    "title": "Glutathione 600mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -1541,78 +2063,6 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0016-05": {
-    "handle": "bpc-157-10mg",
-    "title": "BPC-157 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0016-10": {
-    "handle": "bpc-157-10mg",
-    "title": "BPC-157 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0016-20": {
-    "handle": "bpc-157-10mg",
-    "title": "BPC-157 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0017-05": {
-    "handle": "bpc-157-5mg",
-    "title": "BPC-157 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0017-10": {
-    "handle": "bpc-157-5mg",
-    "title": "BPC-157 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0017-20": {
-    "handle": "bpc-157-5mg",
-    "title": "BPC-157 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0120-05": {
-    "handle": "tb500-10mg",
-    "title": "TB500 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0120-10": {
-    "handle": "tb500-10mg",
-    "title": "TB500 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0120-20": {
-    "handle": "tb500-10mg",
-    "title": "TB500 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0121-05": {
-    "handle": "tb500-5mg",
-    "title": "TB500 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0121-10": {
-    "handle": "tb500-5mg",
-    "title": "TB500 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0121-20": {
-    "handle": "tb500-5mg",
-    "title": "TB500 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
   "TV-0018-05": {
     "handle": "bpc-157-5mg-tb500-5mg-10mg",
     "title": "BPC-157 + TB-500 Blend (10mg)",
@@ -1667,42 +2117,6 @@
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
-  "TV-0050-05": {
-    "handle": "glow-bpc-157-tb500-ghk-cu-30mg",
-    "title": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0050-10": {
-    "handle": "glow-bpc-157-tb500-ghk-cu-30mg",
-    "title": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0050-20": {
-    "handle": "glow-bpc-157-tb500-ghk-cu-30mg",
-    "title": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0051-05": {
-    "handle": "glow-bpc-157-tb500-ghk-cu-85mg",
-    "title": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0051-10": {
-    "handle": "glow-bpc-157-tb500-ghk-cu-85mg",
-    "title": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0051-20": {
-    "handle": "glow-bpc-157-tb500-ghk-cu-85mg",
-    "title": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
   "TV-0052-05": {
     "handle": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
     "title": "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg (70mg) 10mg",
@@ -1718,42 +2132,6 @@
   "TV-0052-20": {
     "handle": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
     "title": "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg (70mg) 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0028-05": {
-    "handle": "cjc-1295-with-dac-10mg",
-    "title": "CJC-1295 with DAC 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0028-10": {
-    "handle": "cjc-1295-with-dac-10mg",
-    "title": "CJC-1295 with DAC 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0028-20": {
-    "handle": "cjc-1295-with-dac-10mg",
-    "title": "CJC-1295 with DAC 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0029-05": {
-    "handle": "cjc-1295-with-dac-5mg",
-    "title": "CJC-1295 with DAC 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0029-10": {
-    "handle": "cjc-1295-with-dac-5mg",
-    "title": "CJC-1295 with DAC 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0029-20": {
-    "handle": "cjc-1295-with-dac-5mg",
-    "title": "CJC-1295 with DAC 5mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -1790,222 +2168,6 @@
   "TV-0033-20": {
     "handle": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
     "title": "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0030-05": {
-    "handle": "cjc-1295-without-dac-10mg",
-    "title": "CJC-1295 without DAC 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0030-10": {
-    "handle": "cjc-1295-without-dac-10mg",
-    "title": "CJC-1295 without DAC 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0030-20": {
-    "handle": "cjc-1295-without-dac-10mg",
-    "title": "CJC-1295 without DAC 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0031-05": {
-    "handle": "cjc-1295-without-dac-5mg",
-    "title": "CJC-1295 without DAC 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0031-10": {
-    "handle": "cjc-1295-without-dac-5mg",
-    "title": "CJC-1295 without DAC 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0031-20": {
-    "handle": "cjc-1295-without-dac-5mg",
-    "title": "CJC-1295 without DAC 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0046-05": {
-    "handle": "ghrp-2-acetate-10mg",
-    "title": "GHRP-2 Acetate 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0046-10": {
-    "handle": "ghrp-2-acetate-10mg",
-    "title": "GHRP-2 Acetate 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0046-20": {
-    "handle": "ghrp-2-acetate-10mg",
-    "title": "GHRP-2 Acetate 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0047-05": {
-    "handle": "ghrp-2-acetate-5mg",
-    "title": "GHRP-2 Acetate 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0047-10": {
-    "handle": "ghrp-2-acetate-5mg",
-    "title": "GHRP-2 Acetate 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0047-20": {
-    "handle": "ghrp-2-acetate-5mg",
-    "title": "GHRP-2 Acetate 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0048-05": {
-    "handle": "ghrp-6-acetate-10mg",
-    "title": "GHRP-6 Acetate 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0048-10": {
-    "handle": "ghrp-6-acetate-10mg",
-    "title": "GHRP-6 Acetate 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0048-20": {
-    "handle": "ghrp-6-acetate-10mg",
-    "title": "GHRP-6 Acetate 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0049-05": {
-    "handle": "ghrp-6-acetate-5mg",
-    "title": "GHRP-6 Acetate 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0049-10": {
-    "handle": "ghrp-6-acetate-5mg",
-    "title": "GHRP-6 Acetate 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0049-20": {
-    "handle": "ghrp-6-acetate-5mg",
-    "title": "GHRP-6 Acetate 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0059-05": {
-    "handle": "hexarelin-acetate-2mg",
-    "title": "Hexarelin Acetate 2mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0059-10": {
-    "handle": "hexarelin-acetate-2mg",
-    "title": "Hexarelin Acetate 2mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0059-20": {
-    "handle": "hexarelin-acetate-2mg",
-    "title": "Hexarelin Acetate 2mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0060-05": {
-    "handle": "hexarelin-acetate-5mg",
-    "title": "Hexarelin Acetate 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0060-10": {
-    "handle": "hexarelin-acetate-5mg",
-    "title": "Hexarelin Acetate 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0060-20": {
-    "handle": "hexarelin-acetate-5mg",
-    "title": "Hexarelin Acetate 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0070-05": {
-    "handle": "ipamorelin-10mg",
-    "title": "Ipamorelin 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0070-10": {
-    "handle": "ipamorelin-10mg",
-    "title": "Ipamorelin 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0070-20": {
-    "handle": "ipamorelin-10mg",
-    "title": "Ipamorelin 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0071-05": {
-    "handle": "ipamorelin-5mg",
-    "title": "Ipamorelin 5mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0071-10": {
-    "handle": "ipamorelin-5mg",
-    "title": "Ipamorelin 5mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0071-20": {
-    "handle": "ipamorelin-5mg",
-    "title": "Ipamorelin 5mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0044-05": {
-    "handle": "ghk-cu-100mg",
-    "title": "GHK-Cu 100mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0044-10": {
-    "handle": "ghk-cu-100mg",
-    "title": "GHK-Cu 100mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0044-20": {
-    "handle": "ghk-cu-100mg",
-    "title": "GHK-Cu 100mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0045-05": {
-    "handle": "ghk-cu-50mg",
-    "title": "GHK-Cu 50mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0045-10": {
-    "handle": "ghk-cu-50mg",
-    "title": "GHK-Cu 50mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0045-20": {
-    "handle": "ghk-cu-50mg",
-    "title": "GHK-Cu 50mg",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },
@@ -2060,168 +2222,6 @@
   "TV-0115-20": {
     "handle": "snap-8-10mg",
     "title": "Snap-8 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0055-05": {
-    "handle": "gonadorelin-10mg",
-    "title": "Gonadorelin 10mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0055-10": {
-    "handle": "gonadorelin-10mg",
-    "title": "Gonadorelin 10mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0055-20": {
-    "handle": "gonadorelin-10mg",
-    "title": "Gonadorelin 10mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0056-05": {
-    "handle": "gonadorelin-2mg",
-    "title": "Gonadorelin 2mg",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0056-10": {
-    "handle": "gonadorelin-2mg",
-    "title": "Gonadorelin 2mg",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0056-20": {
-    "handle": "gonadorelin-2mg",
-    "title": "Gonadorelin 2mg",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0057-05": {
-    "handle": "hcg-10000-iu",
-    "title": "HCG 10000 IU",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0057-10": {
-    "handle": "hcg-10000-iu",
-    "title": "HCG 10000 IU",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0057-20": {
-    "handle": "hcg-10000-iu",
-    "title": "HCG 10000 IU",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0058-05": {
-    "handle": "hcg-5000-iu",
-    "title": "HCG 5000 IU",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0058-10": {
-    "handle": "hcg-5000-iu",
-    "title": "HCG 5000 IU",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0058-20": {
-    "handle": "hcg-5000-iu",
-    "title": "HCG 5000 IU",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0061-05": {
-    "handle": "hgh-191aa-10-iu",
-    "title": "HGH 191aa 10 IU",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0061-10": {
-    "handle": "hgh-191aa-10-iu",
-    "title": "HGH 191aa 10 IU",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0061-20": {
-    "handle": "hgh-191aa-10-iu",
-    "title": "HGH 191aa 10 IU",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0062-05": {
-    "handle": "hgh-191aa-12-iu",
-    "title": "HGH 191aa 12 IU",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0062-10": {
-    "handle": "hgh-191aa-12-iu",
-    "title": "HGH 191aa 12 IU",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0062-20": {
-    "handle": "hgh-191aa-12-iu",
-    "title": "HGH 191aa 12 IU",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0063-05": {
-    "handle": "hgh-191aa-15-iu",
-    "title": "HGH 191aa 15 IU",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0063-10": {
-    "handle": "hgh-191aa-15-iu",
-    "title": "HGH 191aa 15 IU",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0063-20": {
-    "handle": "hgh-191aa-15-iu",
-    "title": "HGH 191aa 15 IU",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0064-05": {
-    "handle": "hgh-191aa-24-iu",
-    "title": "HGH 191aa 24 IU",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0064-10": {
-    "handle": "hgh-191aa-24-iu",
-    "title": "HGH 191aa 24 IU",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0064-20": {
-    "handle": "hgh-191aa-24-iu",
-    "title": "HGH 191aa 24 IU",
-    "pack_qty": 20,
-    "variant_title": "20 vials"
-  },
-  "TV-0065-05": {
-    "handle": "hgh-191aa-36-iu",
-    "title": "HGH 191aa 36 IU",
-    "pack_qty": 5,
-    "variant_title": "5 vials"
-  },
-  "TV-0065-10": {
-    "handle": "hgh-191aa-36-iu",
-    "title": "HGH 191aa 36 IU",
-    "pack_qty": 10,
-    "variant_title": "10 vials"
-  },
-  "TV-0065-20": {
-    "handle": "hgh-191aa-36-iu",
-    "title": "HGH 191aa 36 IU",
     "pack_qty": 20,
     "variant_title": "20 vials"
   },

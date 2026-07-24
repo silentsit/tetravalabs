@@ -122,7 +122,7 @@ export function ProductCompoundView({
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
         <div className="card overflow-hidden p-4 lg:max-w-md">
           <ProductImageGallery
-            key={selectedStrength.handle}
+            key={selectedStrength.imageHandle}
             productImages={galleryImages}
             productName={view.displayName}
             coas={coas}

@@ -8,6 +8,7 @@ import { getVariantPriceCents } from "@/lib/product-price"
 import {
   getVariantStrengthKey,
   resolveProductPurchaseLayout,
+  showCompareAtPricingForHandle,
   type PackTier
 } from "@/lib/pack-pricing"
 
@@ -151,6 +152,7 @@ export function ProductPurchaseBox({ productId, handle, title, variants }: Props
           key={layout.mode === "strength-and-pack" ? strengthKey : "pack"}
           tiers={activePackTiers}
           onChange={setSelectedPackTier}
+          showCompareAtPricing={showCompareAtPricingForHandle(handle)}
         />
       ) : layout.mode === "simple" ? (
         <>

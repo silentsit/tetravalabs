@@ -12,14 +12,14 @@ const V2_BASE = "/products/v2"
 const GENERIC_FALLBACK = "/v2/vial-single.jpg"
 
 export const FEATURED_PRODUCT_HANDLES = [
-  "bpc-157-5mg",
-  "semaglutide-5mg",
-  "tirzepatide-10mg",
-  "retatrutide-5mg",
-  "ghk-cu-50mg",
-  "ipamorelin-5mg",
-  "tb500-10mg",
-  "hgh-191aa-10-iu"
+  "bpc-157",
+  "semaglutide",
+  "tirzepatide",
+  "retatrutide",
+  "ghk-cu",
+  "ipamorelin",
+  "tb500",
+  "hgh-191aa"
 ]
 
 const productImageMap = generatedMap as Record<string, string>

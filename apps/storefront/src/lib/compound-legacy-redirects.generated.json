@@ -1,0 +1,378 @@
+{
+  "5-amino-1mq-5mg": {
+    "parent": "5-amino-1mq",
+    "strength": "5mg"
+  },
+  "5-amino-1mq-10mg": {
+    "parent": "5-amino-1mq",
+    "strength": "10mg"
+  },
+  "aod-9604-5mg": {
+    "parent": "aod-9604",
+    "strength": "5mg"
+  },
+  "aod-9604-10mg": {
+    "parent": "aod-9604",
+    "strength": "10mg"
+  },
+  "cagrilintide-semaglutide-5mg": {
+    "parent": "cagrilintide-semaglutide",
+    "strength": "5mg"
+  },
+  "cagrilintide-semaglutide-10mg": {
+    "parent": "cagrilintide-semaglutide",
+    "strength": "10mg"
+  },
+  "cagrilintide-5mg": {
+    "parent": "cagrilintide",
+    "strength": "5mg"
+  },
+  "cagrilintide-10mg": {
+    "parent": "cagrilintide",
+    "strength": "10mg"
+  },
+  "mazdutide-5mg": {
+    "parent": "mazdutide",
+    "strength": "5mg"
+  },
+  "mazdutide-10mg": {
+    "parent": "mazdutide",
+    "strength": "10mg"
+  },
+  "retatrutide-5mg": {
+    "parent": "retatrutide",
+    "strength": "5mg"
+  },
+  "retatrutide-10mg": {
+    "parent": "retatrutide",
+    "strength": "10mg"
+  },
+  "retatrutide-20mg": {
+    "parent": "retatrutide",
+    "strength": "20mg"
+  },
+  "retatrutide-50mg": {
+    "parent": "retatrutide",
+    "strength": "50mg"
+  },
+  "retatrutide-100mg": {
+    "parent": "retatrutide",
+    "strength": "100mg"
+  },
+  "semaglutide-5mg": {
+    "parent": "semaglutide",
+    "strength": "5mg"
+  },
+  "semaglutide-10mg": {
+    "parent": "semaglutide",
+    "strength": "10mg"
+  },
+  "sermorelin-5mg": {
+    "parent": "sermorelin",
+    "strength": "5mg"
+  },
+  "sermorelin-10mg": {
+    "parent": "sermorelin",
+    "strength": "10mg"
+  },
+  "tesamorelin-5mg": {
+    "parent": "tesamorelin",
+    "strength": "5mg"
+  },
+  "tesamorelin-10mg": {
+    "parent": "tesamorelin",
+    "strength": "10mg"
+  },
+  "tesamorelin-20mg": {
+    "parent": "tesamorelin",
+    "strength": "20mg"
+  },
+  "tirzepatide-5mg": {
+    "parent": "tirzepatide",
+    "strength": "5mg"
+  },
+  "tirzepatide-10mg": {
+    "parent": "tirzepatide",
+    "strength": "10mg"
+  },
+  "tirzepatide-20mg": {
+    "parent": "tirzepatide",
+    "strength": "20mg"
+  },
+  "tirzepatide-50mg": {
+    "parent": "tirzepatide",
+    "strength": "50mg"
+  },
+  "adipotide-2mg": {
+    "parent": "adipotide",
+    "strength": "2mg"
+  },
+  "adipotide-5mg": {
+    "parent": "adipotide",
+    "strength": "5mg"
+  },
+  "mots-c-5mg": {
+    "parent": "mots-c",
+    "strength": "5mg"
+  },
+  "mots-c-10mg": {
+    "parent": "mots-c",
+    "strength": "10mg"
+  },
+  "mots-c-20mg": {
+    "parent": "mots-c",
+    "strength": "20mg"
+  },
+  "mots-c-40mg": {
+    "parent": "mots-c",
+    "strength": "40mg"
+  },
+  "ss-31-10mg": {
+    "parent": "ss-31",
+    "strength": "10mg"
+  },
+  "ss-31-25mg": {
+    "parent": "ss-31",
+    "strength": "25mg"
+  },
+  "ss-31-50mg": {
+    "parent": "ss-31",
+    "strength": "50mg"
+  },
+  "bremelanotide-5mg": {
+    "parent": "bremelanotide",
+    "strength": "5mg"
+  },
+  "bremelanotide-10mg": {
+    "parent": "bremelanotide",
+    "strength": "10mg"
+  },
+  "dsip-5mg": {
+    "parent": "dsip",
+    "strength": "5mg"
+  },
+  "dsip-10mg": {
+    "parent": "dsip",
+    "strength": "10mg"
+  },
+  "dsip-15mg": {
+    "parent": "dsip",
+    "strength": "15mg"
+  },
+  "epithalon-10mg": {
+    "parent": "epithalon",
+    "strength": "10mg"
+  },
+  "epithalon-20mg": {
+    "parent": "epithalon",
+    "strength": "20mg"
+  },
+  "epithalon-50mg": {
+    "parent": "epithalon",
+    "strength": "50mg"
+  },
+  "kpv-5mg": {
+    "parent": "kpv",
+    "strength": "5mg"
+  },
+  "kpv-10mg": {
+    "parent": "kpv",
+    "strength": "10mg"
+  },
+  "kisspeptin-10-5mg": {
+    "parent": "kisspeptin-10",
+    "strength": "5mg"
+  },
+  "kisspeptin-10-10mg": {
+    "parent": "kisspeptin-10",
+    "strength": "10mg"
+  },
+  "nad-100mg": {
+    "parent": "nad",
+    "strength": "100mg"
+  },
+  "nad-500mg": {
+    "parent": "nad",
+    "strength": "500mg"
+  },
+  "nad-1000mg": {
+    "parent": "nad",
+    "strength": "1000mg"
+  },
+  "oxytocin-acetate-2mg": {
+    "parent": "oxytocin-acetate",
+    "strength": "2mg"
+  },
+  "oxytocin-acetate-5mg": {
+    "parent": "oxytocin-acetate",
+    "strength": "5mg"
+  },
+  "oxytocin-acetate-10mg": {
+    "parent": "oxytocin-acetate",
+    "strength": "10mg"
+  },
+  "selank-5mg": {
+    "parent": "selank",
+    "strength": "5mg"
+  },
+  "selank-10mg": {
+    "parent": "selank",
+    "strength": "10mg"
+  },
+  "semax-5mg": {
+    "parent": "semax",
+    "strength": "5mg"
+  },
+  "semax-10mg": {
+    "parent": "semax",
+    "strength": "10mg"
+  },
+  "thymosin-alpha-1-5mg": {
+    "parent": "thymosin-alpha-1",
+    "strength": "5mg"
+  },
+  "thymosin-alpha-1-10mg": {
+    "parent": "thymosin-alpha-1",
+    "strength": "10mg"
+  },
+  "bacteriostatic-water-3ml": {
+    "parent": "bacteriostatic-water",
+    "strength": "3ml"
+  },
+  "bacteriostatic-water-10ml": {
+    "parent": "bacteriostatic-water",
+    "strength": "10ml"
+  },
+  "benzyl-alcohol-3ml": {
+    "parent": "benzyl-alcohol",
+    "strength": "3ml"
+  },
+  "benzyl-alcohol-10ml": {
+    "parent": "benzyl-alcohol",
+    "strength": "10ml"
+  },
+  "glutathione-600mg": {
+    "parent": "glutathione",
+    "strength": "600mg"
+  },
+  "glutathione-1500mg": {
+    "parent": "glutathione",
+    "strength": "1500mg"
+  },
+  "bpc-157-5mg": {
+    "parent": "bpc-157",
+    "strength": "5mg"
+  },
+  "bpc-157-10mg": {
+    "parent": "bpc-157",
+    "strength": "10mg"
+  },
+  "tb500-5mg": {
+    "parent": "tb500",
+    "strength": "5mg"
+  },
+  "tb500-10mg": {
+    "parent": "tb500",
+    "strength": "10mg"
+  },
+  "glow-bpc-157-tb500-ghk-cu-30mg": {
+    "parent": "glow-bpc-157-tb500-ghk-cu",
+    "strength": "30mg"
+  },
+  "glow-bpc-157-tb500-ghk-cu-85mg": {
+    "parent": "glow-bpc-157-tb500-ghk-cu",
+    "strength": "85mg"
+  },
+  "cjc-1295-with-dac-5mg": {
+    "parent": "cjc-1295-with-dac",
+    "strength": "5mg"
+  },
+  "cjc-1295-with-dac-10mg": {
+    "parent": "cjc-1295-with-dac",
+    "strength": "10mg"
+  },
+  "cjc-1295-without-dac-5mg": {
+    "parent": "cjc-1295-without-dac",
+    "strength": "5mg"
+  },
+  "cjc-1295-without-dac-10mg": {
+    "parent": "cjc-1295-without-dac",
+    "strength": "10mg"
+  },
+  "ghrp-2-acetate-5mg": {
+    "parent": "ghrp-2-acetate",
+    "strength": "5mg"
+  },
+  "ghrp-2-acetate-10mg": {
+    "parent": "ghrp-2-acetate",
+    "strength": "10mg"
+  },
+  "ghrp-6-acetate-5mg": {
+    "parent": "ghrp-6-acetate",
+    "strength": "5mg"
+  },
+  "ghrp-6-acetate-10mg": {
+    "parent": "ghrp-6-acetate",
+    "strength": "10mg"
+  },
+  "hexarelin-acetate-2mg": {
+    "parent": "hexarelin-acetate",
+    "strength": "2mg"
+  },
+  "hexarelin-acetate-5mg": {
+    "parent": "hexarelin-acetate",
+    "strength": "5mg"
+  },
+  "ipamorelin-5mg": {
+    "parent": "ipamorelin",
+    "strength": "5mg"
+  },
+  "ipamorelin-10mg": {
+    "parent": "ipamorelin",
+    "strength": "10mg"
+  },
+  "ghk-cu-50mg": {
+    "parent": "ghk-cu",
+    "strength": "50mg"
+  },
+  "ghk-cu-100mg": {
+    "parent": "ghk-cu",
+    "strength": "100mg"
+  },
+  "gonadorelin-2mg": {
+    "parent": "gonadorelin",
+    "strength": "2mg"
+  },
+  "gonadorelin-10mg": {
+    "parent": "gonadorelin",
+    "strength": "10mg"
+  },
+  "hcg-5000-iu": {
+    "parent": "hcg",
+    "strength": "5000-iu"
+  },
+  "hcg-10000-iu": {
+    "parent": "hcg",
+    "strength": "10000-iu"
+  },
+  "hgh-191aa-10-iu": {
+    "parent": "hgh-191aa",
+    "strength": "10-iu"
+  },
+  "hgh-191aa-12-iu": {
+    "parent": "hgh-191aa",
+    "strength": "12-iu"
+  },
+  "hgh-191aa-15-iu": {
+    "parent": "hgh-191aa",
+    "strength": "15-iu"
+  },
+  "hgh-191aa-24-iu": {
+    "parent": "hgh-191aa",
+    "strength": "24-iu"
+  },
+  "hgh-191aa-36-iu": {
+    "parent": "hgh-191aa",
+    "strength": "36-iu"
+  }
+}

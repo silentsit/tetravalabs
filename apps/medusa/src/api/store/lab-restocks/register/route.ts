@@ -1,6 +1,6 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
-import { isValidRestockCadence, type RestockCheckoutItem } from "../../../../lib/lab-restock"
+import { isValidRestockCadence, applyLabRestockPrice, type RestockCheckoutItem } from "../../../../lib/lab-restock"
 import { insertPendingRestocks } from "../../../../lib/lab-restock-db"
 
 type Body = {
@@ -41,15 +41,18 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     ) {
       continue
     }
+
+    const oneTimeUnitPrice =
+      raw.oneTimeUnitPrice != null ? Number(raw.oneTimeUnitPrice) : Number(raw.unitPrice)
+
     items.push({
       variantId: raw.variantId,
       quantity: Number(raw.quantity),
       handle: raw.handle,
       title: raw.title,
       variantTitle: raw.variantTitle,
-      unitPrice: Number(raw.unitPrice),
-      oneTimeUnitPrice:
-        raw.oneTimeUnitPrice != null ? Number(raw.oneTimeUnitPrice) : Number(raw.unitPrice),
+      unitPrice: applyLabRestockPrice(oneTimeUnitPrice),
+      oneTimeUnitPrice,
       cadenceDays,
       productId: raw.productId
     })

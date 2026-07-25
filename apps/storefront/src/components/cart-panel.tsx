@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useCart } from "@/components/cart-provider"
 import { getProductHref } from "@/lib/compound-product"
-import { LAB_RESTOCK_COPY } from "@/lib/lab-restock"
+import { LAB_RESTOCK_COPY, applyLabRestockPrice } from "@/lib/lab-restock"
 import { getProductImage } from "@/lib/product-image-map"
 
 export function CartPanel() {
@@ -45,11 +45,12 @@ export function CartPanel() {
                         ) : null}
                         <p className="text-xs text-[#475569]">
                           ${item.unitPrice.toFixed(2)} each
-                          {item.oneTimeUnitPrice != null &&
-                          item.fulfillment === "lab_restock" &&
-                          item.oneTimeUnitPrice > item.unitPrice ? (
-                            <span className="ml-1 text-[#94A3B8] line-through">
-                              ${item.oneTimeUnitPrice.toFixed(2)}
+                          {item.fulfillment === "lab_restock" &&
+                          item.oneTimeUnitPrice != null ? (
+                            <span className="mt-0.5 block text-[11px] text-[#0F766E]">
+                              {LAB_RESTOCK_COPY.cartRenewalNote(
+                                applyLabRestockPrice(item.oneTimeUnitPrice)
+                              )}
                             </span>
                           ) : null}
                         </p>

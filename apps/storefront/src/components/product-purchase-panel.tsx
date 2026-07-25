@@ -19,6 +19,7 @@ import {
   defaultRestockCadence,
   isLabRestockEligible,
   LAB_RESTOCK_COPY,
+  peptideRefillFirstOrderPrice,
   restockSavingsUsd,
   type FulfillmentMode,
   type LabRestockCadenceDays
@@ -87,12 +88,13 @@ export function ProductPurchasePanel({
     : getVariantPriceCents(selectedVariant) / 100
 
   const restockPrice = applyLabRestockPrice(oneTimePrice)
-  const chargePrice = fulfillment === "lab_restock" ? restockPrice : oneTimePrice
+  const firstOrderPrice = peptideRefillFirstOrderPrice(oneTimePrice)
+  const chargePrice = fulfillment === "lab_restock" ? firstOrderPrice : oneTimePrice
   const savingsUsd = restockSavingsUsd(oneTimePrice, 1)
   const perUnit =
     selectedTier && selectedTier.qty > 0
       ? (fulfillment === "lab_restock"
-          ? applyLabRestockPrice(selectedTier.perUnit)
+          ? peptideRefillFirstOrderPrice(selectedTier.perUnit)
           : selectedTier.perUnit
         ).toFixed(2)
       : null

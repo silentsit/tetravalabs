@@ -42,22 +42,24 @@ export const LAB_RESTOCK_COPY = {
   modeLabel: "Fulfillment",
   oneTimeLabel: "One-time",
   restockLabel: "Peptide Refill",
-  restockBadge: `−${LAB_RESTOCK_DISCOUNT_PCT}%`,
+  restockBadge: `−${LAB_RESTOCK_DISCOUNT_PCT}% renewals`,
   cadenceLabel: "Refill every",
   cadenceSuffix: "days",
   ctaRestock: "Start Peptide Refill",
   ctaOneTime: "Add to cart",
   micro:
-    "Skip, pause, or cancel anytime. Pay each refill via secure card checkout — no auto-charge.",
-  saveVsOneTime: (amountUsd: number) =>
-    amountUsd > 0 ? `You save $${amountUsd.toFixed(2)} vs one-time` : null,
+    "First shipment is full price. 12% off applies from your second refill onward. Skip, pause, or cancel anytime — pay each cycle via secure card checkout.",
+  renewalSavingsLine: (amountUsd: number) =>
+    amountUsd > 0 ? `Save $${amountUsd.toFixed(2)} on each renewal refill` : null,
   cartBadge: "Peptide Refill",
+  cartRenewalNote: (renewalUsd: number) =>
+    `Renewals from $${renewalUsd.toFixed(2)} (−${LAB_RESTOCK_DISCOUNT_PCT}%)`,
   ruoNote: "For research use only. Not for human consumption.",
   cryptoBlocked: "Peptide Refill requires card payment. Remove refill items to pay with crypto.",
   accountNav: "Peptide Refills",
   freeShippingPerk: "Free cold-chain shipping on every refill shipment",
   perks: [
-    `${LAB_RESTOCK_DISCOUNT_PCT}% off every refill`,
+    `${LAB_RESTOCK_DISCOUNT_PCT}% off renewal refills (from cycle 2)`,
     "Free cold-chain shipping on refill shipments",
     "Skip, pause, or cancel anytime",
     "Current lot COA with each shipment"
@@ -101,6 +103,12 @@ export function applyLabRestockPrice(oneTimeUnitPrice: number): number {
   if (!Number.isFinite(oneTimeUnitPrice) || oneTimeUnitPrice <= 0) return 0
   const discounted = oneTimeUnitPrice * (1 - LAB_RESTOCK_DISCOUNT_PCT / 100)
   return Math.round(discounted * 100) / 100
+}
+
+/** First Peptide Refill checkout is always full pack price — discount starts on renewals. */
+export function peptideRefillFirstOrderPrice(oneTimeUnitPrice: number): number {
+  if (!Number.isFinite(oneTimeUnitPrice) || oneTimeUnitPrice <= 0) return 0
+  return Math.round(oneTimeUnitPrice * 100) / 100
 }
 
 export function restockSavingsUsd(oneTimeUnitPrice: number, quantity = 1): number {

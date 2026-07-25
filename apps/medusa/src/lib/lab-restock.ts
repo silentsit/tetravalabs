@@ -25,6 +25,8 @@ export function applyLabRestockPrice(oneTimeUnitPrice: number): number {
   return Math.round(oneTimeUnitPrice * (1 - LAB_RESTOCK_DISCOUNT_PCT / 100) * 100) / 100
 }
 
+/** Renewal-cycle price stored on lab_restocks.unit_price_usd — not charged on first order. */
+
 export function newLabRestockId(): string {
   return `lr_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`
 }

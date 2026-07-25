@@ -30,7 +30,7 @@ export function LabRestockSelector({
   perUnitLabel
 }: Props) {
   const isRestock = fulfillment === "lab_restock"
-  const saveLine = LAB_RESTOCK_COPY.saveVsOneTime(savingsUsd)
+  const saveLine = LAB_RESTOCK_COPY.renewalSavingsLine(savingsUsd)
 
   return (
     <div className="space-y-3">
@@ -79,11 +79,12 @@ export function LabRestockSelector({
             </span>
           </div>
           <p className="mt-1 text-lg font-bold tabular-nums text-[color:var(--color-text)]">
-            ${restockPrice.toFixed(2)}
+            ${oneTimePrice.toFixed(2)}
           </p>
           <p className="mt-0.5 text-xs text-[color:var(--color-text-secondary)]">
-            <span className="line-through tabular-nums text-[#94A3B8]">
-              ${oneTimePrice.toFixed(2)}
+            First shipment · renewals{" "}
+            <span className="font-medium tabular-nums text-[#0F766E]">
+              ${restockPrice.toFixed(2)}
             </span>
             {perUnitLabel ? ` · ${perUnitLabel}` : null}
           </p>

@@ -5,7 +5,7 @@ import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import { registerLabRestocksFromCheckout } from "@/lib/medusa-lab-restock-register"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
-import { isValidRestockCadence, LAB_RESTOCK_COPY } from "@/lib/lab-restock"
+import { isValidRestockCadence, LAB_RESTOCK_COPY, applyLabRestockPrice } from "@/lib/lab-restock"
 import { buildPeptidepayProductName } from "@/lib/product-sku"
 import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
 
@@ -121,6 +121,27 @@ export async function POST(req: Request) {
         },
         { status: 400 }
       )
+    }
+
+    for (const item of restockItems) {
+      const oneTime = item.oneTimeUnitPrice ?? item.unitPrice
+      if (oneTime == null || item.unitPrice == null) {
+        return NextResponse.json(
+          { ok: false, message: "Peptide Refill items require one-time reference pricing." },
+          { status: 400 }
+        )
+      }
+      if (Math.abs(item.unitPrice - oneTime) > 0.02) {
+        return NextResponse.json(
+          {
+            ok: false,
+            message:
+              "Peptide Refill first shipment is full price. The 12% discount applies from your second refill onward.",
+            code: "lab_restock_first_order_full_price"
+          },
+          { status: 400 }
+        )
+      }
     }
   }
 
@@ -271,17 +292,20 @@ export async function POST(req: Request) {
             item.unitPrice != null &&
             isValidRestockCadence(item.restockCadenceDays)
         )
-        .map((item) => ({
-          variantId: item.variantId,
-          quantity: item.quantity,
-          handle: item.handle!,
-          title: item.title!,
-          variantTitle: item.variantTitle,
-          unitPrice: item.unitPrice!,
-          oneTimeUnitPrice: item.oneTimeUnitPrice ?? item.unitPrice!,
-          cadenceDays: item.restockCadenceDays!,
-          productId: item.productId
-        }))
+        .map((item) => {
+          const oneTime = item.oneTimeUnitPrice ?? item.unitPrice!
+          return {
+            variantId: item.variantId,
+            quantity: item.quantity,
+            handle: item.handle!,
+            title: item.title!,
+            variantTitle: item.variantTitle,
+            unitPrice: applyLabRestockPrice(oneTime),
+            oneTimeUnitPrice: oneTime,
+            cadenceDays: item.restockCadenceDays!,
+            productId: item.productId
+          }
+        })
 
       const registered = await registerLabRestocksFromCheckout({
         orderId: order.id,

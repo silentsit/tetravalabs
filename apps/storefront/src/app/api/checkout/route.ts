@@ -3,7 +3,9 @@ import Medusa from "@medusajs/js-sdk"
 import { isRestrictedCountry } from "@/lib/shipping-compliance"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
+import { registerLabRestocksFromCheckout } from "@/lib/medusa-lab-restock-register"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
+import { isValidRestockCadence, LAB_RESTOCK_COPY } from "@/lib/lab-restock"
 import { buildPeptidepayProductName } from "@/lib/product-sku"
 import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
 
@@ -14,6 +16,10 @@ type CheckoutItem = {
   title?: string
   variantTitle?: string
   unitPrice?: number
+  productId?: string
+  fulfillment?: "one_time" | "lab_restock"
+  restockCadenceDays?: number
+  oneTimeUnitPrice?: number
 }
 
 type CheckoutBody = {
@@ -31,6 +37,7 @@ type CheckoutBody = {
   orderNotes?: string
   payment_method?: "card" | "crypto"
   crypto_asset?: string
+  customer_id?: string
   items?: CheckoutItem[]
 }
 
@@ -77,6 +84,44 @@ export async function POST(req: Request) {
       },
       { status: 403 }
     )
+  }
+
+  const restockItems = items.filter((item) => item.fulfillment === "lab_restock")
+  const hasLabRestock = restockItems.length > 0
+
+  if (hasLabRestock) {
+    if (body.payment_method === "crypto") {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: LAB_RESTOCK_COPY.cryptoBlocked,
+          code: "lab_restock_card_required"
+        },
+        { status: 400 }
+      )
+    }
+
+    const cadences = new Set(
+      restockItems
+        .map((item) => item.restockCadenceDays)
+        .filter((days): days is number => isValidRestockCadence(days))
+    )
+    if (cadences.size === 0) {
+      return NextResponse.json(
+        { ok: false, message: "Peptide Refill items require a valid cadence (30, 60, or 90 days)." },
+        { status: 400 }
+      )
+    }
+    if (cadences.size > 1) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message:
+            "All Peptide Refill items in one checkout must share the same refill cadence. Update your cart and try again."
+        },
+        { status: 400 }
+      )
+    }
   }
 
   try {
@@ -178,12 +223,19 @@ export async function POST(req: Request) {
         : typeof order.shipping_total === "number"
           ? order.shipping_total
           : 1500
-    const shippingUsd = resolveShippingUsd(items)
-    const subtotalUsd = medusaSubtotalCents / 100
-    // Selank Nasal Spray-only carts use $9 shipping for payment; Medusa flat rate stays $15 for other carts.
-    const totalUsd =
-      shippingUsd === medusaShippingCents / 100
-        ? (typeof order.total === "number" ? order.total : medusaSubtotalCents + medusaShippingCents) / 100
+
+    // Peptide Refill includes free cold-chain shipping on the charged total.
+    const shippingUsd = hasLabRestock ? 0 : resolveShippingUsd(items)
+    const cartSubtotalUsd = items.reduce(
+      (sum, item) => sum + (item.unitPrice || 0) * item.quantity,
+      0
+    )
+    const subtotalUsd = hasLabRestock ? cartSubtotalUsd : medusaSubtotalCents / 100
+    const totalUsd = hasLabRestock
+      ? cartSubtotalUsd + shippingUsd
+      : shippingUsd === medusaShippingCents / 100
+        ? (typeof order.total === "number" ? order.total : medusaSubtotalCents + medusaShippingCents) /
+          100
         : subtotalUsd + shippingUsd
 
     const emailItems = items
@@ -193,19 +245,82 @@ export async function POST(req: Request) {
         variantTitle: item.variantTitle,
         quantity: item.quantity,
         unitPrice: item.unitPrice!,
-        handle: item.handle
+        handle: item.handle,
+        variantId: item.variantId,
+        productId: item.productId
       }))
 
-    const paymentMethod = body.payment_method === "crypto" ? "crypto" : "card"
+    const paymentMethod = hasLabRestock
+      ? "card"
+      : body.payment_method === "crypto"
+        ? "crypto"
+        : "card"
     const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "BTC"
-    // Card processor descriptor: SKU codes only — never human product names.
     const peptidepayProductName = buildPeptidepayProductName(items)
 
     let paymentUrl: string | null = null
     let paymentProvider: string | null = null
     let paymentError: string | null = null
 
-    if (paymentMethod === "card") {
+    if (hasLabRestock) {
+      const mappedRestockItems = restockItems
+        .filter(
+          (item) =>
+            item.handle &&
+            item.title &&
+            item.unitPrice != null &&
+            isValidRestockCadence(item.restockCadenceDays)
+        )
+        .map((item) => ({
+          variantId: item.variantId,
+          quantity: item.quantity,
+          handle: item.handle!,
+          title: item.title!,
+          variantTitle: item.variantTitle,
+          unitPrice: item.unitPrice!,
+          oneTimeUnitPrice: item.oneTimeUnitPrice ?? item.unitPrice!,
+          cadenceDays: item.restockCadenceDays!,
+          productId: item.productId
+        }))
+
+      const registered = await registerLabRestocksFromCheckout({
+        orderId: order.id,
+        email,
+        customerId: body.customer_id,
+        shippingAddress: {
+          first_name: firstName,
+          last_name: lastName,
+          company,
+          address_1: address1,
+          address_2: address2,
+          city,
+          province,
+          postal_code: postalCode,
+          phone,
+          country_code: country.toLowerCase()
+        },
+        restockItems: mappedRestockItems
+      })
+
+      if (!registered.ok) {
+        return NextResponse.json(
+          { ok: false, message: registered.message || "Peptide Refill registration failed" },
+          { status: 502 }
+        )
+      }
+
+      const cardIntent = await createPeptidepayPaymentIntent({
+        orderId: order.id,
+        email,
+        amountUsd: totalUsd,
+        currency: "USD",
+        productName: peptidepayProductName
+      })
+      paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
+      paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"
+      paymentError =
+        cardIntent?.ok === false ? cardIntent.message || "Card payment setup failed" : null
+    } else if (paymentMethod === "card") {
       const cardIntent = await createPeptidepayPaymentIntent({
         orderId: order.id,
         email,
@@ -254,6 +369,7 @@ export async function POST(req: Request) {
       payment_provider: paymentProvider,
       payment_method: paymentMethod,
       payment_error: paymentError,
+      lab_restock: hasLabRestock,
       crypto_asset: paymentMethod === "crypto" ? cryptoAsset : null
     })
   } catch (error) {

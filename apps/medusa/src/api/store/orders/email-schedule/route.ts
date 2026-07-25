@@ -21,7 +21,10 @@ function normalizeItems(items: Body["items"]) {
       title: item.title,
       variantTitle: item.variantTitle,
       quantity: item.quantity,
-      unitPrice: item.unitPrice
+      unitPrice: item.unitPrice,
+      handle: item.handle,
+      variantId: item.variantId,
+      productId: item.productId
     }))
 }
 

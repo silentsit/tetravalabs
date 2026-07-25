@@ -4,10 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { useCart } from "@/components/cart-provider"
 import { getProductHref } from "@/lib/compound-product"
+import { LAB_RESTOCK_COPY } from "@/lib/lab-restock"
 import { getProductImage } from "@/lib/product-image-map"
 
 export function CartPanel() {
-  const { items, subtotal, totalItems, removeItem, updateQty } = useCart()
+  const { items, subtotal, totalItems, removeItem, updateQty, hasLabRestock } = useCart()
 
   return (
     <section className="card space-y-4 p-5">
@@ -34,7 +35,24 @@ export function CartPanel() {
                           {item.title}
                         </Link>
                         <p className="text-xs text-[#94A3B8]">{item.variantTitle}</p>
-                        <p className="text-xs text-[#475569]">${item.unitPrice.toFixed(2)} each</p>
+                        {item.fulfillment === "lab_restock" ? (
+                          <p className="mt-0.5 text-[11px] font-medium text-[#0F766E]">
+                            {LAB_RESTOCK_COPY.cartBadge}
+                            {item.restockCadenceDays
+                              ? ` · every ${item.restockCadenceDays}d`
+                              : ""}
+                          </p>
+                        ) : null}
+                        <p className="text-xs text-[#475569]">
+                          ${item.unitPrice.toFixed(2)} each
+                          {item.oneTimeUnitPrice != null &&
+                          item.fulfillment === "lab_restock" &&
+                          item.oneTimeUnitPrice > item.unitPrice ? (
+                            <span className="ml-1 text-[#94A3B8] line-through">
+                              ${item.oneTimeUnitPrice.toFixed(2)}
+                            </span>
+                          ) : null}
+                        </p>
                       </div>
                       <button
                         type="button"
@@ -68,6 +86,11 @@ export function CartPanel() {
           </ul>
           <div className="border-t border-[#E2E8F0] pt-3 text-sm text-[#475569]">
             <p>Subtotal: ${subtotal.toFixed(2)}</p>
+            {hasLabRestock ? (
+              <p className="mt-1 text-xs text-[#0F766E]">
+                Cart includes Peptide Refill — card payment required at checkout.
+              </p>
+            ) : null}
             <div className="mt-3 flex gap-2">
               <Link href="/cart" className="btn-secondary px-3 py-2 text-xs">
                 View cart

@@ -2,6 +2,8 @@ import { createHash } from "node:crypto"
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
 import { captureOrderPayment } from "../../../../lib/capture-order-payment"
+import { handleLabRestockOrderPaid } from "../../../../lib/lab-restock-processor"
+import { cancelReplenishmentEmailsOnPaidOrder } from "../../../../lib/order-fulfillment-emails"
 import {
   getPeptidepaySignatureHeader,
   isPeptidepayConfigured,
@@ -61,6 +63,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
     )
 
     if (duplicate) {
+      await handleLabRestockOrderPaid(orderId).catch(() => undefined)
       return res.status(200).json({ ok: true, duplicate: true })
     }
 
@@ -85,6 +88,8 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       previousStatus = (intent.status as string | undefined) || null
     }
 
+    const alreadyCompleted = previousStatus === "completed"
+
     await withDb(
       async (db) => {
         await db.query(
@@ -95,7 +100,7 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
           ["peptidepay.order.paid", "completed", orderId, eventKey, { ...payload, bodyHash }]
         )
 
-        if (intent) {
+        if (intent && !alreadyCompleted) {
           await db.query(`UPDATE crypto_payment_intents SET status = $1 WHERE order_id = $2`, [
             "completed",
             orderId
@@ -109,12 +114,10 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       async () => undefined
     )
 
-    if (
-      orderId &&
-      intentEmail &&
-      previousStatus !== "completed" &&
-      intentAmount != null
-    ) {
+    // Advance Peptide Refill schedule (idempotent via paid shipment check)
+    await handleLabRestockOrderPaid(orderId).catch(() => undefined)
+
+    if (orderId && intentEmail && !alreadyCompleted && intentAmount != null) {
       const capture = await captureOrderPayment(orderId, req.scope)
       if (!capture.ok && !capture.alreadyPaid) {
         console.warn("[peptidepay] Medusa capture failed:", capture.reason)
@@ -125,6 +128,11 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
         orderId,
         amountUsd: intentAmount
       })
+
+      void cancelReplenishmentEmailsOnPaidOrder({
+        email: intentEmail,
+        excludeOrderId: orderId
+      }).catch(() => undefined)
     }
 
     return res.status(200).json({
@@ -132,7 +140,8 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       provider: "peptidepay",
       order_id: orderId,
       mapped_status: "completed",
-      order_found: Boolean(intent)
+      order_found: Boolean(intent),
+      already_completed: alreadyCompleted
     })
   } catch (error) {
     console.error("[peptidepay] Webhook handler failed:", error)

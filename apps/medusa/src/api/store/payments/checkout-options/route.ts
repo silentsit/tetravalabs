@@ -10,7 +10,8 @@ import { isPaymentoConfigured } from "../../../../lib/paymento"
 
 export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
   const assets = getAvailableCheckoutCryptoAssets()
-  const cardAvailable = isPeptidepayConfigured()
+  const peptidepay = isPeptidepayConfigured()
+  const cardAvailable = peptidepay
 
   res.setHeader("Cache-Control", "no-store, max-age=0")
 
@@ -18,8 +19,14 @@ export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
     ok: true,
     card: {
       available: cardAvailable,
-      provider: cardAvailable ? "peptidepay" : null,
+      provider: peptidepay ? "peptidepay" : null,
       label: "Credit or debit card"
+    },
+    lab_restock: {
+      available: peptidepay,
+      provider: peptidepay ? "peptidepay" : null,
+      discount_pct: 12,
+      billing: "hybrid"
     },
     crypto: {
       available: assets.length > 0,

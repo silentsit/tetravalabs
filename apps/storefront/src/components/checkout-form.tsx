@@ -22,6 +22,7 @@ import {
   cancelCheckoutAbandonIntent,
   scheduleCheckoutAbandonIntent
 } from "@/lib/checkout-abandon"
+import { LAB_RESTOCK_COPY } from "@/lib/lab-restock"
 
 type CheckoutOrder = {
   id: string
@@ -555,7 +556,7 @@ function AddressFields({
 
 export function CheckoutForm() {
   const router = useRouter()
-  const { items, subtotal, clear } = useCart()
+  const { items, subtotal, clear, hasLabRestock } = useCart()
   const [email, setEmail] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -590,13 +591,14 @@ export function CheckoutForm() {
   const [loading, setLoading] = useState(false)
   const [restrictedCountries, setRestrictedCountries] = useState<string[]>([])
   const [cardAvailable, setCardAvailable] = useState(false)
+  const [labRestockAvailable, setLabRestockAvailable] = useState(false)
   const [paymentOptionsLoaded, setPaymentOptionsLoaded] = useState(false)
   const [cryptoLive, setCryptoLive] = useState(false)
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
   const [selectedAsset, setSelectedAsset] = useState("BTC")
 
-  const shippingUsd = resolveShippingUsd(items)
+  const shippingUsd = hasLabRestock ? 0 : resolveShippingUsd(items)
   const estimatedTotal = subtotal + shippingUsd
 
   const billingValues = useMemo<AddressValues>(
@@ -723,6 +725,7 @@ export function CheckoutForm() {
         if (!data?.ok) return
 
         setCardAvailable(Boolean(data.cardAvailable))
+        setLabRestockAvailable(Boolean(data.labRestockAvailable))
         setCryptoLive(Boolean(data.cryptoLive))
         setCryptoOptions(Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG)
 
@@ -742,6 +745,10 @@ export function CheckoutForm() {
         setPaymentOptionsLoaded(true)
       })
   }, [])
+
+  useEffect(() => {
+    if (hasLabRestock) setPaymentMethod("card")
+  }, [hasLabRestock])
 
   useEffect(() => {
     void retrieveCustomer().then((customer) => {
@@ -885,7 +892,19 @@ export function CheckoutForm() {
       setError("Cart is empty.")
       return
     }
-    if (paymentMethod === "card" && !cardAvailable) {
+    if (hasLabRestock && paymentOptionsLoaded && !cardAvailable) {
+      setError(
+        "Peptide Refill checkout requires card payment (Peptide Pay). Remove refill items or configure the card gateway."
+      )
+      return
+    }
+
+    if (hasLabRestock && paymentMethod === "crypto") {
+      setError(LAB_RESTOCK_COPY.cryptoBlocked)
+      return
+    }
+
+    if (paymentMethod === "card" && !cardAvailable && !hasLabRestock) {
       setError("Card checkout is temporarily unavailable. Please pay with cryptocurrency.")
       return
     }
@@ -930,7 +949,7 @@ export function CheckoutForm() {
           postalCode: shippingAddress.postalCode,
           phone: shippingAddress.phone,
           country: shippingAddress.country,
-          payment_method: paymentMethod,
+          payment_method: hasLabRestock ? "card" : paymentMethod,
           crypto_asset: selectedAsset,
           items: items.map((item) => ({
             variantId: item.variantId,
@@ -938,7 +957,11 @@ export function CheckoutForm() {
             handle: item.handle,
             title: item.title,
             variantTitle: item.variantTitle,
-            unitPrice: item.unitPrice
+            unitPrice: item.unitPrice,
+            productId: item.productId,
+            fulfillment: item.fulfillment || "one_time",
+            restockCadenceDays: item.restockCadenceDays,
+            oneTimeUnitPrice: item.oneTimeUnitPrice
           }))
         })
       })
@@ -1163,14 +1186,17 @@ export function CheckoutForm() {
                 </span>
               </label>
 
-              <label className={`${methodCardClass(paymentMethod === "crypto")} mt-3`}>
+              <label
+                className={`${methodCardClass(paymentMethod === "crypto")} mt-3 ${hasLabRestock ? "opacity-60" : ""}`}
+              >
                 <input
                   type="radio"
                   name="payment_method"
                   value="crypto"
                   checked={paymentMethod === "crypto"}
                   onChange={() => setPaymentMethod("crypto")}
-                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+                  disabled={hasLabRestock}
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
                 />
                 <span className="flex min-w-0 flex-1 flex-col gap-1">
                   <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
@@ -1178,10 +1204,20 @@ export function CheckoutForm() {
                     Cryptocurrency
                   </span>
                   <span className="text-xs leading-relaxed text-[#64748B]">
-                    Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento.
+                    {hasLabRestock
+                      ? LAB_RESTOCK_COPY.cryptoBlocked
+                      : "Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento."}
                   </span>
                 </span>
               </label>
+
+              {hasLabRestock ? (
+                <p className="mt-3 rounded-lg border border-[#0D9488]/25 bg-white px-4 py-3 text-xs leading-relaxed text-[#0F766E]">
+                  Cart includes Peptide Refill (−12%). First shipment paid now via secure card checkout.
+                  Future refills are scheduled — you pay each cycle (no auto-charge). Free cold-chain
+                  shipping on refill shipments. Skip, pause, or cancel anytime from your account.
+                </p>
+              ) : null}
 
               {paymentMethod === "crypto" ? (
                 <div className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4">
@@ -1248,6 +1284,14 @@ export function CheckoutForm() {
                         {item.variantTitle ? (
                           <p className="mt-0.5 text-xs text-[#94A3B8]">{item.variantTitle}</p>
                         ) : null}
+                        {item.fulfillment === "lab_restock" ? (
+                          <p className="mt-0.5 text-[11px] font-medium text-[#0F766E]">
+                            {LAB_RESTOCK_COPY.cartBadge}
+                            {item.restockCadenceDays
+                              ? ` · every ${item.restockCadenceDays}d`
+                              : ""}
+                          </p>
+                        ) : null}
                         <p className="mt-1 text-xs text-[#64748B]">Qty: {item.quantity}</p>
                       </div>
                       <p className="shrink-0 tabular-nums text-sm text-[#0F172A]">
@@ -1266,7 +1310,9 @@ export function CheckoutForm() {
               </div>
               <div className="flex items-center justify-between">
                 <span>Shipping</span>
-                <span className="tabular-nums">${shippingUsd.toFixed(2)}</span>
+                <span className="tabular-nums">
+                  {hasLabRestock ? "Free (Peptide Refill)" : `$${shippingUsd.toFixed(2)}`}
+                </span>
               </div>
               <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
                 <span>Total</span>

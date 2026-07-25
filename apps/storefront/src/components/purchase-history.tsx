@@ -3,16 +3,22 @@
 import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { sdk } from "@/lib/medusa-client"
+import { ReorderButton } from "@/components/reorder-button"
 
 type OrderItem = {
   id?: string
   title?: string
   quantity?: number
+  unit_price?: number
+  variant_id?: string
+  product_id?: string
   product?: {
+    id?: string
     handle?: string
     title?: string
   } | null
   variant?: {
+    id?: string
     title?: string
   } | null
 }
@@ -148,6 +154,19 @@ export function PurchaseHistory({
                 })}
               </ul>
             ) : null}
+            <ReorderButton
+              orderLabel={order.display_id ? `order #${order.display_id}` : "this order"}
+              lines={(order.items || []).map((item) => ({
+                variantId: item.variant_id || item.variant?.id,
+                productId: item.product_id || item.product?.id,
+                handle: item.product?.handle,
+                title: item.product?.title || item.title,
+                variantTitle: item.variant?.title,
+                quantity: item.quantity,
+                unitPrice:
+                  typeof item.unit_price === "number" ? item.unit_price / 100 : null
+              }))}
+            />
           </li>
         ))}
       </ul>

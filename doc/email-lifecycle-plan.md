@@ -145,8 +145,9 @@ Nudge prior buyers to reorder compounds they already purchased — lab reorder t
 
 ### Content rules
 - List prior order items (handles/titles from fulfillment or order items snapshot)
-- CTA: deep links to those product pages or a “reorder” account/orders URL
+- CTA: primary **Reorder these compounds** → signed `/reorder/{token}` (table `order_reorder_tokens`); secondary product-page links
 - Soft review (P1) stays separate at ship +14d; do not merge into R1
+- Item snapshots should include `variantId` / `productId` when available (enriched from `order_line_item` at send time if missing)
 - **Avoid:** “time to refill,” dosing schedules, implied human use
 
 ### Interaction with other flows
@@ -221,9 +222,10 @@ Keep current C1a (+1h) and C1b (+24h).
 
 - Browse abandonment series  
 - VIP program emails  
-- Subscription / auto-replenish billing  
 - Full discount ladders (occasional env promo codes on C1c / WB1 / R2 only)  
 - Separate P3 product (use R1–R3)
+
+**Peptide Refill billing** is implemented separately (`doc/lab-restock-subscriptions.md`). Soft R1–R3 remain for **one-time** buyers only; active Peptide Refill subscribers are skipped/cancelled from the soft ladder.
 
 ---
 

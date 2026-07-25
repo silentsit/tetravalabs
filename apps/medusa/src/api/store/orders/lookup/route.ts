@@ -55,6 +55,50 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     return res.status(404).json({ message: "Order not found" })
   }
 
+  const items = await withDb(
+    async (db) => {
+      const result = await db.query(
+        `
+        SELECT
+          oli.id,
+          oli.title,
+          oli.variant_title,
+          oi.quantity,
+          oli.unit_price,
+          oli.product_handle,
+          oli.variant_id,
+          oli.product_id,
+          oli.product_title
+        FROM order_item oi
+        INNER JOIN order_line_item oli ON oli.id = oi.item_id
+        WHERE oi.order_id = $1
+          AND oi.deleted_at IS NULL
+          AND oli.deleted_at IS NULL
+        ORDER BY oli.created_at ASC
+        `,
+        [row.id]
+      )
+      return result.rows.map((item) => ({
+        id: String(item.id),
+        title: String(item.product_title || item.title || "Product"),
+        quantity: Math.max(1, Math.floor(Number(item.quantity) || 1)),
+        unit_price: Number(item.unit_price || 0),
+        variant_id: item.variant_id ? String(item.variant_id) : undefined,
+        product_id: item.product_id ? String(item.product_id) : undefined,
+        product: {
+          id: item.product_id ? String(item.product_id) : undefined,
+          handle: item.product_handle ? String(item.product_handle) : undefined,
+          title: String(item.product_title || item.title || "Product")
+        },
+        variant: {
+          id: item.variant_id ? String(item.variant_id) : undefined,
+          title: item.variant_title ? String(item.variant_title) : undefined
+        }
+      }))
+    },
+    async () => []
+  )
+
   return res.json({
     order: {
       id: row.id,
@@ -63,7 +107,8 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
       status: row.status,
       currency_code: row.currency_code,
       created_at: row.created_at,
-      total: Number(row.total || 0)
+      total: Number(row.total || 0),
+      items
     }
   })
 }

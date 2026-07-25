@@ -11,6 +11,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { SocialProofToast } from "@/components/social-proof-widget"
+import { AiChatWidget } from "@/components/ai-chat-widget"
 import { resolvePageJsonLd } from "@/lib/json-ld-store"
 import {
   clampMetaDescription,
@@ -110,6 +111,7 @@ export default async function RootLayout({
           <SiteFooter />
           <CartDrawer />
           <SocialProofToast />
+          <AiChatWidget />
           <ScrollToTop />
         </CartProvider>
         {plausibleDomain ? (

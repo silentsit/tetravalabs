@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { sdk } from "@/lib/medusa-client"
 import { OrderLookupForm, type LookupOrder } from "@/components/order-lookup-form"
+import { ReorderButton } from "@/components/reorder-button"
+import type { ReorderLineInput } from "@/lib/reorder-cart"
 
 type StoredOrder = {
   id: string
@@ -25,9 +27,35 @@ type MedusaOrder = {
     id?: string
     title?: string
     quantity?: number
-    product?: { handle?: string; title?: string } | null
-    variant?: { title?: string } | null
+    unit_price?: number
+    variant_id?: string
+    product_id?: string
+    product?: { id?: string; handle?: string; title?: string } | null
+    variant?: { id?: string; title?: string } | null
   }> | null
+}
+
+/** Medusa order line money is stored/returned in cents. */
+function centsToUsd(value: number | undefined | null): number | null {
+  if (typeof value !== "number" || !Number.isFinite(value)) return null
+  return value / 100
+}
+
+function reorderLinesFromOrder(order: LookupOrder | MedusaOrder): ReorderLineInput[] {
+  const items = ("items" in order && order.items) || []
+  return items.map((item) => {
+    const variantId = item.variant_id || item.variant?.id || undefined
+    const productId = item.product_id || item.product?.id || undefined
+    return {
+      variantId,
+      productId,
+      handle: item.product?.handle,
+      title: item.product?.title || item.title,
+      variantTitle: item.variant?.title,
+      quantity: item.quantity,
+      unitPrice: centsToUsd(item.unit_price)
+    }
+  })
 }
 
 type PaymentStatus = {
@@ -263,6 +291,14 @@ export function OrdersList({ emptyState, showGuestLookup = true }: Props) {
                       )
                     })}
                   </ul>
+                ) : null}
+                {order.source === "medusa" || order.source === "lookup" ? (
+                  <ReorderButton
+                    orderLabel={
+                      order.display_id ? `order #${order.display_id}` : "this order"
+                    }
+                    lines={reorderLinesFromOrder(order)}
+                  />
                 ) : null}
               </li>
             )

@@ -16,8 +16,11 @@ export type LookupOrder = {
     id?: string
     title?: string
     quantity?: number
-    product?: { handle?: string; title?: string } | null
-    variant?: { title?: string } | null
+    unit_price?: number
+    variant_id?: string
+    product_id?: string
+    product?: { id?: string; handle?: string; title?: string } | null
+    variant?: { id?: string; title?: string } | null
   }> | null
 }
 
@@ -56,7 +59,8 @@ export function OrderLookupForm({ onFound }: Props) {
         status: data.order.status,
         currency_code: data.order.currency_code,
         email: data.order.email,
-        source: "lookup"
+        source: "lookup",
+        items: Array.isArray(data.order.items) ? data.order.items : []
       })
     } catch {
       setError("Could not look up order. Try again in a moment.")

@@ -177,6 +177,7 @@ export function ProductPurchaseBox({ productId, handle, title, variants }: Props
           variantId={selectedVariant.id}
           variantTitle={selectedVariant.title}
           unitPrice={price}
+          lineId={`${productId}:${selectedVariant.id}:one_time`}
         />
       </div>
     </section>

@@ -25,6 +25,16 @@ export default defineMiddlewares({
       middlewares: [authenticate("customer", ["session", "bearer"])]
     },
     {
+      method: ["GET"],
+      matcher: "/store/lab-restocks",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
+    {
+      method: ["POST"],
+      matcher: "/store/lab-restocks/:id",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
+    {
       method: ["POST"],
       matcher: "/webhooks/payments/paymento",
       bodyParser: { preserveRawBody: true }

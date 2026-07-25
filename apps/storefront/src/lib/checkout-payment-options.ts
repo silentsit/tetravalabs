@@ -19,6 +19,7 @@ export const CHECKOUT_CRYPTO_CATALOG: CheckoutCryptoOption[] = [
 
 export type LoadedCheckoutOptions = {
   cardAvailable: boolean
+  labRestockAvailable: boolean
   cryptoLive: boolean
   cryptoOptions: CheckoutCryptoOption[]
 }
@@ -30,6 +31,7 @@ export async function loadCheckoutPaymentOptions(
 ): Promise<LoadedCheckoutOptions> {
   const fallback: LoadedCheckoutOptions = {
     cardAvailable: false,
+    labRestockAvailable: false,
     cryptoLive: false,
     cryptoOptions: CHECKOUT_CRYPTO_CATALOG
   }
@@ -44,6 +46,7 @@ export async function loadCheckoutPaymentOptions(
         const liveAssets = Array.isArray(data.crypto?.assets) ? data.crypto.assets : []
         return {
           cardAvailable: Boolean(data.card?.available),
+          labRestockAvailable: Boolean(data.lab_restock?.available),
           cryptoLive: liveAssets.length > 0,
           cryptoOptions: liveAssets.length > 0 ? liveAssets : CHECKOUT_CRYPTO_CATALOG
         }
@@ -56,12 +59,15 @@ export async function loadCheckoutPaymentOptions(
       const liveAssets = Array.isArray(data?.assets) ? data.assets : []
       const retry = await fetchFn(`${medusaUrl}/store/payments/checkout-options`, fetchOptions)
       let cardAvailable = false
+      let labRestockAvailable = false
       if (retry.ok) {
         const retryData = await retry.json()
         cardAvailable = Boolean(retryData?.card?.available)
+        labRestockAvailable = Boolean(retryData?.lab_restock?.available)
       }
       return {
         cardAvailable,
+        labRestockAvailable,
         cryptoLive: liveAssets.length > 0,
         cryptoOptions: liveAssets.length > 0 ? liveAssets : CHECKOUT_CRYPTO_CATALOG
       }

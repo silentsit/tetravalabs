@@ -2,6 +2,10 @@ import { withDb } from "./db"
 import { processDueCheckoutAbandonEmails } from "./checkout-abandon"
 import { cancelCustomerLifecycleOnPaidOrder, processDueCustomerLifecycleEmails } from "./customer-lifecycle-emails"
 import {
+  processDueLabRestocks,
+  processPeptideRefillDunning
+} from "./lab-restock-processor"
+import {
   cancelReplenishmentEmailsOnPaidOrder,
   processDueCoaTrustEmails,
   processDueReplenishmentEmails,
@@ -400,6 +404,8 @@ export async function processDueOrderEmails() {
   const lifecycle = await processDueCustomerLifecycleEmails()
   const replenishment = await processDueReplenishmentEmails()
   const coaTrust = await processDueCoaTrustEmails()
+  const labRestock = await processDueLabRestocks()
+  const peptideDunning = await processPeptideRefillDunning()
   return {
     ...summary,
     review_scanned: review.scanned,
@@ -424,6 +430,16 @@ export async function processDueOrderEmails() {
     replenishment_failed: replenishment.failed,
     coa_trust_scanned: coaTrust.scanned,
     coa_trust_sent: coaTrust.coa_trust_sent,
-    coa_trust_failed: coaTrust.failed
+    coa_trust_failed: coaTrust.failed,
+    lab_restock_scanned: labRestock.scanned,
+    lab_restock_renewal_orders: labRestock.renewal_orders_created,
+    lab_restock_reused_sessions: labRestock.reused_sessions,
+    lab_restock_emails_sent: labRestock.emails_sent,
+    lab_restock_failed: labRestock.failed,
+    peptide_refill_dunning_scanned: peptideDunning.scanned,
+    peptide_refill_dunning_reminder_sent: peptideDunning.reminder_sent,
+    peptide_refill_dunning_final_sent: peptideDunning.final_sent,
+    peptide_refill_dunning_paused: peptideDunning.paused,
+    peptide_refill_dunning_failed: peptideDunning.failed
   }
 }

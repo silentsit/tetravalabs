@@ -24,6 +24,8 @@ export type OrderEmailItem = {
   quantity: number
   unitPrice: number
   handle?: string
+  variantId?: string
+  productId?: string
 }
 
 export type PaymentMethod = "crypto" | "card"
@@ -472,13 +474,33 @@ export function normalizeOrderEmailItems(value: unknown): OrderEmailItem[] {
         typeof (item as OrderEmailItem).quantity === "number" &&
         typeof (item as OrderEmailItem).unitPrice === "number"
     )
-    .map((item) => ({
-      title: item.title,
-      variantTitle: item.variantTitle,
-      quantity: item.quantity,
-      unitPrice: item.unitPrice,
-      handle: typeof item.handle === "string" && item.handle.trim() ? item.handle.trim() : undefined
-    }))
+    .map((item) => {
+      const raw = item as OrderEmailItem & Record<string, unknown>
+      const variantId =
+        typeof raw.variantId === "string" && raw.variantId.trim()
+          ? raw.variantId.trim()
+          : typeof raw.variant_id === "string" && raw.variant_id.trim()
+            ? String(raw.variant_id).trim()
+            : undefined
+      const productId =
+        typeof raw.productId === "string" && raw.productId.trim()
+          ? raw.productId.trim()
+          : typeof raw.product_id === "string" && raw.product_id.trim()
+            ? String(raw.product_id).trim()
+            : undefined
+      return {
+        title: item.title,
+        variantTitle: item.variantTitle,
+        quantity: item.quantity,
+        unitPrice: item.unitPrice,
+        handle:
+          typeof item.handle === "string" && item.handle.trim()
+            ? item.handle.trim()
+            : undefined,
+        variantId,
+        productId
+      }
+    })
 }
 
 export function orderLabelFrom(displayId: number | null | undefined, orderId: string) {
@@ -695,7 +717,18 @@ type ReplenishmentEmailInput = {
   ordersUrl: string
   shopUrl: string
   contactUrl: string
+  /** Signed one-click reorder deep link */
+  reorderUrl?: string | null
   step: 1 | 2 | 3
+}
+
+function renderPrimaryReorderCta(reorderUrl: string | null | undefined, fallbackUrl: string, label: string) {
+  const href = reorderUrl?.trim() || fallbackUrl
+  return `
+      <a href="${escapeHtml(href)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
+        ${escapeHtml(label)}
+      </a>`
 }
 
 /** R1–R3 soft replenishment (reorder prior SKUs). */
@@ -704,6 +737,7 @@ export function buildReplenishmentEmail(input: ReplenishmentEmailInput) {
   const items = input.items || []
   const productLinks = renderProductReorderLinks(items)
   const promo = input.step === 2 ? renderPromoBlock("EMAIL_PROMO_REPLENISHMENT") : ""
+  const reorderUrl = input.reorderUrl?.trim() || null
 
   if (input.step === 1) {
     const html = emailShell(`
@@ -711,16 +745,13 @@ export function buildReplenishmentEmail(input: ReplenishmentEmailInput) {
       <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
         Hi ${escapeHtml(firstName)}, about a month ago we shipped
         <strong style="color:#E8E8F0;">${escapeHtml(input.orderLabel)}</strong>.
-        If your lab needs the same compounds again, you can reorder from the product pages below.
+        If your lab needs the same compounds again, reorder in one click — or open a product page below.
       </p>
       ${productLinks || renderItems(items)}
       <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
-        This is not an automated refill schedule — just a soft reminder in case you are planning another research order.
+        This is not an automated Peptide Refill — just a soft reminder for a one-time research reorder.
       </p>
-      <a href="${escapeHtml(input.ordersUrl)}"
-         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
-        View order history
-      </a>
+      ${renderPrimaryReorderCta(reorderUrl, input.ordersUrl, "Reorder these compounds")}
       <a href="${escapeHtml(input.shopUrl)}"
          style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
         Shop all compounds
@@ -741,16 +772,17 @@ export function buildReplenishmentEmail(input: ReplenishmentEmailInput) {
         <strong style="color:#E8E8F0;">${escapeHtml(input.orderLabel)}</strong>.
       </p>
       <p style="margin:0 0 8px;color:#8A8AA0;font-size:14px;line-height:1.5;">
-        If stock planning for your lab still includes any of these SKUs, the links below go straight to the product pages:
+        If stock planning for your lab still includes any of these SKUs, use the one-click reorder link or product pages:
       </p>
       ${productLinks || renderItems(items)}
       ${promo}
       <p style="margin:0 0 20px;color:#8A8AA0;font-size:14px;line-height:1.5;">
         If you already reordered elsewhere or do not need more, you can ignore this email.
       </p>
+      ${renderPrimaryReorderCta(reorderUrl, input.shopUrl, "Reorder these compounds")}
       <a href="${escapeHtml(input.shopUrl)}"
-         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
-        Reorder from catalog
+         style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
+        Browse catalog
       </a>
       ${ruoFooter(input.contactUrl)}
   `)
@@ -771,10 +803,7 @@ export function buildReplenishmentEmail(input: ReplenishmentEmailInput) {
         Your account and order history stay available whenever you need them.
         We will not send further reminders for this shipment.
       </p>
-      <a href="${escapeHtml(input.ordersUrl)}"
-         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
-        View past orders
-      </a>
+      ${renderPrimaryReorderCta(reorderUrl, input.ordersUrl, "Reorder these compounds")}
       <a href="${escapeHtml(input.shopUrl)}"
          style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
         Browse shop
@@ -840,4 +869,124 @@ export function buildStorefrontBlogUrl() {
 
 export function buildStorefrontCoaLibraryUrl() {
   return storefrontUrl("/coa-library")
+}
+
+export function buildStorefrontAccountRestocksUrl() {
+  return storefrontUrl("/account/restocks")
+}
+
+type LabRestockPaymentEmailInput = {
+  title: string
+  variantTitle?: string | null
+  cadenceDays: number
+  amountUsd: number
+  paymentUrl: string
+  accountUrl: string
+}
+
+export function buildLabRestockPaymentEmail(input: LabRestockPaymentEmailInput) {
+  const label = input.variantTitle
+    ? `${input.title} · ${input.variantTitle}`
+    : input.title
+  const html = emailShell(`
+    <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Peptide Refill payment due</h1>
+    <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+      Your scheduled Peptide Refill for <strong style="color:#E8E8F0;">${escapeHtml(label)}</strong>
+      is ready. Complete secure card checkout to release this research cycle shipment
+      (${input.cadenceDays}-day cadence).
+    </p>
+    <p style="margin:0 0 8px;color:#E8E8F0;font-size:16px;font-weight:600;">
+      Amount due: $${input.amountUsd.toFixed(2)} USD
+    </p>
+    <p style="margin:0 0 20px;color:#8A8AA0;font-size:13px;line-height:1.5;">
+      Peptide Refill is pay-as-you-go — no auto-charge. Skip, pause, or cancel anytime from your account.
+    </p>
+    <a href="${escapeHtml(input.paymentUrl)}"
+       style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
+      Pay &amp; ship refill
+    </a>
+    <a href="${escapeHtml(input.accountUrl)}"
+       style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
+      Manage refills
+    </a>
+    ${ruoFooter(buildStorefrontContactUrl())}
+  `)
+  return {
+    subject: `Peptide Refill due — ${label}`,
+    html
+  }
+}
+
+type PeptideRefillDunningEmailInput = LabRestockPaymentEmailInput & {
+  stage: 1 | 2 | 3
+}
+
+export function buildPeptideRefillDunningEmail(input: PeptideRefillDunningEmailInput) {
+  const label = input.variantTitle
+    ? `${input.title} · ${input.variantTitle}`
+    : input.title
+
+  if (input.stage === 3) {
+    const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Peptide Refill paused</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        We paused your Peptide Refill for <strong style="color:#E8E8F0;">${escapeHtml(label)}</strong>
+        because this cycle was not paid. No further invoices will be sent until you reactivate.
+      </p>
+      <p style="margin:0 0 20px;color:#8A8AA0;font-size:13px;line-height:1.5;">
+        Resume anytime from your account — the next research cycle invoice will be created immediately.
+      </p>
+      <a href="${escapeHtml(input.accountUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        Reactivate Peptide Refill
+      </a>
+      ${ruoFooter(buildStorefrontContactUrl())}
+    `)
+    return {
+      subject: `Peptide Refill paused — ${label}`,
+      html
+    }
+  }
+
+  const isFinal = input.stage === 2
+  const title = isFinal
+    ? "Final notice — Peptide Refill payment"
+    : "Reminder — Peptide Refill payment"
+  const body = isFinal
+    ? `This is the final notice for your unpaid Peptide Refill cycle for
+      <strong style="color:#E8E8F0;">${escapeHtml(label)}</strong>.
+      Complete checkout within 24 hours to keep the schedule active, or it will pause automatically.`
+    : `Friendly reminder: your Peptide Refill for
+      <strong style="color:#E8E8F0;">${escapeHtml(label)}</strong>
+      is still awaiting payment so we can release this research cycle shipment
+      (${input.cadenceDays}-day cadence).`
+
+  const html = emailShell(`
+    <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">${title}</h1>
+    <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+      ${body}
+    </p>
+    <p style="margin:0 0 8px;color:#E8E8F0;font-size:16px;font-weight:600;">
+      Amount due: $${input.amountUsd.toFixed(2)} USD
+    </p>
+    <p style="margin:0 0 20px;color:#8A8AA0;font-size:13px;line-height:1.5;">
+      Pay-as-you-go — no auto-charge. Manage cadence, skip, or pause from your account.
+    </p>
+    <a href="${escapeHtml(input.paymentUrl)}"
+       style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;margin-right:10px;">
+      Pay &amp; ship refill
+    </a>
+    <a href="${escapeHtml(input.accountUrl)}"
+       style="display:inline-block;color:#5EEAD4;text-decoration:underline;font-size:14px;padding:12px 0;">
+      Manage refills
+    </a>
+    ${ruoFooter(buildStorefrontContactUrl())}
+  `)
+
+  return {
+    subject: isFinal
+      ? `Final notice — Peptide Refill ${label}`
+      : `Reminder — Peptide Refill ${label}`,
+    html
+  }
 }

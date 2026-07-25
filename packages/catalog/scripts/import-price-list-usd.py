@@ -53,9 +53,61 @@ def parse_strength(full_name: str) -> tuple[str, str]:
     return base, strength
 
 
+def _detect_pack_columns(ws) -> dict[str, int]:
+    """
+    Support both workbook layouts:
+    - Legacy: ref, 5tot, 5per, 5save, 10tot, 10per, 10save, 20tot, 20per, 20save
+    - 2026-07: ref, 5tot, 5sgd, 5per, 5save, 10tot, 10per, 10save, 20tot, 20per, 20save
+    """
+    headers = {
+        c: str(ws.cell(3, c).value or "").lower().replace("\n", " ")
+        for c in range(1, 16)
+    }
+
+    def find_col(*needles: str) -> int | None:
+        for col, text in headers.items():
+            if all(n in text for n in needles):
+                return col
+        return None
+
+    ref = find_col("1-vial") or find_col("ref") or 4
+    tot5 = find_col("5-vial", "total ($)") or find_col("5-vial", "total") or 5
+    per5 = find_col("5-vial", "per unit") or 6
+    save5 = find_col("5-vial", "savings") or 7
+    tot10 = find_col("10-vial", "total") or 8
+    per10 = find_col("10-vial", "per unit") or 9
+    save10 = find_col("10-vial", "savings") or 10
+    tot20 = find_col("20-vial", "total") or 11
+    per20 = find_col("20-vial", "per unit") or 12
+    save20 = find_col("20-vial", "savings") or 13
+
+    # If a SGD total column sits between 5-total and 5-per, header finder still wins.
+    return {
+        "ref": ref,
+        "tot5": tot5,
+        "per5": per5,
+        "save5": save5,
+        "tot10": tot10,
+        "per10": per10,
+        "save10": save10,
+        "tot20": tot20,
+        "per20": per20,
+        "save20": save20,
+    }
+
+
+def _num(value, *, required: bool = True) -> float | None:
+    if value is None or value == "":
+        if required:
+            raise ValueError("missing numeric cell")
+        return None
+    return float(value)
+
+
 def load_workbook_rows(xlsx_path: Path) -> list[dict]:
     wb = openpyxl.load_workbook(xlsx_path, data_only=True)
     ws = wb["Price List USD"]
+    cols = _detect_pack_columns(ws)
     rows: list[dict] = []
     current_category = ""
 
@@ -69,35 +121,42 @@ def load_workbook_rows(xlsx_path: Path) -> list[dict]:
             continue
 
         product_name = str(product_cell).strip()
+        try:
+            pack_tiers = [
+                {
+                    "tier": "5 vials",
+                    "qty": 5,
+                    "price_usd": round(_num(ws.cell(row_idx, cols["tot5"]).value), 2),
+                    "per_unit_usd": round(_num(ws.cell(row_idx, cols["per5"]).value), 2),
+                    "savings_pct": round(_num(ws.cell(row_idx, cols["save5"]).value, required=False) or 0, 4),
+                },
+                {
+                    "tier": "10 vials",
+                    "qty": 10,
+                    "price_usd": round(_num(ws.cell(row_idx, cols["tot10"]).value), 2),
+                    "per_unit_usd": round(_num(ws.cell(row_idx, cols["per10"]).value), 2),
+                    "savings_pct": round(_num(ws.cell(row_idx, cols["save10"]).value, required=False) or 0, 4),
+                },
+                {
+                    "tier": "20 vials",
+                    "qty": 20,
+                    "price_usd": round(_num(ws.cell(row_idx, cols["tot20"]).value), 2),
+                    "per_unit_usd": round(_num(ws.cell(row_idx, cols["per20"]).value), 2),
+                    "savings_pct": round(_num(ws.cell(row_idx, cols["save20"]).value, required=False) or 0, 4),
+                },
+            ]
+        except (TypeError, ValueError):
+            # Skip rows without full pack pricing (e.g. nasal sprays).
+            continue
+
+        ref = _num(ws.cell(row_idx, cols["ref"]).value, required=False)
         rows.append(
             {
                 "category": current_category,
                 "product_name": product_name,
                 "slug": slugify(product_name),
-                "ref_price_usd": ws.cell(row_idx, 4).value,
-                "pack_tiers": [
-                    {
-                        "tier": "5 vials",
-                        "qty": 5,
-                        "price_usd": round(float(ws.cell(row_idx, 5).value), 2),
-                        "per_unit_usd": round(float(ws.cell(row_idx, 6).value), 2),
-                        "savings_pct": round(float(ws.cell(row_idx, 7).value or 0), 4),
-                    },
-                    {
-                        "tier": "10 vials",
-                        "qty": 10,
-                        "price_usd": round(float(ws.cell(row_idx, 8).value), 2),
-                        "per_unit_usd": round(float(ws.cell(row_idx, 9).value), 2),
-                        "savings_pct": round(float(ws.cell(row_idx, 10).value or 0), 4),
-                    },
-                    {
-                        "tier": "20 vials",
-                        "qty": 20,
-                        "price_usd": round(float(ws.cell(row_idx, 11).value), 2),
-                        "per_unit_usd": round(float(ws.cell(row_idx, 12).value), 2),
-                        "savings_pct": round(float(ws.cell(row_idx, 13).value or 0), 4),
-                    },
-                ],
+                "ref_price_usd": ref,
+                "pack_tiers": pack_tiers,
             }
         )
     return rows
@@ -227,6 +286,7 @@ def main() -> int:
                 "storefront_category": storefront_category,
                 "name": item["product_name"],
                 "slug": item["slug"],
+                "ref_price_usd": item["ref_price_usd"],
                 "pack_tiers": item["pack_tiers"],
             }
         )

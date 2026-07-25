@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { withCompareAt, type PackTier } from "@/lib/pack-pricing"
+import { type PackTier } from "@/lib/pack-pricing"
 
 type Props = {
   tiers: PackTier[]
@@ -20,10 +20,7 @@ export function PackSizeSelector({
   onChange,
   showCompareAtPricing = false
 }: Props) {
-  const displayTiers = useMemo(
-    () => (showCompareAtPricing ? withCompareAt(tiers) : tiers),
-    [showCompareAtPricing, tiers]
-  )
+  const displayTiers = tiers
 
   const [internalQty, setInternalQty] = useState(value ?? displayTiers[0]?.qty ?? 5)
 

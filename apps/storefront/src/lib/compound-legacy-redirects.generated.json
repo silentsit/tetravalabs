@@ -1,4 +1,20 @@
 {
+  "bacteriostatic-water-3ml": {
+    "parent": "bacteriostatic-water",
+    "strength": "3ml"
+  },
+  "bacteriostatic-water-10ml": {
+    "parent": "bacteriostatic-water",
+    "strength": "10ml"
+  },
+  "benzyl-alcohol-3ml": {
+    "parent": "benzyl-alcohol",
+    "strength": "3ml"
+  },
+  "benzyl-alcohol-10ml": {
+    "parent": "benzyl-alcohol",
+    "strength": "10ml"
+  },
   "5-amino-1mq-5mg": {
     "parent": "5-amino-1mq",
     "strength": "5mg"
@@ -15,20 +31,20 @@
     "parent": "aod-9604",
     "strength": "10mg"
   },
-  "cagrilintide-semaglutide-5mg": {
-    "parent": "cagrilintide-semaglutide",
-    "strength": "5mg"
-  },
-  "cagrilintide-semaglutide-10mg": {
-    "parent": "cagrilintide-semaglutide",
-    "strength": "10mg"
-  },
   "cagrilintide-5mg": {
     "parent": "cagrilintide",
     "strength": "5mg"
   },
   "cagrilintide-10mg": {
     "parent": "cagrilintide",
+    "strength": "10mg"
+  },
+  "cagrilintide-semaglutide-5mg": {
+    "parent": "cagrilintide-semaglutide",
+    "strength": "5mg"
+  },
+  "cagrilintide-semaglutide-10mg": {
+    "parent": "cagrilintide-semaglutide",
     "strength": "10mg"
   },
   "mazdutide-5mg": {
@@ -103,162 +119,6 @@
     "parent": "tirzepatide",
     "strength": "50mg"
   },
-  "adipotide-2mg": {
-    "parent": "adipotide",
-    "strength": "2mg"
-  },
-  "adipotide-5mg": {
-    "parent": "adipotide",
-    "strength": "5mg"
-  },
-  "mots-c-5mg": {
-    "parent": "mots-c",
-    "strength": "5mg"
-  },
-  "mots-c-10mg": {
-    "parent": "mots-c",
-    "strength": "10mg"
-  },
-  "mots-c-20mg": {
-    "parent": "mots-c",
-    "strength": "20mg"
-  },
-  "mots-c-40mg": {
-    "parent": "mots-c",
-    "strength": "40mg"
-  },
-  "ss-31-10mg": {
-    "parent": "ss-31",
-    "strength": "10mg"
-  },
-  "ss-31-25mg": {
-    "parent": "ss-31",
-    "strength": "25mg"
-  },
-  "ss-31-50mg": {
-    "parent": "ss-31",
-    "strength": "50mg"
-  },
-  "bremelanotide-5mg": {
-    "parent": "bremelanotide",
-    "strength": "5mg"
-  },
-  "bremelanotide-10mg": {
-    "parent": "bremelanotide",
-    "strength": "10mg"
-  },
-  "dsip-5mg": {
-    "parent": "dsip",
-    "strength": "5mg"
-  },
-  "dsip-10mg": {
-    "parent": "dsip",
-    "strength": "10mg"
-  },
-  "dsip-15mg": {
-    "parent": "dsip",
-    "strength": "15mg"
-  },
-  "epithalon-10mg": {
-    "parent": "epithalon",
-    "strength": "10mg"
-  },
-  "epithalon-20mg": {
-    "parent": "epithalon",
-    "strength": "20mg"
-  },
-  "epithalon-50mg": {
-    "parent": "epithalon",
-    "strength": "50mg"
-  },
-  "kpv-5mg": {
-    "parent": "kpv",
-    "strength": "5mg"
-  },
-  "kpv-10mg": {
-    "parent": "kpv",
-    "strength": "10mg"
-  },
-  "kisspeptin-10-5mg": {
-    "parent": "kisspeptin-10",
-    "strength": "5mg"
-  },
-  "kisspeptin-10-10mg": {
-    "parent": "kisspeptin-10",
-    "strength": "10mg"
-  },
-  "nad-100mg": {
-    "parent": "nad",
-    "strength": "100mg"
-  },
-  "nad-500mg": {
-    "parent": "nad",
-    "strength": "500mg"
-  },
-  "nad-1000mg": {
-    "parent": "nad",
-    "strength": "1000mg"
-  },
-  "oxytocin-acetate-2mg": {
-    "parent": "oxytocin-acetate",
-    "strength": "2mg"
-  },
-  "oxytocin-acetate-5mg": {
-    "parent": "oxytocin-acetate",
-    "strength": "5mg"
-  },
-  "oxytocin-acetate-10mg": {
-    "parent": "oxytocin-acetate",
-    "strength": "10mg"
-  },
-  "selank-5mg": {
-    "parent": "selank",
-    "strength": "5mg"
-  },
-  "selank-10mg": {
-    "parent": "selank",
-    "strength": "10mg"
-  },
-  "semax-5mg": {
-    "parent": "semax",
-    "strength": "5mg"
-  },
-  "semax-10mg": {
-    "parent": "semax",
-    "strength": "10mg"
-  },
-  "thymosin-alpha-1-5mg": {
-    "parent": "thymosin-alpha-1",
-    "strength": "5mg"
-  },
-  "thymosin-alpha-1-10mg": {
-    "parent": "thymosin-alpha-1",
-    "strength": "10mg"
-  },
-  "bacteriostatic-water-3ml": {
-    "parent": "bacteriostatic-water",
-    "strength": "3ml"
-  },
-  "bacteriostatic-water-10ml": {
-    "parent": "bacteriostatic-water",
-    "strength": "10ml"
-  },
-  "benzyl-alcohol-3ml": {
-    "parent": "benzyl-alcohol",
-    "strength": "3ml"
-  },
-  "benzyl-alcohol-10ml": {
-    "parent": "benzyl-alcohol",
-    "strength": "10ml"
-  },
-  "glutathione-600mg": {
-    "parent": "glutathione",
-    "strength": "600mg"
-  },
-  "glutathione-1500mg": {
-    "parent": "glutathione",
-    "strength": "1500mg"
-  },
   "bpc-157-5mg": {
     "parent": "bpc-157",
     "strength": "5mg"
@@ -331,14 +191,6 @@
     "parent": "ipamorelin",
     "strength": "10mg"
   },
-  "ghk-cu-50mg": {
-    "parent": "ghk-cu",
-    "strength": "50mg"
-  },
-  "ghk-cu-100mg": {
-    "parent": "ghk-cu",
-    "strength": "100mg"
-  },
   "gonadorelin-2mg": {
     "parent": "gonadorelin",
     "strength": "2mg"
@@ -374,5 +226,145 @@
   "hgh-191aa-36-iu": {
     "parent": "hgh-191aa",
     "strength": "36-iu"
+  },
+  "adipotide-2mg": {
+    "parent": "adipotide",
+    "strength": "2mg"
+  },
+  "adipotide-5mg": {
+    "parent": "adipotide",
+    "strength": "5mg"
+  },
+  "mots-c-5mg": {
+    "parent": "mots-c",
+    "strength": "5mg"
+  },
+  "mots-c-10mg": {
+    "parent": "mots-c",
+    "strength": "10mg"
+  },
+  "mots-c-20mg": {
+    "parent": "mots-c",
+    "strength": "20mg"
+  },
+  "mots-c-40mg": {
+    "parent": "mots-c",
+    "strength": "40mg"
+  },
+  "ss-31-10mg": {
+    "parent": "ss-31",
+    "strength": "10mg"
+  },
+  "ss-31-25mg": {
+    "parent": "ss-31",
+    "strength": "25mg"
+  },
+  "ss-31-50mg": {
+    "parent": "ss-31",
+    "strength": "50mg"
+  },
+  "ghk-cu-50mg": {
+    "parent": "ghk-cu",
+    "strength": "50mg"
+  },
+  "ghk-cu-100mg": {
+    "parent": "ghk-cu",
+    "strength": "100mg"
+  },
+  "bremelanotide-5mg": {
+    "parent": "bremelanotide",
+    "strength": "5mg"
+  },
+  "bremelanotide-10mg": {
+    "parent": "bremelanotide",
+    "strength": "10mg"
+  },
+  "dsip-5mg": {
+    "parent": "dsip",
+    "strength": "5mg"
+  },
+  "dsip-10mg": {
+    "parent": "dsip",
+    "strength": "10mg"
+  },
+  "dsip-15mg": {
+    "parent": "dsip",
+    "strength": "15mg"
+  },
+  "epithalon-10mg": {
+    "parent": "epithalon",
+    "strength": "10mg"
+  },
+  "epithalon-20mg": {
+    "parent": "epithalon",
+    "strength": "20mg"
+  },
+  "epithalon-50mg": {
+    "parent": "epithalon",
+    "strength": "50mg"
+  },
+  "kisspeptin-10-5mg": {
+    "parent": "kisspeptin-10",
+    "strength": "5mg"
+  },
+  "kisspeptin-10-10mg": {
+    "parent": "kisspeptin-10",
+    "strength": "10mg"
+  },
+  "kpv-5mg": {
+    "parent": "kpv",
+    "strength": "5mg"
+  },
+  "kpv-10mg": {
+    "parent": "kpv",
+    "strength": "10mg"
+  },
+  "nad-100mg": {
+    "parent": "nad",
+    "strength": "100mg"
+  },
+  "nad-500mg": {
+    "parent": "nad",
+    "strength": "500mg"
+  },
+  "nad-1000mg": {
+    "parent": "nad",
+    "strength": "1000mg"
+  },
+  "oxytocin-acetate-2mg": {
+    "parent": "oxytocin-acetate",
+    "strength": "2mg"
+  },
+  "oxytocin-acetate-5mg": {
+    "parent": "oxytocin-acetate",
+    "strength": "5mg"
+  },
+  "oxytocin-acetate-10mg": {
+    "parent": "oxytocin-acetate",
+    "strength": "10mg"
+  },
+  "selank-5mg": {
+    "parent": "selank",
+    "strength": "5mg"
+  },
+  "selank-10mg": {
+    "parent": "selank",
+    "strength": "10mg"
+  },
+  "semax-5mg": {
+    "parent": "semax",
+    "strength": "5mg"
+  },
+  "semax-10mg": {
+    "parent": "semax",
+    "strength": "10mg"
+  },
+  "thymosin-alpha-1-5mg": {
+    "parent": "thymosin-alpha-1",
+    "strength": "5mg"
+  },
+  "thymosin-alpha-1-10mg": {
+    "parent": "thymosin-alpha-1",
+    "strength": "10mg"
   }
 }

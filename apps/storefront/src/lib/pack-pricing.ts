@@ -80,22 +80,41 @@ export function variantToPackTier(variant: StoreVariant): PackTier {
 }
 
 export function packTiersFromVariants(variants: StoreVariant[]): PackTier[] {
-  return variants
-    .filter(isPackTierVariant)
-    .map(variantToPackTier)
-    .sort((a, b) => a.qty - b.qty)
+  return withListPriceCompareAt(
+    variants
+      .filter(isPackTierVariant)
+      .map(variantToPackTier)
+      .sort((a, b) => a.qty - b.qty)
+  )
 }
 
 /**
- * Enrich pack tiers with MOQ-based compare-at prices for strikethrough UI.
- * MOQ = lowest-qty tier in the list (usually 5 vials).
+ * Derive 1-vial reference (list) price from pack-tier savings metadata.
+ * Catalog savings_pct is vs 1-vial Price for Ref, not vs the 5-vial MOQ.
  */
-export function withCompareAt(tiers: PackTier[]): PackTier[] {
+export function listPriceFromPackTiers(tiers: PackTier[]): number | null {
+  const implied = tiers
+    .filter((tier) => tier.savingsPct > 0 && tier.savingsPct < 1 && tier.perUnit > 0)
+    .map((tier) => tier.perUnit / (1 - tier.savingsPct))
+  if (!implied.length) return null
+  // Prefer the highest implied list (most conservative); snap near whole dollars.
+  const raw = Math.max(...implied)
+  const nearestDollar = Math.round(raw)
+  if (Math.abs(raw - nearestDollar) < 0.05) return nearestDollar
+  return Number(raw.toFixed(2))
+}
+
+/**
+ * Enrich pack tiers with 1-vial compare-at prices for strikethrough UI.
+ * Keeps catalog savingsPct (already vs 1-vial ref).
+ */
+export function withListPriceCompareAt(tiers: PackTier[]): PackTier[] {
   if (!tiers.length) return tiers
-  const moq = [...tiers].sort((a, b) => a.qty - b.qty)[0]
-  const compareAtPerUnit = moq.perUnit
+  const listPerUnit = listPriceFromPackTiers(tiers)
+  if (listPerUnit == null || listPerUnit <= 0) return tiers
 
   return tiers.map((tier) => {
+    const compareAtPerUnit = listPerUnit
     const compareAtPack = Number((compareAtPerUnit * tier.qty).toFixed(2))
     const savingsUsd = Number(Math.max(0, compareAtPack - tier.price).toFixed(2))
     return {
@@ -105,6 +124,11 @@ export function withCompareAt(tiers: PackTier[]): PackTier[] {
       savingsUsd
     }
   })
+}
+
+/** @deprecated Prefer withListPriceCompareAt — same behavior. */
+export function withCompareAt(tiers: PackTier[]): PackTier[] {
+  return withListPriceCompareAt(tiers)
 }
 
 export function strengthVariantsFromList(variants: StoreVariant[]): StoreVariant[] {

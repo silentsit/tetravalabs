@@ -1,11 +1,12 @@
 {
-  "source": "C:\\Users\\user\\Downloads\\Tetravalabs\\Price List USD 26_06_26.xlsx",
+  "source": "c:\\Users\\user\\Downloads\\Price List USD-250726.xlsx",
   "products": [
     {
       "category": "GLP-1 / Incretin",
-      "storefront_category": "GLP-1 Research",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "5-amino-1mq 10mg",
       "slug": "5-amino-1mq-10mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -32,9 +33,10 @@
     },
     {
       "category": "GLP-1 / Incretin",
-      "storefront_category": "GLP-1 Research",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "5-amino-1mq 5mg",
       "slug": "5-amino-1mq-5mg",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -64,6 +66,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "AOD-9604 10mg",
       "slug": "aod-9604-10mg",
+      "ref_price_usd": 95.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -93,6 +96,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "AOD-9604 5mg",
       "slug": "aod-9604-5mg",
+      "ref_price_usd": 55.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -122,6 +126,7 @@
       "storefront_category": "Research Blends",
       "name": "Cagrilintide + Semaglutide 10mg",
       "slug": "cagrilintide-semaglutide-10mg",
+      "ref_price_usd": 289.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -151,6 +156,7 @@
       "storefront_category": "Research Blends",
       "name": "Cagrilintide + Semaglutide 5mg",
       "slug": "cagrilintide-semaglutide-5mg",
+      "ref_price_usd": 159.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -180,6 +186,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Cagrilintide 10mg",
       "slug": "cagrilintide-10mg",
+      "ref_price_usd": 149.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -209,6 +216,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Cagrilintide 5mg",
       "slug": "cagrilintide-5mg",
+      "ref_price_usd": 79.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -238,6 +246,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Mazdutide 10mg",
       "slug": "mazdutide-10mg",
+      "ref_price_usd": 119.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -267,6 +276,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Mazdutide 5mg",
       "slug": "mazdutide-5mg",
+      "ref_price_usd": 79.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -296,6 +306,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 100mg",
       "slug": "retatrutide-100mg",
+      "ref_price_usd": 909.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -325,6 +336,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 10mg",
       "slug": "retatrutide-10mg",
+      "ref_price_usd": 129.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -354,6 +366,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 20mg",
       "slug": "retatrutide-20mg",
+      "ref_price_usd": 209.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -383,6 +396,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 50mg",
       "slug": "retatrutide-50mg",
+      "ref_price_usd": 459.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -412,6 +426,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 5mg",
       "slug": "retatrutide-5mg",
+      "ref_price_usd": 109.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -441,6 +456,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Semaglutide 10mg",
       "slug": "semaglutide-10mg",
+      "ref_price_usd": 129.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -470,6 +486,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Semaglutide 5mg",
       "slug": "semaglutide-5mg",
+      "ref_price_usd": 89.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -496,9 +513,10 @@
     },
     {
       "category": "GLP-1 / Incretin",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Sermorelin 10mg",
       "slug": "sermorelin-10mg",
+      "ref_price_usd": 109.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -525,9 +543,10 @@
     },
     {
       "category": "GLP-1 / Incretin",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Sermorelin 5mg",
       "slug": "sermorelin-5mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -557,6 +576,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Survodutide 10mg",
       "slug": "survodutide-10mg",
+      "ref_price_usd": 209.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -583,9 +603,10 @@
     },
     {
       "category": "GLP-1 / Incretin",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Tesamorelin 10mg",
       "slug": "tesamorelin-10mg",
+      "ref_price_usd": 129.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -612,9 +633,10 @@
     },
     {
       "category": "GLP-1 / Incretin",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Tesamorelin 20mg",
       "slug": "tesamorelin-20mg",
+      "ref_price_usd": 239.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -641,9 +663,10 @@
     },
     {
       "category": "GLP-1 / Incretin",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Tesamorelin 5mg",
       "slug": "tesamorelin-5mg",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -673,6 +696,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 10mg",
       "slug": "tirzepatide-10mg",
+      "ref_price_usd": 89.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -702,6 +726,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 20mg",
       "slug": "tirzepatide-20mg",
+      "ref_price_usd": 179.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -731,6 +756,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 50mg",
       "slug": "tirzepatide-50mg",
+      "ref_price_usd": 429.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -760,6 +786,7 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 5mg",
       "slug": "tirzepatide-5mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -786,9 +813,10 @@
     },
     {
       "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "AICAR 50mg",
       "slug": "aicar-50mg",
+      "ref_price_usd": 55.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -815,9 +843,10 @@
     },
     {
       "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "Adipotide 2mg",
       "slug": "adipotide-2mg",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -844,9 +873,10 @@
     },
     {
       "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "Adipotide 5mg",
       "slug": "adipotide-5mg",
+      "ref_price_usd": 79.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -873,96 +903,10 @@
     },
     {
       "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
-      "name": "MOTS-c 10mg",
-      "slug": "mots-c-10mg",
-      "pack_tiers": [
-        {
-          "tier": "5 vials",
-          "qty": 5,
-          "price_usd": 345.0,
-          "per_unit_usd": 69.0,
-          "savings_pct": 0.1375
-        },
-        {
-          "tier": "10 vials",
-          "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
-          "savings_pct": 0.2625
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 980.0,
-          "per_unit_usd": 49.0,
-          "savings_pct": 0.3875
-        }
-      ]
-    },
-    {
-      "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
-      "name": "MOTS-c 20mg",
-      "slug": "mots-c-20mg",
-      "pack_tiers": [
-        {
-          "tier": "5 vials",
-          "qty": 5,
-          "price_usd": 445.0,
-          "per_unit_usd": 89.0,
-          "savings_pct": 0.11
-        },
-        {
-          "tier": "10 vials",
-          "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
-          "savings_pct": 0.21
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1380.0,
-          "per_unit_usd": 69.0,
-          "savings_pct": 0.31
-        }
-      ]
-    },
-    {
-      "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
-      "name": "MOTS-c 40mg",
-      "slug": "mots-c-40mg",
-      "pack_tiers": [
-        {
-          "tier": "5 vials",
-          "qty": 5,
-          "price_usd": 795.0,
-          "per_unit_usd": 159.0,
-          "savings_pct": 0.0647
-        },
-        {
-          "tier": "10 vials",
-          "qty": 10,
-          "price_usd": 1490.0,
-          "per_unit_usd": 149.0,
-          "savings_pct": 0.1235
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2700.0,
-          "per_unit_usd": 135.0,
-          "savings_pct": 0.2059
-        }
-      ]
-    },
-    {
-      "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "MOTS-c 5mg",
       "slug": "mots-c-5mg",
+      "ref_price_usd": 50.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -989,9 +933,100 @@
     },
     {
       "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
+      "name": "MOTS-c 10mg",
+      "slug": "mots-c-10mg",
+      "ref_price_usd": 80.0,
+      "pack_tiers": [
+        {
+          "tier": "5 vials",
+          "qty": 5,
+          "price_usd": 345.0,
+          "per_unit_usd": 69.0,
+          "savings_pct": 0.1375
+        },
+        {
+          "tier": "10 vials",
+          "qty": 10,
+          "price_usd": 590.0,
+          "per_unit_usd": 59.0,
+          "savings_pct": 0.2625
+        },
+        {
+          "tier": "20 vials",
+          "qty": 20,
+          "price_usd": 980.0,
+          "per_unit_usd": 49.0,
+          "savings_pct": 0.3875
+        }
+      ]
+    },
+    {
+      "category": "Mitochondrial / Metabolic Other",
+      "storefront_category": "Metabolic & Mitochondrial",
+      "name": "MOTS-c 20mg",
+      "slug": "mots-c-20mg",
+      "ref_price_usd": 120.0,
+      "pack_tiers": [
+        {
+          "tier": "5 vials",
+          "qty": 5,
+          "price_usd": 445.0,
+          "per_unit_usd": 89.0,
+          "savings_pct": 0.11
+        },
+        {
+          "tier": "10 vials",
+          "qty": 10,
+          "price_usd": 790.0,
+          "per_unit_usd": 79.0,
+          "savings_pct": 0.21
+        },
+        {
+          "tier": "20 vials",
+          "qty": 20,
+          "price_usd": 1380.0,
+          "per_unit_usd": 69.0,
+          "savings_pct": 0.31
+        }
+      ]
+    },
+    {
+      "category": "Mitochondrial / Metabolic Other",
+      "storefront_category": "Metabolic & Mitochondrial",
+      "name": "MOTS-c 40mg",
+      "slug": "mots-c-40mg",
+      "ref_price_usd": 200.0,
+      "pack_tiers": [
+        {
+          "tier": "5 vials",
+          "qty": 5,
+          "price_usd": 795.0,
+          "per_unit_usd": 159.0,
+          "savings_pct": 0.0647
+        },
+        {
+          "tier": "10 vials",
+          "qty": 10,
+          "price_usd": 1490.0,
+          "per_unit_usd": 149.0,
+          "savings_pct": 0.1235
+        },
+        {
+          "tier": "20 vials",
+          "qty": 20,
+          "price_usd": 2700.0,
+          "per_unit_usd": 135.0,
+          "savings_pct": 0.2059
+        }
+      ]
+    },
+    {
+      "category": "Mitochondrial / Metabolic Other",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "SS-31 10mg",
       "slug": "ss-31-10mg",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1018,9 +1053,10 @@
     },
     {
       "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
-      "name": "SS-31 25mg",
-      "slug": "ss-31-25mg",
+      "storefront_category": "Metabolic & Mitochondrial",
+      "name": "SS-31 20mg",
+      "slug": "ss-31-20mg",
+      "ref_price_usd": 109.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1047,9 +1083,10 @@
     },
     {
       "category": "Mitochondrial / Metabolic Other",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "SS-31 50mg",
       "slug": "ss-31-50mg",
+      "ref_price_usd": 199.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1076,9 +1113,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "ARA-290 10mg",
       "slug": "ara-290-10mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1105,9 +1143,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Bremelanotide 10mg",
       "slug": "bremelanotide-10mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1134,9 +1173,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Bremelanotide 5mg",
       "slug": "bremelanotide-5mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1163,9 +1203,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "DSIP 10mg",
       "slug": "dsip-10mg",
+      "ref_price_usd": 45.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1192,9 +1233,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "DSIP 15mg",
       "slug": "dsip-15mg",
+      "ref_price_usd": 80.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1221,9 +1263,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "DSIP 5mg",
       "slug": "dsip-5mg",
+      "ref_price_usd": 30.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1250,9 +1293,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Dermorphin 5mg",
       "slug": "dermorphin-5mg",
+      "ref_price_usd": 79.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1279,9 +1323,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Epithalon 10mg",
       "slug": "epithalon-10mg",
+      "ref_price_usd": 45.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1308,9 +1353,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Epithalon 20mg",
       "slug": "epithalon-20mg",
+      "ref_price_usd": 70.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1337,9 +1383,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Epithalon 50mg",
       "slug": "epithalon-50mg",
+      "ref_price_usd": 120.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1366,9 +1413,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "FOXO4-DRI 10mg",
       "slug": "foxo4-dri-10mg",
+      "ref_price_usd": 149.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1395,9 +1443,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "KPV 10mg",
       "slug": "kpv-10mg",
+      "ref_price_usd": 55.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1424,9 +1473,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "KPV 5mg",
       "slug": "kpv-5mg",
+      "ref_price_usd": 35.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1453,9 +1503,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Kisspeptin-10 10mg",
       "slug": "kisspeptin-10-10mg",
+      "ref_price_usd": 65.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1482,9 +1533,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Kisspeptin-10 5mg",
       "slug": "kisspeptin-10-5mg",
+      "ref_price_usd": 25.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1511,9 +1563,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "LL-37 5mg",
       "slug": "ll-37-5mg",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1540,9 +1593,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "NAD+ 1000mg",
       "slug": "nad-1000mg",
+      "ref_price_usd": 150.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1569,9 +1623,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "NAD+ 100mg",
       "slug": "nad-100mg",
+      "ref_price_usd": 40.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1598,9 +1653,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "NAD+ 500mg",
       "slug": "nad-500mg",
+      "ref_price_usd": 75.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1627,9 +1683,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Oxytocin Acetate 10mg",
       "slug": "oxytocin-acetate-10mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1656,9 +1713,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Oxytocin Acetate 2mg",
       "slug": "oxytocin-acetate-2mg",
+      "ref_price_usd": 25.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1685,9 +1743,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Oxytocin Acetate 5mg",
       "slug": "oxytocin-acetate-5mg",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1714,9 +1773,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Selank 10mg",
       "slug": "selank-10mg",
+      "ref_price_usd": 50.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1743,9 +1803,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Selank 5mg",
       "slug": "selank-5mg",
+      "ref_price_usd": 35.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1772,9 +1833,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Semax 10mg",
       "slug": "semax-10mg",
+      "ref_price_usd": 55.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1801,39 +1863,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
-      "name": "Selank Nasal Spray 10mg",
-      "slug": "selank-nasal-spray-10mg",
-      "pack_tiers": [
-        {
-          "tier": "1 unit",
-          "qty": 1,
-          "price_usd": 1.0,
-          "per_unit_usd": 1.0,
-          "savings_pct": 0
-        }
-      ]
-    },
-    {
-      "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
-      "name": "Semax Nasal Spray 10mg",
-      "slug": "semax-nasal-spray-10mg",
-      "pack_tiers": [
-        {
-          "tier": "1 unit",
-          "qty": 1,
-          "price_usd": 79.0,
-          "per_unit_usd": 79.0,
-          "savings_pct": 0
-        }
-      ]
-    },
-    {
-      "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Semax 5mg",
       "slug": "semax-5mg",
+      "ref_price_usd": 35.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1860,9 +1893,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Thymalin 10mg",
       "slug": "thymalin-10mg",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1889,9 +1923,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Thymosin alpha-1 10mg",
       "slug": "thymosin-alpha-1-10mg",
+      "ref_price_usd": 119.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1918,9 +1953,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Thymosin alpha-1 5mg",
       "slug": "thymosin-alpha-1-5mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1947,9 +1983,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "VIP 10mg",
       "slug": "vip-10mg",
+      "ref_price_usd": 99.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -1976,9 +2013,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Pinealon 10mg",
       "slug": "pinealon-10mg",
+      "ref_price_usd": 75.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2005,9 +2043,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Humanin 10mg",
       "slug": "humanin-10mg",
+      "ref_price_usd": 129.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2034,9 +2073,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Adamax 10mg",
       "slug": "adamax-10mg",
+      "ref_price_usd": 79.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2063,9 +2103,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Dihexa 10mg",
       "slug": "dihexa-10mg",
+      "ref_price_usd": 99.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2092,9 +2133,10 @@
     },
     {
       "category": "Longevity / Thymic / Neuropeptides",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Cerebrolysin 10mg",
       "slug": "cerebrolysin-10mg",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2124,6 +2166,7 @@
       "storefront_category": "Lab Supplies",
       "name": "Acetic Acid Water 3ml",
       "slug": "acetic-acid-water-3ml",
+      "ref_price_usd": 10.99,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2153,6 +2196,7 @@
       "storefront_category": "Lab Supplies",
       "name": "Bacteriostatic Water 10ml",
       "slug": "bacteriostatic-water-10ml",
+      "ref_price_usd": 10.99,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2182,6 +2226,7 @@
       "storefront_category": "Lab Supplies",
       "name": "Bacteriostatic Water 3ml",
       "slug": "bacteriostatic-water-3ml",
+      "ref_price_usd": 8.99,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2211,6 +2256,7 @@
       "storefront_category": "Lab Supplies",
       "name": "Benzyl Alcohol 10ml",
       "slug": "benzyl-alcohol-10ml",
+      "ref_price_usd": 9.99,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2240,6 +2286,7 @@
       "storefront_category": "Lab Supplies",
       "name": "Benzyl Alcohol 3ml",
       "slug": "benzyl-alcohol-3ml",
+      "ref_price_usd": 7.99,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2266,9 +2313,10 @@
     },
     {
       "category": "Vitamins & Injectables",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "B-12 10mg",
       "slug": "b-12-10mg",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2295,9 +2343,10 @@
     },
     {
       "category": "Vitamins & Injectables",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "Glutathione 1500mg",
       "slug": "glutathione-1500mg",
+      "ref_price_usd": 99.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2324,9 +2373,10 @@
     },
     {
       "category": "Vitamins & Injectables",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "Glutathione 600mg",
       "slug": "glutathione-600mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2353,9 +2403,10 @@
     },
     {
       "category": "Vitamins & Injectables",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "L-Carnitine 600mg (10ml)",
       "slug": "l-carnitine-600mg-10ml",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2382,9 +2433,10 @@
     },
     {
       "category": "Vitamins & Injectables",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "Lemon Bottle 10ml",
       "slug": "lemon-bottle-10ml",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2411,9 +2463,10 @@
     },
     {
       "category": "Vitamins & Injectables",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "Lipo-C 10ml",
       "slug": "lipo-c-10ml",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2440,9 +2493,10 @@
     },
     {
       "category": "Vitamins & Injectables",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Metabolic & Mitochondrial",
       "name": "MK-677 5mg",
       "slug": "mk-677-5mg",
+      "ref_price_usd": 55.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2469,9 +2523,10 @@
     },
     {
       "category": "BPC-157 / TB500",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "BPC-157 (Capsules) 100 count (500mcg)",
       "slug": "bpc-157-capsules-100-count-500mcg",
+      "ref_price_usd": 89.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2498,9 +2553,10 @@
     },
     {
       "category": "BPC-157 / TB500",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "BPC-157 10mg",
       "slug": "bpc-157-10mg",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2527,9 +2583,10 @@
     },
     {
       "category": "BPC-157 / TB500",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "BPC-157 5mg",
       "slug": "bpc-157-5mg",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2556,9 +2613,10 @@
     },
     {
       "category": "BPC-157 / TB500",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "TB500 10mg",
       "slug": "tb500-10mg",
+      "ref_price_usd": 89.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2585,9 +2643,10 @@
     },
     {
       "category": "BPC-157 / TB500",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "TB500 5mg",
       "slug": "tb500-5mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2615,8 +2674,9 @@
     {
       "category": "Blends",
       "storefront_category": "Research Blends",
-      "name": "BPC-157 + TB-500 Blend (10mg)",
+      "name": "BPC-157 5mg + TB500 5mg (10mg)",
       "slug": "bpc-157-5mg-tb500-5mg-10mg",
+      "ref_price_usd": 109.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2644,8 +2704,9 @@
     {
       "category": "Blends",
       "storefront_category": "Research Blends",
-      "name": "BPC-157 + TB-500 Blend (20mg)",
+      "name": "BPC-157 5mg + TB500 5mg (20mg)",
       "slug": "bpc-157-5mg-tb500-5mg-20mg",
+      "ref_price_usd": 149.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2675,6 +2736,7 @@
       "storefront_category": "Research Blends",
       "name": "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg (80mg)",
       "slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+      "ref_price_usd": 229.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2704,6 +2766,7 @@
       "storefront_category": "Research Blends",
       "name": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
       "slug": "glow-bpc-157-tb500-ghk-cu-30mg",
+      "ref_price_usd": 89.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2733,6 +2796,7 @@
       "storefront_category": "Research Blends",
       "name": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
       "slug": "glow-bpc-157-tb500-ghk-cu-85mg",
+      "ref_price_usd": 189.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2762,6 +2826,7 @@
       "storefront_category": "Research Blends",
       "name": "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg (70mg)",
       "slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+      "ref_price_usd": 149.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2788,9 +2853,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 with DAC 10mg",
       "slug": "cjc-1295-with-dac-10mg",
+      "ref_price_usd": 259.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2817,9 +2883,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 with DAC 5mg",
       "slug": "cjc-1295-with-dac-5mg",
+      "ref_price_usd": 139.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2849,6 +2916,7 @@
       "storefront_category": "Research Blends",
       "name": "CJC-1295 without DAC / Ipamorelin Blend 10mg",
       "slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+      "ref_price_usd": 79.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2878,6 +2946,7 @@
       "storefront_category": "Research Blends",
       "name": "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend 5mg",
       "slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
+      "ref_price_usd": 109.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2904,9 +2973,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 without DAC 10mg",
       "slug": "cjc-1295-without-dac-10mg",
+      "ref_price_usd": 89.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2933,9 +3003,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 without DAC 5mg",
       "slug": "cjc-1295-without-dac-5mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2962,9 +3033,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-2 Acetate 10mg",
       "slug": "ghrp-2-acetate-10mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -2991,9 +3063,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-2 Acetate 5mg",
       "slug": "ghrp-2-acetate-5mg",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3020,9 +3093,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-6 Acetate 10mg",
       "slug": "ghrp-6-acetate-10mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3049,9 +3123,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-6 Acetate 5mg",
       "slug": "ghrp-6-acetate-5mg",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3078,9 +3153,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Hexarelin Acetate 2mg",
       "slug": "hexarelin-acetate-2mg",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3107,9 +3183,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Hexarelin Acetate 5mg",
       "slug": "hexarelin-acetate-5mg",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3136,9 +3213,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Ipamorelin 10mg",
       "slug": "ipamorelin-10mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3165,9 +3243,10 @@
     },
     {
       "category": "CJC / Ipamorelin / GHRP",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Ipamorelin 5mg",
       "slug": "ipamorelin-5mg",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3194,9 +3273,10 @@
     },
     {
       "category": "Cosmetic / Copper / Tanning",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "GHK-Cu 100mg",
       "slug": "ghk-cu-100mg",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3223,9 +3303,10 @@
     },
     {
       "category": "Cosmetic / Copper / Tanning",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "GHK-Cu 50mg",
       "slug": "ghk-cu-50mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3252,9 +3333,10 @@
     },
     {
       "category": "Cosmetic / Copper / Tanning",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "Melanotan 1 10mg",
       "slug": "melanotan-1-10mg",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3281,9 +3363,10 @@
     },
     {
       "category": "Cosmetic / Copper / Tanning",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "Melanotan 2 10mg",
       "slug": "melanotan-2-10mg",
+      "ref_price_usd": 35.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3310,9 +3393,10 @@
     },
     {
       "category": "Cosmetic / Copper / Tanning",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Tissue Repair",
       "name": "Snap-8 10mg",
       "slug": "snap-8-10mg",
+      "ref_price_usd": 35.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3339,9 +3423,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Gonadorelin 10mg",
       "slug": "gonadorelin-10mg",
+      "ref_price_usd": 89.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3368,9 +3453,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "Gonadorelin 2mg",
       "slug": "gonadorelin-2mg",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3397,9 +3483,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HCG 10000 IU",
       "slug": "hcg-10000-iu",
+      "ref_price_usd": 69.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3426,9 +3513,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HCG 5000 IU",
       "slug": "hcg-5000-iu",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3455,9 +3543,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 10 IU",
       "slug": "hgh-191aa-10-iu",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3484,9 +3573,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 12 IU",
       "slug": "hgh-191aa-12-iu",
+      "ref_price_usd": 55.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3513,9 +3603,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 15 IU",
       "slug": "hgh-191aa-15-iu",
+      "ref_price_usd": 59.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3542,9 +3633,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 24 IU",
       "slug": "hgh-191aa-24-iu",
+      "ref_price_usd": 79.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3571,9 +3663,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 36 IU",
       "slug": "hgh-191aa-36-iu",
+      "ref_price_usd": 85.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3600,9 +3693,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "HMG 75 IU",
       "slug": "hmg-75-iu",
+      "ref_price_usd": 39.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3629,9 +3723,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "IGF-1 LR3 0.1mg",
       "slug": "igf-1-lr3-0-1mg",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3658,9 +3753,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "IGF-1 LR3 1mg",
       "slug": "igf-1-lr3-1mg",
+      "ref_price_usd": 150.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3687,9 +3783,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "MGF 2mg",
       "slug": "mgf-2mg",
+      "ref_price_usd": 29.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3716,9 +3813,10 @@
     },
     {
       "category": "Growth Hormone Axis",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Growth Hormone Axis",
       "name": "PEG-MGF 2mg",
       "slug": "peg-mgf-2mg",
+      "ref_price_usd": 49.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3745,9 +3843,10 @@
     },
     {
       "category": "Legacy Catalog",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "L-Glu 100mg",
       "slug": "l-glu-100mg",
+      "ref_price_usd": 40.0,
       "pack_tiers": [
         {
           "tier": "5 vials",
@@ -3774,9 +3873,10 @@
     },
     {
       "category": "Legacy Catalog",
-      "storefront_category": "Growth Factors",
+      "storefront_category": "Longevity & Neuropeptides",
       "name": "Pinealon (Capsules) (100 count)",
       "slug": "pinealon-capsules-100-count",
+      "ref_price_usd": 99.0,
       "pack_tiers": [
         {
           "tier": "5 vials",

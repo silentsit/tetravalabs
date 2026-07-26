@@ -73,6 +73,21 @@ const storefrontEnrichmentPath = path.join(
   "product-enrichment.generated.json"
 )
 const enrichmentPath = path.join(workspaceRoot, "packages", "catalog", "data", "product-enrichment.json")
+const productOverviewsPath = path.join(
+  workspaceRoot,
+  "packages",
+  "catalog",
+  "data",
+  "product-overviews.json"
+)
+const storefrontOverviewsPath = path.join(
+  workspaceRoot,
+  "apps",
+  "storefront",
+  "src",
+  "lib",
+  "product-overviews.generated.json"
+)
 
 const slugify = (value) =>
   value
@@ -375,6 +390,14 @@ const run = async () => {
     `${JSON.stringify(enrichmentByHandle, null, 2)}\n`,
     "utf8"
   )
+
+  try {
+    await fs.copyFile(productOverviewsPath, storefrontOverviewsPath)
+    console.log(`Copied product overviews to ${storefrontOverviewsPath.replaceAll("\\", "/")}`)
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error
+    console.warn("product-overviews.json missing — skip storefront overview copy")
+  }
 
   console.log(
     `Normalized ${catalog.products.length} products (${mergeGroups.size} compound merges) to ${outputPath.replaceAll("\\", "/")}`

@@ -1,6 +1,7 @@
 import compoundFamilies from "@/lib/compound-families.generated.json"
 import compoundLegacyRedirects from "@/lib/compound-legacy-redirects.generated.json"
 import productEnrichment from "@/lib/product-enrichment.generated.json"
+import productOverviews from "@/lib/product-overviews.generated.json"
 import {
   getProductByHandle,
   listCoasByVariant,
@@ -218,11 +219,102 @@ function stripStrengthFromTitle(title: string): string {
   return cleaned || title
 }
 
-function researchSummaryFor(product: StoreProduct, displayName: string): string {
-  const custom = String(product.metadata?.research_summary || "").trim()
+type ResearchForm = "nasal" | "capsule" | "liquid" | "powder"
+
+function detectResearchForm(appearance?: string, handle?: string, title?: string): ResearchForm {
+  const hay = `${appearance || ""} ${handle || ""} ${title || ""}`.toLowerCase()
+  if (/nasal/.test(hay)) return "nasal"
+  if (/capsule/.test(hay)) return "capsule"
+  if (
+    /bacteriostatic|acetic acid|benzyl alcohol|solvent|solution|injectable|lipo-c|lemon bottle|l-carnitine/.test(
+      hay
+    ) ||
+    (/\d+\s*ml\b/.test(hay) && !/\d+\s*mg\b/.test(hay))
+  ) {
+    return "liquid"
+  }
+  return "powder"
+}
+
+function researchFormParagraph(productName: string, form: ResearchForm): string {
+  switch (form) {
+    case "nasal":
+      return `${productName} is supplied as a nasal spray formulation for controlled laboratory handling. Keep sealed and store per the product specifications until use under sterile laboratory conditions.`
+    case "capsule":
+      return `${productName} is supplied in capsule form for measured research workflows. Store in a cool, dry environment and handle according to your laboratory protocol.`
+    case "liquid":
+      return `${productName} is supplied as a ready research liquid for laboratory use. Handle under sterile conditions and follow the published storage guidance for this SKU.`
+    default:
+      return `${productName} is supplied as lyophilized powder for stability during storage and transport. Reconstitution should be performed under sterile laboratory conditions.`
+  }
+}
+
+type OverviewRow = { paragraphs?: string[] }
+
+const OVERVIEWS_BY_HANDLE = productOverviews as Record<string, OverviewRow>
+
+function overviewParagraphsForHandle(...keys: Array<string | null | undefined>): string[] | null {
+  for (const key of keys) {
+    if (!key) continue
+    const paragraphs = OVERVIEWS_BY_HANDLE[key]?.paragraphs
+    if (Array.isArray(paragraphs) && paragraphs.length) return paragraphs
+  }
+  return null
+}
+
+function fillOverviewTemplate(paragraphs: string[], productName: string): string {
+  return paragraphs
+    .map((paragraph) => paragraph.replaceAll("{productName}", productName).trim())
+    .filter(Boolean)
+    .join("\n\n")
+}
+
+/** SEO product overview (2–3 paragraphs). Always includes “buy <product name> online”. */
+export function buildResearchOverview(input: {
+  productName: string
+  category?: string
+  appearance?: string
+  handle?: string
+  parentHandle?: string
+  customSummary?: string | null
+}): string {
+  const custom = String(input.customSummary || "").trim()
   if (custom) return custom
-  const category = String(product.metadata?.source_category || "research peptide")
-  return `${displayName} is supplied for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing where COA documents are published.`
+
+  const productName = input.productName.trim() || "this compound"
+  const curated = overviewParagraphsForHandle(
+    input.parentHandle,
+    input.handle,
+    getCompoundParentHandle(input.handle || "")
+  )
+  if (curated) return fillOverviewTemplate(curated, productName)
+
+  const category = String(input.category || "research peptide").trim() || "research peptide"
+  const form = detectResearchForm(input.appearance, input.handle, productName)
+
+  const paragraphs = [
+    `Buy ${productName} online from Tetrava Labs for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing, with COA documents published when available.`,
+    researchFormParagraph(productName, form),
+    "For research use only — not for human or veterinary consumption."
+  ]
+
+  return paragraphs.join("\n\n")
+}
+
+function researchSummaryFor(
+  product: StoreProduct,
+  displayName: string,
+  categoryLabel?: string
+): string {
+  return buildResearchOverview({
+    productName: displayName,
+    category:
+      categoryLabel || String(product.metadata?.source_category || "research peptide"),
+    appearance: String(product.metadata?.appearance || ""),
+    handle: product.handle,
+    parentHandle: getCompoundParentHandle(product.handle) || product.handle,
+    customSummary: String(product.metadata?.research_summary || "")
+  })
 }
 
 function primaryVariantForCoa(variants: StoreVariant[]): StoreVariant | undefined {
@@ -351,7 +443,16 @@ function buildCompoundView(
     storage: pickMeta(meta, enrichment, "storage", "-20°C lyophilized"),
     appearance: pickMeta(meta, enrichment, "appearance", "Lyophilized powder"),
     sequence: pickMeta(meta, enrichment, "sequence", "N/A"),
-    researchSummary: researchSummaryFor(primary, displayName)
+    researchSummary: researchSummaryFor(
+      primary,
+      displayName,
+      enrichment.category ||
+        storefrontCategoryLabelForProduct(
+          parentHandle,
+          displayName,
+          String(primary.metadata?.source_category || "")
+        )
+    )
   }
 }
 
@@ -462,7 +563,16 @@ export async function getCompoundProductView(
     storage: pickMeta(meta, enrichment, "storage", "-20°C lyophilized"),
     appearance: pickMeta(meta, enrichment, "appearance", "Lyophilized powder"),
     sequence: pickMeta(meta, enrichment, "sequence", "N/A"),
-    researchSummary: researchSummaryFor(product, displayName)
+    researchSummary: researchSummaryFor(
+      product,
+      displayName,
+      enrichment.category ||
+        storefrontCategoryLabelForProduct(
+          handle,
+          displayName,
+          String(product.metadata?.source_category || "")
+        )
+    )
   }
 }
 

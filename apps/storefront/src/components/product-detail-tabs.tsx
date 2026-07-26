@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { Download } from "lucide-react"
 import type { StoreCoaDocument } from "@/lib/medusa"
@@ -33,7 +32,7 @@ type Props = {
   reviews: ProductReviewsResponse
 }
 
-const tabs = ["Overview", "Specifications", "Storage", "COA", "Shipping", "Reviews"] as const
+const tabs = ["Overview", "Specifications", "Storage", "COA", "Reviews"] as const
 type TabId = (typeof tabs)[number]
 
 function tabLabel(tab: TabId, reviewCount: number) {
@@ -76,13 +75,19 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
           {activeTab === "Overview" ? (
             <div className="grid gap-8 lg:grid-cols-2">
               <div>
-                <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Research Overview</h3>
-                <p className="text-sm leading-relaxed text-[#475569]">{product.researchSummary}</p>
-                <p className="mt-4 text-sm leading-relaxed text-[#475569]">
-                  Supplied as lyophilized powder for stability during storage and transport.
-                  Reconstitution should be performed under sterile laboratory conditions. For
-                  research use only — not for human or veterinary consumption.
-                </p>
+                <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Product Overview</h3>
+                {product.researchSummary
+                  .split(/\n\n+/)
+                  .map((paragraph) => paragraph.trim())
+                  .filter(Boolean)
+                  .map((paragraph, index) => (
+                    <p
+                      key={`${index}-${paragraph.slice(0, 24)}`}
+                      className={`text-sm leading-relaxed text-[#475569] ${index > 0 ? "mt-4" : ""}`}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
               </div>
               <div>
                 <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Analytical Data</h3>
@@ -175,24 +180,6 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
               ) : (
                 <p className="text-sm text-[#475569]">No batch documents published yet for this variant.</p>
               )}
-            </div>
-          ) : null}
-
-          {activeTab === "Shipping" ? (
-            <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-[#475569]">
-              <p>
-                Lyophilized peptides ship in temperature-controlled packaging with cold packs where
-                required. Orders are processed within 12 hours; delivery times vary by region
-                (see our shipping page for international windows).
-              </p>
-              <p>
-                Packages are shipped in plain, unmarked outer packaging. Tracking is provided when
-                your carrier supports it. See our{" "}
-                <Link href="/shipping" className="text-[#0D9488] hover:underline">
-                  shipping policy
-                </Link>{" "}
-                for restricted regions.
-              </p>
             </div>
           ) : null}
 

@@ -6,6 +6,7 @@ import type { ProductReviewsResponse } from "@/lib/reviews"
 import type { FaqItem } from "@/lib/faq-content"
 import {
   buildCompoundProductPath,
+  buildResearchOverview,
   compoundSeoName,
   pickDefaultPackQty,
   pickDefaultStrengthKey,
@@ -187,7 +188,14 @@ export function ProductCompoundView({
           storage: view.storage,
           appearance: view.appearance,
           sequence: view.sequence,
-          researchSummary: view.researchSummary
+          researchSummary: buildResearchOverview({
+            productName: compoundSeoName(view, selectedStrength.strengthKey),
+            category: view.categoryLabel,
+            appearance: view.appearance,
+            handle: selectedStrength.handle,
+            parentHandle: view.parentHandle,
+            customSummary: String(selectedStrength.metadata?.research_summary || "")
+          })
         }}
         productId={selectedStrength.productId}
         coas={coas}

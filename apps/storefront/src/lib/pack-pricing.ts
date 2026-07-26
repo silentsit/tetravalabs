@@ -38,7 +38,7 @@ const PACK_TITLE_RE = /^\d+\s+vials?$/i
 
 export function isPackTierVariant(variant: StoreVariant): boolean {
   const packQty = variant.metadata?.pack_qty
-  if (packQty != null && Number(packQty) > 1) return true
+  if (packQty != null && Number(packQty) >= 1) return true
   return PACK_TITLE_RE.test(variant.title.trim())
 }
 
@@ -89,10 +89,13 @@ export function packTiersFromVariants(variants: StoreVariant[]): PackTier[] {
 }
 
 /**
- * Derive 1-vial reference (list) price from pack-tier savings metadata.
- * Catalog savings_pct is vs 1-vial Price for Ref, not vs the 5-vial MOQ.
+ * Derive 1-vial reference (list) price.
+ * Prefer an explicit 1-vial tier; otherwise reverse savings_pct vs 1-vial ref.
  */
 export function listPriceFromPackTiers(tiers: PackTier[]): number | null {
+  const single = tiers.find((tier) => tier.qty === 1 && tier.perUnit > 0)
+  if (single) return Number(single.perUnit.toFixed(2))
+
   const implied = tiers
     .filter((tier) => tier.savingsPct > 0 && tier.savingsPct < 1 && tier.perUnit > 0)
     .map((tier) => tier.perUnit / (1 - tier.savingsPct))
@@ -253,9 +256,11 @@ export function formatShelfPrice(
       ? `$${minPerUnit.toFixed(2)} – $${maxPerUnit.toFixed(2)}`
       : `$${moq.perUnit.toFixed(2)}`
 
-  const moqLabel = `${moq.qty}-${unitWord} minimum`
   const packLabel = `packs from $${moq.price.toFixed(2)}`
-  const detail = `${moqLabel} · ${packLabel}`
+  const detail =
+    moq.qty <= 1
+      ? `from $${moq.perUnit.toFixed(2)}${unitSuffix} · ${packLabel}`
+      : `${moq.qty}-${unitWord} minimum · ${packLabel}`
 
   return { unitAmount, unitSuffix, detail, isPackProduct: true }
 }
@@ -275,7 +280,8 @@ export function formatShelfPriceFromUnitCents(input: {
   const unitAmount =
     min !== max ? `$${min.toFixed(2)} – $${max.toFixed(2)}` : `$${min.toFixed(2)}`
 
-  const moqLabel = input.moqQty ? `${input.moqQty}-${unitWord} minimum` : null
+  const moqLabel =
+    input.moqQty && input.moqQty > 1 ? `${input.moqQty}-${unitWord} minimum` : null
   const packLabel =
     input.packPriceMinCents != null && input.packPriceMinCents > 0
       ? `packs from $${(input.packPriceMinCents / 100).toFixed(2)}`

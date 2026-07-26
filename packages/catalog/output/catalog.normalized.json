@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T10:38:32.296Z",
+  "generated_at": "2026-07-26T11:36:59.613Z",
   "sku_scheme": "TV-####-##",
   "compound_merge": true,
   "products": [
@@ -28,6 +28,26 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "5-amino-1mq-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0002-01",
+          "handle": "5-amino-1mq-5mg-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "5-amino-1mq-5mg",
+            "strength": "5mg",
+            "product_code": 2,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "5-amino-1mq-5mg",
+            "compound_parent_handle": "5-amino-1mq"
+          }
+        },
         {
           "id": "5-amino-1mq-5mg-5-pack",
           "title": "5 vials",
@@ -85,6 +105,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "5-amino-1mq-5mg",
+            "compound_parent_handle": "5-amino-1mq"
+          }
+        },
+        {
+          "id": "5-amino-1mq-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0001-01",
+          "handle": "5-amino-1mq-10mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "5-amino-1mq-10mg",
+            "strength": "10mg",
+            "product_code": 1,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "5-amino-1mq-10mg",
             "compound_parent_handle": "5-amino-1mq"
           }
         },
@@ -172,6 +212,23 @@
       },
       "variants": [
         {
+          "id": "acetic-acid-water-3ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0003-01",
+          "handle": "acetic-acid-water-3ml-1-pack",
+          "amount_usd": 10.99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "acetic-acid-water-3ml",
+            "strength": "3ml",
+            "product_code": 3,
+            "pack_qty": 1,
+            "per_unit_usd": 10.99,
+            "savings_pct": 0,
+            "strength_key": "3ml"
+          }
+        },
+        {
           "id": "acetic-acid-water-3ml-5-pack",
           "title": "5 vials",
           "sku": "TV-0003-05",
@@ -245,6 +302,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "adamax-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0004-01",
+          "handle": "adamax-10mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "adamax-10mg",
+            "strength": "10mg",
+            "product_code": 4,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
         {
           "id": "adamax-10mg-5-pack",
           "title": "5 vials",
@@ -324,6 +398,26 @@
       },
       "variants": [
         {
+          "id": "adipotide-2mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0005-01",
+          "handle": "adipotide-2mg-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "adipotide-2mg",
+            "strength": "2mg",
+            "product_code": 5,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "2mg",
+            "strength_option": "2mg",
+            "legacy_product_handle": "adipotide-2mg",
+            "compound_parent_handle": "adipotide"
+          }
+        },
+        {
           "id": "adipotide-2mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0005-05",
@@ -380,6 +474,26 @@
             "strength_key": "2mg",
             "strength_option": "2mg",
             "legacy_product_handle": "adipotide-2mg",
+            "compound_parent_handle": "adipotide"
+          }
+        },
+        {
+          "id": "adipotide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0006-01",
+          "handle": "adipotide-5mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "adipotide-5mg",
+            "strength": "5mg",
+            "product_code": 6,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "adipotide-5mg",
             "compound_parent_handle": "adipotide"
           }
         },
@@ -467,6 +581,23 @@
       },
       "variants": [
         {
+          "id": "aicar-50mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0007-01",
+          "handle": "aicar-50mg-1-pack",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "aicar-50mg",
+            "strength": "50mg",
+            "product_code": 7,
+            "pack_qty": 1,
+            "per_unit_usd": 55,
+            "savings_pct": 0,
+            "strength_key": "50mg"
+          }
+        },
+        {
           "id": "aicar-50mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0007-05",
@@ -545,6 +676,26 @@
       },
       "variants": [
         {
+          "id": "aod-9604-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0009-01",
+          "handle": "aod-9604-5mg-1-pack",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "aod-9604-5mg",
+            "strength": "5mg",
+            "product_code": 9,
+            "pack_qty": 1,
+            "per_unit_usd": 55,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "aod-9604-5mg",
+            "compound_parent_handle": "aod-9604"
+          }
+        },
+        {
           "id": "aod-9604-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0009-05",
@@ -601,6 +752,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "aod-9604-5mg",
+            "compound_parent_handle": "aod-9604"
+          }
+        },
+        {
+          "id": "aod-9604-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0008-01",
+          "handle": "aod-9604-10mg-1-pack",
+          "amount_usd": 95,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "aod-9604-10mg",
+            "strength": "10mg",
+            "product_code": 8,
+            "pack_qty": 1,
+            "per_unit_usd": 95,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "aod-9604-10mg",
             "compound_parent_handle": "aod-9604"
           }
         },
@@ -688,6 +859,23 @@
       },
       "variants": [
         {
+          "id": "ara-290-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0010-01",
+          "handle": "ara-290-10mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ara-290-10mg",
+            "strength": "10mg",
+            "product_code": 10,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "ara-290-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0010-05",
@@ -761,6 +949,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "b-12-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0011-01",
+          "handle": "b-12-10mg-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "b-12-10mg",
+            "strength": "10mg",
+            "product_code": 11,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
         {
           "id": "b-12-10mg-5-pack",
           "title": "5 vials",
@@ -840,6 +1045,26 @@
       },
       "variants": [
         {
+          "id": "bacteriostatic-water-3ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0013-01",
+          "handle": "bacteriostatic-water-3ml-1-pack",
+          "amount_usd": 8.99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bacteriostatic-water-3ml",
+            "strength": "3ml",
+            "product_code": 13,
+            "pack_qty": 1,
+            "per_unit_usd": 8.99,
+            "savings_pct": 0,
+            "strength_key": "3ml",
+            "strength_option": "3ml",
+            "legacy_product_handle": "bacteriostatic-water-3ml",
+            "compound_parent_handle": "bacteriostatic-water"
+          }
+        },
+        {
           "id": "bacteriostatic-water-3ml-5-pack",
           "title": "5 vials",
           "sku": "TV-0013-05",
@@ -896,6 +1121,26 @@
             "strength_key": "3ml",
             "strength_option": "3ml",
             "legacy_product_handle": "bacteriostatic-water-3ml",
+            "compound_parent_handle": "bacteriostatic-water"
+          }
+        },
+        {
+          "id": "bacteriostatic-water-10ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0012-01",
+          "handle": "bacteriostatic-water-10ml-1-pack",
+          "amount_usd": 10.99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bacteriostatic-water-10ml",
+            "strength": "10ml",
+            "product_code": 12,
+            "pack_qty": 1,
+            "per_unit_usd": 10.99,
+            "savings_pct": 0,
+            "strength_key": "10ml",
+            "strength_option": "10ml",
+            "legacy_product_handle": "bacteriostatic-water-10ml",
             "compound_parent_handle": "bacteriostatic-water"
           }
         },
@@ -987,6 +1232,26 @@
       },
       "variants": [
         {
+          "id": "benzyl-alcohol-3ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0015-01",
+          "handle": "benzyl-alcohol-3ml-1-pack",
+          "amount_usd": 7.99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "benzyl-alcohol-3ml",
+            "strength": "3ml",
+            "product_code": 15,
+            "pack_qty": 1,
+            "per_unit_usd": 7.99,
+            "savings_pct": 0,
+            "strength_key": "3ml",
+            "strength_option": "3ml",
+            "legacy_product_handle": "benzyl-alcohol-3ml",
+            "compound_parent_handle": "benzyl-alcohol"
+          }
+        },
+        {
           "id": "benzyl-alcohol-3ml-5-pack",
           "title": "5 vials",
           "sku": "TV-0015-05",
@@ -1043,6 +1308,26 @@
             "strength_key": "3ml",
             "strength_option": "3ml",
             "legacy_product_handle": "benzyl-alcohol-3ml",
+            "compound_parent_handle": "benzyl-alcohol"
+          }
+        },
+        {
+          "id": "benzyl-alcohol-10ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0014-01",
+          "handle": "benzyl-alcohol-10ml-1-pack",
+          "amount_usd": 9.99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "benzyl-alcohol-10ml",
+            "strength": "10ml",
+            "product_code": 14,
+            "pack_qty": 1,
+            "per_unit_usd": 9.99,
+            "savings_pct": 0,
+            "strength_key": "10ml",
+            "strength_option": "10ml",
+            "legacy_product_handle": "benzyl-alcohol-10ml",
             "compound_parent_handle": "benzyl-alcohol"
           }
         },
@@ -1134,6 +1419,26 @@
       },
       "variants": [
         {
+          "id": "bpc-157-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0017-01",
+          "handle": "bpc-157-5mg-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bpc-157-5mg",
+            "strength": "5mg",
+            "product_code": 17,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "bpc-157-5mg",
+            "compound_parent_handle": "bpc-157"
+          }
+        },
+        {
           "id": "bpc-157-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0017-05",
@@ -1190,6 +1495,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "bpc-157-5mg",
+            "compound_parent_handle": "bpc-157"
+          }
+        },
+        {
+          "id": "bpc-157-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0016-01",
+          "handle": "bpc-157-10mg-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bpc-157-10mg",
+            "strength": "10mg",
+            "product_code": 16,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "bpc-157-10mg",
             "compound_parent_handle": "bpc-157"
           }
         },
@@ -1277,6 +1602,23 @@
       },
       "variants": [
         {
+          "id": "bpc-157-5mg-tb500-5mg-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0018-01",
+          "handle": "bpc-157-5mg-tb500-5mg-10mg-1-pack",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-10mg",
+            "strength": "",
+            "product_code": 18,
+            "pack_qty": 1,
+            "per_unit_usd": 109,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "bpc-157-5mg-tb500-5mg-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0018-05",
@@ -1351,6 +1693,23 @@
       },
       "variants": [
         {
+          "id": "bpc-157-5mg-tb500-5mg-20mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0019-01",
+          "handle": "bpc-157-5mg-tb500-5mg-20mg-1-pack",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bpc-157-5mg-tb500-5mg-20mg",
+            "strength": "",
+            "product_code": 19,
+            "pack_qty": 1,
+            "per_unit_usd": 149,
+            "savings_pct": 0,
+            "strength_key": "20mg"
+          }
+        },
+        {
           "id": "bpc-157-5mg-tb500-5mg-20mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0019-05",
@@ -1424,6 +1783,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "bpc-157-capsules-100-count-500mcg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0020-01",
+          "handle": "bpc-157-capsules-100-count-500mcg-1-pack",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bpc-157-capsules-100-count-500mcg",
+            "strength": "100 count (500mcg)",
+            "product_code": 20,
+            "pack_qty": 1,
+            "per_unit_usd": 89,
+            "savings_pct": 0,
+            "strength_key": "500mcg"
+          }
+        },
         {
           "id": "bpc-157-capsules-100-count-500mcg-5-pack",
           "title": "5 vials",
@@ -1503,6 +1879,26 @@
       },
       "variants": [
         {
+          "id": "bremelanotide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0022-01",
+          "handle": "bremelanotide-5mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bremelanotide-5mg",
+            "strength": "5mg",
+            "product_code": 22,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "bremelanotide-5mg",
+            "compound_parent_handle": "bremelanotide"
+          }
+        },
+        {
           "id": "bremelanotide-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0022-05",
@@ -1559,6 +1955,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "bremelanotide-5mg",
+            "compound_parent_handle": "bremelanotide"
+          }
+        },
+        {
+          "id": "bremelanotide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0021-01",
+          "handle": "bremelanotide-10mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "bremelanotide-10mg",
+            "strength": "10mg",
+            "product_code": 21,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "bremelanotide-10mg",
             "compound_parent_handle": "bremelanotide"
           }
         },
@@ -1650,6 +2066,26 @@
       },
       "variants": [
         {
+          "id": "cagrilintide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0024-01",
+          "handle": "cagrilintide-5mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cagrilintide-5mg",
+            "strength": "5mg",
+            "product_code": 24,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "cagrilintide-5mg",
+            "compound_parent_handle": "cagrilintide"
+          }
+        },
+        {
           "id": "cagrilintide-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0024-05",
@@ -1706,6 +2142,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "cagrilintide-5mg",
+            "compound_parent_handle": "cagrilintide"
+          }
+        },
+        {
+          "id": "cagrilintide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0023-01",
+          "handle": "cagrilintide-10mg-1-pack",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cagrilintide-10mg",
+            "strength": "10mg",
+            "product_code": 23,
+            "pack_qty": 1,
+            "per_unit_usd": 149,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "cagrilintide-10mg",
             "compound_parent_handle": "cagrilintide"
           }
         },
@@ -1797,6 +2253,26 @@
       },
       "variants": [
         {
+          "id": "cagrilintide-semaglutide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0026-01",
+          "handle": "cagrilintide-semaglutide-5mg-1-pack",
+          "amount_usd": 159,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-5mg",
+            "strength": "5mg",
+            "product_code": 26,
+            "pack_qty": 1,
+            "per_unit_usd": 159,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "cagrilintide-semaglutide-5mg",
+            "compound_parent_handle": "cagrilintide-semaglutide"
+          }
+        },
+        {
           "id": "cagrilintide-semaglutide-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0026-05",
@@ -1853,6 +2329,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "cagrilintide-semaglutide-5mg",
+            "compound_parent_handle": "cagrilintide-semaglutide"
+          }
+        },
+        {
+          "id": "cagrilintide-semaglutide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0025-01",
+          "handle": "cagrilintide-semaglutide-10mg-1-pack",
+          "amount_usd": 289,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cagrilintide-semaglutide-10mg",
+            "strength": "10mg",
+            "product_code": 25,
+            "pack_qty": 1,
+            "per_unit_usd": 289,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "cagrilintide-semaglutide-10mg",
             "compound_parent_handle": "cagrilintide-semaglutide"
           }
         },
@@ -1940,6 +2436,23 @@
       },
       "variants": [
         {
+          "id": "cerebrolysin-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0027-01",
+          "handle": "cerebrolysin-10mg-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cerebrolysin-10mg",
+            "strength": "10mg",
+            "product_code": 27,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "cerebrolysin-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0027-05",
@@ -2018,6 +2531,26 @@
       },
       "variants": [
         {
+          "id": "cjc-1295-with-dac-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0029-01",
+          "handle": "cjc-1295-with-dac-5mg-1-pack",
+          "amount_usd": 139,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-5mg",
+            "strength": "5mg",
+            "product_code": 29,
+            "pack_qty": 1,
+            "per_unit_usd": 139,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "cjc-1295-with-dac-5mg",
+            "compound_parent_handle": "cjc-1295-with-dac"
+          }
+        },
+        {
           "id": "cjc-1295-with-dac-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0029-05",
@@ -2074,6 +2607,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "cjc-1295-with-dac-5mg",
+            "compound_parent_handle": "cjc-1295-with-dac"
+          }
+        },
+        {
+          "id": "cjc-1295-with-dac-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0028-01",
+          "handle": "cjc-1295-with-dac-10mg-1-pack",
+          "amount_usd": 259,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cjc-1295-with-dac-10mg",
+            "strength": "10mg",
+            "product_code": 28,
+            "pack_qty": 1,
+            "per_unit_usd": 259,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "cjc-1295-with-dac-10mg",
             "compound_parent_handle": "cjc-1295-with-dac"
           }
         },
@@ -2165,6 +2718,26 @@
       },
       "variants": [
         {
+          "id": "cjc-1295-without-dac-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0031-01",
+          "handle": "cjc-1295-without-dac-5mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-5mg",
+            "strength": "5mg",
+            "product_code": 31,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "cjc-1295-without-dac-5mg",
+            "compound_parent_handle": "cjc-1295-without-dac"
+          }
+        },
+        {
           "id": "cjc-1295-without-dac-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0031-05",
@@ -2221,6 +2794,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "cjc-1295-without-dac-5mg",
+            "compound_parent_handle": "cjc-1295-without-dac"
+          }
+        },
+        {
+          "id": "cjc-1295-without-dac-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0030-01",
+          "handle": "cjc-1295-without-dac-10mg-1-pack",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-10mg",
+            "strength": "10mg",
+            "product_code": 30,
+            "pack_qty": 1,
+            "per_unit_usd": 89,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "cjc-1295-without-dac-10mg",
             "compound_parent_handle": "cjc-1295-without-dac"
           }
         },
@@ -2308,6 +2901,23 @@
       },
       "variants": [
         {
+          "id": "cjc-1295-without-dac-ipamorelin-blend-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0032-01",
+          "handle": "cjc-1295-without-dac-ipamorelin-blend-10mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+            "strength": "10mg",
+            "product_code": 32,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "cjc-1295-without-dac-ipamorelin-blend-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0032-05",
@@ -2381,6 +2991,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0033-01",
+          "handle": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg-1-pack",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
+            "strength": "5mg",
+            "product_code": 33,
+            "pack_qty": 1,
+            "per_unit_usd": 109,
+            "savings_pct": 0,
+            "strength_key": "5mg"
+          }
+        },
         {
           "id": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg-5-pack",
           "title": "5 vials",
@@ -2456,6 +3083,23 @@
       },
       "variants": [
         {
+          "id": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0034-01",
+          "handle": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg-1-pack",
+          "amount_usd": 229,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+            "strength": "50mg",
+            "product_code": 34,
+            "pack_qty": 1,
+            "per_unit_usd": 229,
+            "savings_pct": 0,
+            "strength_key": "80mg"
+          }
+        },
+        {
           "id": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0034-05",
@@ -2530,6 +3174,23 @@
       },
       "variants": [
         {
+          "id": "dermorphin-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0035-01",
+          "handle": "dermorphin-5mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "dermorphin-5mg",
+            "strength": "5mg",
+            "product_code": 35,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "5mg"
+          }
+        },
+        {
           "id": "dermorphin-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0035-05",
@@ -2603,6 +3264,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "dihexa-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0036-01",
+          "handle": "dihexa-10mg-1-pack",
+          "amount_usd": 99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "dihexa-10mg",
+            "strength": "10mg",
+            "product_code": 36,
+            "pack_qty": 1,
+            "per_unit_usd": 99,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
         {
           "id": "dihexa-10mg-5-pack",
           "title": "5 vials",
@@ -2683,6 +3361,26 @@
       },
       "variants": [
         {
+          "id": "dsip-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0039-01",
+          "handle": "dsip-5mg-1-pack",
+          "amount_usd": 30,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "dsip-5mg",
+            "strength": "5mg",
+            "product_code": 39,
+            "pack_qty": 1,
+            "per_unit_usd": 30,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "dsip-5mg",
+            "compound_parent_handle": "dsip"
+          }
+        },
+        {
           "id": "dsip-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0039-05",
@@ -2743,6 +3441,26 @@
           }
         },
         {
+          "id": "dsip-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0037-01",
+          "handle": "dsip-10mg-1-pack",
+          "amount_usd": 45,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "dsip-10mg",
+            "strength": "10mg",
+            "product_code": 37,
+            "pack_qty": 1,
+            "per_unit_usd": 45,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "dsip-10mg",
+            "compound_parent_handle": "dsip"
+          }
+        },
+        {
           "id": "dsip-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0037-05",
@@ -2799,6 +3517,26 @@
             "strength_key": "10mg",
             "strength_option": "10mg",
             "legacy_product_handle": "dsip-10mg",
+            "compound_parent_handle": "dsip"
+          }
+        },
+        {
+          "id": "dsip-15mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0038-01",
+          "handle": "dsip-15mg-1-pack",
+          "amount_usd": 80,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "dsip-15mg",
+            "strength": "15mg",
+            "product_code": 38,
+            "pack_qty": 1,
+            "per_unit_usd": 80,
+            "savings_pct": 0,
+            "strength_key": "15mg",
+            "strength_option": "15mg",
+            "legacy_product_handle": "dsip-15mg",
             "compound_parent_handle": "dsip"
           }
         },
@@ -2891,6 +3629,26 @@
       },
       "variants": [
         {
+          "id": "epithalon-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0040-01",
+          "handle": "epithalon-10mg-1-pack",
+          "amount_usd": 45,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "epithalon-10mg",
+            "strength": "10mg",
+            "product_code": 40,
+            "pack_qty": 1,
+            "per_unit_usd": 45,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "epithalon-10mg",
+            "compound_parent_handle": "epithalon"
+          }
+        },
+        {
           "id": "epithalon-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0040-05",
@@ -2951,6 +3709,26 @@
           }
         },
         {
+          "id": "epithalon-20mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0041-01",
+          "handle": "epithalon-20mg-1-pack",
+          "amount_usd": 70,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "epithalon-20mg",
+            "strength": "20mg",
+            "product_code": 41,
+            "pack_qty": 1,
+            "per_unit_usd": 70,
+            "savings_pct": 0,
+            "strength_key": "20mg",
+            "strength_option": "20mg",
+            "legacy_product_handle": "epithalon-20mg",
+            "compound_parent_handle": "epithalon"
+          }
+        },
+        {
           "id": "epithalon-20mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0041-05",
@@ -3007,6 +3785,26 @@
             "strength_key": "20mg",
             "strength_option": "20mg",
             "legacy_product_handle": "epithalon-20mg",
+            "compound_parent_handle": "epithalon"
+          }
+        },
+        {
+          "id": "epithalon-50mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0042-01",
+          "handle": "epithalon-50mg-1-pack",
+          "amount_usd": 120,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "epithalon-50mg",
+            "strength": "50mg",
+            "product_code": 42,
+            "pack_qty": 1,
+            "per_unit_usd": 120,
+            "savings_pct": 0,
+            "strength_key": "50mg",
+            "strength_option": "50mg",
+            "legacy_product_handle": "epithalon-50mg",
             "compound_parent_handle": "epithalon"
           }
         },
@@ -3094,6 +3892,23 @@
       },
       "variants": [
         {
+          "id": "foxo4-dri-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0043-01",
+          "handle": "foxo4-dri-10mg-1-pack",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "foxo4-dri-10mg",
+            "strength": "10mg",
+            "product_code": 43,
+            "pack_qty": 1,
+            "per_unit_usd": 149,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "foxo4-dri-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0043-05",
@@ -3172,6 +3987,26 @@
       },
       "variants": [
         {
+          "id": "ghk-cu-50mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0045-01",
+          "handle": "ghk-cu-50mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ghk-cu-50mg",
+            "strength": "50mg",
+            "product_code": 45,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "50mg",
+            "strength_option": "50mg",
+            "legacy_product_handle": "ghk-cu-50mg",
+            "compound_parent_handle": "ghk-cu"
+          }
+        },
+        {
           "id": "ghk-cu-50mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0045-05",
@@ -3228,6 +4063,26 @@
             "strength_key": "50mg",
             "strength_option": "50mg",
             "legacy_product_handle": "ghk-cu-50mg",
+            "compound_parent_handle": "ghk-cu"
+          }
+        },
+        {
+          "id": "ghk-cu-100mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0044-01",
+          "handle": "ghk-cu-100mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ghk-cu-100mg",
+            "strength": "100mg",
+            "product_code": 44,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "100mg",
+            "strength_option": "100mg",
+            "legacy_product_handle": "ghk-cu-100mg",
             "compound_parent_handle": "ghk-cu"
           }
         },
@@ -3319,6 +4174,26 @@
       },
       "variants": [
         {
+          "id": "ghrp-2-acetate-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0047-01",
+          "handle": "ghrp-2-acetate-5mg-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ghrp-2-acetate-5mg",
+            "strength": "5mg",
+            "product_code": 47,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "ghrp-2-acetate-5mg",
+            "compound_parent_handle": "ghrp-2-acetate"
+          }
+        },
+        {
           "id": "ghrp-2-acetate-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0047-05",
@@ -3375,6 +4250,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "ghrp-2-acetate-5mg",
+            "compound_parent_handle": "ghrp-2-acetate"
+          }
+        },
+        {
+          "id": "ghrp-2-acetate-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0046-01",
+          "handle": "ghrp-2-acetate-10mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ghrp-2-acetate-10mg",
+            "strength": "10mg",
+            "product_code": 46,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "ghrp-2-acetate-10mg",
             "compound_parent_handle": "ghrp-2-acetate"
           }
         },
@@ -3466,6 +4361,26 @@
       },
       "variants": [
         {
+          "id": "ghrp-6-acetate-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0049-01",
+          "handle": "ghrp-6-acetate-5mg-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ghrp-6-acetate-5mg",
+            "strength": "5mg",
+            "product_code": 49,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "ghrp-6-acetate-5mg",
+            "compound_parent_handle": "ghrp-6-acetate"
+          }
+        },
+        {
           "id": "ghrp-6-acetate-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0049-05",
@@ -3522,6 +4437,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "ghrp-6-acetate-5mg",
+            "compound_parent_handle": "ghrp-6-acetate"
+          }
+        },
+        {
+          "id": "ghrp-6-acetate-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0048-01",
+          "handle": "ghrp-6-acetate-10mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ghrp-6-acetate-10mg",
+            "strength": "10mg",
+            "product_code": 48,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "ghrp-6-acetate-10mg",
             "compound_parent_handle": "ghrp-6-acetate"
           }
         },
@@ -3613,6 +4548,26 @@
       },
       "variants": [
         {
+          "id": "glow-bpc-157-tb500-ghk-cu-30mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0050-01",
+          "handle": "glow-bpc-157-tb500-ghk-cu-30mg-1-pack",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
+            "strength": "30mg",
+            "product_code": 50,
+            "pack_qty": 1,
+            "per_unit_usd": 89,
+            "savings_pct": 0,
+            "strength_key": "30mg",
+            "strength_option": "30mg",
+            "legacy_product_handle": "glow-bpc-157-tb500-ghk-cu-30mg",
+            "compound_parent_handle": "glow-bpc-157-tb500-ghk-cu"
+          }
+        },
+        {
           "id": "glow-bpc-157-tb500-ghk-cu-30mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0050-05",
@@ -3669,6 +4624,26 @@
             "strength_key": "30mg",
             "strength_option": "30mg",
             "legacy_product_handle": "glow-bpc-157-tb500-ghk-cu-30mg",
+            "compound_parent_handle": "glow-bpc-157-tb500-ghk-cu"
+          }
+        },
+        {
+          "id": "glow-bpc-157-tb500-ghk-cu-85mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0051-01",
+          "handle": "glow-bpc-157-tb500-ghk-cu-85mg-1-pack",
+          "amount_usd": 189,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
+            "strength": "85mg",
+            "product_code": 51,
+            "pack_qty": 1,
+            "per_unit_usd": 189,
+            "savings_pct": 0,
+            "strength_key": "85mg",
+            "strength_option": "85mg",
+            "legacy_product_handle": "glow-bpc-157-tb500-ghk-cu-85mg",
             "compound_parent_handle": "glow-bpc-157-tb500-ghk-cu"
           }
         },
@@ -3756,6 +4731,23 @@
       },
       "variants": [
         {
+          "id": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0052-01",
+          "handle": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg-1-pack",
+          "amount_usd": 149,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+            "strength": "10mg",
+            "product_code": 52,
+            "pack_qty": 1,
+            "per_unit_usd": 149,
+            "savings_pct": 0,
+            "strength_key": "70mg"
+          }
+        },
+        {
           "id": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0052-05",
@@ -3834,6 +4826,26 @@
       },
       "variants": [
         {
+          "id": "glutathione-600mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0054-01",
+          "handle": "glutathione-600mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "glutathione-600mg",
+            "strength": "600mg",
+            "product_code": 54,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "600mg",
+            "strength_option": "600mg",
+            "legacy_product_handle": "glutathione-600mg",
+            "compound_parent_handle": "glutathione"
+          }
+        },
+        {
           "id": "glutathione-600mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0054-05",
@@ -3890,6 +4902,26 @@
             "strength_key": "600mg",
             "strength_option": "600mg",
             "legacy_product_handle": "glutathione-600mg",
+            "compound_parent_handle": "glutathione"
+          }
+        },
+        {
+          "id": "glutathione-1500mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0053-01",
+          "handle": "glutathione-1500mg-1-pack",
+          "amount_usd": 99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "glutathione-1500mg",
+            "strength": "600mg",
+            "product_code": 53,
+            "pack_qty": 1,
+            "per_unit_usd": 99,
+            "savings_pct": 0,
+            "strength_key": "1500mg",
+            "strength_option": "600mg",
+            "legacy_product_handle": "glutathione-1500mg",
             "compound_parent_handle": "glutathione"
           }
         },
@@ -3981,6 +5013,26 @@
       },
       "variants": [
         {
+          "id": "gonadorelin-2mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0056-01",
+          "handle": "gonadorelin-2mg-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "gonadorelin-2mg",
+            "strength": "2mg",
+            "product_code": 56,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "2mg",
+            "strength_option": "2mg",
+            "legacy_product_handle": "gonadorelin-2mg",
+            "compound_parent_handle": "gonadorelin"
+          }
+        },
+        {
           "id": "gonadorelin-2mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0056-05",
@@ -4037,6 +5089,26 @@
             "strength_key": "2mg",
             "strength_option": "2mg",
             "legacy_product_handle": "gonadorelin-2mg",
+            "compound_parent_handle": "gonadorelin"
+          }
+        },
+        {
+          "id": "gonadorelin-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0055-01",
+          "handle": "gonadorelin-10mg-1-pack",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "gonadorelin-10mg",
+            "strength": "10mg",
+            "product_code": 55,
+            "pack_qty": 1,
+            "per_unit_usd": 89,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "gonadorelin-10mg",
             "compound_parent_handle": "gonadorelin"
           }
         },
@@ -4128,6 +5200,26 @@
       },
       "variants": [
         {
+          "id": "hcg-5000-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0058-01",
+          "handle": "hcg-5000-iu-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hcg-5000-iu",
+            "strength": "5000 IU",
+            "product_code": 58,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "5000-iu",
+            "strength_option": "5000 IU",
+            "legacy_product_handle": "hcg-5000-iu",
+            "compound_parent_handle": "hcg"
+          }
+        },
+        {
           "id": "hcg-5000-iu-5-pack",
           "title": "5 vials",
           "sku": "TV-0058-05",
@@ -4184,6 +5276,26 @@
             "strength_key": "5000-iu",
             "strength_option": "5000 IU",
             "legacy_product_handle": "hcg-5000-iu",
+            "compound_parent_handle": "hcg"
+          }
+        },
+        {
+          "id": "hcg-10000-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0057-01",
+          "handle": "hcg-10000-iu-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hcg-10000-iu",
+            "strength": "10000 IU",
+            "product_code": 57,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "10000-iu",
+            "strength_option": "10000 IU",
+            "legacy_product_handle": "hcg-10000-iu",
             "compound_parent_handle": "hcg"
           }
         },
@@ -4275,6 +5387,26 @@
       },
       "variants": [
         {
+          "id": "hexarelin-acetate-2mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0059-01",
+          "handle": "hexarelin-acetate-2mg-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hexarelin-acetate-2mg",
+            "strength": "2mg",
+            "product_code": 59,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "2mg",
+            "strength_option": "2mg",
+            "legacy_product_handle": "hexarelin-acetate-2mg",
+            "compound_parent_handle": "hexarelin-acetate"
+          }
+        },
+        {
           "id": "hexarelin-acetate-2mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0059-05",
@@ -4331,6 +5463,26 @@
             "strength_key": "2mg",
             "strength_option": "2mg",
             "legacy_product_handle": "hexarelin-acetate-2mg",
+            "compound_parent_handle": "hexarelin-acetate"
+          }
+        },
+        {
+          "id": "hexarelin-acetate-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0060-01",
+          "handle": "hexarelin-acetate-5mg-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hexarelin-acetate-5mg",
+            "strength": "5mg",
+            "product_code": 60,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "hexarelin-acetate-5mg",
             "compound_parent_handle": "hexarelin-acetate"
           }
         },
@@ -4425,6 +5577,26 @@
       },
       "variants": [
         {
+          "id": "hgh-191aa-10-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0061-01",
+          "handle": "hgh-191aa-10-iu-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hgh-191aa-10-iu",
+            "strength": "10 IU",
+            "product_code": 61,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "10-iu",
+            "strength_option": "10 IU",
+            "legacy_product_handle": "hgh-191aa-10-iu",
+            "compound_parent_handle": "hgh-191aa"
+          }
+        },
+        {
           "id": "hgh-191aa-10-iu-5-pack",
           "title": "5 vials",
           "sku": "TV-0061-05",
@@ -4481,6 +5653,26 @@
             "strength_key": "10-iu",
             "strength_option": "10 IU",
             "legacy_product_handle": "hgh-191aa-10-iu",
+            "compound_parent_handle": "hgh-191aa"
+          }
+        },
+        {
+          "id": "hgh-191aa-12-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0062-01",
+          "handle": "hgh-191aa-12-iu-1-pack",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hgh-191aa-12-iu",
+            "strength": "12 IU",
+            "product_code": 62,
+            "pack_qty": 1,
+            "per_unit_usd": 55,
+            "savings_pct": 0,
+            "strength_key": "12-iu",
+            "strength_option": "12 IU",
+            "legacy_product_handle": "hgh-191aa-12-iu",
             "compound_parent_handle": "hgh-191aa"
           }
         },
@@ -4545,6 +5737,26 @@
           }
         },
         {
+          "id": "hgh-191aa-15-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0063-01",
+          "handle": "hgh-191aa-15-iu-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hgh-191aa-15-iu",
+            "strength": "15 IU",
+            "product_code": 63,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "15-iu",
+            "strength_option": "15 IU",
+            "legacy_product_handle": "hgh-191aa-15-iu",
+            "compound_parent_handle": "hgh-191aa"
+          }
+        },
+        {
           "id": "hgh-191aa-15-iu-5-pack",
           "title": "5 vials",
           "sku": "TV-0063-05",
@@ -4605,6 +5817,26 @@
           }
         },
         {
+          "id": "hgh-191aa-24-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0064-01",
+          "handle": "hgh-191aa-24-iu-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hgh-191aa-24-iu",
+            "strength": "24 IU",
+            "product_code": 64,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "24-iu",
+            "strength_option": "24 IU",
+            "legacy_product_handle": "hgh-191aa-24-iu",
+            "compound_parent_handle": "hgh-191aa"
+          }
+        },
+        {
           "id": "hgh-191aa-24-iu-5-pack",
           "title": "5 vials",
           "sku": "TV-0064-05",
@@ -4661,6 +5893,26 @@
             "strength_key": "24-iu",
             "strength_option": "24 IU",
             "legacy_product_handle": "hgh-191aa-24-iu",
+            "compound_parent_handle": "hgh-191aa"
+          }
+        },
+        {
+          "id": "hgh-191aa-36-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0065-01",
+          "handle": "hgh-191aa-36-iu-1-pack",
+          "amount_usd": 85,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hgh-191aa-36-iu",
+            "strength": "36 IU",
+            "product_code": 65,
+            "pack_qty": 1,
+            "per_unit_usd": 85,
+            "savings_pct": 0,
+            "strength_key": "36-iu",
+            "strength_option": "36 IU",
+            "legacy_product_handle": "hgh-191aa-36-iu",
             "compound_parent_handle": "hgh-191aa"
           }
         },
@@ -4748,6 +6000,23 @@
       },
       "variants": [
         {
+          "id": "hmg-75-iu-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0066-01",
+          "handle": "hmg-75-iu-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "hmg-75-iu",
+            "strength": "75 IU",
+            "product_code": 66,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "75-iu"
+          }
+        },
+        {
           "id": "hmg-75-iu-5-pack",
           "title": "5 vials",
           "sku": "TV-0066-05",
@@ -4821,6 +6090,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "humanin-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0067-01",
+          "handle": "humanin-10mg-1-pack",
+          "amount_usd": 129,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "humanin-10mg",
+            "strength": "10mg",
+            "product_code": 67,
+            "pack_qty": 1,
+            "per_unit_usd": 129,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
         {
           "id": "humanin-10mg-5-pack",
           "title": "5 vials",
@@ -4896,6 +6182,23 @@
       },
       "variants": [
         {
+          "id": "igf-1-lr3-0-1mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0068-01",
+          "handle": "igf-1-lr3-0-1mg-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "igf-1-lr3-0-1mg",
+            "strength": "1mg",
+            "product_code": 68,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "0-1mg"
+          }
+        },
+        {
           "id": "igf-1-lr3-0-1mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0068-05",
@@ -4969,6 +6272,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "igf-1-lr3-1mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0069-01",
+          "handle": "igf-1-lr3-1mg-1-pack",
+          "amount_usd": 150,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "igf-1-lr3-1mg",
+            "strength": "1mg",
+            "product_code": 69,
+            "pack_qty": 1,
+            "per_unit_usd": 150,
+            "savings_pct": 0,
+            "strength_key": "1mg"
+          }
+        },
         {
           "id": "igf-1-lr3-1mg-5-pack",
           "title": "5 vials",
@@ -5048,6 +6368,26 @@
       },
       "variants": [
         {
+          "id": "ipamorelin-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0071-01",
+          "handle": "ipamorelin-5mg-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ipamorelin-5mg",
+            "strength": "5mg",
+            "product_code": 71,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "ipamorelin-5mg",
+            "compound_parent_handle": "ipamorelin"
+          }
+        },
+        {
           "id": "ipamorelin-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0071-05",
@@ -5104,6 +6444,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "ipamorelin-5mg",
+            "compound_parent_handle": "ipamorelin"
+          }
+        },
+        {
+          "id": "ipamorelin-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0070-01",
+          "handle": "ipamorelin-10mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ipamorelin-10mg",
+            "strength": "10mg",
+            "product_code": 70,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "ipamorelin-10mg",
             "compound_parent_handle": "ipamorelin"
           }
         },
@@ -5195,6 +6555,26 @@
       },
       "variants": [
         {
+          "id": "kisspeptin-10-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0073-01",
+          "handle": "kisspeptin-10-5mg-1-pack",
+          "amount_usd": 25,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "kisspeptin-10-5mg",
+            "strength": "5mg",
+            "product_code": 73,
+            "pack_qty": 1,
+            "per_unit_usd": 25,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "kisspeptin-10-5mg",
+            "compound_parent_handle": "kisspeptin-10"
+          }
+        },
+        {
           "id": "kisspeptin-10-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0073-05",
@@ -5251,6 +6631,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "kisspeptin-10-5mg",
+            "compound_parent_handle": "kisspeptin-10"
+          }
+        },
+        {
+          "id": "kisspeptin-10-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0072-01",
+          "handle": "kisspeptin-10-10mg-1-pack",
+          "amount_usd": 65,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "kisspeptin-10-10mg",
+            "strength": "10mg",
+            "product_code": 72,
+            "pack_qty": 1,
+            "per_unit_usd": 65,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "kisspeptin-10-10mg",
             "compound_parent_handle": "kisspeptin-10"
           }
         },
@@ -5342,6 +6742,26 @@
       },
       "variants": [
         {
+          "id": "kpv-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0075-01",
+          "handle": "kpv-5mg-1-pack",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "kpv-5mg",
+            "strength": "5mg",
+            "product_code": 75,
+            "pack_qty": 1,
+            "per_unit_usd": 35,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "kpv-5mg",
+            "compound_parent_handle": "kpv"
+          }
+        },
+        {
           "id": "kpv-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0075-05",
@@ -5398,6 +6818,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "kpv-5mg",
+            "compound_parent_handle": "kpv"
+          }
+        },
+        {
+          "id": "kpv-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0074-01",
+          "handle": "kpv-10mg-1-pack",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "kpv-10mg",
+            "strength": "10mg",
+            "product_code": 74,
+            "pack_qty": 1,
+            "per_unit_usd": 55,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "kpv-10mg",
             "compound_parent_handle": "kpv"
           }
         },
@@ -5485,6 +6925,23 @@
       },
       "variants": [
         {
+          "id": "l-carnitine-600mg-10ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0076-01",
+          "handle": "l-carnitine-600mg-10ml-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "l-carnitine-600mg-10ml",
+            "strength": "600mg",
+            "product_code": 76,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "10ml"
+          }
+        },
+        {
           "id": "l-carnitine-600mg-10ml-5-pack",
           "title": "5 vials",
           "sku": "TV-0076-05",
@@ -5558,6 +7015,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "l-glu-100mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0077-01",
+          "handle": "l-glu-100mg-1-pack",
+          "amount_usd": 40,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "l-glu-100mg",
+            "strength": "100mg",
+            "product_code": 77,
+            "pack_qty": 1,
+            "per_unit_usd": 40,
+            "savings_pct": 0,
+            "strength_key": "100mg"
+          }
+        },
         {
           "id": "l-glu-100mg-5-pack",
           "title": "5 vials",
@@ -5633,6 +7107,23 @@
       },
       "variants": [
         {
+          "id": "lemon-bottle-10ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0078-01",
+          "handle": "lemon-bottle-10ml-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "lemon-bottle-10ml",
+            "strength": "10ml",
+            "product_code": 78,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "10ml"
+          }
+        },
+        {
           "id": "lemon-bottle-10ml-5-pack",
           "title": "5 vials",
           "sku": "TV-0078-05",
@@ -5707,6 +7198,23 @@
       },
       "variants": [
         {
+          "id": "lipo-c-10ml-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0079-01",
+          "handle": "lipo-c-10ml-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "lipo-c-10ml",
+            "strength": "10ml",
+            "product_code": 79,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "10ml"
+          }
+        },
+        {
           "id": "lipo-c-10ml-5-pack",
           "title": "5 vials",
           "sku": "TV-0079-05",
@@ -5780,6 +7288,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "ll-37-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0080-01",
+          "handle": "ll-37-5mg-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ll-37-5mg",
+            "strength": "5mg",
+            "product_code": 80,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "5mg"
+          }
+        },
         {
           "id": "ll-37-5mg-5-pack",
           "title": "5 vials",
@@ -5859,6 +7384,26 @@
       },
       "variants": [
         {
+          "id": "mazdutide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0082-01",
+          "handle": "mazdutide-5mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mazdutide-5mg",
+            "strength": "5mg",
+            "product_code": 82,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "mazdutide-5mg",
+            "compound_parent_handle": "mazdutide"
+          }
+        },
+        {
           "id": "mazdutide-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0082-05",
@@ -5915,6 +7460,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "mazdutide-5mg",
+            "compound_parent_handle": "mazdutide"
+          }
+        },
+        {
+          "id": "mazdutide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0081-01",
+          "handle": "mazdutide-10mg-1-pack",
+          "amount_usd": 119,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mazdutide-10mg",
+            "strength": "10mg",
+            "product_code": 81,
+            "pack_qty": 1,
+            "per_unit_usd": 119,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "mazdutide-10mg",
             "compound_parent_handle": "mazdutide"
           }
         },
@@ -6002,6 +7567,23 @@
       },
       "variants": [
         {
+          "id": "melanotan-1-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0083-01",
+          "handle": "melanotan-1-10mg-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "melanotan-1-10mg",
+            "strength": "10mg",
+            "product_code": 83,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "melanotan-1-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0083-05",
@@ -6075,6 +7657,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "melanotan-2-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0084-01",
+          "handle": "melanotan-2-10mg-1-pack",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "melanotan-2-10mg",
+            "strength": "10mg",
+            "product_code": 84,
+            "pack_qty": 1,
+            "per_unit_usd": 35,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
         {
           "id": "melanotan-2-10mg-5-pack",
           "title": "5 vials",
@@ -6150,6 +7749,23 @@
       },
       "variants": [
         {
+          "id": "mgf-2mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0085-01",
+          "handle": "mgf-2mg-1-pack",
+          "amount_usd": 29,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mgf-2mg",
+            "strength": "2mg",
+            "product_code": 85,
+            "pack_qty": 1,
+            "per_unit_usd": 29,
+            "savings_pct": 0,
+            "strength_key": "2mg"
+          }
+        },
+        {
           "id": "mgf-2mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0085-05",
@@ -6223,6 +7839,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "mk-677-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0086-01",
+          "handle": "mk-677-5mg-1-pack",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mk-677-5mg",
+            "strength": "5mg",
+            "product_code": 86,
+            "pack_qty": 1,
+            "per_unit_usd": 55,
+            "savings_pct": 0,
+            "strength_key": "5mg"
+          }
+        },
         {
           "id": "mk-677-5mg-5-pack",
           "title": "5 vials",
@@ -6304,6 +7937,26 @@
       },
       "variants": [
         {
+          "id": "mots-c-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0090-01",
+          "handle": "mots-c-5mg-1-pack",
+          "amount_usd": 50,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mots-c-5mg",
+            "strength": "5mg",
+            "product_code": 90,
+            "pack_qty": 1,
+            "per_unit_usd": 50,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "mots-c-5mg",
+            "compound_parent_handle": "mots-c"
+          }
+        },
+        {
           "id": "mots-c-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0090-05",
@@ -6360,6 +8013,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "mots-c-5mg",
+            "compound_parent_handle": "mots-c"
+          }
+        },
+        {
+          "id": "mots-c-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0087-01",
+          "handle": "mots-c-10mg-1-pack",
+          "amount_usd": 80,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mots-c-10mg",
+            "strength": "10mg",
+            "product_code": 87,
+            "pack_qty": 1,
+            "per_unit_usd": 80,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "mots-c-10mg",
             "compound_parent_handle": "mots-c"
           }
         },
@@ -6424,6 +8097,26 @@
           }
         },
         {
+          "id": "mots-c-20mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0088-01",
+          "handle": "mots-c-20mg-1-pack",
+          "amount_usd": 120,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mots-c-20mg",
+            "strength": "20mg",
+            "product_code": 88,
+            "pack_qty": 1,
+            "per_unit_usd": 120,
+            "savings_pct": 0,
+            "strength_key": "20mg",
+            "strength_option": "20mg",
+            "legacy_product_handle": "mots-c-20mg",
+            "compound_parent_handle": "mots-c"
+          }
+        },
+        {
           "id": "mots-c-20mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0088-05",
@@ -6480,6 +8173,26 @@
             "strength_key": "20mg",
             "strength_option": "20mg",
             "legacy_product_handle": "mots-c-20mg",
+            "compound_parent_handle": "mots-c"
+          }
+        },
+        {
+          "id": "mots-c-40mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0089-01",
+          "handle": "mots-c-40mg-1-pack",
+          "amount_usd": 200,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "mots-c-40mg",
+            "strength": "40mg",
+            "product_code": 89,
+            "pack_qty": 1,
+            "per_unit_usd": 200,
+            "savings_pct": 0,
+            "strength_key": "40mg",
+            "strength_option": "40mg",
+            "legacy_product_handle": "mots-c-40mg",
             "compound_parent_handle": "mots-c"
           }
         },
@@ -6572,6 +8285,26 @@
       },
       "variants": [
         {
+          "id": "nad-100mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0092-01",
+          "handle": "nad-100mg-1-pack",
+          "amount_usd": 40,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "nad-100mg",
+            "strength": "100mg",
+            "product_code": 92,
+            "pack_qty": 1,
+            "per_unit_usd": 40,
+            "savings_pct": 0,
+            "strength_key": "100mg",
+            "strength_option": "100mg",
+            "legacy_product_handle": "nad-100mg",
+            "compound_parent_handle": "nad"
+          }
+        },
+        {
           "id": "nad-100mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0092-05",
@@ -6632,6 +8365,26 @@
           }
         },
         {
+          "id": "nad-500mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0093-01",
+          "handle": "nad-500mg-1-pack",
+          "amount_usd": 75,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "nad-500mg",
+            "strength": "500mg",
+            "product_code": 93,
+            "pack_qty": 1,
+            "per_unit_usd": 75,
+            "savings_pct": 0,
+            "strength_key": "500mg",
+            "strength_option": "500mg",
+            "legacy_product_handle": "nad-500mg",
+            "compound_parent_handle": "nad"
+          }
+        },
+        {
           "id": "nad-500mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0093-05",
@@ -6688,6 +8441,26 @@
             "strength_key": "500mg",
             "strength_option": "500mg",
             "legacy_product_handle": "nad-500mg",
+            "compound_parent_handle": "nad"
+          }
+        },
+        {
+          "id": "nad-1000mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0091-01",
+          "handle": "nad-1000mg-1-pack",
+          "amount_usd": 150,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "nad-1000mg",
+            "strength": "1000mg",
+            "product_code": 91,
+            "pack_qty": 1,
+            "per_unit_usd": 150,
+            "savings_pct": 0,
+            "strength_key": "1000mg",
+            "strength_option": "1000mg",
+            "legacy_product_handle": "nad-1000mg",
             "compound_parent_handle": "nad"
           }
         },
@@ -6780,6 +8553,26 @@
       },
       "variants": [
         {
+          "id": "oxytocin-acetate-2mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0095-01",
+          "handle": "oxytocin-acetate-2mg-1-pack",
+          "amount_usd": 25,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "oxytocin-acetate-2mg",
+            "strength": "2mg",
+            "product_code": 95,
+            "pack_qty": 1,
+            "per_unit_usd": 25,
+            "savings_pct": 0,
+            "strength_key": "2mg",
+            "strength_option": "2mg",
+            "legacy_product_handle": "oxytocin-acetate-2mg",
+            "compound_parent_handle": "oxytocin-acetate"
+          }
+        },
+        {
           "id": "oxytocin-acetate-2mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0095-05",
@@ -6840,6 +8633,26 @@
           }
         },
         {
+          "id": "oxytocin-acetate-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0096-01",
+          "handle": "oxytocin-acetate-5mg-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "oxytocin-acetate-5mg",
+            "strength": "5mg",
+            "product_code": 96,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "oxytocin-acetate-5mg",
+            "compound_parent_handle": "oxytocin-acetate"
+          }
+        },
+        {
           "id": "oxytocin-acetate-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0096-05",
@@ -6896,6 +8709,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "oxytocin-acetate-5mg",
+            "compound_parent_handle": "oxytocin-acetate"
+          }
+        },
+        {
+          "id": "oxytocin-acetate-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0094-01",
+          "handle": "oxytocin-acetate-10mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "oxytocin-acetate-10mg",
+            "strength": "10mg",
+            "product_code": 94,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "oxytocin-acetate-10mg",
             "compound_parent_handle": "oxytocin-acetate"
           }
         },
@@ -6983,6 +8816,23 @@
       },
       "variants": [
         {
+          "id": "peg-mgf-2mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0097-01",
+          "handle": "peg-mgf-2mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "peg-mgf-2mg",
+            "strength": "2mg",
+            "product_code": 97,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "2mg"
+          }
+        },
+        {
           "id": "peg-mgf-2mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0097-05",
@@ -7057,6 +8907,23 @@
       },
       "variants": [
         {
+          "id": "pinealon-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0098-01",
+          "handle": "pinealon-10mg-1-pack",
+          "amount_usd": 75,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "pinealon-10mg",
+            "strength": "10mg",
+            "product_code": 98,
+            "pack_qty": 1,
+            "per_unit_usd": 75,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "pinealon-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0098-05",
@@ -7130,6 +8997,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "pinealon-capsules-100-count-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0099-01",
+          "handle": "pinealon-capsules-100-count-1-pack",
+          "amount_usd": 99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "pinealon-capsules-100-count",
+            "strength": "100 count)",
+            "product_code": 99,
+            "pack_qty": 1,
+            "per_unit_usd": 99,
+            "savings_pct": 0,
+            "strength_key": null
+          }
+        },
         {
           "id": "pinealon-capsules-100-count-5-pack",
           "title": "5 vials",
@@ -7212,6 +9096,26 @@
       },
       "variants": [
         {
+          "id": "retatrutide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0104-01",
+          "handle": "retatrutide-5mg-1-pack",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "retatrutide-5mg",
+            "strength": "5mg",
+            "product_code": 104,
+            "pack_qty": 1,
+            "per_unit_usd": 109,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "retatrutide-5mg",
+            "compound_parent_handle": "retatrutide"
+          }
+        },
+        {
           "id": "retatrutide-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0104-05",
@@ -7268,6 +9172,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "retatrutide-5mg",
+            "compound_parent_handle": "retatrutide"
+          }
+        },
+        {
+          "id": "retatrutide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0101-01",
+          "handle": "retatrutide-10mg-1-pack",
+          "amount_usd": 129,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "retatrutide-10mg",
+            "strength": "10mg",
+            "product_code": 101,
+            "pack_qty": 1,
+            "per_unit_usd": 129,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "retatrutide-10mg",
             "compound_parent_handle": "retatrutide"
           }
         },
@@ -7332,6 +9256,26 @@
           }
         },
         {
+          "id": "retatrutide-20mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0102-01",
+          "handle": "retatrutide-20mg-1-pack",
+          "amount_usd": 209,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "retatrutide-20mg",
+            "strength": "20mg",
+            "product_code": 102,
+            "pack_qty": 1,
+            "per_unit_usd": 209,
+            "savings_pct": 0,
+            "strength_key": "20mg",
+            "strength_option": "20mg",
+            "legacy_product_handle": "retatrutide-20mg",
+            "compound_parent_handle": "retatrutide"
+          }
+        },
+        {
           "id": "retatrutide-20mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0102-05",
@@ -7392,6 +9336,26 @@
           }
         },
         {
+          "id": "retatrutide-50mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0103-01",
+          "handle": "retatrutide-50mg-1-pack",
+          "amount_usd": 459,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "retatrutide-50mg",
+            "strength": "50mg",
+            "product_code": 103,
+            "pack_qty": 1,
+            "per_unit_usd": 459,
+            "savings_pct": 0,
+            "strength_key": "50mg",
+            "strength_option": "50mg",
+            "legacy_product_handle": "retatrutide-50mg",
+            "compound_parent_handle": "retatrutide"
+          }
+        },
+        {
           "id": "retatrutide-50mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0103-05",
@@ -7448,6 +9412,26 @@
             "strength_key": "50mg",
             "strength_option": "50mg",
             "legacy_product_handle": "retatrutide-50mg",
+            "compound_parent_handle": "retatrutide"
+          }
+        },
+        {
+          "id": "retatrutide-100mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0100-01",
+          "handle": "retatrutide-100mg-1-pack",
+          "amount_usd": 909,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "retatrutide-100mg",
+            "strength": "100mg",
+            "product_code": 100,
+            "pack_qty": 1,
+            "per_unit_usd": 909,
+            "savings_pct": 0,
+            "strength_key": "100mg",
+            "strength_option": "100mg",
+            "legacy_product_handle": "retatrutide-100mg",
             "compound_parent_handle": "retatrutide"
           }
         },
@@ -7539,6 +9523,26 @@
       },
       "variants": [
         {
+          "id": "selank-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0106-01",
+          "handle": "selank-5mg-1-pack",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "selank-5mg",
+            "strength": "5mg",
+            "product_code": 106,
+            "pack_qty": 1,
+            "per_unit_usd": 35,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "selank-5mg",
+            "compound_parent_handle": "selank"
+          }
+        },
+        {
           "id": "selank-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0106-05",
@@ -7595,6 +9599,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "selank-5mg",
+            "compound_parent_handle": "selank"
+          }
+        },
+        {
+          "id": "selank-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0105-01",
+          "handle": "selank-10mg-1-pack",
+          "amount_usd": 50,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "selank-10mg",
+            "strength": "10mg",
+            "product_code": 105,
+            "pack_qty": 1,
+            "per_unit_usd": 50,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "selank-10mg",
             "compound_parent_handle": "selank"
           }
         },
@@ -7686,6 +9710,26 @@
       },
       "variants": [
         {
+          "id": "semaglutide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0109-01",
+          "handle": "semaglutide-5mg-1-pack",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "semaglutide-5mg",
+            "strength": "5mg",
+            "product_code": 109,
+            "pack_qty": 1,
+            "per_unit_usd": 89,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "semaglutide-5mg",
+            "compound_parent_handle": "semaglutide"
+          }
+        },
+        {
           "id": "semaglutide-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0109-05",
@@ -7742,6 +9786,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "semaglutide-5mg",
+            "compound_parent_handle": "semaglutide"
+          }
+        },
+        {
+          "id": "semaglutide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0108-01",
+          "handle": "semaglutide-10mg-1-pack",
+          "amount_usd": 129,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "semaglutide-10mg",
+            "strength": "10mg",
+            "product_code": 108,
+            "pack_qty": 1,
+            "per_unit_usd": 129,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "semaglutide-10mg",
             "compound_parent_handle": "semaglutide"
           }
         },
@@ -7833,6 +9897,26 @@
       },
       "variants": [
         {
+          "id": "semax-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0111-01",
+          "handle": "semax-5mg-1-pack",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "semax-5mg",
+            "strength": "5mg",
+            "product_code": 111,
+            "pack_qty": 1,
+            "per_unit_usd": 35,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "semax-5mg",
+            "compound_parent_handle": "semax"
+          }
+        },
+        {
           "id": "semax-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0111-05",
@@ -7889,6 +9973,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "semax-5mg",
+            "compound_parent_handle": "semax"
+          }
+        },
+        {
+          "id": "semax-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0110-01",
+          "handle": "semax-10mg-1-pack",
+          "amount_usd": 55,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "semax-10mg",
+            "strength": "10mg",
+            "product_code": 110,
+            "pack_qty": 1,
+            "per_unit_usd": 55,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "semax-10mg",
             "compound_parent_handle": "semax"
           }
         },
@@ -7980,6 +10084,26 @@
       },
       "variants": [
         {
+          "id": "sermorelin-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0114-01",
+          "handle": "sermorelin-5mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "sermorelin-5mg",
+            "strength": "5mg",
+            "product_code": 114,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "sermorelin-5mg",
+            "compound_parent_handle": "sermorelin"
+          }
+        },
+        {
           "id": "sermorelin-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0114-05",
@@ -8036,6 +10160,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "sermorelin-5mg",
+            "compound_parent_handle": "sermorelin"
+          }
+        },
+        {
+          "id": "sermorelin-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0113-01",
+          "handle": "sermorelin-10mg-1-pack",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "sermorelin-10mg",
+            "strength": "10mg",
+            "product_code": 113,
+            "pack_qty": 1,
+            "per_unit_usd": 109,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "sermorelin-10mg",
             "compound_parent_handle": "sermorelin"
           }
         },
@@ -8123,6 +10267,23 @@
       },
       "variants": [
         {
+          "id": "snap-8-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0115-01",
+          "handle": "snap-8-10mg-1-pack",
+          "amount_usd": 35,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "snap-8-10mg",
+            "strength": "10mg",
+            "product_code": 115,
+            "pack_qty": 1,
+            "per_unit_usd": 35,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "snap-8-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0115-05",
@@ -8202,6 +10363,26 @@
       },
       "variants": [
         {
+          "id": "ss-31-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0116-01",
+          "handle": "ss-31-10mg-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ss-31-10mg",
+            "strength": "10mg",
+            "product_code": 116,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "ss-31-10mg",
+            "compound_parent_handle": "ss-31"
+          }
+        },
+        {
           "id": "ss-31-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0116-05",
@@ -8262,6 +10443,26 @@
           }
         },
         {
+          "id": "ss-31-20mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0133-01",
+          "handle": "ss-31-20mg-1-pack",
+          "amount_usd": 109,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ss-31-20mg",
+            "strength": "10mg",
+            "product_code": 133,
+            "pack_qty": 1,
+            "per_unit_usd": 109,
+            "savings_pct": 0,
+            "strength_key": "20mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "ss-31-20mg",
+            "compound_parent_handle": "ss-31"
+          }
+        },
+        {
           "id": "ss-31-20mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0133-05",
@@ -8318,6 +10519,26 @@
             "strength_key": "20mg",
             "strength_option": "10mg",
             "legacy_product_handle": "ss-31-20mg",
+            "compound_parent_handle": "ss-31"
+          }
+        },
+        {
+          "id": "ss-31-50mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0118-01",
+          "handle": "ss-31-50mg-1-pack",
+          "amount_usd": 199,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "ss-31-50mg",
+            "strength": "50mg",
+            "product_code": 118,
+            "pack_qty": 1,
+            "per_unit_usd": 199,
+            "savings_pct": 0,
+            "strength_key": "50mg",
+            "strength_option": "50mg",
+            "legacy_product_handle": "ss-31-50mg",
             "compound_parent_handle": "ss-31"
           }
         },
@@ -8405,6 +10626,23 @@
       },
       "variants": [
         {
+          "id": "survodutide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0119-01",
+          "handle": "survodutide-10mg-1-pack",
+          "amount_usd": 209,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "survodutide-10mg",
+            "strength": "10mg",
+            "product_code": 119,
+            "pack_qty": 1,
+            "per_unit_usd": 209,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "survodutide-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0119-05",
@@ -8483,6 +10721,26 @@
       },
       "variants": [
         {
+          "id": "tb500-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0121-01",
+          "handle": "tb500-5mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tb500-5mg",
+            "strength": "5mg",
+            "product_code": 121,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "tb500-5mg",
+            "compound_parent_handle": "tb500"
+          }
+        },
+        {
           "id": "tb500-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0121-05",
@@ -8539,6 +10797,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "tb500-5mg",
+            "compound_parent_handle": "tb500"
+          }
+        },
+        {
+          "id": "tb500-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0120-01",
+          "handle": "tb500-10mg-1-pack",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tb500-10mg",
+            "strength": "10mg",
+            "product_code": 120,
+            "pack_qty": 1,
+            "per_unit_usd": 89,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "tb500-10mg",
             "compound_parent_handle": "tb500"
           }
         },
@@ -8631,6 +10909,26 @@
       },
       "variants": [
         {
+          "id": "tesamorelin-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0124-01",
+          "handle": "tesamorelin-5mg-1-pack",
+          "amount_usd": 69,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tesamorelin-5mg",
+            "strength": "5mg",
+            "product_code": 124,
+            "pack_qty": 1,
+            "per_unit_usd": 69,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "tesamorelin-5mg",
+            "compound_parent_handle": "tesamorelin"
+          }
+        },
+        {
           "id": "tesamorelin-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0124-05",
@@ -8691,6 +10989,26 @@
           }
         },
         {
+          "id": "tesamorelin-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0122-01",
+          "handle": "tesamorelin-10mg-1-pack",
+          "amount_usd": 129,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tesamorelin-10mg",
+            "strength": "10mg",
+            "product_code": 122,
+            "pack_qty": 1,
+            "per_unit_usd": 129,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "tesamorelin-10mg",
+            "compound_parent_handle": "tesamorelin"
+          }
+        },
+        {
           "id": "tesamorelin-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0122-05",
@@ -8747,6 +11065,26 @@
             "strength_key": "10mg",
             "strength_option": "10mg",
             "legacy_product_handle": "tesamorelin-10mg",
+            "compound_parent_handle": "tesamorelin"
+          }
+        },
+        {
+          "id": "tesamorelin-20mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0123-01",
+          "handle": "tesamorelin-20mg-1-pack",
+          "amount_usd": 239,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tesamorelin-20mg",
+            "strength": "20mg",
+            "product_code": 123,
+            "pack_qty": 1,
+            "per_unit_usd": 239,
+            "savings_pct": 0,
+            "strength_key": "20mg",
+            "strength_option": "20mg",
+            "legacy_product_handle": "tesamorelin-20mg",
             "compound_parent_handle": "tesamorelin"
           }
         },
@@ -8834,6 +11172,23 @@
       },
       "variants": [
         {
+          "id": "thymalin-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0125-01",
+          "handle": "thymalin-10mg-1-pack",
+          "amount_usd": 39,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "thymalin-10mg",
+            "strength": "10mg",
+            "product_code": 125,
+            "pack_qty": 1,
+            "per_unit_usd": 39,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
+        {
           "id": "thymalin-10mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0125-05",
@@ -8912,6 +11267,26 @@
       },
       "variants": [
         {
+          "id": "thymosin-alpha-1-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0127-01",
+          "handle": "thymosin-alpha-1-5mg-1-pack",
+          "amount_usd": 59,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "thymosin-alpha-1-5mg",
+            "strength": "5mg",
+            "product_code": 127,
+            "pack_qty": 1,
+            "per_unit_usd": 59,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "thymosin-alpha-1-5mg",
+            "compound_parent_handle": "thymosin-alpha-1"
+          }
+        },
+        {
           "id": "thymosin-alpha-1-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0127-05",
@@ -8968,6 +11343,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "thymosin-alpha-1-5mg",
+            "compound_parent_handle": "thymosin-alpha-1"
+          }
+        },
+        {
+          "id": "thymosin-alpha-1-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0126-01",
+          "handle": "thymosin-alpha-1-10mg-1-pack",
+          "amount_usd": 119,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "thymosin-alpha-1-10mg",
+            "strength": "10mg",
+            "product_code": 126,
+            "pack_qty": 1,
+            "per_unit_usd": 119,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "thymosin-alpha-1-10mg",
             "compound_parent_handle": "thymosin-alpha-1"
           }
         },
@@ -9061,6 +11456,26 @@
       },
       "variants": [
         {
+          "id": "tirzepatide-5mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0131-01",
+          "handle": "tirzepatide-5mg-1-pack",
+          "amount_usd": 49,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tirzepatide-5mg",
+            "strength": "5mg",
+            "product_code": 131,
+            "pack_qty": 1,
+            "per_unit_usd": 49,
+            "savings_pct": 0,
+            "strength_key": "5mg",
+            "strength_option": "5mg",
+            "legacy_product_handle": "tirzepatide-5mg",
+            "compound_parent_handle": "tirzepatide"
+          }
+        },
+        {
           "id": "tirzepatide-5mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0131-05",
@@ -9117,6 +11532,26 @@
             "strength_key": "5mg",
             "strength_option": "5mg",
             "legacy_product_handle": "tirzepatide-5mg",
+            "compound_parent_handle": "tirzepatide"
+          }
+        },
+        {
+          "id": "tirzepatide-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0128-01",
+          "handle": "tirzepatide-10mg-1-pack",
+          "amount_usd": 89,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tirzepatide-10mg",
+            "strength": "10mg",
+            "product_code": 128,
+            "pack_qty": 1,
+            "per_unit_usd": 89,
+            "savings_pct": 0,
+            "strength_key": "10mg",
+            "strength_option": "10mg",
+            "legacy_product_handle": "tirzepatide-10mg",
             "compound_parent_handle": "tirzepatide"
           }
         },
@@ -9181,6 +11616,26 @@
           }
         },
         {
+          "id": "tirzepatide-20mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0129-01",
+          "handle": "tirzepatide-20mg-1-pack",
+          "amount_usd": 179,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tirzepatide-20mg",
+            "strength": "20mg",
+            "product_code": 129,
+            "pack_qty": 1,
+            "per_unit_usd": 179,
+            "savings_pct": 0,
+            "strength_key": "20mg",
+            "strength_option": "20mg",
+            "legacy_product_handle": "tirzepatide-20mg",
+            "compound_parent_handle": "tirzepatide"
+          }
+        },
+        {
           "id": "tirzepatide-20mg-5-pack",
           "title": "5 vials",
           "sku": "TV-0129-05",
@@ -9237,6 +11692,26 @@
             "strength_key": "20mg",
             "strength_option": "20mg",
             "legacy_product_handle": "tirzepatide-20mg",
+            "compound_parent_handle": "tirzepatide"
+          }
+        },
+        {
+          "id": "tirzepatide-50mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0130-01",
+          "handle": "tirzepatide-50mg-1-pack",
+          "amount_usd": 429,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "tirzepatide-50mg",
+            "strength": "50mg",
+            "product_code": 130,
+            "pack_qty": 1,
+            "per_unit_usd": 429,
+            "savings_pct": 0,
+            "strength_key": "50mg",
+            "strength_option": "50mg",
+            "legacy_product_handle": "tirzepatide-50mg",
             "compound_parent_handle": "tirzepatide"
           }
         },
@@ -9323,6 +11798,23 @@
         "appearance": "White lyophilized powder"
       },
       "variants": [
+        {
+          "id": "vip-10mg-1-pack",
+          "title": "1 vial",
+          "sku": "TV-0132-01",
+          "handle": "vip-10mg-1-pack",
+          "amount_usd": 99,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "vip-10mg",
+            "strength": "10mg",
+            "product_code": 132,
+            "pack_qty": 1,
+            "per_unit_usd": 99,
+            "savings_pct": 0,
+            "strength_key": "10mg"
+          }
+        },
         {
           "id": "vip-10mg-5-pack",
           "title": "5 vials",

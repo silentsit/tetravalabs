@@ -1,5 +1,5 @@
 /**
- * Update existing Medusa products with normalized catalog pack tiers (5/10/20 vials).
+ * Update existing Medusa products with normalized catalog pack tiers (1/5/10/20 vials).
  * Supports compound-merged products (Strength + Pack Size options).
  *
  * Usage:

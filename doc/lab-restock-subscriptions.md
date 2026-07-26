@@ -21,7 +21,7 @@ No auto-billing / no card vault. Customers commit to a **cadence and SKU**; each
 | Name | **Peptide Refill** |
 | Discount | **12%** off renewal refills (cycle 2+); first shipment full price |
 | Cadences | **30 / 60 / 90** days |
-| Pack tiers | Unchanged (1/5/10/20) |
+| Pack tiers | 1 / 5 / 10 / 20 vials (PDP no longer shows Peptide Refill selector) |
 | Card | Peptide Pay (required for refills) |
 | Crypto | One-time carts only |
 | Shipping | Free cold-chain on refill checkouts |

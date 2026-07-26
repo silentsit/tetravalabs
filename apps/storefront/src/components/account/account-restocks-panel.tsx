@@ -93,7 +93,7 @@ export function AccountRestocksPanel() {
     return (
       <AccountEmptyNotice
         icon={RotateCcw}
-        message="No Peptide Refills yet. Choose Peptide Refill on a product page to schedule automatic shipments."
+        message="No Peptide Refills yet. Product pages currently sell one-time packs; existing refills appear here once scheduled."
         actionLabel="Browse catalog"
         actionHref="/shop"
       />

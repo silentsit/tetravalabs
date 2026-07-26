@@ -100,14 +100,14 @@ export const chatTools = {
 
   suggestPeptideRefill: tool({
     description:
-      "Suggest Peptide Refill as an educational PDP link for a product handle. Does not create billing or subscriptions.",
+      "Explain Peptide Refill and link to the product page for one-time purchase. Does not create billing or subscriptions. New refill enrollments are not offered on the product page.",
     inputSchema: z.object({
       handle: z.string().min(1).describe("Product handle from searchProducts")
     }),
     execute: async ({ handle }) => ({
       href: `/product/${encodeURIComponent(handle)}`,
       label: LAB_RESTOCK_COPY.restockLabel,
-      note: `${LAB_RESTOCK_COPY.micro} Customer must choose Peptide Refill on the product page and complete Peptide Pay checkout — no silent charges.`
+      note: "Product pages sell one-time packs (1/5/10/20). Existing Peptide Refills are managed under Account → Peptide Refills — no silent card charges."
     })
   }),
 

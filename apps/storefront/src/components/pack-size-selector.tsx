@@ -38,7 +38,6 @@ export function PackSizeSelector({
 
   const unitSuffix = unitLabel === "vial" ? "/vial" : "/unit"
   const unitWord = unitLabel === "vial" ? "vial" : "unit"
-  const moqQty = displayTiers[0]?.qty ?? 5
   const perUnits = displayTiers.map((tier) => tier.perUnit)
   const perUnitRange =
     perUnits.length > 1 && Math.min(...perUnits) !== Math.max(...perUnits)
@@ -62,7 +61,8 @@ export function PackSizeSelector({
         <div>
           <span className="mb-2 block text-sm font-medium text-[#475569]">Choose pack size</span>
           <p className="text-xs text-[#94A3B8]">
-            Sold in multi-{unitWord} packs only · {moqQty}-{unitWord} minimum
+            {displayTiers.map((tier) => tier.qty).join(" / ")} {unitWord}
+            {displayTiers.length === 1 && displayTiers[0]?.qty === 1 ? "" : "s"}
           </p>
         </div>
         <p className="text-sm font-medium tabular-nums text-[#475569]">
@@ -108,6 +108,11 @@ export function PackSizeSelector({
               <div className="min-w-0 flex-1 self-stretch sm:self-auto">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="font-medium text-[#0F172A]">{tier.tier}</span>
+                  {tier.qty === 5 ? (
+                    <span className="rounded-full bg-[#E2E8F0] px-2 py-0.5 font-mono text-[10px] font-semibold text-[#475569]">
+                      Best fit
+                    </span>
+                  ) : null}
                   {tier.qty === 10 ? (
                     <span className="rounded-full bg-[#6366F1] px-2 py-0.5 font-mono text-[10px] font-semibold text-white">
                       Most Popular

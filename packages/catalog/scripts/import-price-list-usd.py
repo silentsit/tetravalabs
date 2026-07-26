@@ -122,7 +122,15 @@ def load_workbook_rows(xlsx_path: Path) -> list[dict]:
 
         product_name = str(product_cell).strip()
         try:
+            ref = _num(ws.cell(row_idx, cols["ref"]).value)
             pack_tiers = [
+                {
+                    "tier": "1 vial",
+                    "qty": 1,
+                    "price_usd": round(ref, 2),
+                    "per_unit_usd": round(ref, 2),
+                    "savings_pct": 0.0,
+                },
                 {
                     "tier": "5 vials",
                     "qty": 5,
@@ -149,13 +157,12 @@ def load_workbook_rows(xlsx_path: Path) -> list[dict]:
             # Skip rows without full pack pricing (e.g. nasal sprays).
             continue
 
-        ref = _num(ws.cell(row_idx, cols["ref"]).value, required=False)
         rows.append(
             {
                 "category": current_category,
                 "product_name": product_name,
                 "slug": slugify(product_name),
-                "ref_price_usd": ref,
+                "ref_price_usd": pack_tiers[0]["price_usd"],
                 "pack_tiers": pack_tiers,
             }
         )

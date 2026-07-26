@@ -115,15 +115,18 @@ const visualType = (name, strength) => {
   return "vial"
 }
 
-const defaultPackTiers = (row) => [
-  {
-    tier: "5 vials",
-    qty: 5,
-    price_usd: Number(row.price_usd),
-    per_unit_usd: Number(row.price_usd) / 5,
-    savings_pct: 0
-  }
-]
+const defaultPackTiers = (row) => {
+  const ref = Number(row.ref_price_usd ?? row.price_usd)
+  return [
+    {
+      tier: "1 vial",
+      qty: 1,
+      price_usd: ref,
+      per_unit_usd: ref,
+      savings_pct: 0
+    }
+  ]
+}
 
 const readJsonFile = async (filePath) => {
   const raw = await fs.readFile(filePath, "utf8")
@@ -136,30 +139,28 @@ const buildRowVariants = (row, productCode, skuRegistry) => {
 
   return tiers.map((tier) => {
     const qty = Number(tier.qty)
-    const isSimpleUnit = qty <= 1
-    const packQty = isSimpleUnit ? 1 : qty
+    const packQty = Number.isFinite(qty) && qty > 0 ? Math.floor(qty) : 1
+    const variantTitle = packQty === 1 ? "1 vial" : tier.tier
     const sku = formatOpaqueSku(productCode, packQty)
     const variantMeta = {
       catalog_slug: row.slug,
       strength: row.strength,
-      product_code: productCode
-    }
-    if (!isSimpleUnit) {
-      variantMeta.pack_qty = qty
-      variantMeta.per_unit_usd = Number(tier.per_unit_usd)
-      variantMeta.savings_pct = Number(tier.savings_pct || 0)
+      product_code: productCode,
+      pack_qty: packQty,
+      per_unit_usd: Number(tier.per_unit_usd ?? tier.price_usd),
+      savings_pct: Number(tier.savings_pct || 0)
     }
     skuRegistry[sku] = {
       handle: row.slug,
       title,
       pack_qty: packQty,
-      variant_title: isSimpleUnit ? "Standard" : tier.tier
+      variant_title: variantTitle
     }
     return {
-      id: slugify(`${row.slug}-${tier.qty}-pack`),
-      title: isSimpleUnit ? "Standard" : tier.tier,
+      id: slugify(`${row.slug}-${packQty}-pack`),
+      title: variantTitle,
       sku,
-      handle: `${row.slug}-${tier.qty}-pack`,
+      handle: `${row.slug}-${packQty}-pack`,
       amount_usd: Number(tier.price_usd),
       currency_code: "usd",
       metadata: variantMeta

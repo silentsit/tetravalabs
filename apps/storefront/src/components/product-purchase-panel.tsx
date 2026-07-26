@@ -1,8 +1,7 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 import { AddToCartButton } from "@/components/add-to-cart-button"
-import { LabRestockSelector } from "@/components/lab-restock-selector"
 import { PackSizeSelector } from "@/components/pack-size-selector"
 import { StockNotifyForm } from "@/components/stock-notify-form"
 import {
@@ -12,18 +11,7 @@ import {
 import { getVariantPriceCents } from "@/lib/product-price"
 import type { PackTier } from "@/lib/pack-pricing"
 import { showCompareAtPricingForHandle } from "@/lib/pack-pricing"
-import {
-  applyLabRestockPrice,
-  cartLineId,
-  defaultFulfillmentMode,
-  defaultRestockCadence,
-  isLabRestockEligible,
-  LAB_RESTOCK_COPY,
-  peptideRefillFirstOrderPrice,
-  restockSavingsUsd,
-  type FulfillmentMode,
-  type LabRestockCadenceDays
-} from "@/lib/lab-restock"
+import { cartLineId } from "@/lib/lab-restock"
 
 type Props = {
   displayName: string
@@ -49,23 +37,6 @@ export function ProductPurchasePanel({
   )
 
   const packTiers = selectedStrength?.packTiers || []
-  const eligible = isLabRestockEligible(selectedStrength?.handle)
-
-  const [fulfillment, setFulfillment] = useState<FulfillmentMode>(() =>
-    eligible ? defaultFulfillmentMode(selectedStrength?.handle) : "one_time"
-  )
-  const [cadenceDays, setCadenceDays] = useState<LabRestockCadenceDays>(() =>
-    defaultRestockCadence(selectedStrength?.handle)
-  )
-
-  useEffect(() => {
-    if (!eligible) {
-      setFulfillment("one_time")
-      return
-    }
-    setFulfillment(defaultFulfillmentMode(selectedStrength?.handle))
-    setCadenceDays(defaultRestockCadence(selectedStrength?.handle))
-  }, [eligible, selectedStrength?.handle])
 
   const selectedTier = useMemo(() => {
     if (!packTiers.length) return null
@@ -83,21 +54,9 @@ export function ProductPurchasePanel({
     return selectedStrength.variants[0]
   }, [selectedStrength, selectedTier])
 
-  const oneTimePrice = selectedTier
+  const unitPrice = selectedTier
     ? selectedTier.price
     : getVariantPriceCents(selectedVariant) / 100
-
-  const restockPrice = applyLabRestockPrice(oneTimePrice)
-  const firstOrderPrice = peptideRefillFirstOrderPrice(oneTimePrice)
-  const chargePrice = fulfillment === "lab_restock" ? firstOrderPrice : oneTimePrice
-  const savingsUsd = restockSavingsUsd(oneTimePrice, 1)
-  const perUnit =
-    selectedTier && selectedTier.qty > 0
-      ? (fulfillment === "lab_restock"
-          ? peptideRefillFirstOrderPrice(selectedTier.perUnit)
-          : selectedTier.perUnit
-        ).toFixed(2)
-      : null
 
   const inStock = isVariantInStock(selectedVariant)
 
@@ -106,12 +65,7 @@ export function ProductPurchasePanel({
   const showStrengthSelector = strengths.length > 1
   const showPackSelector = packTiers.length >= 2
   const variantTitle = selectedTier?.tier || selectedVariant.title
-  const lineId = cartLineId(
-    selectedStrength.productId,
-    selectedVariant.id,
-    fulfillment,
-    fulfillment === "lab_restock" ? cadenceDays : null
-  )
+  const lineId = cartLineId(selectedStrength.productId, selectedVariant.id, "one_time")
 
   return (
     <section className="card space-y-5 p-6" aria-label="Purchase options">
@@ -153,23 +107,10 @@ export function ProductPurchasePanel({
         <div>
           <h2 className="font-serif text-lg text-[color:var(--color-text)]">Price</h2>
           <p className="mt-2 text-2xl font-bold tabular-nums text-[color:var(--color-text)]">
-            ${chargePrice.toFixed(2)}
+            ${unitPrice.toFixed(2)}
           </p>
         </div>
       )}
-
-      {eligible ? (
-        <LabRestockSelector
-          fulfillment={fulfillment}
-          cadenceDays={cadenceDays}
-          onFulfillmentChange={setFulfillment}
-          onCadenceChange={setCadenceDays}
-          oneTimePrice={oneTimePrice}
-          restockPrice={restockPrice}
-          savingsUsd={savingsUsd}
-          perUnitLabel={perUnit ? `$${perUnit}/vial` : undefined}
-        />
-      ) : null}
 
       <div className="space-y-3 pt-1">
         {inStock ? (
@@ -178,21 +119,11 @@ export function ProductPurchasePanel({
             handle={selectedStrength.handle}
             title={displayName}
             variantId={selectedVariant.id}
-            variantTitle={
-              fulfillment === "lab_restock"
-                ? `${variantTitle} · Refill every ${cadenceDays}d`
-                : variantTitle
-            }
-            unitPrice={chargePrice}
+            variantTitle={variantTitle}
+            unitPrice={unitPrice}
             lineId={lineId}
-            fulfillment={fulfillment}
-            restockCadenceDays={fulfillment === "lab_restock" ? cadenceDays : undefined}
-            oneTimeUnitPrice={oneTimePrice}
-            label={
-              fulfillment === "lab_restock"
-                ? LAB_RESTOCK_COPY.ctaRestock
-                : LAB_RESTOCK_COPY.ctaOneTime
-            }
+            fulfillment="one_time"
+            label="Add to cart"
           />
         ) : (
           <>

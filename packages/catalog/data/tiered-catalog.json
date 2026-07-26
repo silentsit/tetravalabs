@@ -6,27 +6,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "5-amino-1mq 10mg",
       "slug": "5-amino-1mq-10mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 580.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 580,
+          "per_unit_usd": 29,
           "savings_pct": 0.4082
         }
       ]
@@ -36,27 +43,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "5-amino-1mq 5mg",
       "slug": "5-amino-1mq-5mg",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 125.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 125,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 190.0,
-          "per_unit_usd": 19.0,
+          "price_usd": 190,
+          "per_unit_usd": 19,
           "savings_pct": 0.3448
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 220.0,
-          "per_unit_usd": 11.0,
+          "price_usd": 220,
+          "per_unit_usd": 11,
           "savings_pct": 0.6207
         }
       ]
@@ -66,27 +80,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "AOD-9604 10mg",
       "slug": "aod-9604-10mg",
-      "ref_price_usd": 95.0,
+      "ref_price_usd": 95,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 95,
+          "per_unit_usd": 95,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 445.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 445,
+          "per_unit_usd": 89,
           "savings_pct": 0.0632
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 850.0,
-          "per_unit_usd": 85.0,
+          "price_usd": 850,
+          "per_unit_usd": 85,
           "savings_pct": 0.1053
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1580.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 1580,
+          "per_unit_usd": 79,
           "savings_pct": 0.1684
         }
       ]
@@ -96,27 +117,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "AOD-9604 5mg",
       "slug": "aod-9604-5mg",
-      "ref_price_usd": 55.0,
+      "ref_price_usd": 55,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 55,
+          "per_unit_usd": 55,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1091
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 450.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 450,
+          "per_unit_usd": 45,
           "savings_pct": 0.1818
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 800.0,
-          "per_unit_usd": 40.0,
+          "price_usd": 800,
+          "per_unit_usd": 40,
           "savings_pct": 0.2727
         }
       ]
@@ -126,27 +154,34 @@
       "storefront_category": "Research Blends",
       "name": "Cagrilintide + Semaglutide 10mg",
       "slug": "cagrilintide-semaglutide-10mg",
-      "ref_price_usd": 289.0,
+      "ref_price_usd": 289,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 289,
+          "per_unit_usd": 289,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 1295.0,
-          "per_unit_usd": 259.0,
+          "price_usd": 1295,
+          "per_unit_usd": 259,
           "savings_pct": 0.1038
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 2290.0,
-          "per_unit_usd": 229.0,
+          "price_usd": 2290,
+          "per_unit_usd": 229,
           "savings_pct": 0.2076
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 4180.0,
-          "per_unit_usd": 209.0,
+          "price_usd": 4180,
+          "per_unit_usd": 209,
           "savings_pct": 0.2768
         }
       ]
@@ -156,27 +191,34 @@
       "storefront_category": "Research Blends",
       "name": "Cagrilintide + Semaglutide 5mg",
       "slug": "cagrilintide-semaglutide-5mg",
-      "ref_price_usd": 159.0,
+      "ref_price_usd": 159,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 159,
+          "per_unit_usd": 159,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 695.0,
-          "per_unit_usd": 139.0,
+          "price_usd": 695,
+          "per_unit_usd": 139,
           "savings_pct": 0.1258
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1090.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 1090,
+          "per_unit_usd": 109,
           "savings_pct": 0.3145
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1780.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 1780,
+          "per_unit_usd": 89,
           "savings_pct": 0.4403
         }
       ]
@@ -186,27 +228,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Cagrilintide 10mg",
       "slug": "cagrilintide-10mg",
-      "ref_price_usd": 149.0,
+      "ref_price_usd": 149,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 149,
+          "per_unit_usd": 149,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 725.0,
-          "per_unit_usd": 145.0,
+          "price_usd": 725,
+          "per_unit_usd": 145,
           "savings_pct": 0.0268
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1390.0,
-          "per_unit_usd": 139.0,
+          "price_usd": 1390,
+          "per_unit_usd": 139,
           "savings_pct": 0.0671
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2580.0,
-          "per_unit_usd": 129.0,
+          "price_usd": 2580,
+          "per_unit_usd": 129,
           "savings_pct": 0.1342
         }
       ]
@@ -216,27 +265,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Cagrilintide 5mg",
       "slug": "cagrilintide-5mg",
-      "ref_price_usd": 79.0,
+      "ref_price_usd": 79,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 375.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 375,
+          "per_unit_usd": 75,
           "savings_pct": 0.0506
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.1266
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1180.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 1180,
+          "per_unit_usd": 59,
           "savings_pct": 0.2532
         }
       ]
@@ -246,27 +302,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Mazdutide 10mg",
       "slug": "mazdutide-10mg",
-      "ref_price_usd": 119.0,
+      "ref_price_usd": 119,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 119,
+          "per_unit_usd": 119,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 575.0,
-          "per_unit_usd": 115.0,
+          "price_usd": 575,
+          "per_unit_usd": 115,
           "savings_pct": 0.0336
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1090.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 1090,
+          "per_unit_usd": 109,
           "savings_pct": 0.084
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1980.0,
-          "per_unit_usd": 99.0,
+          "price_usd": 1980,
+          "per_unit_usd": 99,
           "savings_pct": 0.1681
         }
       ]
@@ -276,27 +339,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Mazdutide 5mg",
       "slug": "mazdutide-5mg",
-      "ref_price_usd": 79.0,
+      "ref_price_usd": 79,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 375.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 375,
+          "per_unit_usd": 75,
           "savings_pct": 0.0506
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.1266
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1180.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 1180,
+          "per_unit_usd": 59,
           "savings_pct": 0.2532
         }
       ]
@@ -306,27 +376,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 100mg",
       "slug": "retatrutide-100mg",
-      "ref_price_usd": 909.0,
+      "ref_price_usd": 909,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 909,
+          "per_unit_usd": 909,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 3995.0,
-          "per_unit_usd": 799.0,
+          "price_usd": 3995,
+          "per_unit_usd": 799,
           "savings_pct": 0.121
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 6990.0,
-          "per_unit_usd": 699.0,
+          "price_usd": 6990,
+          "per_unit_usd": 699,
           "savings_pct": 0.231
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 11500.0,
-          "per_unit_usd": 575.0,
+          "price_usd": 11500,
+          "per_unit_usd": 575,
           "savings_pct": 0.3674
         }
       ]
@@ -336,27 +413,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 10mg",
       "slug": "retatrutide-10mg",
-      "ref_price_usd": 129.0,
+      "ref_price_usd": 129,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 129,
+          "per_unit_usd": 129,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 545.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 545,
+          "per_unit_usd": 109,
           "savings_pct": 0.155
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 890.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 890,
+          "per_unit_usd": 89,
           "savings_pct": 0.3101
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1500.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 1500,
+          "per_unit_usd": 75,
           "savings_pct": 0.4186
         }
       ]
@@ -366,27 +450,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 20mg",
       "slug": "retatrutide-20mg",
-      "ref_price_usd": 209.0,
+      "ref_price_usd": 209,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 209,
+          "per_unit_usd": 209,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 895.0,
-          "per_unit_usd": 179.0,
+          "price_usd": 895,
+          "per_unit_usd": 179,
           "savings_pct": 0.1435
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1490.0,
-          "per_unit_usd": 149.0,
+          "price_usd": 1490,
+          "per_unit_usd": 149,
           "savings_pct": 0.2871
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2500.0,
-          "per_unit_usd": 125.0,
+          "price_usd": 2500,
+          "per_unit_usd": 125,
           "savings_pct": 0.4019
         }
       ]
@@ -396,27 +487,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 50mg",
       "slug": "retatrutide-50mg",
-      "ref_price_usd": 459.0,
+      "ref_price_usd": 459,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 459,
+          "per_unit_usd": 459,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 2045.0,
-          "per_unit_usd": 409.0,
+          "price_usd": 2045,
+          "per_unit_usd": 409,
           "savings_pct": 0.1089
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 3590.0,
-          "per_unit_usd": 359.0,
+          "price_usd": 3590,
+          "per_unit_usd": 359,
           "savings_pct": 0.2179
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 6300.0,
-          "per_unit_usd": 315.0,
+          "price_usd": 6300,
+          "per_unit_usd": 315,
           "savings_pct": 0.3137
         }
       ]
@@ -426,27 +524,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Retatrutide 5mg",
       "slug": "retatrutide-5mg",
-      "ref_price_usd": 109.0,
+      "ref_price_usd": 109,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 109,
+          "per_unit_usd": 109,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 395.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 395,
+          "per_unit_usd": 79,
           "savings_pct": 0.2752
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.4587
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.5872
         }
       ]
@@ -456,27 +561,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Semaglutide 10mg",
       "slug": "semaglutide-10mg",
-      "ref_price_usd": 129.0,
+      "ref_price_usd": 129,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 129,
+          "per_unit_usd": 129,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 595.0,
-          "per_unit_usd": 119.0,
+          "price_usd": 595,
+          "per_unit_usd": 119,
           "savings_pct": 0.0775
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 990.0,
-          "per_unit_usd": 99.0,
+          "price_usd": 990,
+          "per_unit_usd": 99,
           "savings_pct": 0.2326
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1700.0,
-          "per_unit_usd": 85.0,
+          "price_usd": 1700,
+          "per_unit_usd": 85,
           "savings_pct": 0.3411
         }
       ]
@@ -486,27 +598,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Semaglutide 5mg",
       "slug": "semaglutide-5mg",
-      "ref_price_usd": 89.0,
+      "ref_price_usd": 89,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 89,
+          "per_unit_usd": 89,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 425.0,
-          "per_unit_usd": 85.0,
+          "price_usd": 425,
+          "per_unit_usd": 85,
           "savings_pct": 0.0449
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.2247
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1180.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 1180,
+          "per_unit_usd": 59,
           "savings_pct": 0.3371
         }
       ]
@@ -516,27 +635,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Sermorelin 10mg",
       "slug": "sermorelin-10mg",
-      "ref_price_usd": 109.0,
+      "ref_price_usd": 109,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 109,
+          "per_unit_usd": 109,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 495.0,
-          "per_unit_usd": 99.0,
+          "price_usd": 495,
+          "per_unit_usd": 99,
           "savings_pct": 0.0917
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 890.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 890,
+          "per_unit_usd": 89,
           "savings_pct": 0.1835
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1600.0,
-          "per_unit_usd": 80.0,
+          "price_usd": 1600,
+          "per_unit_usd": 80,
           "savings_pct": 0.2661
         }
       ]
@@ -546,27 +672,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Sermorelin 5mg",
       "slug": "sermorelin-5mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 250.0,
-          "per_unit_usd": 50.0,
+          "price_usd": 250,
+          "per_unit_usd": 50,
           "savings_pct": 0.1525
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 450.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 450,
+          "per_unit_usd": 45,
           "savings_pct": 0.2373
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 800.0,
-          "per_unit_usd": 40.0,
+          "price_usd": 800,
+          "per_unit_usd": 40,
           "savings_pct": 0.322
         }
       ]
@@ -576,27 +709,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Survodutide 10mg",
       "slug": "survodutide-10mg",
-      "ref_price_usd": 209.0,
+      "ref_price_usd": 209,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 209,
+          "per_unit_usd": 209,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 995.0,
-          "per_unit_usd": 199.0,
+          "price_usd": 995,
+          "per_unit_usd": 199,
           "savings_pct": 0.0478
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1790.0,
-          "per_unit_usd": 179.0,
+          "price_usd": 1790,
+          "per_unit_usd": 179,
           "savings_pct": 0.1435
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 3300.0,
-          "per_unit_usd": 165.0,
+          "price_usd": 3300,
+          "per_unit_usd": 165,
           "savings_pct": 0.2105
         }
       ]
@@ -606,27 +746,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Tesamorelin 10mg",
       "slug": "tesamorelin-10mg",
-      "ref_price_usd": 129.0,
+      "ref_price_usd": 129,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 129,
+          "per_unit_usd": 129,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 600.0,
-          "per_unit_usd": 120.0,
+          "price_usd": 600,
+          "per_unit_usd": 120,
           "savings_pct": 0.0698
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1090.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 1090,
+          "per_unit_usd": 109,
           "savings_pct": 0.155
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1980.0,
-          "per_unit_usd": 99.0,
+          "price_usd": 1980,
+          "per_unit_usd": 99,
           "savings_pct": 0.2326
         }
       ]
@@ -636,27 +783,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Tesamorelin 20mg",
       "slug": "tesamorelin-20mg",
-      "ref_price_usd": 239.0,
+      "ref_price_usd": 239,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 239,
+          "per_unit_usd": 239,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 1095.0,
-          "per_unit_usd": 219.0,
+          "price_usd": 1095,
+          "per_unit_usd": 219,
           "savings_pct": 0.0837
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1990.0,
-          "per_unit_usd": 199.0,
+          "price_usd": 1990,
+          "per_unit_usd": 199,
           "savings_pct": 0.1674
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 3700.0,
-          "per_unit_usd": 185.0,
+          "price_usd": 3700,
+          "per_unit_usd": 185,
           "savings_pct": 0.2259
         }
       ]
@@ -666,27 +820,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Tesamorelin 5mg",
       "slug": "tesamorelin-5mg",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 325.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 325,
+          "per_unit_usd": 65,
           "savings_pct": 0.058
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.1449
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1000.0,
-          "per_unit_usd": 50.0,
+          "price_usd": 1000,
+          "per_unit_usd": 50,
           "savings_pct": 0.2754
         }
       ]
@@ -696,27 +857,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 10mg",
       "slug": "tirzepatide-10mg",
-      "ref_price_usd": 89.0,
+      "ref_price_usd": 89,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 89,
+          "per_unit_usd": 89,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 345.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 345,
+          "per_unit_usd": 69,
           "savings_pct": 0.2247
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.3371
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.4944
         }
       ]
@@ -726,27 +894,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 20mg",
       "slug": "tirzepatide-20mg",
-      "ref_price_usd": 179.0,
+      "ref_price_usd": 179,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 179,
+          "per_unit_usd": 179,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 745.0,
-          "per_unit_usd": 149.0,
+          "price_usd": 745,
+          "per_unit_usd": 149,
           "savings_pct": 0.1676
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1190.0,
-          "per_unit_usd": 119.0,
+          "price_usd": 1190,
+          "per_unit_usd": 119,
           "savings_pct": 0.3352
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2100.0,
-          "per_unit_usd": 105.0,
+          "price_usd": 2100,
+          "per_unit_usd": 105,
           "savings_pct": 0.4134
         }
       ]
@@ -756,27 +931,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 50mg",
       "slug": "tirzepatide-50mg",
-      "ref_price_usd": 429.0,
+      "ref_price_usd": 429,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 429,
+          "per_unit_usd": 429,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 1895.0,
-          "per_unit_usd": 379.0,
+          "price_usd": 1895,
+          "per_unit_usd": 379,
           "savings_pct": 0.1166
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 3290.0,
-          "per_unit_usd": 329.0,
+          "price_usd": 3290,
+          "per_unit_usd": 329,
           "savings_pct": 0.2331
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 5980.0,
-          "per_unit_usd": 299.0,
+          "price_usd": 5980,
+          "per_unit_usd": 299,
           "savings_pct": 0.303
         }
       ]
@@ -786,27 +968,34 @@
       "storefront_category": "GLP-1 Research",
       "name": "Tirzepatide 5mg",
       "slug": "tirzepatide-5mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 195.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 195,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 330.0,
-          "per_unit_usd": 33.0,
+          "price_usd": 330,
+          "per_unit_usd": 33,
           "savings_pct": 0.3265
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 580.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 580,
+          "per_unit_usd": 29,
           "savings_pct": 0.4082
         }
       ]
@@ -816,27 +1005,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "AICAR 50mg",
       "slug": "aicar-50mg",
-      "ref_price_usd": 55.0,
+      "ref_price_usd": 55,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 55,
+          "per_unit_usd": 55,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1091
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2909
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 600.0,
-          "per_unit_usd": 30.0,
+          "price_usd": 600,
+          "per_unit_usd": 30,
           "savings_pct": 0.4545
         }
       ]
@@ -846,27 +1042,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "Adipotide 2mg",
       "slug": "adipotide-2mg",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 125.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 125,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 230.0,
-          "per_unit_usd": 23.0,
+          "price_usd": 230,
+          "per_unit_usd": 23,
           "savings_pct": 0.2069
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 420.0,
-          "per_unit_usd": 21.0,
+          "price_usd": 420,
+          "per_unit_usd": 21,
           "savings_pct": 0.2759
         }
       ]
@@ -876,27 +1079,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "Adipotide 5mg",
       "slug": "adipotide-5mg",
-      "ref_price_usd": 79.0,
+      "ref_price_usd": 79,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 375.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 375,
+          "per_unit_usd": 75,
           "savings_pct": 0.0506
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.1266
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1300.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 1300,
+          "per_unit_usd": 65,
           "savings_pct": 0.1772
         }
       ]
@@ -906,27 +1116,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "MOTS-c 5mg",
       "slug": "mots-c-5mg",
-      "ref_price_usd": 50.0,
+      "ref_price_usd": 50,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 50,
+          "per_unit_usd": 50,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.1
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 400.0,
-          "per_unit_usd": 40.0,
+          "price_usd": 400,
+          "per_unit_usd": 40,
           "savings_pct": 0.2
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.3
         }
       ]
@@ -936,27 +1153,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "MOTS-c 10mg",
       "slug": "mots-c-10mg",
-      "ref_price_usd": 80.0,
+      "ref_price_usd": 80,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 80,
+          "per_unit_usd": 80,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 345.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 345,
+          "per_unit_usd": 69,
           "savings_pct": 0.1375
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.2625
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 980.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 980,
+          "per_unit_usd": 49,
           "savings_pct": 0.3875
         }
       ]
@@ -966,27 +1190,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "MOTS-c 20mg",
       "slug": "mots-c-20mg",
-      "ref_price_usd": 120.0,
+      "ref_price_usd": 120,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 120,
+          "per_unit_usd": 120,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 445.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 445,
+          "per_unit_usd": 89,
           "savings_pct": 0.11
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 790,
+          "per_unit_usd": 79,
           "savings_pct": 0.21
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1380.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 1380,
+          "per_unit_usd": 69,
           "savings_pct": 0.31
         }
       ]
@@ -996,27 +1227,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "MOTS-c 40mg",
       "slug": "mots-c-40mg",
-      "ref_price_usd": 200.0,
+      "ref_price_usd": 200,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 200,
+          "per_unit_usd": 200,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 795.0,
-          "per_unit_usd": 159.0,
+          "price_usd": 795,
+          "per_unit_usd": 159,
           "savings_pct": 0.0647
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1490.0,
-          "per_unit_usd": 149.0,
+          "price_usd": 1490,
+          "per_unit_usd": 149,
           "savings_pct": 0.1235
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2700.0,
-          "per_unit_usd": 135.0,
+          "price_usd": 2700,
+          "per_unit_usd": 135,
           "savings_pct": 0.2059
         }
       ]
@@ -1026,27 +1264,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "SS-31 10mg",
       "slug": "ss-31-10mg",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 325.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 325,
+          "per_unit_usd": 65,
           "savings_pct": 0.058
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.1449
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1100.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 1100,
+          "per_unit_usd": 55,
           "savings_pct": 0.2029
         }
       ]
@@ -1056,27 +1301,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "SS-31 20mg",
       "slug": "ss-31-20mg",
-      "ref_price_usd": 109.0,
+      "ref_price_usd": 109,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 109,
+          "per_unit_usd": 109,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 475.0,
-          "per_unit_usd": 95.0,
+          "price_usd": 475,
+          "per_unit_usd": 95,
           "savings_pct": 0.1284
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 890.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 890,
+          "per_unit_usd": 89,
           "savings_pct": 0.1835
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1500.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 1500,
+          "per_unit_usd": 75,
           "savings_pct": 0.3119
         }
       ]
@@ -1086,27 +1338,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "SS-31 50mg",
       "slug": "ss-31-50mg",
-      "ref_price_usd": 199.0,
+      "ref_price_usd": 199,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 199,
+          "per_unit_usd": 199,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 945.0,
-          "per_unit_usd": 189.0,
+          "price_usd": 945,
+          "per_unit_usd": 189,
           "savings_pct": 0.0503
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1790.0,
-          "per_unit_usd": 179.0,
+          "price_usd": 1790,
+          "per_unit_usd": 179,
           "savings_pct": 0.1005
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 3380.0,
-          "per_unit_usd": 169.0,
+          "price_usd": 3380,
+          "per_unit_usd": 169,
           "savings_pct": 0.1508
         }
       ]
@@ -1116,27 +1375,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "ARA-290 10mg",
       "slug": "ara-290-10mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 275.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 275,
+          "per_unit_usd": 55,
           "savings_pct": 0.0678
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 490.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 490,
+          "per_unit_usd": 49,
           "savings_pct": 0.1695
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.2373
         }
       ]
@@ -1146,27 +1412,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Bremelanotide 10mg",
       "slug": "bremelanotide-10mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 275.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 275,
+          "per_unit_usd": 55,
           "savings_pct": 0.0678
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 490.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 490,
+          "per_unit_usd": 49,
           "savings_pct": 0.1695
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.2373
         }
       ]
@@ -1176,27 +1449,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Bremelanotide 5mg",
       "slug": "bremelanotide-5mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.2857
         }
       ]
@@ -1206,27 +1486,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "DSIP 10mg",
       "slug": "dsip-10mg",
-      "ref_price_usd": 45.0,
+      "ref_price_usd": 45,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 45,
+          "per_unit_usd": 45,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 210.0,
-          "per_unit_usd": 42.0,
+          "price_usd": 210,
+          "per_unit_usd": 42,
           "savings_pct": 0.0667
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.1333
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.2222
         }
       ]
@@ -1236,27 +1523,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "DSIP 15mg",
       "slug": "dsip-15mg",
-      "ref_price_usd": 80.0,
+      "ref_price_usd": 80,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 80,
+          "per_unit_usd": 80,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 375.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 375,
+          "per_unit_usd": 75,
           "savings_pct": 0.0625
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.1375
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1300.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 1300,
+          "per_unit_usd": 65,
           "savings_pct": 0.1875
         }
       ]
@@ -1266,27 +1560,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "DSIP 5mg",
       "slug": "dsip-5mg",
-      "ref_price_usd": 30.0,
+      "ref_price_usd": 30,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 30,
+          "per_unit_usd": 30,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 135.0,
-          "per_unit_usd": 27.0,
+          "price_usd": 135,
+          "per_unit_usd": 27,
           "savings_pct": 0.1
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 250.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 250,
+          "per_unit_usd": 25,
           "savings_pct": 0.1667
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 460.0,
-          "per_unit_usd": 23.0,
+          "price_usd": 460,
+          "per_unit_usd": 23,
           "savings_pct": 0.2333
         }
       ]
@@ -1296,27 +1597,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Dermorphin 5mg",
       "slug": "dermorphin-5mg",
-      "ref_price_usd": 79.0,
+      "ref_price_usd": 79,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 345.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 345,
+          "per_unit_usd": 69,
           "savings_pct": 0.1266
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.2532
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 980.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 980,
+          "per_unit_usd": 49,
           "savings_pct": 0.3797
         }
       ]
@@ -1326,27 +1634,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Epithalon 10mg",
       "slug": "epithalon-10mg",
-      "ref_price_usd": 45.0,
+      "ref_price_usd": 45,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 45,
+          "per_unit_usd": 45,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 195.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 195,
+          "per_unit_usd": 39,
           "savings_pct": 0.1333
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 350.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 350,
+          "per_unit_usd": 35,
           "savings_pct": 0.2222
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 600.0,
-          "per_unit_usd": 30.0,
+          "price_usd": 600,
+          "per_unit_usd": 30,
           "savings_pct": 0.3333
         }
       ]
@@ -1356,27 +1671,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Epithalon 20mg",
       "slug": "epithalon-20mg",
-      "ref_price_usd": 70.0,
+      "ref_price_usd": 70,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 70,
+          "per_unit_usd": 70,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 325.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 325,
+          "per_unit_usd": 65,
           "savings_pct": 0.0714
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.1571
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.3571
         }
       ]
@@ -1386,27 +1708,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Epithalon 50mg",
       "slug": "epithalon-50mg",
-      "ref_price_usd": 120.0,
+      "ref_price_usd": 120,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 120,
+          "per_unit_usd": 120,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 545.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 545,
+          "per_unit_usd": 109,
           "savings_pct": 0.0917
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 990.0,
-          "per_unit_usd": 99.0,
+          "price_usd": 990,
+          "per_unit_usd": 99,
           "savings_pct": 0.175
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1800.0,
-          "per_unit_usd": 90.0,
+          "price_usd": 1800,
+          "per_unit_usd": 90,
           "savings_pct": 0.25
         }
       ]
@@ -1416,27 +1745,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "FOXO4-DRI 10mg",
       "slug": "foxo4-dri-10mg",
-      "ref_price_usd": 149.0,
+      "ref_price_usd": 149,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 149,
+          "per_unit_usd": 149,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 700.0,
-          "per_unit_usd": 140.0,
+          "price_usd": 700,
+          "per_unit_usd": 140,
           "savings_pct": 0.0604
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1290.0,
-          "per_unit_usd": 129.0,
+          "price_usd": 1290,
+          "per_unit_usd": 129,
           "savings_pct": 0.1342
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2400.0,
-          "per_unit_usd": 120.0,
+          "price_usd": 2400,
+          "per_unit_usd": 120,
           "savings_pct": 0.1946
         }
       ]
@@ -1446,27 +1782,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "KPV 10mg",
       "slug": "kpv-10mg",
-      "ref_price_usd": 55.0,
+      "ref_price_usd": 55,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 55,
+          "per_unit_usd": 55,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1091
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2909
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.3636
         }
       ]
@@ -1476,27 +1819,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "KPV 5mg",
       "slug": "kpv-5mg",
-      "ref_price_usd": 35.0,
+      "ref_price_usd": 35,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 35,
+          "per_unit_usd": 35,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 160.0,
-          "per_unit_usd": 32.0,
+          "price_usd": 160,
+          "per_unit_usd": 32,
           "savings_pct": 0.0857
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.1714
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.2857
         }
       ]
@@ -1506,27 +1856,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Kisspeptin-10 10mg",
       "slug": "kisspeptin-10-10mg",
-      "ref_price_usd": 65.0,
+      "ref_price_usd": 65,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 65,
+          "per_unit_usd": 65,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 295.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 295,
+          "per_unit_usd": 59,
           "savings_pct": 0.0923
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 490.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 490,
+          "per_unit_usd": 49,
           "savings_pct": 0.2462
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.3077
         }
       ]
@@ -1536,27 +1893,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Kisspeptin-10 5mg",
       "slug": "kisspeptin-10-5mg",
-      "ref_price_usd": 25.0,
+      "ref_price_usd": 25,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 25,
+          "per_unit_usd": 25,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 110.0,
-          "per_unit_usd": 22.0,
+          "price_usd": 110,
+          "per_unit_usd": 22,
           "savings_pct": 0.12
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 190.0,
-          "per_unit_usd": 19.0,
+          "price_usd": 190,
+          "per_unit_usd": 19,
           "savings_pct": 0.24
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 340.0,
-          "per_unit_usd": 17.0,
+          "price_usd": 340,
+          "per_unit_usd": 17,
           "savings_pct": 0.32
         }
       ]
@@ -1566,27 +1930,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "LL-37 5mg",
       "slug": "ll-37-5mg",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 325.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 325,
+          "per_unit_usd": 65,
           "savings_pct": 0.058
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.1449
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1100.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 1100,
+          "per_unit_usd": 55,
           "savings_pct": 0.2029
         }
       ]
@@ -1596,27 +1967,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "NAD+ 1000mg",
       "slug": "nad-1000mg",
-      "ref_price_usd": 150.0,
+      "ref_price_usd": 150,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 150,
+          "per_unit_usd": 150,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 695.0,
-          "per_unit_usd": 139.0,
+          "price_usd": 695,
+          "per_unit_usd": 139,
           "savings_pct": 0.0733
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1190.0,
-          "per_unit_usd": 119.0,
+          "price_usd": 1190,
+          "per_unit_usd": 119,
           "savings_pct": 0.2067
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2100.0,
-          "per_unit_usd": 105.0,
+          "price_usd": 2100,
+          "per_unit_usd": 105,
           "savings_pct": 0.3
         }
       ]
@@ -1626,27 +2004,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "NAD+ 100mg",
       "slug": "nad-100mg",
-      "ref_price_usd": 40.0,
+      "ref_price_usd": 40,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 40,
+          "per_unit_usd": 40,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.125
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.275
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.375
         }
       ]
@@ -1656,27 +2041,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "NAD+ 500mg",
       "slug": "nad-500mg",
-      "ref_price_usd": 75.0,
+      "ref_price_usd": 75,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 75,
+          "per_unit_usd": 75,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 345.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 345,
+          "per_unit_usd": 69,
           "savings_pct": 0.08
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.2133
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1100.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 1100,
+          "per_unit_usd": 55,
           "savings_pct": 0.2667
         }
       ]
@@ -1686,27 +2078,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Oxytocin Acetate 10mg",
       "slug": "oxytocin-acetate-10mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.2857
         }
       ]
@@ -1716,27 +2115,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Oxytocin Acetate 2mg",
       "slug": "oxytocin-acetate-2mg",
-      "ref_price_usd": 25.0,
+      "ref_price_usd": 25,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 25,
+          "per_unit_usd": 25,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 110.0,
-          "per_unit_usd": 22.0,
+          "price_usd": 110,
+          "per_unit_usd": 22,
           "savings_pct": 0.12
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 190.0,
-          "per_unit_usd": 19.0,
+          "price_usd": 190,
+          "per_unit_usd": 19,
           "savings_pct": 0.24
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 300.0,
-          "per_unit_usd": 15.0,
+          "price_usd": 300,
+          "per_unit_usd": 15,
           "savings_pct": 0.4
         }
       ]
@@ -1746,27 +2152,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Oxytocin Acetate 5mg",
       "slug": "oxytocin-acetate-5mg",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.2564
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -1776,27 +2189,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Selank 10mg",
       "slug": "selank-10mg",
-      "ref_price_usd": 50.0,
+      "ref_price_usd": 50,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 50,
+          "per_unit_usd": 50,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.1
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.22
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.3
         }
       ]
@@ -1806,27 +2226,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Selank 5mg",
       "slug": "selank-5mg",
-      "ref_price_usd": 35.0,
+      "ref_price_usd": 35,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 35,
+          "per_unit_usd": 35,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 160.0,
-          "per_unit_usd": 32.0,
+          "price_usd": 160,
+          "per_unit_usd": 32,
           "savings_pct": 0.0857
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.1714
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 440.0,
-          "per_unit_usd": 22.0,
+          "price_usd": 440,
+          "per_unit_usd": 22,
           "savings_pct": 0.3714
         }
       ]
@@ -1836,27 +2263,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Semax 10mg",
       "slug": "semax-10mg",
-      "ref_price_usd": 55.0,
+      "ref_price_usd": 55,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 55,
+          "per_unit_usd": 55,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1091
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2909
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.3636
         }
       ]
@@ -1866,27 +2300,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Semax 5mg",
       "slug": "semax-5mg",
-      "ref_price_usd": 35.0,
+      "ref_price_usd": 35,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 35,
+          "per_unit_usd": 35,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 160.0,
-          "per_unit_usd": 32.0,
+          "price_usd": 160,
+          "per_unit_usd": 32,
           "savings_pct": 0.0857
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.1714
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.2857
         }
       ]
@@ -1896,27 +2337,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Thymalin 10mg",
       "slug": "thymalin-10mg",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.2564
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -1926,27 +2374,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Thymosin alpha-1 10mg",
       "slug": "thymosin-alpha-1-10mg",
-      "ref_price_usd": 119.0,
+      "ref_price_usd": 119,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 119,
+          "per_unit_usd": 119,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 545.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 545,
+          "per_unit_usd": 109,
           "savings_pct": 0.084
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 990.0,
-          "per_unit_usd": 99.0,
+          "price_usd": 990,
+          "per_unit_usd": 99,
           "savings_pct": 0.1681
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1700.0,
-          "per_unit_usd": 85.0,
+          "price_usd": 1700,
+          "per_unit_usd": 85,
           "savings_pct": 0.2857
         }
       ]
@@ -1956,27 +2411,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Thymosin alpha-1 5mg",
       "slug": "thymosin-alpha-1-5mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 275.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 275,
+          "per_unit_usd": 55,
           "savings_pct": 0.0678
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 490.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 490,
+          "per_unit_usd": 49,
           "savings_pct": 0.1695
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.2373
         }
       ]
@@ -1986,27 +2448,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "VIP 10mg",
       "slug": "vip-10mg",
-      "ref_price_usd": 99.0,
+      "ref_price_usd": 99,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 99,
+          "per_unit_usd": 99,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 450.0,
-          "per_unit_usd": 90.0,
+          "price_usd": 450,
+          "per_unit_usd": 90,
           "savings_pct": 0.0909
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 790,
+          "per_unit_usd": 79,
           "savings_pct": 0.202
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1400.0,
-          "per_unit_usd": 70.0,
+          "price_usd": 1400,
+          "per_unit_usd": 70,
           "savings_pct": 0.2929
         }
       ]
@@ -2016,27 +2485,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Pinealon 10mg",
       "slug": "pinealon-10mg",
-      "ref_price_usd": 75.0,
+      "ref_price_usd": 75,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 75,
+          "per_unit_usd": 75,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 345.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 345,
+          "per_unit_usd": 69,
           "savings_pct": 0.08
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.2133
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1100.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 1100,
+          "per_unit_usd": 55,
           "savings_pct": 0.2667
         }
       ]
@@ -2046,27 +2522,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Humanin 10mg",
       "slug": "humanin-10mg",
-      "ref_price_usd": 129.0,
+      "ref_price_usd": 129,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 129,
+          "per_unit_usd": 129,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 595.0,
-          "per_unit_usd": 119.0,
+          "price_usd": 595,
+          "per_unit_usd": 119,
           "savings_pct": 0.0775
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1090.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 1090,
+          "per_unit_usd": 109,
           "savings_pct": 0.155
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2100.0,
-          "per_unit_usd": 105.0,
+          "price_usd": 2100,
+          "per_unit_usd": 105,
           "savings_pct": 0.186
         }
       ]
@@ -2076,27 +2559,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Adamax 10mg",
       "slug": "adamax-10mg",
-      "ref_price_usd": 79.0,
+      "ref_price_usd": 79,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 375.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 375,
+          "per_unit_usd": 75,
           "savings_pct": 0.0506
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.1266
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1300.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 1300,
+          "per_unit_usd": 65,
           "savings_pct": 0.1772
         }
       ]
@@ -2106,27 +2596,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Dihexa 10mg",
       "slug": "dihexa-10mg",
-      "ref_price_usd": 99.0,
+      "ref_price_usd": 99,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 99,
+          "per_unit_usd": 99,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 445.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 445,
+          "per_unit_usd": 89,
           "savings_pct": 0.101
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 790,
+          "per_unit_usd": 79,
           "savings_pct": 0.202
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1380.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 1380,
+          "per_unit_usd": 69,
           "savings_pct": 0.303
         }
       ]
@@ -2136,27 +2633,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Cerebrolysin 10mg",
       "slug": "cerebrolysin-10mg",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 325.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 325,
+          "per_unit_usd": 65,
           "savings_pct": 0.058
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.1449
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1100.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 1100,
+          "per_unit_usd": 55,
           "savings_pct": 0.2029
         }
       ]
@@ -2169,24 +2673,31 @@
       "ref_price_usd": 10.99,
       "pack_tiers": [
         {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 10.99,
+          "per_unit_usd": 10.99,
+          "savings_pct": 0
+        },
+        {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 45.0,
-          "per_unit_usd": 9.0,
+          "price_usd": 45,
+          "per_unit_usd": 9,
           "savings_pct": 0.1811
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 50.0,
-          "per_unit_usd": 5.0,
+          "price_usd": 50,
+          "per_unit_usd": 5,
           "savings_pct": 0.545
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 60.0,
-          "per_unit_usd": 3.0,
+          "price_usd": 60,
+          "per_unit_usd": 3,
           "savings_pct": 0.727
         }
       ]
@@ -2199,24 +2710,31 @@
       "ref_price_usd": 10.99,
       "pack_tiers": [
         {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 10.99,
+          "per_unit_usd": 10.99,
+          "savings_pct": 0
+        },
+        {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 45.0,
-          "per_unit_usd": 9.0,
+          "price_usd": 45,
+          "per_unit_usd": 9,
           "savings_pct": 0.1811
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 70.0,
-          "per_unit_usd": 7.0,
+          "price_usd": 70,
+          "per_unit_usd": 7,
           "savings_pct": 0.3631
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 80.0,
-          "per_unit_usd": 4.0,
+          "price_usd": 80,
+          "per_unit_usd": 4,
           "savings_pct": 0.636
         }
       ]
@@ -2229,24 +2747,31 @@
       "ref_price_usd": 8.99,
       "pack_tiers": [
         {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 8.99,
+          "per_unit_usd": 8.99,
+          "savings_pct": 0
+        },
+        {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 35.0,
-          "per_unit_usd": 7.0,
+          "price_usd": 35,
+          "per_unit_usd": 7,
           "savings_pct": 0.2214
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 50.0,
-          "per_unit_usd": 5.0,
+          "price_usd": 50,
+          "per_unit_usd": 5,
           "savings_pct": 0.4438
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 60.0,
-          "per_unit_usd": 3.0,
+          "price_usd": 60,
+          "per_unit_usd": 3,
           "savings_pct": 0.6663
         }
       ]
@@ -2259,24 +2784,31 @@
       "ref_price_usd": 9.99,
       "pack_tiers": [
         {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 9.99,
+          "per_unit_usd": 9.99,
+          "savings_pct": 0
+        },
+        {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 45.0,
-          "per_unit_usd": 9.0,
+          "price_usd": 45,
+          "per_unit_usd": 9,
           "savings_pct": 0.0991
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 70.0,
-          "per_unit_usd": 7.0,
+          "price_usd": 70,
+          "per_unit_usd": 7,
           "savings_pct": 0.2993
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 80.0,
-          "per_unit_usd": 4.0,
+          "price_usd": 80,
+          "per_unit_usd": 4,
           "savings_pct": 0.5996
         }
       ]
@@ -2289,24 +2821,31 @@
       "ref_price_usd": 7.99,
       "pack_tiers": [
         {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 7.99,
+          "per_unit_usd": 7.99,
+          "savings_pct": 0
+        },
+        {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 35.0,
-          "per_unit_usd": 7.0,
+          "price_usd": 35,
+          "per_unit_usd": 7,
           "savings_pct": 0.1239
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 50.0,
-          "per_unit_usd": 5.0,
+          "price_usd": 50,
+          "per_unit_usd": 5,
           "savings_pct": 0.3742
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 60.0,
-          "per_unit_usd": 3.0,
+          "price_usd": 60,
+          "per_unit_usd": 3,
           "savings_pct": 0.6245
         }
       ]
@@ -2316,27 +2855,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "B-12 10mg",
       "slug": "b-12-10mg",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 125.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 125,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 190.0,
-          "per_unit_usd": 19.0,
+          "price_usd": 190,
+          "per_unit_usd": 19,
           "savings_pct": 0.3448
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 300.0,
-          "per_unit_usd": 15.0,
+          "price_usd": 300,
+          "per_unit_usd": 15,
           "savings_pct": 0.4828
         }
       ]
@@ -2346,27 +2892,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "Glutathione 1500mg",
       "slug": "glutathione-1500mg",
-      "ref_price_usd": 99.0,
+      "ref_price_usd": 99,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 99,
+          "per_unit_usd": 99,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 395.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 395,
+          "per_unit_usd": 79,
           "savings_pct": 0.202
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.404
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.5455
         }
       ]
@@ -2376,27 +2929,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "Glutathione 600mg",
       "slug": "glutathione-600mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1695
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.339
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 580.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 580,
+          "per_unit_usd": 29,
           "savings_pct": 0.5085
         }
       ]
@@ -2406,27 +2966,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "L-Carnitine 600mg (10ml)",
       "slug": "l-carnitine-600mg-10ml",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 135.0,
-          "per_unit_usd": 27.0,
+          "price_usd": 135,
+          "per_unit_usd": 27,
           "savings_pct": 0.069
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 250.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 250,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 460.0,
-          "per_unit_usd": 23.0,
+          "price_usd": 460,
+          "per_unit_usd": 23,
           "savings_pct": 0.2069
         }
       ]
@@ -2436,27 +3003,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "Lemon Bottle 10ml",
       "slug": "lemon-bottle-10ml",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 185.0,
-          "per_unit_usd": 37.0,
+          "price_usd": 185,
+          "per_unit_usd": 37,
           "savings_pct": 0.0513
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 350.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 350,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 640.0,
-          "per_unit_usd": 32.0,
+          "price_usd": 640,
+          "per_unit_usd": 32,
           "savings_pct": 0.1795
         }
       ]
@@ -2466,27 +3040,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "Lipo-C 10ml",
       "slug": "lipo-c-10ml",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 295.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 295,
+          "per_unit_usd": 59,
           "savings_pct": 0.1449
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 490.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 490,
+          "per_unit_usd": 49,
           "savings_pct": 0.2899
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.3478
         }
       ]
@@ -2496,27 +3077,34 @@
       "storefront_category": "Metabolic & Mitochondrial",
       "name": "MK-677 5mg",
       "slug": "mk-677-5mg",
-      "ref_price_usd": 55.0,
+      "ref_price_usd": 55,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 55,
+          "per_unit_usd": 55,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 195.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 195,
+          "per_unit_usd": 39,
           "savings_pct": 0.2909
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.4727
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.5455
         }
       ]
@@ -2526,27 +3114,34 @@
       "storefront_category": "Tissue Repair",
       "name": "BPC-157 (Capsules) 100 count (500mcg)",
       "slug": "bpc-157-capsules-100-count-500mcg",
-      "ref_price_usd": 89.0,
+      "ref_price_usd": 89,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 89,
+          "per_unit_usd": 89,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 395.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 395,
+          "per_unit_usd": 79,
           "savings_pct": 0.1124
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.3371
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1000.0,
-          "per_unit_usd": 50.0,
+          "price_usd": 1000,
+          "per_unit_usd": 50,
           "savings_pct": 0.4382
         }
       ]
@@ -2556,27 +3151,34 @@
       "storefront_category": "Tissue Repair",
       "name": "BPC-157 10mg",
       "slug": "bpc-157-10mg",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 275.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 275,
+          "per_unit_usd": 55,
           "savings_pct": 0.2029
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 490.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 490,
+          "per_unit_usd": 49,
           "savings_pct": 0.2899
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 800.0,
-          "per_unit_usd": 40.0,
+          "price_usd": 800,
+          "per_unit_usd": 40,
           "savings_pct": 0.4203
         }
       ]
@@ -2586,27 +3188,34 @@
       "storefront_category": "Tissue Repair",
       "name": "BPC-157 5mg",
       "slug": "bpc-157-5mg",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.2564
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -2616,27 +3225,34 @@
       "storefront_category": "Tissue Repair",
       "name": "TB500 10mg",
       "slug": "tb500-10mg",
-      "ref_price_usd": 89.0,
+      "ref_price_usd": 89,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 89,
+          "per_unit_usd": 89,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 425.0,
-          "per_unit_usd": 85.0,
+          "price_usd": 425,
+          "per_unit_usd": 85,
           "savings_pct": 0.0449
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 790,
+          "per_unit_usd": 79,
           "savings_pct": 0.1124
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1500.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 1500,
+          "per_unit_usd": 75,
           "savings_pct": 0.1573
         }
       ]
@@ -2646,27 +3262,34 @@
       "storefront_category": "Tissue Repair",
       "name": "TB500 5mg",
       "slug": "tb500-5mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.2857
         }
       ]
@@ -2676,27 +3299,34 @@
       "storefront_category": "Research Blends",
       "name": "BPC-157 5mg + TB500 5mg (10mg)",
       "slug": "bpc-157-5mg-tb500-5mg-10mg",
-      "ref_price_usd": 109.0,
+      "ref_price_usd": 109,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 109,
+          "per_unit_usd": 109,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 495.0,
-          "per_unit_usd": 99.0,
+          "price_usd": 495,
+          "per_unit_usd": 99,
           "savings_pct": 0.0917
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 890.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 890,
+          "per_unit_usd": 89,
           "savings_pct": 0.1835
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1580.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 1580,
+          "per_unit_usd": 79,
           "savings_pct": 0.2752
         }
       ]
@@ -2706,27 +3336,34 @@
       "storefront_category": "Research Blends",
       "name": "BPC-157 5mg + TB500 5mg (20mg)",
       "slug": "bpc-157-5mg-tb500-5mg-20mg",
-      "ref_price_usd": 149.0,
+      "ref_price_usd": 149,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 149,
+          "per_unit_usd": 149,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 695.0,
-          "per_unit_usd": 139.0,
+          "price_usd": 695,
+          "per_unit_usd": 139,
           "savings_pct": 0.0671
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1290.0,
-          "per_unit_usd": 129.0,
+          "price_usd": 1290,
+          "per_unit_usd": 129,
           "savings_pct": 0.1342
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2400.0,
-          "per_unit_usd": 120.0,
+          "price_usd": 2400,
+          "per_unit_usd": 120,
           "savings_pct": 0.1946
         }
       ]
@@ -2736,27 +3373,34 @@
       "storefront_category": "Research Blends",
       "name": "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg (80mg)",
       "slug": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
-      "ref_price_usd": 229.0,
+      "ref_price_usd": 229,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 229,
+          "per_unit_usd": 229,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 1045.0,
-          "per_unit_usd": 209.0,
+          "price_usd": 1045,
+          "per_unit_usd": 209,
           "savings_pct": 0.0873
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1890.0,
-          "per_unit_usd": 189.0,
+          "price_usd": 1890,
+          "per_unit_usd": 189,
           "savings_pct": 0.1747
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 3500.0,
-          "per_unit_usd": 175.0,
+          "price_usd": 3500,
+          "per_unit_usd": 175,
           "savings_pct": 0.2358
         }
       ]
@@ -2766,27 +3410,34 @@
       "storefront_category": "Research Blends",
       "name": "Glow BPC-157 + TB500 + GHK-Cu 30mg",
       "slug": "glow-bpc-157-tb500-ghk-cu-30mg",
-      "ref_price_usd": 89.0,
+      "ref_price_usd": 89,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 89,
+          "per_unit_usd": 89,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 395.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 395,
+          "per_unit_usd": 79,
           "savings_pct": 0.1124
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.2247
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1200.0,
-          "per_unit_usd": 60.0,
+          "price_usd": 1200,
+          "per_unit_usd": 60,
           "savings_pct": 0.3258
         }
       ]
@@ -2796,27 +3447,34 @@
       "storefront_category": "Research Blends",
       "name": "Glow BPC-157 + TB500 + GHK-Cu 85mg",
       "slug": "glow-bpc-157-tb500-ghk-cu-85mg",
-      "ref_price_usd": 189.0,
+      "ref_price_usd": 189,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 189,
+          "per_unit_usd": 189,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 845.0,
-          "per_unit_usd": 169.0,
+          "price_usd": 845,
+          "per_unit_usd": 169,
           "savings_pct": 0.1058
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1490.0,
-          "per_unit_usd": 149.0,
+          "price_usd": 1490,
+          "per_unit_usd": 149,
           "savings_pct": 0.2116
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2600.0,
-          "per_unit_usd": 130.0,
+          "price_usd": 2600,
+          "per_unit_usd": 130,
           "savings_pct": 0.3122
         }
       ]
@@ -2826,27 +3484,34 @@
       "storefront_category": "Research Blends",
       "name": "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg (70mg)",
       "slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
-      "ref_price_usd": 149.0,
+      "ref_price_usd": 149,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 149,
+          "per_unit_usd": 149,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 695.0,
-          "per_unit_usd": 139.0,
+          "price_usd": 695,
+          "per_unit_usd": 139,
           "savings_pct": 0.0671
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1290.0,
-          "per_unit_usd": 129.0,
+          "price_usd": 1290,
+          "per_unit_usd": 129,
           "savings_pct": 0.1342
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2400.0,
-          "per_unit_usd": 120.0,
+          "price_usd": 2400,
+          "per_unit_usd": 120,
           "savings_pct": 0.1946
         }
       ]
@@ -2856,27 +3521,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 with DAC 10mg",
       "slug": "cjc-1295-with-dac-10mg",
-      "ref_price_usd": 259.0,
+      "ref_price_usd": 259,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 259,
+          "per_unit_usd": 259,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 1195.0,
-          "per_unit_usd": 239.0,
+          "price_usd": 1195,
+          "per_unit_usd": 239,
           "savings_pct": 0.0772
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 2090.0,
-          "per_unit_usd": 209.0,
+          "price_usd": 2090,
+          "per_unit_usd": 209,
           "savings_pct": 0.1931
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 3900.0,
-          "per_unit_usd": 195.0,
+          "price_usd": 3900,
+          "per_unit_usd": 195,
           "savings_pct": 0.2471
         }
       ]
@@ -2886,27 +3558,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 with DAC 5mg",
       "slug": "cjc-1295-with-dac-5mg",
-      "ref_price_usd": 139.0,
+      "ref_price_usd": 139,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 139,
+          "per_unit_usd": 139,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 645.0,
-          "per_unit_usd": 129.0,
+          "price_usd": 645,
+          "per_unit_usd": 129,
           "savings_pct": 0.0719
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1190.0,
-          "per_unit_usd": 119.0,
+          "price_usd": 1190,
+          "per_unit_usd": 119,
           "savings_pct": 0.1439
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2180.0,
-          "per_unit_usd": 109.0,
+          "price_usd": 2180,
+          "per_unit_usd": 109,
           "savings_pct": 0.2158
         }
       ]
@@ -2916,27 +3595,34 @@
       "storefront_category": "Research Blends",
       "name": "CJC-1295 without DAC / Ipamorelin Blend 10mg",
       "slug": "cjc-1295-without-dac-ipamorelin-blend-10mg",
-      "ref_price_usd": 79.0,
+      "ref_price_usd": 79,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 375.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 375,
+          "per_unit_usd": 75,
           "savings_pct": 0.0506
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.1266
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1200.0,
-          "per_unit_usd": 60.0,
+          "price_usd": 1200,
+          "per_unit_usd": 60,
           "savings_pct": 0.2405
         }
       ]
@@ -2946,27 +3632,34 @@
       "storefront_category": "Research Blends",
       "name": "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend 5mg",
       "slug": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
-      "ref_price_usd": 109.0,
+      "ref_price_usd": 109,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 109,
+          "per_unit_usd": 109,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 475.0,
-          "per_unit_usd": 95.0,
+          "price_usd": 475,
+          "per_unit_usd": 95,
           "savings_pct": 0.1284
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 790,
+          "per_unit_usd": 79,
           "savings_pct": 0.2752
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1300.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 1300,
+          "per_unit_usd": 65,
           "savings_pct": 0.4037
         }
       ]
@@ -2976,27 +3669,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 without DAC 10mg",
       "slug": "cjc-1295-without-dac-10mg",
-      "ref_price_usd": 89.0,
+      "ref_price_usd": 89,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 89,
+          "per_unit_usd": 89,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 425.0,
-          "per_unit_usd": 85.0,
+          "price_usd": 425,
+          "per_unit_usd": 85,
           "savings_pct": 0.0449
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 790,
+          "per_unit_usd": 79,
           "savings_pct": 0.1124
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1400.0,
-          "per_unit_usd": 70.0,
+          "price_usd": 1400,
+          "per_unit_usd": 70,
           "savings_pct": 0.2135
         }
       ]
@@ -3006,27 +3706,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "CJC-1295 without DAC 5mg",
       "slug": "cjc-1295-without-dac-5mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.2857
         }
       ]
@@ -3036,27 +3743,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-2 Acetate 10mg",
       "slug": "ghrp-2-acetate-10mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 195.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 195,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.4082
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.4898
         }
       ]
@@ -3066,27 +3780,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-2 Acetate 5mg",
       "slug": "ghrp-2-acetate-5mg",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 125.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 125,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 220.0,
-          "per_unit_usd": 22.0,
+          "price_usd": 220,
+          "per_unit_usd": 22,
           "savings_pct": 0.2414
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 380.0,
-          "per_unit_usd": 19.0,
+          "price_usd": 380,
+          "per_unit_usd": 19,
           "savings_pct": 0.3448
         }
       ]
@@ -3096,27 +3817,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-6 Acetate 10mg",
       "slug": "ghrp-6-acetate-10mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1695
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 450.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 450,
+          "per_unit_usd": 45,
           "savings_pct": 0.2373
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 780.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 780,
+          "per_unit_usd": 39,
           "savings_pct": 0.339
         }
       ]
@@ -3126,27 +3854,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "GHRP-6 Acetate 5mg",
       "slug": "ghrp-6-acetate-5mg",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.2564
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -3156,27 +3891,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Hexarelin Acetate 2mg",
       "slug": "hexarelin-acetate-2mg",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.2564
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -3186,27 +3928,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Hexarelin Acetate 5mg",
       "slug": "hexarelin-acetate-5mg",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 295.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 295,
+          "per_unit_usd": 59,
           "savings_pct": 0.1449
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 550.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 550,
+          "per_unit_usd": 55,
           "savings_pct": 0.2029
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1000.0,
-          "per_unit_usd": 50.0,
+          "price_usd": 1000,
+          "per_unit_usd": 50,
           "savings_pct": 0.2754
         }
       ]
@@ -3216,27 +3965,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Ipamorelin 10mg",
       "slug": "ipamorelin-10mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 250.0,
-          "per_unit_usd": 50.0,
+          "price_usd": 250,
+          "per_unit_usd": 50,
           "savings_pct": 0.1525
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 450.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 450,
+          "per_unit_usd": 45,
           "savings_pct": 0.2373
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 780.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 780,
+          "per_unit_usd": 39,
           "savings_pct": 0.339
         }
       ]
@@ -3246,27 +4002,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Ipamorelin 5mg",
       "slug": "ipamorelin-5mg",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 300.0,
-          "per_unit_usd": 30.0,
+          "price_usd": 300,
+          "per_unit_usd": 30,
           "savings_pct": 0.2308
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -3276,27 +4039,34 @@
       "storefront_category": "Tissue Repair",
       "name": "GHK-Cu 100mg",
       "slug": "ghk-cu-100mg",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1695
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.339
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.4068
         }
       ]
@@ -3306,27 +4076,34 @@
       "storefront_category": "Tissue Repair",
       "name": "GHK-Cu 50mg",
       "slug": "ghk-cu-50mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 195.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 195,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.4082
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.4898
         }
       ]
@@ -3336,27 +4113,34 @@
       "storefront_category": "Tissue Repair",
       "name": "Melanotan 1 10mg",
       "slug": "melanotan-1-10mg",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.2564
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -3366,27 +4150,34 @@
       "storefront_category": "Tissue Repair",
       "name": "Melanotan 2 10mg",
       "slug": "melanotan-2-10mg",
-      "ref_price_usd": 35.0,
+      "ref_price_usd": 35,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 35,
+          "per_unit_usd": 35,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 160.0,
-          "per_unit_usd": 32.0,
+          "price_usd": 160,
+          "per_unit_usd": 32,
           "savings_pct": 0.0857
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.1714
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.2857
         }
       ]
@@ -3396,27 +4187,34 @@
       "storefront_category": "Tissue Repair",
       "name": "Snap-8 10mg",
       "slug": "snap-8-10mg",
-      "ref_price_usd": 35.0,
+      "ref_price_usd": 35,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 35,
+          "per_unit_usd": 35,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 160.0,
-          "per_unit_usd": 32.0,
+          "price_usd": 160,
+          "per_unit_usd": 32,
           "savings_pct": 0.0857
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.1714
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.2857
         }
       ]
@@ -3426,27 +4224,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Gonadorelin 10mg",
       "slug": "gonadorelin-10mg",
-      "ref_price_usd": 89.0,
+      "ref_price_usd": 89,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 89,
+          "per_unit_usd": 89,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 395.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 395,
+          "per_unit_usd": 79,
           "savings_pct": 0.1124
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 690.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 690,
+          "per_unit_usd": 69,
           "savings_pct": 0.2247
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1000.0,
-          "per_unit_usd": 50.0,
+          "price_usd": 1000,
+          "per_unit_usd": 50,
           "savings_pct": 0.4382
         }
       ]
@@ -3456,27 +4261,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "Gonadorelin 2mg",
       "slug": "gonadorelin-2mg",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 125.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 125,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 200.0,
-          "per_unit_usd": 20.0,
+          "price_usd": 200,
+          "per_unit_usd": 20,
           "savings_pct": 0.3103
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 360.0,
-          "per_unit_usd": 18.0,
+          "price_usd": 360,
+          "per_unit_usd": 18,
           "savings_pct": 0.3793
         }
       ]
@@ -3486,27 +4298,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HCG 10000 IU",
       "slug": "hcg-10000-iu",
-      "ref_price_usd": 69.0,
+      "ref_price_usd": 69,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 69,
+          "per_unit_usd": 69,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 325.0,
-          "per_unit_usd": 65.0,
+          "price_usd": 325,
+          "per_unit_usd": 65,
           "savings_pct": 0.058
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.1449
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1100.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 1100,
+          "per_unit_usd": 55,
           "savings_pct": 0.2029
         }
       ]
@@ -3516,27 +4335,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HCG 5000 IU",
       "slug": "hcg-5000-iu",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.2857
         }
       ]
@@ -3546,27 +4372,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 10 IU",
       "slug": "hgh-191aa-10-iu",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 390.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 390,
+          "per_unit_usd": 39,
           "savings_pct": 0.2041
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 700.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 700,
+          "per_unit_usd": 35,
           "savings_pct": 0.2857
         }
       ]
@@ -3576,27 +4409,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 12 IU",
       "slug": "hgh-191aa-12-iu",
-      "ref_price_usd": 55.0,
+      "ref_price_usd": 55,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 55,
+          "per_unit_usd": 55,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 245.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 245,
+          "per_unit_usd": 49,
           "savings_pct": 0.1091
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 450.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 450,
+          "per_unit_usd": 45,
           "savings_pct": 0.1818
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 780.0,
-          "per_unit_usd": 39.0,
+          "price_usd": 780,
+          "per_unit_usd": 39,
           "savings_pct": 0.2909
         }
       ]
@@ -3606,27 +4446,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 15 IU",
       "slug": "hgh-191aa-15-iu",
-      "ref_price_usd": 59.0,
+      "ref_price_usd": 59,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 59,
+          "per_unit_usd": 59,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 275.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 275,
+          "per_unit_usd": 55,
           "savings_pct": 0.0678
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 490.0,
-          "per_unit_usd": 49.0,
+          "price_usd": 490,
+          "per_unit_usd": 49,
           "savings_pct": 0.1695
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 900.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 900,
+          "per_unit_usd": 45,
           "savings_pct": 0.2373
         }
       ]
@@ -3636,27 +4483,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 24 IU",
       "slug": "hgh-191aa-24-iu",
-      "ref_price_usd": 79.0,
+      "ref_price_usd": 79,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 350.0,
-          "per_unit_usd": 70.0,
+          "price_usd": 350,
+          "per_unit_usd": 70,
           "savings_pct": 0.1139
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 590.0,
-          "per_unit_usd": 59.0,
+          "price_usd": 590,
+          "per_unit_usd": 59,
           "savings_pct": 0.2532
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1100.0,
-          "per_unit_usd": 55.0,
+          "price_usd": 1100,
+          "per_unit_usd": 55,
           "savings_pct": 0.3038
         }
       ]
@@ -3666,27 +4520,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HGH 191aa 36 IU",
       "slug": "hgh-191aa-36-iu",
-      "ref_price_usd": 85.0,
+      "ref_price_usd": 85,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 85,
+          "per_unit_usd": 85,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 395.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 395,
+          "per_unit_usd": 79,
           "savings_pct": 0.0706
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 750.0,
-          "per_unit_usd": 75.0,
+          "price_usd": 750,
+          "per_unit_usd": 75,
           "savings_pct": 0.1176
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1380.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 1380,
+          "per_unit_usd": 69,
           "savings_pct": 0.1882
         }
       ]
@@ -3696,27 +4557,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "HMG 75 IU",
       "slug": "hmg-75-iu",
-      "ref_price_usd": 39.0,
+      "ref_price_usd": 39,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 39,
+          "per_unit_usd": 39,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.1026
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.2564
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.359
         }
       ]
@@ -3726,27 +4594,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "IGF-1 LR3 0.1mg",
       "slug": "igf-1-lr3-0-1mg",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 125.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 125,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 190.0,
-          "per_unit_usd": 19.0,
+          "price_usd": 190,
+          "per_unit_usd": 19,
           "savings_pct": 0.3448
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 300.0,
-          "per_unit_usd": 15.0,
+          "price_usd": 300,
+          "per_unit_usd": 15,
           "savings_pct": 0.4828
         }
       ]
@@ -3756,27 +4631,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "IGF-1 LR3 1mg",
       "slug": "igf-1-lr3-1mg",
-      "ref_price_usd": 150.0,
+      "ref_price_usd": 150,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 150,
+          "per_unit_usd": 150,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 695.0,
-          "per_unit_usd": 139.0,
+          "price_usd": 695,
+          "per_unit_usd": 139,
           "savings_pct": 0.0733
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 1290.0,
-          "per_unit_usd": 129.0,
+          "price_usd": 1290,
+          "per_unit_usd": 129,
           "savings_pct": 0.14
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 2400.0,
-          "per_unit_usd": 120.0,
+          "price_usd": 2400,
+          "per_unit_usd": 120,
           "savings_pct": 0.2
         }
       ]
@@ -3786,27 +4668,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "MGF 2mg",
       "slug": "mgf-2mg",
-      "ref_price_usd": 29.0,
+      "ref_price_usd": 29,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 29,
+          "per_unit_usd": 29,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 125.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 125,
+          "per_unit_usd": 25,
           "savings_pct": 0.1379
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 200.0,
-          "per_unit_usd": 20.0,
+          "price_usd": 200,
+          "per_unit_usd": 20,
           "savings_pct": 0.3103
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 360.0,
-          "per_unit_usd": 18.0,
+          "price_usd": 360,
+          "per_unit_usd": 18,
           "savings_pct": 0.3793
         }
       ]
@@ -3816,27 +4705,34 @@
       "storefront_category": "Growth Hormone Axis",
       "name": "PEG-MGF 2mg",
       "slug": "peg-mgf-2mg",
-      "ref_price_usd": 49.0,
+      "ref_price_usd": 49,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 49,
+          "per_unit_usd": 49,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 225.0,
-          "per_unit_usd": 45.0,
+          "price_usd": 225,
+          "per_unit_usd": 45,
           "savings_pct": 0.0816
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 420.0,
-          "per_unit_usd": 42.0,
+          "price_usd": 420,
+          "per_unit_usd": 42,
           "savings_pct": 0.1429
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 760.0,
-          "per_unit_usd": 38.0,
+          "price_usd": 760,
+          "per_unit_usd": 38,
           "savings_pct": 0.2245
         }
       ]
@@ -3846,27 +4742,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "L-Glu 100mg",
       "slug": "l-glu-100mg",
-      "ref_price_usd": 40.0,
+      "ref_price_usd": 40,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 40,
+          "per_unit_usd": 40,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 175.0,
-          "per_unit_usd": 35.0,
+          "price_usd": 175,
+          "per_unit_usd": 35,
           "savings_pct": 0.125
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 290.0,
-          "per_unit_usd": 29.0,
+          "price_usd": 290,
+          "per_unit_usd": 29,
           "savings_pct": 0.275
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 500.0,
-          "per_unit_usd": 25.0,
+          "price_usd": 500,
+          "per_unit_usd": 25,
           "savings_pct": 0.375
         }
       ]
@@ -3876,27 +4779,34 @@
       "storefront_category": "Longevity & Neuropeptides",
       "name": "Pinealon (Capsules) (100 count)",
       "slug": "pinealon-capsules-100-count",
-      "ref_price_usd": 99.0,
+      "ref_price_usd": 99,
       "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 99,
+          "per_unit_usd": 99,
+          "savings_pct": 0
+        },
         {
           "tier": "5 vials",
           "qty": 5,
-          "price_usd": 445.0,
-          "per_unit_usd": 89.0,
+          "price_usd": 445,
+          "per_unit_usd": 89,
           "savings_pct": 0.101
         },
         {
           "tier": "10 vials",
           "qty": 10,
-          "price_usd": 790.0,
-          "per_unit_usd": 79.0,
+          "price_usd": 790,
+          "per_unit_usd": 79,
           "savings_pct": 0.202
         },
         {
           "tier": "20 vials",
           "qty": 20,
-          "price_usd": 1380.0,
-          "per_unit_usd": 69.0,
+          "price_usd": 1380,
+          "per_unit_usd": 69,
           "savings_pct": 0.303
         }
       ]

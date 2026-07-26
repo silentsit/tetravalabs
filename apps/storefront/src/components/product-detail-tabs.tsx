@@ -11,7 +11,10 @@ import { FaqAccordion } from "@/components/faq-accordion"
 
 export type ProductDetailData = {
   title: string
+  /** Canonical handle used for reviews API + login return URL. */
   handle: string
+  /** Specs display only — may list multiple legacy strength slugs. */
+  catalogHandleLabel?: string
   category: string
   purity: string
   primaryVariantTitle: string
@@ -110,7 +113,7 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
               <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Product Specifications</h3>
               {[
                 { label: "Product Name", value: product.title },
-                { label: "Catalog Handle", value: product.handle },
+                { label: "Catalog Handle", value: product.catalogHandleLabel || product.handle },
                 { label: "Category", value: product.category },
                 { label: "Strength", value: product.primaryVariantTitle },
                 { label: "Form", value: "Lyophilized Powder" },

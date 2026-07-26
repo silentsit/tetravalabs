@@ -167,7 +167,10 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
           </p>
         ) : signedIn === false ? (
           <p className="text-xs text-[#64748B]">
-            <Link href={`/login?returnUrl=/product/${productHandle}`} className="text-[#0D9488] hover:underline">
+            <Link
+              href={`/login?returnUrl=${encodeURIComponent(`/product/${productHandle}`)}`}
+              className="text-[#0D9488] hover:underline"
+            >
               Sign in
             </Link>{" "}
             before submitting. Reviews are limited to verified purchasers.

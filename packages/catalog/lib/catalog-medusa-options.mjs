@@ -11,6 +11,9 @@ export function packQtyFromVariant(variant) {
   const titleMatch = String(variant.title || "").match(/^(\d+)\s+vials?$/i)
   if (titleMatch) return Number(titleMatch[1])
 
+  // Legacy default option title — treat as 1-vial so catalog sync matches/deletes it.
+  if (/^standard$/i.test(String(variant.title || "").trim())) return 1
+
   const opaqueMatch = String(variant.sku || "").match(/^TV-\d{4}-(\d{2})$/i)
   if (opaqueMatch) return Number(opaqueMatch[1])
 

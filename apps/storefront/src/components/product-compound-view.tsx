@@ -178,7 +178,8 @@ export function ProductCompoundView({
         key={selectedStrength.handle}
         product={{
           title: view.displayName,
-          handle: catalogHandlesForView(view),
+          handle: selectedStrength.imageHandle || selectedStrength.handle,
+          catalogHandleLabel: catalogHandlesForView(view),
           category: view.categoryLabel,
           purity: selectedStrength.purity,
           primaryVariantTitle: selectedStrength.variants[0]?.title || selectedStrength.strengthLabel,

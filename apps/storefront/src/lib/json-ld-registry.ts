@@ -1,13 +1,38 @@
 import { categoryLabelFromSlug } from "@/lib/categories"
+import { getCompoundProductView } from "@/lib/compound-product"
 import { getBlogPostBySlug } from "@/lib/sanity"
-import { getProductByHandle, listProducts } from "@/lib/medusa"
+import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
 import { articleJsonLd, faqJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
 import { productFaqItems } from "@/lib/faq-content"
+import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
 import { getProductImage } from "@/lib/revamp/product-visual"
 
 registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
   const handle = match[1]
+  const view = await getCompoundProductView(handle)
+  if (view) {
+    const strength = view.strengths[0]
+    const imageHandle = strength?.imageHandle || strength?.handle || view.parentHandle
+    const productLike = {
+      title: view.displayName,
+      handle: view.parentHandle,
+      metadata: { source_category: view.categoryLabel },
+      variants: (strength?.variants || []) as StoreProduct["variants"]
+    }
+    const image = getMappedHandleImage(imageHandle)
+
+    return [
+      productJsonLd(productLike, view.parentHandle, image),
+      webPageJsonLd({
+        title: `${view.displayName} — ${view.categoryLabel}`,
+        description: `${view.displayName} for laboratory research (RUO).`,
+        path: `/product/${view.parentHandle}`
+      }),
+      faqJsonLd(productFaqItems, `/product/${view.parentHandle}`)
+    ]
+  }
+
   const product = await getProductByHandle(handle)
   if (!product) return []
 

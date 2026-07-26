@@ -49,7 +49,13 @@ export default async function bootstrapAdmin({ container }) {
   })
 
   if (registerResult?.error || registerResult?.success === false) {
-    const message = registerResult?.error || "register failed"
+    const rawError = registerResult?.error
+    const message =
+      typeof rawError === "string"
+        ? rawError
+        : rawError?.message
+          ? String(rawError.message)
+          : "register failed"
     if (message.toLowerCase().includes("already exists")) {
       const updated = await authService.updateProvider("emailpass", {
         entity_id: email,

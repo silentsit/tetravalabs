@@ -64,6 +64,14 @@ const compoundRedirectsPath = path.join(
   "lib",
   "compound-legacy-redirects.generated.json"
 )
+const storefrontEnrichmentPath = path.join(
+  workspaceRoot,
+  "apps",
+  "storefront",
+  "src",
+  "lib",
+  "product-enrichment.generated.json"
+)
 const enrichmentPath = path.join(workspaceRoot, "packages", "catalog", "data", "product-enrichment.json")
 
 const slugify = (value) =>
@@ -223,6 +231,7 @@ const run = async () => {
         cas_number: enrichment[enrichmentKey]?.cas_number || null,
         molecular_formula: enrichment[enrichmentKey]?.molecular_formula || null,
         molecular_weight: enrichment[enrichmentKey]?.molecular_weight || null,
+        sequence: enrichment[enrichmentKey]?.sequence || null,
         storage: enrichment[enrichmentKey]?.storage || "-20C lyophilized",
         appearance:
           enrichment[enrichmentKey]?.appearance ||
@@ -270,6 +279,7 @@ const run = async () => {
         cas_number: enrichment[enrichmentKey]?.cas_number || null,
         molecular_formula: enrichment[enrichmentKey]?.molecular_formula || null,
         molecular_weight: enrichment[enrichmentKey]?.molecular_weight || null,
+        sequence: enrichment[enrichmentKey]?.sequence || null,
         storage: enrichment[enrichmentKey]?.storage || "-20C lyophilized",
         appearance:
           enrichment[enrichmentKey]?.appearance ||
@@ -348,6 +358,24 @@ const run = async () => {
     "utf8"
   )
 
+  const enrichmentByHandle = {}
+  for (const product of products) {
+    enrichmentByHandle[product.handle] = {
+      cas_number: product.metadata.cas_number || null,
+      molecular_formula: product.metadata.molecular_formula || null,
+      molecular_weight: product.metadata.molecular_weight || null,
+      sequence: product.metadata.sequence || null,
+      storage: product.metadata.storage || null,
+      appearance: product.metadata.appearance || null,
+      category: product.category || null
+    }
+  }
+  await fs.writeFile(
+    storefrontEnrichmentPath,
+    `${JSON.stringify(enrichmentByHandle, null, 2)}\n`,
+    "utf8"
+  )
+
   console.log(
     `Normalized ${catalog.products.length} products (${mergeGroups.size} compound merges) to ${outputPath.replaceAll("\\", "/")}`
   )
@@ -360,6 +388,7 @@ const run = async () => {
   console.log(
     `Wrote compound families (${Object.keys(compoundFamilies).length}) and legacy redirects (${Object.keys(compoundRedirects).length})`
   )
+  console.log(`Wrote storefront enrichment for ${Object.keys(enrichmentByHandle).length} handles`)
 }
 
 run().catch((error) => {

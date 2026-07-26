@@ -5,646 +5,673 @@
     "molecular_weight": "173.21",
     "sequence": "N/A (small molecule)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "5-Amino-1MQ": {
-    "cas_number": "42437-96-7",
-    "molecular_formula": null,
-    "molecular_weight": null,
-    "sequence": "N/A",
-    "storage": "Room temperature, dry",
-    "appearance": "White powder"
-  },
-  "Acetic Acid Water": {
+  "acetic-acid-water-3ml": {
     "cas_number": "64-19-7",
     "molecular_formula": "C2H4O2 (in H2O)",
     "molecular_weight": "60.05",
     "sequence": "N/A (solvent)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Lab Supplies"
   },
-  "Adamax": {
+  "adamax-10mg": {
     "cas_number": "2920938-90-3",
     "molecular_formula": "C37H54N12O10",
     "molecular_weight": "826.91",
     "sequence": "Ac-Met-Glu-His-Phe-Pro-Gly-Pro-NH2 (N-acetyl Semax amidate analogue)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Adipotide": {
+  "adipotide": {
     "cas_number": "859216-15-2",
     "molecular_formula": "C152H252N44O42",
     "molecular_weight": "2612.0",
     "sequence": "CKGGRAKDC-GG-D(KLAKLAK)2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "AICAR": {
+  "aicar-50mg": {
     "cas_number": "2627-69-2",
     "molecular_formula": "C9H14N4O5",
     "molecular_weight": "258.23",
     "sequence": "N/A (nucleoside analogue)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "AOD-9604": {
+  "aod-9604": {
     "cas_number": "221231-10-3",
     "molecular_formula": "C78H123N21O23S",
     "molecular_weight": "1815.08",
     "sequence": "Tyr-hGH(177-191) with Aib substitution (Tyr-Leu-Arg-Ile-Val-Gln-Cys-Arg-Ser-Val-Glu-Gly-Ser-Cys-Gly-Phe)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "GLP-1 Research"
   },
-  "ARA-290": {
+  "ara-290-10mg": {
     "cas_number": "1208243-50-8",
     "molecular_formula": "C23H40N8O9",
     "molecular_weight": "756.85",
     "sequence": "pGlu-Glu-Gln-Leu-Glu-Arg-Ala-Leu-Asn-Ser-Ser",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "B-12": {
+  "b-12-10mg": {
     "cas_number": "68-19-9",
     "molecular_formula": "C63H88CoN14O14P",
     "molecular_weight": "1355.37",
     "sequence": "N/A (cobalamin)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "Bacteriostatic Water": {
+  "bacteriostatic-water": {
     "cas_number": "7732-18-5",
     "molecular_formula": "H2O",
     "molecular_weight": "18.02",
     "sequence": "N/A (solvent)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Lab Supplies"
   },
-  "Benzyl Alcohol": {
+  "benzyl-alcohol": {
     "cas_number": "100-51-6",
     "molecular_formula": "C7H8O (in H2O)",
     "molecular_weight": "108.14",
     "sequence": "N/A (solvent / preservative)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Lab Supplies"
   },
-  "BPC-157": {
+  "bpc-157": {
     "cas_number": "137525-51-0",
     "molecular_formula": "C62H98N16O22",
     "molecular_weight": "1419.53",
     "sequence": "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Tissue Repair"
   },
-  "BPC-157 (Capsules)": {
+  "bpc-157-5mg-tb500-5mg-10mg": {
+    "cas_number": "137525-51-0",
+    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
+    "molecular_weight": "See component peptides",
+    "sequence": "Multi-component — see BPC-157 and TB-500",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
+  },
+  "bpc-157-5mg-tb500-5mg-20mg": {
+    "cas_number": "137525-51-0",
+    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
+    "molecular_weight": "See component peptides",
+    "sequence": "Multi-component — see BPC-157 and TB-500",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
+  },
+  "bpc-157-capsules-100-count-500mcg": {
     "cas_number": "137525-51-0",
     "molecular_formula": "C62H98N16O22",
     "molecular_weight": "1419.53",
     "sequence": "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Tissue Repair"
   },
-  "BPC-157 + TB-500 Blend (10mg)": {
-    "cas_number": "137525-51-0",
-    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
-    "molecular_weight": "See component peptides",
-    "sequence": "Multi-component — see BPC-157 and TB-500",
-    "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
-  },
-  "BPC-157 + TB-500 Blend (20mg)": {
-    "cas_number": "137525-51-0",
-    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
-    "molecular_weight": "See component peptides",
-    "sequence": "Multi-component — see BPC-157 and TB-500",
-    "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
-  },
-  "Bremelanotide": {
+  "bremelanotide": {
     "cas_number": "189691-06-3",
     "molecular_formula": "C50H68N14O10",
     "molecular_weight": "1025.18",
     "sequence": "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-OH",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Cagrilintide": {
+  "cagrilintide": {
     "cas_number": "1415456-99-3",
     "molecular_formula": "C194H312N54O59",
     "molecular_weight": "4409.01",
     "sequence": "Modified amylin analogue — see literature for full sequence",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "GLP-1 Research"
   },
-  "Cagrilintide + Semaglutide": {
+  "cagrilintide-semaglutide": {
     "cas_number": "1415456-99-3",
     "molecular_formula": "C194H312N54O59 | C187H291N45O59",
     "molecular_weight": "See component peptides",
     "sequence": "Multi-component — see Cagrilintide and Semaglutide",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   },
-  "Cerebrolysin": {
+  "cerebrolysin-10mg": {
     "cas_number": "12656-61-0",
     "molecular_formula": "Porcine brain peptide hydrolysate",
     "molecular_weight": "Peptide mixture (porcine brain hydrolysate)",
     "sequence": "N/A (peptide mixture)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "CJC-1295 with DAC": {
+  "cjc-1295-with-dac": {
     "cas_number": "863288-34-0",
     "molecular_formula": "C165H269N47O46",
     "molecular_weight": "3647.28",
     "sequence": "Tyr-D-Ala-Asp-Ala-Ile-Phe-Thr-Gln-Ser-Tyr-Arg-Lys-Val-Leu-Ala-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Leu-Ser-Arg-Lys(DAC)-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "CJC-1295 without DAC": {
+  "cjc-1295-without-dac": {
     "cas_number": "446262-90-4",
     "molecular_formula": "C152H252N44O42",
     "molecular_weight": "3367.95",
     "sequence": "Tyr-D-Ala-Asp-Ala-Ile-Phe-Thr-Gln-Ser-Tyr-Arg-Lys-Val-Leu-Ala-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Leu-Ser-Arg-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "CJC-1295 without DAC / Ipamorelin Blend": {
+  "cjc-1295-without-dac-ipamorelin-blend-10mg": {
     "cas_number": "446262-90-4",
     "molecular_formula": "C152H252N44O42",
     "molecular_weight": "See component peptides",
     "sequence": "Multi-component — see CJC-1295 (no DAC) and Ipamorelin",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   },
-  "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend": {
+  "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg": {
     "cas_number": "446262-90-4",
     "molecular_formula": "C152H252N44O42",
     "molecular_weight": "See component peptides",
     "sequence": "Multi-component — see CJC-1295 (no DAC), Sermorelin, Ipamorelin",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   },
-  "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg (80mg)": {
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
     "cas_number": "89030-95-5",
     "molecular_formula": "C14H24CuN6O4 | C212H350N56O78S | C62H98N16O22 | C16H30N4O4",
     "molecular_weight": "See component peptides",
     "sequence": "Multi-component — see GHK-Cu, TB-500, BPC-157, KPV",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   },
-  "Dermorphin": {
+  "dermorphin-5mg": {
     "cas_number": "77614-16-5",
     "molecular_formula": "C26H35N5O5",
     "molecular_weight": "802.88",
     "sequence": "Tyr-D-Ala-Phe-Gly-Tyr-Pro-Ser-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Dihexa": {
+  "dihexa-10mg": {
     "cas_number": "1401708-83-5",
     "molecular_formula": "C27H32N6O5",
     "molecular_weight": "438.53",
     "sequence": "N/A (hexapeptide analogue / small molecule hybrid)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "DSIP": {
+  "dsip": {
     "cas_number": "62568-57-4",
     "molecular_formula": "C35H48N10O15",
     "molecular_weight": "848.81",
     "sequence": "Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Epithalon": {
+  "epithalon": {
     "cas_number": "307297-39-8",
     "molecular_formula": "C14H22N4O9",
     "molecular_weight": "390.35",
     "sequence": "Ala-Glu-Asp-Gly",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "FOXO4-DRI": {
+  "foxo4-dri-10mg": {
     "cas_number": "2460055-10-9",
     "molecular_formula": "Synthetic D-retro-inverso peptide",
     "molecular_weight": "3500",
     "sequence": "D-retro-inverso FOXO4 p53-binding peptide",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "GHK-Cu": {
+  "ghk-cu": {
     "cas_number": "89030-95-5",
     "molecular_formula": "C14H24CuN6O4",
     "molecular_weight": "400.92",
     "sequence": "Gly-His-Lys (copper complex)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Tissue Repair"
   },
-  "GHK-CU": {
-    "cas_number": "89030-95-5",
-    "molecular_formula": "C14H24CuN6O4",
-    "molecular_weight": "400.92",
-    "sequence": "N/A",
-    "storage": "2-8C",
-    "appearance": "Blue lyophilized powder"
-  },
-  "GHRP-2 Acetate": {
+  "ghrp-2-acetate": {
     "cas_number": "158861-67-7",
     "molecular_formula": "C45H56N12O6",
     "molecular_weight": "817.97",
     "sequence": "D-Ala-D-2-Nal-Ala-Trp-D-Phe-Lys-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "GHRP-6 Acetate": {
+  "ghrp-6-acetate": {
     "cas_number": "87616-84-0",
     "molecular_formula": "C46H56N12O6",
     "molecular_weight": "873.03",
     "sequence": "His-D-Trp-Ala-Trp-D-Phe-Lys-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "Glow BPC-157 + TB500 + GHK-Cu": {
+  "glow-bpc-157-tb500-ghk-cu": {
     "cas_number": "137525-51-0",
     "molecular_formula": "C62H98N16O22 | C212H350N56O78S | C14H24CuN6O4",
     "molecular_weight": "See component peptides",
     "sequence": "Multi-component — see BPC-157, TB-500, GHK-Cu",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   },
-  "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg (70mg)": {
+  "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": {
     "cas_number": "137525-51-0",
     "molecular_formula": "C62H98N16O22 | C212H350N56O78S | C14H24CuN6O4",
     "molecular_weight": "See component peptides",
     "sequence": "Multi-component — see BPC-157, TB-500, GHK-Cu",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   },
-  "Glutathione": {
+  "glutathione": {
     "cas_number": "70-18-8",
     "molecular_formula": "C10H17N3O6S",
     "molecular_weight": "307.32",
     "sequence": "γ-Glu-Cys-Gly",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "Gonadorelin": {
+  "gonadorelin": {
     "cas_number": "33515-09-2",
     "molecular_formula": "C55H75N17O13",
     "molecular_weight": "1182.31",
     "sequence": "pGlu-His-Trp-Ser-Tyr-Gly-Leu-Arg-Pro-Gly-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "HCG": {
+  "hcg": {
     "cas_number": "9002-61-3",
     "molecular_formula": "Glycoprotein hormone (α/β subunits)",
     "molecular_weight": "36700",
     "sequence": "N/A (heterodimeric glycoprotein hormone)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "Hexarelin Acetate": {
+  "hexarelin-acetate": {
     "cas_number": "140703-51-1",
     "molecular_formula": "C47H58N12O6",
     "molecular_weight": "887.06",
     "sequence": "His-D-2-Me-Trp-Ala-Trp-D-Phe-Lys-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "HGH 191aa": {
+  "hgh-191aa": {
     "cas_number": "12629-01-5",
     "molecular_formula": "C990H1528N262O300S7",
     "molecular_weight": "22124.0",
     "sequence": "191-aa somatropin sequence (see UniProt P01241)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "HMG": {
+  "hmg-75-iu": {
     "cas_number": "9002-68-0",
     "molecular_formula": "FSH/LH glycoprotein mixture",
     "molecular_weight": "Complex glycoprotein mixture",
     "sequence": "N/A (FSH/LH glycoprotein mixture)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "Humanin": {
+  "humanin-10mg": {
     "cas_number": "330936-69-1",
     "molecular_formula": "C119H204N36O32",
     "molecular_weight": "2687.23",
     "sequence": "Met-Ala-Pro-Arg-Gly-Phe-Ser-Cys-Leu-Leu-Leu-Leu-Thr-Ser-Glu-Ile-Asp-Leu-Pro-Val-Lys-Arg-Arg-Ala",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "IGF-1 LR3": {
+  "igf-1-lr3-0-1mg": {
     "cas_number": "946870-92-4",
     "molecular_formula": "C473H711N131O101S10",
     "molecular_weight": "9111.0",
     "sequence": "Long Arg3 IGF-1 (83 aa analogue of IGF-1)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "IGF-1 LR3 0.1mg": {
+  "igf-1-lr3-1mg": {
     "cas_number": "946870-92-4",
     "molecular_formula": "C473H711N131O101S10",
     "molecular_weight": "9111.0",
     "sequence": "Long Arg3 IGF-1 (83 aa analogue of IGF-1)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "Ipamorelin": {
+  "ipamorelin": {
     "cas_number": "170851-70-4",
     "molecular_formula": "C38H49N9O5",
     "molecular_weight": "711.85",
     "sequence": "Aib-His-D-2-Nal-D-Phe-Lys-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White powder"
+    "appearance": "White powder",
+    "category": "Growth Hormone Axis"
   },
-  "Kisspeptin-10": {
+  "kisspeptin-10": {
     "cas_number": "373566-79-9",
     "molecular_formula": "C63H83N17O14",
     "molecular_weight": "1302.45",
     "sequence": "Tyr-Asn-Trp-Asn-Ser-Phe-Gly-Leu-Arg-Phe-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "KPV": {
+  "kpv": {
     "cas_number": "67727-97-3",
     "molecular_formula": "C16H30N4O4",
     "molecular_weight": "342.43",
     "sequence": "Lys-Pro-Val",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "L-Carnitine 600mg (10ml)": {
+  "l-carnitine-600mg-10ml": {
     "cas_number": "541-15-1",
     "molecular_formula": "C7H15NO3",
     "molecular_weight": "161.20",
     "sequence": "N/A (quaternary ammonium)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "L-Glu": {
+  "l-glu-100mg": {
     "cas_number": "56-85-9",
     "molecular_formula": "C5H9NO4",
     "molecular_weight": "146.14",
     "sequence": "N/A (amino acid)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Lemon Bottle": {
+  "lemon-bottle-10ml": {
     "cas_number": "83-88-5",
     "molecular_formula": "Multi-component (PPC / L-carnitine / riboflavin)",
     "molecular_weight": "Multi-component blend",
     "sequence": "N/A (multi-component solution)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "Lipo-C": {
+  "lipo-c-10ml": {
     "cas_number": "67-48-1",
     "molecular_formula": "Multi-component (choline / methionine / inositol / B vitamins)",
     "molecular_weight": "Multi-component blend",
     "sequence": "N/A (multi-component solution)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "LL-37": {
+  "ll-37-5mg": {
     "cas_number": "154947-66-7",
     "molecular_formula": "C205H340N60O53",
     "molecular_weight": "4493.32",
     "sequence": "LLGDFFRKSKEKIGKEFKRIVQRIKDFLRNLVPRTES",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Mazdutide": {
+  "mazdutide": {
     "cas_number": "2259884-03-0",
     "molecular_formula": "C225H348N48O68",
     "molecular_weight": "4813.53",
     "sequence": "Modified GLP-1/glucagon dual agonist — see literature for full sequence",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "GLP-1 Research"
   },
-  "Melanotan 1": {
+  "melanotan-1-10mg": {
     "cas_number": "75921-69-6",
     "molecular_formula": "C78H111N21O19",
     "molecular_weight": "1646.85",
     "sequence": "Ac-Ser-Tyr-Ser-Nle-Glu-His-D-Phe-Arg-Trp-Gly-Lys-Pro-Val-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Tissue Repair"
   },
-  "Melanotan 2": {
+  "melanotan-2-10mg": {
     "cas_number": "121062-08-6",
     "molecular_formula": "C50H69N15O9",
     "molecular_weight": "1024.18",
     "sequence": "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Tissue Repair"
   },
-  "Melanotan-2": {
-    "cas_number": "121062-08-6",
-    "molecular_formula": "C50H69N15O9",
-    "molecular_weight": "1024.20",
-    "sequence": "N/A",
-    "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
-  },
-  "MGF": {
+  "mgf-2mg": {
     "cas_number": "80214-83-1",
     "molecular_formula": "C121H200N42O39",
     "molecular_weight": "2867.2",
     "sequence": "YQPPSTNKNTKSQRRKGSTFEEHK (IGF-1 Ec / MGF)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "MK-677": {
+  "mk-677-5mg": {
     "cas_number": "159752-10-0",
     "molecular_formula": "C27H36N4O5",
     "molecular_weight": "528.67",
     "sequence": "N/A (non-peptide ghrelin mimetic)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "MOTS-c": {
+  "mots-c": {
     "cas_number": "1627580-64-6",
     "molecular_formula": "C101H168N30O21",
     "molecular_weight": "2174.66",
     "sequence": "Met-Arg-Trp-Gln-Glu-Met-Gly-Tyr-Ile-Phe-Tyr-Pro-Arg-Lys-Leu-Arg",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "MOTS-C": {
-    "cas_number": "1627580-64-6",
-    "molecular_formula": null,
-    "molecular_weight": null,
-    "sequence": "N/A",
-    "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
-  },
-  "NAD+": {
+  "nad": {
     "cas_number": "53-84-1",
     "molecular_formula": "C21H26N7O14P2",
     "molecular_weight": "663.43",
     "sequence": "N/A (dinucleotide)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Oxytocin Acetate": {
+  "oxytocin-acetate": {
     "cas_number": "50-56-6",
     "molecular_formula": "C43H66N12O12S2",
     "molecular_weight": "1007.19",
     "sequence": "Cys-Tyr-Ile-Gln-Asn-Cys-Pro-Leu-Gly-NH2 (disulfide 1–6)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "PEG-MGF": {
+  "peg-mgf-2mg": {
     "cas_number": "108174-48-7",
     "molecular_formula": "PEGylated MGF (variable PEG chain)",
     "molecular_weight": "PEGylated MGF (variable)",
     "sequence": "PEGylated MGF (YQPPSTNKNTKSQRRKGSTFEEHK)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "Pinealon": {
+  "pinealon-10mg": {
     "cas_number": "175175-23-2",
     "molecular_formula": "C14H22N4O9",
     "molecular_weight": "389.39",
     "sequence": "Glu-Asp-Arg",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Pinealon (Capsules) (100 count)": {
+  "pinealon-capsules-100-count": {
     "cas_number": "175175-23-2",
     "molecular_formula": "C14H22N4O9",
     "molecular_weight": "389.39",
     "sequence": "Glu-Asp-Arg",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Retatrutide": {
+  "retatrutide": {
     "cas_number": "2381089-83-2",
     "molecular_formula": "C267H402N64O78",
     "molecular_weight": "4731.33",
     "sequence": "Modified triple-agonist peptide (GLP-1/GIP/glucagon) — see literature for full sequence",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "GLP-1 Research"
   },
-  "Selank": {
+  "selank": {
     "cas_number": "129954-34-3",
     "molecular_formula": "C33H57N11O9",
     "molecular_weight": "751.89",
     "sequence": "Thr-Lys-Pro-Arg-Pro-Gly-Pro",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Selank Nasal Spray": {
-    "cas_number": "129954-34-3",
-    "molecular_formula": "C33H57N11O9",
-    "molecular_weight": null,
-    "sequence": "Thr-Lys-Pro-Arg-Pro-Gly-Pro",
-    "storage": "2-8°C refrigerated",
-    "appearance": "Clear nasal solution"
-  },
-  "Semaglutide": {
+  "semaglutide": {
     "cas_number": "910463-68-2",
     "molecular_formula": "C187H291N45O59",
     "molecular_weight": "4113.58",
     "sequence": "H-His-Aib-Glu-Gly-Thr-Phe-Thr-Ser-Asp-Val-Ser-Ser-Tyr-Leu-Glu-Gly-Gln-Ala-Ala-Lys(AEEA-AEEA-γ-Glu-C18 diacid)-Glu-Phe-Ile-Ala-Trp-Leu-Val-Arg-Gly-Arg-Gly-OH",
     "storage": "-20C lyophilized",
-    "appearance": "White to off-white lyophilized powder"
+    "appearance": "White to off-white lyophilized powder",
+    "category": "GLP-1 Research"
   },
-  "Semax": {
+  "semax": {
     "cas_number": "80714-61-0",
     "molecular_formula": "C35H52N12O9",
     "molecular_weight": "813.93",
     "sequence": "Met-Glu-His-Phe-Pro-Gly-Pro",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Semax Nasal Spray": {
-    "cas_number": "80714-61-0",
-    "molecular_formula": "C37H51N9O10S",
-    "molecular_weight": null,
-    "sequence": "Met-Glu-His-Phe-Pro-Gly-Pro",
-    "storage": "2-8°C refrigerated",
-    "appearance": "Clear nasal solution"
-  },
-  "Sermorelin": {
+  "sermorelin": {
     "cas_number": "86168-78-7",
     "molecular_formula": "C149H244N44O42",
     "molecular_weight": "3357.93",
     "sequence": "Tyr-Ala-Asp-Ala-Ile-Phe-Thr-Asn-Ser-Tyr-Arg-Lys-Val-Leu-Gly-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Met-Ser-Arg-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "Snap-8": {
+  "snap-8-10mg": {
     "cas_number": "868844-74-0",
     "molecular_formula": "C41H62N10O15",
     "molecular_weight": "1075.16",
     "sequence": "Ac-Glu-Glu-Met-Gln-Arg-Arg-Ala-Asp-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Tissue Repair"
   },
-  "SS-31": {
+  "ss-31": {
     "cas_number": "736992-21-5",
     "molecular_formula": "C32H49N9O5",
     "molecular_weight": "639.79",
     "sequence": "D-Arg-Dmt-Lys-Phe-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Metabolic & Mitochondrial"
   },
-  "Survodutide": {
+  "survodutide-10mg": {
     "cas_number": "2805997-46-8",
     "molecular_formula": "C187H281N45O59",
     "molecular_weight": "4231.69",
     "sequence": "Modified GLP-1/glucagon dual agonist — see literature for full sequence",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "GLP-1 Research"
   },
-  "TB500": {
+  "tb500": {
     "cas_number": "77591-33-4",
     "molecular_formula": "C212H350N56O78S",
     "molecular_weight": "4963.49",
     "sequence": "Ac-Leu-Lys-Lys-Thr-Glu-Thr-Gln (TB-500 / Thymosin β4 fragment)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Tissue Repair"
   },
-  "Tesamorelin": {
+  "tesamorelin": {
     "cas_number": "218949-48-5",
     "molecular_formula": "C221H366N72O67S",
     "molecular_weight": "5135.90",
     "sequence": "trans-3-hexenoyl-Tyr-Ala-Asp-Ala-Ile-Phe-Thr-Asn-Ser-Tyr-Arg-Lys-Val-Leu-Gly-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Met-Ser-Arg-Gln-Gln-Gly-Glu-Ser-Asn-Gln-Glu-Arg-Gly-Ala-Arg-Ala-Arg-Leu-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   },
-  "Thymalin": {
+  "thymalin-10mg": {
     "cas_number": "63958-90-7",
     "molecular_formula": "Thymic peptide complex",
     "molecular_weight": "Thymic peptide complex",
     "sequence": "Thymic peptide complex (multi-component)",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Thymosin alpha-1": {
+  "thymosin-alpha-1": {
     "cas_number": "62304-98-7",
     "molecular_formula": "C129H215N33O55",
     "molecular_weight": "3108.37",
     "sequence": "Ac-Ser-Asp-Ala-Ala-Val-Asp-Thr-Ser-Ser-Glu-Ile-Thr-Thr-Lys-Asp-Leu-Lys-Glu-Lys-Lys-Glu-Val-Val-Glu-Glu-Ala-Glu-Asn-OH",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   },
-  "Tirzepatide": {
+  "tirzepatide": {
     "cas_number": "2023788-19-2",
     "molecular_formula": "C225H348N48O68",
     "molecular_weight": "4813.45",
     "sequence": "Y-Aib-EGTFTSDYSI-Aib-LDKIAQK(AEEA-AEEA-γ-Glu-C20 diacid)AFVQWLIAGGPSSGAPPPS-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "GLP-1 Research"
   },
-  "VIP": {
+  "vip-10mg": {
     "cas_number": "37221-79-7",
     "molecular_formula": "C147H237N43O43S",
     "molecular_weight": "3325.87",
     "sequence": "His-Ser-Asp-Ala-Val-Phe-Thr-Asp-Asn-Tyr-Thr-Arg-Leu-Arg-Lys-Gln-Met-Ala-Val-Lys-Lys-Tyr-Leu-Asn-Ser-Ile-Leu-Asn-NH2",
     "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder"
+    "appearance": "White lyophilized powder",
+    "category": "Longevity & Neuropeptides"
   }
 }

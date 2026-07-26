@@ -1,5 +1,6 @@
 import compoundFamilies from "@/lib/compound-families.generated.json"
 import compoundLegacyRedirects from "@/lib/compound-legacy-redirects.generated.json"
+import productEnrichment from "@/lib/product-enrichment.generated.json"
 import {
   getProductByHandle,
   listCoasByVariant,
@@ -8,6 +9,7 @@ import {
   type StoreProduct
 } from "@/lib/medusa"
 import { listProductReviews, type ProductReviewsResponse } from "@/lib/reviews"
+import { storefrontCategoryLabelForProduct } from "@/lib/categories"
 import {
   getProductDisplayName,
   getProductDisplaySubtitle,
@@ -288,26 +290,67 @@ function toStrengthOptionFromMerged(
   }
 }
 
+type EnrichmentRow = {
+  cas_number?: string | null
+  molecular_formula?: string | null
+  molecular_weight?: string | null
+  sequence?: string | null
+  storage?: string | null
+  appearance?: string | null
+  category?: string | null
+}
+
+const ENRICHMENT_BY_HANDLE = productEnrichment as Record<string, EnrichmentRow>
+
+function enrichmentFor(handle: string): EnrichmentRow {
+  return ENRICHMENT_BY_HANDLE[handle] || {}
+}
+
+function pickMeta(
+  metadata: Record<string, unknown> | null | undefined,
+  enrichment: EnrichmentRow,
+  key: keyof EnrichmentRow,
+  fallback: string
+): string {
+  const fromMeta = metadata?.[key]
+  if (typeof fromMeta === "string" && fromMeta.trim() && fromMeta !== "N/A") {
+    return fromMeta
+  }
+  const fromEnrichment = enrichment[key]
+  if (typeof fromEnrichment === "string" && fromEnrichment.trim()) {
+    return fromEnrichment
+  }
+  return fallback
+}
+
 function buildCompoundView(
   parentHandle: string,
   primary: StoreProduct,
   strengths: CompoundStrengthOption[]
 ): CompoundProductView {
   const displayName = stripStrengthFromTitle(getProductDisplayName(primary))
+  const enrichment = enrichmentFor(parentHandle)
+  const meta = (primary.metadata || {}) as Record<string, unknown>
 
   return {
     parentHandle,
     displayName,
     displaySubtitle: getProductDisplaySubtitle(primary),
-    categoryLabel: String(primary.metadata?.source_category || "Research Product"),
+    categoryLabel:
+      enrichment.category ||
+      storefrontCategoryLabelForProduct(
+        parentHandle,
+        displayName,
+        String(primary.metadata?.source_category || "")
+      ),
     isCompound: strengths.length > 1,
     strengths,
-    casNumber: String(primary.metadata?.cas_number || "N/A"),
-    molecularFormula: String(primary.metadata?.molecular_formula || "N/A"),
-    molecularWeight: String(primary.metadata?.molecular_weight || "N/A"),
-    storage: String(primary.metadata?.storage || "-20°C lyophilized"),
-    appearance: String(primary.metadata?.appearance || "Lyophilized powder"),
-    sequence: String(primary.metadata?.sequence || "N/A"),
+    casNumber: pickMeta(meta, enrichment, "cas_number", "N/A"),
+    molecularFormula: pickMeta(meta, enrichment, "molecular_formula", "N/A"),
+    molecularWeight: pickMeta(meta, enrichment, "molecular_weight", "N/A"),
+    storage: pickMeta(meta, enrichment, "storage", "-20°C lyophilized"),
+    appearance: pickMeta(meta, enrichment, "appearance", "Lyophilized powder"),
+    sequence: pickMeta(meta, enrichment, "sequence", "N/A"),
     researchSummary: researchSummaryFor(primary, displayName)
   }
 }
@@ -397,20 +440,28 @@ export async function getCompoundProductView(
 
   const strength = toStrengthOption(product)
   const displayName = getProductDisplayName(product)
+  const enrichment = enrichmentFor(handle)
+  const meta = (product.metadata || {}) as Record<string, unknown>
 
   return {
     parentHandle: handle,
     displayName,
     displaySubtitle: getProductDisplaySubtitle(product),
-    categoryLabel: String(product.metadata?.source_category || "Research Product"),
+    categoryLabel:
+      enrichment.category ||
+      storefrontCategoryLabelForProduct(
+        handle,
+        displayName,
+        String(product.metadata?.source_category || "")
+      ),
     isCompound: false,
     strengths: [strength],
-    casNumber: String(product.metadata?.cas_number || "N/A"),
-    molecularFormula: String(product.metadata?.molecular_formula || "N/A"),
-    molecularWeight: String(product.metadata?.molecular_weight || "N/A"),
-    storage: String(product.metadata?.storage || "-20°C lyophilized"),
-    appearance: String(product.metadata?.appearance || "Lyophilized powder"),
-    sequence: String(product.metadata?.sequence || "N/A"),
+    casNumber: pickMeta(meta, enrichment, "cas_number", "N/A"),
+    molecularFormula: pickMeta(meta, enrichment, "molecular_formula", "N/A"),
+    molecularWeight: pickMeta(meta, enrichment, "molecular_weight", "N/A"),
+    storage: pickMeta(meta, enrichment, "storage", "-20°C lyophilized"),
+    appearance: pickMeta(meta, enrichment, "appearance", "Lyophilized powder"),
+    sequence: pickMeta(meta, enrichment, "sequence", "N/A"),
     researchSummary: researchSummaryFor(product, displayName)
   }
 }
@@ -497,7 +548,12 @@ export async function findRelatedCompoundProducts(
   const sameCategory = all.filter((product) => {
     if (memberIds.has(product.id) || memberHandles.has(product.handle)) return false
     if (getCompoundParentHandle(product.handle) === view.parentHandle) return false
-    return String(product.metadata?.source_category || "") === view.categoryLabel
+    const label = storefrontCategoryLabelForProduct(
+      product.handle,
+      getProductDisplayName(product),
+      String(product.metadata?.source_category || "")
+    )
+    return label === view.categoryLabel
   })
 
   return dedupeProductsByCompound(sameCategory).slice(0, limit)

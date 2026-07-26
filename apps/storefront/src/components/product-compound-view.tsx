@@ -36,6 +36,13 @@ function syncUrl(parentHandle: string, strengthKey: string, packQty: number | nu
   window.history.replaceState(null, "", next)
 }
 
+/** Per-strength catalog handles (legacy slugs when merged). */
+function catalogHandlesForView(view: CompoundProductView): string {
+  const handles = view.strengths.map((strength) => strength.imageHandle || strength.handle)
+  const unique = [...new Set(handles.filter(Boolean))]
+  return unique.join(", ")
+}
+
 export function ProductCompoundView({
   view,
   initialStrength,
@@ -170,7 +177,7 @@ export function ProductCompoundView({
         key={selectedStrength.handle}
         product={{
           title: view.displayName,
-          handle: selectedStrength.handle,
+          handle: catalogHandlesForView(view),
           category: view.categoryLabel,
           purity: selectedStrength.purity,
           primaryVariantTitle: selectedStrength.variants[0]?.title || selectedStrength.strengthLabel,

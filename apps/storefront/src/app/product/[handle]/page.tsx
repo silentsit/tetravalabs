@@ -9,7 +9,7 @@ import {
   pickDefaultStrengthKey,
   resolveCompoundRedirect
 } from "@/lib/compound-product"
-import { slugifyCategory } from "@/lib/categories"
+import { categorySlugFromLabel } from "@/lib/categories"
 import { shopNavLabel } from "@/lib/shop-filters"
 import { ProductCompoundView } from "@/components/product-compound-view"
 import { ProductCard } from "@/components/product-card"
@@ -75,7 +75,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
   ])
 
   const defaultStrengthKey = pickDefaultStrengthKey(view.strengths, query.strength)
-  const categorySlug = slugifyCategory(view.categoryLabel)
+  const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
   const crumbName = compoundSeoName(view, defaultStrengthKey)
 
   return (

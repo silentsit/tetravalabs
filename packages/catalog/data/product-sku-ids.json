@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "next_code": 133,
+  "next_code": 134,
   "products": {
     "5-amino-1mq-10mg": 1,
     "5-amino-1mq-5mg": 2,
@@ -133,6 +133,7 @@
     "tirzepatide-20mg": 129,
     "tirzepatide-50mg": 130,
     "tirzepatide-5mg": 131,
-    "vip-10mg": 132
+    "vip-10mg": 132,
+    "ss-31-20mg": 133
   }
 }

@@ -15,7 +15,7 @@ export const STOREFRONT_CATEGORY_SLUGS = [
 
 export type StorefrontCategorySlug = (typeof STOREFRONT_CATEGORY_SLUGS)[number]
 
-const CATEGORY_NAME_BY_SLUG: Record<StorefrontCategorySlug, string> = {
+export const CATEGORY_NAME_BY_SLUG: Record<StorefrontCategorySlug, string> = {
   "glp-1-research": "GLP-1 Research",
   "tissue-repair": "Tissue Repair",
   "growth-hormone-axis": "Growth Hormone Axis",
@@ -180,6 +180,23 @@ export function resolveProductCategorySlug(product: StoreProduct): StorefrontCat
   const sourceCategory = normalizeSourceCategory(String(product.metadata?.source_category || ""))
   const compoundName = compoundNameFromProduct(product)
   return resolveStorefrontCategorySlug(compoundName, sourceCategory)
+}
+
+/** Prefer generated catalog slug map, then name/source heuristics. */
+export function storefrontCategoryLabelForProduct(
+  handle: string,
+  name?: string,
+  sourceCategory?: string
+): string {
+  const fromCatalog = catalogSlugMap[handle]
+  if (fromCatalog && fromCatalog in CATEGORY_NAME_BY_SLUG) {
+    return CATEGORY_NAME_BY_SLUG[fromCatalog as StorefrontCategorySlug]
+  }
+  if (name) {
+    const slug = resolveStorefrontCategorySlug(name, normalizeSourceCategory(sourceCategory || ""))
+    return CATEGORY_NAME_BY_SLUG[slug]
+  }
+  return "Research Product"
 }
 
 export function groupProductsByCategory(products: StoreProduct[]) {

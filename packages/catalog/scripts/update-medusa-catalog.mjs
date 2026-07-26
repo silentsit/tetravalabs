@@ -68,10 +68,33 @@ const run = async () => {
     }
 
     const batch = buildVariantBatch(existing, catalogProduct)
-    const hasChanges =
+    const hasVariantChanges =
       batch.create.length > 0 || batch.update.length > 0 || batch.delete.length > 0
 
-    if (!hasChanges) {
+    const nextMetadata = {
+      ...(existing.metadata || {}),
+      ...catalogProduct.metadata,
+      visual_type: catalogProduct.visual_type,
+      source_category: catalogProduct.category
+    }
+
+    const metadataKeys = [
+      "cas_number",
+      "molecular_formula",
+      "molecular_weight",
+      "sequence",
+      "storage",
+      "appearance",
+      "source_category",
+      "visual_type"
+    ]
+    const hasMetadataChanges = metadataKeys.some(
+      (key) => String(existing.metadata?.[key] ?? "") !== String(nextMetadata[key] ?? "")
+    )
+    const hasTitleChange = existing.title !== catalogProduct.title
+    const hasHandleChange = existing.handle !== catalogProduct.handle
+
+    if (!hasVariantChanges && !hasMetadataChanges && !hasTitleChange && !hasHandleChange) {
       unchangedProducts += 1
       continue
     }
@@ -82,28 +105,26 @@ const run = async () => {
       handle: catalogProduct.handle,
       subtitle: "Research Use Only",
       categories: [{ id: categoryId }],
-      metadata: {
-        ...catalogProduct.metadata,
-        visual_type: catalogProduct.visual_type,
-        source_category: catalogProduct.category
-      },
+      metadata: nextMetadata,
       options: buildProductOptions(catalogProduct)
     }
 
     if (dryRun) {
       console.log(
-        `[dry-run] ${catalogProduct.handle}${isMergedCatalogProduct(catalogProduct) ? " (merged)" : ""}: +${batch.create.length} ~${batch.update.length} -${batch.delete.length}`
+        `[dry-run] ${catalogProduct.handle}${isMergedCatalogProduct(catalogProduct) ? " (merged)" : ""}: +${batch.create.length} ~${batch.update.length} -${batch.delete.length}${hasMetadataChanges ? " metadata" : ""}`
       )
       updatedProducts += 1
       continue
     }
 
     await client.post(`/admin/products/${existing.id}`, productPayload)
-    await client.post(`/admin/products/${existing.id}/variants/batch`, batch)
+    if (hasVariantChanges) {
+      await client.post(`/admin/products/${existing.id}/variants/batch`, batch)
+    }
 
     updatedProducts += 1
     console.log(
-      `Updated ${catalogProduct.handle}: +${batch.create.length} ~${batch.update.length} -${batch.delete.length}`
+      `Updated ${catalogProduct.handle}: +${batch.create.length} ~${batch.update.length} -${batch.delete.length}${hasMetadataChanges ? " metadata" : ""}`
     )
   }
 

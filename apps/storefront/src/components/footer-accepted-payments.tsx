@@ -4,18 +4,19 @@ type PaymentLogo = {
   id: string
   label: string
   src: string
-  /** Card wordmarks vs square crypto marks need different pill sizing. */
   variant: "card" | "crypto"
+  width: number
+  height: number
 }
 
 /** Card + crypto logos shown in the footer — keep in sync with /payment and checkout. */
 const PAYMENT_LOGOS: PaymentLogo[] = [
-  { id: "visa", label: "Visa", src: "/payments/visa.svg", variant: "card" },
-  { id: "mastercard", label: "Mastercard", src: "/payments/mastercard.svg", variant: "card" },
-  { id: "apple-pay", label: "Apple Pay", src: "/payments/apple-pay.svg", variant: "card" },
-  { id: "btc", label: "Bitcoin", src: "/payments/btc.svg", variant: "crypto" },
-  { id: "eth", label: "Ethereum", src: "/payments/eth.svg", variant: "crypto" },
-  { id: "usdt", label: "Tether USDT", src: "/payments/usdt.svg", variant: "crypto" }
+  { id: "visa", label: "Visa", src: "/payments/visa.svg", variant: "card", width: 46, height: 16 },
+  { id: "mastercard", label: "Mastercard", src: "/payments/mastercard.svg", variant: "card", width: 26, height: 16 },
+  { id: "apple-pay", label: "Apple Pay", src: "/payments/apple-pay.svg", variant: "card", width: 38, height: 16 },
+  { id: "btc", label: "Bitcoin", src: "/payments/btc.svg", variant: "crypto", width: 20, height: 20 },
+  { id: "eth", label: "Ethereum", src: "/payments/eth.svg", variant: "crypto", width: 20, height: 20 },
+  { id: "usdt", label: "Tether USDT", src: "/payments/usdt.svg", variant: "crypto", width: 20, height: 20 }
 ]
 
 export function FooterAcceptedPayments() {
@@ -44,13 +45,10 @@ export function FooterAcceptedPayments() {
               <img
                 src={logo.src}
                 alt=""
-                width={logo.variant === "card" ? 48 : 20}
-                height={logo.variant === "card" ? 16 : 20}
-                className={
-                  logo.variant === "card"
-                    ? "block h-4 w-auto max-w-[48px] object-contain"
-                    : "block h-5 w-5 object-contain"
-                }
+                width={logo.width}
+                height={logo.height}
+                className="block shrink-0 object-contain"
+                style={{ width: logo.width, height: logo.height }}
               />
             </div>
           </li>

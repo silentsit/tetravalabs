@@ -4,19 +4,18 @@ type PaymentLogo = {
   id: string
   label: string
   src: string
-  variant: "card" | "crypto"
   width: number
   height: number
 }
 
 /** Card + crypto logos shown in the footer — keep in sync with /payment and checkout. */
 const PAYMENT_LOGOS: PaymentLogo[] = [
-  { id: "visa", label: "Visa", src: "/payments/visa.svg", variant: "card", width: 46, height: 16 },
-  { id: "mastercard", label: "Mastercard", src: "/payments/mastercard.svg", variant: "card", width: 26, height: 16 },
-  { id: "apple-pay", label: "Apple Pay", src: "/payments/apple-pay.svg", variant: "card", width: 38, height: 16 },
-  { id: "btc", label: "Bitcoin", src: "/payments/btc.svg", variant: "crypto", width: 20, height: 20 },
-  { id: "eth", label: "Ethereum", src: "/payments/eth.svg", variant: "crypto", width: 20, height: 20 },
-  { id: "usdt", label: "Tether USDT", src: "/payments/usdt.svg", variant: "crypto", width: 20, height: 20 }
+  { id: "visa", label: "Visa", src: "/payments/visa.png", width: 48, height: 30 },
+  { id: "mastercard", label: "Mastercard", src: "/payments/mastercard.svg", width: 28, height: 18 },
+  { id: "apple-pay", label: "Apple Pay", src: "/payments/apple-pay.png", width: 44, height: 18 },
+  { id: "btc", label: "Bitcoin", src: "/payments/btc.svg", width: 22, height: 22 },
+  { id: "eth", label: "Ethereum", src: "/payments/eth.svg", width: 22, height: 22 },
+  { id: "usdt", label: "Tether USDT", src: "/payments/usdt.svg", width: 22, height: 22 }
 ]
 
 export function FooterAcceptedPayments() {
@@ -29,28 +28,19 @@ export function FooterAcceptedPayments() {
       <p className="mt-1 text-xs leading-relaxed text-[#64748B]">
         Protected by SSL encryption &amp; trusted payment providers
       </p>
-      <ul className="mt-4 flex flex-wrap items-center gap-2" aria-label="Accepted payment methods">
+      <ul className="mt-4 flex flex-wrap items-center gap-x-3.5 gap-y-2" aria-label="Accepted payment methods">
         {PAYMENT_LOGOS.map((logo) => (
-          <li key={logo.id}>
-            <div
-              className={
-                logo.variant === "card"
-                  ? "flex h-9 items-center justify-center rounded-md bg-white px-2.5 shadow-sm"
-                  : "flex h-9 w-9 items-center justify-center rounded-md bg-white shadow-sm"
-              }
-              title={logo.label}
-            >
-              <span className="sr-only">{logo.label}</span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={logo.src}
-                alt=""
-                width={logo.width}
-                height={logo.height}
-                className="block shrink-0 object-contain"
-                style={{ width: logo.width, height: logo.height }}
-              />
-            </div>
+          <li key={logo.id} title={logo.label} className="flex items-center">
+            <span className="sr-only">{logo.label}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logo.src}
+              alt=""
+              width={logo.width}
+              height={logo.height}
+              className="block shrink-0 object-contain"
+              style={{ width: logo.width, height: logo.height }}
+            />
           </li>
         ))}
       </ul>

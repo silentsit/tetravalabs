@@ -1,7 +1,7 @@
 export type SocialAuthProvider = "google" | "apple"
 
 function isEnabled(flag: string | undefined) {
-  return flag !== "false"
+  return flag === "true"
 }
 
 export const socialAuthConfig = {

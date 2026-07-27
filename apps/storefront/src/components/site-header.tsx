@@ -11,9 +11,6 @@ import { shopNavLabel } from "@/lib/shop-filters"
 
 const navLinks = [
   { label: "How To Pay", href: "/payment" },
-  { label: "Research Hub", href: "/blog" },
-  { label: "COA Library", href: "/coa-library" },
-  { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" }
 ]
 

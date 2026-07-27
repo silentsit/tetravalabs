@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { FooterAcceptedPayments } from "@/components/footer-accepted-payments"
 import { SiteLogo } from "@/components/site-logo"
 
 const shopLinks = [
@@ -42,6 +43,7 @@ export function SiteFooter() {
             <p className="mt-4 text-sm leading-relaxed text-[#94A3B8]">
               Research-grade peptides and compounds for qualified laboratory professionals.
             </p>
+            <FooterAcceptedPayments />
           </div>
           <div>
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#64748B]">Shop</h4>

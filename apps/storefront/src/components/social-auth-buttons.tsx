@@ -51,11 +51,21 @@ export function SocialAuthButtons({ returnUrl = "/account", placement = "above" 
     setStatus("")
     try {
       await startSocialAuth(provider, returnUrl)
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Unable to continue with social sign-in."
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unable to continue with social sign-in."
+    if (/auth provider with id:\s*google/i.test(message)) {
+      setStatus(
+        "Google sign-in is not configured on the server yet. Use email/password, or ask support to enable Google OAuth."
+      )
+    } else if (/auth provider with id:\s*apple/i.test(message)) {
+      setStatus(
+        "Apple sign-in is not configured on the server yet. Use email/password, or ask support to enable Apple OAuth."
+      )
+    } else {
       setStatus(message)
-      setLoadingProvider(null)
     }
+    setLoadingProvider(null)
+  }
   }
 
   const divider = (

@@ -2,17 +2,7 @@ import Link from "next/link"
 import { FooterAcceptedPayments } from "@/components/footer-accepted-payments"
 import { SiteLogo } from "@/components/site-logo"
 
-const shopLinks = [
-  { label: "All Products", href: "/shop" },
-  { label: "Categories", href: "/categories" },
-  { label: "GLP-1 Research", href: "/category/glp-1-research" },
-  { label: "Tissue Repair", href: "/category/tissue-repair" },
-  { label: "Growth Hormone Axis", href: "/category/growth-hormone-axis" },
-  { label: "Longevity & Neuropeptides", href: "/category/longevity-neuropeptides" },
-  { label: "Metabolic & Mitochondrial", href: "/category/metabolic-mitochondrial" },
-  { label: "Research Blends", href: "/category/research-blends" },
-  { label: "Lab Supplies", href: "/category/lab-supplies" }
-]
+const shopLinks = [{ label: "All Products", href: "/shop" }]
 
 const supportLinks = [
   { label: "COA Library", href: "/coa-library" },

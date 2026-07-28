@@ -13,11 +13,10 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ContactPage() {
   return (
-    <section className="page-container mx-auto max-w-4xl space-y-8 py-8">
+    <section className="page-container mx-auto max-w-4xl space-y-8 pt-8 pb-20">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
       <div>
-        <span className="section-label">Contact</span>
-        <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">Contact us</h1>
+        <h1 className="font-serif text-4xl text-[#0F172A]">Contact us</h1>
         <p className="mt-4 text-[#475569]">
           Reach our research support team about products, orders, COA documents, or compliance questions.
         </p>

@@ -74,9 +74,12 @@ export function SiteFooter() {
               Privacy Policy
             </Link>
           </p>
-          <p className="max-w-xl text-center text-xs leading-relaxed text-[#D97706]/80 sm:text-right">
-            FDA Disclaimer: All products are for laboratory and research use only. Not for human
-            consumption.
+          <p className="max-w-2xl text-center text-[11px] leading-relaxed text-[#D97706]/80 sm:text-right">
+            FDA Disclaimer: These statements have not been evaluated by the Food and Drug
+            Administration (or HSA in Singapore). These products are not intended to diagnose,
+            treat, cure, or prevent any disease. Always consult with a qualified healthcare
+            professional before beginning any diet, exercise, or supplementation program,
+            especially if you are pregnant, nursing, or taking medications.
           </p>
         </div>
       </div>

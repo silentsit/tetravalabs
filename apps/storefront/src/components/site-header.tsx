@@ -11,7 +11,9 @@ import { shopNavLabel } from "@/lib/shop-filters"
 
 const navLinks = [
   { label: "How To Pay", href: "/payment" },
-  { label: "About", href: "/about" }
+  { label: "Shipping", href: "/shipping" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" }
 ]
 
 const iconButtonClass =

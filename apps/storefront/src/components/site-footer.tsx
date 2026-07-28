@@ -13,9 +13,7 @@ const shopLinks = [
 
 const helpLinks = [
   { label: "How to Pay", href: "/payment" },
-  { label: "Shipping", href: "/shipping" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
   { label: "Refund & Delivery", href: "/refund" }
 ]
 

@@ -7,7 +7,7 @@ const shopLinks = [
   { label: "GLP-1 Research", href: "/category/glp-1-research" },
   { label: "Tissue Repair", href: "/category/tissue-repair" },
   { label: "Lab Supplies", href: "/category/lab-supplies" },
-  { label: "Orders", href: "/account/orders" }
+  { label: "My Account", href: "/account" }
 ]
 
 const helpLinks = [

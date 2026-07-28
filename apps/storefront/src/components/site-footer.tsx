@@ -3,7 +3,8 @@ import { FooterAcceptedPayments } from "@/components/footer-accepted-payments"
 import { SiteLogo } from "@/components/site-logo"
 
 const shopLinks = [
-  { label: "Shop", href: "/shop" },
+  { label: "All Products", href: "/shop" },
+  { label: "About", href: "/about" },
   { label: "GLP-1 Research", href: "/category/glp-1-research" },
   { label: "Tissue Repair", href: "/category/tissue-repair" },
   { label: "Lab Supplies", href: "/category/lab-supplies" },
@@ -24,24 +25,17 @@ const resourceLinks = [
   { label: "RUO Disclaimer", href: "/ruo" }
 ]
 
-const companyLinks = [
-  { label: "About", href: "/about" },
-  { label: "Terms of Service", href: "/terms" },
-  { label: "Privacy Policy", href: "/privacy" }
-]
-
 const columns = [
   { title: "Shop", links: shopLinks },
   { title: "Help", links: helpLinks },
-  { title: "Resources", links: resourceLinks },
-  { title: "Company", links: companyLinks }
+  { title: "Resources", links: resourceLinks }
 ] as const
 
 export function SiteFooter() {
   return (
     <footer className="bg-[#0F172A] text-white">
       <div className="page-container py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="inline-flex shrink-0 items-center">
               <SiteLogo variant="footer" />
@@ -73,7 +67,14 @@ export function SiteFooter() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#1E293B] pt-8 sm:flex-row">
           <p className="text-xs text-[#64748B]">
-            &copy; {new Date().getFullYear()} Tetrava Labs. All rights reserved.
+            &copy; {new Date().getFullYear()} Tetrava Labs. All rights reserved.{" "}
+            <Link href="/terms" className="transition-colors hover:text-white">
+              Terms of Service
+            </Link>
+            <span className="mx-1.5 text-[#475569]">|</span>
+            <Link href="/privacy" className="transition-colors hover:text-white">
+              Privacy Policy
+            </Link>
           </p>
           <p className="max-w-xl text-center text-xs leading-relaxed text-[#D97706]/80 sm:text-right">
             FDA Disclaimer: All products are for laboratory and research use only. Not for human

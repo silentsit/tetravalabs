@@ -95,15 +95,23 @@ export default function AboutPage() {
         <h2 className="font-serif text-2xl text-[#0F172A]">Why we exist</h2>
         <div className="mt-4 space-y-4 text-sm leading-relaxed text-[#475569]">
           <p>
-            The research peptide market has a trust problem. Purity claims without paperwork. &ldquo;99%&rdquo;
-            printed on a label that no instrument ever validated. Vials that arrive warm, unlabeled, or
-            inconsistent from one batch to the next — quietly introducing variables into work that&apos;s
-            supposed to control for them.
+            Tetrava Labs didn&apos;t start as a business plan. It started with a simpler need — sourcing
+            peptides for people close to us.
           </p>
           <p>
-            We started Tetrava Labs to remove that uncertainty. In research, a compound is only as good
-            as your confidence in what&apos;s actually in the vial. Our job is to make that confidence the
-            default, not the exception.
+            At first, we ordered like everyone else: different vendors, different promises, the same
+            uneasy feeling after the package arrived. Labels that looked fine. Claims that sounded
+            precise. And still no way to be certain what was actually in the vial. After a while, that
+            uncertainty stopped being acceptable.
+          </p>
+          <p>
+            So we stopped relying on suppliers we couldn&apos;t fully trust and began manufacturing to our
+            own standard — verifying purity, documenting every batch, and handling material the way we
+            would want it handled for our own family. What began as a private solution became a full
+            e-commerce operation for researchers who expect the same.
+          </p>
+          <p className="font-medium text-[#0F172A]">
+            That&apos;s why we often say: we do not sell anything that we wouldn&apos;t take ourselves.
           </p>
         </div>
       </div>

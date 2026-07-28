@@ -8,7 +8,7 @@ type Props = {
 
 export function LegalPageShell({ eyebrow, title, children }: Props) {
   return (
-    <article className="page-container mx-auto max-w-3xl space-y-8 py-8">
+    <article className="page-container mx-auto max-w-3xl space-y-8 pt-8 pb-20">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: title }]} />
       <div>
         <span className="section-label">{eyebrow}</span>

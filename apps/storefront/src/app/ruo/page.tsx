@@ -1,5 +1,3 @@
-import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
 import type { Metadata } from "next"
 import { LegalPageShell } from "@/components/legal-page-shell"
 import { buildPageMetadata } from "@/lib/seo"
@@ -11,19 +9,7 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/ruo"
 })
 
-export default async function RuoGatePage() {
-  async function acknowledge() {
-    "use server"
-    const jar = await cookies()
-    jar.set("tetrava_ruo_ack", "v1", {
-      sameSite: "lax",
-      httpOnly: false,
-      path: "/",
-      maxAge: 60 * 60 * 24 * 365
-    })
-    redirect("/")
-  }
-
+export default function RuoGatePage() {
   return (
     <LegalPageShell eyebrow="Compliance" title="Research Use Only Policy">
       <div className="space-y-6 text-sm leading-relaxed text-[#8A8AA0]">
@@ -34,7 +20,7 @@ export default async function RuoGatePage() {
         </p>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Purchaser obligations</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Purchaser obligations</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>You are 18 years of age or older and purchasing on behalf of a legitimate research entity.</li>
             <li>You will use products only in controlled laboratory settings with appropriate safety protocols.</li>
@@ -44,7 +30,7 @@ export default async function RuoGatePage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Product disclaimers</h2>
+          <h2 className="text-base font-medium text-[#0F172A]">Product disclaimers</h2>
           <p>
             Certificates of Analysis (COA) and purity data reflect batch-specific testing at time of
             manufacture. Specifications may change between lots. No product statement constitutes
@@ -57,12 +43,6 @@ export default async function RuoGatePage() {
           with all applicable laws in your jurisdiction.
         </div>
       </div>
-
-      <form action={acknowledge}>
-        <button className="rounded-lg bg-[#5EEAD4] px-6 py-2.5 text-sm font-medium text-[#050508] transition hover:brightness-110">
-          I Understand And Agree
-        </button>
-      </form>
     </LegalPageShell>
   )
 }

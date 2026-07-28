@@ -2,6 +2,7 @@ import Image from "next/image"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { listProducts } from "@/lib/medusa"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { groupProductsByCategory } from "@/lib/categories"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
 import { buildPageMetadata } from "@/lib/seo"
@@ -11,7 +12,8 @@ export const revalidate = 300
 export const metadata: Metadata = buildPageMetadata({
   title: "Product categories",
   description: "Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies.",
-  path: "/categories"
+  path: "/categories",
+  pageType: "CollectionPage"
 })
 
 export default async function CategoriesPage() {
@@ -20,6 +22,7 @@ export default async function CategoriesPage() {
 
   return (
     <section className="page-container space-y-8 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Categories" }]} />
       <div>
         <span className="section-label">Browse</span>
         <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">Product categories</h1>

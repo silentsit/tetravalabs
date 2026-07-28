@@ -1,7 +1,6 @@
 import { notFound, redirect } from "next/navigation"
 import type { Metadata } from "next"
 import {
-  buildCompoundProductPath,
   compoundSeoName,
   findRelatedCompoundProducts,
   getCompoundProductView,
@@ -49,12 +48,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const selected = view.strengths.find((item) => item.strengthKey === strengthKey) || view.strengths[0]
   const productName = compoundSeoName(view, strengthKey)
   const cas = view.casNumber !== "N/A" ? ` CAS ${view.casNumber}.` : ""
-  const path = buildCompoundProductPath(view.parentHandle, strengthKey)
 
   return buildPageMetadata({
     title: `${productName} — ${view.categoryLabel}`,
     description: `${productName} for laboratory research (RUO). ${selected?.purity || "99%+"} purity with lot-linked COA.${cas}`,
-    path,
+    path: `/product/${view.parentHandle}`,
     image: selected?.image
   })
 }

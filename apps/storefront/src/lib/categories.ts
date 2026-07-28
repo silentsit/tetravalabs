@@ -15,6 +15,10 @@ export const STOREFRONT_CATEGORY_SLUGS = [
 
 export type StorefrontCategorySlug = (typeof STOREFRONT_CATEGORY_SLUGS)[number]
 
+export function isStorefrontCategorySlug(slug: string): slug is StorefrontCategorySlug {
+  return STOREFRONT_CATEGORY_SLUGS.includes(slug as StorefrontCategorySlug)
+}
+
 export const CATEGORY_NAME_BY_SLUG: Record<StorefrontCategorySlug, string> = {
   "glp-1-research": "GLP-1 Research",
   "tissue-repair": "Tissue Repair",

@@ -1,4 +1,5 @@
 import researchArticles from "@/data/research-articles.json"
+import { normalizeCategorySlug } from "@/lib/categories"
 
 export type BlogCategory = "Protocols" | "Analytical" | "Compliance"
 
@@ -33,74 +34,53 @@ const fallbackPosts = researchArticles as BlogPost[]
 
 const fallbackCategorySeo: CategorySeoBlock[] = [
   {
-    categorySlug: "glp-1-incretin",
+    categorySlug: "glp-1-research",
     introCopy:
       "GLP-1 and incretin research peptides for laboratory investigation of metabolic pathways, appetite signaling, and glucose regulation models.",
     supportingCopy:
       "All compounds ship lyophilized with lot-linked COA and HPLC documentation. Store at -20°C until reconstitution per your lab SOP."
   },
   {
-    categorySlug: "bpc-157-tb500",
+    categorySlug: "tissue-repair",
     introCopy:
-      "BPC-157 and TB-500 research peptides for in-vitro and animal model studies focused on tissue repair pathways.",
+      "BPC-157, TB-500, GHK-Cu, and related tissue-repair research peptides for in-vitro and animal model studies.",
     supportingCopy:
       "Batch purity is verified by HPLC-MS. Cross-reference the COA Library before starting any experiment."
   },
   {
-    categorySlug: "blends",
-    introCopy:
-      "Multi-peptide research blends formulated for studies that require combined compound profiles in a single vial.",
-    supportingCopy:
-      "Each blend SKU includes variant-level COA documentation where published. Verify batch IDs before use."
-  },
-  {
-    categorySlug: "cjc-ipamorelin-ghrp",
-    introCopy:
-      "CJC-1295, Ipamorelin, and GHRP-class secretagogues for growth hormone axis research models.",
-    supportingCopy:
-      "Lyophilized powders with independent HPLC verification. For qualified laboratory research only."
-  },
-  {
     categorySlug: "growth-hormone-axis",
     introCopy:
-      "Growth hormone axis peptides including sermorelin, tesamorelin, and related secretagogues for endocrine research.",
+      "CJC-1295, Ipamorelin, GHRP-class secretagogues, sermorelin, and tesamorelin for growth hormone axis research models.",
     supportingCopy:
-      "Cold-chain shipping available. Store sealed vials at -20°C until reconstitution."
+      "Lyophilized powders with independent HPLC verification. Cold-chain shipping available. For qualified laboratory research only."
   },
   {
-    categorySlug: "longevity-thymic-neuropeptides",
+    categorySlug: "longevity-neuropeptides",
     introCopy:
       "Longevity and neuropeptide research compounds including epithalon, selank, semax, and thymic peptides.",
     supportingCopy:
       "Lot-linked analytical documentation supports reproducible experimental design."
   },
   {
-    categorySlug: "cosmetic-copper-tanning",
+    categorySlug: "metabolic-mitochondrial",
     introCopy:
-      "Copper peptide, melanotan, and related compounds for dermal and pigmentation pathway research.",
-    supportingCopy:
-      "RUO materials only — not for cosmetic or human application."
-  },
-  {
-    categorySlug: "mitochondrial-metabolic-other",
-    introCopy:
-      "Mitochondrial and metabolic research peptides including NAD+, glutathione, and related cofactors.",
+      "Mitochondrial and metabolic research peptides including MOTS-c, NAD+, glutathione, and related cofactors.",
     supportingCopy:
       "Verify storage requirements on each product specification tab before use."
   },
   {
-    categorySlug: "supplies-reconstitution",
+    categorySlug: "research-blends",
+    introCopy:
+      "Multi-peptide research blends formulated for studies that require combined compound profiles in a single vial.",
+    supportingCopy:
+      "Each blend SKU includes variant-level COA documentation where published. Verify batch IDs before use."
+  },
+  {
+    categorySlug: "lab-supplies",
     introCopy:
       "BAC water, acetic acid, and reconstitution supplies required for peptide preparation in the lab.",
     supportingCopy:
       "Pair with your peptide order to streamline reconstitution workflows."
-  },
-  {
-    categorySlug: "vitamins-injectables",
-    introCopy:
-      "Injectable research vitamins and adjunct compounds for laboratory protocol support.",
-    supportingCopy:
-      "For research use only. Review COA documentation for each batch before administration in models."
   }
 ]
 
@@ -184,12 +164,14 @@ export async function getCategorySeoBlock(slug: string): Promise<CategorySeoBloc
   const safeSlug = sanitizeSlug(slug)
   if (!safeSlug) return null
 
-  const query = `*[_type == "categorySeoBlock" && categorySlug == "${safeSlug}"][0]{
+  const normalized = String(normalizeCategorySlug(safeSlug))
+
+  const query = `*[_type == "categorySeoBlock" && categorySlug == "${normalized}"][0]{
     categorySlug, introCopy, supportingCopy, seoTitle, seoDescription
   }`
-  const block = await fetchSanity<CategorySeoBlock>(query, [`sanity:category:${safeSlug}`])
+  const block = await fetchSanity<CategorySeoBlock>(query, [`sanity:category:${normalized}`])
   if (block) return block
-  return fallbackCategorySeo.find((item) => item.categorySlug === safeSlug) || null
+  return fallbackCategorySeo.find((item) => item.categorySlug === normalized) || null
 }
 
 const legalPaths: Record<string, string> = {

@@ -40,6 +40,18 @@ Recommended managed rules:
 - Cloudflare Bot Fight Mode — **On** (or Super Bot Fight on paid plan)
 - Rate limiting on `/api/checkout` and `/api/revalidate` if abuse appears
 
+### AI crawler policy (keep Cloudflare + Next.js aligned)
+
+Cloudflare Managed robots currently prepends `Disallow: /` for GPTBot, ClaudeBot, Google-Extended, and similar AI bots. The storefront `apps/storefront/src/app/robots.ts` matches that block so origin and edge agree.
+
+If you later want AI citation/search crawlers to read the public catalog:
+
+1. Cloudflare → **AI Crawl Control** / Managed robots → allow GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot (keep Google-Extended blocked if you want to deny Gemini training).
+2. Update `robots.ts` AI-bot rule from `disallow: "/"` to allow `/`, `/llms.txt`, `/blog`, `/shop`, `/coa-library`, `/faq`, and category paths.
+3. Redeploy the storefront so `https://tetravalabs.com/robots.txt` no longer conflicts.
+
+`/llms.txt` remains available for operators who fetch context manually even when bots are blocked.
+
 Custom rule example (block obvious scanners):
 
 ```
@@ -47,7 +59,6 @@ Custom rule example (block obvious scanners):
 (http.request.uri.path contains "/.env")
 → Block
 ```
-
 ## 5. Cache
 
 - **Cache HTML minimally** — Vercel handles Next.js caching; set Cloudflare cache level to **Standard** and bypass cache for `/api/*`, `/checkout`, `/cart`.

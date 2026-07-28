@@ -236,10 +236,15 @@ export function webPageJsonLd(input: {
 type ProductLike = {
   title: string
   handle: string
+  description?: string | null
   variants?: Array<{
     id: string
+    sku?: string | null
     prices?: Array<{ amount: number }>
     calculated_price?: { calculated_amount?: number }
+    inventory_quantity?: number | null
+    manage_inventory?: boolean | null
+    allow_backorder?: boolean | null
   }>
   metadata?: Record<string, unknown> | null
 }
@@ -249,30 +254,66 @@ function productPriceRange(product: ProductLike) {
   return { low: min / 100, high: max / 100 }
 }
 
+function isProductLikeVariantInStock(
+  variant: NonNullable<ProductLike["variants"]>[number] | undefined
+): boolean {
+  if (!variant) return false
+  if (variant.manage_inventory === false) return true
+  if (variant.allow_backorder) return true
+  if (variant.inventory_quantity == null) return true
+  return variant.inventory_quantity > 0
+}
+
+function productAvailability(product: ProductLike) {
+  const variants = product.variants || []
+  if (!variants.length) return "https://schema.org/OutOfStock"
+  return variants.some((variant) => isProductLikeVariantInStock(variant))
+    ? "https://schema.org/InStock"
+    : "https://schema.org/OutOfStock"
+}
+
 export function productJsonLd(product: ProductLike, handle: string, imagePath?: string) {
   const categoryLabel = String(product.metadata?.source_category || "Research Product")
   const { low, high } = productPriceRange(product)
   const offerPrice = low || high
   const image = imagePath || `/products/${handle}.jpg`
+  const sku =
+    product.variants?.find((variant) => variant.sku)?.sku || product.variants?.[0]?.id
+  const description =
+    (typeof product.description === "string" && product.description.trim()) ||
+    `${product.title} — research-use only (RUO) peptide with HPLC-MS verification.`
+  const availability = productAvailability(product)
+  const hasRange = Boolean(low && high && low !== high)
+  const offers = hasRange
+    ? {
+        "@type": "AggregateOffer",
+        url: pageUrl(`/product/${handle}`),
+        priceCurrency: "USD",
+        lowPrice: low,
+        highPrice: high,
+        offerCount: product.variants?.length || 1,
+        availability,
+        itemCondition: "https://schema.org/NewCondition"
+      }
+    : {
+        "@type": "Offer",
+        url: pageUrl(`/product/${handle}`),
+        priceCurrency: "USD",
+        price: offerPrice || undefined,
+        availability,
+        itemCondition: "https://schema.org/NewCondition"
+      }
 
   return {
     "@context": "https://schema.org/",
     "@type": "Product",
     name: product.title,
-    description: `${product.title} — research-use only (RUO) peptide with HPLC-MS verification.`,
+    description,
     image: image.startsWith("http") ? image : pageUrl(image),
-    sku: product.variants?.[0]?.id,
+    sku,
     category: categoryLabel,
     brand: { "@type": "Brand", name: "Tetrava Labs" },
-    offers: {
-      "@type": "Offer",
-      url: pageUrl(`/product/${handle}`),
-      priceCurrency: "USD",
-      price: offerPrice || undefined,
-      ...(low && high && low !== high ? { lowPrice: low, highPrice: high } : {}),
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition"
-    }
+    offers
   }
 }
 
@@ -297,18 +338,38 @@ export function articleJsonLd(post: {
     datePublished: post.publishedAt,
     image: pageUrl(imagePath),
     author: { "@type": "Organization", name: siteConfig.name },
-    publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: pageUrl(siteConfig.defaultOgImage)
+    },
     mainEntityOfPage: pageUrl(`/blog/${post.slug}`)
   }
 }
 
+function resolveSocialProfiles() {
+  const fromEnv = [
+    process.env.NEXT_PUBLIC_TWITTER_URL,
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+    process.env.NEXT_PUBLIC_LINKEDIN_URL,
+    process.env.NEXT_PUBLIC_FACEBOOK_URL
+  ]
+    .map((value) => value?.trim())
+    .filter((value): value is string => Boolean(value))
+
+  return fromEnv
+}
+
 export function organizationJsonLd() {
+  const sameAs = resolveSocialProfiles()
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${siteConfig.url}#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
+    logo: pageUrl(siteConfig.defaultOgImage),
     email: siteConfig.contactEmail,
     description: siteConfig.description,
     contactPoint: {
@@ -317,7 +378,7 @@ export function organizationJsonLd() {
       email: siteConfig.contactEmail,
       availableLanguage: "English"
     },
-    sameAs: [] as string[]
+    ...(sameAs.length ? { sameAs } : {})
   }
 }
 

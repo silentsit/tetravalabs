@@ -114,6 +114,7 @@ export function PaymentConfirmation() {
           { label: "Checkout", href: "/checkout" },
           { label: "Payment" }
         ]}
+        includeSchema={false}
       />
       <div>
         <span className="section-label">Payment</span>

@@ -72,6 +72,7 @@ export function CheckoutSuccessContent() {
           { label: "Checkout", href: "/checkout" },
           { label: "Confirmation" }
         ]}
+        includeSchema={false}
       />
 
       <div className="card overflow-hidden text-center">

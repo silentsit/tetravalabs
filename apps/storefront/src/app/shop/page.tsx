@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
+import { redirect } from "next/navigation"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
 import { ProductFilters } from "@/components/product-filters"
@@ -18,13 +19,6 @@ import {
 
 export const revalidate = 300
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Shop Research Peptides",
-  description:
-    "Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs.",
-  path: "/shop"
-})
-
 type Props = {
   searchParams: Promise<{
     q?: string
@@ -33,6 +27,19 @@ type Props = {
     price_max?: string
     sort?: string
   }>
+}
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const { q = "", price_min = "", price_max = "" } = await searchParams
+  const hasQueryLikeFilters = Boolean(q.trim() || price_min.trim() || price_max.trim())
+  return buildPageMetadata({
+    title: "Shop Research Peptides",
+    description:
+      "Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs.",
+    path: "/shop",
+    noIndex: hasQueryLikeFilters,
+    pageType: "CollectionPage"
+  })
 }
 
 function parseCents(value?: string) {
@@ -48,11 +55,23 @@ function ShopSortSkeleton() {
 
 export default async function ShopPage({ searchParams }: Props) {
   const { q = "", category = "", price_min = "", price_max = "", sort = "" } = await searchParams
+  const categoryPill = normalizeShopCategoryPill(category || undefined)
+
+  // Normalize legacy category query keys onto current pill keys.
+  if (category && categoryPill && category !== categoryPill) {
+    const params = new URLSearchParams()
+    if (q) params.set("q", q)
+    params.set("category", categoryPill)
+    if (price_min) params.set("price_min", price_min)
+    if (price_max) params.set("price_max", price_max)
+    if (sort) params.set("sort", sort)
+    redirect(`/shop?${params.toString()}`)
+  }
+
   const products = await listProducts()
   const priceMin = parseCents(price_min)
   const priceMax = parseCents(price_max)
   const sortKey = parseProductSort(sort)
-  const categoryPill = normalizeShopCategoryPill(category || undefined)
 
   let displayProducts = category
     ? categoryPill

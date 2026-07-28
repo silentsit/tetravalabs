@@ -62,12 +62,15 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: siteConfig.name,
     locale: siteConfig.locale,
-    type: "website"
+    type: "website",
+    images: [{ url: siteConfig.defaultOgImage, alt: siteConfig.name }]
   },
   twitter: {
     card: "summary_large_image",
     title: defaultSiteTitle,
-    description: defaultSiteDescription
+    description: defaultSiteDescription,
+    images: [siteConfig.defaultOgImage],
+    ...(siteConfig.twitterHandle ? { site: siteConfig.twitterHandle } : {})
   },
   robots: { index: true, follow: true },
   icons: {
@@ -82,8 +85,15 @@ export default async function RootLayout({
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
   const pathname = (await headers()).get("x-pathname") || "/"
   const pageGraphs = await resolvePageJsonLd(pathname)
+  const isUtilityPath =
+    pathname.startsWith("/checkout") ||
+    pathname.startsWith("/account") ||
+    pathname.startsWith("/cart") ||
+    pathname.startsWith("/orders") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/search")
   const fallbackPageGraph =
-    pageGraphs.length === 0
+    pageGraphs.length === 0 && !isUtilityPath
       ? [
           webPageJsonLd({
             title: siteConfig.name,

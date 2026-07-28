@@ -16,7 +16,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function CartPage() {
   return (
     <section className="page-container space-y-6 py-8">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cart" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cart" }]} includeSchema={false} />
       <div>
         <span className="section-label">Order</span>
         <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Cart</h1>

@@ -18,7 +18,12 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const onShopRoute = pathname === "/shop"
-  const activePill = onShopRoute ? resolveActiveShopPill(searchParams.get("category") || undefined) : "all"
+  const categoryMatch = pathname.match(/^\/category\/([^/]+)/)
+  const activePill = categoryMatch
+    ? categoryMatch[1]
+    : onShopRoute
+      ? resolveActiveShopPill(searchParams.get("category") || undefined)
+      : "all"
 
   if (variant === "mobile") {
     return (
@@ -27,7 +32,7 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
           href="/shop"
           className={cn(
             "font-serif text-2xl transition-colors hover:text-[#0D9488]",
-            onShopRoute ? "text-[#0D9488]" : "text-[#0F172A]"
+            onShopRoute || categoryMatch ? "text-[#0D9488]" : "text-[#0F172A]"
           )}
           onClick={onNavigate}
         >
@@ -35,7 +40,10 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
         </Link>
         <ul className="ml-4 space-y-3 border-l border-[#E2E8F0] pl-4">
           {shopNavLinks.map((link) => {
-            const isActive = onShopRoute && activePill === link.key
+            const isActive =
+              link.key === "all"
+                ? onShopRoute && activePill === "all"
+                : activePill === link.key
             return (
               <li key={link.key}>
                 <Link
@@ -62,7 +70,9 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
         href="/shop"
         className={cn(
           "inline-flex items-center gap-1 text-sm transition-colors",
-          onShopRoute ? "font-medium text-[#0D9488]" : "text-[#475569] hover:text-[#0F172A]"
+          onShopRoute || categoryMatch
+            ? "font-medium text-[#0D9488]"
+            : "text-[#475569] hover:text-[#0F172A]"
         )}
       >
         {shopNavLabel}
@@ -76,7 +86,10 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
           className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white py-1 shadow-lg"
         >
           {shopNavLinks.map((link) => {
-            const isActive = onShopRoute && activePill === link.key
+            const isActive =
+              link.key === "all"
+                ? onShopRoute && activePill === "all"
+                : activePill === link.key
             return (
               <li key={link.key} role="none">
                 <Link

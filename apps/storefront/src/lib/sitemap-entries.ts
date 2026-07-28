@@ -1,5 +1,5 @@
 import { groupProductsByCategory } from "@/lib/categories"
-import { getProductHref } from "@/lib/compound-product"
+import { getCompoundParentHandle } from "@/lib/compound-product"
 import { listAllProducts } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 
@@ -24,6 +24,7 @@ const STATIC_PAGE_ROUTES: Array<{
 }> = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/shop", changeFrequency: "daily", priority: 0.9 },
+  { path: "/categories", changeFrequency: "weekly", priority: 0.7 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
   { path: "/coa-library", changeFrequency: "weekly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
@@ -154,7 +155,10 @@ export async function getAllProductSitemapEntries(): Promise<SitemapUrlEntry[]> 
   const now = new Date()
 
   const locs = new Set(
-    products.map((product) => `${baseUrl}${getProductHref(product.handle)}`)
+    products.map((product) => {
+      const parent = getCompoundParentHandle(product.handle) || product.handle
+      return `${baseUrl}/product/${parent}`
+    })
   )
 
   return [...locs].map((loc) => ({

@@ -13,6 +13,7 @@ export default function CheckoutPage() {
           { label: "Cart", href: "/cart" },
           { label: "Checkout" }
         ]}
+        includeSchema={false}
       />
       <div>
         <span className="section-label">Order</span>

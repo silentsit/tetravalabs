@@ -1,6 +1,6 @@
 # Tetrava Labs — AI & search context
 # https://tetravalabs.com
-# Last updated: 2026-06-13
+# Last updated: 2026-07-28
 
 > Research-use-only (RUO) peptide supplier for qualified laboratories.
 > Products are NOT for human consumption, clinical use, or veterinary use.
@@ -16,26 +16,33 @@ Research-grade peptides and lab supplies with:
 - HPLC-MS purity verification (typically 99%+)
 - Lot-linked Certificates of Analysis (COA) per batch
 - Cold-chain shipping with discreet packaging
-- Crypto and alternative payment options for qualified buyers
+- Crypto and card payment options for qualified buyers
 
-## Product categories
-- GLP-1 / metabolic research peptides (e.g. semaglutide, tirzepatide, retatrutide)
-- Tissue repair & recovery peptides (e.g. BPC-157, TB-500)
-- Growth hormone secretagogues (e.g. CJC-1295, ipamorelin, sermorelin)
-- Blends, lab water, and ancillary research materials
+## Product categories (canonical)
+- GLP-1 Research: https://tetravalabs.com/category/glp-1-research
+- Tissue Repair: https://tetravalabs.com/category/tissue-repair
+- Growth Hormone Axis: https://tetravalabs.com/category/growth-hormone-axis
+- Longevity & Neuropeptides: https://tetravalabs.com/category/longevity-neuropeptides
+- Metabolic & Mitochondrial: https://tetravalabs.com/category/metabolic-mitochondrial
+- Research Blends: https://tetravalabs.com/category/research-blends
+- Lab Supplies: https://tetravalabs.com/category/lab-supplies
 
 ## Key pages (canonical URLs)
 - Home: https://tetravalabs.com/
 - Shop catalog: https://tetravalabs.com/shop
-- Search: https://tetravalabs.com/search
-- Categories: https://tetravalabs.com/categories
+- Categories index: https://tetravalabs.com/categories
 - COA Library: https://tetravalabs.com/coa-library
 - Research Hub (blog): https://tetravalabs.com/blog
 - Payment guide: https://tetravalabs.com/payment
+- Shipping: https://tetravalabs.com/shipping
 - FAQ: https://tetravalabs.com/faq
 - About: https://tetravalabs.com/about
 - Contact: https://tetravalabs.com/contact
+- Terms: https://tetravalabs.com/terms
+- Privacy: https://tetravalabs.com/privacy
+- Refund & Delivery: https://tetravalabs.com/refund
 - RUO disclaimer: https://tetravalabs.com/ruo
+- Sitemap index: https://tetravalabs.com/sitemap_index.xml
 
 ## Compliance (important)
 All products are sold strictly for in-vitro / laboratory research (RUO).
@@ -43,11 +50,12 @@ Buyers must be qualified researchers or institutions.
 Full disclaimer: https://tetravalabs.com/ruo
 
 ## Ordering
-- Browse shop → add to cart → checkout with shipping details
+- Browse shop or category pages → add to cart → checkout with shipping details
 - Guest checkout supported; order lookup via email + order number at /orders
 - Payment instructions provided after checkout (see /payment)
 
 ## Structured data
-Product pages include schema.org Product + Offer markup.
+Product pages include schema.org Product + Offer / AggregateOffer markup.
 FAQ page includes FAQPage schema.
 Organization and WebSite schema on all pages.
+BreadcrumbList schema on indexable content templates.

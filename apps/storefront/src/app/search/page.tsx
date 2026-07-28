@@ -27,7 +27,7 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <section className="page-container space-y-8 py-8">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Search" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Search" }]} includeSchema={false} />
       <div>
         <span className="section-label">Catalog</span>
         <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Search compounds</h1>

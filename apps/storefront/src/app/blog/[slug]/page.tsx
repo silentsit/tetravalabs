@@ -27,7 +27,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getBlogPostBySlug(slug)
-  if (!post) return {}
+  if (!post) {
+    return buildPageMetadata({
+      title: "Article Not Found",
+      path: `/blog/${slug}`,
+      noIndex: true
+    })
+  }
   const description = post.excerpt || "Research article from Tetrava Labs."
   return buildPageMetadata({
     title: post.title,
@@ -35,6 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/blog/${slug}`,
     type: "article",
     publishedTime: post.publishedAt,
+    image: blogImageForPost(post),
     registerWebPage: false
   })
 }

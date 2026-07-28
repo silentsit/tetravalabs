@@ -17,7 +17,7 @@ export const shopNavLabel = "Buy Peptides"
 export const shopNavLinks = storefrontPills.map((pill) => ({
   key: pill.key,
   label: pill.label,
-  href: pill.key === "all" ? "/shop" : `/shop?category=${pill.key}`
+  href: pill.key === "all" ? "/shop" : `/category/${pill.key}`
 }))
 
 const LEGACY_PILL_ALIASES: Record<string, string> = {

@@ -1,10 +1,9 @@
-import { categoryLabelFromSlug } from "@/lib/categories"
+import { categoryLabelFromSlug, isStorefrontCategorySlug, normalizeCategorySlug } from "@/lib/categories"
 import { getCompoundProductView } from "@/lib/compound-product"
 import { getBlogPostBySlug } from "@/lib/sanity"
 import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
-import { articleJsonLd, faqJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
-import { productFaqItems } from "@/lib/faq-content"
+import { articleJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
 import { getProductImage } from "@/lib/revamp/product-visual"
 
@@ -28,8 +27,7 @@ registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
         title: `${view.displayName} — ${view.categoryLabel}`,
         description: `${view.displayName} for laboratory research (RUO).`,
         path: `/product/${view.parentHandle}`
-      }),
-      faqJsonLd(productFaqItems, `/product/${view.parentHandle}`)
+      })
     ]
   }
 
@@ -45,8 +43,7 @@ registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
       title: `${product.title} — ${category}`,
       description: `${product.title} for laboratory research (RUO).`,
       path: `/product/${handle}`
-    }),
-    faqJsonLd(productFaqItems, `/product/${handle}`)
+    })
   ]
 })
 
@@ -67,14 +64,17 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
 
 registerDynamicJsonLd(/^\/category\/([^/]+)$/, async (match) => {
   const slug = match[1]
+  const normalized = normalizeCategorySlug(slug)
+  if (!isStorefrontCategorySlug(String(normalized))) return []
+
   const products = await listProducts()
-  const label = categoryLabelFromSlug(slug, products)
+  const label = categoryLabelFromSlug(String(normalized), products)
 
   return [
     webPageJsonLd({
       title: `${label} — research peptides`,
       description: `Shop ${label} research compounds with HPLC-MS verification and lot-linked COAs.`,
-      path: `/category/${slug}`,
+      path: `/category/${normalized}`,
       type: "CollectionPage"
     })
   ]

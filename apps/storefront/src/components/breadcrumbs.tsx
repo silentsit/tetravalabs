@@ -9,14 +9,16 @@ export type BreadcrumbItem = {
 
 type Props = {
   items: BreadcrumbItem[]
+  /** Emit BreadcrumbList JSON-LD. Disable on noindex / utility pages. */
+  includeSchema?: boolean
 }
 
-export function Breadcrumbs({ items }: Props) {
+export function Breadcrumbs({ items, includeSchema = true }: Props) {
   if (!items.length) return null
 
   return (
     <>
-      <JsonLd graph={breadcrumbJsonLd(items)} />
+      {includeSchema ? <JsonLd graph={breadcrumbJsonLd(items)} /> : null}
       <nav aria-label="Breadcrumb" className="text-sm text-[#94A3B8]">
         <ol className="flex flex-wrap items-center gap-2">
           {items.map((item, index) => {

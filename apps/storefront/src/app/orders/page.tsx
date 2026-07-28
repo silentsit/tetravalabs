@@ -20,7 +20,7 @@ export default async function OrdersPage({ searchParams }: Props) {
 
   return (
     <section className="page-container space-y-6 py-8">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Orders" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Orders" }]} includeSchema={false} />
       <div>
         <span className="section-label">Account</span>
         <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Order history</h1>

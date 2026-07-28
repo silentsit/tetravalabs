@@ -13,7 +13,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
   return (
     <section className="page-container py-8 sm:py-10 lg:py-12">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "My Account", href: "/account" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "My Account", href: "/account" }]} includeSchema={false} />
       <AccountShell>{children}</AccountShell>
     </section>
   )

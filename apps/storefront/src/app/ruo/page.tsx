@@ -39,8 +39,9 @@ export default function RuoGatePage() {
         </section>
 
         <div className="rounded-xl border border-[#FBBF24]/30 bg-[#FBBF24]/10 p-5 text-[#FBBF24]">
-          By continuing, you acknowledge that you understand these restrictions and agree to comply
-          with all applicable laws in your jurisdiction.
+          Purchasers acknowledge that they understand these restrictions and agree to comply with
+          all applicable laws in their jurisdiction. Checkout requires a separate Research Use Only
+          confirmation before an order can be placed.
         </div>
       </div>
     </LegalPageShell>

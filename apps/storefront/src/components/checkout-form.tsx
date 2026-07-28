@@ -1213,9 +1213,10 @@ export function CheckoutForm() {
 
               {hasLabRestock ? (
                 <p className="mt-3 rounded-lg border border-[#0D9488]/25 bg-white px-4 py-3 text-xs leading-relaxed text-[#0F766E]">
-                  Cart includes Peptide Refill (−12%). First shipment paid now via secure card checkout.
-                  Future refills are scheduled — you pay each cycle (no auto-charge). Free cold-chain
-                  shipping on refill shipments. Skip, pause, or cancel anytime from your account.
+                  Cart includes Peptide Refill. First shipment is full price via secure card checkout;
+                  −12% applies from cycle 2. Future refills are scheduled — you pay each cycle (no
+                  auto-charge). Free cold-chain shipping on refill shipments. Skip, pause, or cancel
+                  anytime from your account.
                 </p>
               ) : null}
 

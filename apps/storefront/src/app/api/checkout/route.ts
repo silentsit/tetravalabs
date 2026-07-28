@@ -124,7 +124,7 @@ export async function POST(req: Request) {
     }
 
     for (const item of restockItems) {
-      const oneTime = item.oneTimeUnitPrice ?? item.unitPrice
+      const oneTime = item.oneTimeUnitPrice
       if (oneTime == null || item.unitPrice == null) {
         return NextResponse.json(
           { ok: false, message: "Peptide Refill items require one-time reference pricing." },
@@ -245,15 +245,45 @@ export async function POST(req: Request) {
           ? order.shipping_total
           : 1500
 
-    // Peptide Refill includes free cold-chain shipping on the charged total.
+    // Prefer Medusa catalog unit prices (cents → USD) over client-supplied cart prices.
+    const catalogUnitUsdByVariant = new Map<string, number>()
+    const orderItems = Array.isArray(order.items) ? order.items : []
+    for (const line of orderItems) {
+      const variantId =
+        typeof line?.variant_id === "string"
+          ? line.variant_id
+          : typeof line?.variant?.id === "string"
+            ? line.variant.id
+            : null
+      const unitCents =
+        typeof line?.unit_price === "number"
+          ? line.unit_price
+          : typeof line?.unit_price === "string"
+            ? Number(line.unit_price)
+            : NaN
+      if (variantId && Number.isFinite(unitCents) && unitCents > 0) {
+        catalogUnitUsdByVariant.set(variantId, Math.round(unitCents) / 100)
+      }
+    }
+
+    // Peptide Refill includes free cold-chain shipping; first charge uses Medusa catalog totals.
     const shippingUsd = hasLabRestock ? 0 : resolveShippingUsd(items)
     const cartSubtotalUsd = items.reduce(
       (sum, item) => sum + (item.unitPrice || 0) * item.quantity,
       0
     )
-    const subtotalUsd = hasLabRestock ? cartSubtotalUsd : medusaSubtotalCents / 100
+    const catalogRestockSubtotalUsd = restockItems.reduce((sum, item) => {
+      const catalog = catalogUnitUsdByVariant.get(item.variantId)
+      const unit = catalog ?? item.oneTimeUnitPrice ?? item.unitPrice ?? 0
+      return sum + unit * item.quantity
+    }, 0)
+    const subtotalUsd = hasLabRestock
+      ? medusaSubtotalCents > 0
+        ? medusaSubtotalCents / 100
+        : catalogRestockSubtotalUsd || cartSubtotalUsd
+      : medusaSubtotalCents / 100
     const totalUsd = hasLabRestock
-      ? cartSubtotalUsd + shippingUsd
+      ? subtotalUsd + shippingUsd
       : shippingUsd === medusaShippingCents / 100
         ? (typeof order.total === "number" ? order.total : medusaSubtotalCents + medusaShippingCents) /
           100
@@ -261,15 +291,18 @@ export async function POST(req: Request) {
 
     const emailItems = items
       .filter((item) => item.title && item.unitPrice != null)
-      .map((item) => ({
-        title: item.title!,
-        variantTitle: item.variantTitle,
-        quantity: item.quantity,
-        unitPrice: item.unitPrice!,
-        handle: item.handle,
-        variantId: item.variantId,
-        productId: item.productId
-      }))
+      .map((item) => {
+        const catalog = catalogUnitUsdByVariant.get(item.variantId)
+        return {
+          title: item.title!,
+          variantTitle: item.variantTitle,
+          quantity: item.quantity,
+          unitPrice: catalog ?? item.unitPrice!,
+          handle: item.handle,
+          variantId: item.variantId,
+          productId: item.productId
+        }
+      })
 
     const paymentMethod = hasLabRestock
       ? "card"
@@ -293,7 +326,10 @@ export async function POST(req: Request) {
             isValidRestockCadence(item.restockCadenceDays)
         )
         .map((item) => {
-          const oneTime = item.oneTimeUnitPrice ?? item.unitPrice!
+          const oneTime =
+            catalogUnitUsdByVariant.get(item.variantId) ??
+            item.oneTimeUnitPrice ??
+            item.unitPrice!
           return {
             variantId: item.variantId,
             quantity: item.quantity,

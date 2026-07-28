@@ -210,7 +210,11 @@ export function AccountRestocksPanel() {
                     type="button"
                     disabled={busy}
                     onClick={() => {
-                      if (window.confirm("Cancel this Peptide Refill? You can start a new one anytime.")) {
+                      if (
+                        window.confirm(
+                          "Cancel this Peptide Refill? Product pages sell one-time packs only; you can reorder anytime from the catalog."
+                        )
+                      ) {
                         void runAction(row.id, "cancel")
                       }
                     }}

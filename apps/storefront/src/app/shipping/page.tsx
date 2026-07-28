@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ShippingPage() {
   return (
-    <LegalPageShell eyebrow="Shipping" title="Shipping Information">
+    <LegalPageShell title="Shipping Information">
       <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
         <p>
           Orders begin processing after payment is confirmed. Lyophilized peptides are packed with

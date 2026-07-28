@@ -103,6 +103,55 @@ export async function listProducts() {
   return listAllProducts()
 }
 
+/**
+ * Batch-resolve products by handle in a single Store list request path.
+ * Never call getProductByHandle in a loop — use this for editorial embeds.
+ */
+export async function listProductsByHandles(handles: string[]): Promise<StoreProduct[]> {
+  const unique = [...new Set(handles.map((handle) => handle.trim()).filter(Boolean))]
+  if (!unique.length) return []
+
+  const wanted = new Set(unique.map((handle) => handle.toLowerCase()))
+
+  try {
+    const url = new URL(`${MEDUSA_URL}/store/products`)
+    url.searchParams.set("fields", STORE_PRODUCT_LIST_FIELDS)
+    url.searchParams.set("limit", String(Math.min(Math.max(unique.length * 2, 20), 100)))
+    for (const handle of unique) {
+      url.searchParams.append("handle", handle)
+    }
+
+    const response = await fetch(url.toString(), {
+      headers: withHeaders(),
+      next: {
+        revalidate: 300,
+        tags: ["products", ...unique.map((handle) => `product:${handle}`)]
+      }
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      const batch = filterAndConsolidateCatalogProducts((data.products || []) as StoreProduct[])
+      if (batch.length > 0) {
+        const matched = batch.filter((product) => wanted.has(product.handle.toLowerCase()))
+        const allResultsAreWanted = batch.every((product) =>
+          wanted.has(product.handle.toLowerCase())
+        )
+        // Trust the batch only when the API actually filtered by handle.
+        if (allResultsAreWanted) {
+          return matched
+        }
+      }
+    }
+  } catch (error) {
+    console.error("[medusa] listProductsByHandles failed", error)
+  }
+
+  // Single catalog list + in-memory filter (still one batch; no per-handle fetches).
+  const catalog = await listProducts()
+  return catalog.filter((product) => wanted.has(product.handle.toLowerCase()))
+}
+
 export async function listAllProducts() {
   const all: StoreProduct[] = []
   const limit = 100

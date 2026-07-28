@@ -14,11 +14,22 @@ export type BlogReference = {
   citationText?: string
 }
 
+/** Sanity Portable Text block or custom productEmbed object. */
+export type BlogPortableBlock = {
+  _type: string
+  _key?: string
+  handle?: string
+  cardVariant?: "shop" | "featured" | "default"
+  [key: string]: unknown
+}
+
+export type BlogBody = string | BlogPortableBlock[]
+
 export type BlogPost = {
   title: string
   slug: string
   excerpt?: string
-  body?: string
+  body?: BlogBody
   category?: BlogCategory
   readTimeMinutes?: number
   publishedAt?: string

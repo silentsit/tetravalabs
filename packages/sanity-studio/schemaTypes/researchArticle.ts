@@ -46,9 +46,48 @@ export const researchArticle = defineType({
     defineField({
       name: "body",
       title: "Body",
-      type: "text",
-      rows: 16,
-      description: "Use blank lines between paragraphs."
+      type: "array",
+      description: "Rich text with optional mid-article product cards (Medusa handle only).",
+      of: [
+        defineArrayMember({
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "H2", value: "h2" },
+            { title: "H3", value: "h3" }
+          ],
+          lists: [
+            { title: "Bullet", value: "bullet" },
+            { title: "Numbered", value: "number" }
+          ],
+          marks: {
+            decorators: [
+              { title: "Strong", value: "strong" },
+              { title: "Emphasis", value: "em" }
+            ],
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "Link",
+                fields: [
+                  defineField({
+                    name: "href",
+                    type: "url",
+                    title: "URL",
+                    validation: (rule) =>
+                      rule.uri({
+                        allowRelative: true,
+                        scheme: ["http", "https", "mailto"]
+                      })
+                  })
+                ]
+              }
+            ]
+          }
+        }),
+        defineArrayMember({ type: "productEmbed" })
+      ]
     }),
     defineField({
       name: "references",

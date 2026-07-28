@@ -1,4 +1,4 @@
-import type { BlogCategory, BlogPost } from "@/lib/sanity"
+import type { BlogBody, BlogCategory, BlogPortableBlock, BlogPost } from "@/lib/sanity"
 
 export const BLOG_CATEGORIES: BlogCategory[] = ["Protocols", "Analytical", "Compliance"]
 
@@ -42,4 +42,21 @@ export function renderBlogParagraphs(body?: string) {
     .split(/\n\s*\n/)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean)
+}
+
+export function isPortableBlogBody(body?: BlogBody): body is BlogPortableBlock[] {
+  return Array.isArray(body)
+}
+
+/** Unique Medusa handles referenced by productEmbed blocks in a Portable Text body. */
+export function collectProductEmbedHandles(body?: BlogBody): string[] {
+  if (!isPortableBlogBody(body)) return []
+  const handles = new Set<string>()
+  for (const block of body) {
+    if (block?._type === "productEmbed" && typeof block.handle === "string") {
+      const handle = block.handle.trim()
+      if (handle) handles.add(handle)
+    }
+  }
+  return [...handles]
 }

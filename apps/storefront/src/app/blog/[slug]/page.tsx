@@ -4,15 +4,17 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Clock } from "lucide-react"
 import { getBlogPostBySlug, listBlogPosts } from "@/lib/sanity"
+import { listProductsByHandles, type StoreProduct } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BlogBody } from "@/components/blog-body"
 import { BlogPostCard } from "@/components/blog-post-card"
 import { CitationFootnote } from "@/components/citation-footnote"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import {
   blogImageForPost,
+  collectProductEmbedHandles,
   formatReadTime,
-  getRelatedBlogPosts,
-  renderBlogParagraphs
+  getRelatedBlogPosts
 } from "@/lib/blog-utils"
 import { buildPageMetadata } from "@/lib/seo"
 
@@ -53,8 +55,15 @@ export default async function BlogArticlePage({ params }: Props) {
   if (!post) notFound()
 
   const related = getRelatedBlogPosts(allPosts, post)
-  const paragraphs = renderBlogParagraphs(post.body)
   const heroImage = blogImageForPost(post)
+  const embedHandles = collectProductEmbedHandles(post.body)
+  const embedProducts =
+    embedHandles.length > 0 ? await listProductsByHandles(embedHandles) : []
+  const productsByHandle = new Map<string, StoreProduct>()
+  for (const product of embedProducts) {
+    productsByHandle.set(product.handle, product)
+    productsByHandle.set(product.handle.toLowerCase(), product)
+  }
 
   return (
     <article className="page-container mx-auto max-w-3xl space-y-10 py-8">
@@ -95,11 +104,7 @@ export default async function BlogArticlePage({ params }: Props) {
         />
       </div>
 
-      <div className="card space-y-4 p-6 text-base leading-relaxed text-[#475569]">
-        {paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-        ))}
-      </div>
+      <BlogBody body={post.body} productsByHandle={productsByHandle} />
 
       <CitationFootnote references={post.references} />
 

@@ -10,6 +10,8 @@ export type BlogPost = {
   category?: BlogCategory
   readTimeMinutes?: number
   publishedAt?: string
+  /** Optional cover image path under /public (e.g. /images/blog/…). */
+  image?: string
 }
 
 export type CategorySeoBlock = {
@@ -133,10 +135,15 @@ function sanitizeSlug(slug: string) {
 function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
   if (!posts?.length) return fallbackPosts
 
-  const merged: BlogPost[] = posts.map((post) => ({
-    ...post,
-    readTimeMinutes: post.readTimeMinutes || 5
-  }))
+  const fallbackBySlug = new Map(fallbackPosts.map((post) => [post.slug, post]))
+  const merged: BlogPost[] = posts.map((post) => {
+    const fallback = fallbackBySlug.get(post.slug)
+    return {
+      ...post,
+      readTimeMinutes: post.readTimeMinutes || 5,
+      image: post.image || fallback?.image
+    }
+  })
 
   // If Sanity has fewer docs than local fallbacks, append missing slugs for dev/preview.
   if (merged.length < fallbackPosts.length) {
@@ -165,7 +172,12 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   const query = `*[_type == "researchArticle" && slug.current == "${safeSlug}"][0]{${blogFields}}`
   const post = await fetchSanity<BlogPost>(query, [`sanity:blog:${safeSlug}`])
   if (!post) return fallbackPosts.find((item) => item.slug === safeSlug) || null
-  return { ...post, readTimeMinutes: post.readTimeMinutes || 5 }
+  const fallback = fallbackPosts.find((item) => item.slug === safeSlug)
+  return {
+    ...post,
+    readTimeMinutes: post.readTimeMinutes || 5,
+    image: post.image || fallback?.image
+  }
 }
 
 export async function getCategorySeoBlock(slug: string): Promise<CategorySeoBlock | null> {

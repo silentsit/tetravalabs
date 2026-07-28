@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Clock } from "lucide-react"
 import type { BlogPost } from "@/lib/sanity"
-import { blogImageForCategory, formatReadTime } from "@/lib/blog-utils"
+import { blogImageForPost, formatReadTime } from "@/lib/blog-utils"
 
 type Props = {
   post: BlogPost
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export function BlogPostCard({ post, compact = false }: Props) {
-  const image = blogImageForCategory(post.category)
+  const image = blogImageForPost(post)
 
   return (
     <Link

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { blogImageForPost } from "@/lib/blog-utils"
 import { registerPageJsonLd } from "@/lib/json-ld-store"
 import type { StoreProduct } from "@/lib/medusa"
 import { getProductPriceRangeCents } from "@/lib/product-price"
@@ -281,13 +282,12 @@ export function articleJsonLd(post: {
   excerpt?: string
   publishedAt?: string
   category?: string
+  image?: string
 }) {
-  const imagePath =
-    post.category === "Analytical"
-      ? "/v2/coa-preview.jpg"
-      : post.category === "Compliance"
-        ? "/images/blog-hero.jpg"
-        : "/v2/blog-research.jpg"
+  const imagePath = blogImageForPost({
+    image: post.image,
+    category: post.category as "Protocols" | "Analytical" | "Compliance" | undefined
+  })
 
   return {
     "@context": "https://schema.org",

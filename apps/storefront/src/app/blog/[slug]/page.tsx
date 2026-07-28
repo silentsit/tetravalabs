@@ -8,7 +8,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 import { BlogPostCard } from "@/components/blog-post-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import {
-  blogImageForCategory,
+  blogImageForPost,
   formatReadTime,
   getRelatedBlogPosts,
   renderBlogParagraphs
@@ -46,7 +46,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
   const related = getRelatedBlogPosts(allPosts, post)
   const paragraphs = renderBlogParagraphs(post.body)
-  const heroImage = blogImageForCategory(post.category)
+  const heroImage = blogImageForPost(post)
 
   return (
     <article className="page-container mx-auto max-w-3xl space-y-10 py-8">

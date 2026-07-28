@@ -14,6 +14,12 @@ export function blogImageForCategory(category?: BlogCategory) {
   }
 }
 
+/** Prefer per-article cover image when set; otherwise fall back by category. */
+export function blogImageForPost(post: Pick<BlogPost, "image" | "category">) {
+  if (post.image?.trim()) return post.image.trim()
+  return blogImageForCategory(post.category)
+}
+
 export function formatReadTime(minutes?: number) {
   const value = minutes && minutes > 0 ? minutes : 5
   return `${value} min read`

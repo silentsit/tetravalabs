@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         </p>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Information we collect</h2>
+          <h2 className="text-base font-medium text-black">Information we collect</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>Contact and shipping details submitted at checkout.</li>
             <li>Order history, payment references, and RUO acknowledgment timestamps.</li>
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">How we use data</h2>
+          <h2 className="text-base font-medium text-black">How we use data</h2>
           <p>
             Data is used to fulfill orders, send transactional emails, enforce shipping restrictions,
             respond to inquiries, and improve site reliability. We do not sell personal information
@@ -38,7 +38,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-medium text-[#E8E8F0]">Retention and security</h2>
+          <h2 className="text-base font-medium text-black">Retention and security</h2>
           <p>
             Order and compliance records are retained as required for accounting and regulatory
             purposes. Access is limited to systems necessary for operations. Request data deletion or

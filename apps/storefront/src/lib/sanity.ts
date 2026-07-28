@@ -3,6 +3,17 @@ import { normalizeCategorySlug } from "@/lib/categories"
 
 export type BlogCategory = "Protocols" | "Analytical" | "Compliance"
 
+export type BlogReference = {
+  _key?: string
+  title?: string
+  authors?: string
+  publication?: string
+  year?: string
+  url?: string
+  /** When set, overrides the auto-built citation line. */
+  citationText?: string
+}
+
 export type BlogPost = {
   title: string
   slug: string
@@ -13,6 +24,7 @@ export type BlogPost = {
   publishedAt?: string
   /** Optional cover image path under /public (e.g. /images/blog/…). */
   image?: string
+  references?: BlogReference[]
 }
 
 export type CategorySeoBlock = {
@@ -84,7 +96,7 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   }
 ]
 
-const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt`
+const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt,references[]{_key,title,authors,publication,year,url,citationText}`
 
 async function fetchSanity<T>(query: string, tags?: string[]): Promise<T | null> {
   const projectId = process.env.SANITY_PROJECT_ID
@@ -121,7 +133,8 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
     return {
       ...post,
       readTimeMinutes: post.readTimeMinutes || 5,
-      image: post.image || fallback?.image
+      image: post.image || fallback?.image,
+      references: post.references?.length ? post.references : fallback?.references
     }
   })
 
@@ -156,7 +169,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   return {
     ...post,
     readTimeMinutes: post.readTimeMinutes || 5,
-    image: post.image || fallback?.image
+    image: post.image || fallback?.image,
+    references: post.references?.length ? post.references : fallback?.references
   }
 }
 

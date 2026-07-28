@@ -6,6 +6,7 @@ import { ArrowLeft, Clock } from "lucide-react"
 import { getBlogPostBySlug, listBlogPosts } from "@/lib/sanity"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { BlogPostCard } from "@/components/blog-post-card"
+import { CitationFootnote } from "@/components/citation-footnote"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import {
   blogImageForPost,
@@ -99,6 +100,8 @@ export default async function BlogArticlePage({ params }: Props) {
           <p key={paragraph.slice(0, 48)}>{paragraph}</p>
         ))}
       </div>
+
+      <CitationFootnote references={post.references} />
 
       <div className="flex flex-wrap gap-3">
         <Link href="/shop" className="btn-primary inline-flex">

@@ -74,7 +74,9 @@ export default async function HomePage() {
             <span className="section-label mb-4">Research-Grade Peptides</span>
             <h1 className="font-serif text-4xl leading-[1.15] tracking-tight text-[#0F172A] sm:text-5xl lg:text-[3.25rem]">
               Buy Peptides Online.
-              <span className="mt-2 block sm:mt-2.5">99%+ purity. Every batch documented.</span>
+              <span className="mt-2 block whitespace-nowrap font-sans text-xl font-semibold leading-snug tracking-tight sm:mt-2.5 sm:text-2xl lg:text-[1.75rem]">
+                99%+ purity. Every batch documented.
+              </span>
             </h1>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-[#475569]">
               Research-use only. Cold-chain shipping to qualified labs.

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { sdk } from "@/lib/medusa-client"
 import { ReorderButton } from "@/components/reorder-button"
+import { getProductHref } from "@/lib/compound-product"
 
 type OrderItem = {
   id?: string
@@ -143,7 +144,7 @@ export function PurchaseHistory({
                   return (
                     <li key={item.id || `${order.id}-${label}`} className="text-sm text-[#475569]">
                       {handle ? (
-                        <Link href={`/product/${handle}`} className="text-[#0F172A] hover:text-[#0D9488]">
+                        <Link href={getProductHref(handle)} className="text-[#0F172A] hover:text-[#0D9488]">
                           {line}
                         </Link>
                       ) : (

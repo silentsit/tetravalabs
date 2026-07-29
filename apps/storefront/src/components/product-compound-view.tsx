@@ -29,9 +29,10 @@ type Props = {
   faqs: FaqItem[]
 }
 
-function syncUrl(parentHandle: string, strengthKey: string, packQty: number | null) {
+/** Keep the address bar on the clean parent path (no ?strength= / ?pack=). */
+function syncUrl(parentHandle: string) {
   if (typeof window === "undefined") return
-  const next = buildCompoundProductPath(parentHandle, strengthKey, packQty ?? undefined)
+  const next = buildCompoundProductPath(parentHandle)
   const current = `${window.location.pathname}${window.location.search}`
   if (current === next) return
   window.history.replaceState(null, "", next)
@@ -78,10 +79,8 @@ export function ProductCompoundView({
   useEffect(() => {
     if (!selectedStrength) return
 
-    // Only compound PDPs use ?strength= / ?pack= shareable state.
-    if (view.isCompound) {
-      syncUrl(view.parentHandle, selectedStrength.strengthKey, packQty)
-    }
+    // Strength/pack stay in React state; URL is always the clean parent handle.
+    syncUrl(view.parentHandle)
 
     const seoName = compoundSeoName(view, selectedStrength.strengthKey)
     document.title = `${seoName} — ${view.categoryLabel} | ${siteConfig.name}`

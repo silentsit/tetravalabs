@@ -30,7 +30,9 @@ export async function resolvePageJsonLd(pathname: string): Promise<JsonLdGraph[]
 
   for (const { pattern, resolve } of dynamicResolvers) {
     const match = path.match(pattern)
-    if (match) return resolve(match)
+    if (!match) continue
+    const graphs = await resolve(match)
+    if (graphs.length) return graphs
   }
 
   return pathRegistrations.get(path) || []

@@ -287,7 +287,7 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
   const offers = hasRange
     ? {
         "@type": "AggregateOffer",
-        url: pageUrl(`/product/${handle}`),
+        url: pageUrl(`/${handle}`),
         priceCurrency: "USD",
         lowPrice: low,
         highPrice: high,
@@ -297,7 +297,7 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
       }
     : {
         "@type": "Offer",
-        url: pageUrl(`/product/${handle}`),
+        url: pageUrl(`/${handle}`),
         priceCurrency: "USD",
         price: offerPrice || undefined,
         availability,

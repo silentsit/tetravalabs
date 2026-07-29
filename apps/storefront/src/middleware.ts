@@ -2,6 +2,8 @@ import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 import { isRestrictedCountry } from "@/lib/shipping-compliance"
 
+const VARIANT_QUERY_KEYS = ["strength", "pack"] as const
+
 function withSecurityHeaders(response: NextResponse) {
   response.headers.set("X-Frame-Options", "DENY")
   response.headers.set("X-Content-Type-Options", "nosniff")
@@ -15,8 +17,25 @@ function finalize(request: NextRequest, response: NextResponse) {
   return withSecurityHeaders(response)
 }
 
+/** Strip legacy ?strength= / ?pack= so product URLs stay /{handle}. */
+function stripVariantQueryParams(request: NextRequest) {
+  const url = request.nextUrl.clone()
+  let changed = false
+  for (const key of VARIANT_QUERY_KEYS) {
+    if (url.searchParams.has(key)) {
+      url.searchParams.delete(key)
+      changed = true
+    }
+  }
+  if (!changed) return null
+  return NextResponse.redirect(url, 301)
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  const cleaned = stripVariantQueryParams(request)
+  if (cleaned) return finalize(request, cleaned)
 
   if (pathname.startsWith("/checkout")) {
     const country =

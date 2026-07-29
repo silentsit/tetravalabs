@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
   revalidateTag("sanity")
 
   if (handle) {
+    revalidatePath(`/${handle}`)
     revalidatePath(`/product/${handle}`)
     revalidateTag(`product:${handle}`)
   }

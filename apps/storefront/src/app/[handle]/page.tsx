@@ -6,6 +6,7 @@ import {
   getCompoundProductView,
   loadStrengthSideData,
   pickDefaultStrengthKey,
+  productPath,
   resolveCompoundRedirect
 } from "@/lib/compound-product"
 import { categorySlugFromLabel } from "@/lib/categories"
@@ -19,14 +20,12 @@ import { productFaqItems } from "@/lib/faq-content"
 
 type Props = {
   params: Promise<{ handle: string }>
-  searchParams: Promise<{ strength?: string; pack?: string }>
 }
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params
-  const query = await searchParams
 
-  const memberRedirect = resolveCompoundRedirect(handle, query)
+  const memberRedirect = resolveCompoundRedirect(handle)
   if (memberRedirect) {
     return buildPageMetadata({
       title: "Redirecting",
@@ -39,12 +38,12 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   if (!view) {
     return buildPageMetadata({
       title: "Product Not Found",
-      path: `/product/${handle}`,
+      path: productPath(handle),
       noIndex: true
     })
   }
 
-  const strengthKey = pickDefaultStrengthKey(view.strengths, query.strength)
+  const strengthKey = pickDefaultStrengthKey(view.strengths)
   const selected = view.strengths.find((item) => item.strengthKey === strengthKey) || view.strengths[0]
   const productName = compoundSeoName(view, strengthKey)
   const cas = view.casNumber !== "N/A" ? ` CAS ${view.casNumber}.` : ""
@@ -52,16 +51,15 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   return buildPageMetadata({
     title: `${productName} — ${view.categoryLabel}`,
     description: `${productName} for laboratory research (RUO). ${selected?.purity || "99%+"} purity with lot-linked COA.${cas}`,
-    path: `/product/${view.parentHandle}`,
+    path: productPath(view.parentHandle),
     image: selected?.image
   })
 }
 
-export default async function ProductPage({ params, searchParams }: Props) {
+export default async function ProductPage({ params }: Props) {
   const { handle } = await params
-  const query = await searchParams
 
-  const memberRedirect = resolveCompoundRedirect(handle, query)
+  const memberRedirect = resolveCompoundRedirect(handle)
   if (memberRedirect) redirect(memberRedirect)
 
   const view = await getCompoundProductView(handle)
@@ -72,7 +70,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
     findRelatedCompoundProducts(view)
   ])
 
-  const defaultStrengthKey = pickDefaultStrengthKey(view.strengths, query.strength)
+  const defaultStrengthKey = pickDefaultStrengthKey(view.strengths)
   const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
   const crumbName = compoundSeoName(view, defaultStrengthKey)
 
@@ -89,8 +87,6 @@ export default async function ProductPage({ params, searchParams }: Props) {
 
       <ProductCompoundView
         view={view}
-        initialStrength={query.strength}
-        initialPack={query.pack}
         coasByStrength={coasByStrength}
         reviewsByStrength={reviewsByStrength}
         faqs={productFaqItems}

@@ -4,13 +4,23 @@ import compoundLegacyRedirects from "./src/lib/compound-legacy-redirects.generat
 const htmlLimitedBots =
   /[\w-]+-Google|Google-[\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight|GPTBot|ChatGPT-User|ClaudeBot|Anthropic-AI|PerplexityBot|Perplexity-User|CCBot/i
 
-const compoundRedirects = Object.entries(
+const legacyEntries = Object.entries(
   compoundLegacyRedirects as Record<string, { parent: string; strength: string }>
-).map(([legacyHandle, { parent, strength }]) => ({
-  source: `/product/${legacyHandle}`,
-  destination: `/product/${parent}?strength=${encodeURIComponent(strength)}`,
-  permanent: true
-}))
+)
+
+/** Legacy per-strength SKUs → parent compound handle (no query params). */
+const compoundRedirects = legacyEntries.flatMap(([legacyHandle, { parent }]) => [
+  {
+    source: `/product/${legacyHandle}`,
+    destination: `/${parent}`,
+    permanent: true
+  },
+  {
+    source: `/${legacyHandle}`,
+    destination: `/${parent}`,
+    permanent: true
+  }
+])
 
 const nextConfig: NextConfig = {
   htmlLimitedBots,
@@ -36,7 +46,9 @@ const nextConfig: NextConfig = {
       { source: "/coa", destination: "/coa-library", permanent: true },
       { source: "/ruo-disclaimer", destination: "/ruo", permanent: true },
       { source: "/refund-policy", destination: "/refund", permanent: true },
-      ...compoundRedirects
+      // Specific legacy SKUs first, then catch-all /product/* → /*
+      ...compoundRedirects,
+      { source: "/product/:handle", destination: "/:handle", permanent: true }
     ]
   }
 }

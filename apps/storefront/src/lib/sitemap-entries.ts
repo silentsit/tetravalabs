@@ -157,7 +157,7 @@ export async function getAllProductSitemapEntries(): Promise<SitemapUrlEntry[]> 
   const locs = new Set(
     products.map((product) => {
       const parent = getCompoundParentHandle(product.handle) || product.handle
-      return `${baseUrl}/product/${parent}`
+      return `${baseUrl}/${parent}`
     })
   )
 

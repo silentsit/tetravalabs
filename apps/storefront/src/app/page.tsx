@@ -23,6 +23,7 @@ import { listProducts, getFeaturedCoaDocument } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata, faqJsonLd } from "@/lib/seo"
+import { getProductHref } from "@/lib/compound-product"
 
 const LiveVisitorCounter = dynamic(
   () => import("@/components/social-proof-widget").then((mod) => mod.LiveVisitorCounter),
@@ -200,7 +201,7 @@ export default async function HomePage() {
                 <CoaDocumentPreview document={featuredCoa.document} compact />
                 {featuredCoa.productHandle ? (
                   <Link
-                    href={`/product/${featuredCoa.productHandle}`}
+                    href={getProductHref(featuredCoa.productHandle)}
                     className="inline-flex items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E]"
                   >
                     View {featuredCoa.productTitle || "product"} <ArrowRight className="h-4 w-4" />

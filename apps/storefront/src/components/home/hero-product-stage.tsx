@@ -1,11 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
+import { getProductHref } from "@/lib/compound-product"
 
 const HERO_PRODUCTS = [
   {
     slot: "left" as const,
     src: "/products/v2/hero/retatrutide-20mg.png",
-    href: "/product/retatrutide-20mg",
+    href: getProductHref("retatrutide-20mg"),
     label: "Retatrutide 20mg",
     width: 280,
     height: 560,
@@ -14,7 +15,7 @@ const HERO_PRODUCTS = [
   {
     slot: "center" as const,
     src: "/products/v2/hero/selank-nasal-spray-10mg.png",
-    href: "/product/selank-nasal-spray-10mg",
+    href: getProductHref("selank-nasal-spray-10mg"),
     label: "Selank Nasal Spray 10mg",
     width: 220,
     height: 420,
@@ -23,7 +24,7 @@ const HERO_PRODUCTS = [
   {
     slot: "right" as const,
     src: "/products/v2/hero/bpc-157-capsules.png",
-    href: "/product/bpc-157-capsules-100-count-500mcg",
+    href: getProductHref("bpc-157-capsules-100-count-500mcg"),
     label: "BPC-157 Capsules",
     width: 320,
     height: 480,

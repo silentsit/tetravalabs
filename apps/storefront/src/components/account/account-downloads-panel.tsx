@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Download, FileText } from "lucide-react"
 import { AccountEmptyNotice } from "@/components/account/account-empty-notice"
 import { sdk } from "@/lib/medusa-client"
+import { getProductHref } from "@/lib/compound-product"
 
 type OrderItem = {
   id?: string
@@ -99,7 +100,7 @@ export function AccountDownloadsPanel() {
             <div className="flex flex-wrap gap-2">
               {row.handle ? (
                 <>
-                  <Link href={`/product/${row.handle}`} className="btn-secondary px-4 py-2 text-xs">
+                  <Link href={getProductHref(row.handle)} className="btn-secondary px-4 py-2 text-xs">
                     View product
                   </Link>
                   <Link

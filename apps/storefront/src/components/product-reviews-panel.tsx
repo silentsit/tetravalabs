@@ -13,6 +13,7 @@ import { isStoreAdminEmail } from "@/lib/admin-access"
 import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
 import { StarRating } from "@/components/star-rating"
 import { ReviewRatingDisplay } from "@/components/review-rating-display"
+import { getProductHref } from "@/lib/compound-product"
 
 type Props = {
   productId: string
@@ -168,7 +169,7 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
         ) : signedIn === false ? (
           <p className="text-xs text-[#64748B]">
             <Link
-              href={`/login?returnUrl=${encodeURIComponent(`/product/${productHandle}`)}`}
+              href={`/login?returnUrl=${encodeURIComponent(getProductHref(productHandle))}`}
               className="text-[#0D9488] hover:underline"
             >
               Sign in

@@ -1,5 +1,5 @@
 import { categoryLabelFromSlug, isStorefrontCategorySlug, normalizeCategorySlug } from "@/lib/categories"
-import { getCompoundProductView } from "@/lib/compound-product"
+import { getCompoundProductView, productPath } from "@/lib/compound-product"
 import { getBlogPostBySlug } from "@/lib/sanity"
 import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
@@ -7,8 +7,38 @@ import { articleJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
 import { getProductImage } from "@/lib/revamp/product-visual"
 
-registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
+const RESERVED_TOP_LEVEL = new Set([
+  "about",
+  "account",
+  "api",
+  "blog",
+  "cart",
+  "categories",
+  "category",
+  "checkout",
+  "coa-library",
+  "contact",
+  "faq",
+  "login",
+  "orders",
+  "payment",
+  "privacy",
+  "product",
+  "refund",
+  "register",
+  "reorder",
+  "ruo",
+  "search",
+  "shipping",
+  "shipping-restricted",
+  "shop",
+  "terms"
+])
+
+registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   const handle = match[1]
+  if (RESERVED_TOP_LEVEL.has(handle)) return []
+
   const view = await getCompoundProductView(handle)
   if (view) {
     const strength = view.strengths[0]
@@ -26,7 +56,7 @@ registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
       webPageJsonLd({
         title: `${view.displayName} — ${view.categoryLabel}`,
         description: `${view.displayName} for laboratory research (RUO).`,
-        path: `/product/${view.parentHandle}`
+        path: productPath(view.parentHandle)
       })
     ]
   }
@@ -42,7 +72,7 @@ registerDynamicJsonLd(/^\/product\/([^/]+)$/, async (match) => {
     webPageJsonLd({
       title: `${product.title} — ${category}`,
       description: `${product.title} for laboratory research (RUO).`,
-      path: `/product/${handle}`
+      path: productPath(handle)
     })
   ]
 })

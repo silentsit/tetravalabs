@@ -5,6 +5,7 @@ import { searchProducts } from "@/lib/search"
 import { LAB_RESTOCK_COPY } from "@/lib/lab-restock"
 import { getProductByHandle } from "@/lib/medusa"
 import { getVariantPriceCents } from "@/lib/product-price"
+import { getProductHref } from "@/lib/compound-product"
 
 const MEDUSA_URL = (process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(
   /\/$/,
@@ -47,7 +48,7 @@ export const chatTools = {
         products: results.slice(0, 8).map((p) => ({
           title: p.title,
           handle: p.handle,
-          href: `/product/${p.handle}`,
+          href: getProductHref(p.handle),
           category: p.category,
           priceMinUsd: (p.unit_price_min ?? p.price_min) / 100,
           priceMaxUsd: (p.unit_price_max ?? p.price_max) / 100
@@ -105,7 +106,7 @@ export const chatTools = {
       handle: z.string().min(1).describe("Product handle from searchProducts")
     }),
     execute: async ({ handle }) => ({
-      href: `/product/${encodeURIComponent(handle)}`,
+      href: getProductHref(handle),
       label: LAB_RESTOCK_COPY.restockLabel,
       note: "Product pages sell one-time packs (1/5/10/20). Existing Peptide Refills are managed under Account → Peptide Refills — no silent card charges."
     })

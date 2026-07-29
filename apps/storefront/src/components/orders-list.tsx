@@ -6,6 +6,7 @@ import { sdk } from "@/lib/medusa-client"
 import { OrderLookupForm, type LookupOrder } from "@/components/order-lookup-form"
 import { ReorderButton } from "@/components/reorder-button"
 import type { ReorderLineInput } from "@/lib/reorder-cart"
+import { getProductHref } from "@/lib/compound-product"
 
 type StoredOrder = {
   id: string
@@ -281,7 +282,7 @@ export function OrdersList({ emptyState, showGuestLookup = true }: Props) {
                       return (
                         <li key={item.id || `${order.id}-${label}`} className="text-xs text-[#475569]">
                           {handle ? (
-                            <Link href={`/product/${handle}`} className="text-[#0F172A] hover:text-[#0D9488]">
+                            <Link href={getProductHref(handle)} className="text-[#0F172A] hover:text-[#0D9488]">
                               {content}
                             </Link>
                           ) : (

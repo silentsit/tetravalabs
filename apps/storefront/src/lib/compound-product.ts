@@ -164,50 +164,31 @@ export function isCompoundMemberHandle(handle: string): boolean {
   return MEMBER_TO_PARENT.has(handle)
 }
 
-export function getProductHref(handle: string, packQty?: number): string {
+/** Canonical product path: /{handle} with no strength/pack query params. */
+export function productPath(handle: string): string {
+  return `/${handle}`
+}
+
+export function getProductHref(handle: string, _packQty?: number): string {
   const parent = getCompoundParentHandle(handle)
-  if (!parent) return `/product/${handle}`
-
-  const family = getCompoundFamily(parent)
-  const redirect = (compoundLegacyRedirects as Record<string, LegacyRedirect>)[handle]
-  const member = family?.members.find((m) => m.handle === handle)
-  const strength =
-    member?.strengthKey ||
-    redirect?.strength ||
-    parseStrengthHandle(handle)?.strengthKey
-  if (!strength) return `/product/${parent}`
-
-  const params = new URLSearchParams({ strength })
-  if (packQty && packQty > 0) params.set("pack", String(packQty))
-  return `/product/${parent}?${params.toString()}`
+  return productPath(parent || handle)
 }
 
 export function buildCompoundProductPath(
   parentHandle: string,
-  strengthKey?: string,
-  packQty?: number
+  _strengthKey?: string,
+  _packQty?: number
 ): string {
-  const params = new URLSearchParams()
-  if (strengthKey) params.set("strength", strengthKey)
-  if (packQty && packQty > 0) params.set("pack", String(packQty))
-  const qs = params.toString()
-  return qs ? `/product/${parentHandle}?${qs}` : `/product/${parentHandle}`
+  return productPath(parentHandle)
 }
 
 export function resolveCompoundRedirect(
   handle: string,
-  searchParams?: { strength?: string; pack?: string }
+  _searchParams?: { strength?: string; pack?: string }
 ): string | null {
   const redirect = (compoundLegacyRedirects as Record<string, LegacyRedirect>)[handle]
   if (!redirect) return null
-
-  const strength = searchParams?.strength || redirect.strength
-  const pack = searchParams?.pack ? Number(searchParams.pack) : undefined
-  return buildCompoundProductPath(
-    redirect.parent,
-    strength,
-    Number.isFinite(pack) ? pack : undefined
-  )
+  return productPath(redirect.parent)
 }
 
 function stripStrengthFromTitle(title: string): string {

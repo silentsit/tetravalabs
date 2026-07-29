@@ -69,7 +69,7 @@ export default async function HomePage() {
           <div className="animate-mesh-2 absolute -right-20 top-20 h-80 w-80 rounded-full bg-[#2563EB]/10 blur-3xl" />
           <div className="animate-mesh-3 absolute bottom-10 left-1/3 h-72 w-72 rounded-full bg-[#0D9488]/10 blur-3xl" />
         </div>
-        <div className="page-container relative grid w-full items-center gap-6 overflow-visible py-6 sm:py-8 lg:grid-cols-2 lg:gap-8 lg:py-4">
+        <div className="page-container relative grid w-full items-center gap-6 overflow-visible py-12 pb-14 sm:py-14 sm:pb-16 lg:grid-cols-2 lg:gap-8 lg:py-4 lg:pb-4">
           <div className="flex flex-col justify-center">
             <span className="section-label mb-4">Research-Grade Peptides</span>
             <h1 className="font-serif text-4xl leading-[1.15] tracking-tight text-[#0F172A] sm:text-5xl lg:text-[3.25rem]">
@@ -81,16 +81,17 @@ export default async function HomePage() {
             <p className="mt-4 max-w-lg text-base leading-relaxed text-[#475569]">
               Research-use only. Cold-chain shipping to qualified labs.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link href="/shop" className="btn-cta gap-2.5">
-                Buy Peptides <ArrowRight className="h-4 w-4" />
+            <div className="mt-6 flex flex-row flex-wrap items-center gap-3 lg:flex-col lg:items-start lg:gap-5">
+              <Link
+                href="/shop"
+                className="btn-cta min-w-0 gap-2 px-6 py-2.5 text-sm sm:min-w-0 sm:px-6 lg:min-w-[220px] lg:gap-2.5 lg:px-12 lg:py-3 lg:text-base"
+              >
+                Buy Peptides <ArrowRight className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
               </Link>
-            </div>
-            <div className="mt-5">
               <LiveVisitorCounter />
             </div>
           </div>
-          <div className="relative flex items-end justify-center overflow-visible pb-0 lg:h-full">
+          <div className="relative hidden items-end justify-center overflow-visible pb-0 lg:flex lg:h-full">
             <HeroProductStage />
           </div>
         </div>

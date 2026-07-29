@@ -1,5 +1,9 @@
 import { categoryLabelFromSlug, isStorefrontCategorySlug, normalizeCategorySlug } from "@/lib/categories"
-import { getCompoundProductView, productPath } from "@/lib/compound-product"
+import {
+  getCompoundProductView,
+  productPath,
+  resolveCatalogHandle
+} from "@/lib/compound-product"
 import { getBlogPostBySlug } from "@/lib/sanity"
 import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
@@ -39,7 +43,8 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   const handle = match[1]
   if (RESERVED_TOP_LEVEL.has(handle)) return []
 
-  const view = await getCompoundProductView(handle)
+  const catalogHandle = resolveCatalogHandle(handle)
+  const view = await getCompoundProductView(catalogHandle)
   if (view) {
     const strength = view.strengths[0]
     const imageHandle = strength?.imageHandle || strength?.handle || view.parentHandle
@@ -61,18 +66,18 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     ]
   }
 
-  const product = await getProductByHandle(handle)
+  const product = await getProductByHandle(catalogHandle)
   if (!product) return []
 
   const category = String(product.metadata?.source_category || "Research peptide")
   const image = getProductImage(product)
 
   return [
-    productJsonLd(product, handle, image),
+    productJsonLd(product, catalogHandle, image),
     webPageJsonLd({
       title: `${product.title} — ${category}`,
       description: `${product.title} for laboratory research (RUO).`,
-      path: productPath(handle)
+      path: productPath(catalogHandle)
     })
   ]
 })

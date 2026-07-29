@@ -6,6 +6,7 @@ import {
   STORE_PRODUCT_DETAIL_FIELDS,
   STORE_PRODUCT_LIST_FIELDS
 } from "@/lib/product-price"
+import { PRODUCT_HANDLE_TO_URL, PRODUCT_URL_TO_HANDLE } from "@/lib/product-url-aliases"
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
@@ -252,14 +253,23 @@ export async function getFeaturedCoaDocument(
   products: StoreProduct[]
 ): Promise<FeaturedCoaPreview> {
   for (const handle of FEATURED_COA_PRODUCT_HANDLES) {
-    const product = products.find((item) => item.handle === handle)
+    const catalogHandle = PRODUCT_URL_TO_HANDLE[handle] || handle
+    const product = products.find(
+      (item) => item.handle === catalogHandle || item.handle === handle
+    )
     const variantId = product?.variants?.[0]?.id
     if (!variantId) continue
 
     const coas = await listCoasByVariant(variantId)
     const document = coas.find(isPreviewableCoa)
     if (document) {
-      return { document, productHandle: handle, productTitle: product.title }
+      const publicHandle =
+        PRODUCT_HANDLE_TO_URL[product.handle] || product.handle
+      return {
+        document,
+        productHandle: publicHandle,
+        productTitle: product.title
+      }
     }
   }
 

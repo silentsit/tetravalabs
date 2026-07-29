@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { blogImageForPost } from "@/lib/blog-utils"
 import { registerPageJsonLd } from "@/lib/json-ld-store"
 import type { StoreProduct } from "@/lib/medusa"
+import { productPath } from "@/lib/compound-product"
 import { getProductPriceRangeCents } from "@/lib/product-price"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
@@ -287,7 +288,7 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
   const offers = hasRange
     ? {
         "@type": "AggregateOffer",
-        url: pageUrl(`/${handle}`),
+        url: pageUrl(productPath(handle)),
         priceCurrency: "USD",
         lowPrice: low,
         highPrice: high,
@@ -297,7 +298,7 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
       }
     : {
         "@type": "Offer",
-        url: pageUrl(`/${handle}`),
+        url: pageUrl(productPath(handle)),
         priceCurrency: "USD",
         price: offerPrice || undefined,
         availability,

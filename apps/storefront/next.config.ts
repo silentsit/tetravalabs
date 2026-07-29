@@ -1,5 +1,6 @@
 import type { NextConfig } from "next"
 import compoundLegacyRedirects from "./src/lib/compound-legacy-redirects.generated.json"
+import { PRODUCT_URL_TO_HANDLE } from "./src/lib/product-url-aliases"
 
 const htmlLimitedBots =
   /[\w-]+-Google|Google-[\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight|GPTBot|ChatGPT-User|ClaudeBot|Anthropic-AI|PerplexityBot|Perplexity-User|CCBot/i
@@ -21,6 +22,27 @@ const compoundRedirects = legacyEntries.flatMap(([legacyHandle, { parent }]) => 
     permanent: true
   }
 ])
+
+/** Long Medusa handles → pretty capsule URLs. */
+const prettyHandleRedirects = Object.entries(PRODUCT_URL_TO_HANDLE).flatMap(
+  ([pretty, catalogHandle]) => [
+    {
+      source: `/${catalogHandle}`,
+      destination: `/${pretty}`,
+      permanent: true
+    },
+    {
+      source: `/product/${catalogHandle}`,
+      destination: `/${pretty}`,
+      permanent: true
+    },
+    {
+      source: `/product/${pretty}`,
+      destination: `/${pretty}`,
+      permanent: true
+    }
+  ]
+)
 
 const nextConfig: NextConfig = {
   htmlLimitedBots,
@@ -46,7 +68,8 @@ const nextConfig: NextConfig = {
       { source: "/coa", destination: "/coa-library", permanent: true },
       { source: "/ruo-disclaimer", destination: "/ruo", permanent: true },
       { source: "/refund-policy", destination: "/refund", permanent: true },
-      // Specific legacy SKUs first, then catch-all /product/* → /*
+      // Specific legacy SKUs / pretty aliases first, then catch-all /product/* → /*
+      ...prettyHandleRedirects,
       ...compoundRedirects,
       { source: "/product/:handle", destination: "/:handle", permanent: true }
     ]

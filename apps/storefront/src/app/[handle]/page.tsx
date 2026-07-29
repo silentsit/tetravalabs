@@ -7,7 +7,9 @@ import {
   loadStrengthSideData,
   pickDefaultStrengthKey,
   productPath,
-  resolveCompoundRedirect
+  resolveCatalogHandle,
+  resolveCompoundRedirect,
+  resolvePrettyUrlRedirect
 } from "@/lib/compound-product"
 import { categorySlugFromLabel } from "@/lib/categories"
 import { shopNavLabel } from "@/lib/shop-filters"
@@ -25,6 +27,15 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params
 
+  const prettyRedirect = resolvePrettyUrlRedirect(handle)
+  if (prettyRedirect) {
+    return buildPageMetadata({
+      title: "Redirecting",
+      path: prettyRedirect,
+      noIndex: true
+    })
+  }
+
   const memberRedirect = resolveCompoundRedirect(handle)
   if (memberRedirect) {
     return buildPageMetadata({
@@ -34,7 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     })
   }
 
-  const view = await getCompoundProductView(handle)
+  const catalogHandle = resolveCatalogHandle(handle)
+  const view = await getCompoundProductView(catalogHandle)
   if (!view) {
     return buildPageMetadata({
       title: "Product Not Found",
@@ -59,10 +71,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProductPage({ params }: Props) {
   const { handle } = await params
 
+  const prettyRedirect = resolvePrettyUrlRedirect(handle)
+  if (prettyRedirect) redirect(prettyRedirect)
+
   const memberRedirect = resolveCompoundRedirect(handle)
   if (memberRedirect) redirect(memberRedirect)
 
-  const view = await getCompoundProductView(handle)
+  const catalogHandle = resolveCatalogHandle(handle)
+  const view = await getCompoundProductView(catalogHandle)
   if (!view) notFound()
 
   const [{ coasByStrength, reviewsByStrength }, related] = await Promise.all([

@@ -1,5 +1,5 @@
 import { groupProductsByCategory } from "@/lib/categories"
-import { getCompoundParentHandle } from "@/lib/compound-product"
+import { getCompoundParentHandle, productPath } from "@/lib/compound-product"
 import { listAllProducts } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 
@@ -157,7 +157,7 @@ export async function getAllProductSitemapEntries(): Promise<SitemapUrlEntry[]> 
   const locs = new Set(
     products.map((product) => {
       const parent = getCompoundParentHandle(product.handle) || product.handle
-      return `${baseUrl}/${parent}`
+      return `${baseUrl}${productPath(parent)}`
     })
   )
 

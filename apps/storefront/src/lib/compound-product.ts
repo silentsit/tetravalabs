@@ -26,6 +26,7 @@ import {
   type PackTier
 } from "@/lib/pack-pricing"
 import type { StoreVariant } from "@/lib/product-price"
+import { PRODUCT_HANDLE_TO_URL, PRODUCT_URL_TO_HANDLE } from "@/lib/product-url-aliases"
 
 const STRENGTH_SUFFIX_RE = /-((?:0-\d+mg)|\d+mg|\d+ml|\d+mcg|\d+-iu)$/i
 
@@ -164,9 +165,28 @@ export function isCompoundMemberHandle(handle: string): boolean {
   return MEMBER_TO_PARENT.has(handle)
 }
 
+/** Map a URL segment or catalog handle to the Medusa product handle. */
+export function resolveCatalogHandle(urlOrHandle: string): string {
+  return PRODUCT_URL_TO_HANDLE[urlOrHandle] || urlOrHandle
+}
+
+/** Map a Medusa handle to the public URL segment (pretty slug when defined). */
+export function canonicalProductSegment(handle: string): string {
+  const parent = getCompoundParentHandle(handle)
+  const catalog = parent || handle
+  return PRODUCT_HANDLE_TO_URL[catalog] || catalog
+}
+
+/** Long catalog handles → pretty URL (e.g. …-100-count-500mcg → /bpc-157-capsules). */
+export function resolvePrettyUrlRedirect(handle: string): string | null {
+  const pretty = PRODUCT_HANDLE_TO_URL[handle]
+  if (!pretty || pretty === handle) return null
+  return `/${pretty}`
+}
+
 /** Canonical product path: /{handle} with no strength/pack query params. */
 export function productPath(handle: string): string {
-  return `/${handle}`
+  return `/${canonicalProductSegment(handle)}`
 }
 
 export function getProductHref(handle: string, _packQty?: number): string {

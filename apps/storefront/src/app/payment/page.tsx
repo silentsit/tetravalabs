@@ -137,7 +137,10 @@ export default function PaymentGuidePage() {
             </p>
           </div>
 
-          <h2 className="mb-10 mt-12 text-center font-serif text-2xl text-[#0F172A]">Supported Assets</h2>
+          <h2 className="mb-3 mt-12 text-center font-serif text-2xl text-[#0F172A]">Cryptocurrency</h2>
+          <p className="mx-auto mb-10 max-w-xl text-center text-sm text-[#64748B]">
+            Prefer crypto? Pay with BTC, USDT, ETH, and other supported assets at checkout.
+          </p>
           <div className="mx-auto max-w-xl space-y-3">
             {cryptoOptions.map((opt) => (
               <div

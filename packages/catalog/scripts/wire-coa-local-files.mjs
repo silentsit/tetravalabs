@@ -1,5 +1,5 @@
 /**
- * Wire Morgan COA PDFs already in packages/catalog/data/coa/files/ to manifest local_file.
+ * Wire Morgan COA PDFs already in coas/files/ to manifest local_file.
  *
  * Usage:
  *   node packages/catalog/scripts/wire-coa-local-files.mjs
@@ -12,8 +12,8 @@ import { fileURLToPath } from "node:url"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
-const manifestPath = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "manifest.json")
-const filesDir = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "files")
+const manifestPath = path.join(workspaceRoot, "coas", "manifest.json")
+const filesDir = path.join(workspaceRoot, "coas", "files")
 const dryRun = process.argv.includes("--dry-run")
 
 /** Morgan source filename -> manifest variant_handle (COA document only). */

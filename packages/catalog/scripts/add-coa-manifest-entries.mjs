@@ -13,8 +13,8 @@ import { fileURLToPath } from "node:url"
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
 const catalogPath = path.join(workspaceRoot, "packages", "catalog", "output", "catalog.normalized.json")
-const manifestPath = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "manifest.json")
-const filesDir = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "files")
+const manifestPath = path.join(workspaceRoot, "coas", "manifest.json")
+const filesDir = path.join(workspaceRoot, "coas", "files")
 const dryRun = process.argv.includes("--dry-run")
 
 const batchNumber = "A001"

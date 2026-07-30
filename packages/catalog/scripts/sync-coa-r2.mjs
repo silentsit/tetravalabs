@@ -1,8 +1,8 @@
 /**
  * Sync COA/HPLC files (PDF or image) to Cloudflare R2 and upsert lab_batch_documents rows.
  *
- * Manifest: packages/catalog/data/coa/manifest.json
- * Local files: packages/catalog/data/coa/files/<local_file>
+ * Manifest: coas/manifest.json
+ * Local files: coas/files/<local_file>
  * Supported: .pdf, .jpg, .jpeg, .png, .webp, .gif
  *
  * Usage:
@@ -27,8 +27,8 @@ const __dirname = path.dirname(__filename)
 const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
 dotenv.config({ path: path.join(workspaceRoot, "apps", "medusa", ".env") })
 
-const manifestPath = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "manifest.json")
-const filesDir = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "files")
+const manifestPath = path.join(workspaceRoot, "coas", "manifest.json")
+const filesDir = path.join(workspaceRoot, "coas", "files")
 const dryRun = process.argv.includes("--dry-run")
 const includePlaceholders = process.argv.includes("--include-placeholders")
 const backfillPreviewsOnly = process.argv.includes("--backfill-previews-only")

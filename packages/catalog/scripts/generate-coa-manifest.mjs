@@ -1,5 +1,5 @@
 /**
- * Build packages/catalog/data/coa/manifest.json from catalog.normalized.json.
+ * Build coas/manifest.json from catalog.normalized.json.
  * One COA + HPLC row per variant (batch A001). Add local_file per entry for real PDFs/images.
  *
  * Usage:
@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url"
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
 const catalogPath = path.join(workspaceRoot, "packages", "catalog", "output", "catalog.normalized.json")
-const manifestPath = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "manifest.json")
+const manifestPath = path.join(workspaceRoot, "coas", "manifest.json")
 
 const merge = process.argv.includes("--merge")
 const batchNumber = "A001"

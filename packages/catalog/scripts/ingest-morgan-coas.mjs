@@ -1,5 +1,5 @@
 /**
- * Copy Morgan COA PDFs into packages/catalog/data/coa/files and wire manifest local_file.
+ * Copy Morgan COA PDFs into coas/files and wire manifest local_file.
  *
  * Source folder (override with MORGAN_COA_SOURCE):
  *   C:/Users/user/Downloads/COA for Morgan/compressed
@@ -15,8 +15,8 @@ import { fileURLToPath } from "node:url"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const workspaceRoot = path.resolve(__dirname, "..", "..", "..")
-const manifestPath = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "manifest.json")
-const filesDir = path.join(workspaceRoot, "packages", "catalog", "data", "coa", "files")
+const manifestPath = path.join(workspaceRoot, "coas", "manifest.json")
+const filesDir = path.join(workspaceRoot, "coas", "files")
 const pendingDir = path.join(filesDir, "_pending")
 
 const defaultSource = path.join(

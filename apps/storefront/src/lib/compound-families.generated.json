@@ -604,7 +604,7 @@
     ]
   },
   "tb500": {
-    "title": "TB500",
+    "title": "TB-500",
     "members": [
       {
         "legacy_slug": "tb500-5mg",
@@ -623,7 +623,7 @@
     ]
   },
   "glow-bpc-157-tb500-ghk-cu": {
-    "title": "Glow BPC-157 + TB500 + GHK-Cu",
+    "title": "Glow BPC-157 + TB-500 + GHK-Cu",
     "members": [
       {
         "legacy_slug": "glow-bpc-157-tb500-ghk-cu-30mg",

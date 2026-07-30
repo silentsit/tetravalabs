@@ -72,7 +72,7 @@ export function consolidateListingProducts(products: StoreProduct[]): StoreProdu
       product: {
         ...product,
         handle: parent,
-        title: COMPOUND_TITLES.get(parent) || product.title
+        title: COMPOUND_TITLES.get(parent) || product.title.replace(/TB500/g, "TB-500").replace(/tb500/g, "tb-500")
       },
       sourceHandle: product.handle
     }

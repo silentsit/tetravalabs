@@ -6,6 +6,7 @@ import { LAB_RESTOCK_COPY } from "@/lib/lab-restock"
 import { getProductByHandle } from "@/lib/medusa"
 import { getVariantPriceCents } from "@/lib/product-price"
 import { getProductHref } from "@/lib/compound-product"
+import { normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 
 const MEDUSA_URL = (process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(
   /\/$/,
@@ -159,8 +160,8 @@ export const chatTools = {
           variantId: variant.id,
           productId: product.id,
           handle: product.handle,
-          title: product.title,
-          variantTitle: variant.title || "",
+          title: normalizeTb500DisplayText(product.title),
+          variantTitle: normalizeTb500DisplayText(variant.title || ""),
           unitPrice: cents / 100,
           quantity: line.quantity || 1
         })

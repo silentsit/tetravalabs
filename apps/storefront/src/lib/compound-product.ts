@@ -19,6 +19,7 @@ import {
   getProductImage,
   getProductPurity,
   getProductStrengthLabel,
+  normalizeTb500DisplayText,
   stripStrengthFromDisplayName
 } from "@/lib/revamp/product-visual"
 import { getProductGalleryImages } from "@/lib/product-image-map"
@@ -223,7 +224,7 @@ export function getShelfProductLabel(product: StoreProduct): string {
 export function getShelfLabelForHandle(handle: string, fallbackTitle: string): string {
   const parent = getCompoundParentHandle(handle) || handle
   const family = getCompoundFamily(parent)
-  const baseName = stripStrengthFromDisplayName(fallbackTitle)
+  const baseName = stripStrengthFromDisplayName(normalizeTb500DisplayText(fallbackTitle))
 
   if (family?.members.length) {
     return formatProductLabelWithStrengths(

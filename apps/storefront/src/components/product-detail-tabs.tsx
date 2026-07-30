@@ -8,6 +8,7 @@ import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { ProductReviewsPanel } from "@/components/product-reviews-panel"
 import type { FaqItem } from "@/lib/faq-content"
 import { FaqAccordion } from "@/components/faq-accordion"
+import { normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 
 export type ProductDetailData = {
   title: string
@@ -112,9 +113,9 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
             <div className="max-w-2xl space-y-3">
               <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Product Specifications</h3>
               {[
-                { label: "Product Name", value: product.title },
+                { label: "Product Name", value: normalizeTb500DisplayText(product.title) },
                 { label: "Catalog Handle", value: product.catalogHandleLabel || product.handle },
-                { label: "Category", value: product.category },
+                { label: "Category", value: normalizeTb500DisplayText(product.category) },
                 { label: "Strength", value: product.primaryVariantTitle },
                 { label: "Form", value: "Lyophilized Powder" },
                 { label: "Purity (HPLC)", value: product.purity },

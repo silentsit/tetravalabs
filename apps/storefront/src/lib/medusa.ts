@@ -268,7 +268,7 @@ export async function getFeaturedCoaDocument(
       return {
         document,
         productHandle: publicHandle,
-        productTitle: product.title
+        productTitle: product.title.replace(/TB500/g, "TB-500").replace(/tb500/g, "tb-500")
       }
     }
   }

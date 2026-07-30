@@ -36,7 +36,9 @@ export function AccountDownloadsPanel() {
         for (const order of orders || []) {
           for (const item of (order.items || []) as OrderItem[]) {
             const handle = item.product?.handle
-            const label = item.product?.title || item.title || "Product"
+            const label = (item.product?.title || item.title || "Product")
+              .replace(/TB500/g, "TB-500")
+              .replace(/tb500/g, "tb-500")
             const key = handle || item.id || label
             if (!seen.has(key)) {
               seen.set(key, { key, label, handle })

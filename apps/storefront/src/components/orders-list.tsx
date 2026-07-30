@@ -270,7 +270,9 @@ export function OrdersList({ emptyState, showGuestLookup = true }: Props) {
                   <ul className="mt-3 space-y-1 border-t border-[#E2E8F0] pt-3">
                     {order.items.map((item) => {
                       const handle = item.product?.handle
-                      const label = item.product?.title || item.title || "Product"
+                      const label = (item.product?.title || item.title || "Product")
+                        .replace(/TB500/g, "TB-500")
+                        .replace(/tb500/g, "tb-500")
                       const variant = item.variant?.title
                       const content = (
                         <>

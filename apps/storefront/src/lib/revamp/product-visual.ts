@@ -403,13 +403,18 @@ export function isCapsuleProduct(product: StoreProduct) {
   return /capsule/i.test(product.title)
 }
 
+/** User-facing copy only — do not use on handles, paths, or catalog keys. */
+export function normalizeTb500DisplayText(text: string): string {
+  return text.replace(/TB500/g, "TB-500").replace(/tb500/g, "tb-500")
+}
+
 export function getProductDisplayName(product: StoreProduct) {
   if (isGlowBlendProduct(product)) return "Glow Blend"
   const bpcTb500Name = BPC_TB500_BLEND_NAMES[product.handle]
   if (bpcTb500Name) return bpcTb500Name
   const capsuleCopy = CAPSULE_CARD_COPY[product.handle]
   if (capsuleCopy) return capsuleCopy.name
-  return product.title
+  return normalizeTb500DisplayText(product.title)
 }
 
 export function getProductDisplaySubtitle(product: StoreProduct) {
@@ -453,7 +458,7 @@ export function formatProductLabelWithStrengths(
   displayName: string,
   strengthLabels: Array<string | null | undefined>
 ): string {
-  const base = stripStrengthFromDisplayName(displayName)
+  const base = stripStrengthFromDisplayName(normalizeTb500DisplayText(displayName))
   const labels = [
     ...new Set(
       strengthLabels

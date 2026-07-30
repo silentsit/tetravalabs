@@ -131,7 +131,9 @@ export function PurchaseHistory({
               <ul className={`${compact ? "mt-3" : "mt-4"} space-y-2 border-t border-[#E2E8F0] pt-3`}>
                 {order.items.map((item) => {
                   const handle = item.product?.handle
-                  const label = item.product?.title || item.title || "Product"
+                  const label = (item.product?.title || item.title || "Product")
+                    .replace(/TB500/g, "TB-500")
+                    .replace(/tb500/g, "tb-500")
                   const variant = item.variant?.title
                   const line = (
                     <>

@@ -54,6 +54,7 @@ const LEGACY_STOREFRONT_TO_SHEET: Record<string, string> = {
 const SOURCE_SHEET_CATEGORIES = new Set([
   "GLP-1 / Incretin",
   "BPC-157 / TB500",
+  "BPC-157 / TB-500",
   "Blends",
   "CJC / Ipamorelin / GHRP",
   "Growth Hormone Axis",
@@ -67,9 +68,13 @@ const SOURCE_SHEET_CATEGORIES = new Set([
 
 const BLEND_PRODUCTS = new Set([
   "BPC-157 + TB500 Blend",
+  "BPC-157 + TB-500 Blend",
   "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
+  "CU 50mg + TB-500 10mg + BPC-157 10mg + KPV 10mg",
   "Glow BPC-157 + TB500 + GHK-Cu",
+  "Glow BPC-157 + TB-500 + GHK-Cu",
   "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg",
+  "Glow TB-500 10mg + BPC-157 10mg + GHK-Cu 50mg",
   "CJC-1295 without DAC / Ipamorelin Blend",
   "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend",
   "Cagrilintide + Semaglutide"
@@ -91,6 +96,7 @@ const GLP1_PRODUCTS = new Set([
 const SOURCE_CATEGORY_MAP: Record<string, StorefrontCategorySlug> = {
   "Supplies & Reconstitution": "lab-supplies",
   "BPC-157 / TB500": "tissue-repair",
+  "BPC-157 / TB-500": "tissue-repair",
   "Cosmetic / Copper / Tanning": "tissue-repair",
   "CJC / Ipamorelin / GHRP": "growth-hormone-axis",
   "Growth Hormone Axis": "growth-hormone-axis",
@@ -136,7 +142,7 @@ export function categoryLabelFromSlug(slug: string, products: StoreProduct[]) {
   for (const product of products) {
     const label = String(product.metadata?.source_category || "")
     if (label && categorySlugFromLabel(label) === slug.toLowerCase()) {
-      return label
+      return label.replace(/TB500/g, "TB-500").replace(/tb500/g, "tb-500")
     }
   }
 

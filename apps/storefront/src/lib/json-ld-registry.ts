@@ -9,7 +9,7 @@ import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medus
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
 import { articleJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
-import { getProductImage } from "@/lib/revamp/product-visual"
+import { getProductImage, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 
 const RESERVED_TOP_LEVEL = new Set([
   "about",
@@ -69,14 +69,17 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   const product = await getProductByHandle(catalogHandle)
   if (!product) return []
 
-  const category = String(product.metadata?.source_category || "Research peptide")
+  const displayTitle = normalizeTb500DisplayText(product.title)
+  const category = normalizeTb500DisplayText(
+    String(product.metadata?.source_category || "Research peptide")
+  )
   const image = getProductImage(product)
 
   return [
     productJsonLd(product, catalogHandle, image),
     webPageJsonLd({
-      title: `${product.title} — ${category}`,
-      description: `${product.title} for laboratory research (RUO).`,
+      title: `${displayTitle} — ${category}`,
+      description: `${displayTitle} for laboratory research (RUO).`,
       path: productPath(catalogHandle)
     })
   ]

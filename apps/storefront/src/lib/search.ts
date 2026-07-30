@@ -2,6 +2,7 @@ import { listProducts } from "@/lib/medusa"
 import { resolveCatalogParentHandle } from "@/lib/catalog-filter"
 import { getProductPerUnitPriceRangeCents } from "@/lib/pack-pricing"
 import { getProductPriceRangeCents } from "@/lib/product-price"
+import { normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
@@ -42,7 +43,12 @@ function normalizeSearchResults(results: SearchResult[]): SearchResult[] {
     const parent = resolveCatalogParentHandle(result.handle)
     if (!parent || seen.has(parent)) continue
     seen.add(parent)
-    normalized.push(parent === result.handle ? result : { ...result, handle: parent })
+    const next = parent === result.handle ? result : { ...result, handle: parent }
+    normalized.push({
+      ...next,
+      title: normalizeTb500DisplayText(next.title),
+      category: normalizeTb500DisplayText(next.category)
+    })
   }
 
   return normalized
@@ -184,9 +190,11 @@ async function searchViaMedusaFallback(query: string, filters?: SearchFilters): 
     const unitRange = getProductPerUnitPriceRangeCents(product)
     return {
       id: product.id,
-      title: product.title,
+      title: normalizeTb500DisplayText(product.title),
       handle: product.handle,
-      category: String(product.metadata?.source_category || "Research Product"),
+      category: normalizeTb500DisplayText(
+        String(product.metadata?.source_category || "Research Product")
+      ),
       price_min: min,
       price_max: max,
       unit_price_min: unitRange.moqQty != null ? unitRange.min : undefined,

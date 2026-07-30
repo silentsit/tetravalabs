@@ -3,6 +3,7 @@ import { blogImageForPost } from "@/lib/blog-utils"
 import { registerPageJsonLd } from "@/lib/json-ld-store"
 import type { StoreProduct } from "@/lib/medusa"
 import { productPath } from "@/lib/compound-product"
+import { normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 import { getProductPriceRangeCents } from "@/lib/product-price"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
@@ -274,15 +275,19 @@ function productAvailability(product: ProductLike) {
 }
 
 export function productJsonLd(product: ProductLike, handle: string, imagePath?: string) {
-  const categoryLabel = String(product.metadata?.source_category || "Research Product")
+  const displayTitle = normalizeTb500DisplayText(product.title)
+  const categoryLabel = normalizeTb500DisplayText(
+    String(product.metadata?.source_category || "Research Product")
+  )
   const { low, high } = productPriceRange(product)
   const offerPrice = low || high
   const image = imagePath || `/products/${handle}.jpg`
   const sku =
     product.variants?.find((variant) => variant.sku)?.sku || product.variants?.[0]?.id
-  const description =
+  const description = normalizeTb500DisplayText(
     (typeof product.description === "string" && product.description.trim()) ||
-    `${product.title} — research-use only (RUO) peptide with HPLC-MS verification.`
+      `${displayTitle} — research-use only (RUO) peptide with HPLC-MS verification.`
+  )
   const availability = productAvailability(product)
   const hasRange = Boolean(low && high && low !== high)
   const offers = hasRange
@@ -308,7 +313,7 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
   return {
     "@context": "https://schema.org/",
     "@type": "Product",
-    name: product.title,
+    name: displayTitle,
     description,
     image: image.startsWith("http") ? image : pageUrl(image),
     sku,

@@ -118,11 +118,6 @@ export function PackSizeSelector({
                       Most Popular
                     </span>
                   ) : null}
-                  {tier.qty === 20 ? (
-                    <span className="rounded-full bg-[#0D9488] px-2 py-0.5 font-mono text-[10px] font-semibold text-white">
-                      Best value
-                    </span>
-                  ) : null}
                   {savingsLabel ? (
                     <span className="rounded-full bg-[#CCFBF1] px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-[#0F766E]">
                       {savingsLabel}

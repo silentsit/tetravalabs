@@ -33,7 +33,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const { q = "", price_min = "", price_max = "" } = await searchParams
   const hasQueryLikeFilters = Boolean(q.trim() || price_min.trim() || price_max.trim())
   return buildPageMetadata({
-    title: "Shop Research Peptides",
+    title: "Research Peptides for Sale",
     description:
       "Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs.",
     path: "/shop",
@@ -104,7 +104,7 @@ export default async function ShopPage({ searchParams }: Props) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <span className="section-label">Catalog</span>
-            <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Shop Research Peptides</h1>
+            <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Research Peptides for Sale</h1>
             <p className="mt-2 text-sm text-[#64748B]">
               {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
               {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}

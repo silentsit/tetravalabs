@@ -28,13 +28,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2041
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 580,
-          "per_unit_usd": 29,
-          "savings_pct": 0.4082
         }
       ]
     },
@@ -65,13 +58,6 @@
           "price_usd": 190,
           "per_unit_usd": 19,
           "savings_pct": 0.3448
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 220,
-          "per_unit_usd": 11,
-          "savings_pct": 0.6207
         }
       ]
     },
@@ -102,13 +88,6 @@
           "price_usd": 850,
           "per_unit_usd": 85,
           "savings_pct": 0.1053
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1580,
-          "per_unit_usd": 79,
-          "savings_pct": 0.1684
         }
       ]
     },
@@ -139,13 +118,6 @@
           "price_usd": 450,
           "per_unit_usd": 45,
           "savings_pct": 0.1818
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 800,
-          "per_unit_usd": 40,
-          "savings_pct": 0.2727
         }
       ]
     },
@@ -176,13 +148,6 @@
           "price_usd": 2290,
           "per_unit_usd": 229,
           "savings_pct": 0.2076
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 4180,
-          "per_unit_usd": 209,
-          "savings_pct": 0.2768
         }
       ]
     },
@@ -213,13 +178,6 @@
           "price_usd": 1090,
           "per_unit_usd": 109,
           "savings_pct": 0.3145
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1780,
-          "per_unit_usd": 89,
-          "savings_pct": 0.4403
         }
       ]
     },
@@ -250,13 +208,6 @@
           "price_usd": 1390,
           "per_unit_usd": 139,
           "savings_pct": 0.0671
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2580,
-          "per_unit_usd": 129,
-          "savings_pct": 0.1342
         }
       ]
     },
@@ -287,13 +238,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.1266
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1180,
-          "per_unit_usd": 59,
-          "savings_pct": 0.2532
         }
       ]
     },
@@ -324,13 +268,6 @@
           "price_usd": 1090,
           "per_unit_usd": 109,
           "savings_pct": 0.084
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1980,
-          "per_unit_usd": 99,
-          "savings_pct": 0.1681
         }
       ]
     },
@@ -361,13 +298,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.1266
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1180,
-          "per_unit_usd": 59,
-          "savings_pct": 0.2532
         }
       ]
     },
@@ -398,13 +328,6 @@
           "price_usd": 6990,
           "per_unit_usd": 699,
           "savings_pct": 0.231
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 11500,
-          "per_unit_usd": 575,
-          "savings_pct": 0.3674
         }
       ]
     },
@@ -435,13 +358,6 @@
           "price_usd": 890,
           "per_unit_usd": 89,
           "savings_pct": 0.3101
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1500,
-          "per_unit_usd": 75,
-          "savings_pct": 0.4186
         }
       ]
     },
@@ -472,13 +388,6 @@
           "price_usd": 1490,
           "per_unit_usd": 149,
           "savings_pct": 0.2871
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2500,
-          "per_unit_usd": 125,
-          "savings_pct": 0.4019
         }
       ]
     },
@@ -509,13 +418,6 @@
           "price_usd": 3590,
           "per_unit_usd": 359,
           "savings_pct": 0.2179
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 6300,
-          "per_unit_usd": 315,
-          "savings_pct": 0.3137
         }
       ]
     },
@@ -546,13 +448,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.4587
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.5872
         }
       ]
     },
@@ -583,13 +478,6 @@
           "price_usd": 990,
           "per_unit_usd": 99,
           "savings_pct": 0.2326
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1700,
-          "per_unit_usd": 85,
-          "savings_pct": 0.3411
         }
       ]
     },
@@ -620,13 +508,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.2247
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1180,
-          "per_unit_usd": 59,
-          "savings_pct": 0.3371
         }
       ]
     },
@@ -657,13 +538,6 @@
           "price_usd": 890,
           "per_unit_usd": 89,
           "savings_pct": 0.1835
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1600,
-          "per_unit_usd": 80,
-          "savings_pct": 0.2661
         }
       ]
     },
@@ -694,13 +568,6 @@
           "price_usd": 450,
           "per_unit_usd": 45,
           "savings_pct": 0.2373
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 800,
-          "per_unit_usd": 40,
-          "savings_pct": 0.322
         }
       ]
     },
@@ -731,13 +598,6 @@
           "price_usd": 1790,
           "per_unit_usd": 179,
           "savings_pct": 0.1435
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 3300,
-          "per_unit_usd": 165,
-          "savings_pct": 0.2105
         }
       ]
     },
@@ -768,13 +628,6 @@
           "price_usd": 1090,
           "per_unit_usd": 109,
           "savings_pct": 0.155
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1980,
-          "per_unit_usd": 99,
-          "savings_pct": 0.2326
         }
       ]
     },
@@ -805,13 +658,6 @@
           "price_usd": 1990,
           "per_unit_usd": 199,
           "savings_pct": 0.1674
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 3700,
-          "per_unit_usd": 185,
-          "savings_pct": 0.2259
         }
       ]
     },
@@ -842,13 +688,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.1449
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1000,
-          "per_unit_usd": 50,
-          "savings_pct": 0.2754
         }
       ]
     },
@@ -879,13 +718,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.3371
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.4944
         }
       ]
     },
@@ -916,13 +748,6 @@
           "price_usd": 1190,
           "per_unit_usd": 119,
           "savings_pct": 0.3352
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2100,
-          "per_unit_usd": 105,
-          "savings_pct": 0.4134
         }
       ]
     },
@@ -953,13 +778,6 @@
           "price_usd": 3290,
           "per_unit_usd": 329,
           "savings_pct": 0.2331
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 5980,
-          "per_unit_usd": 299,
-          "savings_pct": 0.303
         }
       ]
     },
@@ -990,13 +808,6 @@
           "price_usd": 330,
           "per_unit_usd": 33,
           "savings_pct": 0.3265
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 580,
-          "per_unit_usd": 29,
-          "savings_pct": 0.4082
         }
       ]
     },
@@ -1027,13 +838,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2909
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 600,
-          "per_unit_usd": 30,
-          "savings_pct": 0.4545
         }
       ]
     },
@@ -1064,13 +868,6 @@
           "price_usd": 230,
           "per_unit_usd": 23,
           "savings_pct": 0.2069
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 420,
-          "per_unit_usd": 21,
-          "savings_pct": 0.2759
         }
       ]
     },
@@ -1101,13 +898,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.1266
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1300,
-          "per_unit_usd": 65,
-          "savings_pct": 0.1772
         }
       ]
     },
@@ -1138,13 +928,6 @@
           "price_usd": 400,
           "per_unit_usd": 40,
           "savings_pct": 0.2
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.3
         }
       ]
     },
@@ -1175,13 +958,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.2625
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 980,
-          "per_unit_usd": 49,
-          "savings_pct": 0.3875
         }
       ]
     },
@@ -1212,13 +988,6 @@
           "price_usd": 790,
           "per_unit_usd": 79,
           "savings_pct": 0.21
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1380,
-          "per_unit_usd": 69,
-          "savings_pct": 0.31
         }
       ]
     },
@@ -1249,13 +1018,6 @@
           "price_usd": 1490,
           "per_unit_usd": 149,
           "savings_pct": 0.1235
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2700,
-          "per_unit_usd": 135,
-          "savings_pct": 0.2059
         }
       ]
     },
@@ -1286,13 +1048,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.1449
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1100,
-          "per_unit_usd": 55,
-          "savings_pct": 0.2029
         }
       ]
     },
@@ -1323,13 +1078,6 @@
           "price_usd": 890,
           "per_unit_usd": 89,
           "savings_pct": 0.1835
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1500,
-          "per_unit_usd": 75,
-          "savings_pct": 0.3119
         }
       ]
     },
@@ -1360,13 +1108,6 @@
           "price_usd": 1790,
           "per_unit_usd": 179,
           "savings_pct": 0.1005
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 3380,
-          "per_unit_usd": 169,
-          "savings_pct": 0.1508
         }
       ]
     },
@@ -1397,13 +1138,6 @@
           "price_usd": 490,
           "per_unit_usd": 49,
           "savings_pct": 0.1695
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.2373
         }
       ]
     },
@@ -1434,13 +1168,6 @@
           "price_usd": 490,
           "per_unit_usd": 49,
           "savings_pct": 0.1695
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.2373
         }
       ]
     },
@@ -1471,13 +1198,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2041
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -1508,13 +1228,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.1333
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.2222
         }
       ]
     },
@@ -1545,13 +1258,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.1375
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1300,
-          "per_unit_usd": 65,
-          "savings_pct": 0.1875
         }
       ]
     },
@@ -1582,13 +1288,6 @@
           "price_usd": 250,
           "per_unit_usd": 25,
           "savings_pct": 0.1667
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 460,
-          "per_unit_usd": 23,
-          "savings_pct": 0.2333
         }
       ]
     },
@@ -1619,13 +1318,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.2532
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 980,
-          "per_unit_usd": 49,
-          "savings_pct": 0.3797
         }
       ]
     },
@@ -1656,13 +1348,6 @@
           "price_usd": 350,
           "per_unit_usd": 35,
           "savings_pct": 0.2222
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 600,
-          "per_unit_usd": 30,
-          "savings_pct": 0.3333
         }
       ]
     },
@@ -1693,13 +1378,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.1571
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.3571
         }
       ]
     },
@@ -1730,13 +1408,6 @@
           "price_usd": 990,
           "per_unit_usd": 99,
           "savings_pct": 0.175
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1800,
-          "per_unit_usd": 90,
-          "savings_pct": 0.25
         }
       ]
     },
@@ -1767,13 +1438,6 @@
           "price_usd": 1290,
           "per_unit_usd": 129,
           "savings_pct": 0.1342
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2400,
-          "per_unit_usd": 120,
-          "savings_pct": 0.1946
         }
       ]
     },
@@ -1804,13 +1468,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2909
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.3636
         }
       ]
     },
@@ -1841,13 +1498,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.1714
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -1878,13 +1528,6 @@
           "price_usd": 490,
           "per_unit_usd": 49,
           "savings_pct": 0.2462
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.3077
         }
       ]
     },
@@ -1915,13 +1558,6 @@
           "price_usd": 190,
           "per_unit_usd": 19,
           "savings_pct": 0.24
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 340,
-          "per_unit_usd": 17,
-          "savings_pct": 0.32
         }
       ]
     },
@@ -1952,13 +1588,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.1449
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1100,
-          "per_unit_usd": 55,
-          "savings_pct": 0.2029
         }
       ]
     },
@@ -1989,13 +1618,6 @@
           "price_usd": 1190,
           "per_unit_usd": 119,
           "savings_pct": 0.2067
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2100,
-          "per_unit_usd": 105,
-          "savings_pct": 0.3
         }
       ]
     },
@@ -2026,13 +1648,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.275
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.375
         }
       ]
     },
@@ -2063,13 +1678,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.2133
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1100,
-          "per_unit_usd": 55,
-          "savings_pct": 0.2667
         }
       ]
     },
@@ -2100,13 +1708,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2041
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -2137,13 +1738,6 @@
           "price_usd": 190,
           "per_unit_usd": 19,
           "savings_pct": 0.24
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 300,
-          "per_unit_usd": 15,
-          "savings_pct": 0.4
         }
       ]
     },
@@ -2174,13 +1768,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.2564
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -2211,13 +1798,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.22
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.3
         }
       ]
     },
@@ -2248,13 +1828,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.1714
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 440,
-          "per_unit_usd": 22,
-          "savings_pct": 0.3714
         }
       ]
     },
@@ -2285,13 +1858,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2909
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.3636
         }
       ]
     },
@@ -2322,13 +1888,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.1714
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -2359,13 +1918,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.2564
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -2396,13 +1948,6 @@
           "price_usd": 990,
           "per_unit_usd": 99,
           "savings_pct": 0.1681
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1700,
-          "per_unit_usd": 85,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -2433,13 +1978,6 @@
           "price_usd": 490,
           "per_unit_usd": 49,
           "savings_pct": 0.1695
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.2373
         }
       ]
     },
@@ -2470,13 +2008,6 @@
           "price_usd": 790,
           "per_unit_usd": 79,
           "savings_pct": 0.202
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1400,
-          "per_unit_usd": 70,
-          "savings_pct": 0.2929
         }
       ]
     },
@@ -2507,13 +2038,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.2133
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1100,
-          "per_unit_usd": 55,
-          "savings_pct": 0.2667
         }
       ]
     },
@@ -2544,13 +2068,6 @@
           "price_usd": 1090,
           "per_unit_usd": 109,
           "savings_pct": 0.155
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2100,
-          "per_unit_usd": 105,
-          "savings_pct": 0.186
         }
       ]
     },
@@ -2581,13 +2098,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.1266
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1300,
-          "per_unit_usd": 65,
-          "savings_pct": 0.1772
         }
       ]
     },
@@ -2618,13 +2128,6 @@
           "price_usd": 790,
           "per_unit_usd": 79,
           "savings_pct": 0.202
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1380,
-          "per_unit_usd": 69,
-          "savings_pct": 0.303
         }
       ]
     },
@@ -2655,13 +2158,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.1449
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1100,
-          "per_unit_usd": 55,
-          "savings_pct": 0.2029
         }
       ]
     },
@@ -2692,13 +2188,6 @@
           "price_usd": 50,
           "per_unit_usd": 5,
           "savings_pct": 0.545
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 60,
-          "per_unit_usd": 3,
-          "savings_pct": 0.727
         }
       ]
     },
@@ -2729,13 +2218,6 @@
           "price_usd": 70,
           "per_unit_usd": 7,
           "savings_pct": 0.3631
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 80,
-          "per_unit_usd": 4,
-          "savings_pct": 0.636
         }
       ]
     },
@@ -2766,13 +2248,6 @@
           "price_usd": 50,
           "per_unit_usd": 5,
           "savings_pct": 0.4438
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 60,
-          "per_unit_usd": 3,
-          "savings_pct": 0.6663
         }
       ]
     },
@@ -2803,13 +2278,6 @@
           "price_usd": 70,
           "per_unit_usd": 7,
           "savings_pct": 0.2993
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 80,
-          "per_unit_usd": 4,
-          "savings_pct": 0.5996
         }
       ]
     },
@@ -2840,13 +2308,6 @@
           "price_usd": 50,
           "per_unit_usd": 5,
           "savings_pct": 0.3742
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 60,
-          "per_unit_usd": 3,
-          "savings_pct": 0.6245
         }
       ]
     },
@@ -2877,13 +2338,6 @@
           "price_usd": 190,
           "per_unit_usd": 19,
           "savings_pct": 0.3448
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 300,
-          "per_unit_usd": 15,
-          "savings_pct": 0.4828
         }
       ]
     },
@@ -2914,13 +2368,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.404
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.5455
         }
       ]
     },
@@ -2951,13 +2398,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.339
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 580,
-          "per_unit_usd": 29,
-          "savings_pct": 0.5085
         }
       ]
     },
@@ -2988,13 +2428,6 @@
           "price_usd": 250,
           "per_unit_usd": 25,
           "savings_pct": 0.1379
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 460,
-          "per_unit_usd": 23,
-          "savings_pct": 0.2069
         }
       ]
     },
@@ -3025,13 +2458,6 @@
           "price_usd": 350,
           "per_unit_usd": 35,
           "savings_pct": 0.1026
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 640,
-          "per_unit_usd": 32,
-          "savings_pct": 0.1795
         }
       ]
     },
@@ -3062,13 +2488,6 @@
           "price_usd": 490,
           "per_unit_usd": 49,
           "savings_pct": 0.2899
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.3478
         }
       ]
     },
@@ -3099,13 +2518,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.4727
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.5455
         }
       ]
     },
@@ -3136,13 +2548,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.3371
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1000,
-          "per_unit_usd": 50,
-          "savings_pct": 0.4382
         }
       ]
     },
@@ -3173,13 +2578,6 @@
           "price_usd": 490,
           "per_unit_usd": 49,
           "savings_pct": 0.2899
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 800,
-          "per_unit_usd": 40,
-          "savings_pct": 0.4203
         }
       ]
     },
@@ -3210,13 +2608,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.2564
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -3247,13 +2638,6 @@
           "price_usd": 790,
           "per_unit_usd": 79,
           "savings_pct": 0.1124
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1500,
-          "per_unit_usd": 75,
-          "savings_pct": 0.1573
         }
       ]
     },
@@ -3284,13 +2668,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2041
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -3321,13 +2698,6 @@
           "price_usd": 890,
           "per_unit_usd": 89,
           "savings_pct": 0.1835
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1580,
-          "per_unit_usd": 79,
-          "savings_pct": 0.2752
         }
       ]
     },
@@ -3358,13 +2728,6 @@
           "price_usd": 1290,
           "per_unit_usd": 129,
           "savings_pct": 0.1342
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2400,
-          "per_unit_usd": 120,
-          "savings_pct": 0.1946
         }
       ]
     },
@@ -3395,13 +2758,6 @@
           "price_usd": 1890,
           "per_unit_usd": 189,
           "savings_pct": 0.1747
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 3500,
-          "per_unit_usd": 175,
-          "savings_pct": 0.2358
         }
       ]
     },
@@ -3432,13 +2788,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.2247
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1200,
-          "per_unit_usd": 60,
-          "savings_pct": 0.3258
         }
       ]
     },
@@ -3469,13 +2818,6 @@
           "price_usd": 1490,
           "per_unit_usd": 149,
           "savings_pct": 0.2116
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2600,
-          "per_unit_usd": 130,
-          "savings_pct": 0.3122
         }
       ]
     },
@@ -3506,13 +2848,6 @@
           "price_usd": 1290,
           "per_unit_usd": 129,
           "savings_pct": 0.1342
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2400,
-          "per_unit_usd": 120,
-          "savings_pct": 0.1946
         }
       ]
     },
@@ -3543,13 +2878,6 @@
           "price_usd": 2090,
           "per_unit_usd": 209,
           "savings_pct": 0.1931
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 3900,
-          "per_unit_usd": 195,
-          "savings_pct": 0.2471
         }
       ]
     },
@@ -3580,13 +2908,6 @@
           "price_usd": 1190,
           "per_unit_usd": 119,
           "savings_pct": 0.1439
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2180,
-          "per_unit_usd": 109,
-          "savings_pct": 0.2158
         }
       ]
     },
@@ -3617,13 +2938,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.1266
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1200,
-          "per_unit_usd": 60,
-          "savings_pct": 0.2405
         }
       ]
     },
@@ -3654,13 +2968,6 @@
           "price_usd": 790,
           "per_unit_usd": 79,
           "savings_pct": 0.2752
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1300,
-          "per_unit_usd": 65,
-          "savings_pct": 0.4037
         }
       ]
     },
@@ -3691,13 +2998,6 @@
           "price_usd": 790,
           "per_unit_usd": 79,
           "savings_pct": 0.1124
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1400,
-          "per_unit_usd": 70,
-          "savings_pct": 0.2135
         }
       ]
     },
@@ -3728,13 +3028,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2041
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -3765,13 +3058,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.4082
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.4898
         }
       ]
     },
@@ -3802,13 +3088,6 @@
           "price_usd": 220,
           "per_unit_usd": 22,
           "savings_pct": 0.2414
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 380,
-          "per_unit_usd": 19,
-          "savings_pct": 0.3448
         }
       ]
     },
@@ -3839,13 +3118,6 @@
           "price_usd": 450,
           "per_unit_usd": 45,
           "savings_pct": 0.2373
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 780,
-          "per_unit_usd": 39,
-          "savings_pct": 0.339
         }
       ]
     },
@@ -3876,13 +3148,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.2564
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -3913,13 +3178,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.2564
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -3950,13 +3208,6 @@
           "price_usd": 550,
           "per_unit_usd": 55,
           "savings_pct": 0.2029
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1000,
-          "per_unit_usd": 50,
-          "savings_pct": 0.2754
         }
       ]
     },
@@ -3987,13 +3238,6 @@
           "price_usd": 450,
           "per_unit_usd": 45,
           "savings_pct": 0.2373
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 780,
-          "per_unit_usd": 39,
-          "savings_pct": 0.339
         }
       ]
     },
@@ -4024,13 +3268,6 @@
           "price_usd": 300,
           "per_unit_usd": 30,
           "savings_pct": 0.2308
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -4061,13 +3298,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.339
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.4068
         }
       ]
     },
@@ -4098,13 +3328,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.4082
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.4898
         }
       ]
     },
@@ -4135,13 +3358,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.2564
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -4172,13 +3388,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.1714
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -4209,13 +3418,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.1714
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -4246,13 +3448,6 @@
           "price_usd": 690,
           "per_unit_usd": 69,
           "savings_pct": 0.2247
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1000,
-          "per_unit_usd": 50,
-          "savings_pct": 0.4382
         }
       ]
     },
@@ -4283,13 +3478,6 @@
           "price_usd": 200,
           "per_unit_usd": 20,
           "savings_pct": 0.3103
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 360,
-          "per_unit_usd": 18,
-          "savings_pct": 0.3793
         }
       ]
     },
@@ -4320,13 +3508,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.1449
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1100,
-          "per_unit_usd": 55,
-          "savings_pct": 0.2029
         }
       ]
     },
@@ -4357,13 +3538,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2041
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -4394,13 +3568,6 @@
           "price_usd": 390,
           "per_unit_usd": 39,
           "savings_pct": 0.2041
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 700,
-          "per_unit_usd": 35,
-          "savings_pct": 0.2857
         }
       ]
     },
@@ -4431,13 +3598,6 @@
           "price_usd": 450,
           "per_unit_usd": 45,
           "savings_pct": 0.1818
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 780,
-          "per_unit_usd": 39,
-          "savings_pct": 0.2909
         }
       ]
     },
@@ -4468,13 +3628,6 @@
           "price_usd": 490,
           "per_unit_usd": 49,
           "savings_pct": 0.1695
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 900,
-          "per_unit_usd": 45,
-          "savings_pct": 0.2373
         }
       ]
     },
@@ -4505,13 +3658,6 @@
           "price_usd": 590,
           "per_unit_usd": 59,
           "savings_pct": 0.2532
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1100,
-          "per_unit_usd": 55,
-          "savings_pct": 0.3038
         }
       ]
     },
@@ -4542,13 +3688,6 @@
           "price_usd": 750,
           "per_unit_usd": 75,
           "savings_pct": 0.1176
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1380,
-          "per_unit_usd": 69,
-          "savings_pct": 0.1882
         }
       ]
     },
@@ -4579,13 +3718,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.2564
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.359
         }
       ]
     },
@@ -4616,13 +3748,6 @@
           "price_usd": 190,
           "per_unit_usd": 19,
           "savings_pct": 0.3448
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 300,
-          "per_unit_usd": 15,
-          "savings_pct": 0.4828
         }
       ]
     },
@@ -4653,13 +3778,6 @@
           "price_usd": 1290,
           "per_unit_usd": 129,
           "savings_pct": 0.14
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 2400,
-          "per_unit_usd": 120,
-          "savings_pct": 0.2
         }
       ]
     },
@@ -4690,13 +3808,6 @@
           "price_usd": 200,
           "per_unit_usd": 20,
           "savings_pct": 0.3103
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 360,
-          "per_unit_usd": 18,
-          "savings_pct": 0.3793
         }
       ]
     },
@@ -4727,13 +3838,6 @@
           "price_usd": 420,
           "per_unit_usd": 42,
           "savings_pct": 0.1429
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 760,
-          "per_unit_usd": 38,
-          "savings_pct": 0.2245
         }
       ]
     },
@@ -4764,13 +3868,6 @@
           "price_usd": 290,
           "per_unit_usd": 29,
           "savings_pct": 0.275
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 500,
-          "per_unit_usd": 25,
-          "savings_pct": 0.375
         }
       ]
     },
@@ -4801,13 +3898,6 @@
           "price_usd": 790,
           "per_unit_usd": 79,
           "savings_pct": 0.202
-        },
-        {
-          "tier": "20 vials",
-          "qty": 20,
-          "price_usd": 1380,
-          "per_unit_usd": 69,
-          "savings_pct": 0.303
         }
       ]
     }

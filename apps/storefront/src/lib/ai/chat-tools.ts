@@ -108,7 +108,7 @@ export const chatTools = {
     execute: async ({ handle }) => ({
       href: getProductHref(handle),
       label: LAB_RESTOCK_COPY.restockLabel,
-      note: "Product pages sell one-time packs (1/5/10/20). Existing Peptide Refills are managed under Account → Peptide Refills — no silent card charges."
+      note: "Product pages sell one-time packs (1/5/10). Existing Peptide Refills are managed under Account → Peptide Refills — no silent card charges."
     })
   }),
 

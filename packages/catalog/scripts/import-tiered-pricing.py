@@ -63,7 +63,7 @@ def load_tiers(xlsx_path: Path) -> pd.DataFrame:
     df = df.dropna(subset=["product_name", "qty"])
     df["qty"] = df["qty"].astype(int)
     df = df[df["status"].astype(str).str.upper().eq("ACTIVE")].copy()
-    df = df[df["qty"].isin([5, 10, 20])].copy()
+    df = df[df["qty"].isin([5, 10])].copy()
     df["tier"] = df["qty"].map(normalize_tier_label)
     return df
 

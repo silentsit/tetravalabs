@@ -1,6 +1,7 @@
 /**
- * Update existing Medusa products with normalized catalog pack tiers (1/5/10/20 vials).
+ * Update existing Medusa products with normalized catalog pack tiers (1/5/10 vials).
  * Supports compound-merged products (Strength + Pack Size options).
+ * Variants missing from the catalog (e.g. retired 20-vial) are deleted.
  *
  * Usage:
  *   npm run catalog:update

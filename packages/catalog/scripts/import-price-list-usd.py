@@ -145,13 +145,6 @@ def load_workbook_rows(xlsx_path: Path) -> list[dict]:
                     "per_unit_usd": round(_num(ws.cell(row_idx, cols["per10"]).value), 2),
                     "savings_pct": round(_num(ws.cell(row_idx, cols["save10"]).value, required=False) or 0, 4),
                 },
-                {
-                    "tier": "20 vials",
-                    "qty": 20,
-                    "price_usd": round(_num(ws.cell(row_idx, cols["tot20"]).value), 2),
-                    "per_unit_usd": round(_num(ws.cell(row_idx, cols["per20"]).value), 2),
-                    "savings_pct": round(_num(ws.cell(row_idx, cols["save20"]).value, required=False) or 0, 4),
-                },
             ]
         except (TypeError, ValueError):
             # Skip rows without full pack pricing (e.g. nasal sprays).

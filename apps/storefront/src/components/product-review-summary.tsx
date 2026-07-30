@@ -16,11 +16,13 @@ export function ProductReviewSummary({ aggregate }: Props) {
       className="mt-3 inline-flex flex-wrap items-center gap-2 text-sm text-[#475569] transition hover:text-[#0D9488]"
     >
       <StarRating value={displayStars} readOnly size="sm" />
-      <span>
-        {aggregate.ratingValue.toFixed(1)} · {aggregate.reviewCount}{" "}
-        {aggregate.reviewCount === 1 ? "review" : "reviews"}
+      <span className="font-semibold text-[color:var(--color-text)]">
+        {aggregate.ratingValue.toFixed(1)}
       </span>
-      <span className="text-[#0D9488]">See reviews</span>
+      <span className="text-[#94A3B8]">
+        ({aggregate.reviewCount}{" "}
+        {aggregate.reviewCount === 1 ? "review" : "reviews"})
+      </span>
     </a>
   )
 }

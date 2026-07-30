@@ -107,6 +107,9 @@ const isBlend = (name) => /(blend|\+)/i.test(name)
 
 const isNasalSpray = (name) => /nasal\s*spray/i.test(name)
 
+/** Pack sizes published to Medusa / storefront (legacy 20-vial retired). */
+const ALLOWED_PACK_QTYS = new Set([1, 5, 10])
+
 const visualType = (name, strength) => {
   if (isCapsule(name, strength)) return "capsule"
   if (isNasalSpray(name)) return "nasal_spray"
@@ -134,7 +137,9 @@ const readJsonFile = async (filePath) => {
 }
 
 const buildRowVariants = (row, productCode, skuRegistry) => {
-  const tiers = row.pack_tiers?.length ? row.pack_tiers : defaultPackTiers(row)
+  const tiers = (row.pack_tiers?.length ? row.pack_tiers : defaultPackTiers(row)).filter(
+    (tier) => ALLOWED_PACK_QTYS.has(Number(tier.qty))
+  )
   const title = row.strength && row.strength !== "Standard" ? `${row.name} ${row.strength}` : row.name
 
   return tiers.map((tier) => {

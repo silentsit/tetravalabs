@@ -16,6 +16,7 @@ import { siteConfig } from "@/lib/seo"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchasePanel } from "@/components/product-purchase-panel"
 import { ProductDetailTabs } from "@/components/product-detail-tabs"
+import { ProductOfferSummary } from "@/components/product-offer-summary"
 import { ProductReviewSummary } from "@/components/product-review-summary"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
 import type { PackTier } from "@/lib/pack-pricing"
@@ -160,6 +161,16 @@ export function ProductCompoundView({
             </p>
             <ProductReviewSummary aggregate={reviews.aggregate} />
           </header>
+
+          <ProductOfferSummary
+            displayName={view.displayName}
+            categoryLabel={view.categoryLabel}
+            researchSummary={
+              String(selectedStrength.metadata?.research_summary || "").trim() ||
+              view.researchSummary
+            }
+            selectedStrength={selectedStrength}
+          />
 
           <ProductPurchasePanel
             displayName={view.displayName}

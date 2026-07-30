@@ -36,6 +36,9 @@ export function showCompareAtPricingForHandle(handle: string | null | undefined)
 
 const PACK_TITLE_RE = /^\d+\s+vials?$/i
 
+/** Storefront pack sizes offered at checkout (exclude legacy 20-vial SKUs). */
+export const STOREFRONT_PACK_QTYS = new Set([1, 5, 10])
+
 export function isPackTierVariant(variant: StoreVariant): boolean {
   const packQty = variant.metadata?.pack_qty
   if (packQty != null && Number(packQty) >= 1) return true
@@ -84,6 +87,7 @@ export function packTiersFromVariants(variants: StoreVariant[]): PackTier[] {
     variants
       .filter(isPackTierVariant)
       .map(variantToPackTier)
+      .filter((tier) => STOREFRONT_PACK_QTYS.has(tier.qty))
       .sort((a, b) => a.qty - b.qty)
   )
 }

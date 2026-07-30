@@ -673,5 +673,23 @@
     "storage": "-20C lyophilized",
     "appearance": "White lyophilized powder",
     "category": "Longevity & Neuropeptides"
+  },
+  "igf-1-lr3": {
+    "cas_number": "946870-92-4",
+    "molecular_formula": "C473H711N131O101S10",
+    "molecular_weight": "9111.0",
+    "sequence": "Long Arg3 IGF-1 (83 aa analogue of IGF-1)",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
+  },
+  "bpc-157-tb500-blend": {
+    "cas_number": "137525-51-0",
+    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
+    "molecular_weight": "See component peptides",
+    "sequence": "Multi-component — see BPC-157 and TB-500",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   }
 }

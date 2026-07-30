@@ -1,6 +1,10 @@
 import type { NextConfig } from "next"
 import compoundLegacyRedirects from "./src/lib/compound-legacy-redirects.generated.json"
-import { PRODUCT_URL_TO_HANDLE } from "./src/lib/product-url-aliases"
+import {
+  LEGACY_PRETTY_URL_REDIRECTS,
+  PRODUCT_HANDLE_TO_URL,
+  PRODUCT_URL_TO_HANDLE
+} from "./src/lib/product-url-aliases"
 
 const htmlLimitedBots =
   /[\w-]+-Google|Google-[\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight|GPTBot|ChatGPT-User|ClaudeBot|Anthropic-AI|PerplexityBot|Perplexity-User|CCBot/i
@@ -9,38 +13,58 @@ const legacyEntries = Object.entries(
   compoundLegacyRedirects as Record<string, { parent: string; strength: string }>
 )
 
-/** Legacy per-strength SKUs → parent compound handle (no query params). */
-const compoundRedirects = legacyEntries.flatMap(([legacyHandle, { parent }]) => [
-  {
-    source: `/product/${legacyHandle}`,
-    destination: `/${parent}`,
-    permanent: true
-  },
-  {
-    source: `/${legacyHandle}`,
-    destination: `/${parent}`,
-    permanent: true
-  }
-])
+function publicPathForCatalogHandle(handle: string): string {
+  return PRODUCT_HANDLE_TO_URL[handle] || handle
+}
 
-/** Long Medusa handles → pretty capsule URLs. */
-const prettyHandleRedirects = Object.entries(PRODUCT_URL_TO_HANDLE).flatMap(
-  ([pretty, catalogHandle]) => [
+/** Legacy per-strength SKUs → canonical public SEO slug. */
+const compoundRedirects = legacyEntries.flatMap(([legacyHandle, { parent }]) => {
+  const dest = publicPathForCatalogHandle(parent)
+  return [
     {
-      source: `/${catalogHandle}`,
-      destination: `/${pretty}`,
+      source: `/product/${legacyHandle}`,
+      destination: `/${dest}`,
       permanent: true
     },
     {
-      source: `/product/${catalogHandle}`,
-      destination: `/${pretty}`,
-      permanent: true
-    },
-    {
-      source: `/product/${pretty}`,
-      destination: `/${pretty}`,
+      source: `/${legacyHandle}`,
+      destination: `/${dest}`,
       permanent: true
     }
+  ]
+})
+
+/** Catalog / Medusa parent handles → public SEO slug. */
+const catalogToPublicRedirects = Object.entries(PRODUCT_HANDLE_TO_URL).flatMap(
+  ([catalogHandle, publicSegment]) => {
+    if (catalogHandle === publicSegment) return []
+    return [
+      {
+        source: `/${catalogHandle}`,
+        destination: `/${publicSegment}`,
+        permanent: true
+      },
+      {
+        source: `/product/${catalogHandle}`,
+        destination: `/${publicSegment}`,
+        permanent: true
+      }
+    ]
+  }
+)
+
+/** Public SEO slug also reachable via /product/{slug}. */
+const publicProductPrefixRedirects = Object.keys(PRODUCT_URL_TO_HANDLE).map((publicSegment) => ({
+  source: `/product/${publicSegment}`,
+  destination: `/${publicSegment}`,
+  permanent: true
+}))
+
+/** Retired pretty capsule URLs → buy-*-online. */
+const legacyPrettyRedirects = Object.entries(LEGACY_PRETTY_URL_REDIRECTS).flatMap(
+  ([from, to]) => [
+    { source: `/${from}`, destination: `/${to}`, permanent: true },
+    { source: `/product/${from}`, destination: `/${to}`, permanent: true }
   ]
 )
 
@@ -68,8 +92,10 @@ const nextConfig: NextConfig = {
       { source: "/coa", destination: "/coa-library", permanent: true },
       { source: "/ruo-disclaimer", destination: "/ruo", permanent: true },
       { source: "/refund-policy", destination: "/refund", permanent: true },
-      // Specific legacy SKUs / pretty aliases first, then catch-all /product/* → /*
-      ...prettyHandleRedirects,
+      // Specific aliases first, then legacy strengths, then catch-all /product/* → /*
+      ...legacyPrettyRedirects,
+      ...catalogToPublicRedirects,
+      ...publicProductPrefixRedirects,
       ...compoundRedirects,
       { source: "/product/:handle", destination: "/:handle", permanent: true }
     ]

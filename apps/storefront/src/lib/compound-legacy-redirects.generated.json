@@ -374,5 +374,25 @@
   "hgh-191aa-36-iu": {
     "parent": "hgh-191aa",
     "strength": "36-iu"
+  },
+  "igf-1-lr3-0-1mg": {
+    "parent": "igf-1-lr3",
+    "strength": "0.1mg"
+  },
+  "igf-1-lr3-1mg": {
+    "parent": "igf-1-lr3",
+    "strength": "1mg"
+  },
+  "bpc-157-5mg-tb500-5mg-10mg": {
+    "parent": "bpc-157-tb500-blend",
+    "strength": "10mg"
+  },
+  "bpc-157-5mg-tb500-5mg-20mg": {
+    "parent": "bpc-157-tb500-blend",
+    "strength": "20mg"
+  },
+  "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": {
+    "parent": "glow-bpc-157-tb500-ghk-cu",
+    "strength": "70mg"
   }
 }

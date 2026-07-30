@@ -77,23 +77,20 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
 
         <div className="py-8">
           {activeTab === "Overview" ? (
-            <div className="grid gap-8 lg:grid-cols-2">
-              <div>
-                <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Product Overview</h3>
-                {product.researchSummary
-                  .split(/\n\n+/)
-                  .map((paragraph) => paragraph.trim())
-                  .filter(Boolean)
-                  .map((paragraph, index) => (
-                    <p
-                      key={`${index}-${paragraph.slice(0, 24)}`}
-                      className={`text-sm leading-relaxed text-[#475569] ${index > 0 ? "mt-4" : ""}`}
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-              </div>
-              <div>
+            <div className="space-y-10">
+              <article className="max-w-3xl">
+                <h3 className="mb-5 font-serif text-2xl text-[#0F172A]">Product Overview</h3>
+                <div className="space-y-5 text-[15px] leading-7 text-[#475569]">
+                  {product.researchSummary
+                    .split(/\n\n+/)
+                    .map((paragraph) => paragraph.trim())
+                    .filter(Boolean)
+                    .map((paragraph, index) => (
+                      <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>
+                    ))}
+                </div>
+              </article>
+              <div className="max-w-3xl">
                 <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Analytical Data</h3>
                 <AnalyticalTable
                   rows={[

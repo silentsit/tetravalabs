@@ -29,7 +29,10 @@ import {
   type PackTier
 } from "@/lib/pack-pricing"
 import type { StoreVariant } from "@/lib/product-price"
-import { PRODUCT_HANDLE_TO_URL, PRODUCT_URL_TO_HANDLE } from "@/lib/product-url-aliases"
+import {
+  catalogHandleFromPublicSegment,
+  PRODUCT_HANDLE_TO_URL
+} from "@/lib/product-url-aliases"
 
 const STRENGTH_SUFFIX_RE = /-((?:0-\d+mg)|\d+mg|\d+ml|\d+mcg|\d+-iu)$/i
 
@@ -168,9 +171,9 @@ export function isCompoundMemberHandle(handle: string): boolean {
   return MEMBER_TO_PARENT.has(handle)
 }
 
-/** Map a URL segment or catalog handle to the Medusa product handle. */
+/** Map a URL segment or catalog handle to the Medusa/catalog product handle. */
 export function resolveCatalogHandle(urlOrHandle: string): string {
-  return PRODUCT_URL_TO_HANDLE[urlOrHandle] || urlOrHandle
+  return catalogHandleFromPublicSegment(urlOrHandle) || urlOrHandle
 }
 
 /** Map a Medusa handle to the public URL segment (pretty slug when defined). */
@@ -323,7 +326,7 @@ function fillOverviewTemplate(paragraphs: string[], productName: string): string
     .join("\n\n")
 }
 
-/** SEO product overview (2–3 paragraphs). Always includes “buy <product name> online”. */
+/** SEO product overview (long-form article). Always includes “buy <product name> online” when curated. */
 export function buildResearchOverview(input: {
   productName: string
   category?: string
@@ -348,7 +351,12 @@ export function buildResearchOverview(input: {
 
   const paragraphs = [
     `Buy ${productName} online from Tetrava Labs for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing, with COA documents published when available.`,
+    `${productName} is positioned for teams that need a documented research reagent with consistent identity and purity controls. Comparative protocols should keep reconstitution parameters and vehicle controls identical across arms.`,
+    `Within ${category} study designs, laboratories typically combine receptor, signaling, or phenotypic readouts with careful lot tracking so results remain auditable across operators and time.`,
+    `Typical workflows begin with verifying the sealed vial, filing the COA, and assigning an internal material ID before preparing working solutions for the assay plate map.`,
     researchFormParagraph(productName, form),
+    `Retain Certificates of Analysis with working stocks and record catalog handle, batch, and preparation date in your ELN or inventory system before initiating comparative work.`,
+    `Tetrava Labs emphasizes lot-linked documentation to support research procurement decisions — not as a substitute for your own method qualification.`,
     "For research use only — not for human or veterinary consumption."
   ]
 

@@ -380,6 +380,7 @@ export function isGlowBlendProduct(product: StoreProduct) {
 }
 
 const BPC_TB500_BLEND_NAMES: Record<string, string> = {
+  "bpc-157-tb500-blend": "BPC-157 + TB-500 Blend",
   "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 Blend",
   "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 Blend"
 }

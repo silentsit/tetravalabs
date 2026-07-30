@@ -638,6 +638,13 @@
         "strength_label": "85mg",
         "strength_option": "85mg",
         "product_code": 51
+      },
+      {
+        "legacy_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+        "strength_key": "70mg",
+        "strength_label": "70mg",
+        "strength_option": "70mg",
+        "product_code": 52
       }
     ]
   },
@@ -849,6 +856,44 @@
         "strength_label": "36 IU",
         "strength_option": "36 IU",
         "product_code": 65
+      }
+    ]
+  },
+  "igf-1-lr3": {
+    "title": "IGF-1 LR3",
+    "members": [
+      {
+        "legacy_slug": "igf-1-lr3-0-1mg",
+        "strength_key": "0-1mg",
+        "strength_label": "0.1mg",
+        "strength_option": "0.1mg",
+        "product_code": 68
+      },
+      {
+        "legacy_slug": "igf-1-lr3-1mg",
+        "strength_key": "1mg",
+        "strength_label": "1mg",
+        "strength_option": "1mg",
+        "product_code": 69
+      }
+    ]
+  },
+  "bpc-157-tb500-blend": {
+    "title": "BPC-157 + TB-500 Blend",
+    "members": [
+      {
+        "legacy_slug": "bpc-157-5mg-tb500-5mg-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 18
+      },
+      {
+        "legacy_slug": "bpc-157-5mg-tb500-5mg-20mg",
+        "strength_key": "20mg",
+        "strength_label": "20mg",
+        "strength_option": "20mg",
+        "product_code": 19
       }
     ]
   }

@@ -8,6 +8,7 @@
     "import:medusa": "node scripts/import-to-medusa.mjs",
     "update:medusa": "node scripts/update-medusa-catalog.mjs",
     "remove:20-packs": "node scripts/remove-20-pack-variants.mjs",
+    "ensure:1-packs": "node scripts/ensure-1-vial-packs.mjs",
     "merge:compounds": "node scripts/merge-medusa-compounds.mjs",
     "remove:legacy": "node scripts/remove-legacy-medusa-products.mjs",
     "typesense:index": "node scripts/index-to-typesense.mjs",

@@ -19,6 +19,7 @@
     "catalog:import": "npm --prefix packages/catalog run import:medusa",
     "catalog:update": "npm --prefix packages/catalog run update:medusa --",
     "catalog:remove-20-packs": "npm --prefix packages/catalog run remove:20-packs --",
+    "catalog:ensure-1-packs": "npm --prefix packages/catalog run ensure:1-packs --",
     "catalog:merge-compounds": "npm --prefix packages/catalog run merge:compounds --",
     "typesense:index": "npm --prefix packages/catalog run typesense:index",
     "typesense:reindex": "npm --prefix packages/catalog run typesense:index -- -- --fresh",

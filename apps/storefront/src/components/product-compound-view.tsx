@@ -106,11 +106,7 @@ export function ProductCompoundView({
 
   if (!selectedStrength) return null
 
-  const showStrengthInH1 =
-    view.isCompound ||
-    (Boolean(selectedStrength.strengthLabel) &&
-      selectedStrength.strengthLabel !== "standard" &&
-      !view.displayName.toLowerCase().includes(selectedStrength.strengthLabel.toLowerCase()))
+  const headingName = compoundSeoName(view, selectedStrength.strengthKey)
 
   const coas = coasByStrength[selectedStrength.strengthKey] || []
   const reviews = reviewsByStrength[selectedStrength.strengthKey] || {
@@ -132,7 +128,7 @@ export function ProductCompoundView({
           <ProductImageGallery
             key={selectedStrength.imageHandle}
             productImages={galleryImages}
-            productName={view.displayName}
+            productName={headingName}
             coas={coas}
           />
         </div>
@@ -141,12 +137,7 @@ export function ProductCompoundView({
           <header>
             <span className="section-label">{view.categoryLabel}</span>
             <h1 className="product-card-title mt-2 break-words text-3xl text-[color:var(--color-text)] sm:text-4xl">
-              {view.displayName}
-              {showStrengthInH1 ? (
-                <span className="ml-2 font-mono text-xl text-[color:var(--color-text-secondary)] sm:text-2xl">
-                  {selectedStrength.strengthLabel}
-                </span>
-              ) : null}
+              {headingName}
             </h1>
             {view.displaySubtitle ? (
               <p className="mt-1 text-sm text-[color:var(--color-text-secondary)]">

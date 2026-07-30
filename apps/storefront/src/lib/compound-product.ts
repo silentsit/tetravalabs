@@ -12,12 +12,14 @@ import {
 import { listProductReviews, type ProductReviewsResponse } from "@/lib/reviews"
 import { storefrontCategoryLabelForProduct } from "@/lib/categories"
 import {
+  formatProductLabelWithStrengths,
   getProductDisplayName,
   getProductDisplaySubtitle,
   getProductFullName,
   getProductImage,
   getProductPurity,
-  getProductStrengthLabel
+  getProductStrengthLabel,
+  stripStrengthFromDisplayName
 } from "@/lib/revamp/product-visual"
 import { getProductGalleryImages } from "@/lib/product-image-map"
 import {
@@ -194,6 +196,61 @@ export function getProductHref(handle: string, _packQty?: number): string {
   return productPath(parent || handle)
 }
 
+/**
+ * Shelf/card label in Core Peptides style:
+ * - single: "Adamax (10mg)"
+ * - multi: "BPC-157 (5mg / 10mg)"
+ */
+export function getShelfProductLabel(product: StoreProduct): string {
+  const parent = getCompoundParentHandle(product.handle) || product.handle
+  const family = getCompoundFamily(parent)
+  const baseName = stripStrengthFromDisplayName(getProductDisplayName(product))
+
+  if (family?.members.length) {
+    return formatProductLabelWithStrengths(
+      baseName,
+      family.members.map((member) => member.strengthLabel)
+    )
+  }
+
+  const single = getProductStrengthLabel(product)
+  if (single) return formatProductLabelWithStrengths(baseName, [single])
+
+  return formatProductLabelWithStrengths(baseName, [])
+}
+
+/** Search/index fallback when only handle + title are available. */
+export function getShelfLabelForHandle(handle: string, fallbackTitle: string): string {
+  const parent = getCompoundParentHandle(handle) || handle
+  const family = getCompoundFamily(parent)
+  const baseName = stripStrengthFromDisplayName(fallbackTitle)
+
+  if (family?.members.length) {
+    return formatProductLabelWithStrengths(
+      baseName,
+      family.members.map((member) => member.strengthLabel)
+    )
+  }
+
+  const parsed = parseStrengthHandle(handle)
+  if (parsed) {
+    return formatProductLabelWithStrengths(baseName, [formatStrengthLabel(parsed.strengthKey)])
+  }
+
+  const handleStrength = handle.match(
+    /(\d+-\d+mg|\d+(?:\.\d+)?(?:mg|ml|mcg)|\d+-iu|\d+iu)$/i
+  )
+  if (handleStrength) {
+    const raw = handleStrength[1].toLowerCase()
+    const label = /^\d+-\d+mg$/i.test(raw)
+      ? raw.replace("-", ".")
+      : formatStrengthLabel(raw)
+    return formatProductLabelWithStrengths(baseName, [label])
+  }
+
+  return baseName
+}
+
 export function buildCompoundProductPath(
   parentHandle: string,
   _strengthKey?: string,
@@ -212,12 +269,7 @@ export function resolveCompoundRedirect(
 }
 
 function stripStrengthFromTitle(title: string): string {
-  const cleaned = title
-    .replace(/\s+\d+(?:\.\d+)?\s*(mg|ml|mcg|iu)\b/gi, "")
-    .replace(/\s*\(\d+(?:\.\d+)?\s*(mg|ml|mcg|iu)\)\s*$/i, "")
-    .replace(/\s{2,}/g, " ")
-    .trim()
-  return cleaned || title
+  return stripStrengthFromDisplayName(title)
 }
 
 type ResearchForm = "nasal" | "capsule" | "liquid" | "powder"

@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import type { SearchResult } from "@/lib/search"
 import { formatShelfPriceFromUnitCents } from "@/lib/pack-pricing"
-import { getProductHref } from "@/lib/compound-product"
+import { getProductHref, getShelfLabelForHandle } from "@/lib/compound-product"
 import { getProductImage } from "@/lib/product-image-map"
 import { ShelfPriceLabel } from "@/components/shelf-price-label"
 
@@ -36,6 +36,7 @@ function shelfPriceFromSearchResult(result: SearchResult) {
 export function SearchResultCard({ result }: Props) {
   const shelf = shelfPriceFromSearchResult(result)
   const image = getProductImage(result.handle)
+  const label = getShelfLabelForHandle(result.handle, result.title)
 
   return (
     <Link
@@ -45,7 +46,7 @@ export function SearchResultCard({ result }: Props) {
       <div className="product-card-media">
         <Image
           src={image}
-          alt={result.title}
+          alt={label}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
           className="product-card-media-image"
@@ -54,7 +55,7 @@ export function SearchResultCard({ result }: Props) {
       <div className="flex flex-1 flex-col border-t border-[#E2E8F0] p-4">
         <p className="font-mono text-[10px] uppercase tracking-wide text-[#0D9488]">{result.category}</p>
         <h2 className="mt-2 font-serif text-lg text-[#0F172A] transition group-hover:text-[#0D9488]">
-          {result.title}
+          {label}
         </h2>
         <div className="mt-auto pt-4">
           <ShelfPriceLabel shelf={shelf} variant="search" />

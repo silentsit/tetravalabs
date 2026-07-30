@@ -380,8 +380,8 @@ export function isGlowBlendProduct(product: StoreProduct) {
 }
 
 const BPC_TB500_BLEND_NAMES: Record<string, string> = {
-  "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 Blend (10mg)",
-  "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 Blend (20mg)"
+  "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 Blend",
+  "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 Blend"
 }
 
 const CAPSULE_CARD_COPY: Record<string, { name: string; subtitle: string }> = {
@@ -420,12 +420,49 @@ export function getProductDisplaySubtitle(product: StoreProduct) {
 }
 
 export function getProductStrengthLabel(product: StoreProduct) {
-  if (product.handle in BPC_TB500_BLEND_NAMES) return null
   if (product.handle in CAPSULE_CARD_COPY) return null
+  const bpcTb = product.handle.match(/^bpc-157-5mg-tb500-5mg-(\d+mg)$/i)
+  if (bpcTb) return bpcTb[1]
   const fromMeta = product.metadata?.strength
   if (fromMeta && fromMeta !== "Standard") return String(fromMeta)
-  const match = product.handle.match(/(\d+mg)$/i)
-  return match?.[1] || null
+  const match = product.handle.match(
+    /(\d+-\d+mg|\d+(?:\.\d+)?(?:mg|ml|mcg)|\d+-iu|\d+iu)$/i
+  )
+  if (match) {
+    const raw = match[1]
+    if (/^\d+-\d+mg$/i.test(raw)) return raw.replace("-", ".")
+    if (/^\d+-iu$/i.test(raw)) return raw.replace(/-iu$/i, " IU")
+    if (/^\d+iu$/i.test(raw)) return raw.replace(/iu$/i, " IU")
+    return raw
+  }
+  return null
+}
+
+/** Strip trailing strength tokens so labels can re-attach Core-style parentheses. */
+export function stripStrengthFromDisplayName(title: string): string {
+  const cleaned = title
+    .replace(/\s+\d+(?:\.\d+)?\s*(mg|ml|mcg|iu)\b/gi, "")
+    .replace(/\s*\(\d+(?:\.\d+)?\s*(mg|ml|mcg|iu)(?:\s*\/\s*\d+(?:\.\d+)?\s*(mg|ml|mcg|iu))*\)\s*$/i, "")
+    .replace(/\s{2,}/g, " ")
+    .trim()
+  return cleaned || title
+}
+
+/** Core Peptides-style: "BPC-157 (5mg / 10mg)" or "B7-33 (6mg)". */
+export function formatProductLabelWithStrengths(
+  displayName: string,
+  strengthLabels: Array<string | null | undefined>
+): string {
+  const base = stripStrengthFromDisplayName(displayName)
+  const labels = [
+    ...new Set(
+      strengthLabels
+        .map((label) => String(label || "").trim())
+        .filter((label) => label && label.toLowerCase() !== "standard")
+    )
+  ]
+  if (!labels.length) return base
+  return `${base} (${labels.join(" / ")})`
 }
 
 /** Avoid repeating strength when the catalog title already includes it (e.g. "Retatrutide 10mg"). */
@@ -433,10 +470,14 @@ export function strengthAlreadyInName(displayName: string, strengthLabel: string
   if (!strengthLabel) return false
   const name = displayName.toLowerCase()
   const strength = strengthLabel.toLowerCase()
-  return name.endsWith(strength) || name.includes(strength)
+  if (/\([^)]*\)\s*$/.test(name)) {
+    return name.includes(`(${strength})`) || name.includes(strength)
+  }
+  return name.endsWith(strength) || name.includes(` ${strength}`)
 }
 
 export function getProductFullName(displayName: string, strengthLabel: string | null) {
-  if (!strengthLabel || strengthAlreadyInName(displayName, strengthLabel)) return displayName
-  return `${displayName} ${strengthLabel}`
+  if (!strengthLabel || strengthLabel.toLowerCase() === "standard") return displayName
+  // Always normalize to Core style, including "Name 10mg" → "Name (10mg)".
+  return formatProductLabelWithStrengths(displayName, [strengthLabel])
 }

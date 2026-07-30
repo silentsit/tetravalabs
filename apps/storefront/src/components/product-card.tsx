@@ -8,7 +8,6 @@ import { useCart } from "@/components/cart-provider"
 import { getFeaturedProductImage, getProductImage } from "@/lib/product-image-map"
 import {
   getPrimaryVariant,
-  getProductDisplayName,
   getProductDisplaySubtitle,
   getProductPrice,
   isBlendProduct,
@@ -19,7 +18,7 @@ import {
   packTiersFromVariants,
   resolveProductPurchaseLayout
 } from "@/lib/pack-pricing"
-import { getProductHref } from "@/lib/compound-product"
+import { getProductHref, getShelfProductLabel } from "@/lib/compound-product"
 import { ShelfPriceLabel } from "@/components/shelf-price-label"
 
 interface ProductCardProps {
@@ -41,7 +40,7 @@ export function ProductCard({
 }: ProductCardProps) {
   const { addItem } = useCart()
   const variantRow = getPrimaryVariant(product)
-  const displayName = getProductDisplayName(product)
+  const displayName = getShelfProductLabel(product)
   const capsuleSubtitle = isCapsuleProduct(product) ? getProductDisplaySubtitle(product) : null
   const packTiers = packTiersFromVariants(product.variants || [])
   const cartPackTier = packTiers[0] ?? null

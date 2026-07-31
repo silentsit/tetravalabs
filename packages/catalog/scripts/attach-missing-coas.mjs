@@ -382,18 +382,30 @@ async function run() {
     wired += 1
   }
 
-  // Prefer live handle aliases on any remaining legacy COA rows we may sync.
+  // Prefer live handle aliases on any remaining legacy COA rows we may sync,
+  // but never collide with an existing canonical entry for the same live handle.
+  const coaByLiveHandle = new Map(
+    manifest
+      .filter((entry) => entry.document_type === "coa")
+      .map((entry) => [entry.variant_handle, entry])
+  )
   for (const entry of manifest) {
     if (entry.document_type !== "coa") continue
     const live = MANIFEST_HANDLE_ALIASES[entry.variant_handle]
-    if (live && live !== entry.variant_handle && unattached.has(live)) {
-      entry.variant_handle = live
-      entry.metadata = {
-        ...(entry.metadata || {}),
-        variant_handle: live
-      }
-      updatedHandle += 1
+    if (!live || live === entry.variant_handle || !unattached.has(live)) continue
+    const existing = coaByLiveHandle.get(live)
+    if (existing && existing.id !== entry.id) {
+      // Drop legacy duplicate local_file so sync won't reattach a twin row.
+      delete entry.local_file
+      continue
     }
+    entry.variant_handle = live
+    entry.metadata = {
+      ...(entry.metadata || {}),
+      variant_handle: live
+    }
+    coaByLiveHandle.set(live, entry)
+    updatedHandle += 1
   }
 
   if (!dryRun) {

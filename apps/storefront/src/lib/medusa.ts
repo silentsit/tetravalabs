@@ -225,7 +225,23 @@ function mergeCoaDocuments(...batches: StoreCoaDocument[][]) {
       merged.push(doc)
     }
   }
-  return merged.sort((a, b) => {
+
+  // Collapse legacy duplicate rows (same variant + batch + type), prefer canonical ids.
+  const byBatch = new Map<string, StoreCoaDocument>()
+  for (const doc of merged) {
+    const key = `${doc.variant_id}|${doc.batch_number}|${doc.document_type}`
+    const existing = byBatch.get(key)
+    if (!existing) {
+      byBatch.set(key, doc)
+      continue
+    }
+    const preferNew =
+      (doc.id.includes("_plus_") ? 0 : 1) - (existing.id.includes("_plus_") ? 0 : 1) ||
+      existing.id.localeCompare(doc.id)
+    if (preferNew > 0) byBatch.set(key, doc)
+  }
+
+  return [...byBatch.values()].sort((a, b) => {
     if (a.document_type !== b.document_type) {
       return a.document_type === "coa" ? -1 : 1
     }
@@ -251,6 +267,8 @@ const COA_DOC_HANDLE_ALIASES: Record<string, string> = {
   "cu-tb500-bpc-157-kpv-blend-80mg": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
   "bpc-157-tb500-blend-10mg": "bpc-157-5mg-tb500-5mg-10mg",
   "bpc-157-tb500-blend-20mg": "bpc-157-5mg-tb500-5mg-20mg",
+  "cagrilintide-plus-semaglutide-5mg": "cagrilintide-semaglutide-5mg",
+  "cagrilintide-plus-semaglutide-10mg": "cagrilintide-semaglutide-10mg",
   "cjc-1295-ipamorelin-blend-10mg": "cjc-1295-without-dac-ipamorelin-blend-10mg",
   "cjc-1295-sermorelin-ipamorelin-blend-5mg":
     "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg"

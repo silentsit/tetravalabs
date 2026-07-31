@@ -468,42 +468,6 @@
     "local_file": "COA_Cagrilintide_5mg.pdf"
   },
   {
-    "id": "coa_cagrilintide_plus_semaglutide_10mg_batch_a001",
-    "product_handle": "cagrilintide-plus-semaglutide",
-    "variant_handle": "cagrilintide-semaglutide-10mg",
-    "batch_number": "A001",
-    "purity_percent": 99,
-    "tested_at": "2026-03-25T00:00:00.000Z",
-    "document_type": "coa",
-    "metadata": {
-      "compound": "Cagrilintide / Semaglutide combination",
-      "variant": "10mg",
-      "source": "generated",
-      "source_filename": "COA_Cagrilintide_+_Semaglutide_10mg.pdf",
-      "form": "injectable",
-      "variant_handle": "cagrilintide-semaglutide-10mg"
-    },
-    "local_file": "COA_Cagrilintide_+_Semaglutide_10mg.pdf"
-  },
-  {
-    "id": "coa_cagrilintide_plus_semaglutide_5mg_batch_a001",
-    "product_handle": "cagrilintide-plus-semaglutide",
-    "variant_handle": "cagrilintide-semaglutide-5mg",
-    "batch_number": "A001",
-    "purity_percent": 99,
-    "tested_at": "2026-08-21T00:00:00.000Z",
-    "document_type": "coa",
-    "metadata": {
-      "compound": "Cagrilintide / Semaglutide combination",
-      "variant": "5mg",
-      "source": "generated",
-      "source_filename": "COA_Cagrilintide_+_Semaglutide_5mg.pdf",
-      "form": "injectable",
-      "variant_handle": "cagrilintide-semaglutide-5mg"
-    },
-    "local_file": "COA_Cagrilintide_+_Semaglutide_5mg.pdf"
-  },
-  {
     "id": "coa_cagrilintide_semaglutide_10mg_batch_a001",
     "product_handle": "cagrilintide-semaglutide",
     "variant_handle": "cagrilintide-semaglutide-10mg",

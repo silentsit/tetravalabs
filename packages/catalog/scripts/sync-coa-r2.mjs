@@ -131,10 +131,10 @@ async function fetchProducts() {
     const response = await fetch(
       `${medusaUrl}/store/products?limit=${limit}&offset=${offset}&fields=id,handle,title,*variants,*variants.metadata`,
       {
-      headers: {
-        ...(publishableKey ? { "x-publishable-api-key": publishableKey } : {})
+        headers: {
+          ...(publishableKey ? { "x-publishable-api-key": publishableKey } : {})
+        }
       }
-    }
     )
     if (!response.ok) {
       throw new Error(`Failed to load products from Medusa (${response.status})`)
@@ -407,6 +407,7 @@ async function run() {
   let skipped = 0
 
   if (!backfillPreviewsOnly) {
+    const syncedLiveHandles = new Set()
     for (const entry of manifest) {
       if (attachHandles) {
         const rawHandle = entry.variant_handle || entry.product_handle
@@ -419,6 +420,12 @@ async function run() {
           skipped += 1
           continue
         }
+        if (syncedLiveHandles.has(liveHandle)) {
+          console.warn(`[skip] ${entry.id}: duplicate COA for ${liveHandle}`)
+          skipped += 1
+          continue
+        }
+        syncedLiveHandles.add(liveHandle)
       }
 
       const variantId = resolveVariantId(products, entry)

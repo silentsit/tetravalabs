@@ -12,7 +12,8 @@
     "start": "next start -p 3000",
     "lint": "next lint",
     "map:images": "node scripts/map-medusa-images.mjs",
-    "validate:images": "node scripts/validate-image-map.mjs"
+    "validate:images": "node scripts/validate-image-map.mjs",
+    "overview:manifest": "node scripts/sync-overview-manifest.mjs"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.20",

@@ -18,6 +18,7 @@ import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata } from "@/lib/seo"
 import { getProductFaqs } from "@/lib/product-faqs"
 import { buildResearchOverview } from "@/lib/research-overview"
+import { buildOverviewImages } from "@/lib/product-overview-images"
 
 type Props = {
   params: Promise<{ handle: string }>
@@ -103,6 +104,18 @@ export default async function ProductPage({ params }: Props) {
       })
     ])
   )
+  const defaultStrength =
+    view.strengths.find((item) => item.strengthKey === defaultStrengthKey) || view.strengths[0]
+  const overviewImages = buildOverviewImages(
+    view.parentHandle,
+    defaultStrength?.galleryImages.length
+      ? defaultStrength.galleryImages
+      : defaultStrength
+        ? [defaultStrength.image]
+        : [],
+    compoundSeoName(view, defaultStrength?.strengthKey || defaultStrengthKey),
+    view.categoryLabel
+  )
 
   return (
     <article className="page-container space-y-10 py-8">
@@ -120,6 +133,7 @@ export default async function ProductPage({ params }: Props) {
         coasByStrength={coasByStrength}
         reviewsByStrength={reviewsByStrength}
         researchSummariesByStrength={researchSummariesByStrength}
+        overviewImages={overviewImages}
         faqs={faqs}
       />
 

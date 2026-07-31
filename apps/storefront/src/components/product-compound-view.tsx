@@ -12,6 +12,7 @@ import {
   type CompoundProductView
 } from "@/lib/compound-product"
 import { siteConfig } from "@/lib/seo"
+import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchasePanel } from "@/components/product-purchase-panel"
 import {
@@ -89,10 +90,15 @@ export function ProductCompoundView({
     // Strength/pack stay in React state; URL is always the clean parent handle.
     syncUrl(view.parentHandle)
 
+    const seoOverride = getProductSeoOverride(view.parentHandle)
     const seoName = compoundSeoName(view, selectedStrength.strengthKey)
-    document.title = `${seoName} — ${view.categoryLabel} | ${siteConfig.name}`
+    document.title =
+      seoOverride?.absoluteTitle ||
+      `${seoName} — ${view.categoryLabel} | ${siteConfig.name}`
 
-    const description = `${seoName} for laboratory research (RUO). ${selectedStrength.purity} purity with lot-linked COA.`
+    const description =
+      seoOverride?.description ||
+      `${seoName} for laboratory research (RUO). ${selectedStrength.purity} purity with lot-linked COA.`
     let meta = document.querySelector('meta[name="description"]')
     if (!meta) {
       meta = document.createElement("meta")
@@ -113,6 +119,8 @@ export function ProductCompoundView({
   if (!selectedStrength) return null
 
   const headingName = compoundSeoName(view, selectedStrength.strengthKey)
+  const seoOverride = getProductSeoOverride(view.parentHandle)
+  const galleryAlt = seoOverride?.imageAlt || headingName
 
   const coas = coasByStrength[selectedStrength.strengthKey] || []
   const reviews = reviewsByStrength[selectedStrength.strengthKey] || {
@@ -136,7 +144,7 @@ export function ProductCompoundView({
           <ProductImageGallery
             key={selectedStrength.imageHandle}
             productImages={galleryImages}
-            productName={headingName}
+            productName={galleryAlt}
             coas={coas}
           />
         </div>

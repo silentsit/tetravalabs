@@ -10,6 +10,7 @@ import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medus
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
 import { articleJsonLd, faqJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
 import { getProductFaqs } from "@/lib/product-faqs"
+import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
 import { getProductImage, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 
@@ -49,7 +50,13 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   const view = await getCompoundProductView(catalogHandle)
   if (view) {
     const strength = view.strengths[0]
+    const seoOverride = getProductSeoOverride(view.parentHandle)
     const seoName = compoundSeoProductName(view)
+    const pageTitle =
+      seoOverride?.absoluteTitle.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim() ||
+      `${seoName} — ${view.categoryLabel}`
+    const pageDescription =
+      seoOverride?.description || `${seoName} for laboratory research (RUO).`
     const imageHandle = strength?.imageHandle || strength?.handle || view.parentHandle
     const allVariants = view.strengths.flatMap(
       (item) => (item.variants || []) as NonNullable<StoreProduct["variants"]>
@@ -58,6 +65,7 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
       title: seoName,
       handle: view.parentHandle,
       metadata: { source_category: view.categoryLabel },
+      description: pageDescription,
       variants: allVariants
     }
     const image = getMappedHandleImage(imageHandle)
@@ -71,8 +79,8 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     return [
       productJsonLd(productLike, view.parentHandle, image),
       webPageJsonLd({
-        title: `${seoName} — ${view.categoryLabel}`,
-        description: `${seoName} for laboratory research (RUO).`,
+        title: pageTitle,
+        description: pageDescription,
         path
       }),
       faqJsonLd(faqs, path)

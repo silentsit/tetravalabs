@@ -17,6 +17,7 @@ import { ProductCompoundView } from "@/components/product-compound-view"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata } from "@/lib/seo"
+import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductFaqs } from "@/lib/product-faqs"
 import { buildResearchOverview } from "@/lib/research-overview"
 import { buildOverviewImages } from "@/lib/product-overview-images"
@@ -60,10 +61,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const selected = view.strengths.find((item) => item.strengthKey === strengthKey) || view.strengths[0]
   const productName = compoundSeoProductName(view)
   const cas = view.casNumber !== "N/A" ? ` CAS ${view.casNumber}.` : ""
+  const seoOverride = getProductSeoOverride(view.parentHandle)
 
   return buildPageMetadata({
-    title: `${productName} — ${view.categoryLabel}`,
-    description: `${productName} for laboratory research (RUO). ${selected?.purity || "99%+"} purity with lot-linked COA.${cas}`,
+    title: seoOverride
+      ? seoOverride.absoluteTitle
+      : `${productName} — ${view.categoryLabel}`,
+    absoluteTitle: seoOverride?.absoluteTitle,
+    description:
+      seoOverride?.description ||
+      `${productName} for laboratory research (RUO). ${selected?.purity || "99%+"} purity with lot-linked COA.${cas}`,
     path: productPath(view.parentHandle),
     image: selected?.image
   })

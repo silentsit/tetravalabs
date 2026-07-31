@@ -36,7 +36,7 @@ export function CoaLibraryProductDetail({ product }: Props) {
             {product.displayName}
           </h1>
           <p className="mt-4 max-w-2xl text-[#475569]">
-            Lot-linked Certificates of Analysis and HPLC documents for this catalog product.
+            Lot-linked Certificates of Analysis for this catalog product.
             {product.documentCount > 0
               ? ` ${product.documentCount} document${product.documentCount === 1 ? "" : "s"} available.`
               : ""}

@@ -193,11 +193,16 @@ function mergeBucketDocs(primary: CoaBucket, secondary: CoaBucket) {
 /**
  * Collapse flat COA documents into shop-style parent products.
  * Only products with ≥1 document appear.
+ *
+ * HPLC companion rows often ship with blank stub preview JPEGs (~2KB) and
+ * render as empty cards beside the real COA — library UI shows COAs only.
  */
 export function groupCoasByProduct(documents: StoreCoaDocument[]): CoaLibraryProduct[] {
   const buckets = new Map<string, CoaBucket>()
 
   for (const doc of documents) {
+    if (doc.document_type !== "coa") continue
+
     const parentHandle = resolveCoaParentHandle(doc)
     const strengthLabel = resolveDocStrengthLabel(doc, parentHandle)
     const compoundName = normalizeTb500DisplayText(formatCoaCompound(doc))

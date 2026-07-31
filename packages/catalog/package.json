@@ -16,6 +16,9 @@
     "coa:attach-missing": "node scripts/attach-missing-coas.mjs",
     "coa:generate-previews": "node scripts/sync-coa-r2.mjs -- --backfill-previews-only",
     "coa:manifest:generate": "node scripts/generate-coa-manifest.mjs",
+    "overviews:seed": "node scripts/write-product-overviews.mjs",
+    "overviews:expand": "node scripts/expand-product-overviews-longform.mjs",
+    "overviews:build": "npm run overviews:seed && npm run overviews:expand",
     "import:tiered-pricing": "powershell -ExecutionPolicy Bypass -File scripts/import-tiered-pricing.ps1",
     "import:price-list-usd": "python scripts/import-price-list-usd.py"
   },

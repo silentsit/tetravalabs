@@ -416,7 +416,7 @@ async function run() {
   const json = `${JSON.stringify(payload, null, 2)}\n`
   await fs.writeFile(outCatalog, json, "utf8")
   await fs.writeFile(outStorefront, json, "utf8")
-  console.log(`Wrote ${handles.length} product overviews`)
+  console.log(`Wrote ${handles.length} short seed overviews → run expand-product-overviews-longform.mjs next`)
 }
 
 run().catch((error) => {

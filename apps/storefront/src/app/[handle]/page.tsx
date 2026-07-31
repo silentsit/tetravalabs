@@ -89,7 +89,11 @@ export default async function ProductPage({ params }: Props) {
   const defaultStrengthKey = pickDefaultStrengthKey(view.strengths)
   const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
   const crumbName = compoundSeoName(view, defaultStrengthKey)
-  const faqs = getProductFaqs(view.parentHandle)
+  const faqs = getProductFaqs(view.parentHandle, {
+    productName: view.displayName,
+    category: view.categoryLabel,
+    appearance: view.appearance
+  })
 
   return (
     <article className="page-container space-y-10 py-8">

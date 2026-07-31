@@ -240,7 +240,7 @@ export function ProductCompoundView({
           appearance: view.appearance,
           sequence: view.sequence,
           researchSummary: buildResearchOverview({
-            productName: compoundSeoName(view, selectedStrength.strengthKey),
+            productName: view.displayName,
             category: view.categoryLabel,
             appearance: view.appearance,
             handle: selectedStrength.handle,

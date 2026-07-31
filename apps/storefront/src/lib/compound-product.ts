@@ -338,7 +338,11 @@ export function buildResearchOverview(input: {
   const custom = String(input.customSummary || "").trim()
   if (custom) return custom
 
-  const productName = input.productName.trim() || "this compound"
+  // Overview copy uses the base compound name only — never selected strength (e.g. "BPC-157", not "BPC-157 (5mg)").
+  const productName =
+    stripStrengthFromDisplayName(
+      normalizeTb500DisplayText(input.productName.trim() || "this compound")
+    ) || "this compound"
   const curated = overviewParagraphsForHandle(
     input.parentHandle,
     input.handle,
@@ -350,13 +354,19 @@ export function buildResearchOverview(input: {
   const form = detectResearchForm(input.appearance, input.handle, productName)
 
   const paragraphs = [
-    `Buy ${productName} online from Tetrava Labs for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing, with COA documents published when available.`,
-    `${productName} is positioned for teams that need a documented research reagent with consistent identity and purity controls. Comparative protocols should keep reconstitution parameters and vehicle controls identical across arms.`,
-    `Within ${category} study designs, laboratories typically combine receptor, signaling, or phenotypic readouts with careful lot tracking so results remain auditable across operators and time.`,
-    `Typical workflows begin with verifying the sealed vial, filing the COA, and assigning an internal material ID before preparing working solutions for the assay plate map.`,
+    `Buy ${productName} online from Tetrava Labs for qualified laboratory research in the ${category} category. Each lot is documented with third-party analytical testing, with COA documents published when available for the batch you receive.`,
+    `${productName} is positioned for teams that need a documented research reagent with consistent identity and purity controls. Comparative protocols should keep reconstitution parameters, diluent choice, and vehicle controls identical across arms so analytical noise is not mistaken for biology.`,
+    `Mechanism framing should stay tied to peer-reviewed pathway language and your laboratory’s validated endpoints. Treat informal nicknames as labels only — protocol text should use the catalog identity and the analytical fields verified on receipt.`,
+    `Within ${category} study designs, laboratories typically combine receptor, signaling, or phenotypic readouts with careful lot tracking so results remain auditable across operators and time. Dose-response and time-course sampling help separate early signaling from later remodeling endpoints.`,
+    `Comparative and bridging studies benefit from writing material identity into the protocol itself: catalog handle, nominal strength, intended working concentration, and acceptable purity threshold. Include a small same-lot bridging panel when methods move between sites.`,
+    `Typical workflows begin with verifying the sealed vial, filing the COA, and assigning an internal material ID before preparing working solutions for the assay plate map. Capture operator, timestamp, diluent lot, and deviations in the ELN.`,
     researchFormParagraph(productName, form),
+    `Supporting supplies — sterile diluent when required, PPE, labeled secondary containment, and a quarantine shelf for new lots — should be ready before the first open. Align diluent choice with preservative rules in the study design.`,
+    `Stability practice matters as much as nominal potency. Minimize freeze–thaw cycles for reconstituted stocks, protect light-sensitive solutions when indicated, and prefer fresh reconstitution after multi-day pauses unless a validated method says otherwise.`,
     `Retain Certificates of Analysis with working stocks and record catalog handle, batch, and preparation date in your ELN or inventory system before initiating comparative work.`,
-    `Tetrava Labs emphasizes lot-linked documentation to support research procurement decisions — not as a substitute for your own method qualification.`,
+    `Tetrava Labs emphasizes lot-linked documentation to support research procurement decisions — not as a substitute for your own method qualification. Review impurity or residual-solvent notes on the COA when those fields are critical to your endpoint.`,
+    `Buy ${productName} online when you need research-grade supply with transparent catalog identity for qualified laboratories. Choose pack and strength configurations that match assay cadence and retention policy.`,
+    `Institutional biosafety and chemical-hygiene rules take precedence over any general catalog description. Limit purchasing access to staff who understand the research-only restriction.`,
     "For research use only — not for human or veterinary consumption."
   ]
 
@@ -369,7 +379,7 @@ function researchSummaryFor(
   categoryLabel?: string
 ): string {
   return buildResearchOverview({
-    productName: displayName,
+    productName: stripStrengthFromDisplayName(normalizeTb500DisplayText(displayName)),
     category:
       categoryLabel || String(product.metadata?.source_category || "research peptide"),
     appearance: String(product.metadata?.appearance || ""),

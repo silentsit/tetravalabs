@@ -57,7 +57,11 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     }
     const image = getMappedHandleImage(imageHandle)
     const path = productPath(view.parentHandle)
-    const faqs = getProductFaqs(view.parentHandle)
+    const faqs = getProductFaqs(view.parentHandle, {
+      productName: view.displayName,
+      category: view.categoryLabel,
+      appearance: view.appearance
+    })
 
     return [
       productJsonLd(productLike, view.parentHandle, image),
@@ -79,7 +83,11 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   )
   const image = getProductImage(product)
   const path = productPath(catalogHandle)
-  const faqs = getProductFaqs(catalogHandle)
+  const faqs = getProductFaqs(catalogHandle, {
+    productName: displayTitle,
+    category,
+    appearance: String(product.metadata?.appearance || "")
+  })
 
   return [
     productJsonLd(product, catalogHandle, image),

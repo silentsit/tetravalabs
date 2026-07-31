@@ -1,9 +1,9 @@
 import { type FaqItem, productFaqItems } from "@/lib/faq-content"
+import { buildAutoProductFaqs, type ProductFaqContext } from "@/lib/product-faq-auto"
 
 /**
- * Curated PDP FAQs for homepage featured (top-seller) compounds.
- * Keys = compound parent handles from FEATURED_PRODUCT_HANDLES.
- * Non-listed products fall back to generic productFaqItems.
+ * Hand-curated PDP FAQs: featured top sellers + next sales tier.
+ * Other catalog products use buildAutoProductFaqs() (still unique per product).
  */
 export const productFaqsByHandle: Record<string, FaqItem[]> = {
   "bpc-157": [
@@ -261,11 +261,654 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
       answer:
         "No. This listing is a Research Use Only catalog item for laboratory use. It is not a dispensed medication and is not intended for human therapeutic administration."
     }
+  ],
+
+  // --- Next sales tier (curated) ---
+  "aod-9604": [
+    {
+      question: "What is AOD-9604 studied for in research?",
+      answer:
+        "AOD-9604 is a modified fragment related to the C-terminal region of growth hormone, examined in metabolic and adipose-biology research models. Tetrava Labs supplies it as Research Use Only material for qualified laboratories."
+    },
+    {
+      question: "Does AOD-9604 include third-party purity testing?",
+      answer:
+        "Lots are verified by independent HPLC-MS analysis. Review the lot-linked Certificate of Analysis when published and reconcile batch numbers before comparative assays."
+    },
+    {
+      question: "How should AOD-9604 be reconstituted?",
+      answer:
+        "Reconstitute lyophilized powder under sterile technique with a diluent specified by your SOP. Document concentration and operator in your ELN. Laboratory preparation only — not dosing guidance."
+    },
+    {
+      question: "How should AOD-9604 be stored?",
+      answer:
+        "Store lyophilized vials at -20°C. After reconstitution, hold at 4°C with minimal freeze–thaw cycling per your validated method."
+    },
+    {
+      question: "How is AOD-9604 shipped?",
+      answer:
+        "Orders ship in cold-chain-aware packaging where required. Tracking is emailed after dispatch. See Shipping for regional windows."
+    },
+    {
+      question: "Is AOD-9604 for human use?",
+      answer:
+        "No. Catalog AOD-9604 is Research Use Only and must not be used for human or veterinary administration."
+    }
+  ],
+  "cjc-1295-without-dac": [
+    {
+      question: "What is CJC-1295 without DAC used for in research?",
+      answer:
+        "CJC-1295 without DAC (Mod GRF 1-29 analogues) is studied in growth-hormone axis and GHRH-receptor research models. Tetrava Labs lists it strictly as an RUO laboratory reagent."
+    },
+    {
+      question: "How does “without DAC” matter for lab procurement?",
+      answer:
+        "Without-DAC and with-DAC catalog families are distinct identities with different pharmacokinetic research framing. Select the handle that matches your protocol — do not treat them as interchangeable without a bridging study."
+    },
+    {
+      question: "What COA data should I expect for CJC-1295 without DAC?",
+      answer:
+        "Independent HPLC-MS supports purity and identity. File the published COA with your material ID and confirm the strength on the vial label."
+    },
+    {
+      question: "How should CJC-1295 without DAC be stored?",
+      answer:
+        "Keep lyophilized powder at -20°C. Reconstituted stocks are typically stored at 4°C with limited freeze–thaw cycles."
+    },
+    {
+      question: "How is CJC-1295 without DAC shipped?",
+      answer:
+        "Lyophilized vials ship with temperature-controlled packaging where required. Tracking is emailed when the shipment is labeled."
+    },
+    {
+      question: "Is CJC-1295 without DAC Research Use Only?",
+      answer:
+        "Yes. It is not approved for human consumption, compounding for clinical use, or veterinary administration."
+    }
+  ],
+  "cjc-1295-with-dac": [
+    {
+      question: "What is CJC-1295 with DAC in a research catalog?",
+      answer:
+        "CJC-1295 with DAC is a GHRH-analogue research reagent framed for longer-exposure growth-hormone axis models. Tetrava Labs supplies it under Research Use Only terms."
+    },
+    {
+      question: "How is CJC-1295 with DAC purity verified?",
+      answer:
+        "Third-party HPLC-MS testing supports lot identity and purity. Retain the COA with working stocks when published."
+    },
+    {
+      question: "How should CJC-1295 with DAC be reconstituted?",
+      answer:
+        "Use sterile technique and a protocol-appropriate diluent. Record preparation details in your ELN. Not a clinical dosing protocol."
+    },
+    {
+      question: "What are the storage conditions?",
+      answer:
+        "Lyophilized: -20°C. Reconstituted: typically 4°C with minimal freeze–thaw cycling per SOP."
+    },
+    {
+      question: "How is it shipped?",
+      answer:
+        "Cold-chain-aware packaging where required; discreet parcels; email tracking after labeling."
+    },
+    {
+      question: "Can CJC-1295 with DAC be used in humans?",
+      answer: "No. This catalog item is Research Use Only for qualified laboratory professionals."
+    }
+  ],
+  cagrilintide: [
+    {
+      question: "What is cagrilintide studied for in research settings?",
+      answer:
+        "Cagrilintide is an amylin-analogue research peptide examined in metabolic and appetite-pathway models. Tetrava Labs offers it as RUO material only."
+    },
+    {
+      question: "How do I verify cagrilintide identity?",
+      answer:
+        "Review third-party HPLC-MS data on the lot COA when published, and match batch numbers to the sealed vial."
+    },
+    {
+      question: "Which strengths are available?",
+      answer:
+        "Strength and pack options appear in the purchase panel. Choose the configuration that matches assay cadence and retention policy."
+    },
+    {
+      question: "How should cagrilintide be stored?",
+      answer:
+        "Store lyophilized powder at -20°C; reconstituted solutions at 4°C with limited freeze–thaw cycles."
+    },
+    {
+      question: "How is cagrilintide shipped?",
+      answer:
+        "Temperature-controlled packaging where required, with tracking emailed after dispatch."
+    },
+    {
+      question: "Is cagrilintide approved for human use?",
+      answer: "No. It is designated Research Use Only."
+    }
+  ],
+  "cagrilintide-semaglutide": [
+    {
+      question: "What is the cagrilintide + semaglutide blend for research?",
+      answer:
+        "This catalog blend combines amylin- and GLP-1-pathway research reagents for laboratories running multi-agonist metabolic designs. RUO only — not a clinical combination product."
+    },
+    {
+      question: "How should blend identity be documented?",
+      answer:
+        "Treat the blend COA and labeled composition as part of the experimental record. Confirm each component’s strength fields against your protocol before reconstitution."
+    },
+    {
+      question: "How is the blend reconstituted?",
+      answer:
+        "Follow sterile technique and your SOP for multi-component lyophilized reagents. Record diluent, concentration targets, and lot IDs in the ELN."
+    },
+    {
+      question: "Storage guidance?",
+      answer:
+        "Lyophilized blend vials: -20°C. After reconstitution, refrigerate at 4°C and minimize freeze–thaw cycles."
+    },
+    {
+      question: "Shipping?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed when labeled."
+    },
+    {
+      question: "Is this blend for human consumption?",
+      answer: "No. Research Use Only for qualified laboratories."
+    }
+  ],
+  mazdutide: [
+    {
+      question: "What is mazdutide in laboratory research?",
+      answer:
+        "Mazdutide is a dual GLP-1/glucagon receptor agonist analogue studied in metabolic research models. Tetrava Labs supplies it as an RUO catalog reagent."
+    },
+    {
+      question: "How is mazdutide purity verified?",
+      answer:
+        "Independent HPLC-MS testing supports identity and purity. File lot COAs when published."
+    },
+    {
+      question: "How should mazdutide be handled after reconstitution?",
+      answer:
+        "Prepare under sterile conditions per SOP, aliquot if required, and store reconstituted material at 4°C with limited freeze–thaw cycling."
+    },
+    {
+      question: "Storage of lyophilized mazdutide?",
+      answer: "Keep sealed lyophilized vials at -20°C for long-term stability."
+    },
+    {
+      question: "How is mazdutide shipped?",
+      answer: "Temperature-controlled packaging where required; email tracking after dispatch."
+    },
+    {
+      question: "Is mazdutide Research Use Only?",
+      answer: "Yes. Not for human or veterinary administration."
+    }
+  ],
+  nad: [
+    {
+      question: "What is NAD+ used for in research catalogs?",
+      answer:
+        "NAD+ (nicotinamide adenine dinucleotide) research reagents are used in metabolic, redox, and cellular-energy pathway studies. Tetrava Labs lists NAD under Research Use Only."
+    },
+    {
+      question: "How do I confirm NAD lot quality?",
+      answer:
+        "Review the published Certificate of Analysis for the batch you receive and retain it with inventory records."
+    },
+    {
+      question: "Which NAD strengths are available?",
+      answer:
+        "Strength options are shown on this product page. Select based on assay design and institutional inventory controls."
+    },
+    {
+      question: "How should research NAD be stored?",
+      answer:
+        "Follow the storage guidance on this page. Protect lyophilized or liquid forms from unnecessary temperature excursions and light if your SOP requires it."
+    },
+    {
+      question: "How is NAD shipped?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed after labeling."
+    },
+    {
+      question: "Is catalog NAD a supplement for personal use?",
+      answer: "No. This is a Research Use Only laboratory reagent."
+    }
+  ],
+  "bacteriostatic-water": [
+    {
+      question: "What is bacteriostatic water used for in the lab?",
+      answer:
+        "Bacteriostatic water is a research solvent commonly used to reconstitute lyophilized peptides under sterile laboratory protocols. RUO catalog item — not a medical product."
+    },
+    {
+      question: "Does bacteriostatic water have a COA?",
+      answer:
+        "When a lot document is published, it appears in the COA library and on the product page. Match batch identity to the bottle you received."
+    },
+    {
+      question: "How should bacteriostatic water be stored?",
+      answer:
+        "Store sealed per the product specifications, typically at controlled room temperature or as stated on the label/SOP. Record open dates when required."
+    },
+    {
+      question: "Can I use bacteriostatic water for injections in humans?",
+      answer:
+        "No. Tetrava Labs bacteriostatic water is sold for laboratory research use only."
+    },
+    {
+      question: "How is bacteriostatic water shipped?",
+      answer:
+        "Shipped with appropriate packaging for liquid lab supplies. Tracking is emailed after dispatch."
+    },
+    {
+      question: "Which volumes are available?",
+      answer:
+        "Available fill volumes are listed in the purchase options on this page."
+    }
+  ],
+  selank: [
+    {
+      question: "What is Selank studied for in research?",
+      answer:
+        "Selank is a synthetic tuftsin-analogue peptide examined in neuropeptide and stress-pathway research models. Supplied by Tetrava Labs as Research Use Only."
+    },
+    {
+      question: "How is Selank purity documented?",
+      answer:
+        "Third-party HPLC-MS supports lot purity and identity. Cross-check the COA batch with the vial label."
+    },
+    {
+      question: "How should Selank be reconstituted?",
+      answer:
+        "Reconstitute lyophilized material under sterile technique per your SOP. Document diluent and concentration in the ELN. Not clinical dosing advice."
+    },
+    {
+      question: "Storage conditions for Selank?",
+      answer:
+        "Lyophilized: -20°C. Reconstituted: typically 4°C with minimal freeze–thaw cycles."
+    },
+    {
+      question: "How is Selank shipped?",
+      answer: "Temperature-controlled packaging where required; discreet parcels; email tracking."
+    },
+    {
+      question: "Is Selank for human use?",
+      answer: "No. Research Use Only for qualified laboratories."
+    }
+  ],
+  semax: [
+    {
+      question: "What is Semax used for in laboratory research?",
+      answer:
+        "Semax is an ACTH(4-10) analogue studied in neuropeptide and cognitive-research models. Tetrava Labs provides it strictly as an RUO reagent."
+    },
+    {
+      question: "What COA information accompanies Semax?",
+      answer:
+        "Lot-linked HPLC-MS documentation is published when available. Retain analytical summaries with your material ID."
+    },
+    {
+      question: "How should Semax be handled after reconstitution?",
+      answer:
+        "Prepare under sterile conditions, store reconstituted stocks at 4°C, and follow institutional waste and PPE rules."
+    },
+    {
+      question: "How should lyophilized Semax be stored?",
+      answer: "Keep sealed vials at -20°C for long-term stability."
+    },
+    {
+      question: "Shipping for Semax?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed after dispatch."
+    },
+    {
+      question: "Is Semax Research Use Only?",
+      answer: "Yes. Not for human or veterinary administration."
+    }
+  ],
+  epithalon: [
+    {
+      question: "What is Epithalon (Epitalon) in research catalogs?",
+      answer:
+        "Epithalon is a synthetic tetrapeptide studied in longevity and pineal-related research models. Tetrava Labs lists it as Research Use Only."
+    },
+    {
+      question: "How is Epithalon purity verified?",
+      answer:
+        "Independent HPLC-MS analysis supports identity and purity claims for published lots."
+    },
+    {
+      question: "Reconstitution guidance for research use?",
+      answer:
+        "Use sterile technique and a protocol-appropriate diluent. Record preparation parameters in your ELN."
+    },
+    {
+      question: "Storage?",
+      answer:
+        "Lyophilized powder at -20°C; reconstituted solutions at 4°C with limited freeze–thaw cycling."
+    },
+    {
+      question: "How is Epithalon shipped?",
+      answer: "Temperature-controlled packaging where required; email tracking when labeled."
+    },
+    {
+      question: "Can Epithalon be used clinically?",
+      answer: "No. This catalog item is RUO only."
+    }
+  ],
+  "mots-c": [
+    {
+      question: "What is MOTS-c studied for?",
+      answer:
+        "MOTS-c is a mitochondrial-derived peptide examined in metabolic and exercise-physiology research models. Supplied as Research Use Only."
+    },
+    {
+      question: "COA and purity for MOTS-c?",
+      answer:
+        "Lots are tested by third-party HPLC-MS. Match the published COA to the vial batch before assays."
+    },
+    {
+      question: "How should MOTS-c be reconstituted?",
+      answer:
+        "Sterile reconstitution per SOP; document concentration and diluent lot. Not dosing advice."
+    },
+    {
+      question: "Storage requirements?",
+      answer: "Lyophilized at -20°C; reconstituted at 4°C with minimal freeze–thaw cycles."
+    },
+    {
+      question: "Shipping?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed after dispatch."
+    },
+    {
+      question: "Is MOTS-c for human consumption?",
+      answer: "No. Research Use Only."
+    }
+  ],
+  "glow-bpc-157-tb500-ghk-cu": [
+    {
+      question: "What is the GLOW blend (BPC-157 + TB-500 + GHK-Cu)?",
+      answer:
+        "GLOW is a multi-component research blend combining tissue-repair and copper-peptide reagents for laboratories studying combination protocols. RUO only — not a therapeutic cocktail."
+    },
+    {
+      question: "How should blend composition be verified?",
+      answer:
+        "Use the lot COA and labeled component strengths as the source of truth. Record each component identity in the ELN before reconstitution."
+    },
+    {
+      question: "How is GLOW reconstituted?",
+      answer:
+        "Reconstitute under sterile technique per your multi-peptide SOP. Keep vehicle and concentration controls consistent across study arms."
+    },
+    {
+      question: "Storage for GLOW blend vials?",
+      answer:
+        "Store lyophilized blend at -20°C. After reconstitution, refrigerate at 4°C and avoid repeated freeze–thaw cycles."
+    },
+    {
+      question: "How is GLOW shipped?",
+      answer: "Temperature-controlled packaging where required; discreet shipping; email tracking."
+    },
+    {
+      question: "Is the GLOW blend for human use?",
+      answer: "No. Research Use Only for qualified laboratories."
+    }
+  ],
+  "bpc-157-tb500-blend": [
+    {
+      question: "What is the BPC-157 + TB-500 research blend?",
+      answer:
+        "A two-component tissue-repair research blend for laboratories evaluating combination peptide protocols. Distinct from single-SKU BPC-157 or TB-500 — document identity carefully."
+    },
+    {
+      question: "How do I read the COA for a blend?",
+      answer:
+        "Confirm the COA lists the expected components and batch. File analytical data with your material ID before comparative work."
+    },
+    {
+      question: "Reconstitution notes?",
+      answer:
+        "Sterile technique, SOP-defined diluent, and ELN documentation of concentration targets for each study arm."
+    },
+    {
+      question: "Storage?",
+      answer: "Lyophilized at -20°C; reconstituted at 4°C with limited freeze–thaw cycling."
+    },
+    {
+      question: "Shipping?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed after labeling."
+    },
+    {
+      question: "Is this blend Research Use Only?",
+      answer: "Yes. Not for human or veterinary administration."
+    }
+  ],
+  sermorelin: [
+    {
+      question: "What is sermorelin used for in research?",
+      answer:
+        "Sermorelin is a GHRH(1-29) analogue studied in growth-hormone axis research. Tetrava Labs supplies it as an RUO laboratory reagent."
+    },
+    {
+      question: "How is sermorelin purity verified?",
+      answer:
+        "Independent HPLC-MS testing supports lot identity and purity when a COA is published."
+    },
+    {
+      question: "How should sermorelin be reconstituted?",
+      answer:
+        "Reconstitute under sterile conditions per SOP. Record diluent and concentration in your ELN."
+    },
+    {
+      question: "Storage conditions?",
+      answer: "Lyophilized at -20°C; reconstituted typically at 4°C with minimal freeze–thaw cycles."
+    },
+    {
+      question: "How is sermorelin shipped?",
+      answer: "Temperature-controlled packaging where required; email tracking after dispatch."
+    },
+    {
+      question: "Is sermorelin a prescription medicine on this site?",
+      answer: "No. This listing is Research Use Only and not a dispensed medication."
+    }
+  ],
+  tesamorelin: [
+    {
+      question: "What is tesamorelin in a research context?",
+      answer:
+        "Tesamorelin is a GHRH analogue examined in growth-hormone axis and metabolic research models. Catalogued here as Research Use Only."
+    },
+    {
+      question: "COA documentation for tesamorelin?",
+      answer:
+        "Third-party HPLC-MS data is published per lot when available. Match batch numbers before locking experimental design."
+    },
+    {
+      question: "Laboratory handling after reconstitution?",
+      answer:
+        "Sterile preparation, refrigerated storage of working solutions, and limited freeze–thaw cycles per SOP."
+    },
+    {
+      question: "Lyophilized storage?",
+      answer: "Keep sealed vials at -20°C."
+    },
+    {
+      question: "Shipping?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed when labeled."
+    },
+    {
+      question: "Human use?",
+      answer: "Not permitted. Research Use Only."
+    }
+  ],
+  "igf-1-lr3": [
+    {
+      question: "What is IGF-1 LR3 used for in research?",
+      answer:
+        "IGF-1 LR3 is a long-arginine-3 insulin-like growth factor analogue studied in cell growth and signaling models. Supplied as RUO material only."
+    },
+    {
+      question: "How is IGF-1 LR3 purity confirmed?",
+      answer:
+        "Review lot-linked third-party analytical documentation when published and retain it with inventory records."
+    },
+    {
+      question: "Reconstitution guidance?",
+      answer:
+        "Follow sterile technique and your assay SOP for growth-factor reagents. Document vehicle and concentration carefully."
+    },
+    {
+      question: "Storage?",
+      answer:
+        "Lyophilized at -20°C; reconstituted stocks typically refrigerated with strict freeze–thaw control."
+    },
+    {
+      question: "Shipping?",
+      answer: "Temperature-controlled packaging where required; email tracking after dispatch."
+    },
+    {
+      question: "Is IGF-1 LR3 for human use?",
+      answer: "No. Research Use Only for qualified laboratories."
+    }
+  ],
+  kpv: [
+    {
+      question: "What is KPV studied for in research?",
+      answer:
+        "KPV is an alpha-MSH-derived tripeptide examined in inflammation and barrier-model research. Tetrava Labs lists it as Research Use Only."
+    },
+    {
+      question: "Purity and COA for KPV?",
+      answer:
+        "Lots are supported by independent HPLC-MS analysis. Cross-check the COA batch with the vial."
+    },
+    {
+      question: "How should KPV be reconstituted?",
+      answer:
+        "Sterile reconstitution per SOP; ELN documentation of concentration and diluent. Not dosing advice."
+    },
+    {
+      question: "Storage conditions?",
+      answer: "Lyophilized at -20°C; reconstituted at 4°C with minimal freeze–thaw cycles."
+    },
+    {
+      question: "Shipping?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed after labeling."
+    },
+    {
+      question: "Is KPV Research Use Only?",
+      answer: "Yes."
+    }
+  ],
+  "thymosin-alpha-1": [
+    {
+      question: "What is Thymosin Alpha-1 in research catalogs?",
+      answer:
+        "Thymosin Alpha-1 is a thymic peptide studied in immune-modulation research models. Offered here strictly as an RUO reagent."
+    },
+    {
+      question: "How is Thymosin Alpha-1 documented?",
+      answer:
+        "Lot COAs with HPLC-MS summaries are published when available. File them with your material ID."
+    },
+    {
+      question: "Reconstitution and handling?",
+      answer:
+        "Prepare under sterile technique per SOP. Record operator, diluent, and concentration in the ELN."
+    },
+    {
+      question: "Storage?",
+      answer: "Lyophilized at -20°C; reconstituted typically at 4°C with limited freeze–thaw cycling."
+    },
+    {
+      question: "Shipping?",
+      answer: "Temperature-controlled packaging where required; email tracking."
+    },
+    {
+      question: "Human therapeutic use?",
+      answer: "Not allowed. Research Use Only."
+    }
+  ],
+  "5-amino-1mq": [
+    {
+      question: "What is 5-Amino-1MQ studied for?",
+      answer:
+        "5-Amino-1MQ is a small-molecule NNMT-pathway research tool used in metabolic laboratory models. Catalogued as Research Use Only."
+    },
+    {
+      question: "How is 5-Amino-1MQ purity verified?",
+      answer:
+        "Independent analytical testing supports lot identity and purity when a COA is published."
+    },
+    {
+      question: "How should 5-Amino-1MQ be prepared?",
+      answer:
+        "Follow your SOP for small-molecule research reagents (solvent choice, sterile filtration if required, and ELN documentation). Not human-use guidance."
+    },
+    {
+      question: "Storage?",
+      answer:
+        "Store per the product specifications — typically cold, dry, and sealed. Protect from unnecessary moisture."
+    },
+    {
+      question: "Shipping?",
+      answer: "Shipped with appropriate packaging; tracking emailed after dispatch."
+    },
+    {
+      question: "Is 5-Amino-1MQ for human consumption?",
+      answer: "No. Research Use Only."
+    }
+  ],
+  "ss-31": [
+    {
+      question: "What is SS-31 (Elamipretide) in research?",
+      answer:
+        "SS-31 is a mitochondria-targeting peptide studied in bioenergetics and oxidative-stress models. Tetrava Labs supplies it as RUO material."
+    },
+    {
+      question: "COA expectations for SS-31?",
+      answer:
+        "Third-party HPLC-MS documentation is published per lot when available. Match batch identity before assays."
+    },
+    {
+      question: "Reconstitution guidance?",
+      answer:
+        "Sterile technique and SOP-defined diluent; record concentration in the ELN. Not clinical dosing advice."
+    },
+    {
+      question: "Storage?",
+      answer: "Lyophilized at -20°C; reconstituted at 4°C with minimal freeze–thaw cycles."
+    },
+    {
+      question: "Shipping?",
+      answer: "Cold-chain-aware packaging where required; tracking emailed after labeling."
+    },
+    {
+      question: "Is SS-31 Research Use Only?",
+      answer: "Yes. Not for human or veterinary administration."
+    }
   ]
 }
 
-/** Resolve PDP FAQs for a compound parent handle; generic fallback for the rest of the catalog. */
-export function getProductFaqs(parentHandle: string): FaqItem[] {
+/** Curated FAQs if present; otherwise unique auto FAQs from catalog context. */
+export function getProductFaqs(
+  parentHandle: string,
+  context?: Omit<ProductFaqContext, "parentHandle">
+): FaqItem[] {
   const key = parentHandle.trim().toLowerCase()
-  return productFaqsByHandle[key] || productFaqItems
+  const curated = productFaqsByHandle[key]
+  if (curated?.length) return curated
+
+  const auto = buildAutoProductFaqs({
+    parentHandle: key,
+    productName: context?.productName,
+    category: context?.category,
+    appearance: context?.appearance
+  })
+  return auto.length ? auto : productFaqItems
 }

@@ -6,7 +6,6 @@ import type { ProductReviewsResponse } from "@/lib/reviews"
 import type { FaqItem } from "@/lib/faq-content"
 import {
   buildCompoundProductPath,
-  buildResearchOverview,
   compoundSeoName,
   pickDefaultPackQty,
   pickDefaultStrengthKey,
@@ -76,6 +75,7 @@ type Props = {
   initialPack?: string | null
   coasByStrength: Record<string, StoreCoaDocument[]>
   reviewsByStrength: Record<string, ProductReviewsResponse>
+  researchSummariesByStrength: Record<string, string>
   faqs: FaqItem[]
 }
 
@@ -101,6 +101,7 @@ export function ProductCompoundView({
   initialPack,
   coasByStrength,
   reviewsByStrength,
+  researchSummariesByStrength,
   faqs
 }: Props) {
   const [strengthKey, setStrengthKey] = useState(() =>
@@ -206,8 +207,8 @@ export function ProductCompoundView({
             displayName={view.displayName}
             categoryLabel={view.categoryLabel}
             researchSummary={
-              String(selectedStrength.metadata?.research_summary || "").trim() ||
-              view.researchSummary
+              researchSummariesByStrength[selectedStrength.strengthKey] ||
+              String(selectedStrength.metadata?.research_summary || "").trim()
             }
             selectedStrength={selectedStrength}
           />
@@ -239,14 +240,9 @@ export function ProductCompoundView({
           storage: view.storage,
           appearance: view.appearance,
           sequence: view.sequence,
-          researchSummary: buildResearchOverview({
-            productName: view.displayName,
-            category: view.categoryLabel,
-            appearance: view.appearance,
-            handle: selectedStrength.handle,
-            parentHandle: view.parentHandle,
-            customSummary: String(selectedStrength.metadata?.research_summary || "")
-          })
+          researchSummary:
+            researchSummariesByStrength[selectedStrength.strengthKey] ||
+            String(selectedStrength.metadata?.research_summary || "").trim()
         }}
         productId={selectedStrength.productId}
         coas={coas}

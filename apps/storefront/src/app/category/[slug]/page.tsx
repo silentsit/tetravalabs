@@ -4,7 +4,6 @@ import { notFound, redirect } from "next/navigation"
 import { listProducts } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
-import { ProductSortSelect } from "@/components/product-sort-select"
 import {
   CATEGORY_NAME_BY_SLUG,
   categoryLabelFromSlug,
@@ -17,11 +16,10 @@ import {
 import { getCategorySeoBlock } from "@/lib/sanity"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
 import { buildPageMetadata } from "@/lib/seo"
-import { parseProductSort, sortProducts } from "@/lib/sort-products"
+import { sortProducts } from "@/lib/sort-products"
 
 type Props = {
   params: Promise<{ slug: string }>
-  searchParams: Promise<{ sort?: string }>
 }
 
 export const revalidate = 300
@@ -64,9 +62,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-export default async function CategoryPage({ params, searchParams }: Props) {
+export default async function CategoryPage({ params }: Props) {
   const { slug } = await params
-  const { sort = "" } = await searchParams
   const normalized = normalizeCategorySlug(slug)
 
   if (typeof normalized === "string" && normalized !== slug && isStorefrontCategorySlug(normalized)) {
@@ -76,9 +73,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     notFound()
   }
 
-  const sortKey = parseProductSort(sort)
   const products = await listProducts()
-  const filtered = sortProducts(filterProductsByCategorySlug(products, normalized), sortKey)
+  const filtered = sortProducts(filterProductsByCategorySlug(products, normalized), "featured")
   const label =
     CATEGORY_NAME_BY_SLUG[normalized as StorefrontCategorySlug] ||
     categoryLabelFromSlug(normalized, products)
@@ -108,13 +104,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </p>
         ) : null}
       </div>
-
-      <form action={`/category/${normalized}`} className="max-w-xs">
-        <ProductSortSelect defaultValue={sortKey} />
-        <button type="submit" className="btn-secondary mt-3 px-4 py-2 text-sm">
-          Apply sort
-        </button>
-      </form>
 
       {filtered.length === 0 ? (
         <p className="text-sm text-[#475569]">No products in this category yet.</p>

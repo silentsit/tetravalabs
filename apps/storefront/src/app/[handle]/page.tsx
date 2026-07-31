@@ -17,6 +17,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata } from "@/lib/seo"
 import { getProductFaqs } from "@/lib/product-faqs"
+import { buildResearchOverview } from "@/lib/research-overview"
 
 type Props = {
   params: Promise<{ handle: string }>
@@ -89,6 +90,19 @@ export default async function ProductPage({ params }: Props) {
     category: view.categoryLabel,
     appearance: view.appearance
   })
+  const researchSummariesByStrength = Object.fromEntries(
+    view.strengths.map((strength) => [
+      strength.strengthKey,
+      buildResearchOverview({
+        productName: view.displayName,
+        category: view.categoryLabel,
+        appearance: view.appearance,
+        handle: strength.handle,
+        parentHandle: view.parentHandle,
+        customSummary: String(strength.metadata?.research_summary || "")
+      })
+    ])
+  )
 
   return (
     <article className="page-container space-y-10 py-8">
@@ -105,6 +119,7 @@ export default async function ProductPage({ params }: Props) {
         view={view}
         coasByStrength={coasByStrength}
         reviewsByStrength={reviewsByStrength}
+        researchSummariesByStrength={researchSummariesByStrength}
         faqs={faqs}
       />
 

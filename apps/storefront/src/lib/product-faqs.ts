@@ -1,4 +1,5 @@
 import { type FaqItem, productFaqItems } from "@/lib/faq-content"
+import { getCompoundParentHandle } from "@/lib/compound-product"
 import { buildAutoProductFaqs, type ProductFaqContext } from "@/lib/product-faq-auto"
 
 /**
@@ -900,7 +901,8 @@ export function getProductFaqs(
   parentHandle: string,
   context?: Omit<ProductFaqContext, "parentHandle">
 ): FaqItem[] {
-  const key = parentHandle.trim().toLowerCase()
+  const raw = parentHandle.trim().toLowerCase()
+  const key = getCompoundParentHandle(raw) || raw
   const curated = productFaqsByHandle[key]
   if (curated?.length) return curated
 

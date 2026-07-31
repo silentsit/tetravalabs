@@ -1,6 +1,6 @@
 import type { FaqItem } from "@/lib/faq-content"
 import productEnrichment from "@/lib/product-enrichment.generated.json"
-import { getCompoundFamily } from "@/lib/compound-product"
+import { getCompoundFamily, getCompoundParentHandle } from "@/lib/compound-product"
 import {
   normalizeTb500DisplayText,
   stripStrengthFromDisplayName
@@ -35,8 +35,10 @@ const CATEGORY_RESEARCH_ANGLE: Record<string, string> = {
 }
 
 function enrichmentFor(handle: string): EnrichmentRow {
+  const parent = getCompoundParentHandle(handle) || handle
+  if (ENRICHMENT[parent]) return ENRICHMENT[parent]
   if (ENRICHMENT[handle]) return ENRICHMENT[handle]
-  const family = getCompoundFamily(handle)
+  const family = getCompoundFamily(parent)
   for (const member of family?.members || []) {
     if (ENRICHMENT[member.handle]) return ENRICHMENT[member.handle]
   }

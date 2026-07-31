@@ -18,7 +18,7 @@ import { ProductCard } from "@/components/product-card"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata } from "@/lib/seo"
-import { productFaqItems } from "@/lib/faq-content"
+import { getProductFaqs } from "@/lib/product-faqs"
 
 type Props = {
   params: Promise<{ handle: string }>
@@ -89,6 +89,7 @@ export default async function ProductPage({ params }: Props) {
   const defaultStrengthKey = pickDefaultStrengthKey(view.strengths)
   const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
   const crumbName = compoundSeoName(view, defaultStrengthKey)
+  const faqs = getProductFaqs(view.parentHandle)
 
   return (
     <article className="page-container space-y-10 py-8">
@@ -105,7 +106,7 @@ export default async function ProductPage({ params }: Props) {
         view={view}
         coasByStrength={coasByStrength}
         reviewsByStrength={reviewsByStrength}
-        faqs={productFaqItems}
+        faqs={faqs}
       />
 
       {related.length > 0 ? (

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Download } from "lucide-react"
 import type { StoreCoaDocument } from "@/lib/medusa"
 import type { ProductReviewsResponse } from "@/lib/reviews"
@@ -28,12 +29,34 @@ export type ProductDetailData = {
   researchSummary: string
 }
 
+export type ProductOverviewImage = {
+  src: string
+  alt: string
+}
+
 type Props = {
   product: ProductDetailData
   productId: string
   coas: StoreCoaDocument[]
   faqs: FaqItem[]
   reviews: ProductReviewsResponse
+  /** Up to three editorial images for the long-form overview article. */
+  overviewImages?: ProductOverviewImage[]
+}
+
+/** After first paragraph, mid-article, and near the end (before the closing para when possible). */
+function overviewImageInsertAfter(paragraphCount: number): number[] {
+  if (paragraphCount <= 0) return []
+  if (paragraphCount === 1) return [0]
+  if (paragraphCount === 2) return [0, 1]
+  if (paragraphCount === 3) return [0, 1, 2]
+
+  const first = 0
+  let middle = Math.floor((paragraphCount - 1) / 2)
+  let nearEnd = paragraphCount - 2
+  if (middle <= first) middle = first + 1
+  if (nearEnd <= middle) nearEnd = Math.min(paragraphCount - 1, middle + 1)
+  return [first, middle, nearEnd]
 }
 
 const tabs = ["Overview", "Specifications", "Storage", "COA", "Reviews"] as const
@@ -44,7 +67,14 @@ function tabLabel(tab: TabId, reviewCount: number) {
   return tab
 }
 
-export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: Props) {
+export function ProductDetailTabs({
+  product,
+  productId,
+  coas,
+  faqs,
+  reviews,
+  overviewImages = []
+}: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("Overview")
   const primaryCoa = coas[0]
 
@@ -54,6 +84,13 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
       setActiveTab("Reviews")
     }
   }, [])
+
+  const overviewParagraphs = product.researchSummary
+    .split(/\n\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+  const imageAfterIndices = overviewImageInsertAfter(overviewParagraphs.length)
+  const placedOverviewImages = overviewImages.slice(0, 3)
 
   return (
     <section className="space-y-8">
@@ -81,13 +118,28 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
               <article className="max-w-3xl">
                 <h3 className="mb-5 font-serif text-2xl text-[#0F172A]">Product Overview</h3>
                 <div className="space-y-5 text-[15px] leading-7 text-[#475569]">
-                  {product.researchSummary
-                    .split(/\n\n+/)
-                    .map((paragraph) => paragraph.trim())
-                    .filter(Boolean)
-                    .map((paragraph, index) => (
-                      <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>
-                    ))}
+                  {overviewParagraphs.map((paragraph, index) => {
+                    const imageSlot = imageAfterIndices.indexOf(index)
+                    const image =
+                      imageSlot >= 0 ? placedOverviewImages[imageSlot] : undefined
+                    return (
+                      <div key={`${index}-${paragraph.slice(0, 24)}`} className="space-y-5">
+                        <p>{paragraph}</p>
+                        {image ? (
+                          <figure className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-[#F8FAFC]">
+                            <Image
+                              src={image.src}
+                              alt={image.alt}
+                              width={1200}
+                              height={750}
+                              className="h-auto max-h-[420px] w-full object-contain"
+                              sizes="(max-width: 768px) 100vw, 48rem"
+                            />
+                          </figure>
+                        ) : null}
+                      </div>
+                    )
+                  })}
                 </div>
               </article>
               <div className="max-w-3xl">
@@ -197,7 +249,7 @@ export function ProductDetailTabs({ product, productId, coas, faqs, reviews }: P
       </div>
 
       <div className="max-w-3xl">
-        <h2 className="mb-6 font-serif text-2xl text-[#0F172A]">Common Questions</h2>
+        <h2 className="mb-6 font-serif text-2xl text-[#0F172A]">Frequently Asked Questions</h2>
         <FaqAccordion items={faqs} />
       </div>
     </section>

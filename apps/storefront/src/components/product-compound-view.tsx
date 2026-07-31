@@ -15,11 +15,43 @@ import {
 import { siteConfig } from "@/lib/seo"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchasePanel } from "@/components/product-purchase-panel"
-import { ProductDetailTabs } from "@/components/product-detail-tabs"
+import {
+  ProductDetailTabs,
+  type ProductOverviewImage
+} from "@/components/product-detail-tabs"
 import { ProductOfferSummary } from "@/components/product-offer-summary"
 import { ProductReviewSummary } from "@/components/product-review-summary"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
 import type { PackTier } from "@/lib/pack-pricing"
+
+const OVERVIEW_CONTEXT_IMAGES = [
+  "/images/blog/lab-vial-presentation.jpg",
+  "/images/blog/lab-synthesizer.jpg"
+] as const
+
+/** Product shots first, then lab context — three distinct URLs when possible. */
+function buildOverviewImages(galleryImages: string[], productName: string): ProductOverviewImage[] {
+  const unique: string[] = []
+  for (const src of galleryImages) {
+    if (src && !unique.includes(src)) unique.push(src)
+    if (unique.length >= 3) break
+  }
+  for (const src of OVERVIEW_CONTEXT_IMAGES) {
+    if (unique.length >= 3) break
+    if (!unique.includes(src)) unique.push(src)
+  }
+
+  const alts = [
+    `${productName} research vial from Tetrava Labs`,
+    `${productName} product detail for laboratory research`,
+    `Laboratory research setting supporting ${productName} documentation`
+  ]
+
+  return unique.slice(0, 3).map((src, index) => ({
+    src,
+    alt: alts[index] || `${productName} research documentation`
+  }))
+}
 
 type Props = {
   view: CompoundProductView
@@ -203,6 +235,7 @@ export function ProductCompoundView({
         coas={coas}
         faqs={faqs}
         reviews={reviews}
+        overviewImages={buildOverviewImages(galleryImages, headingName)}
       />
     </>
   )

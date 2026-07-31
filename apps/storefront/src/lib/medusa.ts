@@ -215,6 +215,140 @@ export async function listCoasByVariant(variantId: string) {
   }
 }
 
+function mergeCoaDocuments(...batches: StoreCoaDocument[][]) {
+  const seen = new Set<string>()
+  const merged: StoreCoaDocument[] = []
+  for (const docs of batches) {
+    for (const doc of docs) {
+      if (seen.has(doc.id)) continue
+      seen.add(doc.id)
+      merged.push(doc)
+    }
+  }
+  return merged.sort((a, b) => {
+    if (a.document_type !== b.document_type) {
+      return a.document_type === "coa" ? -1 : 1
+    }
+    const aTime = a.tested_at ? Date.parse(a.tested_at) : 0
+    const bTime = b.tested_at ? Date.parse(b.tested_at) : 0
+    return bTime - aTime
+  })
+}
+
+/**
+ * Older COA imports used retired variant IDs; doc ids / metadata still encode the
+ * catalog strength handle. Map those slugs onto current Medusa handles.
+ */
+const COA_DOC_HANDLE_ALIASES: Record<string, string> = {
+  "nad-plus-100mg": "nad-100mg",
+  "nad-plus-500mg": "nad-500mg",
+  "nad-plus-1000mg": "nad-1000mg",
+  "bpc-157-capsules-100ct": "bpc-157-capsules-100-count-500mcg",
+  "pinealon-capsules-100ct": "pinealon-capsules-100-count",
+  "glow-tb500-bpc-157-ghk-cu-70mg": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+  "glow-blend-85mg": "glow-bpc-157-tb500-ghk-cu-85mg",
+  "glow-blend-30mg": "glow-bpc-157-tb500-ghk-cu-30mg",
+  "cu-tb500-bpc-157-kpv-blend-80mg": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+  "bpc-157-tb500-blend-10mg": "bpc-157-5mg-tb500-5mg-10mg",
+  "bpc-157-tb500-blend-20mg": "bpc-157-5mg-tb500-5mg-20mg",
+  "cjc-1295-ipamorelin-blend-10mg": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+  "cjc-1295-sermorelin-ipamorelin-blend-5mg":
+    "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg"
+}
+
+function catalogHandlesForCoa(doc: StoreCoaDocument): string[] {
+  const handles = new Set<string>()
+  const metaHandle = doc.metadata?.variant_handle
+  if (typeof metaHandle === "string" && metaHandle.trim()) {
+    handles.add(metaHandle.trim())
+  }
+
+  const idMatch = /^(?:coa|hplc)_(.+)_batch_/i.exec(doc.id)
+  if (idMatch) {
+    const slug = idMatch[1].replace(/_/g, "-")
+    handles.add(slug)
+    const aliased = COA_DOC_HANDLE_ALIASES[slug]
+    if (aliased) handles.add(aliased)
+  }
+
+  return [...handles]
+}
+
+type CoaCatalogIndex = {
+  byVariantId: Map<string, StoreCoaDocument[]>
+  byHandle: Map<string, StoreCoaDocument[]>
+}
+
+function buildCoaCatalogIndex(docs: StoreCoaDocument[]): CoaCatalogIndex {
+  const byVariantId = new Map<string, StoreCoaDocument[]>()
+  const byHandle = new Map<string, StoreCoaDocument[]>()
+
+  const push = (map: Map<string, StoreCoaDocument[]>, key: string, doc: StoreCoaDocument) => {
+    const list = map.get(key)
+    if (list) list.push(doc)
+    else map.set(key, [doc])
+  }
+
+  for (const doc of docs) {
+    if (doc.variant_id) push(byVariantId, doc.variant_id, doc)
+    for (const handle of catalogHandlesForCoa(doc)) {
+      push(byHandle, handle, doc)
+    }
+  }
+
+  return { byVariantId, byHandle }
+}
+
+/** COAs are often linked to one pack size (e.g. 10-vial); merge across strength variants. */
+export async function listCoasForVariants(variantIds: string[]) {
+  const uniqueIds = [...new Set(variantIds.filter(Boolean))]
+  if (uniqueIds.length === 0) return [] as StoreCoaDocument[]
+
+  const index = buildCoaCatalogIndex(await listRecentCoas(500))
+  return mergeCoaDocuments(...uniqueIds.map((id) => index.byVariantId.get(id) || []))
+}
+
+/**
+ * Resolve COAs for a product strength: live variant links + handle rematch for
+ * documents still pointing at retired variant IDs after pack/SKU rebuilds.
+ */
+export async function listCoasForProduct(options: {
+  variantIds: string[]
+  catalogHandles: string[]
+}) {
+  const variantIds = [...new Set(options.variantIds.filter(Boolean))]
+  const catalogHandles = [...new Set(options.catalogHandles.filter(Boolean))]
+  const index = buildCoaCatalogIndex(await listRecentCoas(500))
+
+  return mergeCoaDocuments(
+    ...variantIds.map((id) => index.byVariantId.get(id) || []),
+    ...catalogHandles.map((handle) => index.byHandle.get(handle) || [])
+  )
+}
+
+/** One catalog fetch, then resolve COAs for many strengths (PDP side-data). */
+export async function listCoasForStrengths(
+  strengths: Array<{
+    strengthKey: string
+    variantIds: string[]
+    catalogHandles: string[]
+  }>
+): Promise<Record<string, StoreCoaDocument[]>> {
+  const index = buildCoaCatalogIndex(await listRecentCoas(500))
+  const result: Record<string, StoreCoaDocument[]> = {}
+
+  for (const strength of strengths) {
+    const variantIds = [...new Set(strength.variantIds.filter(Boolean))]
+    const catalogHandles = [...new Set(strength.catalogHandles.filter(Boolean))]
+    result[strength.strengthKey] = mergeCoaDocuments(
+      ...variantIds.map((id) => index.byVariantId.get(id) || []),
+      ...catalogHandles.map((handle) => index.byHandle.get(handle) || [])
+    )
+  }
+
+  return result
+}
+
 export async function listRecentCoas(limit = 50) {
   try {
     const response = await fetch(`${MEDUSA_URL}/store/coas?limit=${limit}`, {
@@ -257,10 +391,13 @@ export async function getFeaturedCoaDocument(
     const product = products.find(
       (item) => item.handle === catalogHandle || item.handle === handle
     )
-    const variantId = product?.variants?.[0]?.id
-    if (!variantId) continue
+    const variantIds = (product?.variants || []).map((variant) => variant.id)
+    if (!product || variantIds.length === 0) continue
 
-    const coas = await listCoasByVariant(variantId)
+    const coas = await listCoasForProduct({
+      variantIds,
+      catalogHandles: [product.handle, catalogHandle, handle]
+    })
     const document = coas.find(isPreviewableCoa)
     if (document) {
       const publicHandle =

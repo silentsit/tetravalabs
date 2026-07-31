@@ -4,7 +4,7 @@ import productEnrichment from "@/lib/product-enrichment.generated.json"
 import productOverviews from "@/lib/product-overviews.generated.json"
 import {
   getProductByHandle,
-  listCoasByVariant,
+  listCoasForStrengths,
   listProducts,
   type StoreCoaDocument,
   type StoreProduct
@@ -379,14 +379,6 @@ function researchSummaryFor(
   })
 }
 
-function primaryVariantForCoa(variants: StoreVariant[]): StoreVariant | undefined {
-  const single = variants.find((variant) => {
-    const packQty = variant.metadata?.pack_qty
-    return packQty == null || Number(packQty) <= 1
-  })
-  return single || variants[0]
-}
-
 function isMergedMedusaProduct(product: StoreProduct): boolean {
   if (product.metadata?.compound_merged) return true
   const variants = (product.variants || []) as StoreVariant[]
@@ -639,7 +631,6 @@ export async function getCompoundProductView(
 }
 
 export async function loadStrengthSideData(strengths: CompoundStrengthOption[]) {
-  const coasByStrength: Record<string, StoreCoaDocument[]> = {}
   const reviewsByStrength: Record<string, ProductReviewsResponse> = {}
 
   const sharedProductId = strengths[0]?.productId
@@ -656,24 +647,30 @@ export async function loadStrengthSideData(strengths: CompoundStrengthOption[]) 
         })
       : null
 
-  await Promise.all(
-    strengths.map(async (strength) => {
-      const primaryVariant = primaryVariantForCoa(strength.variants)
-      const [coas, reviews] = await Promise.all([
-        primaryVariant?.id
-          ? listCoasByVariant(primaryVariant.id)
-          : Promise.resolve([]),
-        sharedReviews
-          ? Promise.resolve(sharedReviews)
-          : listProductReviews({
+  const [coasByStrength, reviewEntries] = await Promise.all([
+    listCoasForStrengths(
+      strengths.map((strength) => ({
+        strengthKey: strength.strengthKey,
+        variantIds: strength.variants.map((variant) => variant.id),
+        catalogHandles: [strength.handle]
+      }))
+    ),
+    Promise.all(
+      strengths.map(async (strength) => {
+        const reviews = sharedReviews
+          ? sharedReviews
+          : await listProductReviews({
               productHandle: strength.handle,
               productId: strength.productId
             })
-      ])
-      coasByStrength[strength.strengthKey] = coas
-      reviewsByStrength[strength.strengthKey] = reviews
-    })
-  )
+        return [strength.strengthKey, reviews] as const
+      })
+    )
+  ])
+
+  for (const [strengthKey, reviews] of reviewEntries) {
+    reviewsByStrength[strengthKey] = reviews
+  }
 
   return { coasByStrength, reviewsByStrength }
 }

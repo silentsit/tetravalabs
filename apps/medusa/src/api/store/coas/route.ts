@@ -40,7 +40,7 @@ function mapDocument(row: LabDocumentRow) {
  */
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const variantId = String(req.query.variant_id || "")
-  const limit = Math.min(Math.max(Number(req.query.limit) || 25, 1), 250)
+  const limit = Math.min(Math.max(Number(req.query.limit) || 25, 1), 500)
   const items = await withDb(
     async (db) => {
       const totalResult = variantId

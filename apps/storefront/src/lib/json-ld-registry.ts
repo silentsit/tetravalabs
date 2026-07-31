@@ -7,7 +7,8 @@ import {
 import { getBlogPostBySlug } from "@/lib/sanity"
 import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
-import { articleJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
+import { articleJsonLd, faqJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
+import { getProductFaqs } from "@/lib/product-faqs"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
 import { getProductImage, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 
@@ -55,14 +56,17 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
       variants: (strength?.variants || []) as StoreProduct["variants"]
     }
     const image = getMappedHandleImage(imageHandle)
+    const path = productPath(view.parentHandle)
+    const faqs = getProductFaqs(view.parentHandle)
 
     return [
       productJsonLd(productLike, view.parentHandle, image),
       webPageJsonLd({
         title: `${view.displayName} — ${view.categoryLabel}`,
         description: `${view.displayName} for laboratory research (RUO).`,
-        path: productPath(view.parentHandle)
-      })
+        path
+      }),
+      faqJsonLd(faqs, path)
     ]
   }
 
@@ -74,14 +78,17 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     String(product.metadata?.source_category || "Research peptide")
   )
   const image = getProductImage(product)
+  const path = productPath(catalogHandle)
+  const faqs = getProductFaqs(catalogHandle)
 
   return [
     productJsonLd(product, catalogHandle, image),
     webPageJsonLd({
       title: `${displayTitle} — ${category}`,
       description: `${displayTitle} for laboratory research (RUO).`,
-      path: productPath(catalogHandle)
-    })
+      path
+    }),
+    faqJsonLd(faqs, path)
   ]
 })
 

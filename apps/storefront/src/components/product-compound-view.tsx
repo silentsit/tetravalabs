@@ -30,7 +30,7 @@ type Props = {
   coasByStrength: Record<string, StoreCoaDocument[]>
   reviewsByStrength: Record<string, ProductReviewsResponse>
   researchSummariesByStrength: Record<string, string>
-  overviewImages: ProductOverviewImage[]
+  overviewImagesByStrength: Record<string, ProductOverviewImage[]>
   faqs: FaqItem[]
 }
 
@@ -57,7 +57,7 @@ export function ProductCompoundView({
   coasByStrength,
   reviewsByStrength,
   researchSummariesByStrength,
-  overviewImages,
+  overviewImagesByStrength,
   faqs
 }: Props) {
   const [strengthKey, setStrengthKey] = useState(() =>
@@ -126,6 +126,8 @@ export function ProductCompoundView({
   const galleryImages = selectedStrength.galleryImages.length
     ? selectedStrength.galleryImages
     : [selectedStrength.image]
+
+  const overviewImages = overviewImagesByStrength[selectedStrength.strengthKey] || []
 
   return (
     <>

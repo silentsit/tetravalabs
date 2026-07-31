@@ -104,17 +104,16 @@ export default async function ProductPage({ params }: Props) {
       })
     ])
   )
-  const defaultStrength =
-    view.strengths.find((item) => item.strengthKey === defaultStrengthKey) || view.strengths[0]
-  const overviewImages = buildOverviewImages(
-    view.parentHandle,
-    defaultStrength?.galleryImages.length
-      ? defaultStrength.galleryImages
-      : defaultStrength
-        ? [defaultStrength.image]
-        : [],
-    compoundSeoName(view, defaultStrength?.strengthKey || defaultStrengthKey),
-    view.categoryLabel
+  const overviewImagesByStrength = Object.fromEntries(
+    view.strengths.map((strength) => [
+      strength.strengthKey,
+      buildOverviewImages(
+        view.parentHandle,
+        strength.galleryImages.length ? strength.galleryImages : [strength.image],
+        compoundSeoName(view, strength.strengthKey),
+        view.categoryLabel
+      )
+    ])
   )
 
   return (
@@ -133,7 +132,7 @@ export default async function ProductPage({ params }: Props) {
         coasByStrength={coasByStrength}
         reviewsByStrength={reviewsByStrength}
         researchSummariesByStrength={researchSummariesByStrength}
-        overviewImages={overviewImages}
+        overviewImagesByStrength={overviewImagesByStrength}
         faqs={faqs}
       />
 

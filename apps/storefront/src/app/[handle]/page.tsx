@@ -2,7 +2,6 @@ import { notFound, redirect } from "next/navigation"
 import type { Metadata } from "next"
 import {
   compoundSeoName,
-  findRelatedCompoundProducts,
   getCompoundProductView,
   loadStrengthSideData,
   pickDefaultStrengthKey,
@@ -14,7 +13,6 @@ import {
 import { categorySlugFromLabel } from "@/lib/categories"
 import { shopNavLabel } from "@/lib/shop-filters"
 import { ProductCompoundView } from "@/components/product-compound-view"
-import { ProductCard } from "@/components/product-card"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata } from "@/lib/seo"
@@ -81,10 +79,7 @@ export default async function ProductPage({ params }: Props) {
   const view = await getCompoundProductView(catalogHandle)
   if (!view) notFound()
 
-  const [{ coasByStrength, reviewsByStrength }, related] = await Promise.all([
-    loadStrengthSideData(view.strengths),
-    findRelatedCompoundProducts(view)
-  ])
+  const { coasByStrength, reviewsByStrength } = await loadStrengthSideData(view.strengths)
 
   const defaultStrengthKey = pickDefaultStrengthKey(view.strengths)
   const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
@@ -112,19 +107,6 @@ export default async function ProductPage({ params }: Props) {
         reviewsByStrength={reviewsByStrength}
         faqs={faqs}
       />
-
-      {related.length > 0 ? (
-        <section>
-          <h2 className="mb-6 font-serif text-2xl text-[color:var(--color-text)]">
-            Related Compounds
-          </h2>
-          <div className="product-card-grid">
-            {related.map((item) => (
-              <ProductCard key={item.id} product={item} variant="featured" />
-            ))}
-          </div>
-        </section>
-      ) : null}
 
       <ComplianceNotice />
     </article>

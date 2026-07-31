@@ -37,7 +37,8 @@ const SocialProofReviews = dynamic(
 
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Buy Peptides Online",
+  title: "Buy Peptides Online | Peptides for Sale",
+  absoluteTitle: "Buy Peptides Online | Peptides for Sale | Tetrava Labs",
   description:
     "Buy peptides online from Tetrava Labs. Research-grade peptides with verified purity and third-party lab testing.",
   path: "/",

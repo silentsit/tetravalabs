@@ -12,7 +12,7 @@ Source: `apps/storefront` metadata + JSON-LD registry (Jul 2026).
 
 | Path | Title tag | Meta description | Schema markup | Notes |
 |---|---|---|---|---|
-| `/` | Buy Peptides Online \| Tetrava Labs | Buy peptides online from Tetrava Labs. Research-grade peptides with verified purity and third-party lab testing. | Organization, WebSite, WebPage, FAQPage | FAQPage = first 4 FAQs |
+| `/` | Buy Peptides Online \| Peptides for Sale \| Tetrava Labs | Buy peptides online from Tetrava Labs. Research-grade peptides with verified purity and third-party lab testing. | Organization, WebSite, WebPage, FAQPage | absoluteTitle; FAQPage = first 4 FAQs |
 | `/shop` | Research Peptides for Sale \| Tetrava Labs | Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs. | Organization, WebSite, CollectionPage, BreadcrumbList | noIndex when search/price filters present |
 | `/{handle}` | {productName} — {category} \| Tetrava Labs | {productName} for laboratory research (RUO). {purity} purity with lot-linked COA. [CAS …]. | Organization, WebSite, Product, WebPage, BreadcrumbList, FAQPage | Featured handles use curated FAQs; others use generic product FAQs |
 | `/category/{slug}` | {seoTitle or "{label} — research peptides"} \| Tetrava Labs | Sanity seoDescription → art description → Shop {label}… fallback | Organization, WebSite, CollectionPage, BreadcrumbList | |

@@ -565,6 +565,14 @@ export function compoundSeoName(view: CompoundProductView, strengthKey: string):
   )
 }
 
+/** Parent-URL SEO label: all strengths, e.g. "BPC-157 (5mg / 10mg)". */
+export function compoundSeoProductName(view: CompoundProductView): string {
+  return formatProductLabelWithStrengths(
+    view.displayName,
+    view.strengths.map((strength) => strength.strengthLabel)
+  )
+}
+
 export function dedupeProductsByCompound(products: StoreProduct[]): StoreProduct[] {
   const seenParents = new Set<string>()
   const result: StoreProduct[] = []

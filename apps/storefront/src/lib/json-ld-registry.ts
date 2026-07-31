@@ -1,5 +1,6 @@
 import { categoryLabelFromSlug, isStorefrontCategorySlug, normalizeCategorySlug } from "@/lib/categories"
 import {
+  compoundSeoProductName,
   getCompoundProductView,
   productPath,
   resolveCatalogHandle
@@ -48,12 +49,16 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   const view = await getCompoundProductView(catalogHandle)
   if (view) {
     const strength = view.strengths[0]
+    const seoName = compoundSeoProductName(view)
     const imageHandle = strength?.imageHandle || strength?.handle || view.parentHandle
+    const allVariants = view.strengths.flatMap(
+      (item) => (item.variants || []) as NonNullable<StoreProduct["variants"]>
+    )
     const productLike = {
-      title: view.displayName,
+      title: seoName,
       handle: view.parentHandle,
       metadata: { source_category: view.categoryLabel },
-      variants: (strength?.variants || []) as StoreProduct["variants"]
+      variants: allVariants
     }
     const image = getMappedHandleImage(imageHandle)
     const path = productPath(view.parentHandle)
@@ -66,8 +71,8 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     return [
       productJsonLd(productLike, view.parentHandle, image),
       webPageJsonLd({
-        title: `${view.displayName} — ${view.categoryLabel}`,
-        description: `${view.displayName} for laboratory research (RUO).`,
+        title: `${seoName} — ${view.categoryLabel}`,
+        description: `${seoName} for laboratory research (RUO).`,
         path
       }),
       faqJsonLd(faqs, path)

@@ -9,9 +9,9 @@ Default description: Research-use peptides with HPLC-MS verification, lot-linked
 
 | Path | Title tag | Meta description |
 |---|---|---|
-| `/` | Buy Peptides Online \| Peptides for Sale \| Tetrava Labs | Buy peptides online from Tetrava Labs. Research-grade peptides with verified purity and third-party lab testing. |
+| `/` | Buy Peptides Online \| Peptides for Sale \| Tetrava Labs | Buy peptides online from Tetrava Labs. Research peptides for sale with verified purity and third-party lab testing. |
 | `/shop` | Research Peptides for Sale \| Tetrava Labs | Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs. |
-| `/{handle}` | {productName} — {category} \| Tetrava Labs | {productName} for laboratory research (RUO). {purity} purity with lot-linked COA. [CAS …]. |
+| `/{handle}` | {productName with strengths} — {category} \| Tetrava Labs | {productName with strengths} for laboratory research (RUO). {purity} purity with lot-linked COA. [CAS …]. |
 | `/category/{slug}` | {seoTitle or "{label} — research peptides"} \| Tetrava Labs | Sanity seoDescription → category art description → Shop {label} research compounds… |
 | `/categories` | Product categories \| Tetrava Labs | Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies. |
 | `/blog` | Research Hub — articles & protocols \| Tetrava Labs | Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers. |

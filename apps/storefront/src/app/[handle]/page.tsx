@@ -2,6 +2,7 @@ import { notFound, redirect } from "next/navigation"
 import type { Metadata } from "next"
 import {
   compoundSeoName,
+  compoundSeoProductName,
   getCompoundProductView,
   loadStrengthSideData,
   pickDefaultStrengthKey,
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const strengthKey = pickDefaultStrengthKey(view.strengths)
   const selected = view.strengths.find((item) => item.strengthKey === strengthKey) || view.strengths[0]
-  const productName = compoundSeoName(view, strengthKey)
+  const productName = compoundSeoProductName(view)
   const cas = view.casNumber !== "N/A" ? ` CAS ${view.casNumber}.` : ""
 
   return buildPageMetadata({
@@ -83,9 +84,8 @@ export default async function ProductPage({ params }: Props) {
 
   const { coasByStrength, reviewsByStrength } = await loadStrengthSideData(view.strengths)
 
-  const defaultStrengthKey = pickDefaultStrengthKey(view.strengths)
   const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
-  const crumbName = compoundSeoName(view, defaultStrengthKey)
+  const crumbName = compoundSeoProductName(view)
   const faqs = getProductFaqs(view.parentHandle, {
     productName: view.displayName,
     category: view.categoryLabel,

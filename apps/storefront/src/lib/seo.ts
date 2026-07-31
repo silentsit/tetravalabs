@@ -23,6 +23,13 @@ export const siteConfig = {
   locale: "en_US",
   twitterHandle: "@tetravalabs",
   contactEmail: "info@tetravalabs.com",
+  address: {
+    streetAddress: "455 Gateway Drive",
+    addressLocality: "Pacifica",
+    addressRegion: "CA",
+    postalCode: "94044",
+    addressCountry: "US"
+  },
   defaultOgImage: "/brand/tetravalabs-icon.png",
   keywords: [
     "buy peptides online",
@@ -378,6 +385,14 @@ export function organizationJsonLd() {
     logo: pageUrl(siteConfig.defaultOgImage),
     email: siteConfig.contactEmail,
     description: siteConfig.description,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.address.streetAddress,
+      addressLocality: siteConfig.address.addressLocality,
+      addressRegion: siteConfig.address.addressRegion,
+      postalCode: siteConfig.address.postalCode,
+      addressCountry: siteConfig.address.addressCountry
+    },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",

@@ -6,7 +6,7 @@ Source: `apps/storefront` metadata + JSON-LD registry (Jul 2026).
 - Title template: `%s | Tetrava Labs`
 - Default title: `Tetrava Labs — Verified. Documented. Delivered.`
 - Default description: Research-use peptides with HPLC-MS verification, lot-linked COAs, and cold-chain shipping for qualified laboratories.
-- Always inject: `Organization`, `WebSite` (SearchAction → `/search?q=…`)
+- Always inject: `Organization` (incl. `PostalAddress`: 455 Gateway Drive, Pacifica, CA 94044, US), `WebSite` (SearchAction → `/search?q=…`)
 
 ## Indexable pages
 

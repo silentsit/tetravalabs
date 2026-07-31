@@ -10,7 +10,8 @@
     "metadata": {
       "compound": "5-Amino-1MQ",
       "variant": "10mg",
-      "source_filename": "COA_5-Amino-1MQ_10mg_Injectable.pdf"
+      "source_filename": "COA_5-Amino-1MQ_10mg_Injectable.pdf",
+      "variant_handle": "5-amino-1mq-10mg"
     },
     "local_file": "COA_5-Amino-1MQ_10mg_Injectable.pdf"
   },
@@ -27,7 +28,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_5-amino-1mq_5mg_Injectable.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "5-amino-1mq-5mg"
     },
     "local_file": "COA_5-amino-1mq_5mg_Injectable.pdf"
   },
@@ -44,7 +46,8 @@
       "variant": "3ml",
       "source": "generated",
       "source_filename": "COA_Acetic_Acid_Water_3ml.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "acetic-acid-water-3ml"
     },
     "local_file": "COA_Acetic_Acid_Water_3ml.pdf"
   },
@@ -61,7 +64,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Adamax_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "adamax-10mg"
     },
     "local_file": "COA_Adamax_10mg.pdf"
   },
@@ -78,7 +82,8 @@
       "variant": "2mg",
       "source": "generated",
       "source_filename": "COA_Adipotide_2mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "adipotide-2mg"
     },
     "local_file": "COA_Adipotide_2mg.pdf"
   },
@@ -110,7 +115,8 @@
       "variant": "50mg",
       "source": "generated",
       "source_filename": "COA_AICAR_50mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "aicar-50mg"
     },
     "local_file": "COA_AICAR_50mg.pdf"
   },
@@ -127,7 +133,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_AOD-9604_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "aod-9604-10mg"
     },
     "local_file": "COA_AOD-9604_10mg.pdf"
   },
@@ -159,7 +166,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_ARA-290_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ara-290-10mg"
     },
     "local_file": "COA_ARA-290_10mg.pdf"
   },
@@ -176,7 +184,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_B-12_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "b-12-10mg"
     },
     "local_file": "COA_B-12_10mg.pdf"
   },
@@ -208,7 +217,8 @@
       "variant": "3ml",
       "source": "generated",
       "source_filename": "COA_Bacteriostatic_Water_3ml.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "bacteriostatic-water-3ml"
     },
     "local_file": "COA_Bacteriostatic_Water_3ml.pdf"
   },
@@ -239,8 +249,11 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Benzyl Alcohol",
-      "variant": "10ml"
-    }
+      "variant": "10ml",
+      "source_filename": "COA_Benzyl_Alcohol_10ml.pdf",
+      "variant_handle": "benzyl-alcohol-10ml"
+    },
+    "local_file": "COA_Benzyl_Alcohol_10ml.pdf"
   },
   {
     "id": "coa_benzyl_alcohol_3ml_batch_a001",
@@ -255,7 +268,8 @@
       "variant": "3ml",
       "source": "generated",
       "source_filename": "COA_Benzyl_Alcohol_3ml.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "benzyl-alcohol-3ml"
     },
     "local_file": "COA_Benzyl_Alcohol_3ml.pdf"
   },
@@ -358,28 +372,34 @@
   {
     "id": "coa_bpc_157_tb500_blend_10mg_batch_a001",
     "product_handle": "bpc-157-5mg-tb500-5mg",
-    "variant_handle": "bpc-157-tb500-blend-10mg",
+    "variant_handle": "bpc-157-5mg-tb500-5mg-10mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-06-01T00:00:00.000Z",
     "document_type": "coa",
     "metadata": {
       "compound": "BPC-157 5mg + TB500 5mg",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_BPC-157_+_TB-500_10mg.pdf",
+      "variant_handle": "bpc-157-5mg-tb500-5mg-10mg"
+    },
+    "local_file": "COA_BPC-157_+_TB-500_10mg.pdf"
   },
   {
     "id": "coa_bpc_157_tb500_blend_20mg_batch_a001",
     "product_handle": "bpc-157-5mg-tb500-5mg",
-    "variant_handle": "bpc-157-tb500-blend-20mg",
+    "variant_handle": "bpc-157-5mg-tb500-5mg-20mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-06-01T00:00:00.000Z",
     "document_type": "coa",
     "metadata": {
       "compound": "BPC-157 5mg + TB500 5mg",
-      "variant": "20mg"
-    }
+      "variant": "20mg",
+      "source_filename": "COA_BPC-157_+_TB-500_20mg.pdf",
+      "variant_handle": "bpc-157-5mg-tb500-5mg-20mg"
+    },
+    "local_file": "COA_BPC-157_+_TB-500_20mg.pdf"
   },
   {
     "id": "coa_bremelanotide_10mg_batch_a001",
@@ -394,7 +414,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Bremelanotide_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "bremelanotide-10mg"
     },
     "local_file": "COA_Bremelanotide_10mg.pdf"
   },
@@ -411,7 +432,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Bremelanotide_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "bremelanotide-5mg"
     },
     "local_file": "COA_Bremelanotide_5mg.pdf"
   },
@@ -448,7 +470,7 @@
   {
     "id": "coa_cagrilintide_plus_semaglutide_10mg_batch_a001",
     "product_handle": "cagrilintide-plus-semaglutide",
-    "variant_handle": "cagrilintide-plus-semaglutide-10mg",
+    "variant_handle": "cagrilintide-semaglutide-10mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-03-25T00:00:00.000Z",
@@ -458,14 +480,15 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Cagrilintide_+_Semaglutide_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "cagrilintide-semaglutide-10mg"
     },
     "local_file": "COA_Cagrilintide_+_Semaglutide_10mg.pdf"
   },
   {
     "id": "coa_cagrilintide_plus_semaglutide_5mg_batch_a001",
     "product_handle": "cagrilintide-plus-semaglutide",
-    "variant_handle": "cagrilintide-plus-semaglutide-5mg",
+    "variant_handle": "cagrilintide-semaglutide-5mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-08-21T00:00:00.000Z",
@@ -475,7 +498,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Cagrilintide_+_Semaglutide_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "cagrilintide-semaglutide-5mg"
     },
     "local_file": "COA_Cagrilintide_+_Semaglutide_5mg.pdf"
   },
@@ -489,8 +513,11 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Cagrilintide + Semaglutide",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_Cagrilintide_+_Semaglutide_10mg.pdf",
+      "variant_handle": "cagrilintide-semaglutide-10mg"
+    },
+    "local_file": "COA_Cagrilintide_+_Semaglutide_10mg.pdf"
   },
   {
     "id": "coa_cagrilintide_semaglutide_5mg_batch_a001",
@@ -502,8 +529,11 @@
     "document_type": "coa",
     "metadata": {
       "compound": "Cagrilintide + Semaglutide",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_Cagrilintide_+_Semaglutide_5mg.pdf",
+      "variant_handle": "cagrilintide-semaglutide-5mg"
+    },
+    "local_file": "COA_Cagrilintide_+_Semaglutide_5mg.pdf"
   },
   {
     "id": "coa_cerebrolysin_10mg_batch_a001",
@@ -523,15 +553,18 @@
   {
     "id": "coa_cjc_1295_ipamorelin_blend_10mg_batch_a001",
     "product_handle": "cjc-1295-without-dac-ipamorelin-blend",
-    "variant_handle": "cjc-1295-ipamorelin-blend-10mg",
+    "variant_handle": "cjc-1295-without-dac-ipamorelin-blend-10mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-06-01T00:00:00.000Z",
     "document_type": "coa",
     "metadata": {
       "compound": "CJC-1295 without DAC / Ipamorelin Blend",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_CJC-1295_no_DAC_+_Ipamorelin_10mg.pdf",
+      "variant_handle": "cjc-1295-without-dac-ipamorelin-blend-10mg"
+    },
+    "local_file": "COA_CJC-1295_no_DAC_+_Ipamorelin_10mg.pdf"
   },
   {
     "id": "coa_cjc_1295_no_dac_10mg_batch_a001",
@@ -638,15 +671,18 @@
   {
     "id": "coa_cjc_1295_sermorelin_ipamorelin_blend_5mg_batch_a001",
     "product_handle": "cjc-1295-without-dac-sermorelin-ipamorelin-blend",
-    "variant_handle": "cjc-1295-sermorelin-ipamorelin-blend-5mg",
+    "variant_handle": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-06-01T00:00:00.000Z",
     "document_type": "coa",
     "metadata": {
       "compound": "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_CJC-1295_no_DAC_+_Ipamorelin_+_Sermorelin_5mg.pdf",
+      "variant_handle": "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg"
+    },
+    "local_file": "COA_CJC-1295_no_DAC_+_Ipamorelin_+_Sermorelin_5mg.pdf"
   },
   {
     "id": "coa_cjc_1295_with_dac_10mg_batch_a001",
@@ -658,8 +694,11 @@
     "document_type": "coa",
     "metadata": {
       "compound": "CJC-1295 with DAC",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_CJC-1295_+_DAC_10mg.pdf",
+      "variant_handle": "cjc-1295-with-dac-10mg"
+    },
+    "local_file": "COA_CJC-1295_+_DAC_10mg.pdf"
   },
   {
     "id": "coa_cjc_1295_with_dac_5mg_batch_a001",
@@ -671,8 +710,11 @@
     "document_type": "coa",
     "metadata": {
       "compound": "CJC-1295 with DAC",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_CJC-1295_+_DAC_5mg.pdf",
+      "variant_handle": "cjc-1295-with-dac-5mg"
+    },
+    "local_file": "COA_CJC-1295_+_DAC_5mg.pdf"
   },
   {
     "id": "coa_cjc_1295_without_dac_10mg_batch_a001",
@@ -684,8 +726,11 @@
     "document_type": "coa",
     "metadata": {
       "compound": "CJC-1295 without DAC",
-      "variant": "10mg"
-    }
+      "variant": "10mg",
+      "source_filename": "COA_CJC-1295_no_DAC_10mg.pdf",
+      "variant_handle": "cjc-1295-without-dac-10mg"
+    },
+    "local_file": "COA_CJC-1295_no_DAC_10mg.pdf"
   },
   {
     "id": "coa_cjc_1295_without_dac_5mg_batch_a001",
@@ -697,21 +742,27 @@
     "document_type": "coa",
     "metadata": {
       "compound": "CJC-1295 without DAC",
-      "variant": "5mg"
-    }
+      "variant": "5mg",
+      "source_filename": "COA_CJC-1295_no_DAC_5mg.pdf",
+      "variant_handle": "cjc-1295-without-dac-5mg"
+    },
+    "local_file": "COA_CJC-1295_no_DAC_5mg.pdf"
   },
   {
     "id": "coa_cu_tb500_bpc_157_kpv_blend_80mg_batch_a001",
     "product_handle": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg",
-    "variant_handle": "cu-tb500-bpc-157-kpv-blend-80mg",
+    "variant_handle": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-06-01T00:00:00.000Z",
     "document_type": "coa",
     "metadata": {
       "compound": "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
-      "variant": "80mg"
-    }
+      "variant": "80mg",
+      "source_filename": "COA_BPC-157_+_TB-500_+_Cu_+_KPV_80mg.pdf",
+      "variant_handle": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg"
+    },
+    "local_file": "COA_BPC-157_+_TB-500_+_Cu_+_KPV_80mg.pdf"
   },
   {
     "id": "coa_dermorphin_5mg_batch_a001",
@@ -726,7 +777,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Dermorphin_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "dermorphin-5mg"
     },
     "local_file": "COA_Dermorphin_5mg.pdf"
   },
@@ -743,7 +795,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Dihexa_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "dihexa-10mg"
     },
     "local_file": "COA_Dihexa_10mg.pdf"
   },
@@ -775,7 +828,8 @@
       "variant": "15mg",
       "source": "generated",
       "source_filename": "COA_DSIP_15mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "dsip-15mg"
     },
     "local_file": "COA_DSIP_15mg.pdf"
   },
@@ -792,7 +846,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_DSIP_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "dsip-5mg"
     },
     "local_file": "COA_DSIP_5mg.pdf"
   },
@@ -837,7 +892,8 @@
       "variant": "50mg",
       "source": "generated",
       "source_filename": "COA_Epithalon_50mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "epithalon-50mg"
     },
     "local_file": "COA_Epithalon_50mg.pdf"
   },
@@ -854,7 +910,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_FOXO4-DRI_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "foxo4-dri-10mg"
     },
     "local_file": "COA_FOXO4-DRI_10mg.pdf"
   },
@@ -871,7 +928,8 @@
       "variant": "100mg",
       "source": "generated",
       "source_filename": "COA_GHK-Cu_100mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ghk-cu-100mg"
     },
     "local_file": "COA_GHK-Cu_100mg.pdf"
   },
@@ -903,7 +961,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_GHRP-2_Acetate_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ghrp-2-acetate-10mg"
     },
     "local_file": "COA_GHRP-2_Acetate_10mg.pdf"
   },
@@ -920,7 +979,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_GHRP-2_Acetate_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ghrp-2-acetate-5mg"
     },
     "local_file": "COA_GHRP-2_Acetate_5mg.pdf"
   },
@@ -937,7 +997,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_GHRP-6_Acetate_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ghrp-6-acetate-10mg"
     },
     "local_file": "COA_GHRP-6_Acetate_10mg.pdf"
   },
@@ -954,14 +1015,15 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_GHRP-6_Acetate_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ghrp-6-acetate-5mg"
     },
     "local_file": "COA_GHRP-6_Acetate_5mg.pdf"
   },
   {
     "id": "coa_glow_blend_30mg_batch_a001",
     "product_handle": "glow-bpc-157-tb500-ghk-cu",
-    "variant_handle": "glow-blend-30mg",
+    "variant_handle": "glow-bpc-157-tb500-ghk-cu-30mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-03-25T00:00:00.000Z",
@@ -971,7 +1033,8 @@
       "variant": "30mg",
       "source": "generated",
       "source_filename": "COA_Glow_Blend_30mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "glow-bpc-157-tb500-ghk-cu-30mg"
     },
     "local_file": "COA_Glow_Blend_30mg.pdf"
   },
@@ -995,7 +1058,7 @@
   {
     "id": "coa_glow_blend_85mg_batch_a001",
     "product_handle": "glow-bpc-157-tb500-ghk-cu",
-    "variant_handle": "glow-blend-85mg",
+    "variant_handle": "glow-bpc-157-tb500-ghk-cu-85mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-04-22T00:00:00.000Z",
@@ -1005,22 +1068,26 @@
       "variant": "85mg",
       "source": "generated",
       "source_filename": "COA_Glow_Blend_85mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "glow-bpc-157-tb500-ghk-cu-85mg"
     },
     "local_file": "COA_Glow_Blend_85mg.pdf"
   },
   {
     "id": "coa_glow_tb500_bpc_157_ghk_cu_70mg_batch_a001",
     "product_handle": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg",
-    "variant_handle": "glow-tb500-bpc-157-ghk-cu-70mg",
+    "variant_handle": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-06-01T00:00:00.000Z",
     "document_type": "coa",
     "metadata": {
       "compound": "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg",
-      "variant": "70mg"
-    }
+      "variant": "70mg",
+      "source_filename": "COA_Glow_Blend_70mg.pdf",
+      "variant_handle": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg"
+    },
+    "local_file": "COA_Glow_Blend_70mg.pdf"
   },
   {
     "id": "coa_glutathione_1500mg_batch_a001",
@@ -1035,7 +1102,8 @@
       "variant": "1500mg",
       "source": "generated",
       "source_filename": "COA_Glutathione_1500mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "glutathione-1500mg"
     },
     "local_file": "COA_Glutathione_1500mg.pdf"
   },
@@ -1067,7 +1135,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Gonadorelin_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "gonadorelin-10mg"
     },
     "local_file": "COA_Gonadorelin_10mg.pdf"
   },
@@ -1084,7 +1153,8 @@
       "variant": "2mg",
       "source": "generated",
       "source_filename": "COA_Gonadorelin_2mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "gonadorelin-2mg"
     },
     "local_file": "COA_Gonadorelin_2mg.pdf"
   },
@@ -1101,7 +1171,8 @@
       "variant": "10000 IU",
       "source": "generated",
       "source_filename": "COA_HCG_10000IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hcg-10000-iu"
     },
     "local_file": "COA_HCG_10000IU.pdf"
   },
@@ -1118,7 +1189,8 @@
       "variant": "5000 IU",
       "source": "generated",
       "source_filename": "COA_HCG_5000IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hcg-5000-iu"
     },
     "local_file": "COA_HCG_5000IU.pdf"
   },
@@ -1135,7 +1207,8 @@
       "variant": "2mg",
       "source": "generated",
       "source_filename": "COA_Hexarelin_Acetate_2mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hexarelin-acetate-2mg"
     },
     "local_file": "COA_Hexarelin_Acetate_2mg.pdf"
   },
@@ -1152,7 +1225,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Hexarelin_Acetate_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hexarelin-acetate-5mg"
     },
     "local_file": "COA_Hexarelin_Acetate_5mg.pdf"
   },
@@ -1169,7 +1243,8 @@
       "variant": "10 IU",
       "source": "generated",
       "source_filename": "COA_HGH_191aa_10IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hgh-191aa-10-iu"
     },
     "local_file": "COA_HGH_191aa_10IU.pdf"
   },
@@ -1186,7 +1261,8 @@
       "variant": "12 IU",
       "source": "generated",
       "source_filename": "COA_HGH_191aa_12IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hgh-191aa-12-iu"
     },
     "local_file": "COA_HGH_191aa_12IU.pdf"
   },
@@ -1203,7 +1279,8 @@
       "variant": "15 IU",
       "source": "generated",
       "source_filename": "COA_HGH_191aa_15IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hgh-191aa-15-iu"
     },
     "local_file": "COA_HGH_191aa_15IU.pdf"
   },
@@ -1220,7 +1297,8 @@
       "variant": "24 IU",
       "source": "generated",
       "source_filename": "COA_HGH_191aa_24IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hgh-191aa-24-iu"
     },
     "local_file": "COA_HGH_191aa_24IU.pdf"
   },
@@ -1237,7 +1315,8 @@
       "variant": "36 IU",
       "source": "generated",
       "source_filename": "COA_HGH_191aa_36IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hgh-191aa-36-iu"
     },
     "local_file": "COA_HGH_191aa_36IU.pdf"
   },
@@ -1254,7 +1333,8 @@
       "variant": "75 IU",
       "source": "generated",
       "source_filename": "COA_HMG_75IU.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "hmg-75-iu"
     },
     "local_file": "COA_HMG_75IU.pdf"
   },
@@ -1271,7 +1351,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Humanin_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "humanin-10mg"
     },
     "local_file": "COA_Humanin_10mg.pdf"
   },
@@ -1288,7 +1369,8 @@
       "variant": "0.1mg",
       "source": "generated",
       "source_filename": "COA_IGF-1_LR3_0.1mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "igf-1-lr3-0-1mg"
     },
     "local_file": "COA_IGF-1_LR3_0.1mg.pdf"
   },
@@ -1305,7 +1387,8 @@
       "variant": "1mg",
       "source": "generated",
       "source_filename": "COA_IGF-1_LR3_1mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "igf-1-lr3-1mg"
     },
     "local_file": "COA_IGF-1_LR3_1mg.pdf"
   },
@@ -1322,7 +1405,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Ipamorelin_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ipamorelin-10mg"
     },
     "local_file": "COA_Ipamorelin_10mg.pdf"
   },
@@ -1339,7 +1423,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Ipamorelin_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "ipamorelin-5mg"
     },
     "local_file": "COA_Ipamorelin_5mg.pdf"
   },
@@ -1371,7 +1456,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Kisspeptin-10_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "kisspeptin-10-5mg"
     },
     "local_file": "COA_Kisspeptin-10_5mg.pdf"
   },
@@ -1403,7 +1489,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_KPV_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "kpv-5mg"
     },
     "local_file": "COA_KPV_5mg.pdf"
   },
@@ -1435,7 +1522,8 @@
       "variant": "100mg",
       "source": "generated",
       "source_filename": "COA_L-Glu_100mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "l-glu-100mg"
     },
     "local_file": "COA_L-Glu_100mg.pdf"
   },
@@ -1452,7 +1540,8 @@
       "variant": "10ml",
       "source": "generated",
       "source_filename": "COA_Lemon_Bottle_10ml.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "lemon-bottle-10ml"
     },
     "local_file": "COA_Lemon_Bottle_10ml.pdf"
   },
@@ -1469,7 +1558,8 @@
       "variant": "10ml",
       "source": "generated",
       "source_filename": "COA_Lipo-C_10ml.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "lipo-c-10ml"
     },
     "local_file": "COA_Lipo-C_10ml.pdf"
   },
@@ -1501,7 +1591,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Mazdutide_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "mazdutide-10mg"
     },
     "local_file": "COA_Mazdutide_10mg.pdf"
   },
@@ -1518,7 +1609,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Mazdutide_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "mazdutide-5mg"
     },
     "local_file": "COA_Mazdutide_5mg.pdf"
   },
@@ -1565,7 +1657,8 @@
       "variant": "2mg",
       "source": "generated",
       "source_filename": "COA_MGF_2mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "mgf-2mg"
     },
     "local_file": "COA_MGF_2mg.pdf"
   },
@@ -1582,7 +1675,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_MK-677_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "mk-677-5mg"
     },
     "local_file": "COA_MK-677_5mg.pdf"
   },
@@ -1629,7 +1723,8 @@
       "variant": "40mg",
       "source": "generated",
       "source_filename": "COA_MOTS-c_40mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "mots-c-40mg"
     },
     "local_file": "COA_MOTS-c_40mg.pdf"
   },
@@ -1646,7 +1741,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_MOTS-c_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "mots-c-5mg"
     },
     "local_file": "COA_MOTS-c_5mg.pdf"
   },
@@ -1708,7 +1804,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Oxytocin_Acetate_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "oxytocin-acetate-10mg"
     },
     "local_file": "COA_Oxytocin_Acetate_10mg.pdf"
   },
@@ -1725,7 +1822,8 @@
       "variant": "2mg",
       "source": "generated",
       "source_filename": "COA_Oxytocin_Acetate_2mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "oxytocin-acetate-2mg"
     },
     "local_file": "COA_Oxytocin_Acetate_2mg.pdf"
   },
@@ -1742,7 +1840,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Oxytocin_Acetate_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "oxytocin-acetate-5mg"
     },
     "local_file": "COA_Oxytocin_Acetate_5mg.pdf"
   },
@@ -1759,7 +1858,8 @@
       "variant": "2mg",
       "source": "generated",
       "source_filename": "COA_PEG-MGF_2mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "peg-mgf-2mg"
     },
     "local_file": "COA_PEG-MGF_2mg.pdf"
   },
@@ -1781,15 +1881,18 @@
   {
     "id": "coa_pinealon_capsules_100ct_batch_a001",
     "product_handle": "pinealon-capsules",
-    "variant_handle": "pinealon-capsules-100ct",
+    "variant_handle": "pinealon-capsules-100-count",
     "batch_number": "A001",
     "purity_percent": 99,
     "tested_at": "2026-06-01T00:00:00.000Z",
     "document_type": "coa",
     "metadata": {
       "compound": "Pinealon (Capsules)",
-      "variant": "100 count"
-    }
+      "variant": "100 count",
+      "source_filename": "COA_Pinealon_Capsules.pdf",
+      "variant_handle": "pinealon-capsules-100-count"
+    },
+    "local_file": "COA_Pinealon_Capsules.pdf"
   },
   {
     "id": "coa_pinealon_capsules_batch_a001",
@@ -1821,7 +1924,8 @@
       "variant": "100mg",
       "source": "generated",
       "source_filename": "COA_Retatrutide_100mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "retatrutide-100mg"
     },
     "local_file": "COA_Retatrutide_100mg.pdf"
   },
@@ -1868,7 +1972,8 @@
       "variant": "50mg",
       "source": "generated",
       "source_filename": "COA_Retatrutide_50mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "retatrutide-50mg"
     },
     "local_file": "COA_Retatrutide_50mg.pdf"
   },
@@ -1900,7 +2005,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Selank_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "selank-10mg"
     },
     "local_file": "COA_Selank_10mg.pdf"
   },
@@ -1917,7 +2023,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Selank_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "selank-5mg"
     },
     "local_file": "COA_Selank_5mg.pdf"
   },
@@ -1934,7 +2041,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Selank_10mg_Nasal_Spray.pdf",
-      "form": "nasal_spray"
+      "form": "nasal_spray",
+      "variant_handle": "selank-nasal-spray-10mg"
     },
     "local_file": "COA_Selank_10mg_Nasal_Spray.pdf"
   },
@@ -1951,7 +2059,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Semaglutide_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "semaglutide-10mg"
     },
     "local_file": "COA_Semaglutide_10mg.pdf"
   },
@@ -1968,7 +2077,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Semaglutide_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "semaglutide-5mg"
     },
     "local_file": "COA_Semaglutide_5mg.pdf"
   },
@@ -1985,7 +2095,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Semax_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "semax-10mg"
     },
     "local_file": "COA_Semax_10mg.pdf"
   },
@@ -2002,7 +2113,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Semax_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "semax-5mg"
     },
     "local_file": "COA_Semax_5mg.pdf"
   },
@@ -2019,7 +2131,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Semax_10mg_Nasal_Spray.pdf",
-      "form": "nasal_spray"
+      "form": "nasal_spray",
+      "variant_handle": "semax-nasal-spray-10mg"
     },
     "local_file": "COA_Semax_10mg_Nasal_Spray.pdf"
   },
@@ -2066,7 +2179,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Snap-8_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "snap-8-10mg"
     },
     "local_file": "COA_Snap-8_10mg.pdf"
   },
@@ -2128,7 +2242,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Survodutide_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "survodutide-10mg"
     },
     "local_file": "COA_Survodutide_10mg.pdf"
   },
@@ -2158,7 +2273,8 @@
     "metadata": {
       "compound": "TB500",
       "variant": "5mg",
-      "source_filename": "COA_Thymosin_Beta-4_TB-500_5mg.pdf"
+      "source_filename": "COA_Thymosin_Beta-4_TB-500_5mg.pdf",
+      "variant_handle": "tb500-5mg"
     },
     "local_file": "COA_Thymosin_Beta-4_TB-500_5mg.pdf"
   },
@@ -2190,7 +2306,8 @@
       "variant": "20mg",
       "source": "generated",
       "source_filename": "COA_Tesamorelin_20mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "tesamorelin-20mg"
     },
     "local_file": "COA_Tesamorelin_20mg.pdf"
   },
@@ -2237,7 +2354,8 @@
       "variant": "10mg",
       "source": "generated",
       "source_filename": "COA_Thymosin_alpha-1_10mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "thymosin-alpha-1-10mg"
     },
     "local_file": "COA_Thymosin_alpha-1_10mg.pdf"
   },
@@ -2254,7 +2372,8 @@
       "variant": "5mg",
       "source": "generated",
       "source_filename": "COA_Thymosin_alpha-1_5mg.pdf",
-      "form": "injectable"
+      "form": "injectable",
+      "variant_handle": "thymosin-alpha-1-5mg"
     },
     "local_file": "COA_Thymosin_alpha-1_5mg.pdf"
   },
@@ -2299,7 +2418,8 @@
     "metadata": {
       "compound": "Tirzepatide",
       "variant": "50mg",
-      "source_filename": "COA_GLP-3_RT_30mg.pdf"
+      "source_filename": "COA_GLP-3_RT_30mg.pdf",
+      "variant_handle": "tirzepatide-50mg"
     },
     "local_file": "COA_GLP-3_RT_30mg.pdf"
   },
@@ -2329,7 +2449,8 @@
     "metadata": {
       "compound": "VIP",
       "variant": "10mg",
-      "source_filename": "COA_VIP_10mg.pdf"
+      "source_filename": "COA_VIP_10mg.pdf",
+      "variant_handle": "vip-10mg"
     },
     "local_file": "COA_VIP_10mg.pdf"
   },

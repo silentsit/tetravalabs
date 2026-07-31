@@ -256,11 +256,17 @@ const COA_DOC_HANDLE_ALIASES: Record<string, string> = {
     "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg"
 }
 
-function catalogHandlesForCoa(doc: StoreCoaDocument): string[] {
+/** Catalog / legacy strength handles encoded on a COA row (metadata + doc id). */
+export function catalogHandlesForCoa(doc: StoreCoaDocument): string[] {
   const handles = new Set<string>()
   const metaHandle = doc.metadata?.variant_handle
   if (typeof metaHandle === "string" && metaHandle.trim()) {
     handles.add(metaHandle.trim())
+  }
+
+  const metaCatalog = doc.metadata?.catalog_slug
+  if (typeof metaCatalog === "string" && metaCatalog.trim()) {
+    handles.add(metaCatalog.trim())
   }
 
   const idMatch = /^(?:coa|hplc)_(.+)_batch_/i.exec(doc.id)

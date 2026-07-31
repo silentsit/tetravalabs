@@ -79,10 +79,10 @@ export function CoaLibraryCard({ document }: Props) {
 
       <div className="flex flex-1 flex-col gap-2 p-3">
         <div>
-          <h2 className="font-serif text-base leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
+          <h3 className="font-serif text-base leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
             {compound}
             {strength ? ` ${strength}` : ""}
-          </h2>
+          </h3>
           <p className="mt-0.5 text-xs text-[#64748B]">Batch {document.batch_number}</p>
         </div>
 

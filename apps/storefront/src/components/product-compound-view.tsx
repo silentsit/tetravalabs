@@ -23,28 +23,45 @@ import { ProductOfferSummary } from "@/components/product-offer-summary"
 import { ProductReviewSummary } from "@/components/product-review-summary"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
 import type { PackTier } from "@/lib/pack-pricing"
+import { getCuratedOverviewImagePaths } from "@/lib/product-overview-images"
 
 const OVERVIEW_CONTEXT_IMAGES = [
   "/images/blog/lab-vial-presentation.jpg",
   "/images/blog/lab-synthesizer.jpg"
 ] as const
 
-/** Product shots first, then lab context — three distinct URLs when possible. */
-function buildOverviewImages(galleryImages: string[], productName: string): ProductOverviewImage[] {
+/**
+ * Prefer curated editorial images for featured compounds; otherwise gallery +
+ * shared lab context photos (three distinct URLs when possible).
+ */
+function buildOverviewImages(
+  parentHandle: string,
+  galleryImages: string[],
+  productName: string
+): ProductOverviewImage[] {
   const unique: string[] = []
-  for (const src of galleryImages) {
+
+  for (const src of getCuratedOverviewImagePaths(parentHandle)) {
     if (src && !unique.includes(src)) unique.push(src)
-    if (unique.length >= 3) break
   }
-  for (const src of OVERVIEW_CONTEXT_IMAGES) {
-    if (unique.length >= 3) break
-    if (!unique.includes(src)) unique.push(src)
+
+  if (unique.length < 3) {
+    for (const src of galleryImages) {
+      if (src && !unique.includes(src)) unique.push(src)
+      if (unique.length >= 3) break
+    }
+  }
+  if (unique.length < 3) {
+    for (const src of OVERVIEW_CONTEXT_IMAGES) {
+      if (unique.length >= 3) break
+      if (!unique.includes(src)) unique.push(src)
+    }
   }
 
   const alts = [
     `${productName} research vial from Tetrava Labs`,
-    `${productName} product detail for laboratory research`,
-    `Laboratory research setting supporting ${productName} documentation`
+    `${productName} laboratory research preparation`,
+    `${productName} analytical documentation and lot records`
   ]
 
   return unique.slice(0, 3).map((src, index) => ({
@@ -235,7 +252,7 @@ export function ProductCompoundView({
         coas={coas}
         faqs={faqs}
         reviews={reviews}
-        overviewImages={buildOverviewImages(galleryImages, headingName)}
+        overviewImages={buildOverviewImages(view.parentHandle, galleryImages, headingName)}
       />
     </>
   )

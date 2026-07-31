@@ -131,8 +131,8 @@ export function ProductDetailTabs({
                               src={image.src}
                               alt={image.alt}
                               width={1200}
-                              height={750}
-                              className="h-auto max-h-[420px] w-full object-contain"
+                              height={675}
+                              className="h-auto w-full object-cover"
                               sizes="(max-width: 768px) 100vw, 48rem"
                             />
                           </figure>

@@ -33,6 +33,7 @@ const dryRun = process.argv.includes("--dry-run")
 const includePlaceholders = process.argv.includes("--include-placeholders")
 const backfillPreviewsOnly = process.argv.includes("--backfill-previews-only")
 const skipBackfillPreviews = process.argv.includes("--skip-backfill-previews")
+const fromAttachPlan = process.argv.includes("--from-attach-plan")
 
 const medusaUrl = (process.env.MEDUSA_ADMIN_URL || process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(
   /\/$/,
@@ -127,11 +128,14 @@ async function fetchProducts() {
   let offset = 0
 
   while (true) {
-    const response = await fetch(`${medusaUrl}/store/products?limit=${limit}&offset=${offset}`, {
+    const response = await fetch(
+      `${medusaUrl}/store/products?limit=${limit}&offset=${offset}&fields=id,handle,title,*variants,*variants.metadata`,
+      {
       headers: {
         ...(publishableKey ? { "x-publishable-api-key": publishableKey } : {})
       }
-    })
+    }
+    )
     if (!response.ok) {
       throw new Error(`Failed to load products from Medusa (${response.status})`)
     }
@@ -150,34 +154,57 @@ const HANDLE_ALIASES = {
   "nad-plus-1000mg": "nad-1000mg",
   "nad-plus-100mg": "nad-100mg",
   "nad-plus-500mg": "nad-500mg",
-  "pinealon-capsules-100ct": "pinealon-capsules-100-count"
+  "pinealon-capsules-100ct": "pinealon-capsules-100-count",
+  "glow-blend-30mg": "glow-bpc-157-tb500-ghk-cu-30mg",
+  "glow-blend-85mg": "glow-bpc-157-tb500-ghk-cu-85mg",
+  "glow-tb500-bpc-157-ghk-cu-70mg": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+  "cu-tb500-bpc-157-kpv-blend-80mg": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+  "bpc-157-tb500-blend-10mg": "bpc-157-5mg-tb500-5mg-10mg",
+  "bpc-157-tb500-blend-20mg": "bpc-157-5mg-tb500-5mg-20mg",
+  "cagrilintide-plus-semaglutide-5mg": "cagrilintide-semaglutide-5mg",
+  "cagrilintide-plus-semaglutide-10mg": "cagrilintide-semaglutide-10mg",
+  "cjc-1295-ipamorelin-blend-10mg": "cjc-1295-without-dac-ipamorelin-blend-10mg",
+  "cjc-1295-sermorelin-ipamorelin-blend-5mg":
+    "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg"
+}
+
+function preferCoaVariant(variants = []) {
+  const single = variants.find((variant) => {
+    const packQty = variant.metadata?.pack_qty
+    return packQty == null || Number(packQty) <= 1
+  })
+  return single || variants[0]
 }
 
 function resolveVariantId(products, entry) {
-  if (entry.variant_id) return entry.variant_id
-
   const rawHandle = entry.variant_handle || entry.product_handle
   const handle = HANDLE_ALIASES[rawHandle] || rawHandle
-  if (!handle) return null
+  if (!handle) return entry.variant_id || null
 
-  for (const product of products) {
-    for (const variant of product.variants || []) {
+  const product = products.find((item) => item.handle === handle)
+  if (product?.variants?.length) {
+    if (entry.variant_title) {
+      const match = product.variants.find((variant) => variant.title === entry.variant_title)
+      if (match?.id) return match.id
+    }
+    return preferCoaVariant(product.variants)?.id || null
+  }
+
+  const slugMatches = []
+  for (const item of products) {
+    for (const variant of item.variants || []) {
       const catalogSlug = variant.metadata?.catalog_slug
-      if (catalogSlug === handle || variant.sku?.toLowerCase() === handle.replace(/-/g, "_").toLowerCase()) {
-        return variant.id
+      if (
+        catalogSlug === handle ||
+        variant.sku?.toLowerCase() === handle.replace(/-/g, "_").toLowerCase()
+      ) {
+        slugMatches.push(variant)
       }
     }
   }
+  if (slugMatches.length) return preferCoaVariant(slugMatches)?.id || null
 
-  const product = products.find((item) => item.handle === handle)
-  if (!product?.variants?.length) return null
-
-  if (entry.variant_title) {
-    const match = product.variants.find((variant) => variant.title === entry.variant_title)
-    if (match?.id) return match.id
-  }
-
-  return product.variants[0].id
+  return entry.variant_id || null
 }
 
 async function upsertDocument(client, entry, variantId, storageKey, documentUrl, mediaType, previewStorageKey) {
@@ -350,6 +377,13 @@ async function run() {
   }
 
   const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"))
+  let attachHandles = null
+  if (fromAttachPlan) {
+    const planPath = path.join(workspaceRoot, "coas", ".attach-plan.json")
+    const plan = JSON.parse(await fs.readFile(planPath, "utf8"))
+    attachHandles = new Set(plan.handles || [])
+    console.log(`Filtering sync to ${attachHandles.size} handle(s) from attach plan`)
+  }
   const products = await fetchProducts()
   const s3 = new S3Client({
     region: process.env.R2_REGION || "auto",
@@ -374,6 +408,19 @@ async function run() {
 
   if (!backfillPreviewsOnly) {
     for (const entry of manifest) {
+      if (attachHandles) {
+        const rawHandle = entry.variant_handle || entry.product_handle
+        const liveHandle = HANDLE_ALIASES[rawHandle] || rawHandle
+        if (
+          entry.document_type !== "coa" ||
+          !liveHandle ||
+          !attachHandles.has(liveHandle)
+        ) {
+          skipped += 1
+          continue
+        }
+      }
+
       const variantId = resolveVariantId(products, entry)
       if (!variantId) {
         console.warn(`[skip] ${entry.id}: could not resolve variant for handle ${entry.variant_handle || entry.product_handle}`)

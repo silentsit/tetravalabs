@@ -106,7 +106,7 @@ export function AccountDownloadsPanel() {
                     View product
                   </Link>
                   <Link
-                    href={`/coa-library?product=${encodeURIComponent(row.handle)}`}
+                    href={`/coa-library/${encodeURIComponent(row.handle)}`}
                     className="btn-primary px-4 py-2 text-xs"
                   >
                     Open COA

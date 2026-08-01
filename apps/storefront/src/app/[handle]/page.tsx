@@ -1,7 +1,6 @@
 import { notFound, redirect } from "next/navigation"
 import type { Metadata } from "next"
 import {
-  compoundSeoName,
   compoundSeoProductName,
   getCompoundProductView,
   loadStrengthSideData,
@@ -117,7 +116,7 @@ export default async function ProductPage({ params }: Props) {
       buildOverviewImages(
         view.parentHandle,
         strength.galleryImages.length ? strength.galleryImages : [strength.image],
-        compoundSeoName(view, strength.strengthKey),
+        view.displayName,
         view.categoryLabel
       )
     ])

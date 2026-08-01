@@ -8,11 +8,70 @@ import {
 import { getBlogPostBySlug } from "@/lib/sanity"
 import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
-import { articleJsonLd, faqJsonLd, productJsonLd, webPageJsonLd } from "@/lib/seo"
+import {
+  articleJsonLd,
+  faqJsonLd,
+  productJsonLd,
+  webPageJsonLd,
+  type ProductReviewSchemaInput
+} from "@/lib/seo"
 import { getProductFaqs } from "@/lib/product-faqs"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
 import { getProductImage, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
+import { listProductReviews, type ProductReview } from "@/lib/reviews"
+
+async function reviewsForProductSchema(input: {
+  productHandle: string
+  productId?: string
+  extraHandles?: Array<{ productHandle: string; productId?: string }>
+}): Promise<ProductReviewSchemaInput | null> {
+  const sources = [
+    { productHandle: input.productHandle, productId: input.productId },
+    ...(input.extraHandles || [])
+  ]
+  const seen = new Set<string>()
+  const uniqueSources = sources.filter((source) => {
+    const key = `${source.productHandle}:${source.productId || ""}`
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+
+  const responses = await Promise.all(
+    uniqueSources.map((source) =>
+      listProductReviews({
+        productHandle: source.productHandle,
+        productId: source.productId,
+        limit: 6
+      })
+    )
+  )
+
+  const aggregate = responses
+    .map((response) => response.aggregate)
+    .filter((entry) => entry.reviewCount > 0 && entry.ratingValue > 0)
+    .sort((a, b) => b.reviewCount - a.reviewCount)[0]
+  if (!aggregate) return null
+
+  const byId = new Map<string, ProductReview>()
+  for (const response of responses) {
+    for (const item of response.items) {
+      byId.set(item.id, item)
+    }
+  }
+
+  return {
+    ratingValue: aggregate.ratingValue,
+    reviewCount: aggregate.reviewCount,
+    reviews: [...byId.values()].map((item) => ({
+      authorName: item.author_name,
+      rating: item.rating,
+      body: item.body,
+      datePublished: item.created_at
+    }))
+  }
+}
 
 const RESERVED_TOP_LEVEL = new Set([
   "about",
@@ -75,9 +134,17 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
       category: view.categoryLabel,
       appearance: view.appearance
     })
+    const reviewData = await reviewsForProductSchema({
+      productHandle: view.parentHandle,
+      productId: strength?.productId,
+      extraHandles: view.strengths.map((item) => ({
+        productHandle: item.handle,
+        productId: item.productId
+      }))
+    })
 
     return [
-      productJsonLd(productLike, view.parentHandle, image),
+      productJsonLd(productLike, view.parentHandle, image, reviewData),
       webPageJsonLd({
         title: pageTitle,
         description: pageDescription,
@@ -101,9 +168,13 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     category,
     appearance: String(product.metadata?.appearance || "")
   })
+  const reviewData = await reviewsForProductSchema({
+    productHandle: catalogHandle,
+    productId: product.id
+  })
 
   return [
-    productJsonLd(product, catalogHandle, image),
+    productJsonLd(product, catalogHandle, image, reviewData),
     webPageJsonLd({
       title: `${displayTitle} — ${category}`,
       description: `${displayTitle} for laboratory research (RUO).`,

@@ -281,7 +281,23 @@ function productAvailability(product: ProductLike) {
     : "https://schema.org/OutOfStock"
 }
 
-export function productJsonLd(product: ProductLike, handle: string, imagePath?: string) {
+export type ProductReviewSchemaInput = {
+  ratingValue: number
+  reviewCount: number
+  reviews?: Array<{
+    authorName: string
+    rating: number
+    body: string
+    datePublished?: string
+  }>
+}
+
+export function productJsonLd(
+  product: ProductLike,
+  handle: string,
+  imagePath?: string,
+  reviewData?: ProductReviewSchemaInput | null
+) {
   const displayTitle = normalizeTb500DisplayText(product.title)
   const categoryLabel = normalizeTb500DisplayText(
     String(product.metadata?.source_category || "Research Product")
@@ -317,7 +333,7 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
         itemCondition: "https://schema.org/NewCondition"
       }
 
-  return {
+  const graph: JsonLdGraph = {
     "@context": "https://schema.org/",
     "@type": "Product",
     name: displayTitle,
@@ -328,6 +344,40 @@ export function productJsonLd(product: ProductLike, handle: string, imagePath?: 
     brand: { "@type": "Brand", name: "Tetrava Labs" },
     offers
   }
+
+  // Only emit when real reviews exist — never invent ratings for GSC.
+  if (reviewData && reviewData.reviewCount > 0 && reviewData.ratingValue > 0) {
+    graph.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: Number(reviewData.ratingValue.toFixed(1)),
+      reviewCount: reviewData.reviewCount,
+      bestRating: 5,
+      worstRating: 1
+    }
+
+    const nested = (reviewData.reviews || [])
+      .filter((item) => item.rating > 0 && item.body.trim())
+      .slice(0, 6)
+      .map((item) => ({
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: item.authorName.trim() || "Verified buyer"
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: item.rating,
+          bestRating: 5,
+          worstRating: 1
+        },
+        reviewBody: item.body.trim(),
+        ...(item.datePublished ? { datePublished: item.datePublished } : {})
+      }))
+
+    if (nested.length) graph.review = nested
+  }
+
+  return graph
 }
 
 export function articleJsonLd(post: {

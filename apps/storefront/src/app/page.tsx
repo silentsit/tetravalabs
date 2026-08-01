@@ -158,7 +158,7 @@ export default async function HomePage() {
           <div className="mb-10 text-center">
             <span className="section-label">Trust</span>
             <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">
-              The Best Place to Order Peptides Online
+              The Best Place to Buy Peptides Online
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-[#475569]">
               Looking for the best place to buy peptides online? Tetrava Labs supplies research-grade

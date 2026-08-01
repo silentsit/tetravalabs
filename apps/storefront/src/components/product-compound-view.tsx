@@ -11,7 +11,6 @@ import {
   pickDefaultStrengthKey,
   type CompoundProductView
 } from "@/lib/compound-product"
-import { siteConfig } from "@/lib/seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { ProductImageGallery } from "@/components/product-image-gallery"
 import { ProductPurchasePanel } from "@/components/product-purchase-panel"
@@ -85,28 +84,11 @@ export function ProductCompoundView({
   }, [selectedStrength?.strengthKey])
 
   useEffect(() => {
-    if (!selectedStrength) return
-
-    // Strength/pack stay in React state; URL is always the clean parent handle.
+    // Strength/pack stay in React state; URL + title/description stay on the
+    // parent compound page (server generateMetadata). Do not rewrite <title>
+    // per strength — that made variants look like separate SEO pages.
     syncUrl(view.parentHandle)
-
-    const seoOverride = getProductSeoOverride(view.parentHandle)
-    const seoName = compoundSeoName(view, selectedStrength.strengthKey)
-    document.title =
-      seoOverride?.absoluteTitle ||
-      `${seoName} — ${view.categoryLabel} | ${siteConfig.name}`
-
-    const description =
-      seoOverride?.description ||
-      `${seoName} for laboratory research (RUO). ${selectedStrength.purity} purity with lot-linked COA.`
-    let meta = document.querySelector('meta[name="description"]')
-    if (!meta) {
-      meta = document.createElement("meta")
-      meta.setAttribute("name", "description")
-      document.head.appendChild(meta)
-    }
-    meta.setAttribute("content", description)
-  }, [packQty, selectedStrength, view])
+  }, [packQty, selectedStrength, view.parentHandle])
 
   const onStrengthChange = useCallback((next: string) => {
     setStrengthKey(next)

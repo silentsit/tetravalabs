@@ -263,6 +263,52 @@ const ensureShippingOption = async (token, region, stockLocationId) => {
   return createdOption.shipping_option
 }
 
+const ensureStoreDefaults = async (token, region) => {
+  const stores = await request(token, "GET", "/admin/stores?limit=1")
+  const store = stores.stores?.[0]
+  if (!store) {
+    console.log("No store found — skipping store defaults.")
+    return
+  }
+
+  const regionCurrency = (region.currency_code || "usd").toLowerCase()
+
+  // Preserve existing currencies but guarantee the region currency is present and default.
+  const existing = Array.isArray(store.supported_currencies) ? store.supported_currencies : []
+  const codes = new Set(
+    existing.map((entry) => entry.currency_code?.toLowerCase()).filter(Boolean)
+  )
+  codes.add(regionCurrency)
+  const supportedCurrencies = [...codes].map((code) => ({
+    currency_code: code,
+    is_default: code === regionCurrency
+  }))
+
+  const currencyDefaultOk = existing.some(
+    (entry) => entry.currency_code?.toLowerCase() === regionCurrency && entry.is_default
+  )
+  const needsCurrencyUpdate = existing.length !== supportedCurrencies.length || !currencyDefaultOk
+  const needsRegionUpdate = store.default_region_id !== region.id
+
+  if (!needsCurrencyUpdate && !needsRegionUpdate) {
+    console.log(
+      `Store defaults ready: default region ${region.id}, default currency ${regionCurrency}`
+    )
+    return
+  }
+
+  // The store Store API resolves calculated_price via the default region when the storefront
+  // omits region_id; without this, every /store/products request fails with
+  // "Missing required pricing context - region_id" and product pages 404.
+  await request(token, "POST", `/admin/stores/${store.id}`, {
+    default_region_id: region.id,
+    supported_currencies: supportedCurrencies
+  })
+  console.log(
+    `Store defaults set: default_region_id=${region.id}, default currency=${regionCurrency}`
+  )
+}
+
 const ensurePublishableKey = async (token, salesChannelId) => {
   const rotate = process.argv.includes("--rotate-key")
   const keys = await request(token, "GET", "/admin/api-keys?type=publishable&limit=50")
@@ -304,6 +350,7 @@ const run = async () => {
   MEDUSA_ADMIN_TOKEN = await resolveAdminToken()
 
   const region = await ensureRegion(MEDUSA_ADMIN_TOKEN)
+  await ensureStoreDefaults(MEDUSA_ADMIN_TOKEN, region)
   const salesChannel = await ensureSalesChannel(MEDUSA_ADMIN_TOKEN)
   const stockLocation = await ensureStockLocation(MEDUSA_ADMIN_TOKEN, salesChannel.id)
   await ensureShippingOption(MEDUSA_ADMIN_TOKEN, region, stockLocation.id)

@@ -42,24 +42,22 @@ Postgres here is a native apt install (data in `/var/lib/postgresql`), not Docke
 3. `npm run catalog:normalize` — regenerates the storefront catalog + `*.generated.json` handle maps from `product_catalog_usd.json`.
 4. `npm run medusa:dev` — start the backend (leave running).
 5. `npm --prefix apps/medusa run bootstrap:admin` — creates the admin user.
-6. `npm run medusa:bootstrap` — creates region/sales-channel/shipping and prints the publishable key.
+6. `npm run medusa:bootstrap` — creates region/sales-channel/shipping, sets the store default region + USD currency (see gotcha below), and prints the publishable key.
 7. `npm run catalog:import` — imports the 75 products into Medusa.
-8. **Set the store default region + USD currency** (see gotcha below).
-9. `npm run dev` — start the storefront (leave running).
-10. `npm run smoke:local` — Storefront/Medusa/Store-products should pass; the Typesense check fails and is expected (Typesense is optional).
+8. `npm run dev` — start the storefront (leave running).
+9. `npm run smoke:local` — Storefront/Medusa/Store-products should pass; the Typesense check fails and is expected (Typesense is optional).
 
 ### Non-obvious gotchas
 
 - **Store default region is required or every product page 404s.** A fresh Medusa store ships
   with `default_region_id = null` and `eur` as the only supported currency, but the catalog and
   region are USD. The storefront fetches `/store/products` with `calculated_price` and **no**
-  `region_id`, which fails with `Missing required pricing context - region_id` until a default
-  region is set. `bootstrap:store` does NOT set this. After bootstrap + import, set it once via
-  the admin API (get an admin bearer token from `POST /auth/user/emailpass`, then
-  `POST /admin/stores/{store_id}` with body
-  `{"default_region_id":"<us_region_id>","supported_currencies":[{"currency_code":"usd","is_default":true},{"currency_code":"eur"}]}`).
-  Symptom if skipped: shop grid shows prices (local catalog fallback) but all `/{handle}` product
-  pages return 404. This setting persists in Postgres.
+  `region_id`, which fails with `Missing required pricing context - region_id` unless a default
+  region is set. `npm run medusa:bootstrap` (`bootstrap:store`) now sets `default_region_id` and
+  makes the region currency (USD) the store default via `ensureStoreDefaults` — so this is handled
+  automatically and the step is idempotent. Symptom if it is ever missing: shop grid shows prices
+  (local catalog fallback) but all `/{handle}` product pages return 404. This setting persists in
+  Postgres.
 - **Checkout order completion works; hosted payment does not.** `POST /api/checkout` completes a
   real Medusa order using the `pp_system_default` provider even with no payment keys. The external
   hosted-payment step (BTCPay / Paymento / PeptidePay for crypto/card) requires third-party API

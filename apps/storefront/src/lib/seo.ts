@@ -8,7 +8,8 @@ import { getProductPriceRangeCents } from "@/lib/product-price"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 
-export const META_TITLE_MAX = 60
+/** Soft SERP budget; product titles use progressive fallbacks under this cap. */
+export const META_TITLE_MAX = 70
 export const META_DESCRIPTION_MAX = 160
 
 export type JsonLdGraph = Record<string, unknown>
@@ -69,17 +70,21 @@ export function pageUrl(path = "") {
 
 const BRAND_SUFFIX = ` | ${siteConfig.name}`
 
+/** Drop trailing separators left by length clamps (avoids "Name — | Brand"). */
+function stripTrailingTitleSeparators(text: string) {
+  return text.replace(/[\s|/\\•·–—-]+$/g, "").trim()
+}
+
 function truncateMetaText(text: string, max: number) {
   const normalized = text.replace(/\s+/g, " ").trim()
   if (normalized.length <= max) return normalized
 
   const slice = normalized.slice(0, max)
   const lastSpace = slice.lastIndexOf(" ")
-  if (lastSpace >= Math.floor(max * 0.5)) {
-    return slice.slice(0, lastSpace).trim()
-  }
+  const clipped =
+    lastSpace >= Math.floor(max * 0.5) ? slice.slice(0, lastSpace).trim() : slice.trim()
 
-  return slice.trim()
+  return stripTrailingTitleSeparators(clipped)
 }
 
 export function clampMetaDescription(description: string) {

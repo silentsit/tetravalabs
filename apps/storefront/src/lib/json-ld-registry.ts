@@ -16,6 +16,7 @@ import {
   type ProductReviewSchemaInput
 } from "@/lib/seo"
 import { getProductFaqs } from "@/lib/product-faqs"
+import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
 import { getProductImage, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
@@ -111,11 +112,22 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     const strength = view.strengths[0]
     const seoOverride = getProductSeoOverride(view.parentHandle)
     const seoName = compoundSeoProductName(view)
-    const pageTitle =
-      seoOverride?.absoluteTitle.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim() ||
-      `${seoName} — ${view.categoryLabel}`
+    const strengthLabels = view.strengths.map((item) => item.strengthLabel)
+    const absoluteTitle =
+      seoOverride?.absoluteTitle ||
+      buildProductSeoTitle({
+        displayName: view.displayName,
+        strengthLabels
+      })
+    const pageTitle = absoluteTitle.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim()
     const pageDescription =
-      seoOverride?.description || `${seoName} for laboratory research (RUO).`
+      seoOverride?.description ||
+      buildProductSeoDescription({
+        displayName: view.displayName,
+        strengthLabels,
+        purity: strength?.purity,
+        casNumber: view.casNumber
+      })
     const imageHandle = strength?.imageHandle || strength?.handle || view.parentHandle
     const allVariants = view.strengths.flatMap(
       (item) => (item.variants || []) as NonNullable<StoreProduct["variants"]>
@@ -176,8 +188,14 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   return [
     productJsonLd(product, catalogHandle, image, reviewData),
     webPageJsonLd({
-      title: `${displayTitle} — ${category}`,
-      description: `${displayTitle} for laboratory research (RUO).`,
+      title: buildProductSeoTitle({ displayName: displayTitle, strengthLabels: [] }).replace(
+        /\s*\|\s*Tetrava Labs\s*$/i,
+        ""
+      ).trim(),
+      description: buildProductSeoDescription({
+        displayName: displayTitle,
+        strengthLabels: []
+      }),
       path
     }),
     faqJsonLd(faqs, path)
@@ -209,8 +227,8 @@ registerDynamicJsonLd(/^\/category\/([^/]+)$/, async (match) => {
 
   return [
     webPageJsonLd({
-      title: `${label} — research peptides`,
-      description: `Shop ${label} research compounds with HPLC-MS verification and lot-linked COAs.`,
+      title: `${label} | research peptides`,
+      description: `Shop ${label} research peptides with verified 99%+ HPLC-MS purity, lot-linked COAs, and cold-chain shipping. Research use only (RUO).`,
       path: `/category/${normalized}`,
       type: "CollectionPage"
     })

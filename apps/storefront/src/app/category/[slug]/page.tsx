@@ -51,11 +51,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const seo = await getCategorySeoBlock(normalized)
   const art = categoryArtForSlug(normalized, label)
   return buildPageMetadata({
-    title: seo?.seoTitle || `${label} — research peptides`,
+    title: seo?.seoTitle || `${label} | research peptides`,
     description:
       seo?.seoDescription ||
       art.description ||
-      `Shop ${label} research compounds with HPLC-MS verification and lot-linked COAs.`,
+      `Shop ${label} research peptides with verified 99%+ HPLC-MS purity, lot-linked COAs, and cold-chain shipping. Research use only (RUO).`,
     path: `/category/${normalized}`,
     image: art.image,
     pageType: "CollectionPage"

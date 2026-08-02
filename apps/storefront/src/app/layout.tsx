@@ -83,6 +83,8 @@ export default async function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
+  const gaMeasurementId =
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "G-YZ9KZMZZLW"
   const pathname = (await headers()).get("x-pathname") || "/"
   const pageGraphs = await resolvePageJsonLd(pathname)
   const isUtilityPath =
@@ -108,6 +110,20 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google tag (gtag.js) — single install for all pages */}
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gaMeasurementId}');
+          `}
+        </Script>
         <JsonLd graph={jsonLdGraph} />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
       </head>

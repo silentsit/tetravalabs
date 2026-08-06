@@ -22,6 +22,8 @@ import {
 import { ProductOfferSummary } from "@/components/product-offer-summary"
 import { ProductReviewSummary } from "@/components/product-review-summary"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
+import { ProductCoaDownload } from "@/components/product-coa-download"
+import { ProductReviewsPanel } from "@/components/product-reviews-panel"
 import type { PackTier } from "@/lib/pack-pricing"
 
 type Props = {
@@ -121,17 +123,37 @@ export function ProductCompoundView({
     : [selectedStrength.image]
 
   const overviewImages = overviewImagesByStrength[selectedStrength.strengthKey] || []
+  const reviewHandle = selectedStrength.imageHandle || selectedStrength.handle
 
   return (
     <>
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-        <div className="card overflow-hidden p-4 lg:max-w-md">
-          <ProductImageGallery
-            key={selectedStrength.imageHandle}
-            productImages={galleryImages}
-            productName={galleryAlt}
-            coas={coas}
-          />
+      <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch">
+        <div className="flex min-h-0 flex-col gap-4 lg:max-w-md">
+          <div className="card shrink-0 overflow-hidden p-4">
+            <ProductImageGallery
+              key={selectedStrength.imageHandle}
+              productImages={galleryImages}
+              productName={galleryAlt}
+              coas={coas}
+            />
+          </div>
+
+          <ProductCoaDownload coas={coas} />
+
+          <div
+            id="reviews"
+            className="card flex min-h-[20rem] flex-1 flex-col overflow-hidden p-4 lg:min-h-0"
+          >
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+              <ProductReviewsPanel
+                key={reviewHandle}
+                productId={selectedStrength.productId}
+                productHandle={reviewHandle}
+                initialData={reviews}
+                compact
+              />
+            </div>
+          </div>
         </div>
 
         <div className="space-y-5">
@@ -180,7 +202,7 @@ export function ProductCompoundView({
         key={selectedStrength.handle}
         product={{
           title: view.displayName,
-          handle: selectedStrength.imageHandle || selectedStrength.handle,
+          handle: reviewHandle,
           catalogHandleLabel: catalogHandlesForView(view),
           category: view.categoryLabel,
           purity: selectedStrength.purity,
@@ -195,10 +217,7 @@ export function ProductCompoundView({
             researchSummariesByStrength[selectedStrength.strengthKey] ||
             String(selectedStrength.metadata?.research_summary || "").trim()
         }}
-        productId={selectedStrength.productId}
-        coas={coas}
         faqs={faqs}
-        reviews={reviews}
         overviewImages={overviewImages}
         researchDetail={researchDetail}
       />

@@ -19,9 +19,16 @@ type Props = {
   productId: string
   productHandle: string
   initialData: ProductReviewsResponse
+  /** Single-column layout for the PDP left-rail reviews panel. */
+  compact?: boolean
 }
 
-export function ProductReviewsPanel({ productId, productHandle, initialData }: Props) {
+export function ProductReviewsPanel({
+  productId,
+  productHandle,
+  initialData,
+  compact = false
+}: Props) {
   const [reviews, setReviews] = useState<ProductReview[]>(initialData.items)
   const [aggregate, setAggregate] = useState(initialData.aggregate)
   const [viewer, setViewer] = useState<ReviewViewerContext | null>(initialData.viewer)
@@ -136,13 +143,15 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
   const adminAccess = isAdmin || Boolean(viewer?.is_admin)
 
   return (
-    <div className="space-y-8">
+    <div className={compact ? "space-y-5" : "space-y-8"}>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h3 className="font-serif text-xl text-[#0F172A]">Customer Reviews</h3>
+          <h3 className={`font-serif text-[#0F172A] ${compact ? "text-lg" : "text-xl"}`}>
+            Customer Reviews
+          </h3>
           {aggregate.reviewCount > 0 ? (
             <div className="mt-2 flex items-center gap-3">
-              <StarRating value={Math.round(aggregate.ratingValue)} readOnly />
+              <StarRating value={Math.round(aggregate.ratingValue)} readOnly size={compact ? "sm" : "md"} />
               <p className="text-sm text-[#475569]">
                 {aggregate.ratingValue.toFixed(1)} · {aggregate.reviewCount}{" "}
                 {aggregate.reviewCount === 1 ? "review" : "reviews"}
@@ -154,7 +163,7 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
         </div>
       </div>
 
-      <form onSubmit={onSubmit} className="card max-w-md space-y-3 p-4">
+      <form onSubmit={onSubmit} className={`card space-y-3 p-4 ${compact ? "w-full" : "max-w-md"}`}>
         <p className="text-sm font-medium text-[#0F172A]">
           {adminAccess
             ? "Post a review (admin)"
@@ -201,7 +210,7 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
             required
             value={body}
             onChange={(event) => setBody(event.target.value)}
-            rows={3}
+            rows={compact ? 2 : 3}
             minLength={adminAccess ? undefined : 10}
             maxLength={adminAccess ? undefined : 2000}
             className="input-field mt-1 min-h-20"
@@ -232,7 +241,13 @@ export function ProductReviewsPanel({ productId, productHandle, initialData }: P
               Showing latest {PRODUCT_REVIEWS_DISPLAY_LIMIT} of {aggregate.reviewCount} reviews
             </p>
           ) : null}
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul
+            className={
+              compact
+                ? "grid grid-cols-1 gap-3"
+                : "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            }
+          >
           {reviews.map((review) => (
             <li key={review.id} className="flex h-full flex-col rounded-xl border border-[#E2E8F0] bg-white p-4">
               <div className="flex items-start justify-between gap-2">

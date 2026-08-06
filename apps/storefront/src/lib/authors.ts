@@ -19,6 +19,8 @@ export type AuthorProfile = {
   bio: string[]
   /** Optional affiliations / highlights for Person schema or profile pages */
   highlights?: string[]
+  /** Public path to a headshot/photo for bylines and profile cards. */
+  image?: string
 }
 
 export const AUTHORS: Record<AuthorId, AuthorProfile> = {
@@ -32,7 +34,8 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
       "Dr. Chen holds a Doctorate in Biomolecular Chemistry with over a decade of research experience specializing in peptide synthesis, HPLC analytical methodology, and protein folding kinetics.",
       "Prior to leading product compliance and technical editorial standards at Tetrava Labs, Dr. Chen contributed to published research in peptide mass spectrometry and structural biology.",
       "Today, Dr. Chen oversees Tetrava Labs' third-party testing protocols, certificate of analysis (CoA) verification, and scientific literature reviews."
-    ]
+    ],
+    image: "/authors/dr-k-chen.jpg"
   },
   "editorial-team": {
     id: "editorial-team",
@@ -42,7 +45,8 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
     bio: [
       "Content published by Tetrava Labs is authored and reviewed by an interdisciplinary panel of biochemists, analytical chemists, and lab technicians.",
       "Our team synthesizes peer-reviewed findings from PubMed, ScienceDirect, and international peptide research journals to ensure technical accuracy and rigorous quality control standards across all product documentation and testing reports."
-    ]
+    ],
+    image: "/authors/tetrava-editorial-team.jpg"
   },
   rahman: {
     id: "rahman",
@@ -69,7 +73,8 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
       "Endocrinology and biomolecular therapeutics training — King's College London",
       "40+ peer-reviewed publications",
       "Advisory roles: GSK, Sanofi, Eli Lilly"
-    ]
+    ],
+    image: "/authors/dr-devraj-sharma.jpg"
   },
   park: {
     id: "park",
@@ -86,7 +91,8 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
       "Post-doctoral research — Imperial College London",
       "50+ peer-reviewed publications",
       "Advisory roles: Roche, Merck, AstraZeneca"
-    ]
+    ],
+    image: "/authors/dr-min-hee-park.jpg"
   }
 }
 

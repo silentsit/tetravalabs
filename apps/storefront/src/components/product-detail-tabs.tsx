@@ -287,7 +287,7 @@ export function ProductDetailTabs({
                         alt={authorDisplayName(author)}
                         width={88}
                         height={88}
-                        className="h-22 w-22 shrink-0 rounded-full border border-[#E2E8F0] object-cover"
+                        className="h-[88px] w-[88px] shrink-0 rounded-full border border-[#E2E8F0] object-cover"
                       />
                     ) : null}
                     <div>

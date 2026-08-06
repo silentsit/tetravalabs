@@ -38,7 +38,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
   "bpc-157": {
     shortDescription: [
       "BPC-157, or Body Protection Compound-157, is a synthetic pentadecapeptide research compound composed of 15 amino acids. It corresponds to a partial, stabilized sequence of a gastroprotective protein originally isolated from human gastric juice.[1]",
-      "Tetrava Labs supplies BPC-157 as a sterile, lyophilized reagent intended exclusively for in vitro and in vivo laboratory research into tissue-repair signaling, angiogenesis, and gastrointestinal mucosal-protection models. Every lot ships with third-party HPLC-verified identity and purity data — this compound is sold strictly for research use and is not for human or veterinary consumption."
+      "Tetrava Labs supplies BPC-157 as a sterile, lyophilized reagent intended exclusively for in vitro and in vivo laboratory research into tissue-repair signaling, angiogenesis, and gastrointestinal mucosal-protection models. The molecular formula, weight, and sequence listed below are cross-referenced against the PubChem compound record for BPC-157.[10] Every lot ships with third-party HPLC-verified identity and purity data — this compound is sold strictly for research use and is not for human or veterinary consumption."
     ],
     otherKnownTitles: [
       "Body Protection Compound-157",

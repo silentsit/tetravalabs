@@ -98,7 +98,7 @@ function GalleryMain({ item }: { item: GalleryItem }) {
       <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-[#F8FAFC] p-6 text-center">
         <FileText className="h-10 w-10 text-[#94A3B8]" aria-hidden />
         <p className="text-sm font-medium text-[#475569]">COA preview not available yet</p>
-        <p className="text-xs text-[#94A3B8]">COA download appears below when a lot document is published.</p>
+        <p className="text-xs text-[#94A3B8]">Check the COA tab for batch documents when published.</p>
       </div>
     )
   }

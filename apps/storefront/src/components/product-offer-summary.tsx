@@ -66,16 +66,16 @@ export function ProductOfferSummary({
   const writeup = shortProductWriteup(researchSummary, displayName, categoryLabel)
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {priceLabel ? (
-        <p className="text-xl font-bold tabular-nums tracking-tight text-[color:var(--color-text)] sm:text-2xl">
+        <p className="text-2xl font-bold tabular-nums tracking-tight text-[color:var(--color-text)] sm:text-[1.65rem]">
           {priceLabel}
         </p>
       ) : null}
 
-      <p className="max-w-xl text-sm leading-relaxed text-[#475569]">{writeup}</p>
+      <p className="max-w-xl text-[15px] leading-relaxed text-[#475569]">{writeup}</p>
 
-      <ul className="space-y-1 text-sm leading-snug text-[#334155]">
+      <ul className="space-y-1.5 text-[15px] leading-snug text-[#334155]">
         {BENEFITS.map((item) => (
           <li key={item.lead}>
             <span className="text-[#94A3B8]" aria-hidden>
@@ -87,7 +87,7 @@ export function ProductOfferSummary({
         ))}
       </ul>
 
-      <p className="text-xs italic text-[#94A3B8]">
+      <p className="text-sm italic text-[#94A3B8]">
         24-hour customer support via email &amp; Telegram
       </p>
     </div>

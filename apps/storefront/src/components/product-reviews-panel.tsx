@@ -260,7 +260,8 @@ export function ProductReviewsPanel({
         <div className="space-y-3">
           {aggregate.reviewCount > PRODUCT_REVIEWS_DISPLAY_LIMIT ? (
             <p className="text-xs text-[#64748B]">
-              Showing latest {PRODUCT_REVIEWS_DISPLAY_LIMIT} of {aggregate.reviewCount} reviews
+              Showing {PRODUCT_REVIEWS_DISPLAY_LIMIT} of {aggregate.reviewCount} reviews
+              (oldest to newest)
             </p>
           ) : null}
           <ul

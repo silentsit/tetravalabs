@@ -50,10 +50,14 @@ export async function listReviewsByHandle(db: Pool, productHandle: string, limit
   const result = await db.query<ProductReviewRow>(
     `
     SELECT id, product_id, product_handle, customer_id, author_name, rating, body, created_at, updated_at
-    FROM product_reviews
-    WHERE product_handle = $1
-    ORDER BY created_at DESC
-    LIMIT $2
+    FROM (
+      SELECT id, product_id, product_handle, customer_id, author_name, rating, body, created_at, updated_at
+      FROM product_reviews
+      WHERE product_handle = $1
+      ORDER BY created_at DESC
+      LIMIT $2
+    ) recent
+    ORDER BY created_at ASC
     `,
     [productHandle, limit]
   )

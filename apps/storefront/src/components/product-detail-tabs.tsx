@@ -295,13 +295,15 @@ export function ProductDetailTabs({
                   </p>
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                     {author.image ? (
-                      <Image
-                        src={author.image}
-                        alt={authorDisplayName(author)}
-                        width={88}
-                        height={88}
-                        className="h-[88px] w-[88px] shrink-0 rounded-full border border-[#E2E8F0] object-cover"
-                      />
+                      <div className="h-[88px] w-[88px] shrink-0 overflow-hidden rounded-full border border-[#E2E8F0] bg-[#F8FAFC]">
+                        <Image
+                          src={author.image}
+                          alt={authorDisplayName(author)}
+                          width={88}
+                          height={88}
+                          className="h-full w-full object-cover object-[center_12%]"
+                        />
+                      </div>
                     ) : null}
                     <div>
                       <p className="font-serif text-lg text-[#0F172A]">{authorDisplayName(author)}</p>

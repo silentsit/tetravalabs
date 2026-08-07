@@ -73,7 +73,7 @@ const OVERVIEWS = {
     "For research use only — not for human or veterinary consumption."
   ],
   "bpc-157": [
-    "Buy {productName} online from Tetrava Labs. BPC-157 is a synthetic gastric pentadecapeptide extensively studied in tissue repair, angiogenesis, and musculoskeletal research models.",
+    "Buy {productName} peptide online at Tetrava Labs — {productName} peptides for sale with third-party verified 99%+ purity. BPC-157 is a synthetic gastric pentadecapeptide extensively studied in tissue repair, angiogenesis, and musculoskeletal research models.",
     "Laboratories typically use BPC-157 in wound-healing assays, tendon and gut barrier models, and comparative tissue-regeneration pathway work.",
     "Supplied as lyophilized powder with third-party analytical testing where COAs are published. For research use only — not for human or veterinary consumption."
   ],

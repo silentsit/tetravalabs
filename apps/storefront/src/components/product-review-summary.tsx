@@ -13,9 +13,9 @@ export function ProductReviewSummary({ aggregate }: Props) {
   return (
     <a
       href="#reviews"
-      className="mt-3 inline-flex flex-wrap items-center gap-2 text-sm text-[#475569] transition hover:text-[#0D9488]"
+      className="mt-2 inline-flex flex-wrap items-center gap-1.5 text-xs text-[#475569] transition hover:text-[#0D9488]"
     >
-      <StarRating value={displayStars} readOnly size="sm" />
+      <StarRating value={displayStars} readOnly size="xs" />
       <span className="font-semibold text-[color:var(--color-text)]">
         {aggregate.ratingValue.toFixed(1)}
       </span>

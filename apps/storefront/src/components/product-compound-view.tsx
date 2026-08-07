@@ -156,7 +156,7 @@ export function ProductCompoundView({
           </div>
         </div>
 
-        <div className="space-y-5">
+        <div className="space-y-4">
           <header>
             <span className="section-label">{view.categoryLabel}</span>
             <h1 className="product-card-title mt-2 break-words text-3xl text-[color:var(--color-text)] sm:text-4xl">

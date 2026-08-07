@@ -3,13 +3,13 @@ import { Star } from "lucide-react"
 type Props = {
   value: number
   onChange?: (value: number) => void
-  size?: "sm" | "md"
+  size?: "xs" | "sm" | "md"
   readOnly?: boolean
   maxStars?: number
 }
 
 export function StarRating({ value, onChange, size = "md", readOnly = false, maxStars = 5 }: Props) {
-  const iconClass = size === "sm" ? "h-4 w-4" : "h-5 w-5"
+  const iconClass = size === "xs" ? "h-3.5 w-3.5" : size === "sm" ? "h-4 w-4" : "h-5 w-5"
   const stars = Array.from({ length: maxStars }, (_, index) => index + 1)
 
   return (

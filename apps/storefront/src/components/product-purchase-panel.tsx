@@ -68,11 +68,11 @@ export function ProductPurchasePanel({
   const lineId = cartLineId(selectedStrength.productId, selectedVariant.id, "one_time")
 
   return (
-    <section className="card space-y-5 p-6" aria-label="Purchase options">
+    <section className="card space-y-3.5 p-4 sm:p-5" aria-label="Purchase options">
       {showStrengthSelector ? (
         <div>
-          <h2 className="font-serif text-lg text-[color:var(--color-text)]">Select strength</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <h2 className="font-serif text-base text-[color:var(--color-text)]">Select strength</h2>
+          <div className="mt-2 flex flex-wrap gap-1.5">
             {strengths.map((strength) => {
               const active = strength.strengthKey === selectedStrength.strengthKey
               return (
@@ -81,7 +81,7 @@ export function ProductPurchasePanel({
                   type="button"
                   onClick={() => onStrengthChange(strength.strengthKey)}
                   aria-pressed={active}
-                  className={`rounded-lg border px-3 py-2 font-mono text-xs font-medium transition ${
+                  className={`rounded-md border px-2.5 py-1.5 font-mono text-[11px] font-medium transition ${
                     active
                       ? "border-[color:var(--color-teal)] bg-[#CCFBF1] text-[#0F766E]"
                       : "border-[color:var(--color-border)] text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-teal)]"
@@ -112,7 +112,7 @@ export function ProductPurchasePanel({
         </div>
       )}
 
-      <div className="space-y-3 pt-1">
+      <div className="space-y-2 pt-0.5">
         {inStock ? (
           <AddToCartButton
             productId={selectedStrength.productId}
@@ -127,7 +127,11 @@ export function ProductPurchasePanel({
           />
         ) : (
           <>
-            <button type="button" className="btn-primary w-full opacity-50 sm:w-auto" disabled>
+            <button
+              type="button"
+              className="w-full rounded-lg bg-[#0D9488] px-4 py-2 text-sm font-semibold text-white opacity-50 sm:w-auto"
+              disabled
+            >
               Out of stock
             </button>
             <StockNotifyForm

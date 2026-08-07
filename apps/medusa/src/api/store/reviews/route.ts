@@ -12,6 +12,7 @@ import {
   updateReviewContent,
   normalizeAdminAuthorName,
   normalizeAdminBody,
+  normalizeAdminCreatedAt,
   normalizeAdminRating,
   normalizeAuthorName,
   normalizeBody,
@@ -26,6 +27,8 @@ type PostBody = {
   rating?: number
   body?: string
   author_name?: string
+  /** Admin-only: YYYY-MM-DD or ISO timestamp */
+  created_at?: string
 }
 
 /**
@@ -78,7 +81,7 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
 
 /**
  * POST /store/reviews
- * Verified purchasers may review once per product. Admins may post unlimited reviews under custom names.
+ * Verified purchasers may review once per product. Admins may post unlimited reviews under custom names and dates.
  */
 export const POST = async (req: AuthenticatedMedusaRequest<PostBody>, res: MedusaResponse) => {
   const customerId = req.auth_context?.actor_id
@@ -118,10 +121,20 @@ export const POST = async (req: AuthenticatedMedusaRequest<PostBody>, res: Medus
   }
 
   let authorName: string | null = null
+  let createdAt: string | undefined
   if (isAdmin) {
     authorName = normalizeAdminAuthorName(req.body?.author_name)
     if (!authorName) {
       return res.status(400).json({ message: "Admin reviews require a display name." })
+    }
+    if (req.body?.created_at != null && String(req.body.created_at).trim()) {
+      const normalized = normalizeAdminCreatedAt(req.body.created_at)
+      if (!normalized) {
+        return res.status(400).json({
+          message: "Admin review date must be a valid date (YYYY-MM-DD) not in the far future."
+        })
+      }
+      createdAt = normalized
     }
   } else {
     const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
@@ -149,7 +162,8 @@ export const POST = async (req: AuthenticatedMedusaRequest<PostBody>, res: Medus
           customerId,
           authorName: authorName!,
           rating,
-          body
+          body,
+          createdAt
         })
       }
 

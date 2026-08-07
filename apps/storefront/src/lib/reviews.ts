@@ -80,6 +80,8 @@ export async function submitProductReview(input: {
   rating: number
   body: string
   authorName?: string
+  /** Admin-only: YYYY-MM-DD or ISO */
+  createdAt?: string
   authToken: string
 }) {
   const response = await fetch(`${MEDUSA_URL}/store/reviews`, {
@@ -90,7 +92,8 @@ export async function submitProductReview(input: {
       product_handle: input.productHandle,
       rating: input.rating,
       body: input.body,
-      author_name: input.authorName
+      author_name: input.authorName,
+      ...(input.createdAt ? { created_at: input.createdAt } : {})
     })
   })
 

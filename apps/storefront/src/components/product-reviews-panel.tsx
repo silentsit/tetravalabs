@@ -23,18 +23,25 @@ type Props = {
   compact?: boolean
 }
 
+function localDateInputValue(date = new Date()) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, "0")
+  const day = String(date.getDate()).padStart(2, "0")
+  return `${year}-${month}-${day}`
+}
+
 export function ProductReviewsPanel({
   productId,
   productHandle,
   initialData,
   compact = false
-}: Props) {
-  const [reviews, setReviews] = useState<ProductReview[]>(initialData.items)
+}: Props) {  const [reviews, setReviews] = useState<ProductReview[]>(initialData.items)
   const [aggregate, setAggregate] = useState(initialData.aggregate)
   const [viewer, setViewer] = useState<ReviewViewerContext | null>(initialData.viewer)
   const [rating, setRating] = useState(5)
   const [body, setBody] = useState("")
   const [authorName, setAuthorName] = useState("")
+  const [reviewDate, setReviewDate] = useState(() => localDateInputValue())
   const [status, setStatus] = useState("")
   const [error, setError] = useState("")
   const [submitting, setSubmitting] = useState(false)
@@ -67,6 +74,7 @@ export function ProductReviewsPanel({
     setRating(5)
     setBody("")
     setAuthorName("")
+    setReviewDate(localDateInputValue())
   }
 
   const refreshReviews = async () => {
@@ -104,6 +112,7 @@ export function ProductReviewsPanel({
         rating,
         body,
         authorName: postingAsAdmin ? authorName : undefined,
+        createdAt: postingAsAdmin ? reviewDate : undefined,
         authToken
       })
 
@@ -173,7 +182,7 @@ export function ProductReviewsPanel({
         </p>
         {adminAccess ? (
           <p className="text-xs text-[#64748B]">
-            Admins can post unlimited reviews with any display name on any product.
+            Admins can post unlimited reviews with any display name and date on any product.
           </p>
         ) : signedIn === false ? (
           <p className="text-xs text-[#64748B]">
@@ -187,16 +196,29 @@ export function ProductReviewsPanel({
           </p>
         ) : null}
         {adminAccess ? (
-          <div>
-            <label className="block text-xs text-[#475569]">Display name (admin)</label>
-            <input
-              required
-              value={authorName}
-              onChange={(event) => setAuthorName(event.target.value)}
-              className="input-field mt-1"
-              placeholder="Any custom reviewer name"
-            />
-          </div>
+          <>
+            <div>
+              <label className="block text-xs text-[#475569]">Display name (admin)</label>
+              <input
+                required
+                value={authorName}
+                onChange={(event) => setAuthorName(event.target.value)}
+                className="input-field mt-1"
+                placeholder="Any custom reviewer name"
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-[#475569]">Review date (admin)</label>
+              <input
+                required
+                type="date"
+                value={reviewDate}
+                max={localDateInputValue()}
+                onChange={(event) => setReviewDate(event.target.value)}
+                className="input-field mt-1"
+              />
+            </div>
+          </>
         ) : null}
         <div>
           <label className="block text-xs text-[#475569]">Rating</label>

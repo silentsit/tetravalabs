@@ -28,6 +28,8 @@ type CreateReviewInput = {
   authorName: string
   rating: number
   body: string
+  /** Admin-only override; ISO timestamp. Defaults to NOW() in SQL when omitted. */
+  createdAt?: string
 }
 
 export function mapReviewRow(row: ProductReviewRow) {
@@ -118,11 +120,24 @@ export async function insertReview(db: Pool, input: CreateReviewInput): Promise<
   const result = await db.query<ProductReviewRow>(
     `
     INSERT INTO product_reviews (
-      id, product_id, product_handle, customer_id, author_name, rating, body
-    ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+      id, product_id, product_handle, customer_id, author_name, rating, body, created_at, updated_at
+    ) VALUES (
+      $1, $2, $3, $4, $5, $6, $7,
+      COALESCE($8::timestamptz, NOW()),
+      COALESCE($8::timestamptz, NOW())
+    )
     RETURNING id, product_id, product_handle, customer_id, author_name, rating, body, created_at, updated_at
     `,
-    [id, input.productId, input.productHandle, input.customerId, input.authorName, input.rating, input.body]
+    [
+      id,
+      input.productId,
+      input.productHandle,
+      input.customerId,
+      input.authorName,
+      input.rating,
+      input.body,
+      input.createdAt || null
+    ]
   )
   return result.rows[0]
 }
@@ -256,4 +271,31 @@ export function normalizeAdminAuthorName(value: unknown): string | null {
   const name = String(value || "").trim()
   if (!name.length || name.length > 120) return null
   return name
+}
+
+/**
+ * Admin review date override.
+ * Accepts `YYYY-MM-DD` or full ISO; rejects future dates beyond ~1 day skew and pre-2000.
+ */
+export function normalizeAdminCreatedAt(value: unknown): string | null {
+  if (value == null || value === "") return null
+  const raw = String(value).trim()
+  if (!raw) return null
+
+  let date: Date
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+    // Noon UTC so the calendar day stays stable across timezones in UI display.
+    date = new Date(`${raw}T12:00:00.000Z`)
+  } else {
+    date = new Date(raw)
+  }
+
+  if (Number.isNaN(date.getTime())) return null
+
+  const min = Date.UTC(2000, 0, 1)
+  const max = Date.now() + 24 * 60 * 60 * 1000
+  const ts = date.getTime()
+  if (ts < min || ts > max) return null
+
+  return date.toISOString()
 }

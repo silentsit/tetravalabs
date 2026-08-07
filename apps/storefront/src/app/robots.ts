@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next"
 const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 
 /**
- * Keep AI-bot rules aligned with Cloudflare Managed robots (currently Disallow: /).
- * To allow citation crawlers later, allow the same bots in Cloudflare AI Crawl Control
- * and flip the rule below to Allow selected paths.
+ * Allow search + AI crawlers the same public paths.
+ * Private account/checkout routes stay disallowed.
+ * Also confirm Cloudflare AI Crawl Control is not still blocking these bots at the edge.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -14,10 +14,6 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         disallow: ["/checkout", "/account", "/orders", "/cart", "/login", "/register", "/search"]
-      },
-      {
-        userAgent: ["GPTBot", "ChatGPT-User", "ClaudeBot", "PerplexityBot", "Google-Extended"],
-        disallow: "/"
       }
     ],
     sitemap: `${baseUrl}/sitemap_index.xml`,

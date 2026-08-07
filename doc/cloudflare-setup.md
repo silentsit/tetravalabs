@@ -42,15 +42,11 @@ Recommended managed rules:
 
 ### AI crawler policy (keep Cloudflare + Next.js aligned)
 
-Cloudflare Managed robots currently prepends `Disallow: /` for GPTBot, ClaudeBot, Google-Extended, and similar AI bots. The storefront `apps/storefront/src/app/robots.ts` matches that block so origin and edge agree.
+Storefront `apps/storefront/src/app/robots.ts` allows AI crawlers on public pages (same as `*`), and only disallows private routes (`/checkout`, `/account`, etc.).
 
-If you later want AI citation/search crawlers to read the public catalog:
+Also set Cloudflare → **AI Crawl Control** / Managed robots to **allow** GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, and Google-Extended. If Cloudflare still injects `Disallow: /` for those bots, they will stay blocked at the edge even after the Next.js change.
 
-1. Cloudflare → **AI Crawl Control** / Managed robots → allow GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot (keep Google-Extended blocked if you want to deny Gemini training).
-2. Update `robots.ts` AI-bot rule from `disallow: "/"` to allow `/`, `/llms.txt`, `/blog`, `/shop`, `/coa-library`, `/faq`, and category paths.
-3. Redeploy the storefront so `https://tetravalabs.com/robots.txt` no longer conflicts.
-
-`/llms.txt` remains available for operators who fetch context manually even when bots are blocked.
+`/llms.txt` remains available for operators who fetch context manually.
 
 Custom rule example (block obvious scanners):
 

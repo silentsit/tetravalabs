@@ -73,9 +73,9 @@ export function ProductOfferSummary({
         </p>
       ) : null}
 
-      <p className="max-w-xl text-[15px] leading-relaxed text-[#475569]">{writeup}</p>
+      <p className="max-w-xl text-[16px] leading-relaxed text-[#475569]">{writeup}</p>
 
-      <ul className="space-y-1.5 text-[15px] leading-snug text-[#334155]">
+      <ul className="space-y-1.5 text-[16px] leading-snug text-[#334155]">
         {BENEFITS.map((item) => (
           <li key={item.lead}>
             <span className="text-[#94A3B8]" aria-hidden>

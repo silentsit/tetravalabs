@@ -50,35 +50,35 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     ],
     sections: [
       {
-        heading: "Angiogenic Signaling: VEGFR2 and the Akt-eNOS Pathway",
+        heading: "BPC-157 and the Increased Expression of VEGFR2",
         paragraphs: [
           "Chick chorioallantoic membrane and endothelial tube-formation assays indicate that BPC-157 increases vessel density and accelerates blood-flow recovery in the ischemic hindlimb muscle of rats.[2] Histological and cell-culture analyses from the same study reported increased expression of vascular endothelial growth factor receptor 2 (VEGFR2) and time-dependent activation of the VEGFR2-Akt-eNOS signaling cascade — a pathway associated with nitric-oxide-mediated endothelial function.[2]",
           "Laboratories modeling angiogenesis in tissue-repair protocols frequently reference this pathway when designing VEGFR2 expression or nitric-oxide-synthase readouts, and when selecting endothelial cell lines for comparative screening."
         ]
       },
       {
-        heading: "Tendon Fibroblast Migration and the FAK-Paxillin Pathway",
+        heading: "BPC-157 Enhances Fibroblast Migration",
         paragraphs: [
           "In cultured rat Achilles tendon fibroblasts, BPC-157 was reported to accelerate ex vivo tendon-explant outgrowth, increase cell survival under oxidative (H2O2) stress, and dose-dependently enhance fibroblast migration in transwell assays.[3] The same study attributed the migratory effect to increased phosphorylation of focal adhesion kinase (FAK) and paxillin — proteins associated with cytoskeletal reorganization and cell adhesion — without a corresponding change in total protein levels.[3]",
           "This mechanism is commonly cited in [comparative tendon-repair study designs](/category/tissue-repair) alongside growth-factor controls such as bFGF or EGF, and BPC-157 is frequently stacked with [TB-500](/buy-tb-500-online) in combined tissue-repair protocols — a useful reference point when structuring dose-response migration assays."
         ]
       },
       {
-        heading: "Growth Hormone Receptor Expression in Tendon Fibroblasts",
+        heading: "BPC-157 Increases GHR mRNA and Protein",
         paragraphs: [
           "A cDNA microarray screen of BPC-157-treated tendon fibroblasts identified growth hormone receptor (GHR) as one of the most strongly up-regulated genes.[4] Follow-up assays reported dose- and time-dependent increases in GHR mRNA and protein, with downstream activation of the Janus kinase 2 (JAK2) pathway when exogenous growth hormone was added to BPC-157-treated cultures — a combination associated with increased fibroblast proliferation.[4]",
           "Researchers studying GHR-JAK2 crosstalk in tendon models may find this pairing informative when designing co-treatment or sequential-exposure protocols."
         ]
       },
       {
-        heading: "Myotendinous Junction and Musculoskeletal Repair Models",
+        heading: "BPC-157 Associated with Fully Recovered Quadriceps Myotendinous Junction",
         paragraphs: [
           "In a rat model of surgically dissected quadriceps myotendinous junction — an injury that does not heal spontaneously — intraperitoneal and oral BPC-157 regimens were associated with full functional recovery, reversal of progressive muscle atrophy, and structural resolution of the defect by postoperative day 42.[5]",
           "A 2025 systematic review of 36 studies (35 preclinical, 1 clinical) concluded that BPC-157 modulates growth hormone receptor expression along with angiogenic and inflammatory-cytokine pathways across muscle, tendon, ligament, and bone injury models in animal research, while explicitly noting that the evidence base remains dominated by preclinical (level IV-V) study designs.[8]"
         ]
       },
       {
-        heading: "Gastrointestinal Mucosal Protection Research",
+        heading: "BPC-157 and Gastrointestinal Mucosal Protection Research",
         paragraphs: [
           "BPC-157 was first characterized in work on gastric-juice-derived cytoprotective compounds, and much of the foundational literature centers on gastrointestinal ulcer, fistula, and mucosal-injury models in rats.[1] Review literature describes consistent protective findings across GI-injury models, attributed in part to modulation of the nitric-oxide system and interactions with several neurotransmitter pathways, though the precise upstream mechanism has not been fully resolved.[1]"
         ]
@@ -90,7 +90,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         ]
       },
       {
-        heading: "Where the Evidence Currently Stands: Preclinical Weight vs. Human Data",
+        heading: "BPC-157 as It Currently Stands: Preclinical Weight vs Human Data",
         paragraphs: [
           "A common misconception is that the extensive rodent and cell-culture literature on BPC-157 is equivalent to demonstrated human efficacy. Current systematic and narrative reviews are explicit that this is not the case:"
         ],

@@ -14,9 +14,19 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "BPC-157 is a synthetic gastric pentadecapeptide studied in tissue repair, angiogenesis, and musculoskeletal research models. Tetrava Labs supplies it as a Research Use Only (RUO) reagent with lot-linked documentation — not for human or veterinary use."
     },
     {
+      question: "Where can I buy BPC-157 peptide online?",
+      answer:
+        "Tetrava Labs is a trusted place to buy BPC-157 peptide online — local pharmacies and \"near me\" searches will not turn up RUO research peptides, since this is strictly a laboratory reagent shipped directly to qualified researchers. Every batch of BPC-157 peptides for sale on this page includes lot-linked COA documentation and cold-chain-aware shipping. When comparing suppliers, the best place to buy BPC-157 is the one that publishes third-party HPLC-MS purity data for the exact batch you receive, not just a generic spec sheet."
+    },
+    {
       question: "What purity and COA documentation come with BPC-157?",
       answer:
         "Each lot is verified by independent third-party HPLC-MS analysis. The purity percentage shown on this page is confirmed on the Certificate of Analysis when published for that batch. Always match the COA batch number to the vial before starting comparative work."
+    },
+    {
+      question: "Does oral BPC-157 work, or can BPC-157 be taken orally in research models?",
+      answer:
+        "Most of the angiogenesis, tendon-repair, and myotendinous-junction findings in the published BPC-157 literature used intraperitoneal or local injection routes in animal models — the injectable dataset is far larger than the oral one. A subset of the foundational gastrointestinal-protection literature does evaluate oral administration in GI-injury models, since BPC-157 is gastric-juice-derived and reported to be acid- and enzyme-stable, but formulation stability varies by diluent and packaging, and there is no validated human oral-bioavailability data. Laboratories asking whether BPC-157 can be taken orally should treat the oral route as a distinct experimental variable requiring its own stability and pharmacokinetic validation, not a drop-in substitute for injectable protocols. This is laboratory research guidance only — not instructions for human use."
     },
     {
       question: "How should lyophilized BPC-157 be reconstituted in the lab?",

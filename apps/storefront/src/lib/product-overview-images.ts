@@ -55,6 +55,17 @@ function seoBaseName(productName: string): string {
   )
 }
 
+/**
+ * Per-product, per-slot alt overrides for curated overview images that were
+ * swapped for people-focused editorial illustrations (slot index is 0-based).
+ */
+const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> = {
+  "bpc-157": {
+    1: "Two lab researchers examining a BPC-157 peptide vial together under a lab lamp",
+    2: "Female lab scientist using a micropipette to prepare a BPC-157 research vial"
+  }
+}
+
 /** SEO-focused alt text for overview article images — unique wording per slot. */
 export function overviewSeoAlt(input: {
   productName: string
@@ -67,6 +78,9 @@ export function overviewSeoAlt(input: {
   const form = detectProductForm(input.parentHandle, baseName)
   const override = getProductSeoOverride(input.parentHandle)?.imageAlt
   if (input.index === 0 && override?.trim()) return override.trim()
+
+  const peopleAlt = PEOPLE_ILLUSTRATION_ALT_OVERRIDES[input.parentHandle.trim().toLowerCase()]?.[input.index]
+  if (peopleAlt) return peopleAlt
 
   const category = input.categoryLabel.trim() || "research"
 

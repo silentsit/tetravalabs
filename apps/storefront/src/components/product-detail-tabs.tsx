@@ -2,12 +2,10 @@
 
 import { Fragment, useEffect, useState } from "react"
 import Image from "next/image"
-import { Download } from "lucide-react"
-import type { StoreCoaDocument } from "@/lib/medusa"
+import Link from "next/link"
 import type { ProductReviewsResponse } from "@/lib/reviews"
 import type { ProductResearchDetail, ResearchSection } from "@/lib/product-research-detail"
 import { authorBioText, authorDisplayName, getAuthor } from "@/lib/authors"
-import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { ProductReviewsPanel } from "@/components/product-reviews-panel"
 import type { FaqItem } from "@/lib/faq-content"
 import { FaqAccordion } from "@/components/faq-accordion"
@@ -39,7 +37,6 @@ export type ProductOverviewImage = {
 type Props = {
   product: ProductDetailData
   productId: string
-  coas: StoreCoaDocument[]
   faqs: FaqItem[]
   reviews: ProductReviewsResponse
   /** Up to three editorial images for the long-form overview / research article. */
@@ -63,10 +60,28 @@ function overviewImageInsertAfter(blockCount: number): number[] {
   return [first, middle, nearEnd]
 }
 
-/** Renders literal "[n]" citation markers in curated copy as superscript anchor links. */
+/**
+ * Renders curated copy's inline markup:
+ * - "[n]" citation markers as superscript anchor links to the references list.
+ * - "[label](/path)" as internal topic-cluster links (Next.js Link for client-side nav).
+ */
 function renderWithCitations(text: string) {
-  const parts = text.split(/(\[\d+\])/g)
+  const parts = text.split(/(\[[^[\]]+\]\([^()]+\)|\[\d+\])/g)
   return parts.map((part, index) => {
+    const linkMatch = part.match(/^\[([^[\]]+)\]\(([^()]+)\)$/)
+    if (linkMatch) {
+      const [, label, href] = linkMatch
+      return (
+        <Link
+          key={index}
+          href={href}
+          className="text-[#0D9488] underline-offset-2 hover:underline"
+        >
+          {label}
+        </Link>
+      )
+    }
+
     const match = part.match(/^\[(\d+)\]$/)
     if (!match) return <Fragment key={index}>{part}</Fragment>
     const refId = match[1]
@@ -83,7 +98,7 @@ function renderWithCitations(text: string) {
   })
 }
 
-const tabs = ["Description", "COA", "Reviews"] as const
+const tabs = ["Description", "Reviews"] as const
 type TabId = (typeof tabs)[number]
 
 function tabLabel(tab: TabId, reviewCount: number) {
@@ -94,14 +109,12 @@ function tabLabel(tab: TabId, reviewCount: number) {
 export function ProductDetailTabs({
   product,
   productId,
-  coas,
   faqs,
   reviews,
   overviewImages = [],
   researchDetail = null
 }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("Description")
-  const primaryCoa = coas[0]
 
   useEffect(() => {
     if (typeof window === "undefined") return
@@ -170,7 +183,7 @@ export function ProductDetailTabs({
         <div className="py-8">
           {activeTab === "Description" ? (
             <div className="space-y-10">
-              <article className="max-w-3xl">
+              <article className="prose prose-slate max-w-3xl prose-a:text-[#0D9488] prose-a:no-underline hover:prose-a:underline">
                 <h3 className="mb-5 font-serif text-2xl text-[#0F172A]">{productName}</h3>
                 <div className="space-y-5 text-[15px] leading-7 text-[#475569]">
                   {shortDescriptionParagraphs.map((paragraph, index) => (
@@ -185,7 +198,7 @@ export function ProductDetailTabs({
               </div>
 
               {researchBlocks.length > 0 ? (
-                <article className="max-w-3xl">
+                <article className="prose prose-slate max-w-3xl prose-a:text-[#0D9488] prose-a:no-underline hover:prose-a:underline">
                   <h3 className="mb-5 font-serif text-2xl text-[#0F172A]">
                     {researchDetail ? `${productName} Peptide Research` : "Research Overview"}
                   </h3>
@@ -298,51 +311,6 @@ export function ProductDetailTabs({
                   </div>
                 </section>
               ) : null}
-            </div>
-          ) : null}
-
-          {activeTab === "COA" ? (
-            <div>
-              <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Certificate of Analysis</h3>
-              <p className="mb-6 text-sm text-[#475569]">
-                Each batch is independently tested. Lot-linked COA documents are published when available.
-              </p>
-              {primaryCoa ? (
-                <div className="space-y-6">
-                  <CoaDocumentPreview document={primaryCoa} />
-                  {primaryCoa.document_url ? (
-                    <a
-                      href={primaryCoa.document_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] px-4 py-2 text-sm text-[#0F172A] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
-                    >
-                      <Download className="h-4 w-4" aria-hidden />
-                      Download COA (PDF)
-                    </a>
-                  ) : null}
-                  {coas.length > 1 ? (
-                    <ul className="space-y-2 text-sm text-[#475569]">
-                      {coas.slice(1).map((doc) => (
-                        <li key={doc.id}>
-                          Batch {doc.batch_number} — {doc.document_type.toUpperCase()}
-                          {doc.document_url ? (
-                            <>
-                              {" "}
-                              ·{" "}
-                              <a href={doc.document_url} target="_blank" rel="noreferrer" className="text-[#0D9488] hover:underline">
-                                View
-                              </a>
-                            </>
-                          ) : null}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </div>
-              ) : (
-                <p className="text-sm text-[#475569]">No batch documents published yet for this variant.</p>
-              )}
             </div>
           ) : null}
 

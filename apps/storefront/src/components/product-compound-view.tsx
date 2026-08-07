@@ -22,6 +22,7 @@ import {
 import { ProductOfferSummary } from "@/components/product-offer-summary"
 import { ProductReviewSummary } from "@/components/product-review-summary"
 import { ProductTrustStrip } from "@/components/product-trust-strip"
+import { ProductCoaDownload } from "@/components/product-coa-download"
 import type { PackTier } from "@/lib/pack-pricing"
 
 type Props = {
@@ -125,13 +126,16 @@ export function ProductCompoundView({
   return (
     <>
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-        <div className="card overflow-hidden p-4 lg:max-w-md">
-          <ProductImageGallery
-            key={selectedStrength.imageHandle}
-            productImages={galleryImages}
-            productName={galleryAlt}
-            coas={coas}
-          />
+        <div className="flex flex-col gap-4 lg:max-w-md">
+          <div className="card overflow-hidden p-4">
+            <ProductImageGallery
+              key={selectedStrength.imageHandle}
+              productImages={galleryImages}
+              productName={galleryAlt}
+              coas={coas}
+            />
+          </div>
+          <ProductCoaDownload coas={coas} />
         </div>
 
         <div className="space-y-5">
@@ -196,7 +200,6 @@ export function ProductCompoundView({
             String(selectedStrength.metadata?.research_summary || "").trim()
         }}
         productId={selectedStrength.productId}
-        coas={coas}
         faqs={faqs}
         reviews={reviews}
         overviewImages={overviewImages}

@@ -16,6 +16,8 @@ import {
   type ProductReviewSchemaInput
 } from "@/lib/seo"
 import { getProductFaqs } from "@/lib/product-faqs"
+import { getProductResearchDetail } from "@/lib/product-research-detail"
+import { authorBioText, getAuthor } from "@/lib/authors"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
@@ -154,13 +156,26 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         productId: item.productId
       }))
     })
+    const researchDetail = getProductResearchDetail(view.parentHandle)
+    const researchAuthor = researchDetail ? getAuthor(researchDetail.authorId) : null
 
     return [
       productJsonLd(productLike, view.parentHandle, image, reviewData),
       webPageJsonLd({
         title: pageTitle,
         description: pageDescription,
-        path
+        path,
+        ...(researchAuthor
+          ? {
+              author: {
+                name: researchAuthor.name,
+                jobTitle: researchAuthor.title,
+                description: authorBioText(researchAuthor),
+                image: researchAuthor.image,
+                credentials: researchAuthor.credentials
+              }
+            }
+          : {})
       }),
       faqJsonLd(faqs, path)
     ]

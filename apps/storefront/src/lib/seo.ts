@@ -222,11 +222,40 @@ export function faqJsonLd(items: Array<{ question: string; answer: string }>, pa
   }
 }
 
+/** Person schema for a content author's byline (E-E-A-T authorship signal). */
+export function personJsonLd(author: {
+  name: string
+  jobTitle?: string
+  description?: string
+  image?: string
+  credentials?: string
+}) {
+  const graph: JsonLdGraph = {
+    "@type": "Person",
+    name: author.name
+  }
+  if (author.jobTitle) graph.jobTitle = author.jobTitle
+  if (author.description) graph.description = author.description
+  if (author.image) {
+    graph.image = author.image.startsWith("http") ? author.image : pageUrl(author.image)
+  }
+  if (author.credentials) graph.honorificSuffix = author.credentials
+  return graph
+}
+
 export function webPageJsonLd(input: {
   title: string
   description?: string
   path: string
   type?: "WebPage" | "CollectionPage" | "AboutPage" | "ContactPage"
+  /** Byline author, when the page has curated editorial/research content. */
+  author?: {
+    name: string
+    jobTitle?: string
+    description?: string
+    image?: string
+    credentials?: string
+  }
 }) {
   return {
     "@context": "https://schema.org",
@@ -243,7 +272,8 @@ export function webPageJsonLd(input: {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url
-    }
+    },
+    ...(input.author ? { author: personJsonLd(input.author) } : {})
   }
 }
 

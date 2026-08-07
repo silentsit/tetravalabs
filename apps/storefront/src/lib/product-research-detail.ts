@@ -38,7 +38,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
   "bpc-157": {
     shortDescription: [
       "BPC-157, or Body Protection Compound-157, is a synthetic pentadecapeptide research compound composed of 15 amino acids. It corresponds to a partial, stabilized sequence of a gastroprotective protein originally isolated from human gastric juice.[1]",
-      "Tetrava Labs supplies BPC-157 as a sterile, lyophilized reagent intended exclusively for in vitro and in vivo laboratory research into tissue-repair signaling, angiogenesis, and gastrointestinal mucosal-protection models. The molecular formula, weight, and sequence listed below are cross-referenced against the PubChem compound record for BPC-157.[10] Every lot ships with third-party HPLC-verified identity and purity data — this compound is sold strictly for research use and is not for human or veterinary consumption."
+      "Tetrava Labs supplies BPC-157 as a sterile, lyophilized reagent intended exclusively for in vitro and in vivo laboratory research into [tissue-repair signaling](/category/tissue-repair), angiogenesis, and gastrointestinal mucosal-protection models. The molecular formula, weight, and sequence listed below are cross-referenced against the PubChem compound record for BPC-157.[10] Every lot ships with third-party HPLC-verified identity and purity data — this compound is sold strictly for research use and is not for human or veterinary consumption."
     ],
     otherKnownTitles: [
       "Body Protection Compound-157",
@@ -60,7 +60,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading: "Tendon Fibroblast Migration and the FAK-Paxillin Pathway",
         paragraphs: [
           "In cultured rat Achilles tendon fibroblasts, BPC-157 was reported to accelerate ex vivo tendon-explant outgrowth, increase cell survival under oxidative (H2O2) stress, and dose-dependently enhance fibroblast migration in transwell assays.[3] The same study attributed the migratory effect to increased phosphorylation of focal adhesion kinase (FAK) and paxillin — proteins associated with cytoskeletal reorganization and cell adhesion — without a corresponding change in total protein levels.[3]",
-          "This mechanism is commonly cited in comparative tendon-repair study designs alongside growth-factor controls such as bFGF or EGF, and is a useful reference point when structuring dose-response migration assays."
+          "This mechanism is commonly cited in [comparative tendon-repair study designs](/category/tissue-repair) alongside growth-factor controls such as bFGF or EGF, and BPC-157 is frequently stacked with [TB-500](/buy-tb-500-online) in combined tissue-repair protocols — a useful reference point when structuring dose-response migration assays."
         ]
       },
       {
@@ -104,8 +104,8 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Laboratory Handling: Reconstitution, Storage, and Documentation",
         paragraphs: [
-          "Tetrava Labs ships BPC-157 as a lyophilized powder for stability during transport. Store sealed vials at -20°C, avoid repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent immediately before use.",
-          "Once reconstituted, store working solutions at 4°C and use within the window defined by your laboratory SOP. Record diluent lot, reconstitution date, and operator in your ELN so preparation conditions remain auditable alongside the batch Certificate of Analysis."
+          "Tetrava Labs ships BPC-157 as a lyophilized powder for stability during transport. Store sealed vials at -20°C, avoid repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent immediately before use. For dilution ratios and step-by-step math, see our [BPC-157 handling protocol](/blog/bpc-157-handling-protocol) and general [peptide reconstitution calculations](/blog/peptide-reconstitution-calculations) guide.",
+          "Once reconstituted, store working solutions at 4°C and use within the window defined by your laboratory SOP. Record diluent lot, reconstitution date, and operator in your ELN so preparation conditions remain auditable alongside the batch [Certificate of Analysis](/coa-library) — see [how to read COA and HPLC reports](/blog/how-to-read-coa-and-hplc-reports) for interpretation guidance."
         ]
       }
     ],

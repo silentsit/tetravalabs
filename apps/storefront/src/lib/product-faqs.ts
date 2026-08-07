@@ -14,9 +14,9 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "BPC-157 is a synthetic gastric pentadecapeptide studied in tissue repair, angiogenesis, and musculoskeletal research models. Tetrava Labs supplies it as a Research Use Only (RUO) reagent with lot-linked documentation — not for human or veterinary use."
     },
     {
-      question: "Where can I buy BPC-157 peptide online?",
+      question: "Where can you buy BPC-157, or find BPC-157 near me?",
       answer:
-        "Tetrava Labs is a trusted place to buy BPC-157 peptide online — local pharmacies and \"near me\" searches will not turn up RUO research peptides, since this is strictly a laboratory reagent shipped directly to qualified researchers. Every batch of BPC-157 peptides for sale on this page includes lot-linked COA documentation and cold-chain-aware shipping. When comparing suppliers, the best place to buy BPC-157 is the one that publishes third-party HPLC-MS purity data for the exact batch you receive, not just a generic spec sheet."
+        "Tetrava Labs is the best place to buy BPC-157 peptide online for qualified laboratories. If you're searching for BPC-157 near me, local pharmacies and compounding storefronts won't carry it — BPC-157 is a Research Use Only reagent, so legitimate suppliers ship it directly to your lab rather than stocking it at a physical retail location. Every batch of BPC-157 peptides for sale on this page ships with lot-linked COA documentation and cold-chain-aware shipping, so when you're deciding where to buy BPC-157 peptide, look for a supplier that publishes third-party HPLC-MS purity data for the exact batch you receive — not just a generic spec sheet."
     },
     {
       question: "What purity and COA documentation come with BPC-157?",

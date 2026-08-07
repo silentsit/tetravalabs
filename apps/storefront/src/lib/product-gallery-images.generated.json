@@ -76,8 +76,8 @@
     "/products/v2/bpc157-tb500-blend-20mg-side.png"
   ],
   "bpc-157-capsules-100-count-500mcg": [
-    "/products/v2/bpc157-capsules.png",
-    "/products/v2/bpc157-capsules-side.png"
+    "/products/v2/bpc157-capsules.webp",
+    "/products/v2/bpc157-capsules-side.webp"
   ],
   "bremelanotide-10mg": [
     "/products/v2/bremelanotide-10mg.png",
@@ -392,8 +392,8 @@
     "/products/v2/pinealon-10mg-side.png"
   ],
   "pinealon-capsules-100-count": [
-    "/products/v2/pinealon-capsules.png",
-    "/products/v2/pinealon-capsules-side.png"
+    "/products/v2/pinealon-capsules.webp",
+    "/products/v2/pinealon-capsules-side.webp"
   ],
   "retatrutide-100mg": [
     "/products/v2/retatrutide-100mg.png",
@@ -424,8 +424,8 @@
     "/products/v2/selank-5mg-side.png"
   ],
   "selank-nasal-spray-10mg": [
-    "/products/v2/selank-nasal-spray-10mg.png",
-    "/products/v2/selank-nasal-spray-10mg-side.png"
+    "/products/v2/selank-nasal-spray-10mg.webp",
+    "/products/v2/selank-nasal-spray-10mg-side.webp"
   ],
   "semaglutide-10mg": [
     "/products/v2/semaglutide-10mg.png",
@@ -444,8 +444,8 @@
     "/products/v2/semax-5mg-side.png"
   ],
   "semax-nasal-spray-10mg": [
-    "/products/v2/semax-nasal-spray-10mg.png",
-    "/products/v2/semax-nasal-spray-10mg-side.png"
+    "/products/v2/semax-nasal-spray-10mg.webp",
+    "/products/v2/semax-nasal-spray-10mg-side.webp"
   ],
   "sermorelin-10mg": [
     "/products/v2/sermorelin-10mg.png",

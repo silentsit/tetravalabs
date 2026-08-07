@@ -18,11 +18,11 @@ const CURATED_HANDLES = new Set(
   (overviewManifest as { handles?: string[] }).handles?.map((handle) => handle.toLowerCase()) || []
 )
 
-/** Editorial assets at /images/overview/{handle}-{1,2,3}.png when manifest lists a complete set. */
+/** Editorial assets at /images/overview/{handle}-{1,2,3}.webp when manifest lists a complete set. */
 export function getCuratedOverviewImagePaths(parentHandle: string): string[] {
   const handle = parentHandle.trim().toLowerCase()
   if (!CURATED_HANDLES.has(handle)) return []
-  return SLOTS.map((slot) => `/images/overview/${handle}-${slot}.png`)
+  return SLOTS.map((slot) => `/images/overview/${handle}-${slot}.webp`)
 }
 
 function uniquePush(list: string[], src: string | null | undefined) {

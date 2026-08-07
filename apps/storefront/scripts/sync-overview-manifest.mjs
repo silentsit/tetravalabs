@@ -1,5 +1,5 @@
 /**
- * Scan public/images/overview for {handle}-{1,2,3}.png and write manifest JSON.
+ * Scan public/images/overview for {handle}-{1,2,3}.webp and write manifest JSON.
  * Usage: node apps/storefront/scripts/sync-overview-manifest.mjs
  */
 import fs from "fs/promises"
@@ -15,7 +15,7 @@ async function run() {
   const byHandle = new Map()
 
   for (const file of files) {
-    const match = file.match(/^([a-z0-9-]+)-([123])\.png$/i)
+    const match = file.match(/^([a-z0-9-]+)-([123])\.webp$/i)
     if (!match) continue
     const handle = match[1].toLowerCase()
     const slot = Number(match[2])

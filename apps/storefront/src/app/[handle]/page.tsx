@@ -21,7 +21,6 @@ import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductFaqs } from "@/lib/product-faqs"
 import { buildResearchOverview } from "@/lib/research-overview"
 import { buildOverviewImages } from "@/lib/product-overview-images"
-import { getProductResearchDetail } from "@/lib/product-research-detail"
 
 type Props = {
   params: Promise<{ handle: string }>
@@ -120,7 +119,6 @@ export default async function ProductPage({ params }: Props) {
       })
     ])
   )
-  const researchDetail = getProductResearchDetail(view.parentHandle)
   const overviewImagesByStrength = Object.fromEntries(
     view.strengths.map((strength) => [
       strength.strengthKey,
@@ -150,7 +148,6 @@ export default async function ProductPage({ params }: Props) {
         reviewsByStrength={reviewsByStrength}
         researchSummariesByStrength={researchSummariesByStrength}
         overviewImagesByStrength={overviewImagesByStrength}
-        researchDetail={researchDetail}
         faqs={faqs}
       />
 

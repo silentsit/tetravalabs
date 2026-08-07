@@ -23,7 +23,7 @@ const HERO_PRODUCTS = [
   },
   {
     slot: "right" as const,
-    src: "/products/v2/hero/bpc-157-capsules.png",
+    src: "/products/v2/hero/bpc-157-capsules.webp",
     href: getProductHref("bpc-157-capsules-100-count-500mcg"),
     label: "BPC-157 Capsules",
     width: 320,

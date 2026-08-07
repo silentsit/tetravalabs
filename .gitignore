@@ -51,3 +51,6 @@ __pycache__/
 # Local IDE / build scratch
 .cursor/
 *.tsbuildinfo
+
+# Local image compression archives (not for deploy)
+apps/storefront/_image-archive/

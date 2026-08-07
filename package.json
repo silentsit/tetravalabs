@@ -54,17 +54,14 @@
     "postinstall": "patch-package"
   },
   "engines": {
-    "node": "24.x"
+    "node": "22.x"
   },
   "packageManager": "npm@10.9.2",
   "overrides": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@medusajs/dashboard": {
-      "@types/react": "18.3.31"
-    }
+    "@types/react-dom": "^19.0.4"
   },
   "devDependencies": {
     "@sanity/client": "^6.29.1",

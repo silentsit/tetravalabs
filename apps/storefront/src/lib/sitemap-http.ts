@@ -1,6 +1,8 @@
 import {
+  getImageSitemapEntries,
   getSitemapEntriesById,
   getSitemapIndexEntries,
+  renderSitemapImageUrlSet,
   renderSitemapIndex,
   renderSitemapUrlSet,
   xmlResponse
@@ -16,4 +18,9 @@ export async function respondWithSitemapIndex() {
 export async function respondWithSitemapId(id: string) {
   const entries = await getSitemapEntriesById(id)
   return xmlResponse(renderSitemapUrlSet(entries))
+}
+
+export async function respondWithImageSitemap() {
+  const entries = await getImageSitemapEntries()
+  return xmlResponse(renderSitemapImageUrlSet(entries))
 }

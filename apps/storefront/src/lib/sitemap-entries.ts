@@ -1,7 +1,12 @@
+import { blogImageForPost } from "@/lib/blog-utils"
 import { groupProductsByCategory } from "@/lib/categories"
 import { getCompoundParentHandle, productPath } from "@/lib/compound-product"
 import { listAllProducts } from "@/lib/medusa"
+import { getProductGalleryImages } from "@/lib/product-image-map"
+import { categoryArt } from "@/lib/revamp/category-art"
+import { getProductDisplayName } from "@/lib/revamp/product-visual"
 import { listBlogPosts } from "@/lib/sanity"
+import { siteConfig } from "@/lib/seo"
 
 export const SITEMAP_REVALIDATE_SECONDS = 3600
 export const PRODUCT_SITEMAP_CHUNK_SIZE = 50_000
@@ -15,6 +20,18 @@ export type SitemapUrlEntry = {
   lastModified?: Date
   changeFrequency?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never"
   priority?: number
+}
+
+export type SitemapImageEntry = {
+  loc: string
+  title?: string
+  caption?: string
+}
+
+export type SitemapImageUrlEntry = {
+  loc: string
+  lastModified?: Date
+  images: SitemapImageEntry[]
 }
 
 const STATIC_PAGE_ROUTES: Array<{
@@ -42,10 +59,17 @@ export function getSitemapBaseUrl() {
   return (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 }
 
+export function absoluteSitemapUrl(pathOrUrl: string) {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl
+  const baseUrl = getSitemapBaseUrl()
+  return pathOrUrl.startsWith("/") ? `${baseUrl}${pathOrUrl}` : `${baseUrl}/${pathOrUrl}`
+}
+
 /** Rank Math / WooCommerce-style public sitemap URLs (Bangkok Peptides pattern). */
 export function publicChildSitemapPath(id: string) {
   if (id === "posts") return "/post-sitemap.xml"
   if (id === "pages") return "/page-sitemap.xml"
+  if (id === "images") return "/image-sitemap.xml"
   if (id === "categories") return "/category-sitemap.xml"
   if (id === "products-0") return "/product-sitemap.xml"
   if (id.startsWith("products-")) {
@@ -94,6 +118,33 @@ export function renderSitemapIndex(entries: Array<{ loc: string; lastModified?: 
 
   return xmlDeclaration(
     `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`
+  )
+}
+
+export function renderSitemapImageUrlSet(entries: SitemapImageUrlEntry[]) {
+  const items = entries
+    .filter((entry) => entry.images.length > 0)
+    .map((entry) => {
+      const parts = [`    <loc>${escapeXml(entry.loc)}</loc>`]
+      if (entry.lastModified) {
+        parts.push(`    <lastmod>${formatSitemapDate(entry.lastModified)}</lastmod>`)
+      }
+      for (const image of entry.images) {
+        const imageParts = [`      <image:loc>${escapeXml(image.loc)}</image:loc>`]
+        if (image.title?.trim()) {
+          imageParts.push(`      <image:title>${escapeXml(image.title.trim())}</image:title>`)
+        }
+        if (image.caption?.trim()) {
+          imageParts.push(`      <image:caption>${escapeXml(image.caption.trim())}</image:caption>`)
+        }
+        parts.push(`    <image:image>\n${imageParts.join("\n")}\n    </image:image>`)
+      }
+      return `  <url>\n${parts.join("\n")}\n  </url>`
+    })
+    .join("\n")
+
+  return xmlDeclaration(
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${items}\n</urlset>\n`
   )
 }
 
@@ -175,6 +226,91 @@ export async function getProductSitemapEntries(chunk = 0): Promise<SitemapUrlEnt
   return products.slice(start, start + PRODUCT_SITEMAP_CHUNK_SIZE)
 }
 
+function uniqueImageEntries(images: SitemapImageEntry[]) {
+  const seen = new Set<string>()
+  return images.filter((image) => {
+    if (seen.has(image.loc)) return false
+    seen.add(image.loc)
+    return true
+  })
+}
+
+export async function getImageSitemapEntries(): Promise<SitemapImageUrlEntry[]> {
+  const baseUrl = getSitemapBaseUrl()
+  const now = new Date()
+  const [products, posts] = await Promise.all([listAllProducts(), listBlogPosts()])
+  const entries: SitemapImageUrlEntry[] = []
+
+  entries.push({
+    loc: baseUrl,
+    lastModified: now,
+    images: uniqueImageEntries([
+      {
+        loc: absoluteSitemapUrl(siteConfig.defaultOgImage),
+        title: siteConfig.name,
+        caption: siteConfig.description
+      }
+    ])
+  })
+
+  const productPages = new Map<string, { title: string; images: SitemapImageEntry[] }>()
+  for (const product of products) {
+    const parentHandle = getCompoundParentHandle(product.handle) || product.handle
+    const pageLoc = `${baseUrl}${productPath(parentHandle)}`
+    const title = getProductDisplayName(product)
+    const gallery = getProductGalleryImages(parentHandle).map((imagePath) => ({
+      loc: absoluteSitemapUrl(imagePath),
+      title
+    }))
+
+    const existing = productPages.get(pageLoc)
+    if (existing) {
+      existing.images.push(...gallery)
+      continue
+    }
+
+    productPages.set(pageLoc, { title, images: gallery })
+  }
+
+  for (const [loc, page] of productPages) {
+    entries.push({
+      loc,
+      lastModified: now,
+      images: uniqueImageEntries(page.images)
+    })
+  }
+
+  for (const post of posts) {
+    entries.push({
+      loc: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+      images: uniqueImageEntries([
+        {
+          loc: absoluteSitemapUrl(blogImageForPost(post)),
+          title: post.title,
+          caption: post.excerpt
+        }
+      ])
+    })
+  }
+
+  for (const category of categoryArt) {
+    entries.push({
+      loc: `${baseUrl}/category/${category.slug}`,
+      lastModified: now,
+      images: uniqueImageEntries([
+        {
+          loc: absoluteSitemapUrl(category.image),
+          title: category.name,
+          caption: category.description
+        }
+      ])
+    })
+  }
+
+  return entries
+}
+
 export async function getCategorySitemapEntries(): Promise<SitemapUrlEntry[]> {
   const baseUrl = getSitemapBaseUrl()
   const products = await listAllProducts()
@@ -203,7 +339,7 @@ export async function getSitemapIds(): Promise<Array<{ id: string }>> {
   const products = await getAllProductSitemapEntries()
   const chunkCount = Math.max(1, Math.ceil(products.length / PRODUCT_SITEMAP_CHUNK_SIZE))
 
-  const ids: Array<{ id: string }> = [{ id: "posts" }, { id: "pages" }]
+  const ids: Array<{ id: string }> = [{ id: "posts" }, { id: "pages" }, { id: "images" }]
 
   for (let index = 0; index < chunkCount; index += 1) {
     ids.push({ id: `products-${index}` })
@@ -216,9 +352,10 @@ export async function getSitemapIds(): Promise<Array<{ id: string }>> {
 
 export async function getSitemapIndexEntries() {
   const baseUrl = getSitemapBaseUrl()
-  const [pages, posts, products, categories, ids] = await Promise.all([
+  const [pages, posts, images, products, categories, ids] = await Promise.all([
     getPageSitemapEntries(),
     getPostSitemapEntries(),
+    getImageSitemapEntries(),
     getAllProductSitemapEntries(),
     getCategorySitemapEntries(),
     getSitemapIds()
@@ -231,6 +368,7 @@ export async function getSitemapIndexEntries() {
 
     if (entry.id === "pages") lastModified = maxDate(pages.map((item) => item.lastModified))
     if (entry.id === "posts") lastModified = maxDate(posts.map((item) => item.lastModified))
+    if (entry.id === "images") lastModified = maxDate(images.map((item) => item.lastModified))
     if (entry.id === "categories") lastModified = maxDate(categories.map((item) => item.lastModified))
     if (entry.id.startsWith("products-")) lastModified = productLastModified
 

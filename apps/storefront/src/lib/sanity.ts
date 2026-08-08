@@ -149,12 +149,12 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
     }
   })
 
-  // If Sanity has fewer docs than local fallbacks, append missing slugs for dev/preview.
-  if (merged.length < fallbackPosts.length) {
-    const slugs = new Set(merged.map((post) => post.slug))
-    for (const fallback of fallbackPosts) {
-      if (!slugs.has(fallback.slug)) merged.push(fallback)
-    }
+  // Append JSON fallbacks missing from Sanity (slug-level merge, not count-based).
+  const slugs = new Set(merged.map((post) => post.slug))
+  for (const fallback of fallbackPosts) {
+    if (!slugs.has(fallback.slug)) merged.push(fallback)
+  }
+  if (merged.length !== posts.length) {
     merged.sort(
       (a, b) =>
         new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime()

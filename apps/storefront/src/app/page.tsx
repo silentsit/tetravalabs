@@ -37,8 +37,8 @@ const SocialProofReviews = dynamic(
 
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Buy Peptides Online (HPLC ≥99% Pure) | USA Research Peptides | Tetrava",
-  absoluteTitle: "Buy Peptides Online (HPLC ≥99% Pure) | USA Research Peptides | Tetrava",
+  title: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
+  absoluteTitle: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
   description:
     "Buy peptides online from Tetrava Labs. Research peptides for sale with verified purity and third-party lab testing.",
   path: "/",

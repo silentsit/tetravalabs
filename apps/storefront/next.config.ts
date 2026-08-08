@@ -87,6 +87,7 @@ const nextConfig: NextConfig = {
       { source: "/sitemap.xml", destination: "/sitemap_index.xml", permanent: true },
       { source: "/sitemap/posts.xml", destination: "/post-sitemap.xml", permanent: true },
       { source: "/sitemap/pages.xml", destination: "/page-sitemap.xml", permanent: true },
+      { source: "/sitemap/images.xml", destination: "/image-sitemap.xml", permanent: true },
       { source: "/sitemap/categories.xml", destination: "/category-sitemap.xml", permanent: true },
       { source: "/sitemap/products-0.xml", destination: "/product-sitemap.xml", permanent: true },
       { source: "/coa", destination: "/coa-library", permanent: true },

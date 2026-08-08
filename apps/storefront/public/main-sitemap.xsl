@@ -87,7 +87,7 @@
         <div id="description">
           <h1>XML Sitemap</h1>
           <p>
-            This sitemap lists every public page on Tetrava Labs, grouped by pages, articles, products, and categories.
+            This sitemap lists every public page on Tetrava Labs, grouped by pages, articles, images, products, and categories.
             Search engines use these files to discover and recrawl the site.
             <a href="https://www.sitemaps.org/" target="_blank" rel="noopener noreferrer">Learn about XML sitemaps</a>.
           </p>
@@ -180,6 +180,7 @@
     <xsl:choose>
       <xsl:when test="contains($loc, 'post-sitemap')">Articles</xsl:when>
       <xsl:when test="contains($loc, 'page-sitemap')">Pages</xsl:when>
+      <xsl:when test="contains($loc, 'image-sitemap')">Images</xsl:when>
       <xsl:when test="contains($loc, 'product-sitemap')">Products</xsl:when>
       <xsl:when test="contains($loc, 'category-sitemap')">Categories</xsl:when>
       <xsl:otherwise>Sitemap</xsl:otherwise>

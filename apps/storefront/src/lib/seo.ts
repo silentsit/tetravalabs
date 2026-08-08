@@ -91,6 +91,11 @@ export function clampMetaDescription(description: string) {
   return truncateMetaText(description, META_DESCRIPTION_MAX)
 }
 
+/** Strip trailing `| Tetrava` / `| Tetrava Labs` brand suffixes from titles. */
+export function stripBrandTitleSuffix(title: string) {
+  return title.replace(/\s*\|\s*Tetrava(?:\s+Labs)?\s*$/i, "").trim()
+}
+
 export function resolveMetaTitles(input: { title: string; absoluteTitle?: string }) {
   if (input.absoluteTitle) {
     const absolute = truncateMetaText(input.absoluteTitle.trim(), META_TITLE_MAX)
@@ -101,7 +106,7 @@ export function resolveMetaTitles(input: { title: string; absoluteTitle?: string
     }
   }
 
-  let shortTitle = input.title.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim()
+  let shortTitle = stripBrandTitleSuffix(input.title)
 
   if (shortTitle.includes(siteConfig.name)) {
     const absolute = truncateMetaText(shortTitle, META_TITLE_MAX)
@@ -243,6 +248,28 @@ export function personJsonLd(author: {
   return graph
 }
 
+/** Organization publisher block (name + logo) — required by most Article SEO checkers. */
+export function publisherJsonLd() {
+  return {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: {
+      "@type": "ImageObject",
+      url: pageUrl(siteConfig.defaultOgImage)
+    }
+  }
+}
+
+/** Fallback author when a page has no named byline (still satisfies Author schema checks). */
+export function defaultPageAuthorJsonLd() {
+  return {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url
+  }
+}
+
 export function webPageJsonLd(input: {
   title: string
   description?: string
@@ -268,12 +295,8 @@ export function webPageJsonLd(input: {
       name: siteConfig.name,
       url: siteConfig.url
     },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url
-    },
-    ...(input.author ? { author: personJsonLd(input.author) } : {})
+    publisher: publisherJsonLd(),
+    author: input.author ? personJsonLd(input.author) : defaultPageAuthorJsonLd()
   }
 }
 
@@ -422,6 +445,13 @@ export function articleJsonLd(post: {
   publishedAt?: string
   category?: string
   image?: string
+  author?: {
+    name: string
+    jobTitle?: string
+    description?: string
+    image?: string
+    credentials?: string
+  }
 }) {
   const imagePath = blogImageForPost({
     image: post.image,
@@ -435,14 +465,38 @@ export function articleJsonLd(post: {
     description: post.excerpt,
     datePublished: post.publishedAt,
     image: pageUrl(imagePath),
-    author: { "@type": "Organization", name: siteConfig.name },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      logo: pageUrl(siteConfig.defaultOgImage)
-    },
+    author: post.author ? personJsonLd(post.author) : defaultPageAuthorJsonLd(),
+    publisher: publisherJsonLd(),
     mainEntityOfPage: pageUrl(`/blog/${post.slug}`)
+  }
+}
+
+/** Article graph for curated product research PDPs (author + publisher for SEO checkers). */
+export function productResearchArticleJsonLd(input: {
+  headline: string
+  description: string
+  path: string
+  image?: string
+  author: {
+    name: string
+    jobTitle?: string
+    description?: string
+    image?: string
+    credentials?: string
+  }
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: input.headline,
+    description: input.description,
+    url: pageUrl(input.path),
+    mainEntityOfPage: pageUrl(input.path),
+    ...(input.image
+      ? { image: input.image.startsWith("http") ? input.image : pageUrl(input.image) }
+      : {}),
+    author: personJsonLd(input.author),
+    publisher: publisherJsonLd()
   }
 }
 

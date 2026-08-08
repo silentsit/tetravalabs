@@ -12,6 +12,8 @@ import {
   articleJsonLd,
   faqJsonLd,
   productJsonLd,
+  productResearchArticleJsonLd,
+  stripBrandTitleSuffix,
   webPageJsonLd,
   type ProductReviewSchemaInput
 } from "@/lib/seo"
@@ -121,7 +123,7 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         displayName: view.displayName,
         strengthLabels
       })
-    const pageTitle = absoluteTitle.replace(/\s*\|\s*Tetrava Labs\s*$/i, "").trim()
+    const pageTitle = stripBrandTitleSuffix(absoluteTitle)
     const pageDescription =
       seoOverride?.description ||
       buildProductSeoDescription({
@@ -158,6 +160,15 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     })
     const researchDetail = getProductResearchDetail(view.parentHandle)
     const researchAuthor = researchDetail ? getAuthor(researchDetail.authorId) : null
+    const pageAuthor = researchAuthor
+      ? {
+          name: researchAuthor.name,
+          jobTitle: researchAuthor.title,
+          description: authorBioText(researchAuthor),
+          image: researchAuthor.image,
+          credentials: researchAuthor.credentials
+        }
+      : undefined
 
     return [
       productJsonLd(productLike, view.parentHandle, image, reviewData),
@@ -165,18 +176,19 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         title: pageTitle,
         description: pageDescription,
         path,
-        ...(researchAuthor
-          ? {
-              author: {
-                name: researchAuthor.name,
-                jobTitle: researchAuthor.title,
-                description: authorBioText(researchAuthor),
-                image: researchAuthor.image,
-                credentials: researchAuthor.credentials
-              }
-            }
-          : {})
+        ...(pageAuthor ? { author: pageAuthor } : {})
       }),
+      ...(pageAuthor
+        ? [
+            productResearchArticleJsonLd({
+              headline: pageTitle,
+              description: pageDescription,
+              path,
+              image,
+              author: pageAuthor
+            })
+          ]
+        : []),
       faqJsonLd(faqs, path)
     ]
   }
@@ -203,10 +215,9 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   return [
     productJsonLd(product, catalogHandle, image, reviewData),
     webPageJsonLd({
-      title: buildProductSeoTitle({ displayName: displayTitle, strengthLabels: [] }).replace(
-        /\s*\|\s*Tetrava Labs\s*$/i,
-        ""
-      ).trim(),
+      title: stripBrandTitleSuffix(
+        buildProductSeoTitle({ displayName: displayTitle, strengthLabels: [] })
+      ),
       description: buildProductSeoDescription({
         displayName: displayTitle,
         strengthLabels: []

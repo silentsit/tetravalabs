@@ -298,9 +298,11 @@ export function ProductDetailTabs({
                       <Image
                         src={author.image}
                         alt={authorDisplayName(author)}
-                        width={88}
-                        height={88}
-                        className="h-[88px] w-[88px] shrink-0 rounded-full border border-[#E2E8F0] object-cover"
+                        width={112}
+                        height={112}
+                        quality={90}
+                        sizes="112px"
+                        className="h-[112px] w-[112px] shrink-0 rounded-full border border-[#E2E8F0] object-cover object-top"
                       />
                     ) : null}
                     <div>

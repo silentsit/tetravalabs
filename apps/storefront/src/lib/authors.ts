@@ -35,7 +35,7 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
       "Prior to leading product compliance and technical editorial standards at Tetrava Labs, Dr. Chen contributed to published research in peptide mass spectrometry and structural biology.",
       "Today, Dr. Chen oversees Tetrava Labs' third-party testing protocols, certificate of analysis (CoA) verification, and scientific literature reviews."
     ],
-    image: "/authors/dr-k-chen.jpg"
+    image: "/authors/dr-k-chen-headshot.jpg"
   },
   "editorial-team": {
     id: "editorial-team",
@@ -74,7 +74,7 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
       "40+ peer-reviewed publications",
       "Advisory roles: GSK, Sanofi, Eli Lilly"
     ],
-    image: "/authors/dr-devraj-sharma.jpg"
+    image: "/authors/dr-devraj-sharma-headshot.jpg"
   },
   park: {
     id: "park",
@@ -92,7 +92,7 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
       "50+ peer-reviewed publications",
       "Advisory roles: Roche, Merck, AstraZeneca"
     ],
-    image: "/authors/dr-min-hee-park.jpg"
+    image: "/authors/dr-min-hee-park-headshot.jpg"
   }
 }
 

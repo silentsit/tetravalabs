@@ -9,10 +9,10 @@ export type ProductSeoOverride = {
 /** Curated SERP copy keyed by catalog parent handle (e.g. bpc-157). */
 const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
   "bpc-157": {
-    absoluteTitle: "Buy BPC-157 Peptide | BPC-157 Peptides for Sale | Tetrava Labs",
+    absoluteTitle: "Buy BPC-157 Peptide Online | BPC-157 Peptides for Sale | Tetrava",
     description:
-      "Buy BPC-157 peptide for sale at Tetrava Labs — third-party verified 99%+ purity with lot-linked COA. Best place to buy BPC-157.",
-    imageAlt: "BPC-157 peptide for sale in vial"
+      "Buy BPC-157 peptide online from Tetrava Labs — BPC-157 peptides for sale with third-party 99%+ HPLC-MS purity and lot-linked COAs. Best place to buy BPC-157 for qualified labs (RUO).",
+    imageAlt: "Buy BPC-157 peptide for sale in research vial"
   }
 }
 

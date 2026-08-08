@@ -5,7 +5,7 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react"
 import { ProductCard } from "@/components/product-card"
 import {
   isPortableBlogBody,
-  renderBlogParagraphs
+  parsePlainBlogBlocks
 } from "@/lib/blog-utils"
 import type { BlogBody } from "@/lib/sanity"
 import type { StoreProduct } from "@/lib/medusa"
@@ -26,13 +26,33 @@ export function BlogBody({ body, productsByHandle }: Props) {
   if (!body) return null
 
   if (!isPortableBlogBody(body)) {
-    const paragraphs = renderBlogParagraphs(body)
-    if (!paragraphs.length) return null
+    const blocks = parsePlainBlogBlocks(body)
+    if (!blocks.length) return null
     return (
       <div className="card space-y-4 p-6 text-base leading-relaxed text-[#475569]">
-        {paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-        ))}
+        {blocks.map((block) => {
+          if (block.type === "h2") {
+            return (
+              <h2
+                key={block.text.slice(0, 48)}
+                className="mb-3 mt-8 font-serif text-2xl text-[#0F172A] first:mt-0"
+              >
+                {block.text}
+              </h2>
+            )
+          }
+          if (block.type === "h3") {
+            return (
+              <h3
+                key={block.text.slice(0, 48)}
+                className="mb-2 mt-6 font-serif text-xl text-[#0F172A] first:mt-0"
+              >
+                {block.text}
+              </h3>
+            )
+          }
+          return <p key={block.text.slice(0, 48)}>{block.text}</p>
+        })}
       </div>
     )
   }

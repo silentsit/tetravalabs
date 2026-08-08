@@ -37,11 +37,27 @@ export function getRelatedBlogPosts(posts: BlogPost[], current: BlogPost, limit 
     .slice(0, limit)
 }
 
-export function renderBlogParagraphs(body?: string) {
+export type PlainBlogBlock =
+  | { type: "p"; text: string }
+  | { type: "h2"; text: string }
+  | { type: "h3"; text: string }
+
+export function parsePlainBlogBlocks(body?: string): PlainBlogBlock[] {
   return (body || "")
     .split(/\n\s*\n/)
-    .map((paragraph) => paragraph.trim())
+    .map((block) => block.trim())
     .filter(Boolean)
+    .map((block) => {
+      if (block.startsWith("## ")) return { type: "h2" as const, text: block.slice(3).trim() }
+      if (block.startsWith("### ")) return { type: "h3" as const, text: block.slice(4).trim() }
+      return { type: "p" as const, text: block }
+    })
+}
+
+export function renderBlogParagraphs(body?: string) {
+  return parsePlainBlogBlocks(body)
+    .filter((block): block is PlainBlogBlock & { type: "p" } => block.type === "p")
+    .map((block) => block.text)
 }
 
 export function isPortableBlogBody(body?: BlogBody): body is BlogPortableBlock[] {

@@ -135,16 +135,19 @@ function sanitizeSlug(slug: string) {
   return slug.replace(/[^a-z0-9-]/gi, "")
 }
 
-function hasBlogBodyContent(body?: BlogBody): boolean {
-  if (Array.isArray(body)) return body.length > 0
-  if (typeof body === "string") return body.trim().length > 0
-  return false
-}
-
-/** Prefer Sanity body when populated; otherwise fall back to local JSON seed content. */
+/** Prefer published Sanity Portable Text; fall back to JSON seed when CMS body is empty or legacy plain text. */
 function resolveBlogBody(primary?: BlogBody, fallback?: BlogBody): BlogBody | undefined {
-  if (hasBlogBodyContent(primary)) return primary
-  if (hasBlogBodyContent(fallback)) return fallback
+  if (Array.isArray(primary) && primary.length > 0) return primary
+  if (Array.isArray(fallback) && fallback.length > 0) return fallback
+
+  const primaryText = typeof primary === "string" ? primary.trim() : ""
+  const fallbackText = typeof fallback === "string" ? fallback.trim() : ""
+
+  // Legacy seeded Sanity bodies were stored as plain strings; prefer JSON fallback updates.
+  if (primaryText && fallbackText) return fallback
+  if (primaryText) return primary
+  if (fallbackText) return fallback
+
   return primary ?? fallback
 }
 

@@ -80,13 +80,16 @@ function createPortableTextComponents(
     unknownMark: ({ children }) => <span>{children}</span>,
     unknownType: ({ value }) => {
       const type = typeof value?._type === "string" ? value._type : "unknown"
-      if (process.env.NODE_ENV === "production") return null
-      return (
-        <p className="rounded border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
-          Unsupported block type: {type}
-        </p>
-      )
-    }
+      if (process.env.NODE_ENV !== "production") {
+        return (
+          <p className="rounded border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+            Unsupported block type: {type}
+          </p>
+        )
+      }
+      return null
+    },
+    unknownBlockStyle: ({ children }) => <p className="mb-4 last:mb-0">{children}</p>
   }
 }
 
@@ -98,11 +101,11 @@ export function BlogBody({ body, productsByHandle }: Props) {
     if (!blocks.length) return null
     return (
       <div className="card space-y-4 p-6 text-base leading-relaxed text-[#475569]">
-        {blocks.map((block) => {
+        {blocks.map((block, index) => {
           if (block.type === "h2") {
             return (
               <h2
-                key={block.text.slice(0, 48)}
+                key={`h2-${index}`}
                 className="mb-3 mt-8 font-serif text-2xl text-[#0F172A] first:mt-0"
               >
                 {block.text}
@@ -112,14 +115,14 @@ export function BlogBody({ body, productsByHandle }: Props) {
           if (block.type === "h3") {
             return (
               <h3
-                key={block.text.slice(0, 48)}
+                key={`h3-${index}`}
                 className="mb-2 mt-6 font-serif text-xl text-[#0F172A] first:mt-0"
               >
                 {block.text}
               </h3>
             )
           }
-          return <p key={block.text.slice(0, 48)}>{block.text}</p>
+          return <p key={`p-${index}`}>{block.text}</p>
         })}
       </div>
     )

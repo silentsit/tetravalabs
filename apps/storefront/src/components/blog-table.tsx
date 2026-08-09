@@ -15,9 +15,16 @@ export function BlogTable({ value }: { value: BlogTableValue }) {
 
   if (!rows.length) return null
 
-  const hasHeader = value.hasHeaderRow !== false
-  const header = hasHeader ? rows[0] : null
-  const bodyRows = hasHeader ? rows.slice(1) : rows
+  const columnCount = Math.max(...rows.map((cells) => cells.length), 1)
+  const normalizedRows = rows.map((cells) => {
+    const padded = [...cells]
+    while (padded.length < columnCount) padded.push("")
+    return padded
+  })
+
+  const hasHeader = value.hasHeaderRow !== false && normalizedRows.length > 1
+  const header = hasHeader ? normalizedRows[0] : null
+  const bodyRows = hasHeader ? normalizedRows.slice(1) : normalizedRows
 
   return (
     <figure className="my-8 overflow-x-auto">

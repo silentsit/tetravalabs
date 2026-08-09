@@ -157,14 +157,8 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
   const fallbackBySlug = new Map(fallbackPosts.map((post) => [post.slug, post]))
   const merged: BlogPost[] = posts.map((post) => {
     const fallback = fallbackBySlug.get(post.slug)
-    const body =
-      (Array.isArray(post.body) && post.body.length > 0) ||
-      (typeof post.body === "string" && post.body.trim())
-        ? post.body
-        : fallback?.body
     return {
       ...post,
-      body,
       readTimeMinutes: post.readTimeMinutes || 5,
       body: resolveBlogBody(post.body, fallback?.body),
       image: post.image || fallback?.image,
@@ -200,14 +194,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   const post = await fetchSanity<BlogPost>(query, [`sanity:blog:${safeSlug}`])
   if (!post) return fallbackPosts.find((item) => item.slug === safeSlug) || null
   const fallback = fallbackPosts.find((item) => item.slug === safeSlug)
-  const body =
-    (Array.isArray(post.body) && post.body.length > 0) ||
-    (typeof post.body === "string" && post.body.trim())
-      ? post.body
-      : fallback?.body
   return {
     ...post,
-    body,
     readTimeMinutes: post.readTimeMinutes || 5,
     body: resolveBlogBody(post.body, fallback?.body),
     image: post.image || fallback?.image,

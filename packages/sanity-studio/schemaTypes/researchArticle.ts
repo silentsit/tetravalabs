@@ -86,7 +86,8 @@ export const researchArticle = defineType({
             ]
           }
         }),
-        defineArrayMember({ type: "productEmbed" })
+        defineArrayMember({ type: "productEmbed" }),
+        defineArrayMember({ type: "tableBlock" })
       ]
     }),
     defineField({

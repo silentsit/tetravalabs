@@ -135,6 +135,19 @@ function sanitizeSlug(slug: string) {
   return slug.replace(/[^a-z0-9-]/gi, "")
 }
 
+function hasBlogBodyContent(body?: BlogBody): boolean {
+  if (Array.isArray(body)) return body.length > 0
+  if (typeof body === "string") return body.trim().length > 0
+  return false
+}
+
+/** Prefer Sanity body when populated; otherwise fall back to local JSON seed content. */
+function resolveBlogBody(primary?: BlogBody, fallback?: BlogBody): BlogBody | undefined {
+  if (hasBlogBodyContent(primary)) return primary
+  if (hasBlogBodyContent(fallback)) return fallback
+  return primary ?? fallback
+}
+
 function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
   if (!posts?.length) return fallbackPosts
 
@@ -144,6 +157,7 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
     return {
       ...post,
       readTimeMinutes: post.readTimeMinutes || 5,
+      body: resolveBlogBody(post.body, fallback?.body),
       image: post.image || fallback?.image,
       references: post.references?.length ? post.references : fallback?.references
     }
@@ -180,6 +194,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   return {
     ...post,
     readTimeMinutes: post.readTimeMinutes || 5,
+    body: resolveBlogBody(post.body, fallback?.body),
     image: post.image || fallback?.image,
     references: post.references?.length ? post.references : fallback?.references
   }

@@ -1,0 +1,959 @@
+{
+  "source": "https://biotechpeptides.com/news/",
+  "scrapedAt": "2026-08-09T05:01:57.966Z",
+  "note": "Posts are listed under /news/ pagination but publish at root URLs (not /news/{slug}). H1 verified equal to listing title on sampled posts.",
+  "listingPages": 21,
+  "count": 186,
+  "h1SampleChecks": [
+    {
+      "url": "https://biotechpeptides.com/biopeptide-el-molecular-characterization-elastin-binding-receptor-dermatology-and-extracellular-matrix-research/",
+      "listingTitle": "Biopeptide EL: Molecular Characterization, Elastin-Binding Receptor Dermatology, and Extracellular Matrix Research",
+      "h1": "Biopeptide EL: Molecular Characterization, Elastin-Binding Receptor Dermatology, and Extracellular Matrix Research",
+      "match": true
+    },
+    {
+      "url": "https://biotechpeptides.com/bpc157-molecular-characterization-pleiotropic-signaling-mechanisms-and-preclinical-research/",
+      "listingTitle": "BPC157: Molecular Characterization, Pleiotropic Signaling Mechanisms, and Preclinical Research",
+      "h1": "BPC157: Molecular Characterization, Pleiotropic Signaling Mechanisms, and Preclinical Research",
+      "match": true
+    },
+    {
+      "url": "https://biotechpeptides.com/copper-peptides-molecular-characterization-mechanistic-biology-and-emerging-research/",
+      "listingTitle": "Copper Peptides: Molecular Characterization, Mechanistic Biology, and Emerging Research",
+      "h1": "Copper Peptides: Molecular Characterization, Mechanistic Biology, and Emerging Research",
+      "match": true
+    }
+  ],
+  "posts": [
+    {
+      "n": 1,
+      "url": "https://biotechpeptides.com/biopeptide-el-molecular-characterization-elastin-binding-receptor-dermatology-and-extracellular-matrix-research/",
+      "h1": "Biopeptide EL: Molecular Characterization, Elastin-Binding Receptor Dermatology, and Extracellular Matrix Research"
+    },
+    {
+      "n": 2,
+      "url": "https://biotechpeptides.com/bpc157-molecular-characterization-pleiotropic-signaling-mechanisms-and-preclinical-research/",
+      "h1": "BPC157: Molecular Characterization, Pleiotropic Signaling Mechanisms, and Preclinical Research"
+    },
+    {
+      "n": 3,
+      "url": "https://biotechpeptides.com/copper-peptides-molecular-characterization-mechanistic-biology-and-emerging-research/",
+      "h1": "Copper Peptides: Molecular Characterization, Mechanistic Biology, and Emerging Research"
+    },
+    {
+      "n": 4,
+      "url": "https://biotechpeptides.com/modified-grf-1-29-and-ghrp-2-peptide-blend-receptor-pharmacology-somatotroph-signaling-and-neuroendocrine-research/",
+      "h1": "Modified GRF 1-29 and GHRP-2 Peptide Blend: Receptor Pharmacology, Somatotroph Signaling, and Neuroendocrine Research"
+    },
+    {
+      "n": 5,
+      "url": "https://biotechpeptides.com/fragment-176-191-modified-grf-1-29-and-ipamorelin-blend-adipose-metabolism-gh-axis-modulation-and-receptor-signaling-research/",
+      "h1": "Fragment 176-191, Modified GRF 1-29, and Ipamorelin Blend: Adipose Metabolism, GH Axis Modulation, and Receptor Signaling Research"
+    },
+    {
+      "n": 6,
+      "url": "https://biotechpeptides.com/pnc-27-structural-characterization-hdm-2-dependent-membrane-targeting-and-selective-tumor-cell-necrosis/",
+      "h1": "PNC-27: Structural Characterization, HDM-2-Dependent Membrane Targeting, and Selective Tumor Cell Necrosis"
+    },
+    {
+      "n": 7,
+      "url": "https://biotechpeptides.com/aod-9604-molecular-characterization-lipolytic-mechanisms-and-emerging-research-in-tissue-biology-and-mammalian-oncology/",
+      "h1": "AOD-9604: Molecular Characterization, Lipolytic Mechanisms, and Emerging Research in Tissue Biology and Mammalian Oncology"
+    },
+    {
+      "n": 8,
+      "url": "https://biotechpeptides.com/tesamorelin-modified-grf-1-29-and-ipamorelin-peptide-blend-growth-hormone-axis-pharmacology-and-preclinical-research/",
+      "h1": "Tesamorelin, Modified GRF 1-29, and Ipamorelin Peptide Blend: Growth Hormone Axis Pharmacology and Preclinical Research"
+    },
+    {
+      "n": 9,
+      "url": "https://biotechpeptides.com/sermorelin-ghrp-6-and-ghrp-2-peptide-blend-receptor-pharmacology-intracellular-signaling-and-neuroendocrine-research/",
+      "h1": "Sermorelin, GHRP-6, and GHRP-2 Peptide Blend: Receptor Pharmacology, Intracellular Signaling, and Neuroendocrine Research"
+    },
+    {
+      "n": 10,
+      "url": "https://biotechpeptides.com/tesamorelin-molecular-characterization-growth-hormone-axis-modulation-and-metabolic-research/",
+      "h1": "Tesamorelin: Molecular Characterization, Growth Hormone Axis Modulation, and Metabolic Research"
+    },
+    {
+      "n": 11,
+      "url": "https://biotechpeptides.com/bpc-157-tb-500-ghk-cu-peptide-blend-mechanistic-insights/",
+      "h1": "BPC-157& TB-500 & GHK-Cu Peptide Blend: Mechanistic Insights into Regenerative Signaling Networks"
+    },
+    {
+      "n": 12,
+      "url": "https://biotechpeptides.com/ipamorelin-peptide-research-overview-into-growth-hormone-modulation-and-energy-homeostasis/",
+      "h1": "Ipamorelin Peptide – Research overview into Growth Hormone Modulation and Energy Homeostasis"
+    },
+    {
+      "n": 13,
+      "url": "https://biotechpeptides.com/mt1-melanotan-1-structure-and-emerging-research-applications/",
+      "h1": "MT1 (Melanotan-1): Structure and Emerging Research Applications"
+    },
+    {
+      "n": 14,
+      "url": "https://biotechpeptides.com/sermorelin-overview-growth-hormone-and-igf-1-research/",
+      "h1": "Sermorelin Overview: Growth Hormone and IGF-1 Research"
+    },
+    {
+      "n": 15,
+      "url": "https://biotechpeptides.com/cjc-1295-dac-explained-structure-mechanism-and-research-findings/",
+      "h1": "CJC-1295 DAC Explained: Structure, Mechanism, and Research Findings"
+    },
+    {
+      "n": 16,
+      "url": "https://biotechpeptides.com/modified-grf-1-29-modulation-of-the-growth-hormone-axis/",
+      "h1": "Modified GRF 1-29: Modulation of the Growth Hormone Axis"
+    },
+    {
+      "n": 17,
+      "url": "https://biotechpeptides.com/syn-coll-tripeptide-and-skin-cell-architecture/",
+      "h1": "Syn-Coll Tripeptide and Skin Cell Architecture"
+    },
+    {
+      "n": 18,
+      "url": "https://biotechpeptides.com/decapeptide-12-and-tyrosinase-interactions-in-dermatological-studies/",
+      "h1": "Decapeptide-12 and Tyrosinase: Interactions in Dermatological Studies"
+    },
+    {
+      "n": 19,
+      "url": "https://biotechpeptides.com/syn-ake-tripeptide-and-dermal-wrinkles/",
+      "h1": "Syn-AKE Tripeptide and Dermal Wrinkles"
+    },
+    {
+      "n": 20,
+      "url": "https://biotechpeptides.com/from-tuftsin-to-selank-exploring-the-neurochemical-and-immunological-dimensions-of-a-synthetic-heptapeptide/",
+      "h1": "From Tuftsin to Selank: Exploring the Neurochemical and Immunological Dimensions of a Synthetic Heptapeptide"
+    },
+    {
+      "n": 21,
+      "url": "https://biotechpeptides.com/overview-of-the-triptorelin-peptide/",
+      "h1": "Overview of the Triptorelin Peptide"
+    },
+    {
+      "n": 22,
+      "url": "https://biotechpeptides.com/pharmacological-and-metabolic-insights-into-the-ipamorelin-cjc-1295-blend/",
+      "h1": "Pharmacological and Metabolic Insights into the Ipamorelin & CJC-1295 Blend"
+    },
+    {
+      "n": 23,
+      "url": "https://biotechpeptides.com/potential-of-sermorelin-and-ipamorelin-in-growth-hormone-regulation-and-systemic-outcomes/",
+      "h1": "Potential of Sermorelin and Ipamorelin in Growth Hormone Regulation and Systemic Outcomes"
+    },
+    {
+      "n": 24,
+      "url": "https://biotechpeptides.com/tripeptide-1-antioxidant-anti-inflammatory-and-regenerative-research/",
+      "h1": "Tripeptide-1: Antioxidant, Anti-Inflammatory, and Regenerative Research"
+    },
+    {
+      "n": 25,
+      "url": "https://biotechpeptides.com/chonluten-t-34-peptide-inflammation-gene-expression-regulation-oxidative-stress-modulation/",
+      "h1": "Chonluten (T-34) Peptide: Inflammation, Gene Expression Regulation & Oxidative Stress Modulation"
+    },
+    {
+      "n": 26,
+      "url": "https://biotechpeptides.com/frag-176-191-insights-from-lipolytic-osteoarthritic-and-oncologic-models/",
+      "h1": "Frag 176-191: Insights from Lipolytic, Osteoarthritic, and Oncologic Models"
+    },
+    {
+      "n": 27,
+      "url": "https://biotechpeptides.com/thymosin-beta-4-peptide-fragments-anti-inflammatory-anti-fibrotic-and-regenerative-properties-explored/",
+      "h1": "Thymosin Beta-4 Peptide Fragments: Anti-Inflammatory, Anti-Fibrotic, and Regenerative Properties Explored"
+    },
+    {
+      "n": 28,
+      "url": "https://biotechpeptides.com/ramatercept-ace-031-research-muscle-cell-homeostasis-and-metabolic-integrity/",
+      "h1": "Ramatercept (ACE-031): Research Muscle Cell Homeostasis and Metabolic Integrity"
+    },
+    {
+      "n": 29,
+      "url": "https://biotechpeptides.com/kp-10-kisspeptin-10-studies-on-neuroprotection-gonadotropin-regulation-and-emotional-processing/",
+      "h1": "KP-10 (Kisspeptin-10): Studies on Neuroprotection, Gonadotropin Regulation, and Emotional Processing"
+    },
+    {
+      "n": 30,
+      "url": "https://biotechpeptides.com/the-synergistic-potential-of-fragment-176-191-cjc-1295-ipamorelin-blend-in-peptide-based-studies/",
+      "h1": "The Synergistic Potential of Fragment 176-191 & CJC-1295 & Ipamorelin Blend in Peptide Based Studies"
+    },
+    {
+      "n": 31,
+      "url": "https://biotechpeptides.com/fst-344-follistatin-344-peptide-transforming-growth-factor-beta-tgf-%ce%b2-implications/",
+      "h1": "FST-344 (Follistatin-344) Peptide: Transforming Growth Factor-beta (TGF-β) Implications"
+    },
+    {
+      "n": 32,
+      "url": "https://biotechpeptides.com/ghk-cu-and-ahk-cu-copper-peptides-and-cell-interaction-research-studies/",
+      "h1": "GHK-Cu and AHK-Cu: Copper Peptides and Cell Interaction Research Studies"
+    },
+    {
+      "n": 33,
+      "url": "https://biotechpeptides.com/proxofim-peptide-and-cellular-apoptosis-a-research-summary/",
+      "h1": "Proxofim Peptide and Cellular Apoptosis: A Research Summary"
+    },
+    {
+      "n": 34,
+      "url": "https://biotechpeptides.com/bremelanotide-peptide-and-hsdd-related-research/",
+      "h1": "Bremelanotide Peptide and HSDD Related-Research"
+    },
+    {
+      "n": 35,
+      "url": "https://biotechpeptides.com/pralmorelin-peptide-and-growth-hormone-secretegogue-receptors-ghs-rs/",
+      "h1": "Pralmorelin Peptide and Growth Hormone Secretegogue Receptors (GHS-Rs)"
+    },
+    {
+      "n": 36,
+      "url": "https://biotechpeptides.com/insights-into-the-tesamorelin-ipamorelin-and-cjc-1295-peptide-blend/",
+      "h1": "Insights into the Tesamorelin, Ipamorelin, and CJC-1295 Peptide Blend"
+    },
+    {
+      "n": 37,
+      "url": "https://biotechpeptides.com/modified-grf-1-29-ipamorelin-blend-studies-in-growth-hormone-secretion-and-metabolic-regulation/",
+      "h1": "Modified GRF 1-29 & Ipamorelin Blend: Studies in Growth Hormone Secretion and Metabolic Regulation"
+    },
+    {
+      "n": 38,
+      "url": "https://biotechpeptides.com/ahk-cu-peptide-and-epithelial-tissues/",
+      "h1": "AHK-Cu Peptide And Epithelial Tissues"
+    },
+    {
+      "n": 39,
+      "url": "https://biotechpeptides.com/mgf-action-on-different-types-of-muscle-cells/",
+      "h1": "MGF Action on Different Types of Muscle Cells"
+    },
+    {
+      "n": 40,
+      "url": "https://biotechpeptides.com/adipotide-ftpp-and-metabolism-of-adipocytes/",
+      "h1": "Adipotide FTPP and Metabolism of Adipocytes"
+    },
+    {
+      "n": 41,
+      "url": "https://biotechpeptides.com/tesamorelin-peptide-lipid-metabolism-and-muscular-tissue-modulation/",
+      "h1": "Tesamorelin Peptide: Lipid Metabolism and Muscular Tissue Modulation"
+    },
+    {
+      "n": 42,
+      "url": "https://biotechpeptides.com/ipamorelin-ghrp-2-blend-research-into-growth-hormone-secretion/",
+      "h1": "Ipamorelin & GHRP-2 Blend Research Into Growth Hormone Secretion"
+    },
+    {
+      "n": 43,
+      "url": "https://biotechpeptides.com/cjc-1295-ipamorelin-ghrp-2-blend-research-into-growth-hormone-secretion/",
+      "h1": "CJC-1295 & Ipamorelin & GHRP-2 Blend Research Into Growth Hormone Secretion"
+    },
+    {
+      "n": 44,
+      "url": "https://biotechpeptides.com/bpc-157-tb-500-blends-protective-potential-in-various-cell-cultures/",
+      "h1": "BPC-157 & TB-500 Blend’s Protective Potential in Various Cell Cultures"
+    },
+    {
+      "n": 45,
+      "url": "https://biotechpeptides.com/pinealon-peptide-implications-for-neuroprotection-cellular-aging-mechanisms/",
+      "h1": "Pinealon Peptide: Implications for Neuroprotection, Cellular Aging Mechanisms"
+    },
+    {
+      "n": 46,
+      "url": "https://biotechpeptides.com/aod-9604-research-into-fat-cell-metabolism-and-lipolysis/",
+      "h1": "AOD 9604 Research Into Fat Cell Metabolism and Lipolysis"
+    },
+    {
+      "n": 47,
+      "url": "https://biotechpeptides.com/cardiogen-peptide-studies-on-cardiac-tissues-and-cancerous-cells/",
+      "h1": "Cardiogen Peptide: Studies on Cardiac Tissues and Cancerous Cells"
+    },
+    {
+      "n": 48,
+      "url": "https://biotechpeptides.com/matrixyl-peptide-potential-impacts-on-cellular-aging-and-wound-repair/",
+      "h1": "Matrixyl Peptide: Potential Impacts on Cellular Aging and Wound Repair"
+    },
+    {
+      "n": 49,
+      "url": "https://biotechpeptides.com/lipopeptide-research-in-skin-cells-and-extracellular-matrix-components/",
+      "h1": "Lipopeptide Research in Skin Cells and Extracellular Matrix Components"
+    },
+    {
+      "n": 50,
+      "url": "https://biotechpeptides.com/kisspeptin-10-peptide-neuroprotection-hormonal-and-reproductive-regulation/",
+      "h1": "Kisspeptin-10 Peptide: Neuroprotection, Hormonal and Reproductive Regulation"
+    },
+    {
+      "n": 51,
+      "url": "https://biotechpeptides.com/vialox-peptide-neuromuscular-transmission-and-skin-wrinkle-reduction/",
+      "h1": "Vialox Peptide: Neuromuscular Transmission and Skin Wrinkle Reduction"
+    },
+    {
+      "n": 52,
+      "url": "https://biotechpeptides.com/research-in-ll-37-peptide-and-immunomodulation-disease-pathophysiology/",
+      "h1": "Research in LL-37 Peptide and Immunomodulation, Disease Pathophysiology"
+    },
+    {
+      "n": 53,
+      "url": "https://biotechpeptides.com/comprehensive-research-on-ace-031-peptide-across-metabolism-cancer-and-muscle/",
+      "h1": "Comprehensive Research on ACE-031 Peptide Across Metabolism, Cancer, and Muscle"
+    },
+    {
+      "n": 54,
+      "url": "https://biotechpeptides.com/aicar-peptide-insulin-sensitivity-apoptosis-and-endurance/",
+      "h1": "AICAR Peptide: Insulin Sensitivity, Apoptosis, and Endurance"
+    },
+    {
+      "n": 55,
+      "url": "https://biotechpeptides.com/ghrp-2-peptide-research-in-growth-hormone-deficiency-diagnosis-and-hormonal-modulation/",
+      "h1": "GHRP-2 Peptide – Research in Growth Hormone Deficiency Diagnosis and Hormonal Modulation"
+    },
+    {
+      "n": 56,
+      "url": "https://biotechpeptides.com/nonapeptide-1-research-on-skin-pigmentation/",
+      "h1": "Nonapeptide-1: Research on Skin Pigmentation"
+    },
+    {
+      "n": 57,
+      "url": "https://biotechpeptides.com/cjc-1295-and-ipamorelin-peptide-blend-scientific-observations/",
+      "h1": "CJC-1295 and Ipamorelin Peptide Blend – Scientific Observations"
+    },
+    {
+      "n": 58,
+      "url": "https://biotechpeptides.com/protirelin-trh-thyrotropin-general-research-and-scientific-observations/",
+      "h1": "Protirelin (TRH Thyrotropin) – General Research and Scientific Observations"
+    },
+    {
+      "n": 59,
+      "url": "https://biotechpeptides.com/thymosin-alpha-1-general-research-and-scientific-observations/",
+      "h1": "Thymosin Alpha 1: General Research and Scientific Observations"
+    },
+    {
+      "n": 60,
+      "url": "https://biotechpeptides.com/tesamorelin-modified-grf-1-29-ipamorelin-peptide-blend-potential-synergism/",
+      "h1": "Tesamorelin & Modified GRF 1-29, & Ipamorelin Peptide Blend – Potential Synergism"
+    },
+    {
+      "n": 61,
+      "url": "https://biotechpeptides.com/b7-33-peptide-research-in-preeclampsia-and-vasoprotection/",
+      "h1": "B7-33 Peptide: Research in Preeclampsia and Vasoprotection"
+    },
+    {
+      "n": 62,
+      "url": "https://biotechpeptides.com/ghrp-2-and-cjc-1295-blend-growth-hormone-deficiency-and-fat-metabolism/",
+      "h1": "GHRP-2 and CJC 1295 Blend: Growth Hormone Deficiency and Fat Metabolism"
+    },
+    {
+      "n": 63,
+      "url": "https://biotechpeptides.com/tesamorelin-ipamorelin-blend-studying-their-potential-in-growth-hormone-production/",
+      "h1": "Tesamorelin & Ipamorelin Blend: Studying their Potential in Growth Hormone Production"
+    },
+    {
+      "n": 64,
+      "url": "https://biotechpeptides.com/ghk-basic-tripeptide-1-research-in-skin-regeneration-and-cancer-control/",
+      "h1": "GHK Basic (Tripeptide 1): Research in Skin Regeneration and Cancer Control"
+    },
+    {
+      "n": 65,
+      "url": "https://biotechpeptides.com/thymosin-beta-4-and-cardiac-regeneration/",
+      "h1": "Thymosin Beta 4 and Cardiac Regeneration"
+    },
+    {
+      "n": 66,
+      "url": "https://biotechpeptides.com/chonluten-t-34-and-its-potential-in-gene-expression/",
+      "h1": "Chonluten (T-34) and its Potential in Gene Expression"
+    },
+    {
+      "n": 67,
+      "url": "https://biotechpeptides.com/cjc-1295-ghrp-6-blend-and-the-central-nervous-system/",
+      "h1": "CJC-1295 & GHRP-6 Blend and the Central Nervous System"
+    },
+    {
+      "n": 68,
+      "url": "https://biotechpeptides.com/bpc-157-tb-500-blend-an-exploration-in-cell-proliferation-and-regeneration/",
+      "h1": "BPC-157 & TB-500 Blend: An Exploration in Cell Proliferation and Regeneration"
+    },
+    {
+      "n": 69,
+      "url": "https://biotechpeptides.com/the-neuroendocrine-potential-of-hexarelin/",
+      "h1": "The Neuroendocrine Potential of Hexarelin"
+    },
+    {
+      "n": 70,
+      "url": "https://biotechpeptides.com/cjc-1295-ipamorelin-ghrp-2-blend-and-pituitary-signaling/",
+      "h1": "CJC-1295 & Ipamorelin & GHRP-2 Blend and Pituitary Signaling"
+    },
+    {
+      "n": 71,
+      "url": "https://biotechpeptides.com/nad-and-cellular-aging/",
+      "h1": "NAD+ Peptide and Cellular Aging"
+    },
+    {
+      "n": 72,
+      "url": "https://biotechpeptides.com/n-acetyl-selank-studies-on-cognitive-impact/",
+      "h1": "N-Acetyl Selank Studies on Cognitive Impact"
+    },
+    {
+      "n": 73,
+      "url": "https://biotechpeptides.com/acetyl-hexapeptide-3-and-neuromuscular-synapse/",
+      "h1": "Acetyl Hexapeptide-3 and Neuromuscular Synapse"
+    },
+    {
+      "n": 74,
+      "url": "https://biotechpeptides.com/kisspeptin-10-and-the-central-nervous-system-and-hypothalamus/",
+      "h1": "Kisspeptin-10 and The Central Nervous System and Hypothalamus"
+    },
+    {
+      "n": 75,
+      "url": "https://biotechpeptides.com/exploration-of-n-acetyl-semax-actions-in-the-central-nervous-system/",
+      "h1": "Exploration of N-Acetyl Semax Actions in the Central Nervous System"
+    },
+    {
+      "n": 76,
+      "url": "https://biotechpeptides.com/exploration-of-gonadorelin-in-hormone-regulation/",
+      "h1": "Exploration of Gonadorelin (GnRH) in Hormone Regulation"
+    },
+    {
+      "n": 77,
+      "url": "https://biotechpeptides.com/potential-research-applications-of-pe-22-28-peptide/",
+      "h1": "Potential Research Applications of PE-22-28 Peptide"
+    },
+    {
+      "n": 78,
+      "url": "https://biotechpeptides.com/cell-proliferation-and-gene-expression-in-regards-to-vilon/",
+      "h1": "Cell Proliferation and Gene Expression in Regards to Vilon Peptide"
+    },
+    {
+      "n": 79,
+      "url": "https://biotechpeptides.com/modified-grf-1-29-and-hgh-synthesis/",
+      "h1": "Modified GRF (1-29) and Growth Hormone Synthesis"
+    },
+    {
+      "n": 80,
+      "url": "https://biotechpeptides.com/research-applications-of-the-ara-290-peptide/",
+      "h1": "Research Applications of the ARA-290 Peptide"
+    },
+    {
+      "n": 81,
+      "url": "https://biotechpeptides.com/sermorelin-peptide-potential-as-a-growth-hormone-secretagogue/",
+      "h1": "Sermorelin Peptide Potential as a Growth Hormone Secretagogue"
+    },
+    {
+      "n": 82,
+      "url": "https://biotechpeptides.com/mots-c-peptide-and-studies-in-insulin-inflammation/",
+      "h1": "MOTS-c Peptide and Studies in Insulin & Inflammation"
+    },
+    {
+      "n": 83,
+      "url": "https://biotechpeptides.com/studies-in-ipamorelin-for-muscle-growth-and-bone-density/",
+      "h1": "Studies in Ipamorelin for Muscle Growth and Bone Density"
+    },
+    {
+      "n": 84,
+      "url": "https://biotechpeptides.com/research-in-bpc-157-and-the-digestive-and-nervous-systems/",
+      "h1": "Research in BPC-157 and The Digestive and Nervous Systems"
+    },
+    {
+      "n": 85,
+      "url": "https://biotechpeptides.com/igf-1-lr3-peptides-and-tissue-growth/",
+      "h1": "IGF-1 LR3 Peptides and Tissue Growth"
+    },
+    {
+      "n": 86,
+      "url": "https://biotechpeptides.com/adipotide-ftpp-and-fat-cells/",
+      "h1": "Adipotide (FTPP) and Fat Cells"
+    },
+    {
+      "n": 87,
+      "url": "https://biotechpeptides.com/research-in-wrinkle-reduction-and-vialox/",
+      "h1": "Research in Wrinkle Reduction and Vialox"
+    },
+    {
+      "n": 88,
+      "url": "https://biotechpeptides.com/syn-coll-and-collagen-production-stimulation/",
+      "h1": "Syn-Coll and Collagen Production Stimulation"
+    },
+    {
+      "n": 89,
+      "url": "https://biotechpeptides.com/pal-ghk-peptide-and-experimental-research-in-wrinkle-depth/",
+      "h1": "Pal-GHK Peptide and Experimental Research in Wrinkle Depth"
+    },
+    {
+      "n": 90,
+      "url": "https://biotechpeptides.com/tb-500-research-in-regards-to-blood-vessel-growth-and-wound-healing/",
+      "h1": "TB-500 Research in Regards to Blood Vessel Growth and Wound Healing"
+    },
+    {
+      "n": 91,
+      "url": "https://biotechpeptides.com/ptd-dbm-and-research-involving-hair-growth/",
+      "h1": "PTD-DBM and Research Involving Hair Growth"
+    },
+    {
+      "n": 92,
+      "url": "https://biotechpeptides.com/pegylated-mgf-and-muscle-development/",
+      "h1": "Pegylated MGF and Muscle Development"
+    },
+    {
+      "n": 93,
+      "url": "https://biotechpeptides.com/ghk-basic-studies-in-tissue-degeneration-and-inflammation/",
+      "h1": "GHK Basic Studies in Tissue Degeneration and Inflammation"
+    },
+    {
+      "n": 94,
+      "url": "https://biotechpeptides.com/studies-of-chonluten-peptide-in-protein-synthesis-and-inflammation-reduction/",
+      "h1": "Studies of Chonluten Peptide in Protein Synthesis and Inflammation Reduction"
+    },
+    {
+      "n": 95,
+      "url": "https://biotechpeptides.com/possible-link-in-cardiogen-peptide-fibroblasts-and-tissue-repair/",
+      "h1": "Possible Link in Cardiogen Peptide, Fibroblasts, and Tissue Repair"
+    },
+    {
+      "n": 96,
+      "url": "https://biotechpeptides.com/pnc-27-research/",
+      "h1": "PNC-27 Research"
+    },
+    {
+      "n": 97,
+      "url": "https://biotechpeptides.com/the-potential-function-of-kisspeptin-10/",
+      "h1": "The Potential Function of Kisspeptin-10"
+    },
+    {
+      "n": 98,
+      "url": "https://biotechpeptides.com/selank-studies-in-anxiety-and-brain-function/",
+      "h1": "Selank Studies in Anxiety and Brain Function"
+    },
+    {
+      "n": 99,
+      "url": "https://biotechpeptides.com/sermorelin-ipamorelin-blend-potential-analogues-of-growth-hormone/",
+      "h1": "Sermorelin & Ipamorelin Blend: Potential Analogues of Growth Hormone"
+    },
+    {
+      "n": 100,
+      "url": "https://biotechpeptides.com/research-of-aod-9604-in-fat-reduction-and-metabolic-regulation/",
+      "h1": "Research of AOD 9604 in Fat Reduction and Metabolic Regulation"
+    },
+    {
+      "n": 101,
+      "url": "https://biotechpeptides.com/an-examination-of-palmitoyl-tripeptide-1/",
+      "h1": "An Examination of Palmitoyl Tripeptide-1"
+    },
+    {
+      "n": 102,
+      "url": "https://biotechpeptides.com/responses-of-dsip-in-sleep-pattern-regulation/",
+      "h1": "Responses of DSIP in Sleep Pattern Regulation"
+    },
+    {
+      "n": 103,
+      "url": "https://biotechpeptides.com/cjc-1295-no-dac-a-syntetic-peptide-of-ghrh/",
+      "h1": "CJC-1295 No DAC: A Synthetic Peptide of GHRH"
+    },
+    {
+      "n": 104,
+      "url": "https://biotechpeptides.com/skin-research-and-the-snap-8-peptide/",
+      "h1": "Skin Research and the SNAP-8 Peptide"
+    },
+    {
+      "n": 105,
+      "url": "https://biotechpeptides.com/examining-the-mots-c-peptide/",
+      "h1": "Examining the MOTS-c Peptide"
+    },
+    {
+      "n": 106,
+      "url": "https://biotechpeptides.com/leuphasyl-peptide-and-wrinkles/",
+      "h1": "Leuphasyl Peptide and Wrinkles"
+    },
+    {
+      "n": 107,
+      "url": "https://biotechpeptides.com/vilon-peptide-and-cell-aging/",
+      "h1": "Vilon Peptide and Cell Aging"
+    },
+    {
+      "n": 108,
+      "url": "https://biotechpeptides.com/pentapeptide-3v-vialox-and-nicotinic-acetylcholine-achr/",
+      "h1": "Pentapeptide-3V (Vialox) and Nicotinic Acetylcholine (ACHR)"
+    },
+    {
+      "n": 109,
+      "url": "https://biotechpeptides.com/palmitoyl-tripeptide-5-syn-coll-peptide-and-collagen-production/",
+      "h1": "Palmitoyl Tripeptide-5 (Syn-Coll) Peptide and Collagen Production"
+    },
+    {
+      "n": 110,
+      "url": "https://biotechpeptides.com/understanding-palmitoyl-tripeptide-3-pal-ahk/",
+      "h1": "Understanding Palmitoyl Tripeptide-3 (Pal AHK)"
+    },
+    {
+      "n": 111,
+      "url": "https://biotechpeptides.com/decapeptide-12-research/",
+      "h1": "Decapeptide-12 Research"
+    },
+    {
+      "n": 112,
+      "url": "https://biotechpeptides.com/livagen-a-potential-bioregulator-peptide/",
+      "h1": "Livagen – A Potential Bioregulator Peptide"
+    },
+    {
+      "n": 113,
+      "url": "https://biotechpeptides.com/research-on-the-thymalin-peptide/",
+      "h1": "Research on the Thymalin Peptide"
+    },
+    {
+      "n": 114,
+      "url": "https://biotechpeptides.com/ghrp-2-pralmorelin-and-growth-hormone-synthesis/",
+      "h1": "GHRP-2 (Pralmorelin) and Growth Hormone Synthesis"
+    },
+    {
+      "n": 115,
+      "url": "https://biotechpeptides.com/understanding-peptide-bonds/",
+      "h1": "Understanding Peptide Bonds"
+    },
+    {
+      "n": 116,
+      "url": "https://biotechpeptides.com/peptide-solubility/",
+      "h1": "Peptide Solubility"
+    },
+    {
+      "n": 117,
+      "url": "https://biotechpeptides.com/peptide-purification/",
+      "h1": "Peptide Purification"
+    },
+    {
+      "n": 118,
+      "url": "https://biotechpeptides.com/frag-176-191-and-growth-hormone-interaction/",
+      "h1": "Frag 176-191 and Growth Hormone Interaction"
+    },
+    {
+      "n": 119,
+      "url": "https://biotechpeptides.com/b7-33-peptide-and-fibrosis/",
+      "h1": "B7-33 Peptide and Fibrosis"
+    },
+    {
+      "n": 120,
+      "url": "https://biotechpeptides.com/pinealon-related-studies/",
+      "h1": "Pinealon Related Studies"
+    },
+    {
+      "n": 121,
+      "url": "https://biotechpeptides.com/peptide-synthesis/",
+      "h1": "Peptide Synthesis"
+    },
+    {
+      "n": 122,
+      "url": "https://biotechpeptides.com/overview-of-the-oxytocin-peptide/",
+      "h1": "Overview of the Oxytocin Peptide"
+    },
+    {
+      "n": 123,
+      "url": "https://biotechpeptides.com/triptorelin-and-research-in-prostate-cancer/",
+      "h1": "Triptorelin and Research in Prostate Cancer"
+    },
+    {
+      "n": 124,
+      "url": "https://biotechpeptides.com/tripeptide-29-potential-synthetic-collagen-equivalent/",
+      "h1": "Tripeptide-29: Potential Synthetic Collagen Equivalent"
+    },
+    {
+      "n": 125,
+      "url": "https://biotechpeptides.com/ahk-cu-and-skin-cell-support/",
+      "h1": "AHK-Cu and Skin Cell Support"
+    },
+    {
+      "n": 126,
+      "url": "https://biotechpeptides.com/follistatin-344-a-potential-activin-binding-protein-and-myostatin-inhibitor/",
+      "h1": "Follistatin-344: A Potential Activin-Binding Protein and Myostatin Inhibitor"
+    },
+    {
+      "n": 127,
+      "url": "https://biotechpeptides.com/igf-1-lr3-a-synthetic-model-of-the-insulin-like-growth-hormone/",
+      "h1": "IGF-1 LR3: A Synthetic Model of the Insulin-like Growth Hormone"
+    },
+    {
+      "n": 128,
+      "url": "https://biotechpeptides.com/an-overview-of-cjc-1295-ipamorelin-ghrp-2-blend/",
+      "h1": "An Overview of CJC-1295 & Ipamorelin & GHRP-2 Blend"
+    },
+    {
+      "n": 129,
+      "url": "https://biotechpeptides.com/an-overview-of-fragment-176-191-mod-grf-1-29-ipamorelin/",
+      "h1": "An Overview of Fragment 176-191 & Mod GRF 1-29 & Ipamorelin"
+    },
+    {
+      "n": 130,
+      "url": "https://biotechpeptides.com/research-studies-on-cjc-1295-ghrp-6-blend/",
+      "h1": "Research Studies on CJC-1295 & GHRP-6 Blend"
+    },
+    {
+      "n": 131,
+      "url": "https://biotechpeptides.com/bpc-157-tb-500-blend-and-tissue-repair/",
+      "h1": "BPC-157 & TB-500 Blend and Tissue Repair"
+    },
+    {
+      "n": 132,
+      "url": "https://biotechpeptides.com/vasoactive-intestinal-polypeptide-vip-and-gastrointestinal-interaction/",
+      "h1": "Vasoactive Intestinal Polypeptide (VIP) and Gastrointestinal Interaction"
+    },
+    {
+      "n": 133,
+      "url": "https://biotechpeptides.com/nicotinamide-adenine-dinucleotide-nad/",
+      "h1": "Nicotinamide Adenine Dinucleotide (NAD+)"
+    },
+    {
+      "n": 134,
+      "url": "https://biotechpeptides.com/adipotide-peptide-ftpp-and-its-metabolic-properties/",
+      "h1": "Adipotide Peptide (FTPP) and its Metabolic Potential"
+    },
+    {
+      "n": 135,
+      "url": "https://biotechpeptides.com/syn-ake-and-cell-regeneration/",
+      "h1": "Syn-AKE and Cell Regeneration"
+    },
+    {
+      "n": 136,
+      "url": "https://biotechpeptides.com/overview-of-aicar-peptide-research/",
+      "h1": "Overview of AICAR Peptide Research"
+    },
+    {
+      "n": 137,
+      "url": "https://biotechpeptides.com/ptd-dbm-research-in-hair-follicle-regeneration/",
+      "h1": "PTD-DBM Research in Hair Follicle Regeneration"
+    },
+    {
+      "n": 138,
+      "url": "https://biotechpeptides.com/anti-inflammation-studies-and-kpv-peptide/",
+      "h1": "Anti-Inflammation Studies and KPV Peptide"
+    },
+    {
+      "n": 139,
+      "url": "https://biotechpeptides.com/comparing-cjc-1295-and-cjc-1295-with-dac-peptides/",
+      "h1": "Comparing CJC-1295 and CJC-1295 (DAC)"
+    },
+    {
+      "n": 140,
+      "url": "https://biotechpeptides.com/cjc-1295-and-ipamorelin-growth-hormone-releasing-hormones/",
+      "h1": "CJC-1295 and Ipamorelin: Growth Hormone Releasing Hormones"
+    },
+    {
+      "n": 141,
+      "url": "https://biotechpeptides.com/ara-290-nerve-repair-studies/",
+      "h1": "ARA-290 Peptide and Nerve Repair Studies"
+    },
+    {
+      "n": 142,
+      "url": "https://biotechpeptides.com/studies-of-igf-1-in-tissue-generation/",
+      "h1": "Studies of IGF-1 in Tissue Generation"
+    },
+    {
+      "n": 143,
+      "url": "https://biotechpeptides.com/epitalon-and-cell-aging-research/",
+      "h1": "Epitalon and Cell Aging Research"
+    },
+    {
+      "n": 144,
+      "url": "https://biotechpeptides.com/research-studies-involving-nad/",
+      "h1": "Research Studies Involving NAD+"
+    },
+    {
+      "n": 145,
+      "url": "https://biotechpeptides.com/thymosin-beta-4-tb-500-and-related-research-studies/",
+      "h1": "Thymosin Beta 4 (TB-500) and Related Research Studies"
+    },
+    {
+      "n": 146,
+      "url": "https://biotechpeptides.com/tesamorelin-and-ipamorelin-study-findings/",
+      "h1": "Tesamorelin and Ipamorelin Study Findings"
+    },
+    {
+      "n": 147,
+      "url": "https://biotechpeptides.com/cell-aging-research-and-foxo4-dri-peptide/",
+      "h1": "Cell Aging Research and FOXO4-DRI Peptide"
+    },
+    {
+      "n": 148,
+      "url": "https://biotechpeptides.com/follistatin-344-research-in-muscle-cell-regeneration/",
+      "h1": "Follistatin-344: Research in Muscle Cell Regeneration"
+    },
+    {
+      "n": 149,
+      "url": "https://biotechpeptides.com/copper-peptide-ahk-cu-and-hair-follicle-regeneration/",
+      "h1": "Copper Peptide (AHK-Cu) and Hair Follicle Regeneration"
+    },
+    {
+      "n": 150,
+      "url": "https://biotechpeptides.com/comparing-ipamorelin-and-ghrp-6/",
+      "h1": "Comparing Ipamorelin and GHRP-6"
+    },
+    {
+      "n": 151,
+      "url": "https://biotechpeptides.com/thyrotropin-and-research-regarding-metabolism/",
+      "h1": "Thyrotropin and Research Regarding Metabolism"
+    },
+    {
+      "n": 152,
+      "url": "https://biotechpeptides.com/insulin-like-growth-factor-1-igf-1/",
+      "h1": "Insulin-like Growth Factor 1 (IGF-1)"
+    },
+    {
+      "n": 153,
+      "url": "https://biotechpeptides.com/the-antifibrotic-potential-of-b7-33-peptide/",
+      "h1": "The Antifibrotic Potential of B7-33 Peptide"
+    },
+    {
+      "n": 154,
+      "url": "https://biotechpeptides.com/humanin-and-cardiovascular-research/",
+      "h1": "Humanin and Cardiovascular Research"
+    },
+    {
+      "n": 155,
+      "url": "https://biotechpeptides.com/ara-290-research-in-immune-modulation-and-neurotherapy/",
+      "h1": "ARA-290 Peptide Research in Immune Modulation and Neurotherapy"
+    },
+    {
+      "n": 156,
+      "url": "https://biotechpeptides.com/research-into-kisspeptin-10-and-hormone-production/",
+      "h1": "Research into Kisspeptin-10 and Hormone Production"
+    },
+    {
+      "n": 157,
+      "url": "https://biotechpeptides.com/what-are-peptides/",
+      "h1": "What Are Peptides?"
+    },
+    {
+      "n": 158,
+      "url": "https://biotechpeptides.com/tesamorelin-peptide-weight-loss-and-research-in-hiv/",
+      "h1": "Tesamorelin Peptide: Weight Loss and Research in HIV"
+    },
+    {
+      "n": 159,
+      "url": "https://biotechpeptides.com/mgf-vs-peg-mgf-research-in-muscle-regeneration/",
+      "h1": "MGF vs. PEG-MGF: Research in Muscle Regeneration"
+    },
+    {
+      "n": 160,
+      "url": "https://biotechpeptides.com/epithalon-overview-of-anti-aging-experiments/",
+      "h1": "Epithalon: Overview of Anti-Aging Experiments"
+    },
+    {
+      "n": 161,
+      "url": "https://biotechpeptides.com/differences-of-bpc-157-and-tb-500-in-tissue-repair/",
+      "h1": "Differences of BPC-157 and TB-500 in Tissue Repair"
+    },
+    {
+      "n": 162,
+      "url": "https://biotechpeptides.com/how-do-delta-sleep-inducing-peptides-work/",
+      "h1": "How Do Delta Sleep Inducing Peptides Work?"
+    },
+    {
+      "n": 163,
+      "url": "https://biotechpeptides.com/what-are-copper-peptides-ghk-cu-and-how-do-they-work/",
+      "h1": "What are Copper Peptides (GHK-Cu), and How Do They Work?"
+    },
+    {
+      "n": 164,
+      "url": "https://biotechpeptides.com/what-is-a-peptide/",
+      "h1": "What is a Peptide?"
+    },
+    {
+      "n": 165,
+      "url": "https://biotechpeptides.com/research-in-igf-1-and-igf-1-lr3-peptides-and-muscle-growth/",
+      "h1": "Research in IGF-1 and IGF-1 LR3 Peptides and Muscle Growth"
+    },
+    {
+      "n": 166,
+      "url": "https://biotechpeptides.com/what-is-bpc-157/",
+      "h1": "What Is BPC-157 Peptide?"
+    },
+    {
+      "n": 167,
+      "url": "https://biotechpeptides.com/peptides-and-osteoporosis/",
+      "h1": "Peptides and Osteoporosis"
+    },
+    {
+      "n": 168,
+      "url": "https://biotechpeptides.com/standard-procedure-for-storing-peptides/",
+      "h1": "Standard Procedure For Storing Peptides"
+    },
+    {
+      "n": 169,
+      "url": "https://biotechpeptides.com/epitalon-correlation-in-dna-telomeres-and-sleep/",
+      "h1": "Epitalon: Correlation in DNA Telomeres and Sleep"
+    },
+    {
+      "n": 170,
+      "url": "https://biotechpeptides.com/sermorelin-studies-and-growth-hormone/",
+      "h1": "Sermorelin Studies and Growth Hormone"
+    },
+    {
+      "n": 171,
+      "url": "https://biotechpeptides.com/overview-of-ipamorelin-and-peptide-research/",
+      "h1": "Overview of Ipamorelin and Peptide Research"
+    },
+    {
+      "n": 172,
+      "url": "https://biotechpeptides.com/adipotide-and-obesity-related-studies/",
+      "h1": "Adipotide and Obesity Related Studies"
+    },
+    {
+      "n": 173,
+      "url": "https://biotechpeptides.com/differences-in-cjc-1295-vs-sermorelin-for-ghrh-delivery/",
+      "h1": "Differences in CJC-1295 vs Sermorelin for GHRH Delivery"
+    },
+    {
+      "n": 174,
+      "url": "https://biotechpeptides.com/thymosin-beta-4-tb-500-for-tissue-repair-and-renegeration/",
+      "h1": "Thymosin Beta 4 (TB-500) for Tissue Repair and Renegeration"
+    },
+    {
+      "n": 175,
+      "url": "https://biotechpeptides.com/bpc-157-peptide-and-injuries-lesions/",
+      "h1": "BPC-157 Peptide and Injuries, Lesions"
+    },
+    {
+      "n": 176,
+      "url": "https://biotechpeptides.com/the-potential-of-ghrp-6/",
+      "h1": "The Potential of GHRP-6"
+    },
+    {
+      "n": 177,
+      "url": "https://biotechpeptides.com/fragment-176-191-and-fat-cell-interaction/",
+      "h1": "Fragment 176-191 and Fat Cell Interaction"
+    },
+    {
+      "n": 178,
+      "url": "https://biotechpeptides.com/semax-peptide-and-correlation-in-brain-and-memory-function/",
+      "h1": "Semax Peptide and Correlation in Brain and Memory Function"
+    },
+    {
+      "n": 179,
+      "url": "https://biotechpeptides.com/thymosin-alpha-1-antiviral-immune-responses/",
+      "h1": "Thymosin Alpha-1 – Antiviral Immune Responses"
+    },
+    {
+      "n": 180,
+      "url": "https://biotechpeptides.com/thymalin-and-the-thymus-gland/",
+      "h1": "Thymalin and the Thymus Gland"
+    },
+    {
+      "n": 181,
+      "url": "https://biotechpeptides.com/mgf-peptide-impacts-in-neuron-loss/",
+      "h1": "MGF Peptide: Impacts in Neuron Loss"
+    },
+    {
+      "n": 182,
+      "url": "https://biotechpeptides.com/analysis-of-pt-141-peptide-bremelanotide/",
+      "h1": "Analysis of PT-141 Peptide (Bremelanotide)"
+    },
+    {
+      "n": 183,
+      "url": "https://biotechpeptides.com/ipamorelin-ghrp-2-and-muscle-cells/",
+      "h1": "Ipamorelin & GHRP-2 and Muscle Cells"
+    },
+    {
+      "n": 184,
+      "url": "https://biotechpeptides.com/unique-potential-of-sermorelin-peptide-in-regulating-sleep/",
+      "h1": "Unique Potential of Sermorelin Peptide in Regulating Sleep"
+    },
+    {
+      "n": 185,
+      "url": "https://biotechpeptides.com/epitalon-peptide-and-cell-aging/",
+      "h1": "Epitalon Peptide and Cell Aging"
+    },
+    {
+      "n": 186,
+      "url": "https://biotechpeptides.com/ghk-cu-peptide-and-hair-follicle-growth/",
+      "h1": "GHK-Cu Peptide and Hair Follicle Growth"
+    }
+  ]
+}

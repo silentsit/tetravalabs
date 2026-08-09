@@ -28,7 +28,7 @@
     "sync:v2-images": "node apps/storefront/scripts/sync-v2-white-images.mjs",
     "typesense:setup": "node scripts/typesense-setup.mjs",
     "sanity:seed": "node scripts/sanity-seed.mjs",
-  "sanity:bootstrap": "node scripts/sanity-bootstrap.mjs",
+    "sanity:bootstrap": "node scripts/sanity-bootstrap.mjs",
     "sanity:studio": "npm run dev --workspace=@tetrava/sanity-studio",
     "coa:sync-r2": "node packages/catalog/scripts/sync-coa-r2.mjs",
     "coa:generate-previews": "node packages/catalog/scripts/sync-coa-r2.mjs -- --backfill-previews-only",
@@ -69,7 +69,9 @@
     "@types/react-dom": "^19.0.4",
     "next": "^15.5.19",
     "patch-package": "^8.0.1",
-    "ts-node": "^10.9.2"
+    "playwright": "^1.54.2",
+    "ts-node": "^10.9.2",
+    "xlsx": "^0.18.5"
   },
   "dependencies": {
     "@medusajs/medusa": "2.15.5",

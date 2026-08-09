@@ -107,7 +107,7 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   }
 ]
 
-const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt,references[]{_key,title,authors,publication,year,url,citationText}`
+const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt,"image":image.asset->url,references[]{_key,title,authors,publication,year,url,citationText}`
 
 async function fetchSanity<T>(query: string, tags?: string[]): Promise<T | null> {
   const projectId = process.env.SANITY_PROJECT_ID
@@ -157,8 +157,14 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
   const fallbackBySlug = new Map(fallbackPosts.map((post) => [post.slug, post]))
   const merged: BlogPost[] = posts.map((post) => {
     const fallback = fallbackBySlug.get(post.slug)
+    const body =
+      (Array.isArray(post.body) && post.body.length > 0) ||
+      (typeof post.body === "string" && post.body.trim())
+        ? post.body
+        : fallback?.body
     return {
       ...post,
+      body,
       readTimeMinutes: post.readTimeMinutes || 5,
       body: resolveBlogBody(post.body, fallback?.body),
       image: post.image || fallback?.image,
@@ -194,8 +200,14 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   const post = await fetchSanity<BlogPost>(query, [`sanity:blog:${safeSlug}`])
   if (!post) return fallbackPosts.find((item) => item.slug === safeSlug) || null
   const fallback = fallbackPosts.find((item) => item.slug === safeSlug)
+  const body =
+    (Array.isArray(post.body) && post.body.length > 0) ||
+    (typeof post.body === "string" && post.body.trim())
+      ? post.body
+      : fallback?.body
   return {
     ...post,
+    body,
     readTimeMinutes: post.readTimeMinutes || 5,
     body: resolveBlogBody(post.body, fallback?.body),
     image: post.image || fallback?.image,

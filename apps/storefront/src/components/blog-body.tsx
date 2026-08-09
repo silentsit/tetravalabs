@@ -75,7 +75,11 @@ function createPortableTextComponents(
           </div>
         )
       },
-      tableBlock: ({ value }) => <BlogTable value={(value || {}) as BlogTableValue} />
+      // Custom studio table + @sanity/table plugin documents both use rows[].cells
+      tableBlock: ({ value }) => <BlogTable value={(value || {}) as BlogTableValue} />,
+      table: ({ value }) => (
+        <BlogTable value={{ ...(value || {}), hasHeaderRow: true } as BlogTableValue} />
+      )
     },
     unknownMark: ({ children }) => <span>{children}</span>,
     unknownType: ({ value }) => {

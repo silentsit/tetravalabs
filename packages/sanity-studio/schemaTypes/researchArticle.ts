@@ -44,10 +44,17 @@ export const researchArticle = defineType({
       validation: (rule) => rule.min(1).max(60)
     }),
     defineField({
+      name: "image",
+      title: "Cover image",
+      type: "image",
+      options: { hotspot: true },
+      description: "Hero/cover image shown at the top of the article."
+    }),
+    defineField({
       name: "body",
       title: "Body",
       type: "array",
-      description: "Rich text with optional mid-article product cards (Medusa handle only).",
+      description: "Rich text with optional tables and mid-article product cards (Medusa handle only).",
       of: [
         defineArrayMember({
           type: "block",
@@ -166,6 +173,6 @@ export const researchArticle = defineType({
     })
   ],
   preview: {
-    select: { title: "title", subtitle: "category" }
+    select: { title: "title", subtitle: "category", media: "image" }
   }
 })

@@ -464,7 +464,7 @@ export function articleJsonLd(post: {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.publishedAt,
-    image: pageUrl(imagePath),
+    image: imagePath.startsWith("http") ? imagePath : pageUrl(imagePath),
     author: post.author ? personJsonLd(post.author) : defaultPageAuthorJsonLd(),
     publisher: publisherJsonLd(),
     mainEntityOfPage: pageUrl(`/blog/${post.slug}`)

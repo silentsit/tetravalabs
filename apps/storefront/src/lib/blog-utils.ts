@@ -16,7 +16,11 @@ export function blogImageForCategory(category?: BlogCategory) {
 
 /** Prefer per-article cover image when set; otherwise fall back by category. */
 export function blogImageForPost(post: Pick<BlogPost, "image" | "category">) {
-  if (post.image?.trim()) return post.image.trim()
+  const image = post.image?.trim()
+  if (image) {
+    // Sanity CDN returns absolute https URLs; local fallbacks are public paths.
+    return image
+  }
   return blogImageForCategory(post.category)
 }
 

@@ -159,16 +159,14 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
       }))
     })
     const researchDetail = getProductResearchDetail(view.parentHandle)
-    const researchAuthor = researchDetail ? getAuthor(researchDetail.authorId) : null
-    const pageAuthor = researchAuthor
-      ? {
-          name: researchAuthor.name,
-          jobTitle: researchAuthor.title,
-          description: authorBioText(researchAuthor),
-          image: researchAuthor.image,
-          credentials: researchAuthor.credentials
-        }
-      : undefined
+    const researchAuthor = getAuthor(researchDetail?.authorId ?? "editorial-team")
+    const pageAuthor = {
+      name: researchAuthor.name,
+      jobTitle: researchAuthor.title,
+      description: authorBioText(researchAuthor),
+      image: researchAuthor.image,
+      credentials: researchAuthor.credentials
+    }
 
     return [
       productJsonLd(productLike, view.parentHandle, image, reviewData),
@@ -176,19 +174,15 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         title: pageTitle,
         description: pageDescription,
         path,
-        ...(pageAuthor ? { author: pageAuthor } : {})
+        author: pageAuthor
       }),
-      ...(pageAuthor
-        ? [
-            productResearchArticleJsonLd({
-              headline: pageTitle,
-              description: pageDescription,
-              path,
-              image,
-              author: pageAuthor
-            })
-          ]
-        : []),
+      productResearchArticleJsonLd({
+        headline: pageTitle,
+        description: pageDescription,
+        path,
+        image,
+        author: pageAuthor
+      }),
       faqJsonLd(faqs, path)
     ]
   }

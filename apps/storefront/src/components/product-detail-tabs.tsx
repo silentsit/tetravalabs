@@ -157,7 +157,7 @@ export function ProductDetailTabs({
     { label: "Catalog Handle", value: product.catalogHandleLabel || product.handle }
   ]
 
-  const author = researchDetail ? getAuthor(researchDetail.authorId) : null
+  const author = getAuthor(researchDetail?.authorId ?? "editorial-team")
   const productName = normalizeTb500DisplayText(product.title)
 
   return (
@@ -200,7 +200,7 @@ export function ProductDetailTabs({
               {researchBlocks.length > 0 ? (
                 <article className="prose prose-base prose-slate max-w-3xl prose-p:text-[16px] prose-li:text-[16px] prose-a:text-[#0D9488] prose-a:no-underline hover:prose-a:underline">
                   <h3 className="mb-5 font-serif text-2xl text-[#0F172A]">
-                    {researchDetail ? `${productName} Peptide Research` : "Research Overview"}
+                    {productName} Peptide Research
                   </h3>
                   <div className="space-y-7">
                     {researchBlocks.map((block, index) => {
@@ -240,23 +240,6 @@ export function ProductDetailTabs({
                     })}
                   </div>
                 </article>
-              ) : null}
-
-              {!researchDetail ? (
-                <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-[#475569]">
-                  <h3 className="mb-1 font-serif text-lg text-[#0F172A]">
-                    Storage &amp; Handling for Research Use
-                  </h3>
-                  <p>
-                    Store lyophilized powder at {product.storage.replace(/lyophilized/i, "").trim() || "-20°C"} for
-                    maximum stability. Avoid repeated freeze-thaw cycles. Once reconstituted, store at 4°C and
-                    use within the timeframe specified in your laboratory protocol.
-                  </p>
-                  <p>
-                    Handle under sterile conditions in a certified laboratory environment. Use appropriate
-                    personal protective equipment when preparing research solutions.
-                  </p>
-                </div>
               ) : null}
 
               {researchDetail?.references?.length ? (

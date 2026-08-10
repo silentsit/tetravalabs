@@ -1,56 +1,58 @@
-"use client"
+"use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react"
-import type { StoreCoaDocument } from "@/lib/medusa"
-import type { ProductReviewsResponse } from "@/lib/reviews"
-import type { FaqItem } from "@/lib/faq-content"
-import type { ProductResearchDetail } from "@/lib/product-research-detail"
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { StoreCoaDocument } from "@/lib/medusa";
+import type { ProductReviewsResponse } from "@/lib/reviews";
+import type { FaqItem } from "@/lib/faq-content";
+import type { ProductResearchDetail } from "@/lib/product-research-detail";
 import {
   buildCompoundProductPath,
   compoundSeoName,
   pickDefaultPackQty,
   pickDefaultStrengthKey,
-  type CompoundProductView
-} from "@/lib/compound-product"
-import { getProductSeoOverride } from "@/lib/product-seo-overrides"
-import { ProductImageGallery } from "@/components/product-image-gallery"
-import { ProductPurchasePanel } from "@/components/product-purchase-panel"
+  type CompoundProductView,
+} from "@/lib/compound-product";
+import { getProductSeoOverride } from "@/lib/product-seo-overrides";
+import { ProductImageGallery } from "@/components/product-image-gallery";
+import { ProductPurchasePanel } from "@/components/product-purchase-panel";
 import {
   ProductDetailTabs,
-  type ProductOverviewImage
-} from "@/components/product-detail-tabs"
-import { ProductOfferSummary } from "@/components/product-offer-summary"
-import { ProductReviewSummary } from "@/components/product-review-summary"
-import { ProductTrustStrip } from "@/components/product-trust-strip"
-import { ProductCoaDownload } from "@/components/product-coa-download"
-import type { PackTier } from "@/lib/pack-pricing"
+  type ProductOverviewImage,
+} from "@/components/product-detail-tabs";
+import { ProductOfferSummary } from "@/components/product-offer-summary";
+import { ProductReviewSummary } from "@/components/product-review-summary";
+import { ProductTrustStrip } from "@/components/product-trust-strip";
+import { ProductCoaDownload } from "@/components/product-coa-download";
+import type { PackTier } from "@/lib/pack-pricing";
 
 type Props = {
-  view: CompoundProductView
-  initialStrength?: string | null
-  initialPack?: string | null
-  coasByStrength: Record<string, StoreCoaDocument[]>
-  reviewsByStrength: Record<string, ProductReviewsResponse>
-  researchSummariesByStrength: Record<string, string>
-  overviewImagesByStrength: Record<string, ProductOverviewImage[]>
-  researchDetail?: ProductResearchDetail | null
-  faqs: FaqItem[]
-}
+  view: CompoundProductView;
+  initialStrength?: string | null;
+  initialPack?: string | null;
+  coasByStrength: Record<string, StoreCoaDocument[]>;
+  reviewsByStrength: Record<string, ProductReviewsResponse>;
+  researchSummariesByStrength: Record<string, string>;
+  overviewImagesByStrength: Record<string, ProductOverviewImage[]>;
+  researchDetail?: ProductResearchDetail | null;
+  faqs: FaqItem[];
+};
 
 /** Keep the address bar on the clean parent path (no ?strength= / ?pack=). */
 function syncUrl(parentHandle: string) {
-  if (typeof window === "undefined") return
-  const next = buildCompoundProductPath(parentHandle)
-  const current = `${window.location.pathname}${window.location.search}`
-  if (current === next) return
-  window.history.replaceState(null, "", next)
+  if (typeof window === "undefined") return;
+  const next = buildCompoundProductPath(parentHandle);
+  const current = `${window.location.pathname}${window.location.search}`;
+  if (current === next) return;
+  window.history.replaceState(null, "", next);
 }
 
 /** Per-strength catalog handles (legacy slugs when merged). */
 function catalogHandlesForView(view: CompoundProductView): string {
-  const handles = view.strengths.map((strength) => strength.imageHandle || strength.handle)
-  const unique = [...new Set(handles.filter(Boolean))]
-  return unique.join(", ")
+  const handles = view.strengths.map(
+    (strength) => strength.imageHandle || strength.handle,
+  );
+  const unique = [...new Set(handles.filter(Boolean))];
+  return unique.join(", ");
 }
 
 export function ProductCompoundView({
@@ -62,66 +64,77 @@ export function ProductCompoundView({
   researchSummariesByStrength,
   overviewImagesByStrength,
   researchDetail = null,
-  faqs
+  faqs,
 }: Props) {
   const [strengthKey, setStrengthKey] = useState(() =>
-    pickDefaultStrengthKey(view.strengths, initialStrength)
-  )
+    pickDefaultStrengthKey(view.strengths, initialStrength),
+  );
 
   const selectedStrength = useMemo(
-    () => view.strengths.find((item) => item.strengthKey === strengthKey) || view.strengths[0],
-    [strengthKey, view.strengths]
-  )
+    () =>
+      view.strengths.find((item) => item.strengthKey === strengthKey) ||
+      view.strengths[0],
+    [strengthKey, view.strengths],
+  );
 
   const [packQty, setPackQty] = useState<number | null>(() =>
     pickDefaultPackQty(
-      view.strengths.find((item) => item.strengthKey === pickDefaultStrengthKey(view.strengths, initialStrength)) ||
-        view.strengths[0],
-      initialPack
-    )
-  )
+      view.strengths.find(
+        (item) =>
+          item.strengthKey ===
+          pickDefaultStrengthKey(view.strengths, initialStrength),
+      ) || view.strengths[0],
+      initialPack,
+    ),
+  );
 
   useEffect(() => {
-    const nextPack = pickDefaultPackQty(selectedStrength, packQty != null ? String(packQty) : null)
-    if (nextPack !== packQty) setPackQty(nextPack)
+    const nextPack = pickDefaultPackQty(
+      selectedStrength,
+      packQty != null ? String(packQty) : null,
+    );
+    if (nextPack !== packQty) setPackQty(nextPack);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-clamp when strength changes
-  }, [selectedStrength?.strengthKey])
+  }, [selectedStrength?.strengthKey]);
 
   useEffect(() => {
     // Strength/pack stay in React state; URL + title/description stay on the
     // parent compound page (server generateMetadata). Do not rewrite <title>
     // per strength — that made variants look like separate SEO pages.
-    syncUrl(view.parentHandle)
-  }, [packQty, selectedStrength, view.parentHandle])
+    syncUrl(view.parentHandle);
+  }, [packQty, selectedStrength, view.parentHandle]);
 
   const onStrengthChange = useCallback((next: string) => {
-    setStrengthKey(next)
-  }, [])
+    setStrengthKey(next);
+  }, []);
 
   const onPackChange = useCallback((tier: PackTier) => {
-    setPackQty(tier.qty)
-  }, [])
+    setPackQty(tier.qty);
+  }, []);
 
-  if (!selectedStrength) return null
+  if (!selectedStrength) return null;
 
-  const headingName = compoundSeoName(view, selectedStrength.strengthKey)
-  const seoOverride = getProductSeoOverride(view.parentHandle)
-  const galleryAlt = seoOverride?.imageAlt || headingName
+  const seoOverride = getProductSeoOverride(view.parentHandle);
+  const headingName =
+    seoOverride?.pageHeading ||
+    compoundSeoName(view, selectedStrength.strengthKey);
+  const galleryAlt = seoOverride?.imageAlt || headingName;
 
-  const coas = coasByStrength[selectedStrength.strengthKey] || []
+  const coas = coasByStrength[selectedStrength.strengthKey] || [];
   const reviews = reviewsByStrength[selectedStrength.strengthKey] || {
     product_handle: selectedStrength.handle,
     count: 0,
     aggregate: { ratingValue: 0, reviewCount: 0 },
     items: [],
-    viewer: null
-  }
+    viewer: null,
+  };
 
   const galleryImages = selectedStrength.galleryImages.length
     ? selectedStrength.galleryImages
-    : [selectedStrength.image]
+    : [selectedStrength.image];
 
-  const overviewImages = overviewImagesByStrength[selectedStrength.strengthKey] || []
+  const overviewImages =
+    overviewImagesByStrength[selectedStrength.strengthKey] || [];
 
   return (
     <>
@@ -188,7 +201,9 @@ export function ProductCompoundView({
           catalogHandleLabel: catalogHandlesForView(view),
           category: view.categoryLabel,
           purity: selectedStrength.purity,
-          primaryVariantTitle: selectedStrength.variants[0]?.title || selectedStrength.strengthLabel,
+          primaryVariantTitle:
+            selectedStrength.variants[0]?.title ||
+            selectedStrength.strengthLabel,
           casNumber: view.casNumber,
           molecularFormula: view.molecularFormula,
           molecularWeight: view.molecularWeight,
@@ -197,7 +212,7 @@ export function ProductCompoundView({
           sequence: view.sequence,
           researchSummary:
             researchSummariesByStrength[selectedStrength.strengthKey] ||
-            String(selectedStrength.metadata?.research_summary || "").trim()
+            String(selectedStrength.metadata?.research_summary || "").trim(),
         }}
         productId={selectedStrength.productId}
         faqs={faqs}
@@ -206,5 +221,5 @@ export function ProductCompoundView({
         researchDetail={researchDetail}
       />
     </>
-  )
+  );
 }

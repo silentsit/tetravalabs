@@ -89,6 +89,12 @@ When Sanity webhooks POST to `https://tetravalabs.com/api/revalidate`:
 
 Allowlist Sanity webhook IPs in WAF if requests are blocked.
 
+Semantic Pen draft ingest (separate route — allowlist if WAF blocks POSTs):
+
+1. URL: `https://tetravalabs.com/api/webhooks/semantic-pen`
+2. Header: `Authorization: Bearer <SEMANTIC_PEN_WEBHOOK_SECRET>`
+3. Details: `doc/semantic-pen-webhook.md`
+
 ## 8. Verification checklist
 
 - [ ] `https://tetravalabs.com` loads with Cloudflare proxy (orange cloud)

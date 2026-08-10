@@ -20,6 +20,7 @@
     "@ai-sdk/react": "^4.0.40",
     "@medusajs/js-sdk": "^2.11.2",
     "@portabletext/react": "^3.2.4",
+    "@sanity/client": "^6.29.1",
     "ai": "^7.0.37",
     "lucide-react": "^0.562.0",
     "next": "^15.5.19",

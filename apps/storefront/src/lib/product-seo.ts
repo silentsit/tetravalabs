@@ -28,7 +28,7 @@ function strengthParen(labels: string[]) {
  * CTR-oriented product title with progressive fallbacks so multi-strength
  * compounds stay under META_TITLE_MAX without dangling separators.
  *
- * Preferred: Buy {Name} Online (5mg / 10mg) | 99%+ Purity COA | Tetrava Labs
+ * Preferred: Buy {Name} Online (5mg / 10mg) | 99%+ Purity COA | Tetrava
  */
 export function buildProductSeoTitle(input: {
   displayName: string
@@ -40,13 +40,13 @@ export function buildProductSeoTitle(input: {
 
   // Prefer keeping strengths over the purity badge when the full formula is too long.
   const candidates = [
-    `Buy ${name} Online${withStrengths} | 99%+ Purity COA | Tetrava Labs`,
-    `Buy ${name} Online${withStrengths} | Tetrava Labs`,
-    `${name}${withStrengths} | 99%+ Purity COA | Tetrava Labs`,
-    `${name}${withStrengths} | Tetrava Labs`,
-    `Buy ${name} Online | 99%+ Purity COA | Tetrava Labs`,
-    `Buy ${name} Online | Tetrava Labs`,
-    `${name} | Tetrava Labs`
+    `Buy ${name} Online${withStrengths} | 99%+ Purity COA | Tetrava`,
+    `Buy ${name} Online${withStrengths} | Tetrava`,
+    `${name}${withStrengths} | 99%+ Purity COA | Tetrava`,
+    `${name}${withStrengths} | Tetrava`,
+    `Buy ${name} Online | 99%+ Purity COA | Tetrava`,
+    `Buy ${name} Online | Tetrava`,
+    `${name} | Tetrava`
   ]
 
   return candidates.find((title) => title.length <= META_TITLE_MAX) || candidates[candidates.length - 1]

@@ -16,6 +16,8 @@ export type JsonLdGraph = Record<string, unknown>
 
 export const siteConfig = {
   name: "Tetrava Labs",
+  /** Short brand used in document `<title>` suffixes (`| Tetrava`). */
+  titleBrand: "Tetrava",
   legalName: "Tetrava Labs",
   url: SITE_URL,
   description:
@@ -68,7 +70,7 @@ export function pageUrl(path = "") {
   return `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`
 }
 
-const BRAND_SUFFIX = ` | ${siteConfig.name}`
+const BRAND_SUFFIX = ` | ${siteConfig.titleBrand}`
 
 /** Drop trailing separators left by length clamps (avoids "Name — | Brand"). */
 function stripTrailingTitleSeparators(text: string) {

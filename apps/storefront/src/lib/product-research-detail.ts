@@ -85,6 +85,14 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         ],
       },
       {
+        heading: "BPC-157 Oral vs Injection",
+        paragraphs: [
+          "Most synthetic peptides longer than 8–10 amino acids lose the majority of their bioactivity when given orally, since gastric acid and digestive proteases degrade the peptide backbone before meaningful amounts survive into systemic circulation. BPC-157 is a documented exception: because the sequence is a stabilized fragment of a native human gastric-juice protein, review literature reports it remains structurally intact in human gastric juice for more than 24 hours in vitro — a stability profile that is unusual among peptide research compounds and is the mechanistic basis researchers cite for studying BPC-157 via oral gavage or drinking-water protocols alongside injectable routes.[1][12]",
+          'Direct within-study comparisons of the two routes are rare, which makes one 2008 rat colocutaneous-fistula study a useful reference point: researchers dosed BPC-157 either continuously in drinking water or once-daily by intraperitoneal injection at matched doses (10 µg/kg or 10 ng/kg), then assessed fistula closure macroscopically, microscopically, biomechanically, and functionally over a 28-day follow-up.[11] Both routes accelerated healing of the colonic and skin defects to a comparable degree, and a separate rat model of surgically dissected quadriceps myotendinous junction reported the same pattern for a systemic musculoskeletal endpoint — intraperitoneal and oral regimens were both associated with full functional recovery.[5] Neither study measured comparative bioavailability, and no controlled human pharmacokinetic study has quantified how much intact peptide reaches systemic circulation after oral dosing, so "comparable outcomes in these specific rodent protocols" should not be read as "interchangeable across all endpoints, species, or doses."',
+          "In practical terms, oral/intragastric dosing is best matched to BPC-157's original GI-tract research context, since it reaches the luminal mucosa directly and avoids the injection-site trauma that can confound skin- or gut-healing designs, while injection (IP/SC/IM) remains the default in the receptor- and growth-factor-signaling studies cited above because it bypasses the GI tract entirely and delivers a known, individually controlled dose. That oral stability is also compound-specific — it has not been documented for TB-500, which Tetrava also supplies for combined [tissue-repair protocols](/category/tissue-repair) — so route choice should follow the protocol, not the other way around. Tetrava Labs supplies BPC-157 as both a lyophilized vial for injectable research solutions and as [BPC-157 capsules](/buy-bpc-157-capsules-online) for oral-route protocols.",
+        ],
+      },
+      {
         heading: "Central Nervous System and Traumatic Brain Injury Models",
         paragraphs: [
           "A single published study evaluated intraperitoneal BPC-157 in a mouse falling-weight traumatic brain injury (TBI) model.[6] Treated mice showed reduced 24-hour post-injury mortality and less severe hemorrhagic and edema findings on gross and histological assessment, with improved outcomes when the peptide was administered prophylactically before injury.[6] This remains the only direct TBI dataset identified in the literature, so extrapolation beyond this single-study, single-species model should be treated cautiously.",
@@ -172,6 +180,18 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         citation:
           "National Center for Biotechnology Information. PubChem Compound Summary for CID 9941957, BPC-157.",
         url: "https://pubchem.ncbi.nlm.nih.gov/compound/9941957",
+      },
+      {
+        id: 11,
+        citation:
+          "Klicek R, Sever M, Radic B, et al. Pentadecapeptide BPC 157, in clinical trials as a therapy for inflammatory bowel disease (PL14736), is effective in the healing of colocutaneous fistulas in rats: role of the nitric oxide-system. J Pharmacol Sci. 2008;108(1):7-17.",
+        url: "https://doi.org/10.1254/jphs.FP0072161",
+      },
+      {
+        id: 12,
+        citation:
+          "Seiwerth S, Milavic M, Vukojevic J, et al. Stable gastric pentadecapeptide BPC 157 and wound healing. Front Pharmacol. 2021;12:627533.",
+        url: "https://doi.org/10.3389/fphar.2021.627533",
       },
     ],
     authorId: "sharma",

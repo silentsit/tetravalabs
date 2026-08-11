@@ -44,6 +44,8 @@
     "btcpay:setup": "node scripts/btcpay-setup.mjs",
     "paymento:setup": "node scripts/paymento-setup.mjs",
     "env:validate": "node scripts/validate-env.mjs",
+    "indexnow:top": "npm --prefix apps/storefront run indexnow:top",
+    "indexnow:all-products": "npm --prefix apps/storefront run indexnow:all-products",
     "deploy:env": "node scripts/print-deploy-env.mjs",
     "production:checklist": "node scripts/production-checklist.mjs",
     "production:verify": "node scripts/verify-production-alignment.mjs",

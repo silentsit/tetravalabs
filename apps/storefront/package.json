@@ -13,7 +13,9 @@
     "lint": "next lint",
     "map:images": "node scripts/map-medusa-images.mjs",
     "validate:images": "node scripts/validate-image-map.mjs",
-    "overview:manifest": "node scripts/sync-overview-manifest.mjs"
+    "overview:manifest": "node scripts/sync-overview-manifest.mjs",
+    "indexnow:top": "node scripts/submit-indexnow.mjs --top",
+    "indexnow:all-products": "node scripts/submit-indexnow.mjs --all-products"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.20",

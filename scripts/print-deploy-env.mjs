@@ -6,6 +6,7 @@ Storefront (Vercel, root: apps/storefront)
   NEXT_PUBLIC_MEDUSA_URL=https://<medusa-service>.onrender.com
   NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=<from Medusa Admin>
   REVALIDATE_SECRET=<random secret>
+  INDEXNOW_KEY=94e9b080f68440d680bbe7758a204c53
   RESTRICTED_COUNTRIES=AU,CA,...
   NEXT_PUBLIC_PLAUSIBLE_DOMAIN=tetravalabs.com
   TYPESENSE_PROTOCOL=https

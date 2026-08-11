@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { revalidatePath, revalidateTag } from "next/cache"
+import { productPath } from "@/lib/compound-product"
+import { submitIndexNow } from "@/lib/indexnow"
 import { legalPathForType } from "@/lib/sanity"
 
 export async function POST(req: NextRequest) {
@@ -22,34 +24,43 @@ export async function POST(req: NextRequest) {
   const docType = payload?.type as string | undefined
   const legalType = payload?.legalType as string | undefined
 
+  const indexNowPaths: string[] = ["/shop"]
+
   revalidatePath("/shop")
   revalidateTag("products")
   revalidateTag("sanity")
 
   if (handle) {
+    const path = productPath(handle)
+    revalidatePath(path)
     revalidatePath(`/${handle}`)
     revalidatePath(`/product/${handle}`)
     revalidateTag(`product:${handle}`)
+    indexNowPaths.push(path)
   }
 
   const categoryPath = categorySlug || category
   if (categoryPath) {
     revalidatePath(`/category/${categoryPath}`)
     revalidateTag(`sanity:category:${categoryPath}`)
+    indexNowPaths.push(`/category/${categoryPath}`)
   }
 
   if (docType === "researchArticle") {
     revalidatePath("/blog")
     revalidateTag("sanity:blog")
+    indexNowPaths.push("/blog")
     if (slug) {
       revalidatePath(`/blog/${slug}`)
       revalidateTag(`sanity:blog:${slug}`)
+      indexNowPaths.push(`/blog/${slug}`)
     }
   }
 
   if (docType === "categorySeoBlock" && categorySlug) {
     revalidatePath(`/category/${categorySlug}`)
     revalidateTag(`sanity:category:${categorySlug}`)
+    indexNowPaths.push(`/category/${categorySlug}`)
   }
 
   if (legalType) {
@@ -57,8 +68,14 @@ export async function POST(req: NextRequest) {
     if (path) {
       revalidatePath(path)
       revalidateTag(`sanity:legal:${legalType}`)
+      indexNowPaths.push(path)
     }
   }
 
-  return NextResponse.json({ revalidated: true })
+  const indexNow = await submitIndexNow(indexNowPaths)
+  if (!indexNow.ok && !indexNow.skipped) {
+    console.warn("[indexnow]", indexNow.message || indexNow.status)
+  }
+
+  return NextResponse.json({ revalidated: true, indexNow })
 }

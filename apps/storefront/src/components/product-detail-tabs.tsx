@@ -184,7 +184,7 @@ export function ProductDetailTabs({
           {activeTab === "Description" ? (
             <div className="space-y-10">
               <article className="prose prose-base prose-slate max-w-3xl prose-p:text-[16px] prose-li:text-[16px] prose-a:text-[#0D9488] prose-a:no-underline hover:prose-a:underline">
-                <h3 className="mb-5 font-serif text-2xl text-[#0F172A]">{productName}</h3>
+                <h3 className="mb-5 font-serif text-2xl text-[#0F172A]">What is {productName}?</h3>
                 <div className="space-y-5 text-[16px] leading-7 text-[#475569]">
                   {shortDescriptionParagraphs.map((paragraph, index) => (
                     <p key={`short-desc-${index}`}>{renderWithCitations(paragraph)}</p>

@@ -22,7 +22,6 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
     description:
       "Buy sermorelin peptide online in 5mg and 10mg — lot-linked 99%+ HPLC-MS purity, COA on file, and cold-chain shipping for qualified research labs. RUO only.",
     imageAlt: "Buy sermorelin peptide for sale in research vial",
-    pageHeading: "Buy Sermorelin Peptide — 5mg / 10mg",
   },
 };
 

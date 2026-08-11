@@ -695,6 +695,12 @@
     "side_shot": "SS-31 10mg__side.png",
     "target_stem": "ss-31-10mg.png"
   },
+  "ss-31-20mg": {
+    "current": "/products/v2/ss-31-20mg.png",
+    "front_shot": "SS-31 20mg__front.png",
+    "side_shot": "SS-31 20mg__side.png",
+    "target_stem": "ss-31-20mg.png"
+  },
   "ss-31-25mg": {
     "current": "/products/v2/ss-31-25mg.png",
     "front_shot": "SS-31 25mg__front.png",

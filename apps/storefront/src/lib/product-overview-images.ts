@@ -18,7 +18,10 @@ const CURATED_HANDLES = new Set(
   (overviewManifest as { handles?: string[] }).handles?.map((handle) => handle.toLowerCase()) || []
 )
 
-/** Editorial assets at /images/overview/{handle}-{1,2,3}.webp when manifest lists a complete set. */
+/**
+ * Per-product overview assets at /images/overview/{handle}-{1,2,3}.webp.
+ * Never reuse the same image file across different product handles.
+ */
 export function getCuratedOverviewImagePaths(parentHandle: string): string[] {
   const handle = parentHandle.trim().toLowerCase()
   if (!CURATED_HANDLES.has(handle)) return []
@@ -66,29 +69,9 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
   },
   sermorelin: {
     0: "Research scientist reviewing growth hormone axis data beside a peptide research vial",
-    1: "Two lab researchers examining a sermorelin peptide vial together under a lab lamp",
-    2: "Female lab scientist using a micropipette to prepare a sermorelin research vial",
+    1: "Two lab researchers collaborating on sermorelin assay protocols at a lab bench",
+    2: "Scientist preparing a sermorelin research sample with an electronic micropipette",
   },
-}
-
-/** Shared human-activity editorial assets for the long-form research section. */
-const EDITORIAL_LAB_COLLABORATION = "/images/overview/_editorial/lab-collaboration.webp"
-const EDITORIAL_LAB_PIPETTE = "/images/overview/_editorial/lab-pipette.webp"
-const EDITORIAL_LAB_GH_RESEARCH = "/images/overview/_editorial/lab-gh-axis-research.webp"
-const EDITORIAL_LAB_COMPARISON = "/images/overview/_editorial/lab-comparison-bpc-tb500.jpg"
-
-const EDITORIAL_SLOT1_BY_HANDLE: Record<string, string> = {
-  "bpc-157": EDITORIAL_LAB_COMPARISON,
-  sermorelin: EDITORIAL_LAB_GH_RESEARCH,
-}
-
-function editorialOverviewPaths(parentHandle: string): string[] {
-  const handle = parentHandle.trim().toLowerCase()
-  return [
-    EDITORIAL_SLOT1_BY_HANDLE[handle] || EDITORIAL_LAB_GH_RESEARCH,
-    EDITORIAL_LAB_COLLABORATION,
-    EDITORIAL_LAB_PIPETTE,
-  ]
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */
@@ -101,23 +84,14 @@ export function overviewSeoAlt(input: {
 }): string {
   const baseName = seoBaseName(input.productName)
   const form = detectProductForm(input.parentHandle, baseName)
-  const override = getProductSeoOverride(input.parentHandle)?.imageAlt
-  if (input.index === 0 && override?.trim() && !input.src.includes("/_editorial/")) {
-    return override.trim()
-  }
 
   const peopleAlt =
     PEOPLE_ILLUSTRATION_ALT_OVERRIDES[input.parentHandle.trim().toLowerCase()]?.[input.index]
   if (peopleAlt) return peopleAlt
 
-  if (input.src.includes("/_editorial/")) {
-    if (input.index === 0) {
-      return `Researchers reviewing ${baseName} peptide data in a laboratory setting`
-    }
-    if (input.index === 1) {
-      return `Lab team collaborating on ${baseName} research protocols`
-    }
-    return `Scientist preparing ${baseName} research samples with a micropipette`
+  const override = getProductSeoOverride(input.parentHandle)?.imageAlt
+  if (input.index === 0 && override?.trim()) {
+    return override.trim()
   }
 
   const category = input.categoryLabel.trim() || "research"
@@ -153,8 +127,7 @@ export function overviewSeoAlt(input: {
 
 /**
  * Overview article images for the long-form research section.
- * Curated catalog products use shared human-activity editorial illustrations
- * instead of isolated vial renders; others fall back to gallery photos only.
+ * Each product must use its own handle-scoped assets — never share files across PDPs.
  */
 export function buildOverviewImages(
   parentHandle: string,
@@ -162,21 +135,6 @@ export function buildOverviewImages(
   productName: string,
   categoryLabel: string
 ): ProductOverviewImage[] {
-  const handle = parentHandle.trim().toLowerCase()
-
-  if (CURATED_HANDLES.has(handle)) {
-    return editorialOverviewPaths(handle).map((src, index) => ({
-      src,
-      alt: overviewSeoAlt({
-        productName,
-        parentHandle,
-        categoryLabel,
-        src,
-        index,
-      }),
-    }))
-  }
-
   const unique: string[] = []
 
   for (const src of getCuratedOverviewImagePaths(parentHandle)) {

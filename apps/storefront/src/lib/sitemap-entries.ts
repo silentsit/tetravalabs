@@ -3,10 +3,8 @@ import { groupProductsByCategory } from "@/lib/categories"
 import { getCompoundParentHandle, productPath } from "@/lib/compound-product"
 import { listAllProducts } from "@/lib/medusa"
 import { getProductGalleryImages } from "@/lib/product-image-map"
-import { categoryArt } from "@/lib/revamp/category-art"
 import { getProductDisplayName } from "@/lib/revamp/product-visual"
 import { listBlogPosts } from "@/lib/sanity"
-import { siteConfig } from "@/lib/seo"
 
 export const SITEMAP_REVALIDATE_SECONDS = 3600
 export const PRODUCT_SITEMAP_CHUNK_SIZE = 50_000
@@ -238,23 +236,12 @@ function uniqueImageEntries(images: SitemapImageEntry[]) {
   })
 }
 
+/** Product PDP galleries + blog covers only — skip homepage/category decorative art. */
 export async function getImageSitemapEntries(): Promise<SitemapImageUrlEntry[]> {
   const baseUrl = getSitemapBaseUrl()
   const now = new Date()
   const [products, posts] = await Promise.all([listAllProducts(), listBlogPosts()])
   const entries: SitemapImageUrlEntry[] = []
-
-  entries.push({
-    loc: baseUrl,
-    lastModified: now,
-    images: uniqueImageEntries([
-      {
-        loc: absoluteSitemapUrl(siteConfig.defaultOgImage),
-        title: siteConfig.name,
-        caption: siteConfig.description
-      }
-    ])
-  })
 
   const productPages = new Map<string, { title: string; images: SitemapImageEntry[] }>()
   for (const product of products) {
@@ -300,20 +287,6 @@ export async function getImageSitemapEntries(): Promise<SitemapImageUrlEntry[]> 
       loc: `${baseUrl}/blog/${post.slug}`,
       lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
       images
-    })
-  }
-
-  for (const category of categoryArt) {
-    entries.push({
-      loc: `${baseUrl}/category/${category.slug}`,
-      lastModified: now,
-      images: uniqueImageEntries([
-        {
-          loc: absoluteSitemapUrl(category.image),
-          title: category.name,
-          caption: category.description
-        }
-      ])
     })
   }
 

@@ -17,7 +17,8 @@ import {
   formatReadTime,
   getRelatedBlogPosts
 } from "@/lib/blog-utils"
-import { buildPageMetadata } from "@/lib/seo"
+import { buildPageMetadata, siteConfig } from "@/lib/seo"
+import { getAuthor } from "@/lib/authors"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -38,11 +39,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       noIndex: true
     })
   }
-  const description = post.excerpt || "Research article from Tetrava Labs."
+  const description =
+    post.seoDescription || post.excerpt || "Research article from Tetrava Labs."
   const image = post.video?.youtubeId ? youtubeThumbnailUrl(post.video.youtubeId) : blogImageForPost(post)
+  const editorialAuthor = getAuthor("editorial-team")
   return buildPageMetadata({
-    title: post.title,
+    title: post.seoTitle || post.title,
+    absoluteTitle: post.seoTitle,
     description,
+    keywords: post.keywords,
+    authors: [{ name: editorialAuthor.name }],
+    publisher: siteConfig.name,
     path: `/blog/${slug}`,
     type: "article",
     publishedTime: post.publishedAt,
@@ -86,7 +93,7 @@ export default async function BlogArticlePage({ params }: Props) {
         ) : null}
         <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">{post.title}</h1>
         <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-[#94A3B8]">
-          <span>Tetrava Research Team</span>
+          <span>{getAuthor("editorial-team").name}</span>
           {post.publishedAt ? <span>{new Date(post.publishedAt).toLocaleDateString()}</span> : null}
           <span className="flex items-center gap-1">
             <Clock className="h-4 w-4" aria-hidden />

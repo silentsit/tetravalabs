@@ -31,11 +31,10 @@ export function FooterAcceptedPayments() {
       <ul className="mt-4 flex flex-wrap items-center gap-x-3.5 gap-y-2" aria-label="Accepted payment methods">
         {PAYMENT_LOGOS.map((logo) => (
           <li key={logo.id} title={logo.label} className="flex items-center">
-            <span className="sr-only">{logo.label}</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logo.src}
-              alt=""
+              alt={logo.label}
               width={logo.width}
               height={logo.height}
               className="block shrink-0 object-contain"

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { PortableText, type PortableTextComponents } from "@portabletext/react"
 import { ProductCard } from "@/components/product-card"
@@ -10,6 +11,12 @@ import type { StoreProduct } from "@/lib/medusa"
 
 type CardVariant = "shop" | "featured" | "default"
 
+type BlogImageValue = {
+  src?: string | null
+  alt?: string | null
+  caption?: string | null
+}
+
 type Props = {
   body?: BlogBody
   productsByHandle: Map<string, StoreProduct>
@@ -18,6 +25,30 @@ type Props = {
 function resolveCardVariant(value: unknown): CardVariant {
   if (value === "shop" || value === "default" || value === "featured") return value
   return "featured"
+}
+
+function BlogImage({ value }: { value: BlogImageValue }) {
+  const src = value.src?.trim()
+  if (!src) return null
+  const alt = value.alt?.trim() || value.caption?.trim() || "Research article image"
+  const caption = value.caption?.trim()
+
+  return (
+    <figure className="my-8">
+      <div className="relative aspect-video overflow-hidden rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
+        />
+      </div>
+      {caption ? (
+        <figcaption className="mt-2 text-sm text-[#94A3B8]">{caption}</figcaption>
+      ) : null}
+    </figure>
+  )
 }
 
 function createPortableTextComponents(
@@ -79,7 +110,8 @@ function createPortableTextComponents(
       tableBlock: ({ value }) => <BlogTable value={(value || {}) as BlogTableValue} />,
       table: ({ value }) => (
         <BlogTable value={{ ...(value || {}), hasHeaderRow: true } as BlogTableValue} />
-      )
+      ),
+      blogImage: ({ value }) => <BlogImage value={(value || {}) as BlogImageValue} />
     },
     unknownMark: ({ children }) => <span>{children}</span>,
     unknownType: ({ value }) => {

@@ -39,6 +39,12 @@ function renderBlock(block: BlogPortableBlock): string {
     return handle ? `[Related product](/${handle})` : ""
   }
 
+  if (block._type === "blogImage") {
+    const src = typeof block.src === "string" ? block.src.trim() : ""
+    const alt = typeof block.alt === "string" ? block.alt.trim() : "Article image"
+    return src ? `![${alt}](${src})` : ""
+  }
+
   if (block._type !== "block") return ""
 
   const children = Array.isArray(block.children) ? (block.children as PortableSpan[]) : []

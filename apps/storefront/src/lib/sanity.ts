@@ -41,6 +41,12 @@ export type BlogPost = {
   title: string
   slug: string
   excerpt?: string
+  /** SERP title override. Falls back to `title` when omitted. */
+  seoTitle?: string
+  /** SERP description override. Falls back to `excerpt` when omitted. */
+  seoDescription?: string
+  /** Page-specific meta keywords. Falls back to site defaults when omitted. */
+  keywords?: string[]
   body?: BlogBody
   category?: BlogCategory
   readTimeMinutes?: number
@@ -177,7 +183,10 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
       body: resolveBlogBody(post.body, fallback?.body),
       image: post.image || fallback?.image,
       references: post.references?.length ? post.references : fallback?.references,
-      video: post.video?.youtubeId ? post.video : fallback?.video
+      video: post.video?.youtubeId ? post.video : fallback?.video,
+      seoTitle: post.seoTitle || fallback?.seoTitle,
+      seoDescription: post.seoDescription || fallback?.seoDescription,
+      keywords: post.keywords?.length ? post.keywords : fallback?.keywords
     }
   })
 
@@ -215,7 +224,10 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     body: resolveBlogBody(post.body, fallback?.body),
     image: post.image || fallback?.image,
     references: post.references?.length ? post.references : fallback?.references,
-    video: post.video?.youtubeId ? post.video : fallback?.video
+    video: post.video?.youtubeId ? post.video : fallback?.video,
+    seoTitle: post.seoTitle || fallback?.seoTitle,
+    seoDescription: post.seoDescription || fallback?.seoDescription,
+    keywords: post.keywords?.length ? post.keywords : fallback?.keywords
   }
 }
 

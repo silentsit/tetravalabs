@@ -57,6 +57,12 @@ type PageMetaInput = {
   publishedTime?: string
   /** Optional social preview image path or absolute URL. */
   image?: string
+  /** Page-specific keywords. Falls back to site defaults. */
+  keywords?: string[]
+  /** HTML `author` meta. Required for article SEO checkers. */
+  authors?: Array<{ name: string; url?: string }>
+  /** HTML `publisher` meta. Required for article SEO checkers. */
+  publisher?: string
   /** Extra schema.org graphs for this route (registered for `<head>` injection). */
   jsonLd?: JsonLdGraph | JsonLdGraph[]
   /** Schema.org page type for auto-registered WebPage graph. */
@@ -165,10 +171,21 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
     registerPageJsonLd(input.path, graphs)
   }
 
+  const isArticle = input.type === "article"
+  const authors =
+    input.authors && input.authors.length > 0
+      ? input.authors
+      : isArticle
+        ? [{ name: siteConfig.name }]
+        : undefined
+  const publisher = input.publisher || (isArticle ? siteConfig.name : undefined)
+
   return {
     title: documentTitle,
     description,
-    keywords: siteConfig.keywords,
+    keywords: input.keywords?.length ? input.keywords : siteConfig.keywords,
+    ...(authors ? { authors } : {}),
+    ...(publisher ? { publisher } : {}),
     alternates: { canonical: url },
     robots: input.noIndex ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {
@@ -179,7 +196,10 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
       locale: siteConfig.locale,
       type: input.type || "website",
       images: [{ url: ogImage, alt: siteConfig.name }],
-      ...(input.publishedTime ? { publishedTime: input.publishedTime } : {})
+      ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
+      ...(isArticle && authors
+        ? { authors: authors.map((author) => author.name) }
+        : {})
     },
     twitter: {
       card: "summary_large_image",
@@ -445,6 +465,7 @@ export function articleJsonLd(post: {
   title: string
   slug: string
   excerpt?: string
+  seoDescription?: string
   publishedAt?: string
   category?: string
   image?: string
@@ -465,7 +486,7 @@ export function articleJsonLd(post: {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
-    description: post.excerpt,
+    description: post.seoDescription || post.excerpt,
     datePublished: post.publishedAt,
     image: imagePath.startsWith("http") ? imagePath : pageUrl(imagePath),
     author: post.author ? personJsonLd(post.author) : defaultPageAuthorJsonLd(),

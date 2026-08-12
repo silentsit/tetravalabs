@@ -237,7 +237,8 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
     image: editorialAuthor.image
   }
   const path = `/blog/${slug}`
-  const description = post.excerpt || "Research article from Tetrava Labs."
+  const description =
+    post.seoDescription || post.excerpt || "Research article from Tetrava Labs."
   const image = post.video?.youtubeId
     ? post.video.thumbnail || `https://i.ytimg.com/vi/${post.video.youtubeId}/maxresdefault.jpg`
     : post.image
@@ -245,7 +246,7 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
   const graphs: JsonLdGraph[] = [
     articleJsonLd({ ...post, image, author: pageAuthor }),
     webPageJsonLd({
-      title: post.title,
+      title: post.seoTitle || post.title,
       description,
       path,
       author: pageAuthor

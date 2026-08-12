@@ -96,7 +96,7 @@ export function AiChatWidget() {
               <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#CCFBF1] ring-2 ring-white">
                 <Image
                   src="/brand/tetravalabs-icon.png"
-                  alt=""
+                  alt="Tetrava Labs"
                   width={40}
                   height={40}
                   className="h-full w-full object-cover"

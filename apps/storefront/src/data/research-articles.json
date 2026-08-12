@@ -3,6 +3,16 @@
     "title": "Retatrutide Benefits Beyond Weight Loss: What the 2026 Trial Data Actually Show",
     "slug": "retatrutide-benefits-beyond-weight-loss",
     "excerpt": "Retatrutide's liver, knee, kidney, and lipid results — fact-checked against primary trial sources and sorted by evidence tier, from published data to still-preclinical claims.",
+    "seoTitle": "Retatrutide Benefits Beyond Weight Loss: 2026 Trial Data",
+    "seoDescription": "Retatrutide cleared liver fat in 93% of MASLD patients and cut knee pain by 75% in Phase 3 trials. We fact-check every claim against the primary sources.",
+    "keywords": [
+      "retatrutide benefits",
+      "retatrutide fatty liver",
+      "retatrutide vs tirzepatide vs semaglutide",
+      "retatrutide how does it work",
+      "retatrutide knee arthritis",
+      "retatrutide phase 3 results"
+    ],
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-12T21:50:39.707Z",
@@ -370,6 +380,13 @@
         ]
       },
       {
+        "_type": "blogImage",
+        "_key": "img-liver-mri",
+        "src": "/images/blog/retatrutide-benefits-liver-mri-review.png",
+        "alt": "Researchers reviewing a liver MRI related to retatrutide fatty liver findings in a diagnostic reading room",
+        "caption": "MASLD evidence is MRI fat-fraction data, not a biopsy-proven fibrosis result — the distinction that still sits between this substudy and a liver-disease indication."
+      },
+      {
         "_type": "block",
         "_key": "blk50",
         "style": "normal",
@@ -432,6 +449,13 @@
             "marks": []
           }
         ]
+      },
+      {
+        "_type": "blogImage",
+        "_key": "img-knee-stairs",
+        "src": "/images/blog/retatrutide-benefits-knee-clinic-stairs.png",
+        "alt": "Physical therapist helping a patient climb stairs during a retatrutide knee arthritis mobility session",
+        "caption": "TRIUMPH-4 measured walking and stair function as well as pain — but the trial still cannot separate mechanical unloading from a direct joint effect."
       },
       {
         "_type": "block",

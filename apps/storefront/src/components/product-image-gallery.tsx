@@ -168,7 +168,7 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
     return (
       <Image
         src={item.src}
-        alt=""
+        alt={item.label}
         fill
         sizes="64px"
         className="object-contain p-1.5"
@@ -181,7 +181,7 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
     return (
       <Image
         src={item.previewUrl}
-        alt=""
+        alt={item.label}
         fill
         unoptimized
         sizes="64px"
@@ -205,7 +205,7 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
   return (
     <Image
       src={item.src}
-      alt=""
+      alt={item.label}
       fill
       unoptimized={item.src.startsWith("http")}
       sizes="64px"

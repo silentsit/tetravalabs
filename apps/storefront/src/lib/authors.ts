@@ -40,7 +40,7 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
   "editorial-team": {
     id: "editorial-team",
     slug: "tetrava-labs-rd-scientific-editorial-team",
-    name: "Tetrava Labs R&D & Scientific Editorial Team",
+    name: "Tetrava Labs Scientific Editorial Team",
     title: "Scientific Editorial Panel, Tetrava Labs",
     bio: [
       "Content published by Tetrava Labs is authored and reviewed by an interdisciplinary panel of biochemists, analytical chemists, and lab technicians.",

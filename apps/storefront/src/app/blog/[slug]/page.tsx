@@ -10,6 +10,7 @@ import { BlogBody } from "@/components/blog-body"
 import { BlogPostCard } from "@/components/blog-post-card"
 import { CitationFootnote } from "@/components/citation-footnote"
 import { ComplianceNotice } from "@/components/compliance-notice"
+import { YoutubeEmbed, youtubeThumbnailUrl } from "@/components/youtube-embed"
 import {
   blogImageForPost,
   collectProductEmbedHandles,
@@ -38,13 +39,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     })
   }
   const description = post.excerpt || "Research article from Tetrava Labs."
+  const image = post.video?.youtubeId ? youtubeThumbnailUrl(post.video.youtubeId) : blogImageForPost(post)
   return buildPageMetadata({
     title: post.title,
     description,
     path: `/blog/${slug}`,
     type: "article",
     publishedTime: post.publishedAt,
-    image: blogImageForPost(post),
+    image,
     registerWebPage: false
   })
 }
@@ -56,6 +58,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
   const related = getRelatedBlogPosts(allPosts, post)
   const heroImage = blogImageForPost(post)
+  const video = post.video?.youtubeId ? post.video : null
   const embedHandles = collectProductEmbedHandles(post.body)
   const embedProducts =
     embedHandles.length > 0 ? await listProductsByHandles(embedHandles) : []
@@ -93,16 +96,26 @@ export default async function BlogArticlePage({ params }: Props) {
         {post.excerpt ? <p className="mt-4 text-lg text-[#475569]">{post.excerpt}</p> : null}
       </header>
 
-      <div className="relative aspect-video overflow-hidden rounded-xl border border-[#E2E8F0]">
-        <Image
-          src={heroImage}
-          alt={post.title}
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 768px"
-          className="object-cover"
-        />
-      </div>
+      {video ? (
+        <figure>
+          <YoutubeEmbed video={video} />
+          <figcaption className="mt-2 text-sm text-[#94A3B8]">
+            Source video: {video.title || "Referenced video"}
+            {video.presenter ? ` — presented by ${video.presenter}, fact-checked by the Tetrava editorial team below.` : null}
+          </figcaption>
+        </figure>
+      ) : (
+        <div className="relative aspect-video overflow-hidden rounded-xl border border-[#E2E8F0]">
+          <Image
+            src={heroImage}
+            alt={post.title}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="object-cover"
+          />
+        </div>
+      )}
 
       <BlogBody body={post.body} productsByHandle={productsByHandle} />
 

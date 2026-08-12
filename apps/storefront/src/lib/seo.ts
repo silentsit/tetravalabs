@@ -137,7 +137,8 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
   })
   const description = clampMetaDescription(input.description || siteConfig.description)
   const url = pageUrl(input.path)
-  const ogImage = pageUrl(input.image || siteConfig.defaultOgImage)
+  const rawImage = input.image || siteConfig.defaultOgImage
+  const ogImage = rawImage.startsWith("http") ? rawImage : pageUrl(rawImage)
 
   if (input.path && !input.noIndex) {
     const graphs: JsonLdGraph[] = []
@@ -470,6 +471,31 @@ export function articleJsonLd(post: {
     author: post.author ? personJsonLd(post.author) : defaultPageAuthorJsonLd(),
     publisher: publisherJsonLd(),
     mainEntityOfPage: pageUrl(`/blog/${post.slug}`)
+  }
+}
+
+/** VideoObject graph for research articles that embed a source YouTube video. */
+export function videoObjectJsonLd(input: {
+  name: string
+  description: string
+  youtubeId: string
+  path: string
+  uploadDate?: string
+  thumbnail?: string
+}) {
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${input.youtubeId}`
+  const thumbnailUrl = input.thumbnail || `https://i.ytimg.com/vi/${input.youtubeId}/maxresdefault.jpg`
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: input.name,
+    description: input.description,
+    thumbnailUrl,
+    embedUrl,
+    contentUrl: `https://www.youtube.com/watch?v=${input.youtubeId}`,
+    ...(input.uploadDate ? { uploadDate: input.uploadDate } : {}),
+    isPartOf: pageUrl(input.path)
   }
 }
 

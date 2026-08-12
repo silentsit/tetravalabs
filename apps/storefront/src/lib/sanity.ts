@@ -25,6 +25,18 @@ export type BlogPortableBlock = {
 
 export type BlogBody = string | BlogPortableBlock[]
 
+export type BlogVideo = {
+  youtubeId: string
+  title?: string
+  description?: string
+  /** Name of the on-screen presenter, when the video is not authored by Tetrava (shown in the caption, never as the article byline). */
+  presenter?: string
+  /** ISO 8601 date the source video was uploaded, when known. */
+  uploadDate?: string
+  /** Optional thumbnail override; defaults to the YouTube-hosted thumbnail. */
+  thumbnail?: string
+}
+
 export type BlogPost = {
   title: string
   slug: string
@@ -36,6 +48,8 @@ export type BlogPost = {
   /** Optional cover image path under /public (e.g. /images/blog/…). */
   image?: string
   references?: BlogReference[]
+  /** When set, the article renders a responsive YouTube embed instead of the image hero. */
+  video?: BlogVideo
 }
 
 export type CategorySeoBlock = {
@@ -107,7 +121,7 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   }
 ]
 
-const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt,"image":image.asset->url,references[]{_key,title,authors,publication,year,url,citationText}`
+const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt,"image":image.asset->url,references[]{_key,title,authors,publication,year,url,citationText},video{youtubeId,title,description,presenter,uploadDate,thumbnail}`
 
 async function fetchSanity<T>(query: string, tags?: string[]): Promise<T | null> {
   const projectId = process.env.SANITY_PROJECT_ID
@@ -162,7 +176,8 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
       readTimeMinutes: post.readTimeMinutes || 5,
       body: resolveBlogBody(post.body, fallback?.body),
       image: post.image || fallback?.image,
-      references: post.references?.length ? post.references : fallback?.references
+      references: post.references?.length ? post.references : fallback?.references,
+      video: post.video?.youtubeId ? post.video : fallback?.video
     }
   })
 
@@ -199,7 +214,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     readTimeMinutes: post.readTimeMinutes || 5,
     body: resolveBlogBody(post.body, fallback?.body),
     image: post.image || fallback?.image,
-    references: post.references?.length ? post.references : fallback?.references
+    references: post.references?.length ? post.references : fallback?.references,
+    video: post.video?.youtubeId ? post.video : fallback?.video
   }
 }
 

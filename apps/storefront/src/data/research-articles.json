@@ -1,5 +1,994 @@
 [
   {
+    "title": "Retatrutide Benefits Beyond Weight Loss: What the 2026 Trial Data Actually Show",
+    "slug": "retatrutide-benefits-beyond-weight-loss",
+    "excerpt": "Retatrutide's liver, knee, kidney, and lipid results — fact-checked against primary trial sources and sorted by evidence tier, from published data to still-preclinical claims.",
+    "category": "Compliance",
+    "readTimeMinutes": 9,
+    "publishedAt": "2026-08-12T21:50:39.707Z",
+    "body": [
+      {
+        "_type": "block",
+        "_key": "blk2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp1",
+            "text": "Retatrutide benefits reported since 2023 span five systems well beyond the scale: liver fat, knee pain, blood lipids, kidney markers, and — so far only in animal studies — the brain. Retatrutide is Eli Lilly's investigational GIP/GLP-1/glucagon triple agonist. It is not approved by the FDA, EMA, or any regulator, is not available by prescription, and is legally accessible only inside registered clinical trials.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk7",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk4",
+            "_type": "link",
+            "href": "https://www.youtube.com/watch?v=3U7ZBe9WeXo"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp3",
+            "text": "This article fact-checks the claims in Dr. Kevin Joseph's widely watched video, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp5",
+            "text": "\"Retatrutide Isn't a Weight Loss Drug — Here's What It Really Does,\"",
+            "marks": [
+              "lnk4"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp6",
+            "text": " against the primary trial sources beneath each claim, and sorts every retatrutide benefit by how strong that evidence actually is — from a published Nature Medicine substudy down to a single 2026 rodent study.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk8",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp9",
+            "text": "The Evidence Ladder Behind Every Number Below",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp10",
+            "text": "Not every claim about retatrutide sits on the same evidentiary footing. Before the data, here's how this article grades it:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp12",
+            "text": "Peer-reviewed, published data — the Phase 2 obesity trial (NEJM, 2023) and the Phase 2a MASLD liver-fat substudy (Nature Medicine, 2024).",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "blk15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp14",
+            "text": "Company-reported Phase 3 topline data — TRIUMPH-1 through TRIUMPH-4 press-release results, disclosed before full peer review.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "blk17",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp16",
+            "text": "Post-hoc surrogate-marker findings — kidney and lipid sub-analyses pulled from existing Phase 2 datasets after the fact.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "blk19",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp18",
+            "text": "Preclinical hypotheses — mechanism or animal-model findings not yet tested in a registered human trial.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "blk22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp20",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp21",
+            "text": "Not every retatrutide benefit belongs on the same evidence tier — each section below names its tier.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk23",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp24",
+            "text": "What Is Retatrutide? The Three-Switch Mechanism",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp25",
+            "text": "Retatrutide activates three separate hormone receptors at once — GLP-1, GIP, and glucagon — from a single weekly injection. Semaglutide (Wegovy/Ozempic) activates one of those switches; tirzepatide (Zepbound/Mounjaro) activates two. The third, the glucagon receptor, is the one researchers avoided for decades because glucagon's core job is to raise blood sugar. Activated alongside GLP-1 and GIP, though, Phase 2 data suggests it instead increases energy expenditure and pushes the liver to burn fat rather than store it, an effect tracked in trials using the ketone marker beta-hydroxybutyrate.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk29",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp27",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp28",
+            "text": "The three-receptor mechanism is real and published, but retatrutide itself remains investigational and available only inside Lilly's clinical trials — not for purchase or prescription under any name.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk30",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp31",
+            "text": "Retatrutide vs. Tirzepatide vs. Semaglutide: What the Published Numbers Show",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk33",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp32",
+            "text": "Cross-trial comparisons are not head-to-head data: each drug was tested in its own trial, in its own patient population, over a different follow-up length. With that caveat, the highest published weight-loss figures at each drug's top studied dose are:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "tableBlock",
+        "_key": "tbl34",
+        "caption": "Cross-trial weight-loss comparison (not head-to-head)",
+        "hasHeaderRow": true,
+        "rows": [
+          {
+            "_key": "row35",
+            "cells": [
+              "Compound",
+              "Trial",
+              "Duration",
+              "Top dose",
+              "Mean weight loss"
+            ]
+          },
+          {
+            "_key": "row36",
+            "cells": [
+              "Semaglutide",
+              "STEP 1",
+              "68 weeks",
+              "2.4 mg",
+              "≈14.9%"
+            ]
+          },
+          {
+            "_key": "row37",
+            "cells": [
+              "Tirzepatide",
+              "SURMOUNT-1",
+              "72 weeks",
+              "15 mg",
+              "≈22.5%"
+            ]
+          },
+          {
+            "_key": "row38",
+            "cells": [
+              "Retatrutide",
+              "Phase 2 (NEJM, 2023)",
+              "48 weeks",
+              "12 mg",
+              "≈24.2%"
+            ]
+          },
+          {
+            "_key": "row39",
+            "cells": [
+              "Retatrutide",
+              "TRIUMPH-4 (topline)",
+              "68 weeks",
+              "12 mg",
+              "≈28.7%"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk41",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp40",
+            "text": "Dr. Joseph's video correctly places retatrutide ahead of both comparators on published numbers, and correctly notes that Phase 2 weight loss had not plateaued by week 48. His TRIUMPH-4 figures (about 26% at 9 mg, 29% at 12 mg) round slightly higher than Lilly's reported 26.4% and 28.7% — a rounding difference, not a factual error.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk44",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp42",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp43",
+            "text": "Retatrutide's weight-loss magnitude leads its class on the numbers published so far, but no trial has tested all three drugs head-to-head in the same population.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk45",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp46",
+            "text": "Liver Fat and MASLD: The Data Behind the Headline Number",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk48",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp47",
+            "text": "The Nature Medicine substudy (Sanyal et al., June 2024) is retatrutide's best-documented non-weight-loss result: in 98 participants with metabolic dysfunction-associated steatotic liver disease (MASLD), MRI-measured liver fat fell 82.4% at 24 weeks and 86.0% at 48 weeks on the 12 mg dose, versus a slight increase on placebo. By week 48, 93% of the 12 mg group reached normal liver fat (under 5%).",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk50",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp49",
+            "text": "Dr. Joseph accurately flags the key limitation himself: the substudy did not take liver biopsies, so it cannot prove that fibrosis (scarring) reversed — only that fat content dropped and that fibrosis-related blood markers (ProC3, K18) moved favorably. One claim does need updating, though. The video describes MASLD/MASH as a disease \"with no cure\" in the US or Europe. That was true when the underlying Phase 2a data were collected, but the FDA granted accelerated approval to resmetirom (Rezdiffra) for MASH with fibrosis in March 2024 — before this video was published. Patients with diagnosed MASH already have one FDA-approved option today; retatrutide's role in liver disease remains investigational and is being tested separately in the ongoing SYNERGY-Outcomes trial (NCT07165028), a 4,500-person study comparing retatrutide and tirzepatide against placebo for major liver outcomes, with primary completion expected in 2030.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk53",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp51",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp52",
+            "text": "Retatrutide's liver-fat reduction is genuine, large, and published, but it is a fat-content result pending a dedicated fibrosis-outcome trial — and MASH already has one FDA-approved drug that retatrutide is not.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk54",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp55",
+            "text": "Knee Osteoarthritis: TRIUMPH-4's Topline Pain Results",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk57",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp56",
+            "text": "TRIUMPH-4 (NCT05931367) enrolled 445 adults with obesity and knee osteoarthritis. At 68 weeks, the 12 mg dose cut WOMAC pain scores by about 4.4 points (roughly 75.8%) versus a 2.4-point drop on placebo, and roughly 1 in 8 retatrutide-treated participants reported being completely pain-free, versus about 1 in 24 on placebo.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk59",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp58",
+            "text": "These are topline, company-reported figures — Lilly has stated that detailed TRIUMPH-4 results are still pending conference presentation and peer-reviewed publication. To his credit, Dr. Joseph flags this honestly, noting the trial \"can't fully separate\" mechanical unloading of the joint from a possible direct anti-inflammatory effect. That caveat is correct and matters: until a weight-matched control arm or peer-reviewed subgroup analysis exists, the knee-pain benefit should be read as weight-loss-linked until proven otherwise.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk62",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp60",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp61",
+            "text": "TRIUMPH-4's pain reduction is a real, prespecified trial result, but it is topline data, and it cannot yet be separated from the mechanical benefit of losing 25%+ body weight off a weight-bearing joint.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk63",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp64",
+            "text": "Lipids, Blood Pressure, and Inflammation: Surrogate Markers, Not Outcomes",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk66",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp65",
+            "text": "Lilly's 2024 lipid substudy (338 participants, 48 weeks) reported reductions of up to 27% in non-HDL cholesterol, 24% in ApoB, 40.6% in triglycerides, and 36% in ApoC3 at the highest dose, alongside a shift toward larger, less-atherogenic LDL particles. TRIUMPH-4 separately reported a 14.0 mmHg drop in systolic blood pressure and reductions in high-sensitivity C-reactive protein (hsCRP) at the 12 mg dose.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk68",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp67",
+            "text": "These are legitimate, favorable surrogate-marker changes, but they remain surrogate markers. No completed retatrutide trial has yet reported a reduction in heart attacks, strokes, or cardiovascular death. That kind of hard-outcomes evidence is what a dedicated cardiovascular outcomes trial is designed to produce; retatrutide's is the ongoing TRIUMPH-Outcomes trial (NCT06383390), tracking cardiovascular and kidney events through an estimated 2029 completion.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk71",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp69",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp70",
+            "text": "Favorable lipid, blood-pressure, and inflammation shifts are documented, but a cardiovascular protection claim remains a hypothesis awaiting TRIUMPH-Outcomes, not a proven benefit.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk72",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp73",
+            "text": "Kidney Markers: A Promising Signal, Not a Kidney-Outcomes Trial",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk75",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp74",
+            "text": "A 2025 Kidney International Reports analysis (Heerspink et al.) pooled two completed Phase 2 trials — 338 participants with overweight or obesity and 281 with type 2 diabetes — and re-examined kidney-related lab values collected for other purposes. In the obesity cohort, retatrutide 12 mg was linked to a 31.5% drop in urine albumin-to-creatinine ratio (UACR) and an 8.5 mL/min/1.73m² rise in eGFR versus placebo at 48 weeks; in the diabetes cohort, UACR fell 37.0% but eGFR did not change.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk77",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp76",
+            "text": "This is a post-hoc analysis of existing markers, not a trial designed to test kidney outcomes, and the study authors said so directly, calling for dedicated follow-up. Lilly has since built that follow-up: TRANSCEND-CKD (NCT05936151), a completed Phase 2b mechanistic trial in adults with obesity and chronic kidney disease using gold-standard iohexol-clearance GFR measurement, and the ongoing TRIUMPH-Outcomes trial, which is tracking major kidney events directly.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk80",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp78",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp79",
+            "text": "The kidney-marker signal is real and dose-dependent, but a post-hoc lab-value analysis does not establish that retatrutide prevents kidney failure — that is exactly what TRIUMPH-Outcomes and TRANSCEND-CKD exist to test.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk81",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp82",
+            "text": "Brain and Cognition: Still a Preclinical Hypothesis",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk84",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp83",
+            "text": "GIP and GLP-1 receptors are expressed in brain regions involved in memory and appetite, and a January 2026 rodent study reported that retatrutide protected learning and memory in diabetic rats while lowering brain inflammation. Dr. Joseph labels this correctly in his video, calling it \"the least proven part of everything\" he covers and noting that no human brain studies exist yet.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk86",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp85",
+            "text": "That framing is accurate and worth repeating: a rat study and an advocacy-foundation review are not evidence of a cognitive benefit in people. Any claim that retatrutide improves memory or brain health in humans is extrapolating from animal receptor biology, not citing a completed human trial.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk89",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp87",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp88",
+            "text": "The brain-signaling mechanism is a legitimate, active research question, but it remains a preclinical hypothesis, not a demonstrated human cognitive benefit.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk90",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp91",
+            "text": "Safety Profile: What TRIUMPH-4 Actually Reported",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk93",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp92",
+            "text": "TRIUMPH-4's most common adverse events were gastrointestinal: nausea (up to 43.2%), diarrhea, constipation, and vomiting, generally dose-related and consistent with other incretin-class drugs. The trial also identified a signal largely absent from Phase 2: dysesthesia (tingling, burning, or abnormal skin sensation), reported in 20.9% of participants on 12 mg and 8.8% on 9 mg, versus 0.7% on placebo. Most cases were mild, peaked during dose escalation, and rarely caused discontinuation, but the pattern is steeply dose-dependent.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk95",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp94",
+            "text": "Overall treatment discontinuation was broadly similar between retatrutide and placebo arms, though discontinuation specifically due to adverse events was higher on retatrutide (12.2%–18.2% vs. 4.0% on placebo).",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk98",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp96",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp97",
+            "text": "Retatrutide's GI side-effect pattern mirrors other GLP-1/GIP drugs, but the dysesthesia signal is a genuinely new Phase 3 finding the FDA will scrutinize in any future review — and it's a detail most retatrutide overviews, including Dr. Joseph's video, don't mention.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk99",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp100",
+            "text": "Regulatory Status in 2026: Is Retatrutide Approved?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk102",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp101",
+            "text": "No. As of mid-2026, retatrutide has no FDA, EMA, or other regulatory approval for any indication. Lilly has reported five positive Phase 3 topline readouts (TRIUMPH-1 through TRIUMPH-4) and stated on July 23, 2026 that it plans to submit a Biologics License Application to the FDA in Q1 2027 — a filing date, not an approval date. A standard FDA review adds roughly 10–12 months after filing, putting a realistic decision in late 2027 or 2028.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk104",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp103",
+            "text": "It's also worth separating topline press-release numbers from peer-reviewed evidence: every TRIUMPH-1 through TRIUMPH-4 figure in this article, in Dr. Joseph's video, and everywhere else online right now is a company-reported result awaiting full publication and independent statistical review.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk107",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp105",
+            "text": "Key takeaway: ",
+            "marks": [
+              "strong"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp106",
+            "text": "Retatrutide remains investigational with a realistic approval window of 2027 or later. It is not available by prescription anywhere, and no product sold under that name outside a registered clinical trial is the studied compound.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk108",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp109",
+            "text": "The Bottom Line",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk111",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp110",
+            "text": "Dr. Joseph's video is, on balance, one of the more careful physician overviews of retatrutide's non-weight-loss data: he flags the liver-biopsy limitation, the knee-pain confound, and the preclinical status of the brain data correctly. The two points worth updating are the \"no approved cure\" MASH claim, superseded by resmetirom's 2024 approval, and the missing mention of the TRIUMPH-4 dysesthesia signal.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk125",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk113",
+            "_type": "link",
+            "href": "/category/glp-1-research"
+          },
+          {
+            "_key": "lnk116",
+            "_type": "link",
+            "href": "/buy-retatrutide-online"
+          },
+          {
+            "_key": "lnk119",
+            "_type": "link",
+            "href": "/coa-library"
+          },
+          {
+            "_key": "lnk122",
+            "_type": "link",
+            "href": "/ruo"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp112",
+            "text": "For qualified laboratories studying GIP/GLP-1/glucagon triple agonism, Tetrava's ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp114",
+            "text": "GLP-1 research category",
+            "marks": [
+              "lnk113"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp115",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp117",
+            "text": "retatrutide research compound page",
+            "marks": [
+              "lnk116"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp118",
+            "text": " include batch-specific documentation in the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp120",
+            "text": "COA Library",
+            "marks": [
+              "lnk119"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp121",
+            "text": ". Review our ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp123",
+            "text": "Research Use Only (RUO) policy",
+            "marks": [
+              "lnk122"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp124",
+            "text": " before designing any protocol. Nothing in this article is medical advice, and it is not a guide to human use outside a registered clinical trial.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "video": {
+      "youtubeId": "3U7ZBe9WeXo",
+      "title": "Retatrutide Isn't a Weight Loss Drug — Here's What It Really Does",
+      "description": "Dr. Kevin Joseph reviews retatrutide's liver, joint, kidney, and lipid trial data beyond the weight-loss headline.",
+      "presenter": "Dr. Kevin Joseph"
+    },
+    "references": [
+      {
+        "title": "Triple–Hormone-Receptor Agonist Retatrutide for Obesity — A Phase 2 Trial",
+        "authors": "Jastreboff AM, et al.",
+        "publication": "New England Journal of Medicine",
+        "year": "2023",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2301972"
+      },
+      {
+        "title": "Triple hormone receptor agonist retatrutide for metabolic dysfunction-associated steatotic liver disease: a randomized phase 2a trial",
+        "authors": "Sanyal AJ, et al.",
+        "publication": "Nature Medicine",
+        "year": "2024",
+        "url": "https://www.nature.com/articles/s41591-024-03018-2"
+      },
+      {
+        "title": "The Effect of Retatrutide on Kidney Parameters in Participants With Type 2 Diabetes Mellitus and/or Obesity",
+        "authors": "Heerspink HJL, et al.",
+        "publication": "Kidney International Reports",
+        "year": "2025",
+        "url": "https://doi.org/10.1016/j.ekir.2025.03.049"
+      },
+      {
+        "title": "Lilly's triple agonist, retatrutide, delivered weight loss of up to an average of 71.2 lbs along with substantial relief from osteoarthritis pain in first successful Phase 3 trial",
+        "publication": "Eli Lilly and Company (PRNewswire)",
+        "year": "2025",
+        "url": "https://www.prnewswire.com/news-releases/lillys-triple-agonist-retatrutide-delivered-weight-loss-of-up-to-an-average-of-71-2-lbs-along-with-substantial-relief-from-osteoarthritis-pain-in-first-successful-phase-3-trial-302638804.html"
+      },
+      {
+        "title": "Lilly's triple agonist, retatrutide, successful in two additional Phase 3 obesity trials, delivering significant improvements in weight and A1C",
+        "publication": "Eli Lilly and Company (PRNewswire)",
+        "year": "2026",
+        "url": "https://www.prnewswire.com/news-releases/lillys-triple-agonist-retatrutide-successful-in-two-additional-phase-3-obesity-trials-delivering-significant-improvements-in-weight-and-a1c-302832674.html"
+      },
+      {
+        "title": "TRIUMPH-4: A Study of Retatrutide in Participants With Obesity and Knee Osteoarthritis (NCT05931367)",
+        "publication": "ClinicalTrials.gov",
+        "year": "2025",
+        "url": "https://clinicaltrials.gov/study/NCT05931367"
+      },
+      {
+        "title": "The Effect of Retatrutide Once Weekly on Cardiovascular Outcomes and Kidney Outcomes in Adults Living With Obesity (TRIUMPH-Outcomes, NCT06383390)",
+        "publication": "ClinicalTrials.gov",
+        "year": "2024",
+        "url": "https://clinicaltrials.gov/study/NCT06383390"
+      },
+      {
+        "title": "A Master Protocol of Multiple Agents in Adults With Metabolic Dysfunction-Associated Steatotic Liver Disease (SYNERGY-Outcomes, NCT07165028)",
+        "publication": "ClinicalTrials.gov",
+        "year": "2025",
+        "url": "https://clinicaltrials.gov/study/NCT07165028"
+      },
+      {
+        "title": "Rationale, design and baseline characteristics of the TRANSCEND-CKD trial of retatrutide in patients with chronic kidney disease",
+        "publication": "Nephrology Dialysis Transplantation",
+        "year": "2026",
+        "url": "https://doi.org/10.1093/ndt/gfaf230"
+      },
+      {
+        "title": "Madrigal Pharmaceuticals Announces FDA Approval of Rezdiffra (resmetirom) for the Treatment of Patients with Noncirrhotic NASH with Moderate to Advanced Liver Fibrosis",
+        "publication": "Madrigal Pharmaceuticals",
+        "year": "2024",
+        "url": "https://ir.madrigalpharma.com/news-releases/news-release-details/madrigal-pharmaceuticals-announces-fda-approval-rezdiffratm"
+      },
+      {
+        "title": "Retatrutide Isn't a Weight Loss Drug — Here's What It Really Does",
+        "authors": "Joseph K.",
+        "publication": "YouTube (source video)",
+        "year": "2025",
+        "url": "https://www.youtube.com/watch?v=3U7ZBe9WeXo"
+      }
+    ]
+  },
+  {
     "title": "BPC-157 vs TB-500",
     "slug": "bpc-157-vs-tb-500",
     "excerpt": "Comparing BPC-157 vs. TB-500? Uncover the clinical evidence—and the hidden chemical truth behind TB-500's borrowed research.",

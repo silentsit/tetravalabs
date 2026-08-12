@@ -1,9 +1,15 @@
 # Tetrava Labs — AI & search context
 # https://tetravalabs.com
-# Last updated: 2026-07-28
+# Last updated: 2026-08-12
 
 > Research-use-only (RUO) peptide supplier for qualified laboratories.
 > Products are NOT for human consumption, clinical use, or veterinary use.
+
+## Agent discovery
+- API catalog: https://tetravalabs.com/.well-known/api-catalog
+- OpenAPI (public routes): https://tetravalabs.com/openapi.json
+- Auth instructions: https://tetravalabs.com/auth.md
+- HTTP `Link` headers on HTML responses point to the resources above.
 
 ## Company
 - Name: Tetrava Labs

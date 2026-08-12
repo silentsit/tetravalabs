@@ -126,6 +126,8 @@ export default async function RootLayout({
         </Script>
         <JsonLd graph={jsonLdGraph} />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
+        <link rel="alternate" type="text/markdown" href="/auth.md" title="Agent auth" />
+        <link rel="api-catalog" href="/.well-known/api-catalog" />
       </head>
       <body
         className={`${jost.variable} ${lora.variable} ${jetbrainsMono.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}

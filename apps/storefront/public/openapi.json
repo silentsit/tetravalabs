@@ -1,0 +1,174 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Tetrava Labs Storefront Public API",
+    "version": "1.0.0",
+    "summary": "Public, unauthenticated endpoints for the Tetrava Labs research storefront.",
+    "description": "Research-use-only (RUO) peptide supplier. These routes support discovery, search, geo compliance, contact, and restock alerts. Checkout, account, webhooks, and payment routes are intentionally excluded from this catalog.",
+    "contact": {
+      "name": "Tetrava Labs Support",
+      "email": "info@tetravalabs.com",
+      "url": "https://tetravalabs.com/contact"
+    },
+    "license": {
+      "name": "Proprietary"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://tetravalabs.com",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    { "name": "Discovery", "description": "Health and geo signals" },
+    { "name": "Catalog", "description": "Product search" },
+    { "name": "Compliance", "description": "Shipping restrictions" },
+    { "name": "Support", "description": "Human support intake" }
+  ],
+  "paths": {
+    "/api/geo": {
+      "get": {
+        "operationId": "getGeo",
+        "tags": ["Discovery"],
+        "summary": "Detect visitor country from edge headers",
+        "responses": {
+          "200": {
+            "description": "Country code when available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": { "type": "boolean" },
+                    "country": { "type": ["string", "null"] }
+                  },
+                  "required": ["ok", "country"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/search": {
+      "get": {
+        "operationId": "searchProducts",
+        "tags": ["Catalog"],
+        "summary": "Search research products",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Search query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "q": { "type": "string" },
+                    "count": { "type": "integer" },
+                    "results": { "type": "array", "items": { "type": "object" } },
+                    "source": { "type": "string" },
+                    "typesenseConfigured": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/compliance/restricted-countries": {
+      "get": {
+        "operationId": "listRestrictedCountries",
+        "tags": ["Compliance"],
+        "summary": "List shipping-restricted country codes",
+        "responses": {
+          "200": {
+            "description": "Restricted ISO country codes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": { "type": "boolean" },
+                    "countries": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  },
+                  "required": ["ok", "countries"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contact": {
+      "post": {
+        "operationId": "submitContact",
+        "tags": ["Support"],
+        "summary": "Submit a contact form message",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "email", "subject", "message"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string", "format": "email" },
+                  "subject": { "type": "string" },
+                  "message": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Message accepted" },
+          "400": { "description": "Missing or invalid fields" }
+        }
+      }
+    },
+    "/api/stock-notify": {
+      "post": {
+        "operationId": "subscribeStockNotify",
+        "tags": ["Support"],
+        "summary": "Request a restock notification for a product variant",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "productHandle", "variantId"],
+                "properties": {
+                  "email": { "type": "string", "format": "email" },
+                  "productHandle": { "type": "string" },
+                  "productTitle": { "type": "string" },
+                  "variantId": { "type": "string" },
+                  "strengthLabel": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Subscription recorded" },
+          "400": { "description": "Missing or invalid fields" }
+        }
+      }
+    }
+  }
+}

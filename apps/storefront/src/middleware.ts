@@ -4,11 +4,21 @@ import { isRestrictedCountry } from "@/lib/shipping-compliance"
 
 const VARIANT_QUERY_KEYS = ["strength", "pack"] as const
 
+/** RFC 8288 discovery pointers for AI agents (api-catalog, auth, sitemap, llms). */
+const AGENT_DISCOVERY_LINK = [
+  '</.well-known/api-catalog>; rel="api-catalog"',
+  '</openapi.json>; rel="service-desc"; type="application/openapi+json"',
+  '</auth.md>; rel="describedby"; type="text/markdown"',
+  '</sitemap_index.xml>; rel="sitemap"',
+  '</llms.txt>; rel="alternate"; type="text/plain"'
+].join(", ")
+
 function withSecurityHeaders(response: NextResponse) {
   response.headers.set("X-Frame-Options", "DENY")
   response.headers.set("X-Content-Type-Options", "nosniff")
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin")
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+  response.headers.append("Link", AGENT_DISCOVERY_LINK)
   return response
 }
 

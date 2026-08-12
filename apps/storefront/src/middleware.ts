@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 import { isRestrictedCountry } from "@/lib/shipping-compliance"
+import { acceptPrefersMarkdown, isMarkdownEligiblePath } from "@/lib/agent-markdown/negotiation"
 
 const VARIANT_QUERY_KEYS = ["strength", "pack"] as const
 
@@ -10,6 +11,7 @@ const AGENT_DISCOVERY_LINK = [
   '</openapi.json>; rel="service-desc"; type="application/openapi+json"',
   '</auth.md>; rel="describedby"; type="text/markdown"',
   '</sitemap_index.xml>; rel="sitemap"',
+  '</sitemap.md>; rel="sitemap"; type="text/markdown"',
   '</llms.txt>; rel="alternate"; type="text/plain"'
 ].join(", ")
 
@@ -22,9 +24,20 @@ function withSecurityHeaders(response: NextResponse) {
   return response
 }
 
+/** Content negotiation per page: tells caches the response varies on Accept, and points agents at the markdown mirror. */
+function withMarkdownDiscovery(response: NextResponse, pathname: string) {
+  response.headers.append("Vary", "Accept")
+  response.headers.append("Link", `<${pathname}>; rel="alternate"; type="text/markdown"`)
+  return response
+}
+
 function finalize(request: NextRequest, response: NextResponse) {
   response.headers.set("x-pathname", request.nextUrl.pathname)
-  return withSecurityHeaders(response)
+  withSecurityHeaders(response)
+  if (isMarkdownEligiblePath(request.nextUrl.pathname)) {
+    withMarkdownDiscovery(response, request.nextUrl.pathname)
+  }
+  return response
 }
 
 /** Strip legacy ?strength= / ?pack= so product URLs stay /{handle}. */
@@ -59,11 +72,27 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  if (isMarkdownEligiblePath(pathname) && acceptPrefersMarkdown(request.headers.get("accept"))) {
+    const url = request.nextUrl.clone()
+    url.pathname = `/md-mirror${pathname === "/" ? "" : pathname}`
+    const response = NextResponse.rewrite(url)
+    // Middleware Link headers win over route-handler Link for rewrites, so set
+    // the plan-required canonical pointer here (not only in md-mirror/route.ts).
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(
+      /\/$/,
+      ""
+    )
+    const canonical = pathname === "/" ? siteUrl : `${siteUrl}${pathname}`
+    response.headers.append("Link", `<${canonical}>; rel="canonical"`)
+    return finalize(request, response)
+  }
+
   return finalize(request, NextResponse.next())
 }
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|js|css|mjs|pdf)$).*)"
+    // Skip static asset extensions (incl. .md/.json so /auth.md and /openapi.json are not rewritten).
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|js|css|mjs|pdf|md|json)$).*)"
   ]
 }

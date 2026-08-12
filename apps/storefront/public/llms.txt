@@ -9,7 +9,21 @@
 - API catalog: https://tetravalabs.com/.well-known/api-catalog
 - OpenAPI (public routes): https://tetravalabs.com/openapi.json
 - Auth instructions: https://tetravalabs.com/auth.md
+- Markdown sitemap: https://tetravalabs.com/sitemap.md
 - HTTP `Link` headers on HTML responses point to the resources above.
+
+## Markdown content negotiation
+Send `Accept: text/markdown` to any indexable page (home, shop, categories,
+blog, category pages, product pages, and policy pages) to receive a clean
+markdown mirror of that page instead of HTML. Responses include `Vary: Accept`
+and a `Link: <canonical>; rel="canonical"` header. Checkout, account, and cart
+routes are excluded, matching robots.txt.
+
+## Content usage signals
+robots.txt declares Content-Signal preferences: `search=yes, ai-input=yes,
+ai-train=no`. AI systems may use this content for search indexing and
+real-time input (e.g. retrieval-augmented generation, grounding, answer
+citations), but may not use it to train or fine-tune models.
 
 ## Company
 - Name: Tetrava Labs

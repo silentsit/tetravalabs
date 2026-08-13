@@ -29,6 +29,15 @@ export function formatReadTime(minutes?: number) {
   return `${value} min read`
 }
 
+/** True when updatedAt is at least a day after publishedAt — avoids showing a redundant "Updated" date on unedited articles. */
+export function isMeaningfullyUpdated(publishedAt?: string, updatedAt?: string): boolean {
+  if (!publishedAt || !updatedAt) return false
+  const published = new Date(publishedAt).getTime()
+  const updated = new Date(updatedAt).getTime()
+  if (!Number.isFinite(published) || !Number.isFinite(updated)) return false
+  return updated - published > 24 * 60 * 60 * 1000
+}
+
 export function getRelatedBlogPosts(posts: BlogPost[], current: BlogPost, limit = 3) {
   return posts
     .filter(

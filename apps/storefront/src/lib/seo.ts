@@ -467,6 +467,7 @@ export function articleJsonLd(post: {
   excerpt?: string
   seoDescription?: string
   publishedAt?: string
+  updatedAt?: string
   category?: string
   image?: string
   author?: {
@@ -488,6 +489,7 @@ export function articleJsonLd(post: {
     headline: post.title,
     description: post.seoDescription || post.excerpt,
     datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
     image: imagePath.startsWith("http") ? imagePath : pageUrl(imagePath),
     author: post.author ? personJsonLd(post.author) : defaultPageAuthorJsonLd(),
     publisher: publisherJsonLd(),
@@ -526,6 +528,8 @@ export function productResearchArticleJsonLd(input: {
   description: string
   path: string
   image?: string
+  datePublished?: string
+  dateModified?: string
   author: {
     name: string
     jobTitle?: string
@@ -544,17 +548,29 @@ export function productResearchArticleJsonLd(input: {
     ...(input.image
       ? { image: input.image.startsWith("http") ? input.image : pageUrl(input.image) }
       : {}),
+    ...(input.datePublished ? { datePublished: input.datePublished } : {}),
+    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
     author: personJsonLd(input.author),
     publisher: publisherJsonLd()
   }
 }
 
+/** Verified live social profiles. Env vars can override any entry per-deployment. */
+const DEFAULT_SOCIAL_PROFILES = {
+  facebook: "https://www.facebook.com/tetravalabs",
+  instagram: "https://www.instagram.com/tetravalabs",
+  medium: "https://medium.com/@tetravalabs",
+  quora: "https://www.quora.com/profile/tetrava-labs"
+}
+
 function resolveSocialProfiles() {
   const fromEnv = [
     process.env.NEXT_PUBLIC_TWITTER_URL,
-    process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL || DEFAULT_SOCIAL_PROFILES.instagram,
     process.env.NEXT_PUBLIC_LINKEDIN_URL,
-    process.env.NEXT_PUBLIC_FACEBOOK_URL
+    process.env.NEXT_PUBLIC_FACEBOOK_URL || DEFAULT_SOCIAL_PROFILES.facebook,
+    process.env.NEXT_PUBLIC_MEDIUM_URL || DEFAULT_SOCIAL_PROFILES.medium,
+    process.env.NEXT_PUBLIC_QUORA_URL || DEFAULT_SOCIAL_PROFILES.quora
   ]
     .map((value) => value?.trim())
     .filter((value): value is string => Boolean(value))

@@ -10,7 +10,6 @@ import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medus
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
 import {
   articleJsonLd,
-  faqJsonLd,
   productJsonLd,
   productResearchArticleJsonLd,
   stripBrandTitleSuffix,
@@ -19,7 +18,6 @@ import {
   type JsonLdGraph,
   type ProductReviewSchemaInput
 } from "@/lib/seo"
-import { getProductFaqs } from "@/lib/product-faqs"
 import { getProductResearchDetail } from "@/lib/product-research-detail"
 import { authorBioText, getAuthor } from "@/lib/authors"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
@@ -147,11 +145,6 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     }
     const image = getMappedHandleImage(imageHandle)
     const path = productPath(view.parentHandle)
-    const faqs = getProductFaqs(view.parentHandle, {
-      productName: view.displayName,
-      category: view.categoryLabel,
-      appearance: view.appearance
-    })
     const reviewData = await reviewsForProductSchema({
       productHandle: view.parentHandle,
       productId: strength?.productId,
@@ -183,9 +176,9 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         description: pageDescription,
         path,
         image,
+        dateModified: researchDetail?.updatedAt,
         author: pageAuthor
-      }),
-      faqJsonLd(faqs, path)
+      })
     ]
   }
 
@@ -193,16 +186,8 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   if (!product) return []
 
   const displayTitle = normalizeTb500DisplayText(product.title)
-  const category = normalizeTb500DisplayText(
-    String(product.metadata?.source_category || "Research peptide")
-  )
   const image = getProductImage(product)
   const path = productPath(catalogHandle)
-  const faqs = getProductFaqs(catalogHandle, {
-    productName: displayTitle,
-    category,
-    appearance: String(product.metadata?.appearance || "")
-  })
   const reviewData = await reviewsForProductSchema({
     productHandle: catalogHandle,
     productId: product.id
@@ -219,8 +204,7 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         strengthLabels: []
       }),
       path
-    }),
-    faqJsonLd(faqs, path)
+    })
   ]
 })
 

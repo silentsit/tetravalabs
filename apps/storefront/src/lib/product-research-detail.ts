@@ -26,6 +26,8 @@ export type ProductResearchDetail = {
   references: ResearchReference[];
   /** Byline shown as the Author Profile block beneath the references. */
   authorId: AuthorId;
+  /** ISO date this research detail was last substantively edited (for dateModified schema). */
+  updatedAt?: string;
 };
 
 /**
@@ -194,7 +196,8 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         url: "https://doi.org/10.3389/fphar.2021.627533",
       },
     ],
-    authorId: "sharma",
+    authorId: "editorial-team",
+    updatedAt: "2026-08-13",
   },
   sermorelin: {
     shortDescription: [
@@ -334,7 +337,8 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         url: "https://pubchem.ncbi.nlm.nih.gov/compound/Sermorelin",
       },
     ],
-    authorId: "sharma",
+    authorId: "editorial-team",
+    updatedAt: "2026-08-13",
   },
 };
 

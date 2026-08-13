@@ -15,7 +15,8 @@ import {
   blogImageForPost,
   collectProductEmbedHandles,
   formatReadTime,
-  getRelatedBlogPosts
+  getRelatedBlogPosts,
+  isMeaningfullyUpdated
 } from "@/lib/blog-utils"
 import { buildPageMetadata, siteConfig } from "@/lib/seo"
 import { getAuthor } from "@/lib/authors"
@@ -95,6 +96,9 @@ export default async function BlogArticlePage({ params }: Props) {
         <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-[#94A3B8]">
           <span>{getAuthor("editorial-team").name}</span>
           {post.publishedAt ? <span>{new Date(post.publishedAt).toLocaleDateString()}</span> : null}
+          {post.updatedAt && isMeaningfullyUpdated(post.publishedAt, post.updatedAt) ? (
+            <span>Updated {new Date(post.updatedAt).toLocaleDateString()}</span>
+          ) : null}
           <span className="flex items-center gap-1">
             <Clock className="h-4 w-4" aria-hidden />
             {formatReadTime(post.readTimeMinutes)}

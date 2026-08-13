@@ -51,6 +51,8 @@ export type BlogPost = {
   category?: BlogCategory
   readTimeMinutes?: number
   publishedAt?: string
+  /** Last substantive edit date (dateModified). Sourced from Sanity's `_updatedAt` when live, or the JSON seed field when using the fallback. */
+  updatedAt?: string
   /** Optional cover image path under /public (e.g. /images/blog/…). */
   image?: string
   references?: BlogReference[]
@@ -127,7 +129,7 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   }
 ]
 
-const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt,"image":image.asset->url,references[]{_key,title,authors,publication,year,url,citationText},video{youtubeId,title,description,presenter,uploadDate,thumbnail}`
+const blogFields = `title,"slug":slug.current,excerpt,body,category,readTimeMinutes,publishedAt,"updatedAt":_updatedAt,"image":image.asset->url,seoTitle,seoDescription,keywords,references[]{_key,title,authors,publication,year,url,citationText},video{youtubeId,title,description,presenter,uploadDate,thumbnail}`
 
 async function fetchSanity<T>(query: string, tags?: string[]): Promise<T | null> {
   const projectId = process.env.SANITY_PROJECT_ID
@@ -186,7 +188,8 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
       video: post.video?.youtubeId ? post.video : fallback?.video,
       seoTitle: post.seoTitle || fallback?.seoTitle,
       seoDescription: post.seoDescription || fallback?.seoDescription,
-      keywords: post.keywords?.length ? post.keywords : fallback?.keywords
+      keywords: post.keywords?.length ? post.keywords : fallback?.keywords,
+      updatedAt: post.updatedAt || fallback?.updatedAt || post.publishedAt
     }
   })
 
@@ -227,7 +230,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     video: post.video?.youtubeId ? post.video : fallback?.video,
     seoTitle: post.seoTitle || fallback?.seoTitle,
     seoDescription: post.seoDescription || fallback?.seoDescription,
-    keywords: post.keywords?.length ? post.keywords : fallback?.keywords
+    keywords: post.keywords?.length ? post.keywords : fallback?.keywords,
+    updatedAt: post.updatedAt || fallback?.updatedAt || post.publishedAt
   }
 }
 

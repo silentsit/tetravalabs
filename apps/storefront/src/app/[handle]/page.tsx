@@ -23,9 +23,19 @@ import { getProductFaqs } from "@/lib/product-faqs"
 import { getProductResearchDetail } from "@/lib/product-research-detail"
 import { buildResearchOverview } from "@/lib/research-overview"
 import { buildOverviewImages } from "@/lib/product-overview-images"
+import { listProducts } from "@/lib/medusa"
 
 type Props = {
   params: Promise<{ handle: string }>
+}
+
+export const revalidate = 300
+
+/** Pre-render each canonical product URL while allowing ISR for catalog updates. */
+export async function generateStaticParams() {
+  const products = await listProducts()
+  const handles = new Set(products.map((product) => productPath(product.handle).slice(1)))
+  return [...handles].map((handle) => ({ handle }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

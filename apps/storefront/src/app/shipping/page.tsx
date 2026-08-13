@@ -32,13 +32,13 @@ export default function ShippingPage() {
           <h2 className="text-base font-medium text-[#0F172A]">International shipments</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong>USA, Canada, Australia, UK</strong> — 5–11 business days
+              <strong>USA, Canada, Australia, UK</strong> — 2–7 business days
             </li>
             <li>
-              <strong>South-East Asia</strong> — 3–5 business days
+              <strong>South-East Asia</strong> — 2–4 business days
             </li>
             <li>
-              <strong>Rest of the world</strong> — 7–14 business days
+              <strong>Rest of the world</strong> — 5–11 business days
             </li>
           </ul>
           <p>

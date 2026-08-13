@@ -35,7 +35,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What shipping methods do you use?",
     answer:
-      "We ship with temperature-controlled packaging where appropriate for lyophilized peptides. Orders are processed within 12 hours; delivery times vary by region (e.g. 5–11 business days to USA, Canada, Australia, and UK). Shipping rate is shown at checkout. Tracking is emailed after dispatch — use Post Track or 17 Track for the most accurate updates."
+      "We ship with temperature-controlled packaging where appropriate for lyophilized peptides. Orders are processed within 12 hours; delivery times vary by region (e.g. 2–7 business days to USA, Canada, Australia, and UK). Shipping rate is shown at checkout. Tracking is emailed after dispatch — use Post Track or 17 Track for the most accurate updates."
   },
   {
     question: "How should peptides be stored?",
@@ -45,7 +45,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Do you ship internationally?",
     answer:
-      "Yes, where your destination is not restricted. Typical delivery windows: 5–11 business days (USA, Canada, Australia, UK), 3–5 business days (South-East Asia), 7–14 business days (rest of world). Customs fees and import duties are the recipient’s responsibility. See our Shipping page for tracking guidance."
+      "Yes, where your destination is not restricted. Typical delivery windows: 2–7 business days (USA, Canada, Australia, UK), 2–4 business days (South-East Asia), 5–11 business days (rest of world). Customs fees and import duties are the recipient’s responsibility. See our Shipping page for tracking guidance."
   },
   {
     question: "What is your return policy?",

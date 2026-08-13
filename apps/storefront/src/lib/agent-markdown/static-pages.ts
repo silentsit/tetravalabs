@@ -136,7 +136,7 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       path: "/shipping",
       body: [
         "Orders are processed within 12 hours and ship with temperature-controlled, discreet packaging where appropriate for lyophilized peptides.",
-        "Typical delivery windows: 5–11 business days (USA, Canada, Australia, UK); 3–5 business days (South-East Asia); 7–14 business days (rest of world). Customs fees and import duties are the recipient's responsibility.",
+        "Typical delivery windows: 2–7 business days (USA, Canada, Australia, UK); 2–4 business days (South-East Asia); 5–11 business days (rest of world). Customs fees and import duties are the recipient's responsibility.",
         "Tracking is emailed after dispatch — use Post Track or 17 Track for the most accurate updates."
       ].join("\n\n")
     })

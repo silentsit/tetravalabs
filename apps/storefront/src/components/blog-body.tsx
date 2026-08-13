@@ -5,7 +5,7 @@ import Link from "next/link"
 import { PortableText, type PortableTextComponents } from "@portabletext/react"
 import { ProductCard } from "@/components/product-card"
 import { BlogTable, type BlogTableValue } from "@/components/blog-table"
-import { isPortableBlogBody, parsePlainBlogBlocks } from "@/lib/blog-utils"
+import { isPortableBlogBody, parsePlainBlogBlocks, createHeadingIdFactory, portableBlockPlainText, slugifyHeading } from "@/lib/blog-utils"
 import type { BlogBody } from "@/lib/sanity"
 import type { StoreProduct } from "@/lib/medusa"
 
@@ -54,14 +54,25 @@ function BlogImage({ value }: { value: BlogImageValue }) {
 function createPortableTextComponents(
   productsByHandle: Map<string, StoreProduct>
 ): PortableTextComponents {
+  const nextHeadingId = createHeadingIdFactory()
   return {
     block: {
       normal: ({ children }) => <p className="mb-4 last:mb-0">{children}</p>,
-      h2: ({ children }) => (
-        <h2 className="mb-3 mt-8 font-serif text-2xl text-[#0F172A] first:mt-0">{children}</h2>
+      h2: ({ children, value }) => (
+        <h2
+          id={nextHeadingId(portableBlockPlainText(value))}
+          className="mb-3 mt-8 scroll-mt-24 font-serif text-2xl text-[#0F172A] first:mt-0"
+        >
+          {children}
+        </h2>
       ),
-      h3: ({ children }) => (
-        <h3 className="mb-2 mt-6 font-serif text-xl text-[#0F172A] first:mt-0">{children}</h3>
+      h3: ({ children, value }) => (
+        <h3
+          id={slugifyHeading(portableBlockPlainText(value)) || undefined}
+          className="mb-2 mt-6 scroll-mt-24 font-serif text-xl text-[#0F172A] first:mt-0"
+        >
+          {children}
+        </h3>
       )
     },
     list: {
@@ -135,6 +146,7 @@ export function BlogBody({ body, productsByHandle }: Props) {
   if (!isPortableBlogBody(body)) {
     const blocks = parsePlainBlogBlocks(body)
     if (!blocks.length) return null
+    const nextHeadingId = createHeadingIdFactory()
     return (
       <div className="card space-y-4 p-6 text-base leading-relaxed text-[#475569]">
         {blocks.map((block, index) => {
@@ -142,7 +154,8 @@ export function BlogBody({ body, productsByHandle }: Props) {
             return (
               <h2
                 key={`h2-${index}`}
-                className="mb-3 mt-8 font-serif text-2xl text-[#0F172A] first:mt-0"
+                id={nextHeadingId(block.text)}
+                className="mb-3 mt-8 scroll-mt-24 font-serif text-2xl text-[#0F172A] first:mt-0"
               >
                 {block.text}
               </h2>
@@ -152,7 +165,8 @@ export function BlogBody({ body, productsByHandle }: Props) {
             return (
               <h3
                 key={`h3-${index}`}
-                className="mb-2 mt-6 font-serif text-xl text-[#0F172A] first:mt-0"
+                id={slugifyHeading(block.text) || undefined}
+                className="mb-2 mt-6 scroll-mt-24 font-serif text-xl text-[#0F172A] first:mt-0"
               >
                 {block.text}
               </h3>

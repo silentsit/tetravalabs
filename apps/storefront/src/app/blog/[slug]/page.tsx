@@ -8,12 +8,14 @@ import { listProductsByHandles, type StoreProduct } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { BlogBody } from "@/components/blog-body"
 import { BlogPostCard } from "@/components/blog-post-card"
+import { BlogTableOfContents } from "@/components/blog-table-of-contents"
 import { CitationFootnote } from "@/components/citation-footnote"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { YoutubeEmbed, youtubeThumbnailUrl } from "@/components/youtube-embed"
 import {
   blogImageForPost,
   collectProductEmbedHandles,
+  collectBlogHeadings,
   formatReadTime,
   getRelatedBlogPosts,
   isMeaningfullyUpdated
@@ -127,6 +129,8 @@ export default async function BlogArticlePage({ params }: Props) {
           />
         </div>
       )}
+
+      <BlogTableOfContents headings={collectBlogHeadings(post.body)} />
 
       <BlogBody body={post.body} productsByHandle={productsByHandle} />
 

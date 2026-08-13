@@ -11,6 +11,7 @@ import { BlogPostCard } from "@/components/blog-post-card"
 import { BlogTableOfContents } from "@/components/blog-table-of-contents"
 import { CitationFootnote } from "@/components/citation-footnote"
 import { ComplianceNotice } from "@/components/compliance-notice"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { YoutubeEmbed, youtubeThumbnailUrl } from "@/components/youtube-embed"
 import {
   blogImageForPost,
@@ -80,6 +81,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
   return (
     <article className="page-container mx-auto max-w-3xl space-y-10 py-8">
+      <PageJsonLd pathname={`/blog/${slug}`} />
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

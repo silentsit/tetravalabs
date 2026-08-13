@@ -40,6 +40,7 @@
     "smoke:search": "node scripts/smoke-search-production.mjs",
     "smoke:local": "node scripts/smoke-local.mjs",
     "smoke:production": "node scripts/smoke-production.mjs",
+    "audit:sitemap": "node scripts/audit-sitemap-url-quality.mjs",
     "smoke:checkout": "node scripts/smoke-checkout-production.mjs",
     "btcpay:setup": "node scripts/btcpay-setup.mjs",
     "paymento:setup": "node scripts/paymento-setup.mjs",

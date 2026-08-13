@@ -15,6 +15,7 @@ import { shopNavLabel } from "@/lib/shop-filters"
 import { ProductCompoundView } from "@/components/product-compound-view"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { buildPageMetadata } from "@/lib/seo"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
@@ -135,6 +136,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <article className="page-container space-y-10 py-8">
+      <PageJsonLd pathname={productPath(view.parentHandle)} />
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

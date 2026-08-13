@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { headers } from "next/headers"
 import { JetBrains_Mono, Jost, Lora } from "next/font/google"
 import "./globals.css"
 import "@/lib/json-ld-registry"
@@ -12,14 +11,12 @@ import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { SocialProofToast } from "@/components/social-proof-widget"
 import { AiChatWidget } from "@/components/ai-chat-widget"
-import { resolvePageJsonLd } from "@/lib/json-ld-store"
 import {
   clampMetaDescription,
   organizationJsonLd,
   resolveMetaTitles,
   siteConfig,
-  websiteJsonLd,
-  webPageJsonLd
+  websiteJsonLd
 } from "@/lib/seo"
 import Script from "next/script"
 
@@ -85,27 +82,7 @@ export default async function RootLayout({
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
   const gaMeasurementId =
     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "G-YZ9KZMZZLW"
-  const pathname = (await headers()).get("x-pathname") || "/"
-  const pageGraphs = await resolvePageJsonLd(pathname)
-  const isUtilityPath =
-    pathname.startsWith("/checkout") ||
-    pathname.startsWith("/account") ||
-    pathname.startsWith("/cart") ||
-    pathname.startsWith("/orders") ||
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/search")
-  const fallbackPageGraph =
-    pageGraphs.length === 0 && !isUtilityPath
-      ? [
-          webPageJsonLd({
-            title: siteConfig.name,
-            description: siteConfig.description,
-            path: pathname
-          })
-        ]
-      : pageGraphs
-
-  const jsonLdGraph = [organizationJsonLd(), websiteJsonLd(), ...fallbackPageGraph]
+  const jsonLdGraph = [organizationJsonLd(), websiteJsonLd()]
 
   return (
     <html lang="en">

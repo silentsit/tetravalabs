@@ -88,7 +88,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      { source: "/sitemap.xml", destination: "/sitemap_index.xml", permanent: true },
       { source: "/sitemap/posts.xml", destination: "/post-sitemap.xml", permanent: true },
       { source: "/sitemap/pages.xml", destination: "/page-sitemap.xml", permanent: true },
       { source: "/sitemap/images.xml", destination: "/image-sitemap.xml", permanent: true },
@@ -97,11 +96,13 @@ const nextConfig: NextConfig = {
       { source: "/coa", destination: "/coa-library", permanent: true },
       { source: "/ruo-disclaimer", destination: "/ruo", permanent: true },
       { source: "/refund-policy", destination: "/refund", permanent: true },
-      // Specific aliases first, then legacy strengths, then catch-all /product/* → /*
+      // Resolve legacy strength SKUs directly to their canonical public URL.
+      // This must precede all generic /product/* aliases to avoid redirect chains.
+      ...compoundRedirects,
+      // Specific aliases next, then the generic /product/* → /* fallback.
       ...legacyPrettyRedirects,
       ...catalogToPublicRedirects,
       ...publicProductPrefixRedirects,
-      ...compoundRedirects,
       { source: "/product/:handle", destination: "/:handle", permanent: true }
     ]
   }

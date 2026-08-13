@@ -4,6 +4,7 @@ import { listBlogPosts } from "@/lib/sanity"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { BlogHub } from "@/components/blog-hub"
 import { buildPageMetadata } from "@/lib/seo"
+import { PageJsonLd } from "@/components/page-json-ld"
 
 export const revalidate = 600
 
@@ -20,6 +21,7 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen pb-16">
+      <PageJsonLd pathname="/blog" />
       <section className="relative overflow-hidden bg-[#F8FAFC]">
         <div className="page-container grid gap-10 py-12 lg:grid-cols-2 lg:items-center lg:py-16">
           <div>

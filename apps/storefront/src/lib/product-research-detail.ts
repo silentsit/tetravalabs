@@ -117,8 +117,8 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading:
           "Laboratory Handling: Reconstitution, Storage, and Documentation",
         paragraphs: [
-          "Tetrava Labs ships BPC-157 as a lyophilized powder for stability during transport. Store sealed vials at -20°C, avoid repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent immediately before use. For dilution ratios and step-by-step math, see our [BPC-157 handling protocol](/blog/bpc-157-handling-protocol) and general [peptide reconstitution calculations](/blog/peptide-reconstitution-calculations) guide.",
-          "Once reconstituted, store working solutions at 4°C and use within the window defined by your laboratory SOP. Record diluent lot, reconstitution date, and operator in your ELN so preparation conditions remain auditable alongside the batch [Certificate of Analysis](/coa-library) — see [how to read COA and HPLC reports](/blog/how-to-read-coa-and-hplc-reports) for interpretation guidance.",
+          "Tetrava Labs ships BPC-157 as a lyophilized powder for stability during transport. Store sealed vials at -20°C, avoid repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent immediately before use. For compound context and handling notes, see [BPC-157 vs TB-500](/blog/bpc-157-vs-tb-500).",
+          "Once reconstituted, store working solutions at 4°C and use within the window defined by your laboratory SOP. Record diluent lot, reconstitution date, and operator in your ELN so preparation conditions remain auditable alongside the batch [Certificate of Analysis](/coa-library).",
         ],
       },
     ],
@@ -288,8 +288,8 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading:
           "Laboratory Handling: Reconstitution, Storage, and Documentation",
         paragraphs: [
-          "Tetrava Labs ships sermorelin as a lyophilized powder for stability during transport. Store sealed vials at -20°C, avoid repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent immediately before use — see our [peptide reconstitution calculations](/blog/peptide-reconstitution-calculations) guide for dilution math.",
-          "Given sermorelin's DPP-IV-driven degradation profile in biological matrices,[3] researchers running stability or pharmacokinetic protocols should record diluent lot, reconstitution date, storage temperature, and sampling time points in their ELN. Pair this with [how to read COA and HPLC reports](/blog/how-to-read-coa-and-hplc-reports) for interpreting purity data and [documenting batch IDs in lab notebooks](/blog/documenting-batch-ids-lab-notebooks) for keeping preparation records auditable against the [Growth Hormone Axis](/category/growth-hormone-axis) category's other GHRH- and GHRP-class reagents.",
+          "Tetrava Labs ships sermorelin as a lyophilized powder for stability during transport. Store sealed vials at -20°C, avoid repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent immediately before use.",
+          "Given sermorelin's DPP-IV-driven degradation profile in biological matrices,[3] researchers running stability or pharmacokinetic protocols should record diluent lot, reconstitution date, storage temperature, and sampling time points in their ELN. Keep preparation records auditable against the batch [Certificate of Analysis](/coa-library) and the [Growth Hormone Axis](/category/growth-hormone-axis) category's other GHRH- and GHRP-class reagents.",
         ],
       },
     ],

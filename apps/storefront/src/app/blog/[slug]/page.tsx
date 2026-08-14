@@ -26,6 +26,7 @@ import { getAuthor } from "@/lib/authors"
 type Props = { params: Promise<{ slug: string }> }
 
 export const revalidate = 600
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const posts = await listBlogPosts()

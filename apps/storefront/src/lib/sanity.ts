@@ -1,5 +1,6 @@
 import researchArticles from "@/data/research-articles.json"
 import { normalizeCategorySlug } from "@/lib/categories"
+import { KEPT_BLOG_SLUGS } from "@/lib/retired-blog-slugs"
 
 export type BlogCategory = "Protocols" | "Analytical" | "Compliance"
 
@@ -205,7 +206,8 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
     )
   }
 
-  return merged
+  const keep = new Set<string>(KEPT_BLOG_SLUGS)
+  return merged.filter((post) => keep.has(post.slug))
 }
 
 export async function listBlogPosts(): Promise<BlogPost[]> {
@@ -216,6 +218,7 @@ export async function listBlogPosts(): Promise<BlogPost[]> {
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const safeSlug = sanitizeSlug(slug)
   if (!safeSlug) return null
+  if (!(KEPT_BLOG_SLUGS as readonly string[]).includes(safeSlug)) return null
 
   const query = `*[_type == "researchArticle" && slug.current == "${safeSlug}"][0]{${blogFields}}`
   const post = await fetchSanity<BlogPost>(query, [`sanity:blog:${safeSlug}`])

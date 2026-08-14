@@ -16,7 +16,7 @@ Sanity powers blog posts, category SEO blocks, and optional legal page copy. Com
 
 ## Bootstrap
 
-Source of truth for seed content: `apps/storefront/src/data/research-articles.json` (10 articles).
+Source of truth for seed content: `apps/storefront/src/data/research-articles.json` (2 live articles).
 
 ```bash
 # apps/storefront/.env.local
@@ -29,13 +29,11 @@ npm run sanity:seed
 
 Existing slugs are patched when category, read time, excerpt, or body were empty; unchanged docs are skipped.
 
-## Article inventory (10)
+## Article inventory (2)
 
 | Category | Count | Topics |
 |----------|-------|--------|
-| Protocols | 6 | RUO storage, semaglutide/tirzepatide/TB-500 handling, BPC-157, cold-chain |
-| Analytical | 2 | COA/HPLC reading, reconstitution math |
-| Compliance | 2 | Crypto checkout, batch ID traceability |
+| Protocols | 2 | Retatrutide trial data, BPC-157 vs TB-500 |
 
 ## Publishing flow
 

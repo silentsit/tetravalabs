@@ -27,6 +27,7 @@ import { getAuthor } from "@/lib/authors"
 type Props = { params: Promise<{ slug: string }> }
 
 export const revalidate = 600
+/** Retired and unknown slugs 404 instead of redirecting to `/blog`. */
 export const dynamicParams = false
 
 export async function generateStaticParams() {

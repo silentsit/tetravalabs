@@ -1,3 +1,14 @@
+/**
+ * Outage-resilience fallback ONLY. Every article currently in this file also exists as the
+ * live, canonical `researchArticle` document in Sanity. It is served here only when a Sanity
+ * fetch fails outright (see `fetchSanity`'s catch-all below) or the article is missing from
+ * Sanity entirely.
+ *
+ * Do NOT edit article content here expecting it to appear on the site — Sanity always wins
+ * when it's reachable. If you edit an article, edit it in Sanity Studio (or via the Sanity
+ * MCP tools) and publish it there. Only touch this file to keep the emergency copy from going
+ * too stale, or to add a brand-new article that hasn't been created in Sanity yet.
+ */
 import researchArticles from "@/data/research-articles.json"
 import { normalizeCategorySlug } from "@/lib/categories"
 import { KEPT_BLOG_SLUGS } from "@/lib/retired-blog-slugs"
@@ -76,6 +87,7 @@ export type LegalPageContent = {
   publishedAt?: string
 }
 
+/** See the outage-resilience-fallback note on the `research-articles.json` import above. */
 const fallbackPosts = researchArticles as BlogPost[]
 
 const fallbackCategorySeo: CategorySeoBlock[] = [

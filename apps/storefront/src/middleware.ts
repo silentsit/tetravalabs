@@ -57,11 +57,13 @@ function stripVariantQueryParams(request: NextRequest) {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Trailing slashes 404 through the App Router not-found page (not a blank 404).
+  // /blog/ → /blog (and the same for every other path). Keep skipTrailingSlashRedirect
+  // so Next.js does not emit its default 308 for this. Use WHATWG URL — NextURL.clone()
+  // preserves the incoming trailing slash and would 301-loop.
   if (pathname.length > 1 && pathname.endsWith("/")) {
-    const url = request.nextUrl.clone()
-    url.pathname = "/_not-found"
-    return finalize(request, NextResponse.rewrite(url))
+    const url = new URL(request.url)
+    url.pathname = pathname.replace(/\/+$/, "") || "/"
+    return finalize(request, NextResponse.redirect(url, 301))
   }
 
   const cleaned = stripVariantQueryParams(request)

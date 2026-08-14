@@ -5,7 +5,7 @@ const htmlLimitedBots =
 
 const nextConfig: NextConfig = {
   htmlLimitedBots,
-  // Next.js otherwise 308s /foo/ ↔ /foo. Skip that so trailing-slash URLs 404.
+  // Canonicalize trailing slashes in middleware (301) instead of Next.js 308.
   skipTrailingSlashRedirect: true,
   images: {
     formats: ["image/avif", "image/webp"],

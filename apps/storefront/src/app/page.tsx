@@ -12,6 +12,7 @@ import type { Metadata } from "next"
 import { FeaturedProducts } from "@/components/home/featured-products"
 import { HeroProductStage } from "@/components/home/hero-product-stage"
 import { HeroTrustStrip } from "@/components/home/hero-trust-strip"
+import { SocialProofReviews } from "@/components/social-proof-widget"
 import { BlogPostCard } from "@/components/blog-post-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
@@ -30,12 +31,6 @@ const LiveVisitorCounter = dynamic(
   () => import("@/components/social-proof-widget").then((mod) => mod.LiveVisitorCounter),
   { loading: () => <span className="inline-block h-5 w-40 animate-pulse rounded bg-[#E2E8F0]" /> }
 )
-
-const SocialProofReviews = dynamic(
-  () => import("@/components/social-proof-widget").then((mod) => mod.SocialProofReviews),
-  { loading: () => <div className="h-48 animate-pulse rounded-xl bg-[#E2E8F0]" /> }
-)
-
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",

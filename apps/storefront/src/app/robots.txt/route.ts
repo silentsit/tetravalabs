@@ -48,6 +48,7 @@ function buildRobotsTxt(): string {
 User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Allow: /_next/
 ${disallow}
 
 Sitemap: ${baseUrl}/sitemap_index.xml

@@ -54,8 +54,21 @@ function stripVariantQueryParams(request: NextRequest) {
   return NextResponse.redirect(url, 301)
 }
 
+function apexHostRedirect(request: NextRequest) {
+  const host = (request.headers.get("host") || "").split(":")[0]
+  if (!host.toLowerCase().startsWith("www.")) return null
+  const url = request.nextUrl.clone()
+  url.hostname = host.replace(/^www\./i, "")
+  url.protocol = "https:"
+  url.port = ""
+  return NextResponse.redirect(url, 308)
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  const wwwRedirect = apexHostRedirect(request)
+  if (wwwRedirect) return finalize(request, wwwRedirect)
 
   // Trailing slashes previously 308'd to the no-slash URL. Serve 404 instead.
   if (pathname.length > 1 && pathname.endsWith("/")) {

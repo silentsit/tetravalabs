@@ -31,9 +31,26 @@ function withMarkdownDiscovery(response: NextResponse, pathname: string) {
   return response
 }
 
+function isSearchCrawler(userAgent: string | null) {
+  if (!userAgent) return false
+  return /Googlebot|Google-InspectionTool|bingbot|BingPreview|Slurp|DuckDuckBot|Baiduspider|YandexBot|Yandex|Applebot|facebookexternalhit/i.test(
+    userAgent
+  )
+}
+
+function withShopFilterRobots(request: NextRequest, response: NextResponse) {
+  if (request.nextUrl.pathname !== "/shop") return response
+  const params = request.nextUrl.searchParams
+  if (params.get("q")?.trim() || params.get("price_min")?.trim() || params.get("price_max")?.trim()) {
+    response.headers.set("X-Robots-Tag", "noindex, follow")
+  }
+  return response
+}
+
 function finalize(request: NextRequest, response: NextResponse) {
   response.headers.set("x-pathname", request.nextUrl.pathname)
   withSecurityHeaders(response)
+  withShopFilterRobots(request, response)
   if (isMarkdownEligiblePath(request.nextUrl.pathname)) {
     withMarkdownDiscovery(response, request.nextUrl.pathname)
   }
@@ -81,7 +98,11 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  if (isMarkdownEligiblePath(pathname) && acceptPrefersMarkdown(request.headers.get("accept"))) {
+  if (
+    isMarkdownEligiblePath(pathname) &&
+    acceptPrefersMarkdown(request.headers.get("accept")) &&
+    !isSearchCrawler(request.headers.get("user-agent"))
+  ) {
     const url = request.nextUrl.clone()
     url.pathname = `/md-mirror${pathname === "/" ? "" : pathname}`
     const response = NextResponse.rewrite(url)

@@ -39,7 +39,6 @@ const STATIC_PAGE_ROUTES: Array<{
 }> = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/shop", changeFrequency: "daily", priority: 0.9 },
-  { path: "/categories", changeFrequency: "weekly", priority: 0.7 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
   { path: "/coa-library", changeFrequency: "weekly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },

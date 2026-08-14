@@ -1,6 +1,4 @@
-"use client"
-
-import { useRouter, useSearchParams } from "next/navigation"
+import Link from "next/link"
 import {
   filterByPill,
   storefrontPills,
@@ -17,27 +15,11 @@ interface ProductFiltersProps {
 }
 
 export function ProductFilters({ products, activePill = "all" }: ProductFiltersProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
   const counts: Record<string, number> = { all: products.length }
 
   for (const pill of storefrontPills) {
     if (pill.key === "all") continue
     counts[pill.key] = filterByPill(products, pill.key).length
-  }
-
-  const handlePillClick = (key: string) => {
-    const params = new URLSearchParams(searchParams.toString())
-
-    if (key === "all") {
-      params.delete("category")
-    } else {
-      params.set("category", key)
-    }
-
-    params.delete("page")
-    router.push(`/shop?${params.toString()}`, { scroll: false })
   }
 
   return (
@@ -47,12 +29,12 @@ export function ProductFilters({ products, activePill = "all" }: ProductFiltersP
           pill.key === "all"
             ? !activePill || activePill === "all"
             : activePill === pill.key
+        const href = pill.key === "all" ? "/shop" : `/category/${pill.key}`
 
         return (
-          <button
+          <Link
             key={pill.key}
-            type="button"
-            onClick={() => handlePillClick(pill.key)}
+            href={href}
             className={cn(
               "relative min-h-11 flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-200",
               isActive
@@ -69,7 +51,7 @@ export function ProductFilters({ products, activePill = "all" }: ProductFiltersP
             >
               {counts[pill.key] ?? 0}
             </span>
-          </button>
+          </Link>
         )
       })}
     </div>

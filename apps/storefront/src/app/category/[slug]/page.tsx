@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { notFound, redirect } from "next/navigation"
+import { notFound } from "next/navigation"
 import { listProducts } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ProductCard } from "@/components/product-card"
@@ -24,6 +24,8 @@ type Props = {
 }
 
 export const revalidate = 300
+/** Legacy and unknown slugs 404 here; middleware 301s known aliases first. */
+export const dynamicParams = false
 
 export function generateStaticParams() {
   return STOREFRONT_CATEGORY_SLUGS.map((slug) => ({ slug }))
@@ -32,14 +34,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const normalized = normalizeCategorySlug(slug)
-  if (typeof normalized === "string" && normalized !== slug && isStorefrontCategorySlug(normalized)) {
-    return buildPageMetadata({
-      title: "Redirecting",
-      path: `/category/${normalized}`,
-      noIndex: true
-    })
-  }
-  if (!isStorefrontCategorySlug(normalized)) {
+  if (!isStorefrontCategorySlug(normalized) || normalized !== slug) {
     return buildPageMetadata({
       title: "Category Not Found",
       path: `/category/${slug}`,
@@ -67,10 +62,7 @@ export default async function CategoryPage({ params }: Props) {
   const { slug } = await params
   const normalized = normalizeCategorySlug(slug)
 
-  if (typeof normalized === "string" && normalized !== slug && isStorefrontCategorySlug(normalized)) {
-    redirect(`/category/${normalized}`)
-  }
-  if (!isStorefrontCategorySlug(normalized)) {
+  if (!isStorefrontCategorySlug(normalized) || normalized !== slug) {
     notFound()
   }
 

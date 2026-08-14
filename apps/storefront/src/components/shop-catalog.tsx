@@ -88,6 +88,9 @@ export function ShopCatalogFallback({ products }: { products: StoreProduct[] }) 
         <p className="mt-2 text-sm text-[#64748B]">
           {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
         </p>
+        <div className="mt-5">
+          <ProductFilters products={products} activePill="all" />
+        </div>
       </div>
       {displayProducts.length > 0 ? (
         <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6 [&>*]:min-w-0">

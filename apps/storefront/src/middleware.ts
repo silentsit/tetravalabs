@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 import { isRestrictedCountry } from "@/lib/shipping-compliance"
 import { acceptPrefersMarkdown, isMarkdownEligiblePath } from "@/lib/agent-markdown/negotiation"
+import { canonicalizeCategorySlug } from "@/lib/category-url"
 
 const VARIANT_QUERY_KEYS = ["strength", "pack"] as const
 
@@ -40,8 +41,7 @@ function isSearchCrawler(userAgent: string | null) {
 
 function withShopFilterRobots(request: NextRequest, response: NextResponse) {
   if (request.nextUrl.pathname !== "/shop") return response
-  const params = request.nextUrl.searchParams
-  if (params.get("q")?.trim() || params.get("price_min")?.trim() || params.get("price_max")?.trim()) {
+  if ([...request.nextUrl.searchParams.keys()].length > 0) {
     response.headers.set("X-Robots-Tag", "noindex, follow")
   }
   return response
@@ -71,6 +71,42 @@ function stripVariantQueryParams(request: NextRequest) {
   return NextResponse.redirect(url, 301)
 }
 
+function redirect301(request: NextRequest, pathname: string, search = "") {
+  const url = new URL(request.url)
+  url.pathname = pathname
+  url.search = search
+  return NextResponse.redirect(url, 301)
+}
+
+/** /category/glp-1-incretin → /category/glp-1-research (and case folding). */
+function canonicalizeCategoryPath(request: NextRequest) {
+  const { pathname } = request.nextUrl
+  if (!pathname.startsWith("/category/")) return null
+  const slug = pathname.slice("/category/".length)
+  if (!slug || slug.includes("/")) return null
+  const canonical = canonicalizeCategorySlug(slug)
+  if (!canonical || canonical === slug) return null
+  return redirect301(request, `/category/${canonical}`)
+}
+
+/**
+ * /shop?category=glp-1-research → /category/glp-1-research when the URL is just a
+ * category filter (no search/price). Query variants that stay on /shop are noindexed.
+ */
+function canonicalizeShopCategoryQuery(request: NextRequest) {
+  if (request.nextUrl.pathname !== "/shop") return null
+  const params = request.nextUrl.searchParams
+  const category = params.get("category")?.trim()
+  if (!category) return null
+  if (params.get("q")?.trim() || params.get("price_min")?.trim() || params.get("price_max")?.trim()) {
+    return null
+  }
+  if (category === "all") return redirect301(request, "/shop")
+  const canonical = canonicalizeCategorySlug(category)
+  if (!canonical) return null
+  return redirect301(request, `/category/${canonical}`)
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -85,6 +121,12 @@ export function middleware(request: NextRequest) {
 
   const cleaned = stripVariantQueryParams(request)
   if (cleaned) return finalize(request, cleaned)
+
+  const categoryCanonical = canonicalizeCategoryPath(request)
+  if (categoryCanonical) return finalize(request, categoryCanonical)
+
+  const shopCategory = canonicalizeShopCategoryQuery(request)
+  if (shopCategory) return finalize(request, shopCategory)
 
   if (pathname.startsWith("/checkout")) {
     const country =

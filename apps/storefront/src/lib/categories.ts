@@ -1,23 +1,19 @@
 import type { StoreProduct } from "@/lib/medusa"
 import categorySlugsByHandle from "@/lib/category-slugs.generated.json"
+import {
+  canonicalizeCategorySlug,
+  STOREFRONT_CATEGORY_SLUGS,
+  type StorefrontCategorySlug
+} from "@/lib/category-url"
 import { categoryArt } from "@/lib/revamp/category-art"
 import { sortProducts, type ProductSort } from "@/lib/sort-products"
 
-export const STOREFRONT_CATEGORY_SLUGS = [
-  "glp-1-research",
-  "tissue-repair",
-  "growth-hormone-axis",
-  "longevity-neuropeptides",
-  "metabolic-mitochondrial",
-  "research-blends",
-  "lab-supplies"
-] as const
-
-export type StorefrontCategorySlug = (typeof STOREFRONT_CATEGORY_SLUGS)[number]
-
-export function isStorefrontCategorySlug(slug: string): slug is StorefrontCategorySlug {
-  return STOREFRONT_CATEGORY_SLUGS.includes(slug as StorefrontCategorySlug)
-}
+export {
+  canonicalizeCategorySlug,
+  isStorefrontCategorySlug,
+  STOREFRONT_CATEGORY_SLUGS,
+  type StorefrontCategorySlug
+} from "@/lib/category-url"
 
 export const CATEGORY_NAME_BY_SLUG: Record<StorefrontCategorySlug, string> = {
   "glp-1-research": "GLP-1 Research",
@@ -27,22 +23,6 @@ export const CATEGORY_NAME_BY_SLUG: Record<StorefrontCategorySlug, string> = {
   "metabolic-mitochondrial": "Metabolic & Mitochondrial",
   "research-blends": "Research Blends",
   "lab-supplies": "Lab Supplies"
-}
-
-/** Legacy URLs and old filter keys → current slug. */
-const LEGACY_SLUG_ALIASES: Record<string, StorefrontCategorySlug> = {
-  "glp-1-incretin": "glp-1-research",
-  "supplies-reconstitution": "lab-supplies",
-  "bpc-157-tb500": "tissue-repair",
-  blends: "research-blends",
-  "cjc-ipamorelin-ghrp": "growth-hormone-axis",
-  "growth-hormone-axis": "growth-hormone-axis",
-  "mitochondrial-metabolic-other": "metabolic-mitochondrial",
-  "cosmetic-copper-tanning": "tissue-repair",
-  "longevity-thymic-neuropeptides": "longevity-neuropeptides",
-  "vitamins-injectables": "metabolic-mitochondrial",
-  "legacy-catalog": "longevity-neuropeptides",
-  "growth-factors": "tissue-repair"
 }
 
 const LEGACY_STOREFRONT_TO_SHEET: Record<string, string> = {
@@ -117,11 +97,7 @@ export function slugifyCategory(name: string) {
 }
 
 export function normalizeCategorySlug(slug: string): StorefrontCategorySlug | string {
-  const normalized = slug.toLowerCase()
-  if (STOREFRONT_CATEGORY_SLUGS.includes(normalized as StorefrontCategorySlug)) {
-    return normalized as StorefrontCategorySlug
-  }
-  return LEGACY_SLUG_ALIASES[normalized] || normalized
+  return canonicalizeCategorySlug(slug) || slug.toLowerCase()
 }
 
 export function categorySlugFromLabel(label: string) {
@@ -130,7 +106,7 @@ export function categorySlugFromLabel(label: string) {
   if (STOREFRONT_CATEGORY_SLUGS.includes(normalized as StorefrontCategorySlug)) {
     return normalized
   }
-  return LEGACY_SLUG_ALIASES[slug] || slug
+  return canonicalizeCategorySlug(slug) || slug
 }
 
 export function categoryLabelFromSlug(slug: string, products: StoreProduct[]) {

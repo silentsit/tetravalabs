@@ -57,9 +57,11 @@ function stripVariantQueryParams(request: NextRequest) {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Trailing slashes previously 308'd to the no-slash URL. Serve 404 instead.
+  // Trailing slashes 404 through the App Router not-found page (not a blank 404).
   if (pathname.length > 1 && pathname.endsWith("/")) {
-    return finalize(request, new NextResponse(null, { status: 404 }))
+    const url = request.nextUrl.clone()
+    url.pathname = "/_not-found"
+    return finalize(request, NextResponse.rewrite(url))
   }
 
   const cleaned = stripVariantQueryParams(request)

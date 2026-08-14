@@ -1,6 +1,9 @@
 import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 import { acceptPrefersMarkdown, isMarkdownEligiblePath } from "@/lib/agent-markdown/negotiation"
+import { canonicalizeCategorySlug } from "@/lib/category-url"
+
+const VARIANT_QUERY_KEYS = ["strength", "pack"] as const
 
 /** RFC 8288 discovery pointers for AI agents (api-catalog, auth, sitemap, llms). */
 const AGENT_DISCOVERY_LINK = [
@@ -53,17 +56,62 @@ function finalize(request: NextRequest, response: NextResponse) {
   return response
 }
 
+/** One-hop 301 using WHATWG URL — NextURL.clone() re-adds trailing slashes and loops. */
+function redirect301(request: NextRequest, pathname: string, searchParams: URLSearchParams) {
+  const url = new URL(request.url)
+  url.pathname = pathname
+  url.search = searchParams.toString() ? `?${searchParams.toString()}` : ""
+  return NextResponse.redirect(url, 301)
+}
+
+/**
+ * Canonicalize equivalent URLs in one hop:
+ * trailing slash, leftover ?strength=/?pack=, and /shop?category= → /category/{slug}.
+ */
+function canonicalRedirect(request: NextRequest) {
+  const incoming = new URL(request.url)
+  let pathname = incoming.pathname
+  const params = new URLSearchParams(incoming.search)
+
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    pathname = pathname.replace(/\/+$/, "") || "/"
+  }
+
+  for (const key of VARIANT_QUERY_KEYS) {
+    params.delete(key)
+  }
+
+  if (pathname === "/shop") {
+    const category = params.get("category")?.trim()
+    const hasSearchOrPrice =
+      Boolean(params.get("q")?.trim()) ||
+      Boolean(params.get("price_min")?.trim()) ||
+      Boolean(params.get("price_max")?.trim())
+    if (category && !hasSearchOrPrice) {
+      if (category === "all") {
+        params.delete("category")
+      } else {
+        const canonical = canonicalizeCategorySlug(category)
+        if (canonical) {
+          pathname = `/category/${canonical}`
+          params.delete("category")
+          params.delete("sort")
+        }
+      }
+    }
+  }
+
+  const nextSearch = params.toString()
+  const incomingSearch = incoming.search.startsWith("?") ? incoming.search.slice(1) : incoming.search
+  if (pathname === incoming.pathname && nextSearch === incomingSearch) return null
+  return redirect301(request, pathname, params)
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Only HTTP redirect in the storefront: /blog/ → /blog (and the same for every other path).
-  // skipTrailingSlashRedirect keeps Next.js from emitting its default 308. Use WHATWG URL —
-  // NextURL.clone() preserves the incoming trailing slash and would 301-loop.
-  if (pathname.length > 1 && pathname.endsWith("/")) {
-    const url = new URL(request.url)
-    url.pathname = pathname.replace(/\/+$/, "") || "/"
-    return finalize(request, NextResponse.redirect(url, 301))
-  }
+  const canonical = canonicalRedirect(request)
+  if (canonical) return finalize(request, canonical)
 
   if (
     isMarkdownEligiblePath(pathname) &&

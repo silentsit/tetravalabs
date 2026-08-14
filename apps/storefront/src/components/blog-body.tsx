@@ -40,6 +40,8 @@ function BlogImage({ value }: { value: BlogImageValue }) {
           src={src}
           alt={alt}
           fill
+          unoptimized
+          loading="eager"
           sizes="(max-width: 768px) 100vw, 768px"
           className="object-cover"
         />

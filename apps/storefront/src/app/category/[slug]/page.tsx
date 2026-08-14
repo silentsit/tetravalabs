@@ -17,6 +17,7 @@ import { getCategorySeoBlock } from "@/lib/sanity"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
 import { buildPageMetadata } from "@/lib/seo"
 import { sortProducts } from "@/lib/sort-products"
+import { PageJsonLd } from "@/components/page-json-ld"
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -87,6 +88,7 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <section className="page-container space-y-8 py-8">
+      <PageJsonLd pathname={`/category/${normalized}`} />
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

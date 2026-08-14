@@ -24,6 +24,7 @@ import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata, faqJsonLd } from "@/lib/seo"
 import { getProductHref } from "@/lib/compound-product"
+import { PageJsonLd } from "@/components/page-json-ld"
 
 const LiveVisitorCounter = dynamic(
   () => import("@/components/social-proof-widget").then((mod) => mod.LiveVisitorCounter),
@@ -65,6 +66,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <PageJsonLd pathname="/" />
       <section className="relative z-10 flex items-center overflow-x-clip overflow-y-visible bg-[#F8FAFC]">
         <div className="absolute inset-0 overflow-hidden">
           <div className="animate-mesh-1 absolute -left-20 -top-20 h-96 w-96 rounded-full bg-[#0D9488]/10 blur-3xl" />

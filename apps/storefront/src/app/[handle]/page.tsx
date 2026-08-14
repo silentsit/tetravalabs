@@ -15,6 +15,7 @@ import { shopNavLabel } from "@/lib/shop-filters"
 import { ProductCompoundView } from "@/components/product-compound-view"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { buildPageMetadata } from "@/lib/seo"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
@@ -22,9 +23,19 @@ import { getProductFaqs } from "@/lib/product-faqs"
 import { getProductResearchDetail } from "@/lib/product-research-detail"
 import { buildResearchOverview } from "@/lib/research-overview"
 import { buildOverviewImages } from "@/lib/product-overview-images"
+import { listProducts } from "@/lib/medusa"
 
 type Props = {
   params: Promise<{ handle: string }>
+}
+
+export const revalidate = 300
+
+/** Pre-render each canonical product URL while allowing ISR for catalog updates. */
+export async function generateStaticParams() {
+  const products = await listProducts()
+  const handles = new Set(products.map((product) => productPath(product.handle).slice(1)))
+  return [...handles].map((handle) => ({ handle }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -135,6 +146,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <article className="page-container space-y-10 py-8">
+      <PageJsonLd pathname={productPath(view.parentHandle)} />
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

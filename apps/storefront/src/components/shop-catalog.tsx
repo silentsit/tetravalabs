@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useMemo } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useMemo } from "react"
+import { useSearchParams } from "next/navigation"
 import { ProductCard } from "@/components/product-card"
 import { ProductFilters } from "@/components/product-filters"
 import { ProductSort } from "@/components/product-sort"
@@ -113,7 +113,6 @@ export function ShopCatalogFallback({ products }: { products: StoreProduct[] }) 
 }
 
 export function ShopCatalog({ products }: { products: StoreProduct[] }) {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const q = searchParams.get("q") || ""
   const category = searchParams.get("category") || ""
@@ -121,14 +120,6 @@ export function ShopCatalog({ products }: { products: StoreProduct[] }) {
   const priceMax = parseCents(searchParams.get("price_max"))
   const sortKey = parseProductSort(searchParams.get("sort") || "")
   const categoryPill = normalizeShopCategoryPill(category || undefined)
-
-  useEffect(() => {
-    if (category && categoryPill && category !== categoryPill) {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set("category", categoryPill)
-      router.replace(`/shop?${params.toString()}`)
-    }
-  }, [category, categoryPill, router, searchParams])
 
   const displayProducts = useMemo(() => {
     let next = category

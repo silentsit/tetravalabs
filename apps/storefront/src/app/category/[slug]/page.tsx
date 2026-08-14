@@ -24,7 +24,7 @@ type Props = {
 }
 
 export const revalidate = 300
-/** Legacy and unknown slugs 404 here; middleware 301s known aliases first. */
+/** Legacy and unknown slugs 404. Canonical category URLs are the generateStaticParams list. */
 export const dynamicParams = false
 
 export function generateStaticParams() {

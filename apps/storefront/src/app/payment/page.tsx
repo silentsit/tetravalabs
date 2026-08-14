@@ -18,7 +18,7 @@ import { buildPageMetadata } from "@/lib/seo"
 export const metadata: Metadata = buildPageMetadata({
   title: "How to pay — card & crypto checkout",
   description:
-    "Step-by-step payment guide for Tetrava Labs orders using credit card, Apple Pay, BTC, USDT, ETH, and other supported assets.",
+    "Step-by-step payment guide for Tetrava Labs orders using credit card, Apple Pay, USDT, ETH, SOL, and other supported assets.",
   path: "/payment"
 })
 
@@ -41,7 +41,7 @@ const steps = [
     num: "03",
     icon: Bitcoin,
     title: "Complete Payment",
-    desc: "Card payments use secure hosted checkout. Crypto orders show a wallet address or BTCPay invoice.",
+    desc: "Card payments use secure hosted checkout. Crypto orders show a Paymento wallet / checkout page.",
     color: "#D97706"
   },
   {
@@ -54,9 +54,9 @@ const steps = [
 ]
 
 const cryptoOptions = [
-  { name: "Bitcoin", ticker: "BTC", confirm: "~10 min", fee: "Low", icon: "B" },
+  { name: "USDT", ticker: "USDT", confirm: "~2 min", fee: "Medium", icon: "T" },
   { name: "Ethereum", ticker: "ETH", confirm: "~2 min", fee: "Medium", icon: "E" },
-  { name: "USDT", ticker: "USDT", confirm: "~2 min", fee: "Medium", icon: "T" }
+  { name: "Solana", ticker: "SOL", confirm: "~1 min", fee: "Low", icon: "S" }
 ]
 
 const paymentFaqs = [
@@ -68,12 +68,12 @@ const paymentFaqs = [
   {
     question: "Which cryptocurrencies are supported?",
     answer:
-      "BTC is routed through BTCPay Server. USDT, ETH, and other supported assets are routed through Paymento based on your checkout selection."
+      "USDT, ETH, SOL, and other Paymento-supported assets are available at checkout. Bitcoin (BTCPay) is currently disabled."
   },
   {
     question: "How long does confirmation take?",
     answer:
-      "Card payments usually confirm within a minute. BTC typically confirms within 10–60 minutes. USDT and ETH usually confirm within a few minutes."
+      "Card payments usually confirm within a minute. USDT, ETH, and SOL usually confirm within a few minutes."
   },
   {
     question: "Where do I get help if payment fails?",
@@ -95,7 +95,7 @@ export default function PaymentGuidePage() {
           </div>
           <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">How to Pay</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#475569]">
-            Pay by credit or debit card at checkout, or choose cryptocurrency. BTC, USDT, ETH, and other
+            Pay by credit or debit card at checkout, or choose cryptocurrency. USDT, ETH, SOL, and other
             supported assets are available depending on your selection.
           </p>
         </div>
@@ -139,7 +139,7 @@ export default function PaymentGuidePage() {
 
           <h2 className="mb-3 mt-12 text-center font-serif text-2xl text-[#0F172A]">Cryptocurrency</h2>
           <p className="mx-auto mb-10 max-w-xl text-center text-sm text-[#64748B]">
-            Prefer crypto? Pay with BTC, USDT, ETH, and other supported assets at checkout.
+            Prefer crypto? Pay with USDT, ETH, SOL, and other supported assets at checkout.
           </p>
           <div className="mx-auto max-w-xl space-y-3">
             {cryptoOptions.map((opt) => (

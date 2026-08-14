@@ -5,6 +5,7 @@ import {
   cryptoCheckoutMisconfigMessageForAsset,
   getAvailableCheckoutCryptoAssets,
   isAcceptedCryptoAsset,
+  isBtcpayCheckoutEnabled,
   resolveCryptoCheckoutProviderForAsset,
   type CryptoAsset
 } from "../../../../lib/crypto-provider"
@@ -32,9 +33,9 @@ function getReturnUrl() {
 }
 
 function normalizeAsset(value: string | undefined): CryptoAsset {
-  const asset = (value || "BTC").trim().toUpperCase()
+  const asset = (value || "USDT").trim().toUpperCase()
   if (isAcceptedCryptoAsset(asset)) return asset
-  return "BTC"
+  return "USDT"
 }
 
 async function saveIntent(
@@ -122,7 +123,7 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     })
   }
 
-  if (provider === "btcpay" && isBtcpayConfigured()) {
+  if (provider === "btcpay" && isBtcpayCheckoutEnabled() && isBtcpayConfigured()) {
     try {
       const invoice = await createBtcpayInvoice({
         orderId,

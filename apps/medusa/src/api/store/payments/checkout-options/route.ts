@@ -3,6 +3,7 @@ import { isBtcpayConfigured } from "../../../../lib/btcpay"
 import {
   CRYPTO_ASSET_LABELS,
   getAvailableCheckoutCryptoAssets,
+  isBtcpayCheckoutEnabled,
   resolveCryptoCheckoutProviderForAsset
 } from "../../../../lib/crypto-provider"
 import { isPeptidepayConfigured } from "../../../../lib/peptidepay"
@@ -30,7 +31,8 @@ export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
     },
     crypto: {
       available: assets.length > 0,
-      btcpay_configured: isBtcpayConfigured(),
+      btcpay_configured: isBtcpayCheckoutEnabled() && isBtcpayConfigured(),
+      btcpay_enabled: isBtcpayCheckoutEnabled(),
       paymento_configured: isPaymentoConfigured(),
       assets: assets.map((asset) => ({
         asset,

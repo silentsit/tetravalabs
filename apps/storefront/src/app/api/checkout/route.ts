@@ -309,7 +309,7 @@ export async function POST(req: Request) {
       : body.payment_method === "crypto"
         ? "crypto"
         : "card"
-    const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "BTC"
+    const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "USDT"
     const peptidepayProductName = buildPeptidepayProductName(items)
 
     let paymentUrl: string | null = null

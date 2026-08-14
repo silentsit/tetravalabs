@@ -30,7 +30,7 @@ export async function createCryptoPaymentIntent(input: {
         email: input.email,
         amount_usd: input.amountUsd,
         currency: input.currency || "USD",
-        crypto_asset: input.cryptoAsset || "BTC"
+        crypto_asset: input.cryptoAsset || "USDT"
       }),
       cache: "no-store"
     })

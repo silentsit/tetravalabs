@@ -4,9 +4,8 @@ export type CheckoutCryptoOption = {
   provider: string
 }
 
-/** Shown in UI when Medusa gateways are not yet reachable — matches production routing. */
+/** Shown in UI when Medusa gateways are not yet reachable — Paymento assets only (BTCPay disabled). */
 export const CHECKOUT_CRYPTO_CATALOG: CheckoutCryptoOption[] = [
-  { asset: "BTC", label: "Bitcoin (BTC)", provider: "btcpay" },
   { asset: "USDT", label: "USDT (ERC-20)", provider: "paymento" },
   { asset: "USDT_TRC20", label: "USDT (TRX)", provider: "paymento" },
   { asset: "USDC", label: "USD Coin (USDC)", provider: "paymento" },

@@ -33,9 +33,18 @@ export const CRYPTO_ASSET_LABELS: Record<CryptoAsset, string> = {
   PAXG: "PAX Gold (PAXG)"
 }
 
+/** Website kill switch — BTCPay is off unless explicitly re-enabled. */
+export function isBtcpayCheckoutEnabled() {
+  return process.env.BTCPAY_ENABLED === "true"
+}
+
 function forcedCryptoProviderOverride(): CryptoCheckoutProvider | undefined {
   const raw = process.env.CRYPTO_PROVIDER?.trim()
-  if (raw === "btcpay" || raw === "paymento") return raw
+  if (raw === "btcpay") {
+    // Ignore BTCPay force-override while the site kill switch is off.
+    return isBtcpayCheckoutEnabled() ? "btcpay" : undefined
+  }
+  if (raw === "paymento") return raw
   return undefined
 }
 
@@ -52,14 +61,14 @@ export function resolveCryptoCheckoutProviderForAsset(asset: CryptoAsset): Crypt
   const pref = forcedCryptoProviderOverride()
 
   if (pref === "btcpay") {
-    return isBtcpayConfigured() ? "btcpay" : null
+    return isBtcpayCheckoutEnabled() && isBtcpayConfigured() ? "btcpay" : null
   }
   if (pref === "paymento") {
     return isPaymentoConfigured() ? "paymento" : null
   }
 
   if (isBtcpayRoutedAsset(asset)) {
-    if (isBtcpayConfigured()) return "btcpay"
+    if (isBtcpayCheckoutEnabled() && isBtcpayConfigured()) return "btcpay"
     return null
   }
 
@@ -74,8 +83,12 @@ export function getAvailableCheckoutCryptoAssets(): CryptoAsset[] {
 export function cryptoCheckoutMisconfigMessageForAsset(asset: CryptoAsset): string {
   const pref = forcedCryptoProviderOverride()
 
-  if (pref === "btcpay" && !isBtcpayConfigured()) {
-    return "Bitcoin checkout requires BTCPay (BTCPAY_URL, BTCPAY_API_KEY, BTCPAY_STORE_ID, BTCPAY_WEBHOOK_SECRET)."
+  if (isBtcpayRoutedAsset(asset) && !isBtcpayCheckoutEnabled()) {
+    return "Bitcoin (BTCPay) checkout is currently disabled. Choose a Paymento-supported asset such as USDT, ETH, or SOL."
+  }
+
+  if (pref === "btcpay" && !(isBtcpayCheckoutEnabled() && isBtcpayConfigured())) {
+    return "Bitcoin checkout requires BTCPay (BTCPAY_ENABLED=true plus BTCPAY_URL, BTCPAY_API_KEY, BTCPAY_STORE_ID, BTCPAY_WEBHOOK_SECRET)."
   }
   if (pref === "paymento" && !isPaymentoConfigured()) {
     return "This asset requires Paymento (PAYMENTO_API_KEY and PAYMENTO_SECRET_KEY)."

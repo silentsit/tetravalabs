@@ -596,7 +596,7 @@ export function CheckoutForm() {
   const [cryptoLive, setCryptoLive] = useState(false)
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
-  const [selectedAsset, setSelectedAsset] = useState("BTC")
+  const [selectedAsset, setSelectedAsset] = useState("USDT")
 
   const shippingUsd = hasLabRestock ? 0 : resolveShippingUsd(items)
   const estimatedTotal = subtotal + shippingUsd
@@ -730,7 +730,9 @@ export function CheckoutForm() {
         setCryptoOptions(Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG)
 
         const options = Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG
-        const preferred = options.find((item: CheckoutCryptoOption) => item.asset === "BTC")
+        const preferred =
+          options.find((item: CheckoutCryptoOption) => item.asset === "USDT") ||
+          options.find((item: CheckoutCryptoOption) => item.asset === "USDT_TRC20")
         if (preferred) setSelectedAsset(preferred.asset)
         else if (options[0]?.asset) setSelectedAsset(options[0].asset)
 
@@ -910,7 +912,7 @@ export function CheckoutForm() {
     }
     if (paymentMethod === "crypto" && !cryptoLive) {
       setError(
-        "Cryptocurrency checkout is not available right now. Use card payment, or try again once BTCPay/Paymento is configured on the server."
+        "Cryptocurrency checkout is not available right now. Use card payment, or try again once Paymento is configured on the server."
       )
       return
     }
@@ -1206,7 +1208,7 @@ export function CheckoutForm() {
                   <span className="text-xs leading-relaxed text-[#64748B]">
                     {hasLabRestock
                       ? LAB_RESTOCK_COPY.cryptoBlocked
-                      : "Bitcoin via BTCPay · USDT, ETH, SOL and more via Paymento."}
+                      : "USDT, ETH, SOL, and other assets via Paymento."}
                   </span>
                 </span>
               </label>

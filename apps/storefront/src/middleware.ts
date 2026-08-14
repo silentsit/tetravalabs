@@ -57,6 +57,11 @@ function stripVariantQueryParams(request: NextRequest) {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // Trailing slashes previously 308'd to the no-slash URL. Serve 404 instead.
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return finalize(request, new NextResponse(null, { status: 404 }))
+  }
+
   const cleaned = stripVariantQueryParams(request)
   if (cleaned) return finalize(request, cleaned)
 

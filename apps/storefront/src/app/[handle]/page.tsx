@@ -1,14 +1,13 @@
-import { notFound, redirect } from "next/navigation"
+import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import {
+  canonicalProductSegment,
   compoundSeoProductName,
   getCompoundProductView,
   loadStrengthSideData,
   pickDefaultStrengthKey,
   productPath,
-  resolveCatalogHandle,
-  resolveCompoundRedirect,
-  resolvePrettyUrlRedirect
+  resolveCatalogHandle
 } from "@/lib/compound-product"
 import { categorySlugFromLabel } from "@/lib/categories"
 import { shopNavLabel } from "@/lib/shop-filters"
@@ -41,32 +40,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params
 
-  const prettyRedirect = resolvePrettyUrlRedirect(handle)
-  if (prettyRedirect) {
-    return buildPageMetadata({
-      title: "Redirecting",
-      path: prettyRedirect,
-      noIndex: true
-    })
-  }
-
-  const memberRedirect = resolveCompoundRedirect(handle)
-  if (memberRedirect) {
-    return buildPageMetadata({
-      title: "Redirecting",
-      path: memberRedirect,
-      noIndex: true
-    })
-  }
-
   const catalogHandle = resolveCatalogHandle(handle)
   const view = await getCompoundProductView(catalogHandle)
-  if (!view) {
-    return buildPageMetadata({
-      title: "Product Not Found",
-      path: productPath(handle),
-      noIndex: true
-    })
+  if (!view || handle !== canonicalProductSegment(view.parentHandle)) {
+    notFound()
   }
 
   const strengthKey = pickDefaultStrengthKey(view.strengths)
@@ -99,15 +76,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProductPage({ params }: Props) {
   const { handle } = await params
 
-  const prettyRedirect = resolvePrettyUrlRedirect(handle)
-  if (prettyRedirect) redirect(prettyRedirect)
-
-  const memberRedirect = resolveCompoundRedirect(handle)
-  if (memberRedirect) redirect(memberRedirect)
-
   const catalogHandle = resolveCatalogHandle(handle)
   const view = await getCompoundProductView(catalogHandle)
-  if (!view) notFound()
+  if (!view || handle !== canonicalProductSegment(view.parentHandle)) notFound()
 
   const { coasByStrength, reviewsByStrength } = await loadStrengthSideData(view.strengths)
 

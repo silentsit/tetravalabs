@@ -1,7 +1,6 @@
 /**
  * Live Research Hub slugs. Unknown `/blog/[slug]` URLs 404
- * (`dynamicParams = false` + `notFound()`). Do not 308 retired posts to `/blog`:
- * that is a non-equivalent redirect Google treats as "Page with redirect".
+ * (`dynamicParams = false` + `notFound()`).
  */
 export const KEPT_BLOG_SLUGS = [
   "retatrutide-benefits-beyond-weight-loss",

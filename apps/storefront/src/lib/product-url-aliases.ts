@@ -108,7 +108,7 @@ for (const [handle, urlSegment] of Object.entries(SHARED_HANDLE_PUBLIC_URL)) {
   PRODUCT_HANDLE_TO_URL[handle] = urlSegment
 }
 
-/** Retired pretty slugs → new public segment (301). */
+/** Retired pretty slugs. Requesting these URLs 404s; links use the new segment. */
 export const LEGACY_PRETTY_URL_REDIRECTS: Record<string, string> = {
   "bpc-157-capsules": "buy-bpc-157-capsules-online",
   "pinealon-capsules": "buy-pinealon-capsules-online"

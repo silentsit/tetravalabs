@@ -169,17 +169,15 @@ export function renderSitemapUrlSet(entries: SitemapUrlEntry[]) {
 
 function maxDate(dates: Array<Date | undefined>) {
   const valid = dates.filter(Boolean) as Date[]
-  if (!valid.length) return new Date()
+  if (!valid.length) return undefined
   return new Date(Math.max(...valid.map((date) => date.getTime())))
 }
 
 export async function getPageSitemapEntries(): Promise<SitemapUrlEntry[]> {
   const baseUrl = getSitemapBaseUrl()
-  const now = new Date()
 
   return STATIC_PAGE_ROUTES.map((route) => ({
     loc: `${baseUrl}${route.path}`,
-    lastModified: now,
     changeFrequency: route.changeFrequency,
     priority: route.priority
   }))
@@ -191,8 +189,12 @@ export async function getPostSitemapEntries(): Promise<SitemapUrlEntry[]> {
 
   return posts.map((post) => ({
     loc: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
-    changeFrequency: "monthly",
+    lastModified: post.updatedAt
+      ? new Date(post.updatedAt)
+      : post.publishedAt
+        ? new Date(post.publishedAt)
+        : undefined,
+    changeFrequency: "monthly" as const,
     priority: 0.6
   }))
 }
@@ -203,7 +205,6 @@ export async function getAllProductSitemapEntries(): Promise<SitemapUrlEntry[]> 
 
 function buildProductSitemapEntries(products: Awaited<ReturnType<typeof listAllProducts>>): SitemapUrlEntry[] {
   const baseUrl = getSitemapBaseUrl()
-  const now = new Date()
 
   const locs = new Set(
     products.map((product) => {
@@ -214,7 +215,6 @@ function buildProductSitemapEntries(products: Awaited<ReturnType<typeof listAllP
 
   return [...locs].map((loc) => ({
     loc,
-    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.8
   }))
@@ -238,7 +238,6 @@ function uniqueImageEntries(images: SitemapImageEntry[]) {
 /** Product PDP galleries + blog covers only — skip homepage/category decorative art. */
 export async function getImageSitemapEntries(): Promise<SitemapImageUrlEntry[]> {
   const baseUrl = getSitemapBaseUrl()
-  const now = new Date()
   const [products, posts] = await Promise.all([listAllProducts(), listBlogPosts()])
   const entries: SitemapImageUrlEntry[] = []
 
@@ -267,7 +266,6 @@ export async function getImageSitemapEntries(): Promise<SitemapImageUrlEntry[]> 
 
     entries.push({
       loc,
-      lastModified: now,
       images
     })
   }
@@ -284,7 +282,11 @@ export async function getImageSitemapEntries(): Promise<SitemapImageUrlEntry[]> 
 
     entries.push({
       loc: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+      lastModified: post.updatedAt
+        ? new Date(post.updatedAt)
+        : post.publishedAt
+          ? new Date(post.publishedAt)
+          : undefined,
       images
     })
   }
@@ -299,19 +301,16 @@ export async function getCategorySitemapEntries(): Promise<SitemapUrlEntry[]> {
 function buildCategorySitemapEntries(products: Awaited<ReturnType<typeof listAllProducts>>): SitemapUrlEntry[] {
   const baseUrl = getSitemapBaseUrl()
   const categories = groupProductsByCategory(products)
-  const now = new Date()
 
   return [
     {
       loc: `${baseUrl}/categories`,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.7
     },
     ...categories.map(
       (category): SitemapUrlEntry => ({
         loc: `${baseUrl}/category/${category.slug}`,
-        lastModified: now,
         changeFrequency: "weekly",
         priority: 0.7
       })
@@ -340,7 +339,6 @@ export async function getSitemapIds(): Promise<Array<{ id: string }>> {
 
 export async function getSitemapIndexEntries() {
   const baseUrl = getSitemapBaseUrl()
-  const now = new Date()
   const [pages, posts, catalog] = await Promise.all([
     getPageSitemapEntries(),
     getPostSitemapEntries(),
@@ -350,16 +348,19 @@ export async function getSitemapIndexEntries() {
   const products = buildProductSitemapEntries(catalog)
   const categories = buildCategorySitemapEntries(catalog)
   const ids = buildSitemapIds(products.length)
+  const pageLastModified = maxDate(pages.map((item) => item.lastModified))
+  const postLastModified = maxDate(posts.map((item) => item.lastModified))
   const productLastModified = maxDate(products.map((entry) => entry.lastModified))
-  const imageLastModified = maxDate([now, ...posts.map((item) => item.lastModified)])
+  const categoryLastModified = maxDate(categories.map((item) => item.lastModified))
+  const imageLastModified = postLastModified
 
   return ids.map((entry) => {
-    let lastModified = now
+    let lastModified: Date | undefined
 
-    if (entry.id === "pages") lastModified = maxDate(pages.map((item) => item.lastModified))
-    if (entry.id === "posts") lastModified = maxDate(posts.map((item) => item.lastModified))
+    if (entry.id === "pages") lastModified = pageLastModified
+    if (entry.id === "posts") lastModified = postLastModified
     if (entry.id === "images") lastModified = imageLastModified
-    if (entry.id === "categories") lastModified = maxDate(categories.map((item) => item.lastModified))
+    if (entry.id === "categories") lastModified = categoryLastModified
     if (entry.id.startsWith("products-")) lastModified = productLastModified
 
     return {

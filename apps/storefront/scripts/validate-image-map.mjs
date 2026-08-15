@@ -10,18 +10,20 @@ const map = JSON.parse(
 
 const files = new Set(fs.readdirSync(v2Dir))
 const errors = []
+let webpCount = 0
 let pngCount = 0
 let svgCount = 0
 
 for (const [handle, url] of Object.entries(map)) {
   const base = path.basename(url)
   if (!files.has(base)) errors.push(`missing file: ${handle} -> ${base}`)
+  if (url.endsWith(".webp")) webpCount++
   if (url.endsWith(".png")) pngCount++
   if (url.endsWith(".svg")) svgCount++
 }
 
 console.log(`handles: ${Object.keys(map).length}`)
-console.log(`png: ${pngCount}, svg: ${svgCount}`)
+console.log(`webp: ${webpCount}, png: ${pngCount}, svg: ${svgCount}`)
 console.log(`errors: ${errors.length}`)
 if (errors.length) console.log(errors.join("\n"))
 else console.log("ok")

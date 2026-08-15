@@ -1,8 +1,8 @@
 /**
- * Maps product handles → v2 PNG assets in apps/storefront/public/products/v2/.
+ * Maps product handles → v2 WebP assets in apps/storefront/public/products/v2/.
  * Source archive: v2-photos-white/ at repo root (npm run sync:v2-images).
  * Regenerate mappings: npm run map:images
- * Homepage featured row uses the same PNG map for curated heroes.
+ * Homepage featured row uses the same WebP map for curated heroes.
  * Gallery front+side: tools/label-pipeline/scripts/apply-shots-to-storefront.py
  */
 import compoundFamilies from "@/lib/compound-families.generated.json"
@@ -30,8 +30,8 @@ type FamilyMember = { legacy_slug: string; strength_key: string }
 
 /** Non-compound / single-SKU base handles → default v2 image. */
 const LEGACY_BASE_IMAGES: Record<string, string> = {
-  "bacteriostatic-water": `${V2_BASE}/bac-water-10ml.png`,
-  "nad": `${V2_BASE}/nad-100mg.png`
+  "bacteriostatic-water": `${V2_BASE}/bac-water-10ml.webp`,
+  "nad": `${V2_BASE}/nad-100mg.webp`
 }
 
 function strengthSortKey(strengthKey: string): number {
@@ -68,13 +68,13 @@ function compoundFamilyImage(handle: string): string | null {
 
 function autoMatchImage(handle: string): string | null {
   const patterns: [RegExp, string][] = [
-    [/aod.?9604.*5/i, `${V2_BASE}/aod9604-5mg.png`],
-    [/aod.?9604.*10/i, `${V2_BASE}/aod9604-10mg.png`],
-    [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.png`],
-    [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.png`],
-    [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.png`],
-    [/ghrp-2.*5/i, `${V2_BASE}/ghrp2-5mg.png`],
-    [/ghrp-6.*5/i, `${V2_BASE}/ghrp6-5mg.png`]
+    [/aod.?9604.*5/i, `${V2_BASE}/aod9604-5mg.webp`],
+    [/aod.?9604.*10/i, `${V2_BASE}/aod9604-10mg.webp`],
+    [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.webp`],
+    [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.webp`],
+    [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.webp`],
+    [/ghrp-2.*5/i, `${V2_BASE}/ghrp2-5mg.webp`],
+    [/ghrp-6.*5/i, `${V2_BASE}/ghrp6-5mg.webp`]
   ]
 
   for (const [pattern, image] of patterns) {
@@ -84,7 +84,7 @@ function autoMatchImage(handle: string): string | null {
   return null
 }
 
-/** Returns mapped v2 asset (PNG preferred via generated map). */
+/** Returns mapped v2 asset (WebP preferred via generated map). */
 export function getV2ProductImage(handle: string): string | null {
   if (productImageMap[handle]) return productImageMap[handle]
   const fromFamily = compoundFamilyImage(handle)
@@ -117,7 +117,7 @@ export function getProductGalleryImages(handle: string): string[] {
   return [getProductImage(handle)]
 }
 
-/** Featured row — same v2-photos PNG as shop when mapped. */
+/** Featured row — same v2-photos WebP as shop when mapped. */
 export function getFeaturedProductImage(handle: string): string {
   return getProductImage(handle)
 }

@@ -6,6 +6,9 @@
  * Dest:
  *   apps/storefront/public/products/v2/
  *
+ * After copying, convert to WebP for the live storefront:
+ *   node apps/storefront/scripts/convert-v2-png-to-webp.mjs
+ *
  * Usage (from repo root):
  *   npm run sync:v2-images
  *   npm run sync:v2-images -- --dry-run

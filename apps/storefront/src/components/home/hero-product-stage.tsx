@@ -6,7 +6,7 @@ import { localImageProps } from "@/lib/local-image"
 const HERO_PRODUCTS = [
   {
     slot: "left" as const,
-    src: "/products/v2/hero/retatrutide-20mg.png",
+    src: "/products/v2/hero/retatrutide-20mg.webp",
     href: getProductHref("retatrutide-20mg"),
     label: "Retatrutide 20mg",
     width: 280,
@@ -15,7 +15,7 @@ const HERO_PRODUCTS = [
   },
   {
     slot: "center" as const,
-    src: "/products/v2/hero/selank-nasal-spray-10mg.png",
+    src: "/products/v2/hero/selank-nasal-spray-10mg.webp",
     href: getProductHref("selank-nasal-spray-10mg"),
     label: "Selank Nasal Spray 10mg",
     width: 220,

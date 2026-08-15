@@ -44,53 +44,53 @@ const PUBLISHABLE_KEY =
   process.env.MEDUSA_PUBLISHABLE_KEY ||
   ""
 
-/** @deprecated PNG-first is default for all handles with v2-photos assets. */
+/** @deprecated WebP-first is default for all handles with v2-photos assets. */
 const PREFER_PNG_HANDLES = new Set([])
 
 const AUTO_MATCH_PATTERNS = [
-  [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.png`],
-  [/bpc.?157.*10mg/i, `${V2_BASE}/bpc-157-10mg.png`],
-  [/bpc.?157.*capsule/i, `${V2_BASE}/bpc157-capsules.png`],
-  [/tb500.*5mg/i, `${V2_BASE}/tb500-5mg.png`],
-  [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.png`],
-  [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.png`],
-  [/ghk.?cu.*100/i, `${V2_BASE}/ghk-cu-100mg.png`],
-  [/cjc.*without.*dac.*5/i, `${V2_BASE}/cjc1295-no-dac-5mg.png`],
-  [/cjc.*without.*dac.*10/i, `${V2_BASE}/cjc1295-no-dac-10mg.png`],
-  [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc1295-dac-5mg.png`],
-  [/cjc.*with.*dac.*10/i, `${V2_BASE}/cjc1295-dac-10mg.png`],
-  [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.png`],
-  [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.png`],
-  [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.png`],
-  [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.png`],
-  [/hgh.*10.?iu/i, `${V2_BASE}/hgh-10iu.png`],
-  [/hgh.*12.?iu/i, `${V2_BASE}/hgh-191aa-12iu.png`],
-  [/hgh.*15.?iu/i, `${V2_BASE}/hgh-191aa-15iu.png`],
-  [/hgh.*24.?iu/i, `${V2_BASE}/hgh-191aa-24iu.png`],
-  [/hgh.*36.?iu/i, `${V2_BASE}/hgh-191aa-36iu.png`],
-  [/nad.*100/i, `${V2_BASE}/nad-100mg.png`],
-  [/nad.*500/i, `${V2_BASE}/nad-500mg.png`],
-  [/nad.*1000/i, `${V2_BASE}/nad-1000mg.png`],
-  [/bacteriostatic.*10/i, `${V2_BASE}/bac-water-10ml.png`],
-  [/bacteriostatic.*3/i, `${V2_BASE}/bacteriostatic-water-3ml.png`],
-  [/acetic.*acid/i, `${V2_BASE}/acetic-acid-3ml.png`],
-  [/benzyl.*alcohol.*3/i, `${V2_BASE}/benzyl-alcohol-3ml.png`],
-  [/benzyl.*alcohol.*10/i, `${V2_BASE}/benzyl-alcohol-10ml.png`],
-  [/5-amino-1mq.*5/i, `${V2_BASE}/5-amino-1mq-5mg.png`],
-  [/melanotan-1.*10/i, `${V2_BASE}/melanotan-i-10mg.png`],
-  [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.png`],
-  [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.png`],
-  [/glow.*70/i, `${V2_BASE}/glow-enhanced-70mg.png`],
-  [/bpc.*tb500.*20/i, `${V2_BASE}/bpc157-tb500-blend-20mg.png`],
-  [/bpc.*tb500.*10/i, `${V2_BASE}/bpc-tb500-blend-10mg.png`],
-  [/copper.*80|cu-50.*80/i, `${V2_BASE}/copper-repair-80mg.png`],
-  [/cagrilintide.*semaglutide/i, `${V2_BASE}/cagrilintide-semaglutide-5mg.png`],
-  [/kisspeptin.*10.*10/i, `${V2_BASE}/kisspeptin-10-10mg.png`],
-  [/kisspeptin.*5/i, `${V2_BASE}/kisspeptin-10-5mg.png`],
-  [/aod.?9604.*5/i, `${V2_BASE}/aod9604-5mg.png`],
-  [/aod.?9604.*10/i, `${V2_BASE}/aod9604-10mg.png`],
-  [/ghrp-2.*5/i, `${V2_BASE}/ghrp2-5mg.png`],
-  [/ghrp-6.*5/i, `${V2_BASE}/ghrp6-5mg.png`]
+  [/bpc.?157.*5mg/i, `${V2_BASE}/bpc-157-5mg.webp`],
+  [/bpc.?157.*10mg/i, `${V2_BASE}/bpc-157-10mg.webp`],
+  [/bpc.?157.*capsule/i, `${V2_BASE}/bpc157-capsules.webp`],
+  [/tb500.*5mg/i, `${V2_BASE}/tb500-5mg.webp`],
+  [/tb500.*10mg/i, `${V2_BASE}/tb500-10mg.webp`],
+  [/ghk.?cu.*50/i, `${V2_BASE}/ghk-cu-50mg.webp`],
+  [/ghk.?cu.*100/i, `${V2_BASE}/ghk-cu-100mg.webp`],
+  [/cjc.*without.*dac.*5/i, `${V2_BASE}/cjc1295-no-dac-5mg.webp`],
+  [/cjc.*without.*dac.*10/i, `${V2_BASE}/cjc1295-no-dac-10mg.webp`],
+  [/cjc.*with.*dac.*5/i, `${V2_BASE}/cjc1295-dac-5mg.webp`],
+  [/cjc.*with.*dac.*10/i, `${V2_BASE}/cjc1295-dac-10mg.webp`],
+  [/ipamorelin.*5mg/i, `${V2_BASE}/ipamorelin-5mg.webp`],
+  [/semaglutide.*5mg/i, `${V2_BASE}/semaglutide-5mg.webp`],
+  [/tirzepatide.*10mg/i, `${V2_BASE}/tirzepatide-10mg.webp`],
+  [/retatrutide.*5mg/i, `${V2_BASE}/retatrutide-5mg.webp`],
+  [/hgh.*10.?iu/i, `${V2_BASE}/hgh-10iu.webp`],
+  [/hgh.*12.?iu/i, `${V2_BASE}/hgh-191aa-12iu.webp`],
+  [/hgh.*15.?iu/i, `${V2_BASE}/hgh-191aa-15iu.webp`],
+  [/hgh.*24.?iu/i, `${V2_BASE}/hgh-191aa-24iu.webp`],
+  [/hgh.*36.?iu/i, `${V2_BASE}/hgh-191aa-36iu.webp`],
+  [/nad.*100/i, `${V2_BASE}/nad-100mg.webp`],
+  [/nad.*500/i, `${V2_BASE}/nad-500mg.webp`],
+  [/nad.*1000/i, `${V2_BASE}/nad-1000mg.webp`],
+  [/bacteriostatic.*10/i, `${V2_BASE}/bac-water-10ml.webp`],
+  [/bacteriostatic.*3/i, `${V2_BASE}/bacteriostatic-water-3ml.webp`],
+  [/acetic.*acid/i, `${V2_BASE}/acetic-acid-3ml.webp`],
+  [/benzyl.*alcohol.*3/i, `${V2_BASE}/benzyl-alcohol-3ml.webp`],
+  [/benzyl.*alcohol.*10/i, `${V2_BASE}/benzyl-alcohol-10ml.webp`],
+  [/5-amino-1mq.*5/i, `${V2_BASE}/5-amino-1mq-5mg.webp`],
+  [/melanotan-1.*10/i, `${V2_BASE}/melanotan-i-10mg.webp`],
+  [/glow.*30/i, `${V2_BASE}/glow-blend-30mg.webp`],
+  [/glow.*85/i, `${V2_BASE}/glow-blend-85mg.webp`],
+  [/glow.*70/i, `${V2_BASE}/glow-enhanced-70mg.webp`],
+  [/bpc.*tb500.*20/i, `${V2_BASE}/bpc157-tb500-blend-20mg.webp`],
+  [/bpc.*tb500.*10/i, `${V2_BASE}/bpc-tb500-blend-10mg.webp`],
+  [/copper.*80|cu-50.*80/i, `${V2_BASE}/copper-repair-80mg.webp`],
+  [/cagrilintide.*semaglutide/i, `${V2_BASE}/cagrilintide-semaglutide-5mg.webp`],
+  [/kisspeptin.*10.*10/i, `${V2_BASE}/kisspeptin-10-10mg.webp`],
+  [/kisspeptin.*5/i, `${V2_BASE}/kisspeptin-10-5mg.webp`],
+  [/aod.?9604.*5/i, `${V2_BASE}/aod9604-5mg.webp`],
+  [/aod.?9604.*10/i, `${V2_BASE}/aod9604-10mg.webp`],
+  [/ghrp-2.*5/i, `${V2_BASE}/ghrp2-5mg.webp`],
+  [/ghrp-6.*5/i, `${V2_BASE}/ghrp6-5mg.webp`]
 ]
 
 async function loadJson(filePath, fallback) {
@@ -139,7 +139,7 @@ async function fetchMedusaProducts() {
 function buildFileIndex(files) {
   const byStem = new Map()
   for (const file of files) {
-    const stem = file.replace(/\.(svg|png)$/i, "")
+    const stem = file.replace(/\.(svg|png|webp)$/i, "")
     const list = byStem.get(stem) || []
     list.push(file)
     byStem.set(stem, list)
@@ -147,10 +147,13 @@ function buildFileIndex(files) {
   return byStem
 }
 
-/** Prefer v2-photos PNG when available; SVG fallback for the rest. */
+/** Prefer pre-baked WebP, then PNG, then SVG. */
 function pickFile(stem, byStem) {
   const matches = byStem.get(stem)
   if (!matches?.length) return null
+
+  const webp = matches.find((file) => file.endsWith(".webp"))
+  if (webp) return webp
 
   const png = matches.find((file) => file.endsWith(".png"))
   if (png) return png
@@ -240,7 +243,7 @@ async function run() {
     loadJson(catalogHandlesPath, null)
   ])
 
-  const imageFiles = files.filter((file) => /\.(svg|png)$/i.test(file)).sort()
+  const imageFiles = files.filter((file) => /\.(svg|png|webp)$/i.test(file)).sort()
   const availableSet = new Set(imageFiles)
   const byStem = buildFileIndex(imageFiles)
 

@@ -13,7 +13,9 @@ import { createClient } from "@sanity/client"
 
 const KEPT_BLOG_SLUGS = [
   "retatrutide-benefits-beyond-weight-loss",
-  "bpc-157-vs-tb-500"
+  "bpc-157-vs-tb-500",
+  "ipamorelin-vs-sermorelin",
+  "tesamorelin-vs-sermorelin"
 ]
 
 const __filename = fileURLToPath(import.meta.url)

@@ -170,6 +170,48 @@ export const researchArticle = defineType({
       title: "Published at",
       type: "datetime",
       initialValue: () => new Date().toISOString()
+    }),
+    defineField({
+      name: "video",
+      title: "Source video (YouTube)",
+      type: "object",
+      description: "Optional embedded source video. uploadDate is required for Google Video rich results.",
+      fields: [
+        defineField({
+          name: "youtubeId",
+          title: "YouTube video ID",
+          type: "string",
+          validation: (rule) => rule.required()
+        }),
+        defineField({
+          name: "title",
+          title: "Video title",
+          type: "string"
+        }),
+        defineField({
+          name: "description",
+          title: "Video description",
+          type: "text",
+          rows: 3
+        }),
+        defineField({
+          name: "presenter",
+          title: "Presenter",
+          type: "string"
+        }),
+        defineField({
+          name: "uploadDate",
+          title: "Upload date",
+          type: "datetime",
+          description: "Original YouTube upload date (ISO). Required for VideoObject rich results.",
+          validation: (rule) => rule.required()
+        }),
+        defineField({
+          name: "thumbnail",
+          title: "Thumbnail URL override",
+          type: "url"
+        })
+      ]
     })
   ],
   preview: {

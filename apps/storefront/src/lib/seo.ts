@@ -509,23 +509,30 @@ export function videoObjectJsonLd(input: {
 }) {
   const embedUrl = `https://www.youtube-nocookie.com/embed/${input.youtubeId}`
   const thumbnailUrl = input.thumbnail || `https://i.ytimg.com/vi/${input.youtubeId}/maxresdefault.jpg`
+  const uploadDate = resolveVideoUploadDate(input.uploadDate)
 
-  const graph: Record<string, unknown> = {
+  return {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name: input.name,
     description: input.description,
     thumbnailUrl,
+    uploadDate,
     embedUrl,
     contentUrl: `https://www.youtube.com/watch?v=${input.youtubeId}`,
     isPartOf: pageUrl(input.path)
   }
+}
 
-  if (input.uploadDate) {
-    graph.uploadDate = input.uploadDate
+/** Google requires VideoObject.uploadDate — normalize or fall back to a stable ISO date. */
+export function resolveVideoUploadDate(...candidates: Array<string | undefined | null>) {
+  for (const value of candidates) {
+    const trimmed = value?.trim()
+    if (!trimmed) continue
+    const parsed = new Date(trimmed)
+    if (!Number.isNaN(parsed.getTime())) return parsed.toISOString()
   }
-
-  return graph
+  return "2026-01-01T00:00:00.000Z"
 }
 
 /** Article graph for curated product research PDPs (author + publisher for SEO checkers). */

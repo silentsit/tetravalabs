@@ -244,7 +244,8 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
         description: post.video.description || description,
         youtubeId: post.video.youtubeId,
         path,
-        uploadDate: post.video.uploadDate || post.publishedAt,
+        uploadDate:
+          post.video.uploadDate || post.publishedAt || post.updatedAt || undefined,
         thumbnail: post.video.thumbnail
       })
     )

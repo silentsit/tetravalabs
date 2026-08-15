@@ -186,6 +186,31 @@ function resolveBlogBody(primary?: BlogBody, fallback?: BlogBody): BlogBody | un
   return primary ?? fallback
 }
 
+/** Prefer CMS video when present; always backfill uploadDate for Google VideoObject. */
+function resolveBlogVideo(
+  cmsVideo: BlogPost["video"] | undefined,
+  fallbackVideo: BlogPost["video"] | undefined,
+  publishedAt?: string
+): BlogPost["video"] | undefined {
+  const primary = cmsVideo?.youtubeId ? cmsVideo : undefined
+  const fallback = fallbackVideo?.youtubeId ? fallbackVideo : undefined
+  const base = primary || fallback
+  if (!base?.youtubeId) return undefined
+
+  const uploadDate =
+    primary?.uploadDate?.trim() ||
+    fallback?.uploadDate?.trim() ||
+    publishedAt?.trim() ||
+    undefined
+
+  return {
+    ...(fallback || {}),
+    ...base,
+    youtubeId: base.youtubeId,
+    ...(uploadDate ? { uploadDate } : {})
+  }
+}
+
 /** Prefer repo-hosted cover art over Sanity CDN URLs for stable blog hero delivery. */
 function resolveBlogImage(cmsImage?: string | null, fallbackImage?: string | null): string | undefined {
   const fallback = fallbackImage?.trim()
@@ -207,7 +232,7 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
       body: resolveBlogBody(post.body, fallback?.body),
       image: resolveBlogImage(post.image, fallback?.image),
       references: post.references?.length ? post.references : fallback?.references,
-      video: post.video?.youtubeId ? post.video : fallback?.video,
+      video: resolveBlogVideo(post.video, fallback?.video, post.publishedAt || fallback?.publishedAt),
       seoTitle: post.seoTitle || fallback?.seoTitle,
       seoDescription: post.seoDescription || fallback?.seoDescription,
       keywords: post.keywords?.length ? post.keywords : fallback?.keywords,
@@ -251,7 +276,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     body: resolveBlogBody(post.body, fallback?.body),
     image: resolveBlogImage(post.image, fallback?.image),
     references: post.references?.length ? post.references : fallback?.references,
-    video: post.video?.youtubeId ? post.video : fallback?.video,
+    video: resolveBlogVideo(post.video, fallback?.video, post.publishedAt || fallback?.publishedAt),
     seoTitle: post.seoTitle || fallback?.seoTitle,
     seoDescription: post.seoDescription || fallback?.seoDescription,
     keywords: post.keywords?.length ? post.keywords : fallback?.keywords,

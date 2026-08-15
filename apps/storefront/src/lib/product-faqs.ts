@@ -14,52 +14,67 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "What is BPC-157 used for in laboratory research?",
       answer:
-        "BPC-157 is a synthetic gastric pentadecapeptide studied in tissue repair, angiogenesis, and musculoskeletal research models. Tetrava Labs supplies it as a Research Use Only (RUO) reagent with lot-linked documentation — not for human or veterinary use.",
+        "BPC-157 is a synthetic gastric pentadecapeptide studied in tissue repair, angiogenesis, and musculoskeletal research models. Tetrava Labs supplies it as a Research Use Only (RUO) reagent with lot-linked documentation. It's not for human or veterinary use.",
     },
     {
       question: "Where can you buy BPC-157 / buy BPC-157 peptide online?",
       answer:
-        "You can buy BPC-157 peptide online from Tetrava Labs. BPC-157 peptides for sale on this page ship to qualified researchers with lot-linked COA documentation and cold-chain-aware fulfillment. When comparing suppliers, the best place to buy BPC-157 is one that publishes third-party HPLC-MS purity for the exact batch you receive — not only a generic catalog claim.",
+        "You can buy BPC-157 peptide online from Tetrava Labs. The BPC-157 peptides for sale on this page ship to qualified researchers with lot-linked COA documentation and cold-chain-aware fulfillment. When you're deciding where to buy BPC-157 peptide, the best place to buy BPC-157 publishes third-party HPLC-MS purity for the exact batch you receive, not just a generic catalog claim.",
     },
     {
       question: "Where can I get BPC-157 near me?",
       answer:
-        'RUO research peptides like BPC-157 are not stocked at local pharmacies or walk-in clinics, so "BPC-157 near me" searches usually will not find a retail counter. Tetrava Labs ships BPC-157 peptides for sale directly to qualified laboratories nationwide — order online on this page for documented research supply rather than a local store pickup.',
+        'RUO research peptides like BPC-157 aren\'t stocked at local pharmacies or walk-in clinics, so a "BPC-157 near me" search usually won\'t turn up a retail counter. Tetrava Labs ships BPC-157 peptides for sale directly to qualified laboratories nationwide. Order online on this page for documented research supply instead of a local store pickup.',
     },
     {
       question: "What purity and COA documentation come with BPC-157?",
       answer:
-        "Each lot is verified by independent third-party HPLC-MS analysis. The purity percentage shown on this page is confirmed on the Certificate of Analysis when published for that batch. Always match the COA batch number to the vial before starting comparative work.",
+        "Each lot gets verified by independent third-party HPLC-MS analysis. The purity percentage shown on this page is confirmed on the Certificate of Analysis when one is published for that batch. Match the COA batch number to the vial before you start comparative work.",
     },
     {
       question: "Does oral BPC-157 work?",
       answer:
-        "In published research, most angiogenesis, tendon-repair, and myotendinous-junction findings used intraperitoneal or local injection routes in animal models — that injectable dataset is larger than the oral one. Oral BPC-157 has been evaluated in a subset of gastrointestinal-protection models, but there is no validated human oral-bioavailability data, and results should not be extrapolated as clinical proof. This is laboratory research context only — not human-use guidance.",
+        "In published research, most angiogenesis, tendon-repair, and myotendinous-junction findings used intraperitoneal or local injection routes in animal models. That injectable dataset is bigger than the oral one. Oral BPC-157 has been evaluated in a subset of gastrointestinal-protection models, but there's no validated human oral-bioavailability data, and results shouldn't be read as clinical proof. This is laboratory research context only, not human-use guidance.",
     },
     {
       question: "Can BPC-157 be taken orally?",
       answer:
-        "BPC-157 is gastric-juice-derived and often described as relatively acid- and enzyme-stable in preclinical GI literature, so some animal studies do use oral administration. Laboratories asking whether BPC-157 can be taken orally should treat the oral route as its own experimental variable (stability, vehicle, and pharmacokinetics), not a drop-in substitute for injectable protocols. Tetrava Labs supplies RUO research material only — not for human or veterinary consumption.",
+        "BPC-157 is gastric-juice-derived and often described as relatively acid- and enzyme-stable in preclinical GI literature, so some animal studies do use oral administration. Labs asking whether BPC-157 can be taken orally should treat the oral route as its own experimental variable (stability, vehicle, pharmacokinetics), not a drop-in substitute for injectable protocols. Tetrava Labs supplies RUO research material only. It's not for human or veterinary consumption.",
+    },
+    {
+      question: "How does BPC-157 compare to TB-500?",
+      answer:
+        "BPC-157 is one defined 15-amino-acid sequence. Material sold as TB-500 is different: mass-spectrometry analysis identified it as a short fragment of thymosin beta-4 (Ac-LKKTETQ, about 888 daltons), not the full 4,963-dalton protein the name suggests. Both compounds are Research Use Only, and both sit on the FDA's 2023 Category 2 significant-safety-risk list. See the BPC-157 vs TB-500 comparison in our research library for the full breakdown.",
+    },
+    {
+      question: "What is the difference between BPC-157 oral and injection routes?",
+      answer:
+        "The two routes serve different research purposes. Oral or intragastric dosing fits BPC-157's original gastrointestinal research context, since it reaches the luminal mucosa directly. Injection (IP, SC, or IM) is the default in receptor- and growth-factor-signaling studies, because it bypasses the GI tract and delivers a known, controlled dose. Tetrava Labs supplies BPC-157 as an injectable vial and as oral capsules, so the route can match your protocol.",
     },
     {
       question: "How should lyophilized BPC-157 be reconstituted in the lab?",
       answer:
-        "Reconstitute under sterile technique with a protocol-appropriate diluent (commonly bacteriostatic water or another vehicle specified in your SOP). Avoid vigorous foaming, record diluent lot and final concentration in your ELN, and follow institutional chemical-handling rules. This guidance is for laboratory preparation only — not dosing advice.",
+        "Reconstitute under sterile technique with a protocol-appropriate diluent, commonly bacteriostatic water or another vehicle your SOP specifies. Avoid vigorous foaming, record the diluent lot and final concentration in your ELN, and follow your institution's chemical-handling rules. This is laboratory preparation guidance only, not dosing advice.",
     },
     {
       question: "How should I store BPC-157 before and after reconstitution?",
       answer:
-        "Store lyophilized powder at -20°C for long-term stability. Once reconstituted, store at 4°C, minimize freeze–thaw cycles, and use within the window defined by your laboratory protocol.",
+        "Store the lyophilized powder at -20°C for long-term stability. Once you reconstitute it, store at 4°C, minimize freeze-thaw cycles, and use it within the window your laboratory protocol defines.",
     },
     {
       question: "How is BPC-157 shipped?",
       answer:
-        "Lyophilized BPC-157 ships in temperature-controlled packaging with cold packs where required. Packages are discreet. Tracking is emailed when the carrier label is generated — see the Shipping page for regional delivery windows.",
+        "Lyophilized BPC-157 ships in temperature-controlled packaging, with cold packs where required. Packages are discreet. Tracking gets emailed once the carrier label is generated. See the Shipping page for regional delivery windows.",
     },
     {
       question: "Is BPC-157 Research Use Only?",
       answer:
-        "Yes. All Tetrava Labs BPC-157 vials are designated Research Use Only. They are not approved for human consumption, diagnostic use, or therapeutic applications. Buyers must be qualified research professionals.",
+        "Yes. Every Tetrava Labs BPC-157 vial is designated Research Use Only. It isn't approved for human consumption, diagnostic use, or therapeutic use. Buyers need to be qualified research professionals.",
+    },
+    {
+      question: "Does Tetrava Labs sell other research peptides besides BPC-157?",
+      answer:
+        "Yes. The Tetrava Labs catalog includes TB-500 for tissue-repair research and Sermorelin for growth-hormone-secretagogue research, alongside BPC-157. Every product ships with its own lot-linked COA, so you can verify identity and purity batch by batch.",
     },
   ],
   semaglutide: [

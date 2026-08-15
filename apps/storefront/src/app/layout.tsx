@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Script from "next/script"
 import { JetBrains_Mono, Jost, Lora } from "next/font/google"
 import "./globals.css"
@@ -7,6 +6,7 @@ import "@/lib/json-ld-registry"
 import { AnnouncementBar } from "@/components/announcement-bar"
 import { CartDrawer } from "@/components/cart-drawer"
 import { CartProvider } from "@/components/cart-provider"
+import { DeferredChrome } from "@/components/deferred-chrome"
 import { JsonLd } from "@/components/json-ld"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { SiteFooter } from "@/components/site-footer"
@@ -18,15 +18,6 @@ import {
   siteConfig,
   websiteJsonLd
 } from "@/lib/seo"
-
-const SocialProofToast = dynamic(
-  () => import("@/components/social-proof-widget").then((mod) => mod.SocialProofToast),
-  { ssr: false }
-)
-const AiChatWidget = dynamic(
-  () => import("@/components/ai-chat-widget").then((mod) => mod.AiChatWidget),
-  { ssr: false }
-)
 
 const jost = Jost({
   subsets: ["latin"],
@@ -124,8 +115,7 @@ export default async function RootLayout({
           <main>{children}</main>
           <SiteFooter />
           <CartDrawer />
-          <SocialProofToast />
-          <AiChatWidget />
+          <DeferredChrome />
           <ScrollToTop />
         </CartProvider>
         {plausibleDomain ? (

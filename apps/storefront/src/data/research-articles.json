@@ -1235,12 +1235,30 @@
         "_type": "block",
         "_key": "blk001",
         "style": "normal",
-        "markDefs": [],
+        "markDefs": [
+          {
+            "_key": "lnktesa1",
+            "_type": "link",
+            "href": "/blog/tesamorelin-vs-sermorelin"
+          }
+        ],
         "children": [
           {
             "_type": "span",
             "_key": "span002",
-            "text": "Beyond the pediatric approval trials, sermorelin has a string of published adult studies most comparison articles skip. Corpas and colleagues showed twice-daily GHRH(1-29) reversed age-related declines in GH and IGF-1 in older men. Vittone and colleagues gave 11 healthy men aged 64 to 76 nightly sermorelin for six weeks and found increased nocturnal GH release and improvement on two of six muscle-strength tests, though body composition and IGF-1 did not change at that dosing frequency. Baker and colleagues ran a 2012 randomized, placebo-controlled trial in 152 older adults, including some with mild cognitive impairment, and found GHRH improved delayed verbal memory. None of these trials used the branded Geref product to sell an anti-aging protocol. They were independently funded research into the GHRH axis and aging, run by separate academic teams over two decades, not by a company marketing a peptide.",
+            "text": "Beyond the pediatric approval trials, sermorelin has a string of published adult studies most comparison articles skip. Corpas and colleagues showed twice-daily GHRH(1-29) reversed age-related declines in GH and IGF-1 in older men. Vittone and colleagues gave 11 healthy men aged 64 to 76 nightly sermorelin for six weeks and found increased nocturnal GH release and improvement on two of six muscle-strength tests, though body composition and IGF-1 did not change at that dosing frequency. A 2012 cognition trial often lumped in with sermorelin's evidence actually dosed ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "span002b",
+            "text": "tesamorelin, a longer GHRH analog",
+            "marks": ["lnktesa1"]
+          },
+          {
+            "_type": "span",
+            "_key": "span002c",
+            "text": ", not GHRH(1-29) itself, so it belongs to a different peptide's track record. None of the sermorelin-specific trials above used the branded Geref product to sell an anti-aging protocol. They were independently funded research into the GHRH axis and aging, run by separate academic teams over two decades, not by a company marketing a peptide.",
             "marks": []
           }
         ]
@@ -1641,7 +1659,7 @@
         "url": "https://doi.org/10.1016/S0026-0495(97)90174-8"
       },
       {
-        "title": "Effects of growth hormone-releasing hormone on cognitive function in adults with mild cognitive impairment and healthy older adults",
+        "title": "Effects of growth hormone-releasing hormone on cognitive function in adults with mild cognitive impairment and healthy older adults (uses tesamorelin, covered in our tesamorelin vs sermorelin comparison)",
         "authors": "Baker LD, Barsness SM, Borson S, et al.",
         "publication": "Archives of Neurology",
         "year": "2012",
@@ -1658,6 +1676,607 @@
         "publication": "FDA",
         "year": "2023",
         "url": "https://www.fda.gov/drugs/human-drug-compounding"
+      }
+    ]
+  },
+  {
+    "title": "Tesamorelin vs sermorelin: Same hormone, opposite FDA status",
+    "slug": "tesamorelin-vs-sermorelin",
+    "excerpt": "Tesamorelin is an approved drug that pharmacies cannot compound. Sermorelin was discontinued in 2008 but remains compoundable. The difference starts at amino acid 41.",
+    "seoTitle": "Tesamorelin vs Sermorelin: FDA Status, Trials, Compounding",
+    "seoDescription": "Tesamorelin vs sermorelin compared on mechanism, Phase 3 trial data, half-life, and the 2020 FDA rule that makes one compoundable and not the other.",
+    "keywords": [
+      "tesamorelin vs sermorelin",
+      "sermorelin vs tesamorelin",
+      "tesamorelin egrifta fda approved",
+      "sermorelin geref discontinued",
+      "tesamorelin biologic compounding 503a"
+    ],
+    "category": "Protocols",
+    "readTimeMinutes": 9,
+    "publishedAt": "2026-08-15T08:11:28.490Z",
+    "updatedAt": "2026-08-15T08:25:00.000Z",
+    "body": [
+      {
+        "_type": "block",
+        "_key": "blk1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp2",
+            "text": "Tesamorelin is sold as an FDA-approved prescription drug, yet a compounding pharmacy cannot legally make it. Sermorelin has not been sold as an approved drug since 2008, but pharmacies still compound it. The odd result has little to do with which peptide has better trials. It starts with chain length: tesamorelin has 44 amino acids and sermorelin has 29.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp4",
+            "text": "Both peptides copy part of human growth hormone-releasing hormone (GHRH), and both stimulate the same pituitary receptor. Their records part company after that. Tesamorelin has two large Phase 3 trials for one narrow indication. Sermorelin has older pediatric approval data and small adult studies. Comparing them requires keeping three questions separate: what the molecule does, what was tested in people, and what federal law permits a pharmacy to prepare.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk5",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp6",
+            "text": "Quick comparison",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp8",
+            "text": "Sermorelin is GHRH(1-29), the active 29-amino-acid end of human GHRH. Its molecular weight is about 3,358 Da. Tesamorelin contains all 44 amino acids of GHRH plus a hexenoyl side chain on its first tyrosine; as the acetate salt, it weighs about 5,136 Da. Both bind the GHRH receptor on pituitary somatotrophs. Sermorelin clears from plasma in roughly 10 to 20 minutes. Tesamorelin's label reports an eight-minute mean half-life after one 1.4 mg dose in healthy adults, while repeated-dose studies measured 26 to 38 minutes. Geref, the sermorelin product, was approved in 1990 and withdrawn in 2008 for commercial reasons. Tesamorelin was approved in 2010 and remains available as Egrifta. Its latest formulation, Egrifta WR, was approved in March 2025. Tesamorelin has the larger adult trial program. Sermorelin is the one a pharmacy may compound.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "blogImage",
+        "_key": "img9",
+        "src": "/images/blog/tesamorelin-vs-sermorelin-lab-comparison.webp",
+        "alt": "Researcher holding two labeled vials, tesamorelin and sermorelin, beside a monitor displaying overlapping peptide chain diagrams",
+        "caption": "Both peptides reach the same receptor. Fifteen extra amino acids put tesamorelin in a different legal category."
+      },
+      {
+        "_type": "block",
+        "_key": "blk10",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp11",
+            "text": "The modification at the start of tesamorelin",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp13",
+            "text": "Tesamorelin uses the complete 44-amino-acid GHRH sequence. A trans-3-hexenoyl group is attached to the tyrosine at its N-terminus. The six-carbon addition makes the first peptide bond harder for dipeptidyl peptidase IV to reach, slowing a common route of enzymatic breakdown. Native GHRH and sermorelin lose their first two residues quickly in blood. Tesamorelin does too, but less readily. That small piece of chemistry helped make once-daily dosing workable. It did not turn tesamorelin into a different receptor agonist; the target remained the GHRH receptor.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk18",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk15",
+            "_type": "link",
+            "href": "https://www.govinfo.gov/content/pkg/FR-2020-02-21/pdf/2020-03505.pdf"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp14",
+            "text": "The 44-residue length later acquired a legal consequence. In 2020, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp16",
+            "text": "the FDA finalized a definition of \"protein\"",
+            "marks": [
+              "lnk15"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp17",
+            "text": " under the Biologics Price Competition and Innovation Act. The rule calls an amino acid polymer a protein when it has a defined sequence longer than 40 residues, including a chemically synthesized chain. Products built from those proteins are regulated as biologics. Sermorelin ends at residue 29. Tesamorelin runs four residues beyond the cutoff. The Alliance for Pharmacy Compounding addressed the result in a 2024 policy statement: tesamorelin became ineligible for Section 503A compounding after the 2020 transition. Sermorelin can use another route because it was an ingredient in an FDA-approved drug. Approval alone cannot rescue tesamorelin from the biologics restriction.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "blogImage",
+        "_key": "img19",
+        "src": "/images/blog/tesamorelin-vs-sermorelin-amino-acid-ruler.webp",
+        "alt": "Illustrated ruler diagram comparing two peptide chains, a 29-bead chain and a 44-bead chain, with a marked threshold line at bead 40 labeled as the FDA biologic cutoff",
+        "caption": "FDA defines a chain longer than 40 amino acids as a protein. Sermorelin ends at 29; tesamorelin ends at 44."
+      },
+      {
+        "_type": "block",
+        "_key": "blk20",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp21",
+            "text": "What the tesamorelin evidence shows",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp23",
+            "text": "Two Phase 3 trials, LIPO-010 and CTR-1011, supplied the efficacy case for tesamorelin. Together they randomized 806 adults with HIV and excess abdominal fat in a 2:1 ratio to daily tesamorelin 2 mg or placebo. CT scans at week 26 showed treatment effects of 19.6% and 11.7% for visceral adipose tissue in the two trials. The pooled difference was 15.4% (p<0.001). Subcutaneous abdominal fat did not fall by the same amount, a useful distinction for anyone reading the result as ordinary weight loss. Participants who continued tesamorelin through week 52 were still 17.5% below baseline for visceral fat. Participants switched to placebo after week 26 began to regain it. The effect depended on continued treatment.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp25",
+            "text": "Baker and colleagues tested a different question in 152 adults aged 55 to 87. Some participants had mild cognitive impairment; others did not. After 20 weeks of nightly tesamorelin 1 mg, IGF-1 had risen 117% and body fat had fallen 7.4%. The prespecified cognitive analysis favored tesamorelin (p=.03), driven mainly by executive function (p=.005); verbal memory did not cross the conventional significance threshold. This was a tesamorelin trial. It is sometimes filed under sermorelin because the paper's title says \"growth hormone-releasing hormone\" rather than naming the drug. The methods identify tesamorelin.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk26",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp27",
+            "text": "What the sermorelin evidence shows",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk32",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk29",
+            "_type": "link",
+            "href": "https://www.govinfo.gov/content/pkg/FR-2013-03-04/html/2013-04827.htm"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp28",
+            "text": "Sermorelin reached the FDA first. The agency approved sermorelin acetate for diagnostic use in 1990, then approved Geref in 1997 for children with idiopathic growth hormone deficiency and growth failure. The pediatric trials ran for six months and measured growth velocity. EMD Serono stopped selling Geref in 2008. A ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp30",
+            "text": "2013 Federal Register notice",
+            "marks": [
+              "lnk29"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp31",
+            "text": " records the manufacturer's commercial explanation and places the products on the Discontinued Drug Product List. FDA did not determine that Geref had been withdrawn for safety or efficacy reasons. That dry administrative finding is the fact on which sermorelin's current compounding route rests.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk33",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp34",
+            "text": "The adult sermorelin record is much smaller. Corpas and colleagues found that twice-daily GHRH(1-29) raised GH and IGF-1 in older men. Vittone's team then gave 11 healthy men aged 64 to 76 one nightly injection for six weeks. Nocturnal GH release increased, and two of six strength tests improved. Body composition and IGF-1 did not change at that schedule. These studies answer narrow physiology questions in small groups. They do not establish an anti-aging treatment, and none approaches the size of tesamorelin's Phase 3 program. The largest adult sermorelin study cited here enrolled fewer than 30 participants.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk35",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp36",
+            "text": "Half-life and the dose on the label",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk37",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp38",
+            "text": "A short plasma half-life does not mean a peptide lacks an effect after it leaves the circulation. Tesamorelin peaks in plasma at about nine minutes, and its current label reports less than 4% absolute bioavailability after subcutaneous dosing. Even so, once-daily administration raises IGF-1 over time. The approved Egrifta SV dose is 1.4 mg daily; the older formulation and approval trials used 2 mg. Those numbers are not interchangeable vial instructions because the formulations have different concentrations and reconstitution procedures. Sermorelin studies generally used microgram doses. Comparing milligrams alone would ignore formulation, exposure, and the endpoint each trial measured.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk37b",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp38b",
+            "text": "What the scale misses",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk37c",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp38c",
+            "text": "The primary tesamorelin endpoint was a CT measurement at the L4-L5 level, not pounds lost. A CT slice separates visceral fat, packed around the organs, from subcutaneous fat beneath the skin. In the pooled trials, the treatment effect on visceral fat was 15.4%, while the effect on abdominal subcutaneous fat was 0.6% and did not reach statistical significance. Waist circumference fell by only a few centimeters. Someone could therefore have a meaningful change in the trial's target compartment without a dramatic change on a bathroom scale or in every fat depot. This is why the Egrifta label calls tesamorelin weight-neutral and why the Phase 3 result cannot be translated into a general weight-loss percentage.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk39",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp40",
+            "text": "Safety and regulatory status in 2026",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk41",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp42",
+            "text": "Tesamorelin remains FDA-approved for reducing excess visceral abdominal fat in adults with HIV and lipodystrophy. The indication is unusually precise. It does not cover general obesity, and the label says the drug is not indicated for weight-loss management because its effect is weight-neutral. Egrifta WR received approval in March 2025. None of that creates a compounding exception: tesamorelin is regulated as a biologic, and FDA also placed it among drug products that present demonstrable difficulties for compounding. Access runs through the approved product.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk43",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp44",
+            "text": "The Egrifta label also makes the clinical tradeoffs concrete. Tesamorelin is contraindicated in pregnancy, active malignancy, and disruption of the hypothalamic-pituitary axis. Warnings cover elevated IGF-1, fluid retention, glucose intolerance or diabetes, and hypersensitivity reactions. The label advises checking glucose before and during treatment and monitoring IGF-1. These are findings from an approved product with standardized manufacturing and a defined dose. They should not be copied across to sermorelin as though the two preparations had one shared safety file.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk43b",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp44b",
+            "text": "Sermorelin's legal compounding route is sometimes treated as a regulatory endorsement. It is not one. The route exists because Geref was once approved and FDA later found that its withdrawal was not based on safety or efficacy. A compounded preparation does not inherit Geref's manufacturing controls, stability data, or approved labeling merely because it uses the same active ingredient. The prescription, pharmacy, formulation, and lot still need their own scrutiny. The reverse error appears with tesamorelin: its compounding restriction comes from biologics law and manufacturing difficulty, not from a finding that tesamorelin failed its clinical trials.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "blogImage",
+        "_key": "img45",
+        "src": "/images/blog/tesamorelin-vs-sermorelin-regulatory-paradox.webp",
+        "alt": "Split illustration: a modern approved drug carton labeled Egrifta with a red regulatory lock icon on one side, and an aged discontinued Geref carton with a green unlocked padlock on the other",
+        "caption": "Egrifta remains approved but cannot be compounded. Geref was discontinued in 2008; that history leaves sermorelin a compounding route."
+      },
+      {
+        "_type": "block",
+        "_key": "blk46",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp47",
+            "text": "Conclusion: which evidence carries",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk48",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp49",
+            "text": "Tesamorelin has the stronger adult evidence: two multicenter Phase 3 trials, a 52-week extension, and a separate trial in older adults. The evidence supports visceral fat reduction in HIV-associated lipodystrophy. It does not establish routine fat loss, muscle gain, or treatment of aging. Sermorelin has real pediatric approval data, but its adult literature is a collection of small physiology studies. Its legal availability through compounding says nothing about comparative efficacy.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk57",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk51",
+            "_type": "link",
+            "href": "/category/growth-hormone-axis"
+          },
+          {
+            "_key": "lnk54",
+            "_type": "link",
+            "href": "/blog/ipamorelin-vs-sermorelin"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp50",
+            "text": "For laboratory research, approval and compounding legality need separate checks. Tesamorelin is the useful counterexample: approval did not make it compoundable. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp52",
+            "text": "Growth Hormone Axis category",
+            "marks": [
+              "lnk51"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp53",
+            "text": " collects the related compounds and lot-linked COA records. The ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp55",
+            "text": "ipamorelin vs sermorelin",
+            "marks": [
+              "lnk54"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "sp56",
+            "text": " comparison covers a separate distinction: ipamorelin acts through the ghrelin receptor rather than the GHRH receptor shared by tesamorelin and sermorelin. Evidence should stay attached to the molecule and indication that produced it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk58",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp59",
+            "text": "FAQ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk60",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp61",
+            "text": "Is tesamorelin the same as sermorelin? No. Tesamorelin is the full 44-amino-acid GHRH sequence with an added hexenoyl group. Sermorelin is the shorter 29-amino-acid active fragment. Both bind the same GHRH receptor, but the size difference is what puts them under different FDA rules.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk62",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp63",
+            "text": "Is tesamorelin FDA-approved right now? Yes, as Egrifta SV and, since March 2025, Egrifta WR, for reducing excess visceral abdominal fat in HIV-infected adults with lipodystrophy. It is not approved for general fat loss, muscle gain, or anti-aging use.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk64",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp65",
+            "text": "Is sermorelin FDA-approved right now? No. Geref was approved from 1990 to 2008 and discontinued for commercial reasons, confirmed by FDA's own notice, not withdrawn for safety.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk66",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp67",
+            "text": "Why can't a compounding pharmacy prepare tesamorelin if it is an FDA-approved drug? Because the FDA's 2020 rule defines any amino acid chain over 40 residues as a protein, which makes it a biologic. Biologics are not eligible for Section 503A compounding no matter how the underlying drug was approved. Tesamorelin's 44 amino acids sit over that line. Sermorelin's 29 do not.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "blk68",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "sp69",
+            "text": "Can tesamorelin and sermorelin be used together? No published human trial has tested that combination. Both act on the same GHRH receptor, so stacking two agonists at one receptor is not the same idea as pairing a GHRH-receptor peptide with a ghrelin-receptor peptide like ipamorelin.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "image": "/images/blog/tesamorelin-vs-sermorelin-lab-comparison.webp",
+    "references": [
+      {
+        "title": "EGRIFTA WR (tesamorelin) FDA Approval History",
+        "publication": "Drugs.com",
+        "year": "2025",
+        "url": "https://www.drugs.com/history/egrifta-wr.html"
+      },
+      {
+        "title": "EGRIFTA SV (tesamorelin) for injection, full prescribing information",
+        "publication": "DailyMed / FDA",
+        "year": "2024",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3d783378-b02d-4f19-99dd-0fc91a042224"
+      },
+      {
+        "title": "Effects of tesamorelin, a growth hormone-releasing factor analog, in HIV-infected patients with excess abdominal fat: pooled analysis of two Phase 3 trials",
+        "authors": "Falutz J, Allas S, Mamputu JC, et al.",
+        "publication": "Journal of Clinical Endocrinology & Metabolism",
+        "year": "2010",
+        "url": "https://pdfs.semanticscholar.org/47c9/e2c4e51c59f600701fa816874f1e1fb62db4.pdf"
+      },
+      {
+        "title": "Effects of growth hormone-releasing hormone on cognitive function in adults with mild cognitive impairment and healthy older adults",
+        "authors": "Baker LD, Barsness SM, Borson S, et al.",
+        "publication": "Archives of Neurology",
+        "year": "2012",
+        "url": "https://doi.org/10.1001/archneurol.2012.1970"
+      },
+      {
+        "title": "Definition of the Term \"Biological Product\"; Final Rule",
+        "publication": "Federal Register / FDA",
+        "year": "2020",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2020-02-21/pdf/2020-03505.pdf"
+      },
+      {
+        "title": "APC Statement on Peptides and Compounding",
+        "publication": "Alliance for Pharmacy Compounding",
+        "year": "2024",
+        "url": "https://a4pc.org/hubfs/PDFs/APC-Peptides-Statement-March-1-2024.pdf?hsLang=en"
+      },
+      {
+        "title": "GEREF (Sermorelin Acetate), withdrawal of approval; Discontinued Drug Product List notice",
+        "publication": "Federal Register / FDA",
+        "year": "2013",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2013-03-04/html/2013-04827.htm"
+      },
+      {
+        "title": "Growth hormone (GH)-releasing hormone-(1-29) twice daily reverses the decreased GH and insulin-like growth factor-I levels in old men",
+        "authors": "Corpas E, Harman SM, Pineyro MA, Roberson R, Blackman MR",
+        "publication": "Journal of Clinical Endocrinology & Metabolism",
+        "year": "1992",
+        "url": "https://doi.org/10.1210/jcem.75.2.1379256"
+      },
+      {
+        "title": "Effects of single nightly injections of growth hormone-releasing hormone (GHRH 1-29) in healthy elderly men",
+        "authors": "Vittone J, Blackman MR, Busby-Whitehead J, et al.",
+        "publication": "Metabolism",
+        "year": "1997",
+        "url": "https://doi.org/10.1016/S0026-0495(97)90174-8"
       }
     ]
   }

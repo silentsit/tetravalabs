@@ -15,6 +15,7 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { CHECKOUT_US_STATES, normalizeUsStateCode } from "@/lib/checkout-us-states"
 import { getProductImage } from "@/lib/product-image-map"
+import { localImageProps } from "@/lib/local-image"
 import { storePaymentUrl } from "@/components/payment-confirmation"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import type { ParsedAddress } from "@/lib/google-places"
@@ -1272,13 +1273,16 @@ export function CheckoutForm() {
               </div>
             ) : (
               <ul className="divide-y divide-[#E2E8F0]">
-                {items.map((item) => (
+                {items.map((item) => {
+                  const image = getProductImage(item.handle)
+                  return (
                   <li key={item.id} className="flex gap-3 px-4 py-4">
                     <Image
-                      src={getProductImage(item.handle)}
+                      src={image}
                       alt={item.title}
                       width={56}
                       height={56}
+                      {...localImageProps(image)}
                       className="h-14 w-14 shrink-0 rounded-lg bg-white object-contain"
                     />
                     <div className="flex min-w-0 flex-1 items-start justify-between gap-3">
@@ -1302,7 +1306,8 @@ export function CheckoutForm() {
                       </p>
                     </div>
                   </li>
-                ))}
+                  )
+                })}
               </ul>
             )}
 

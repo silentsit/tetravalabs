@@ -5,6 +5,7 @@ import { listProducts } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { groupProductsByCategory } from "@/lib/categories"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
+import { localImageProps } from "@/lib/local-image"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const revalidate = 300
@@ -47,6 +48,7 @@ export default async function CategoriesPage() {
                     src={art.image}
                     alt={category.name}
                     fill
+                    {...localImageProps(art.image)}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
                   />

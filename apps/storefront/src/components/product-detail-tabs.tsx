@@ -10,6 +10,7 @@ import { ProductReviewsPanel } from "@/components/product-reviews-panel"
 import type { FaqItem } from "@/lib/faq-content"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
+import { localImageProps } from "@/lib/local-image"
 
 export type ProductDetailData = {
   title: string
@@ -230,6 +231,7 @@ export function ProductDetailTabs({
                                 alt={image.alt}
                                 width={1200}
                                 height={675}
+                                {...localImageProps(image.src)}
                                 className="h-auto w-full object-cover"
                                 sizes="(max-width: 768px) 100vw, 48rem"
                               />
@@ -284,6 +286,7 @@ export function ProductDetailTabs({
                         width={112}
                         height={112}
                         quality={90}
+                        {...localImageProps(author.image)}
                         sizes="112px"
                         className="h-[112px] w-[112px] shrink-0 rounded-full border border-[#E2E8F0] object-cover object-top"
                       />

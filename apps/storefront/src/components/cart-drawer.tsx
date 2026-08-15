@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Lock, Minus, Plus, Trash2, Truck, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import { getProductImage } from "@/lib/product-image-map"
+import { localImageProps } from "@/lib/local-image"
 
 const iconBtn =
   "inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[#E2E8F0] text-[#475569] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
@@ -47,13 +48,16 @@ export function CartDrawer() {
             </div>
           ) : (
             <div className="space-y-3">
-              {items.map((item) => (
+              {items.map((item) => {
+                const image = getProductImage(item.handle)
+                return (
                 <div key={item.id} className="flex gap-3 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3 sm:gap-4">
                   <div className="relative h-16 w-16 shrink-0 rounded-lg bg-white">
                     <Image
-                      src={getProductImage(item.handle)}
+                      src={image}
                       alt={item.title}
                       fill
+                      {...localImageProps(image)}
                       sizes="64px"
                       className="rounded-lg object-contain p-1"
                     />
@@ -99,7 +103,7 @@ export function CartDrawer() {
                     </div>
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
           )}
         </div>

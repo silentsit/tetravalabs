@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { getProductHref } from "@/lib/compound-product"
+import { localImageProps } from "@/lib/local-image"
 
 const HERO_PRODUCTS = [
   {
@@ -47,6 +48,7 @@ export function HeroProductStage() {
                 height={product.height}
                 priority={product.priority}
                 fetchPriority={product.priority ? "high" : "auto"}
+                {...localImageProps(product.src)}
                 sizes="(max-width: 640px) 38vw, (max-width: 1024px) 30vw, 280px"
                 className="hero-prod-img"
               />

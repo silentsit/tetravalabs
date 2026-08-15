@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useRef, useState } from "react"
+import { localImageProps } from "@/lib/local-image"
 
 const ZOOM_LEVEL = 2
 
@@ -65,6 +66,7 @@ export function ProductImageZoom({ src, alt, priority = false }: Props) {
         alt={alt}
         fill
         priority={priority}
+        {...localImageProps(src)}
         sizes="(max-width: 1024px) 280px, 320px"
         className="select-none object-contain p-4 transition-transform duration-150 ease-out"
         style={{ transform: active ? `scale(${ZOOM_LEVEL})` : "scale(1)" }}

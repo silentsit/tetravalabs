@@ -38,6 +38,7 @@ export default async function BlogPage() {
               alt="Laboratory research documentation"
               fill
               priority
+              unoptimized
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />

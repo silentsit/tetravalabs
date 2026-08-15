@@ -17,6 +17,7 @@ import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
 import { categoryArt } from "@/lib/revamp/category-art"
+import { localImageProps } from "@/lib/local-image"
 import { groupProductsByCategory } from "@/lib/categories"
 import { faqItems } from "@/lib/faq-content"
 import { listProducts, getFeaturedCoaDocument } from "@/lib/medusa"
@@ -236,6 +237,7 @@ export default async function HomePage() {
                     alt={cat.name}
                     fill
                     loading="lazy"
+                    {...localImageProps(cat.image)}
                     sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
                     className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
                   />

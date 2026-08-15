@@ -27,7 +27,7 @@ export function CoaLibraryProductCard({ product }: Props) {
               src={imageSrc}
               alt={product.displayName}
               fill
-              unoptimized={Boolean(thumb)}
+              unoptimized
               loading="lazy"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               className="object-contain p-3 transition-transform duration-300 group-hover:scale-[1.02]"

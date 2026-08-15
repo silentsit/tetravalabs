@@ -4,6 +4,7 @@ import type { SearchResult } from "@/lib/search"
 import { formatShelfPriceFromUnitCents } from "@/lib/pack-pricing"
 import { getProductHref, getShelfLabelForHandle } from "@/lib/compound-product"
 import { getProductImage } from "@/lib/product-image-map"
+import { localImageProps } from "@/lib/local-image"
 import { ShelfPriceLabel } from "@/components/shelf-price-label"
 
 type Props = {
@@ -48,6 +49,7 @@ export function SearchResultCard({ result }: Props) {
           src={image}
           alt={label}
           fill
+          {...localImageProps(image)}
           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
           className="product-card-media-image"
         />

@@ -19,6 +19,7 @@ import {
   resolveProductPurchaseLayout
 } from "@/lib/pack-pricing"
 import { getProductHref, getShelfProductLabel } from "@/lib/compound-product"
+import { localImageProps } from "@/lib/local-image"
 import { ShelfPriceLabel } from "@/components/shelf-price-label"
 
 interface ProductCardProps {
@@ -84,6 +85,7 @@ export function ProductCard({
             src={imageUrl}
             alt={displayName}
             fill
+            {...localImageProps(imageUrl)}
             sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
             className="product-card-media-image"
           />
@@ -127,6 +129,7 @@ export function ProductCard({
               src={imageUrl}
               alt={displayName}
               fill
+              {...localImageProps(imageUrl)}
               sizes="(max-width: 480px) 90vw, (max-width: 768px) 42vw, (max-width: 1280px) 28vw, 220px"
               className="h-full w-full object-contain transition-transform duration-300 ease-out group-hover:scale-[1.03]"
             />

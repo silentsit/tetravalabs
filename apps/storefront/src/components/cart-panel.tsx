@@ -6,6 +6,7 @@ import { useCart } from "@/components/cart-provider"
 import { getProductHref } from "@/lib/compound-product"
 import { LAB_RESTOCK_COPY, applyLabRestockPrice } from "@/lib/lab-restock"
 import { getProductImage } from "@/lib/product-image-map"
+import { localImageProps } from "@/lib/local-image"
 
 export function CartPanel() {
   const { items, subtotal, totalItems, removeItem, updateQty, hasLabRestock } = useCart()
@@ -18,14 +19,17 @@ export function CartPanel() {
       ) : (
         <>
           <ul className="space-y-3">
-            {items.map((item) => (
+            {items.map((item) => {
+              const image = getProductImage(item.handle)
+              return (
               <li key={item.id} className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3">
                 <div className="flex gap-3">
                   <Image
-                    src={getProductImage(item.handle)}
+                    src={image}
                     alt={item.title}
                     width={56}
                     height={56}
+                    {...localImageProps(image)}
                     className="h-14 w-14 rounded-lg bg-white object-contain"
                   />
                   <div className="flex flex-1 flex-col">
@@ -83,7 +87,8 @@ export function CartPanel() {
                   </div>
                 </div>
               </li>
-            ))}
+              )
+            })}
           </ul>
           <div className="border-t border-[#E2E8F0] pt-3 text-sm text-[#475569]">
             <p>Subtotal: ${subtotal.toFixed(2)}</p>

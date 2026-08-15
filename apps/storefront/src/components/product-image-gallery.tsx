@@ -7,6 +7,7 @@ import type { StoreCoaDocument } from "@/lib/medusa"
 import { coaViewerUrl, coaPreviewUrl } from "@/lib/medusa"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
 import { getCoaCardPreviewUrl } from "@/lib/coa-display"
+import { localImageProps } from "@/lib/local-image"
 import { ProductImageZoom } from "@/components/product-image-zoom"
 
 type GalleryItem = {
@@ -146,7 +147,7 @@ function GalleryMain({ item }: { item: GalleryItem }) {
         src={item.src}
         alt={item.label}
         fill
-        unoptimized={item.src.startsWith("http")}
+        {...localImageProps(item.src)}
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-contain p-4"
       />
@@ -170,6 +171,7 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
         src={item.src}
         alt={item.label}
         fill
+        {...localImageProps(item.src)}
         sizes="64px"
         className="object-contain p-1.5"
         aria-hidden
@@ -207,7 +209,7 @@ function GalleryThumb({ item }: { item: GalleryItem }) {
       src={item.src}
       alt={item.label}
       fill
-      unoptimized={item.src.startsWith("http")}
+      {...localImageProps(item.src)}
       sizes="64px"
       className="object-contain object-top p-0.5"
       aria-hidden

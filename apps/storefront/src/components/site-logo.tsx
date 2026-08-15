@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { localImageProps } from "@/lib/local-image"
 
 const LOGO_SRC = "/brand/Tetrava-Labs-Logo-white-bg.png"
 const LOGO_WIDTH = 1632
@@ -33,6 +34,7 @@ export function SiteLogo({
       width={width}
       height={height}
       priority={variant === "default"}
+      {...localImageProps(src)}
       className={`${sizeClass} ${variantClass} ${className}`.trim()}
     />
   )

@@ -122,15 +122,16 @@ export default async function BlogArticlePage({ params }: Props) {
           </figcaption>
         </figure>
       ) : (
-        <div className="relative aspect-video overflow-hidden rounded-xl border border-[#E2E8F0]">
+        <div className="overflow-hidden rounded-xl border border-[#E2E8F0]">
           <Image
             src={heroImage}
             alt={post.title}
-            fill
+            width={1200}
+            height={800}
             priority
             unoptimized
             sizes="(max-width: 768px) 100vw, 768px"
-            className="object-cover"
+            className="h-auto w-full object-cover"
           />
         </div>
       )}

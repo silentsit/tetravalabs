@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
+import Script from "next/script"
 import { JetBrains_Mono, Jost, Lora } from "next/font/google"
 import "./globals.css"
 import "@/lib/json-ld-registry"
@@ -9,8 +11,6 @@ import { JsonLd } from "@/components/json-ld"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { SocialProofToast } from "@/components/social-proof-widget"
-import { AiChatWidget } from "@/components/ai-chat-widget"
 import {
   clampMetaDescription,
   organizationJsonLd,
@@ -18,7 +18,15 @@ import {
   siteConfig,
   websiteJsonLd
 } from "@/lib/seo"
-import Script from "next/script"
+
+const SocialProofToast = dynamic(
+  () => import("@/components/social-proof-widget").then((mod) => mod.SocialProofToast),
+  { ssr: false }
+)
+const AiChatWidget = dynamic(
+  () => import("@/components/ai-chat-widget").then((mod) => mod.AiChatWidget),
+  { ssr: false }
+)
 
 const jost = Jost({
   subsets: ["latin"],
@@ -37,7 +45,8 @@ const lora = Lora({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-mono"
+  variable: "--font-mono",
+  preload: false
 })
 
 const defaultSiteTitle = resolveMetaTitles({

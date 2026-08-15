@@ -27,23 +27,38 @@ function resolveCardVariant(value: unknown): CardVariant {
   return "featured"
 }
 
+function optimizeBlogImageSrc(src: string): string {
+  if (!src.includes("cdn.sanity.io")) return src
+  try {
+    const url = new URL(src)
+    url.searchParams.set("w", "1200")
+    url.searchParams.set("auto", "format")
+    url.searchParams.set("q", "75")
+    return url.toString()
+  } catch {
+    return src
+  }
+}
+
 function BlogImage({ value }: { value: BlogImageValue }) {
-  const src = value.src?.trim()
-  if (!src) return null
+  const rawSrc = value.src?.trim()
+  if (!rawSrc) return null
+  const src = optimizeBlogImageSrc(rawSrc)
   const alt = value.alt?.trim() || value.caption?.trim() || "Research article image"
   const caption = value.caption?.trim()
 
   return (
     <figure className="my-8">
-      <div className="relative aspect-video overflow-hidden rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]">
+      <div className="overflow-hidden rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]">
         <Image
           src={src}
           alt={alt}
-          fill
+          width={1200}
+          height={800}
           unoptimized
-          loading="eager"
+          loading="lazy"
           sizes="(max-width: 768px) 100vw, 768px"
-          className="object-cover"
+          className="h-auto w-full object-cover"
         />
       </div>
       {caption ? (

@@ -1,13 +1,13 @@
 import Image from "next/image"
 import { localImageProps } from "@/lib/local-image"
 
-const LOGO_SRC = "/brand/Tetrava-Labs-Logo-white-bg.png"
-const LOGO_WIDTH = 1632
-const LOGO_HEIGHT = 248
+const LOGO_SRC = "/brand/tetrava-logo-header.webp"
+const LOGO_WIDTH = 480
+const LOGO_HEIGHT = 73
 
-const FOOTER_LOGO_SRC = "/brand/Tetrava-labs-logo-footer-white-font.png"
-const FOOTER_LOGO_WIDTH = 1654
-const FOOTER_LOGO_HEIGHT = 272
+const FOOTER_LOGO_SRC = "/brand/tetrava-logo-footer.webp"
+const FOOTER_LOGO_WIDTH = 480
+const FOOTER_LOGO_HEIGHT = 79
 
 type SiteLogoProps = {
   variant?: "default" | "footer"

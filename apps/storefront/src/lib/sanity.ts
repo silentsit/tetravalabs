@@ -170,9 +170,38 @@ function sanitizeSlug(slug: string) {
   return slug.replace(/[^a-z0-9-]/gi, "")
 }
 
+function overlayLocalBlogImages(primary: BlogPortableBlock[], fallback: BlogPortableBlock[]): BlogPortableBlock[] {
+  const localByKey = new Map<string, string>()
+  const localByOrder: string[] = []
+  for (const block of fallback) {
+    if (block._type !== "blogImage") continue
+    const src = typeof block.src === "string" ? block.src.trim() : ""
+    if (!src.startsWith("/")) continue
+    if (typeof block._key === "string") localByKey.set(block._key, src)
+    localByOrder.push(src)
+  }
+  if (!localByOrder.length) return primary
+
+  let nextLocal = 0
+  return primary.map((block) => {
+    if (block._type !== "blogImage") return block
+    const current = typeof block.src === "string" ? block.src.trim() : ""
+    if (current.startsWith("/")) return block
+    const fromKey = typeof block._key === "string" ? localByKey.get(block._key) : undefined
+    const fromOrder = localByOrder[nextLocal++]
+    const src = fromKey || fromOrder
+    return src ? { ...block, src } : block
+  })
+}
+
 /** Prefer published Sanity Portable Text; fall back to JSON seed when CMS body is empty or legacy plain text. */
 function resolveBlogBody(primary?: BlogBody, fallback?: BlogBody): BlogBody | undefined {
-  if (Array.isArray(primary) && primary.length > 0) return primary
+  if (Array.isArray(primary) && primary.length > 0) {
+    if (Array.isArray(fallback) && fallback.length > 0) {
+      return overlayLocalBlogImages(primary, fallback)
+    }
+    return primary
+  }
   if (Array.isArray(fallback) && fallback.length > 0) return fallback
 
   const primaryText = typeof primary === "string" ? primary.trim() : ""

@@ -37,6 +37,8 @@ export function FooterAcceptedPayments() {
               alt={logo.label}
               width={logo.width}
               height={logo.height}
+              loading="lazy"
+              decoding="async"
               className="block shrink-0 object-contain"
               style={{ width: logo.width, height: logo.height }}
             />

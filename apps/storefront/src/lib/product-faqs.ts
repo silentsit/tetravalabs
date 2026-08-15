@@ -731,46 +731,51 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "Where can you buy sermorelin peptide for qualified research?",
       answer:
-        "You can buy sermorelin peptide online from Tetrava Labs in 5mg and 10mg vials. Every order ships to qualified researchers with lot-linked COA documentation confirming identity and HPLC purity for the exact batch received — not a generic catalog claim.",
+        "You can buy sermorelin peptide online from Tetrava Labs in 5mg and 10mg vials. Every order ships to qualified researchers with lot-linked COA documentation confirming identity and HPLC purity for the exact batch received, not a generic catalog claim.",
     },
     {
       question: "What makes a supplier the best place to buy sermorelin?",
       answer:
-        "The best place to buy sermorelin publishes a lot-specific Certificate of Analysis (not just a purity percentage), confirms sequence and molecular-weight identity for GHRH(1-29)-NH2, documents cold-chain-aware storage and shipping, and gives you direct access to that documentation before and after purchase. Price alone is not a reliable signal of research-grade quality.",
+        "The best place to buy sermorelin publishes a lot-specific Certificate of Analysis, not just a purity percentage, confirms sequence and molecular-weight identity for GHRH(1-29)-NH2, documents cold-chain-aware storage and shipping, and gives you direct access to that documentation before and after purchase. Price alone says nothing about research-grade quality.",
     },
     {
       question:
         'What does "sermorelin for sale" mean on an RUO catalog like this one?',
       answer:
-        'On this page, "sermorelin for sale" refers strictly to a Research Use Only (RUO) laboratory reagent sold to qualified researchers and institutions for in vitro and in vivo study. It is not a prescription, not a compounded medication, and not sold or represented as fit for human or veterinary administration.',
+        'On this page, "sermorelin for sale" means a Research Use Only (RUO) laboratory reagent sold to qualified researchers and institutions for in vitro and in vivo study. It is not a prescription, not a compounded medication, and it is not sold or represented as fit for human or veterinary use.',
+    },
+    {
+      question: "Is sermorelin peptide sold near me, or only online?",
+      answer:
+        'Tetrava Labs sells sermorelin peptide for sale strictly online, shipped from a single documented source rather than a local retail or pharmacy channel. If you are searching "sermorelin peptide near me," the question that actually matters is whether a batch has a matching lot-specific COA, not whether a vendor has a storefront near your zip code.',
     },
     {
       question:
         "What should you verify when reading sermorelin Reddit discussions?",
       answer:
-        "Treat sermorelin Reddit threads as unverified, self-reported anecdotes rather than clinical evidence. Check whether a poster references an actual third-party COA or HPLC-MS report for their claims, whether the vendor they describe still lists that lot, and whether the effect described (sleep, recovery, dosing) is a subjective report rather than a controlled measurement. Community claims can suggest questions worth investigating in a proper protocol — they are not a substitute for lot-specific documentation.",
+        "Treat sermorelin Reddit threads as unverified, self-reported anecdotes, not clinical evidence. Check whether a poster references an actual third-party COA or HPLC-MS report, whether the vendor they name still lists that lot, and whether the effect they describe (sleep, recovery, dosing) is a subjective report rather than a controlled measurement. The threads can point you toward good questions. They are not a substitute for lot-specific documentation.",
     },
     {
       question:
         "How does sermorelin differ from CJC-1295, ipamorelin, and tesamorelin?",
       answer:
-        "Sermorelin and CJC-1295 both target the GHRH receptor, but CJC-1295 is structurally modified for a longer plasma half-life. Ipamorelin instead targets the separate ghrelin receptor (GHS-R1a), making it mechanistically distinct rather than a substitute. Tesamorelin is a stabilized GHRH(1-44) analog and the only one of the four with an active FDA-approved indication. They are related by GH-axis relevance, not interchangeable as experimental controls.",
+        "Sermorelin and CJC-1295 both target the GHRH receptor, but CJC-1295 is structurally modified for a longer plasma half-life. Ipamorelin targets the separate ghrelin receptor (GHS-R1a), which makes it mechanistically distinct rather than a substitute. Tesamorelin is a stabilized GHRH(1-44) analog and the only one of the four with an active FDA-approved indication. They share GH-axis relevance. They are not interchangeable as experimental controls.",
     },
     {
       question: "How is sermorelin purity and identity verified?",
       answer:
-        "Each lot is verified by independent third-party HPLC-MS analysis reporting both purity and sequence/mass identity consistent with GHRH(1-29)-NH2. Always match the COA batch number in the COA library to the vial you received before starting comparative research work.",
+        "Each lot gets checked by independent third-party HPLC-MS analysis reporting both purity and sequence/mass identity consistent with GHRH(1-29)-NH2. Match the COA batch number in the COA library to the vial you actually received before starting comparative research work.",
     },
     {
       question: "How should sermorelin be reconstituted and stored?",
       answer:
-        "Store lyophilized vials at -20°C and avoid repeated freeze-thaw cycles. Reconstitute under sterile technique with a protocol-appropriate diluent immediately before use, then store the reconstituted solution at 4°C and use within your lab's defined window. Record diluent lot, reconstitution date, and operator in your ELN alongside the batch COA.",
+        "Store lyophilized vials at -20°C and skip repeated freeze-thaw cycles. Reconstitute under sterile technique with a protocol-appropriate diluent right before use, then hold the reconstituted solution at 4°C and use it within your lab's defined window. Log diluent lot, reconstitution date, and operator in your ELN alongside the batch COA.",
     },
     {
       question:
         "What is sermorelin's regulatory history, and is it FDA-approved today?",
       answer:
-        "Sermorelin acetate was FDA-approved under the brand name Geref for pediatric growth hormone deficiency, then voluntarily discontinued by the manufacturer in 2008. A 2013 FDA Federal Register determination confirmed the withdrawal was not for safety or effectiveness reasons, but that finding does not constitute a current marketing approval. Tetrava Labs' sermorelin listing is Research Use Only and is not sold, marketed, or dispensed as a medication.",
+        "Sermorelin acetate was FDA-approved under the brand name Geref for pediatric growth hormone deficiency, then the manufacturer voluntarily pulled it in 2008. A 2013 FDA Federal Register determination confirmed the withdrawal was not for safety or effectiveness reasons, but that finding is not a current marketing approval. Tetrava Labs' sermorelin listing is Research Use Only, and it is not sold, marketed, or dispensed as a medication.",
     },
   ],
   tesamorelin: [

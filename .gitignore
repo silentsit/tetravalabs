@@ -54,3 +54,44 @@ __pycache__/
 
 # Local image compression archives (not for deploy)
 apps/storefront/_image-archive/
+
+# Personal / reference files kept locally only (not part of the app)
+/.git-commit-msg.txt
+/CanvaEditingGuide.pdf
+/Humanize.txt
+/Peptide-Pay API Keys.txt
+/USDT(TRX)Hot - Mnemonic.txt
+/smi.xml
+/vialTB500canvatemplatelinks.pdf
+/General Images/
+/Product Mockups/
+/author-profile-images/
+
+# Unused brand asset leftovers (not referenced by app code)
+/apps/storefront/public/brand/Tetrava Labs Logo with Gradient Vial.jpg
+/apps/storefront/public/brand/Tetrava Labs Logo with Gradient Vial.png
+/apps/storefront/public/brand/Tetrava Labs Logo with Gradient Vial_transparent - Copy.png
+/apps/storefront/public/brand/Tetrava Labs Logo with Gradient Vial_transparent.png
+/apps/storefront/public/brand/Tetrava-labs-black-bg.png
+/apps/storefront/public/brand/Tetrava-labs-logo-footer.png
+/apps/storefront/public/brand/TetravaLabs-Logo-Rocket.png
+/apps/storefront/public/brand/facebook-cover.png
+/apps/storefront/public/brand/fb-cover.png
+/apps/storefront/public/brand/tetravalabs-rocket-icon-transparent.png
+/apps/storefront/public/brand/ttvl-logo.jpg
+/apps/storefront/public/brand/ttvl-logo.png
+
+# Scratch / debug scripts and generator queues (not part of the app)
+/apps/storefront/scripts/_overview-gen-queue.json
+/apps/storefront/scripts/_overview-gen-remaining.json
+/packages/catalog/scripts/_tmp-delete-dup-coas.mjs
+/packages/sanity-studio/scripts/migrate-json-articles.mjs
+/scripts/_coa-consolidate-scan.mjs
+/scripts/_debug-google-index-scan.mjs
+/scripts/_debug-google-index-scan-2.mjs
+/scripts/_debug-google-index-scan-post.mjs
+/scripts/_tmp-convert-table.mjs
+/scripts/color-formula-digits.py
+
+# Label pipeline preview scratch (generated)
+/tools/label-pipeline/_preview_output/

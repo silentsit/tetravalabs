@@ -37,7 +37,6 @@ const SocialProofReviews = dynamic(
   { loading: () => <div className="h-48 animate-pulse rounded-xl bg-[#E2E8F0]" /> }
 )
 
-
 export const metadata: Metadata = buildPageMetadata({
   title: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
   absoluteTitle: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",

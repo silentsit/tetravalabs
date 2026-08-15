@@ -3,6 +3,20 @@
   "framework": "nextjs",
   "installCommand": "corepack enable && npm ci",
   "buildCommand": "npm run build:vercel-root",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.tetravalabs.com" }],
+      "destination": "https://tetravalabs.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.tetravalabs.com" }],
+      "destination": "https://tetravalabs.com/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

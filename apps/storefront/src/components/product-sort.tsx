@@ -1,6 +1,7 @@
 "use client"
 
-import { useRouter, useSearchParams } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { buildShopHref } from "@/lib/sort-products"
 
 const sortOptions = [
   { value: "featured", label: "Featured" },
@@ -16,18 +17,21 @@ interface ProductSortProps {
 
 export function ProductSort({ currentSort = "featured" }: ProductSortProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const searchParams = useSearchParams()
 
   const handleSort = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString())
-
-    if (value === "featured") {
-      params.delete("sort")
-    } else {
-      params.set("sort", value)
-    }
-
-    router.push(`/shop?${params.toString()}`, { scroll: false })
+    router.push(
+      buildShopHref({
+        q: searchParams.get("q") || undefined,
+        category: searchParams.get("category") || undefined,
+        price_min: searchParams.get("price_min") || undefined,
+        price_max: searchParams.get("price_max") || undefined,
+        sort: value,
+        pathname
+      }),
+      { scroll: false }
+    )
   }
 
   return (

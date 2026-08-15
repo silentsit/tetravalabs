@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import type { Metadata } from "next"
 import {
   canonicalProductSegment,
@@ -42,8 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const catalogHandle = resolveCatalogHandle(handle)
   const view = await getCompoundProductView(catalogHandle)
-  if (!view || handle !== canonicalProductSegment(view.parentHandle)) {
-    notFound()
+  if (!view) notFound()
+  const canonicalSegment = canonicalProductSegment(view.parentHandle)
+  if (handle !== canonicalSegment) {
+    permanentRedirect(productPath(view.parentHandle))
   }
 
   const strengthKey = pickDefaultStrengthKey(view.strengths)
@@ -78,7 +80,10 @@ export default async function ProductPage({ params }: Props) {
 
   const catalogHandle = resolveCatalogHandle(handle)
   const view = await getCompoundProductView(catalogHandle)
-  if (!view || handle !== canonicalProductSegment(view.parentHandle)) notFound()
+  if (!view) notFound()
+  if (handle !== canonicalProductSegment(view.parentHandle)) {
+    permanentRedirect(productPath(view.parentHandle))
+  }
 
   const { coasByStrength, reviewsByStrength } = await loadStrengthSideData(view.strengths)
 

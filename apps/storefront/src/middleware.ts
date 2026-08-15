@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 import { acceptPrefersMarkdown, isMarkdownEligiblePath } from "@/lib/agent-markdown/negotiation"
 import { canonicalizeCategorySlug } from "@/lib/category-url"
+import { canonicalPathname } from "@/lib/canonical-path"
 
 const VARIANT_QUERY_KEYS = ["strength", "pack"] as const
 
@@ -38,9 +39,15 @@ function isSearchCrawler(userAgent: string | null) {
   )
 }
 
+const SHOP_FILTER_QUERY_KEYS = new Set(["q", "category", "price_min", "price_max", "sort"])
+
 function withShopFilterRobots(request: NextRequest, response: NextResponse) {
-  if (request.nextUrl.pathname !== "/shop") return response
-  if ([...request.nextUrl.searchParams.keys()].length > 0) {
+  const path = request.nextUrl.pathname
+  if (path !== "/shop" && !path.startsWith("/category/")) return response
+  const hasFilter = [...request.nextUrl.searchParams.keys()].some((key) =>
+    SHOP_FILTER_QUERY_KEYS.has(key)
+  )
+  if (hasFilter) {
     response.headers.set("X-Robots-Tag", "noindex, follow")
   }
   return response
@@ -57,24 +64,43 @@ function finalize(request: NextRequest, response: NextResponse) {
 }
 
 /** One-hop 301 using WHATWG URL — NextURL.clone() re-adds trailing slashes and loops. */
-function redirect301(request: NextRequest, pathname: string, searchParams: URLSearchParams) {
+function redirect301(
+  request: NextRequest,
+  pathname: string,
+  searchParams: URLSearchParams,
+  hostname?: string
+) {
   const url = new URL(request.url)
+  if (hostname) url.hostname = hostname
   url.pathname = pathname
   url.search = searchParams.toString() ? `?${searchParams.toString()}` : ""
   return NextResponse.redirect(url, 301)
 }
 
+function apexHostname(hostHeader: string | null): string | null {
+  const hostname = (hostHeader || "").split(":")[0]
+  if (!hostname.toLowerCase().startsWith("www.")) return null
+  if (hostname.toLowerCase() === "www.localhost") return null
+  return hostname.slice(4)
+}
+
 /**
  * Canonicalize equivalent URLs in one hop:
- * trailing slash, leftover ?strength=/?pack=, and /shop?category= → /category/{slug}.
+ * www → apex, trailing slash, leftover ?strength=/?pack=,
+ * /shop?category= → /category/{slug}, legacy product/category paths.
  */
 function canonicalRedirect(request: NextRequest) {
   const incoming = new URL(request.url)
+  const apex = apexHostname(request.headers.get("host") || incoming.host)
   let pathname = incoming.pathname
   const params = new URLSearchParams(incoming.search)
 
   if (pathname.length > 1 && pathname.endsWith("/")) {
     pathname = pathname.replace(/\/+$/, "") || "/"
+  }
+
+  for (const [key, value] of [...params.entries()]) {
+    if (!value.trim()) params.delete(key)
   }
 
   for (const key of VARIANT_QUERY_KEYS) {
@@ -95,16 +121,18 @@ function canonicalRedirect(request: NextRequest) {
         if (canonical) {
           pathname = `/category/${canonical}`
           params.delete("category")
-          params.delete("sort")
         }
       }
     }
   }
 
+  const aliased = canonicalPathname(pathname)
+  if (aliased) pathname = aliased
+
   const nextSearch = params.toString()
   const incomingSearch = incoming.search.startsWith("?") ? incoming.search.slice(1) : incoming.search
-  if (pathname === incoming.pathname && nextSearch === incomingSearch) return null
-  return redirect301(request, pathname, params)
+  if (!apex && pathname === incoming.pathname && nextSearch === incomingSearch) return null
+  return redirect301(request, pathname, params, apex || undefined)
 }
 
 export function middleware(request: NextRequest) {

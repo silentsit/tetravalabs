@@ -1,3 +1,4 @@
+import { canonicalizeCategorySlug } from "@/lib/category-url"
 import type { StoreProduct } from "@/lib/medusa"
 import { getDisplaySortPriceCents } from "@/lib/pack-pricing"
 import { resolveCatalogParentHandle } from "@/lib/catalog-filter"
@@ -116,19 +117,54 @@ export function sortSearchResults(results: SearchResult[], sort: ProductSort): S
   return copy
 }
 
+function compactQuery(params: {
+  q?: string
+  price_min?: string
+  price_max?: string
+  sort?: string
+}) {
+  const search = new URLSearchParams()
+  const q = params.q?.trim()
+  const priceMin = params.price_min?.trim()
+  const priceMax = params.price_max?.trim()
+  const sort = params.sort?.trim()
+  if (q) search.set("q", q)
+  if (priceMin) search.set("price_min", priceMin)
+  if (priceMax) search.set("price_max", priceMax)
+  if (sort && sort !== "featured") search.set("sort", sort)
+  return search
+}
+
+function categorySlugFromPath(pathname?: string) {
+  const match = pathname?.match(/^\/category\/([^/]+)/)
+  return match?.[1] || ""
+}
+
+/** Public catalog href. Category lives in the path, never as empty `?category=`. */
 export function buildShopHref(params: {
   q?: string
   category?: string
   price_min?: string
   price_max?: string
   sort?: string
+  pathname?: string
 }) {
-  const search = new URLSearchParams()
-  if (params.q?.trim()) search.set("q", params.q.trim())
-  if (params.category?.trim()) search.set("category", params.category.trim())
-  if (params.price_min?.trim()) search.set("price_min", params.price_min.trim())
-  if (params.price_max?.trim()) search.set("price_max", params.price_max.trim())
-  if (params.sort?.trim() && params.sort !== "featured") search.set("sort", params.sort.trim())
+  const fromPath = categorySlugFromPath(params.pathname)
+  const fromQuery = params.category?.trim()
+  const categorySlug =
+    fromPath ||
+    (fromQuery && fromQuery !== "all" ? canonicalizeCategorySlug(fromQuery) || "" : "")
+
+  const search = compactQuery(params)
   const qs = search.toString()
-  return qs ? `/shop?${qs}` : "/shop"
+
+  if (categorySlug) {
+    return qs ? `/category/${categorySlug}?${qs}` : `/category/${categorySlug}`
+  }
+
+  const base =
+    params.pathname?.startsWith("/category/") || params.pathname === "/shop"
+      ? params.pathname.replace(/\/+$/, "") || "/shop"
+      : "/shop"
+  return qs ? `${base}?${qs}` : base
 }

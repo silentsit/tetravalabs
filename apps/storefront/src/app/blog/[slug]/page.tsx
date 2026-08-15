@@ -128,6 +128,7 @@ export default async function BlogArticlePage({ params }: Props) {
             alt={post.title}
             fill
             priority
+            unoptimized
             sizes="(max-width: 768px) 100vw, 768px"
             className="object-cover"
           />

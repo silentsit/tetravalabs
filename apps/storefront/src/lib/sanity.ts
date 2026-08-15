@@ -186,6 +186,15 @@ function resolveBlogBody(primary?: BlogBody, fallback?: BlogBody): BlogBody | un
   return primary ?? fallback
 }
 
+/** Prefer repo-hosted cover art over Sanity CDN URLs for stable blog hero delivery. */
+function resolveBlogImage(cmsImage?: string | null, fallbackImage?: string | null): string | undefined {
+  const fallback = fallbackImage?.trim()
+  const cms = cmsImage?.trim()
+  if (fallback?.startsWith("/")) return fallback
+  if (cms) return cms
+  return fallback || undefined
+}
+
 function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
   if (!posts?.length) return fallbackPosts
 
@@ -196,7 +205,7 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
       ...post,
       readTimeMinutes: post.readTimeMinutes || 5,
       body: resolveBlogBody(post.body, fallback?.body),
-      image: post.image || fallback?.image,
+      image: resolveBlogImage(post.image, fallback?.image),
       references: post.references?.length ? post.references : fallback?.references,
       video: post.video?.youtubeId ? post.video : fallback?.video,
       seoTitle: post.seoTitle || fallback?.seoTitle,
@@ -240,7 +249,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     ...post,
     readTimeMinutes: post.readTimeMinutes || 5,
     body: resolveBlogBody(post.body, fallback?.body),
-    image: post.image || fallback?.image,
+    image: resolveBlogImage(post.image, fallback?.image),
     references: post.references?.length ? post.references : fallback?.references,
     video: post.video?.youtubeId ? post.video : fallback?.video,
     seoTitle: post.seoTitle || fallback?.seoTitle,

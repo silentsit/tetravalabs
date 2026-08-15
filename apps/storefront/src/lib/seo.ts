@@ -503,13 +503,14 @@ export function videoObjectJsonLd(input: {
   description: string
   youtubeId: string
   path: string
+  /** ISO 8601 upload date; required by Google VideoObject rich results. */
   uploadDate?: string
   thumbnail?: string
 }) {
   const embedUrl = `https://www.youtube-nocookie.com/embed/${input.youtubeId}`
   const thumbnailUrl = input.thumbnail || `https://i.ytimg.com/vi/${input.youtubeId}/maxresdefault.jpg`
 
-  return {
+  const graph: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name: input.name,
@@ -517,9 +518,14 @@ export function videoObjectJsonLd(input: {
     thumbnailUrl,
     embedUrl,
     contentUrl: `https://www.youtube.com/watch?v=${input.youtubeId}`,
-    ...(input.uploadDate ? { uploadDate: input.uploadDate } : {}),
     isPartOf: pageUrl(input.path)
   }
+
+  if (input.uploadDate) {
+    graph.uploadDate = input.uploadDate
+  }
+
+  return graph
 }
 
 /** Article graph for curated product research PDPs (author + publisher for SEO checkers). */

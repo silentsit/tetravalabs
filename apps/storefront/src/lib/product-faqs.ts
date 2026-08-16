@@ -493,7 +493,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "What benefits has mazdutide peptide research reported?",
       answer:
-        "In completed Phase 3 trials, mazdutide has been associated with weight reductions of roughly 15% to 18.5% at higher doses over 48 to 60 weeks, plus improvements in blood pressure, lipids, and serum uric acid. A company-reported head-to-head trial found mazdutide outperformed semaglutide on combined glycemic-and-weight-loss response. These are clinical trial findings in human subjects, not claims about Tetrava's research reagent, which is sold strictly for laboratory use.",
+        "In completed Phase 3 trials, mazdutide has been associated with weight reductions of roughly 15% to 18.5% at higher doses over 48 to 60 weeks, plus improvements in blood pressure, lipids, and serum uric acid. A company-reported head-to-head trial found mazdutide outperformed semaglutide on combined glycemic-and-weight-loss response. These are clinical trial findings in human subjects. They are not claims about Tetrava's research reagent, which is sold strictly for laboratory use.",
     },
     {
       question: "What does mazdutide Reddit discussion usually look like?",

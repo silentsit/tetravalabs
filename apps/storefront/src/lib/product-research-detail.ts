@@ -377,8 +377,9 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Mazdutide's dual GLP-1/glucagon mechanism",
         paragraphs: [
-          "Mazdutide was discovered by Eli Lilly and licensed to Innovent Biologics for development in China. It works by activating two receptors at once: the GLP-1 receptor, which slows gastric emptying and drives glucose-dependent insulin secretion, and the glucagon receptor, which pushes the liver toward fat oxidation and raises energy expenditure.[1]",
-          "That second receptor is what separates mazdutide from single-target GLP-1 drugs like semaglutide. Activating glucagon receptors on its own tends to raise blood sugar, so the GLP-1 side of the molecule offsets that effect while still driving appetite and gastric-emptying changes.[1] Labs studying dual-agonist pharmacology often run mazdutide alongside [semaglutide](/buy-semaglutide-online) as a single-receptor comparator.",
+          "Mazdutide was discovered by Eli Lilly and licensed to Innovent Biologics for development in China.",
+          "It works by activating two receptors at once: the GLP-1 receptor, which slows gastric emptying and drives glucose-dependent insulin secretion, and the glucagon receptor, which pushes the liver toward fat oxidation and raises energy expenditure.[1] That second receptor is what separates mazdutide from single-target GLP-1 drugs like semaglutide. Activating glucagon receptors on its own tends to raise blood sugar, so the GLP-1 side of the molecule has to offset that effect while still driving the appetite and gastric-emptying changes tied to weight loss.[1]",
+          "Labs studying dual-agonist pharmacology often run mazdutide alongside [semaglutide](/buy-semaglutide-online) as a single-receptor comparator, since isolating which effect comes from which receptor is most of the analytical work.",
         ],
       },
       {
@@ -391,7 +392,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Mazdutide vs retatrutide",
         paragraphs: [
-          "Retatrutide adds a third receptor, GIP, on top of the same GLP-1/glucagon pairing mazdutide uses, making it a triple agonist instead of a dual one. In the same 2025 network meta-analysis, retatrutide's pooled weight-loss effect (-11.91 kg) came out larger than mazdutide's (-5.31 kg), consistent with the added receptor target.[5]",
+          "Retatrutide adds a third receptor, GIP, on top of the same GLP-1/glucagon pairing mazdutide uses. That makes it a triple agonist instead of a dual one. In the same 2025 network meta-analysis, retatrutide's pooled weight-loss effect (-11.91 kg) came out larger than mazdutide's (-5.31 kg).[5] The extra receptor target is the likely reason, though neither trial was designed to isolate it.",
           "Retatrutide remains investigational everywhere, still moving through Eli Lilly's TRIUMPH trial program. Mazdutide is further along administratively: it holds two NMPA approvals in China. No published trial has tested mazdutide against retatrutide directly, so any weight-loss comparison between the two is cross-trial, not head-to-head.",
         ],
       },
@@ -406,15 +407,15 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "What is mazdutide peptide used for in research?",
         paragraphs: [
-          "In the Tetrava Labs catalog, mazdutide sits in [GLP-1 Research](/category/glp-1-research), the same category as semaglutide, tirzepatide, and retatrutide. Labs studying this class typically design receptor-binding assays, cAMP second-messenger readouts, glucose-handling models, and hepatic lipid-metabolism endpoints, often running mazdutide alongside a single-receptor GLP-1 comparator to isolate the glucagon-driven effects.[1]",
-          "Because the compound sits at the intersection of two signaling pathways, comparative protocols benefit from writing the receptor targets, dose, and comparator compound into the study design up front, rather than treating every GLP-1-class peptide as one interchangeable category.",
+          "In the Tetrava Labs catalog, mazdutide sits in [GLP-1 Research](/category/glp-1-research), the same category as semaglutide, tirzepatide, and retatrutide. Labs studying this class typically design receptor-binding assays, cAMP second-messenger readouts, glucose-handling models, and hepatic lipid-metabolism endpoints.[1] A single-receptor GLP-1 comparator alongside mazdutide is usually part of that design, since it's the fastest way to isolate the glucagon-driven effects from the GLP-1 ones.",
+          "The compound sits at the intersection of two signaling pathways. Comparative protocols benefit from writing the receptor targets, dose, and comparator compound into the study design up front, rather than treating every GLP-1-class peptide as one interchangeable category.",
         ],
       },
       {
         heading:
           "Regulatory status: China approval and Tetrava's Research Use Only listing",
         paragraphs: [
-          "Mazdutide received its first regulatory approval from China's National Medical Products Administration (NMPA) in June 2025, for chronic weight management, under the brand name Xinermei. A second NMPA approval, for glycemic control in adults with type 2 diabetes, followed in September 2025.[1]",
+          "Mazdutide received its first regulatory approval from China's National Medical Products Administration (NMPA) in June 2025, for chronic weight management, under the brand name Xinermei. A second NMPA approval, for glycemic control in adults with type 2 diabetes, followed in September 2025.[1] Neither approval extends outside China.",
           "It is not FDA-approved, and no U.S. new drug application has been publicly disclosed. Tetrava Labs' mazdutide listing is a Research Use Only laboratory reagent, not the approved Chinese drug product: it is not dispensed, prescribed, or described as a medication, and this page makes no dosing or treatment claims.",
         ],
       },

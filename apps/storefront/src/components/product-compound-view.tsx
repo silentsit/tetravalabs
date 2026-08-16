@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { StoreCoaDocument } from "@/lib/medusa";
 import type { ProductReviewsResponse } from "@/lib/reviews";
 import type { FaqItem } from "@/lib/faq-content";
-import type { ProductResearchDetail } from "@/lib/product-research-detail";
+import type { ProductResearchDetail, ResearchReference } from "@/lib/product-research-detail";
 import {
   buildCompoundProductPath,
   compoundSeoName,
@@ -34,6 +34,7 @@ type Props = {
   researchSummariesByStrength: Record<string, string>;
   overviewImagesByStrength: Record<string, ProductOverviewImage[]>;
   researchDetail?: ProductResearchDetail | null;
+  defaultReferences?: ResearchReference[];
   faqs: FaqItem[];
 };
 
@@ -64,6 +65,7 @@ export function ProductCompoundView({
   researchSummariesByStrength,
   overviewImagesByStrength,
   researchDetail = null,
+  defaultReferences = [],
   faqs,
 }: Props) {
   const [strengthKey, setStrengthKey] = useState(() =>
@@ -219,6 +221,7 @@ export function ProductCompoundView({
         reviews={reviews}
         overviewImages={overviewImages}
         researchDetail={researchDetail}
+        defaultReferences={defaultReferences}
       />
     </>
   );

@@ -20,6 +20,7 @@ import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductFaqs } from "@/lib/product-faqs"
 import { getProductResearchDetail } from "@/lib/product-research-detail"
+import { buildDefaultProductReferences } from "@/lib/product-page-links"
 import { buildResearchOverview } from "@/lib/research-overview"
 import { buildOverviewImages } from "@/lib/product-overview-images"
 import { listProducts } from "@/lib/medusa"
@@ -90,6 +91,12 @@ export default async function ProductPage({ params }: Props) {
   const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
   const crumbName = compoundSeoProductName(view)
   const researchDetail = getProductResearchDetail(view.parentHandle)
+  const defaultReferences = researchDetail
+    ? []
+    : buildDefaultProductReferences({
+        productName: view.displayName,
+        casNumber: view.casNumber
+      })
   const faqs = getProductFaqs(view.parentHandle, {
     productName: view.displayName,
     category: view.categoryLabel,
@@ -139,6 +146,7 @@ export default async function ProductPage({ params }: Props) {
         researchSummariesByStrength={researchSummariesByStrength}
         overviewImagesByStrength={overviewImagesByStrength}
         researchDetail={researchDetail}
+        defaultReferences={defaultReferences}
         faqs={faqs}
       />
 

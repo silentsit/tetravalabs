@@ -3,6 +3,8 @@ import "server-only"
 import compoundFamilies from "@/lib/compound-families.generated.json"
 import compoundLegacyRedirects from "@/lib/compound-legacy-redirects.generated.json"
 import productOverviews from "@/lib/product-overviews.generated.json"
+import { categorySlugFromLabel } from "@/lib/categories"
+import { ensureMinimumInternalLinks } from "@/lib/product-page-links"
 import {
   normalizeTb500DisplayText,
   stripStrengthFromDisplayName
@@ -64,6 +66,15 @@ function fillOverviewTemplate(paragraphs: string[], productName: string): string
     .join("\n\n")
 }
 
+function finalizeOverview(
+  overview: string,
+  category?: string
+): string {
+  const categoryLabel = String(category || "research peptide").trim() || "research peptide"
+  const categorySlug = String(categorySlugFromLabel(categoryLabel))
+  return ensureMinimumInternalLinks(overview, categorySlug, categoryLabel)
+}
+
 /** SEO product overview (long-form article). Server-side only — do not import from client components. */
 export function buildResearchOverview(input: {
   productName: string
@@ -74,7 +85,7 @@ export function buildResearchOverview(input: {
   customSummary?: string | null
 }): string {
   const custom = String(input.customSummary || "").trim()
-  if (custom) return custom
+  if (custom) return finalizeOverview(custom, input.category)
 
   const productName =
     stripStrengthFromDisplayName(
@@ -85,7 +96,7 @@ export function buildResearchOverview(input: {
     input.handle,
     parentHandleFor(input.handle || "")
   )
-  if (curated) return fillOverviewTemplate(curated, productName)
+  if (curated) return finalizeOverview(fillOverviewTemplate(curated, productName), input.category)
 
   const category = String(input.category || "research peptide").trim() || "research peptide"
   const form = detectResearchForm(input.appearance, input.handle, productName)
@@ -107,5 +118,5 @@ export function buildResearchOverview(input: {
     "For research use only — not for human or veterinary consumption."
   ]
 
-  return paragraphs.join("\n\n")
+  return finalizeOverview(paragraphs.join("\n\n"), input.category)
 }

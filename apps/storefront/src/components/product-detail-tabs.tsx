@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import type { ProductReviewsResponse } from "@/lib/reviews"
-import type { ProductResearchDetail, ResearchSection } from "@/lib/product-research-detail"
+import type { ProductResearchDetail, ResearchReference, ResearchSection } from "@/lib/product-research-detail"
 import { authorBioText, authorDisplayName, getAuthor } from "@/lib/authors"
 import { ProductReviewsPanel } from "@/components/product-reviews-panel"
 import type { FaqItem } from "@/lib/faq-content"
@@ -44,6 +44,8 @@ type Props = {
   overviewImages?: ProductOverviewImage[]
   /** Curated short description + Research + References + Author Profile content. */
   researchDetail?: ProductResearchDetail | null
+  /** External references for overview-only product pages (when researchDetail is absent). */
+  defaultReferences?: ResearchReference[]
 }
 
 /** After first block, mid-article, and near the end (before the closing block when possible). */
@@ -113,7 +115,8 @@ export function ProductDetailTabs({
   faqs,
   reviews,
   overviewImages = [],
-  researchDetail = null
+  researchDetail = null,
+  defaultReferences = []
 }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("Description")
 
@@ -160,6 +163,9 @@ export function ProductDetailTabs({
 
   const author = getAuthor(researchDetail?.authorId ?? "editorial-team")
   const productName = normalizeTb500DisplayText(product.title)
+  const references = researchDetail?.references?.length
+    ? researchDetail.references
+    : defaultReferences
 
   return (
     <section className="space-y-8">
@@ -244,7 +250,7 @@ export function ProductDetailTabs({
                 </article>
               ) : null}
 
-              {researchDetail?.references?.length ? (
+              {references.length ? (
                 <section
                   aria-labelledby="research-references-heading"
                   className="max-w-3xl border-t border-[#E2E8F0] pt-8"
@@ -253,7 +259,7 @@ export function ProductDetailTabs({
                     References &amp; Citations
                   </h3>
                   <ol className="list-decimal space-y-3 pl-5 text-sm leading-relaxed text-[#475569]">
-                    {researchDetail.references.map((ref) => (
+                    {references.map((ref) => (
                       <li key={ref.id} id={`research-ref-${ref.id}`}>
                         {ref.url ? (
                           <a

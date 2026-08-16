@@ -101,6 +101,7 @@ function topRevenuePaths() {
     "/buy-igf-1-lr3-online",
     "/buy-foxo4-dri-online",
     "/cjc-1295-without-dac",
+    "/buy-sermorelin-peptide",
     "/buy-sermorelin-online",
     "/buy-epithalon-online",
     "/buy-aod-9604-online",

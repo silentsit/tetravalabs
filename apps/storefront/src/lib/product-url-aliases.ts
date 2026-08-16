@@ -68,7 +68,7 @@ export const PRODUCT_URL_TO_HANDLE: Record<string, string> = {
   "buy-selank-online": "selank",
   "buy-semaglutide-online": "semaglutide",
   "buy-semax-online": "semax",
-  "buy-sermorelin-online": "sermorelin",
+  "buy-sermorelin-peptide": "sermorelin",
   "buy-snap-8-online": "snap-8-10mg",
   "buy-ss-31-online": "ss-31",
   "buy-survodutide-online": "survodutide-10mg",
@@ -111,7 +111,8 @@ for (const [handle, urlSegment] of Object.entries(SHARED_HANDLE_PUBLIC_URL)) {
 /** Retired pretty slugs. Requesting these URLs 404s; links use the new segment. */
 export const LEGACY_PRETTY_URL_REDIRECTS: Record<string, string> = {
   "bpc-157-capsules": "buy-bpc-157-capsules-online",
-  "pinealon-capsules": "buy-pinealon-capsules-online"
+  "pinealon-capsules": "buy-pinealon-capsules-online",
+  "buy-sermorelin-online": "buy-sermorelin-peptide"
 }
 
 /** Resolve any known public/legacy segment to a catalog handle when possible. */

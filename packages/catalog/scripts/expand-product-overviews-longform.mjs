@@ -93,7 +93,7 @@ function categoryResearchParagraph(category) {
 }
 
 function mechanismBridgeParagraph(category) {
-  return `Mechanism framing for ${LABEL} should stay tied to peer-reviewed pathway language and your laboratory’s validated endpoints. Treat marketing synonyms and informal nicknames as labels only — protocol text should use the catalog identity, category (${category}), and the analytical fields you verified on receipt. When literature reports conflicting potency across analogues, design a head-to-head panel instead of assuming class-wide interchangeability.`
+  return `Mechanism framing for ${LABEL} should stay tied to peer-reviewed pathway language and your laboratory's validated endpoints. Treat marketing synonyms and informal nicknames as labels only. Protocol text should use the catalog identity, category (${category}), and the analytical fields you verified on receipt. When literature reports conflicting potency across analogues, design a head-to-head panel instead of assuming class-wide interchangeability.`
 }
 
 function identityParagraph(enrich) {
@@ -113,14 +113,14 @@ function identityParagraph(enrich) {
     ? `Published identity markers for this catalog family include ${bits.join("; ")}.`
     : `Published structural identity for this catalog family is summarized on the product analytical panel.`
   const seq = sequence ? ` Sequence / composition note: ${sequence}.` : ""
-  return `${head}${seq} Always cross-check the lot COA against these fields before initiating comparative work, and flag mismatches as deviations rather than informal “close enough” substitutions.`
+  return `${head}${seq} Always cross-check the lot COA against these fields before initiating comparative work, and flag mismatches as deviations rather than informal "close enough" substitutions.`
 }
 
 function suppliesParagraph(form) {
   if (form === "liquid" || form === "nasal" || form === "capsule") {
     return `Supporting supplies should match the format: calibrated pipettes or dispensers, appropriate PPE, labeled secondary containment, and a documented quarantine shelf for newly received lots until COA filing is complete. Avoid mixing opened and unopened inventory in the same bin without clear status tags.`
   }
-  return `Most lyophilized peptide workflows also budget bacteriostatic or sterile diluent, alcohol wipes, sterile vials or tubes for aliquots, and cold-chain capacity consistent with the labeled storage temperature. Align diluent choice with the study design — preserved versus preservative-free — and record the diluent lot beside the peptide lot in every preparation entry.`
+  return `Most lyophilized peptide workflows also budget bacteriostatic or sterile diluent, alcohol wipes, sterile vials or tubes for aliquots, and cold-chain capacity consistent with the labeled storage temperature. Align diluent choice with the study design (preserved versus preservative-free) and record the diluent lot beside the peptide lot in every preparation entry.`
 }
 
 function expandArticle(handle, seedParagraphs, enrich = {}) {
@@ -143,7 +143,7 @@ function expandArticle(handle, seedParagraphs, enrich = {}) {
 
   const comparative = `Comparative and bridging studies benefit from writing the material identity into the protocol itself: catalog handle, nominal strength, intended working concentration, and acceptable purity threshold. If a method is transferred between sites, include a small bridging panel on the same lot so site-to-site bias can be quantified separately from compound effects. Blind plate maps where feasible, and reserve enough retention material to repeat a failed run without opening a second anonymous vial. Archive raw plate exports with the same material ID used in the ELN.`
 
-  const workflows = `Typical laboratory workflows start with verifying the sealed vial against the packing list, filing the COA, and assigning an internal material ID. From there, analysts prepare working solutions at concentrations dictated by the assay plate map, reserve a retention aliquot when policy requires it, and dispose of unused reconstituted material according to institutional chemical-waste rules. Electronic lab notebooks should capture operator, timestamp, diluent lot, and any deviations so later audits can reconstruct preparation conditions. A short pre-assay checklist — label match, COA on file, diluent lot recorded — prevents the most common documentation gaps.`
+  const workflows = `Typical laboratory workflows start with verifying the sealed vial against the packing list, filing the COA, and assigning an internal material ID. From there, analysts prepare working solutions at concentrations dictated by the assay plate map, reserve a retention aliquot when policy requires it, and dispose of unused reconstituted material according to institutional chemical-waste rules. Electronic lab notebooks should capture operator, timestamp, diluent lot, and any deviations so later audits can reconstruct preparation conditions. A short pre-assay checklist (label match, COA on file, diluent lot recorded) prevents the most common documentation gaps.`
 
   const handling = handlingParagraph(form)
   const supplies = suppliesParagraph(form)
@@ -152,14 +152,14 @@ function expandArticle(handle, seedParagraphs, enrich = {}) {
 
   const identity = identityParagraph(enrich)
 
-  const quality = `Tetrava Labs emphasizes lot-linked documentation: when a Certificate of Analysis is published for a batch, treat it as part of the experimental record alongside HPLC or MS summaries referenced on the COA. Third-party analytical testing is used to support identity and purity claims for research procurement — not as a substitute for your own method qualification. If impurity profiles or residual solvents are critical to your endpoint, review the lot documentation before locking the experimental design. Publish or file any in-house confirmatory assays next to the vendor COA so reviewers see both sources.`
+  const quality = `Tetrava Labs emphasizes lot-linked documentation: when a Certificate of Analysis is published for a batch, treat it as part of the experimental record alongside HPLC or MS summaries referenced on the COA. Third-party analytical testing is used to support identity and purity claims for research procurement, not as a substitute for your own method qualification. If impurity profiles or residual solvents are critical to your endpoint, review the lot documentation before locking the experimental design. Publish or file any in-house confirmatory assays next to the vendor COA so reviewers see both sources.`
 
   const procurement = `Buy ${LABEL} online when you need research-grade supply with transparent catalog identity and cold-chain aware fulfillment for qualified laboratories. Pack options and strength selections on the product page are designed for lab inventory planning; choose the configuration that matches your assay cadence and retention policy rather than ad-hoc vial counts mid-study. Centralize reorders against the same catalog handle so historical lots remain comparable in your purchasing and ELN systems. Keep packing slips with the batch record for at least as long as your raw data retention policy.`
 
   const ruoClose =
     seedRuo && /research use only|not for human/i.test(seedRuo)
       ? seedRuo
-      : `For research use only — not for human or veterinary consumption. ${LABEL} is not a drug, food, or cosmetic and must not be used for clinical, diagnostic, or therapeutic purposes.`
+      : `For research use only. Not for human or veterinary consumption. ${LABEL} is not a drug, food, or cosmetic and must not be used for clinical, diagnostic, or therapeutic purposes.`
 
   const ethics = `Institutional review, biosafety committee rules, and local chemical-hygiene plans take precedence over any general catalog description. Train operators on spill response and sharps handling before first use, and store access credentials or purchasing rights to staff who understand the research-only restriction. Misuse outside a controlled laboratory setting voids the intended purpose of this SKU. Display research-only labeling on secondary containers whenever material leaves the original vial.`
 

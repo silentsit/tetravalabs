@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T02:47:08.028Z",
+  "generated_at": "2026-08-16T08:35:31.472Z",
   "sku_scheme": "TV-####-##",
   "compound_merge": true,
   "products": [
@@ -1271,7 +1271,7 @@
         "cas_number": "137525-51-0",
         "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see BPC-157 and TB-500",
+        "sequence": "Multi-component: see BPC-157 and TB-500",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -1345,7 +1345,7 @@
         "cas_number": "137525-51-0",
         "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see BPC-157 and TB-500",
+        "sequence": "Multi-component: see BPC-157 and TB-500",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -1644,7 +1644,7 @@
         "cas_number": "1415456-99-3",
         "molecular_formula": "C194H312N54O59",
         "molecular_weight": "4409.01",
-        "sequence": "Modified amylin analogue — see literature for full sequence",
+        "sequence": "Modified amylin analogue: see literature for full sequence",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -1791,7 +1791,7 @@
         "cas_number": "1415456-99-3",
         "molecular_formula": "C194H312N54O59 | C187H291N45O59",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see Cagrilintide and Semaglutide",
+        "sequence": "Multi-component: see Cagrilintide and Semaglutide",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -2302,7 +2302,7 @@
         "cas_number": "446262-90-4",
         "molecular_formula": "C152H252N44O42",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see CJC-1295 (no DAC) and Ipamorelin",
+        "sequence": "Multi-component: see CJC-1295 (no DAC) and Ipamorelin",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -2376,7 +2376,7 @@
         "cas_number": "446262-90-4",
         "molecular_formula": "C152H252N44O42",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see CJC-1295 (no DAC), Sermorelin, Ipamorelin",
+        "sequence": "Multi-component: see CJC-1295 (no DAC), Sermorelin, Ipamorelin",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -2450,7 +2450,7 @@
         "cas_number": "89030-95-5",
         "molecular_formula": "C14H24CuN6O4 | C212H350N56O78S | C62H98N16O22 | C16H30N4O4",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see GHK-Cu, TB-500, BPC-157, KPV",
+        "sequence": "Multi-component: see GHK-Cu, TB-500, BPC-157, KPV",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -3607,7 +3607,7 @@
         "cas_number": "137525-51-0",
         "molecular_formula": "C62H98N16O22 | C212H350N56O78S | C14H24CuN6O4",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see BPC-157, TB-500, GHK-Cu",
+        "sequence": "Multi-component: see BPC-157, TB-500, GHK-Cu",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -3750,7 +3750,7 @@
         "cas_number": "137525-51-0",
         "molecular_formula": "C62H98N16O22 | C212H350N56O78S | C14H24CuN6O4",
         "molecular_weight": "See component peptides",
-        "sequence": "Multi-component — see BPC-157, TB-500, GHK-Cu",
+        "sequence": "Multi-component: see BPC-157, TB-500, GHK-Cu",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -5853,7 +5853,7 @@
         "cas_number": "2259884-03-0",
         "molecular_formula": "C225H348N48O68",
         "molecular_weight": "4813.53",
-        "sequence": "Modified GLP-1/glucagon dual agonist — see literature for full sequence",
+        "sequence": "Modified GLP-1/glucagon dual agonist: see literature for full sequence",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -7206,7 +7206,7 @@
         "cas_number": "2381089-83-2",
         "molecular_formula": "C267H402N64O78",
         "molecular_weight": "4731.33",
-        "sequence": "Modified triple-agonist peptide (GLP-1/GIP/glucagon) — see literature for full sequence",
+        "sequence": "Modified triple-agonist peptide (GLP-1/GIP/glucagon): see literature for full sequence",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },
@@ -8399,7 +8399,7 @@
         "cas_number": "2805997-46-8",
         "molecular_formula": "C187H281N45O59",
         "molecular_weight": "4231.69",
-        "sequence": "Modified GLP-1/glucagon dual agonist — see literature for full sequence",
+        "sequence": "Modified GLP-1/glucagon dual agonist: see literature for full sequence",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"
       },

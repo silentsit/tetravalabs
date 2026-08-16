@@ -178,10 +178,10 @@ const SEQUENCE_BY_KEY = {
     "H-His-Aib-Glu-Gly-Thr-Phe-Thr-Ser-Asp-Val-Ser-Ser-Tyr-Leu-Glu-Gly-Gln-Ala-Ala-Lys(AEEA-AEEA-γ-Glu-C18 diacid)-Glu-Phe-Ile-Ala-Trp-Leu-Val-Arg-Gly-Arg-Gly-OH",
   Tirzepatide:
     "Y-Aib-EGTFTSDYSI-Aib-LDKIAQK(AEEA-AEEA-γ-Glu-C20 diacid)AFVQWLIAGGPSSGAPPPS-NH2",
-  Retatrutide: "Modified triple-agonist peptide (GLP-1/GIP/glucagon) — see literature for full sequence",
-  Cagrilintide: "Modified amylin analogue — see literature for full sequence",
-  Mazdutide: "Modified GLP-1/glucagon dual agonist — see literature for full sequence",
-  Survodutide: "Modified GLP-1/glucagon dual agonist — see literature for full sequence",
+  Retatrutide: "Modified triple-agonist peptide (GLP-1/GIP/glucagon): see literature for full sequence",
+  Cagrilintide: "Modified amylin analogue: see literature for full sequence",
+  Mazdutide: "Modified GLP-1/glucagon dual agonist: see literature for full sequence",
+  Survodutide: "Modified GLP-1/glucagon dual agonist: see literature for full sequence",
   Tesamorelin: "trans-3-hexenoyl-Tyr-Ala-Asp-Ala-Ile-Phe-Thr-Asn-Ser-Tyr-Arg-Lys-Val-Leu-Gly-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Met-Ser-Arg-Gln-Gln-Gly-Glu-Ser-Asn-Gln-Glu-Arg-Gly-Ala-Arg-Ala-Arg-Leu-NH2",
   Sermorelin: "Tyr-Ala-Asp-Ala-Ile-Phe-Thr-Asn-Ser-Tyr-Arg-Lys-Val-Leu-Gly-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Met-Ser-Arg-NH2",
   "AOD-9604": "Tyr-hGH(177-191) with Aib substitution (Tyr-Leu-Arg-Ile-Val-Gln-Cys-Arg-Ser-Val-Glu-Gly-Ser-Cys-Gly-Phe)",
@@ -249,17 +249,17 @@ const SEQUENCE_BY_KEY = {
   "Lemon Bottle": "N/A (multi-component solution)",
   "Lipo-C": "N/A (multi-component solution)",
   Cerebrolysin: "N/A (peptide mixture)",
-  "Cagrilintide + Semaglutide": "Multi-component — see Cagrilintide and Semaglutide",
-  "BPC-157 + TB-500 Blend (10mg)": "Multi-component — see BPC-157 and TB-500",
-  "BPC-157 + TB-500 Blend (20mg)": "Multi-component — see BPC-157 and TB-500",
+  "Cagrilintide + Semaglutide": "Multi-component: see Cagrilintide and Semaglutide",
+  "BPC-157 + TB-500 Blend (10mg)": "Multi-component: see BPC-157 and TB-500",
+  "BPC-157 + TB-500 Blend (20mg)": "Multi-component: see BPC-157 and TB-500",
   "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg (80mg)":
-    "Multi-component — see GHK-Cu, TB-500, BPC-157, KPV",
-  "Glow BPC-157 + TB500 + GHK-Cu": "Multi-component — see BPC-157, TB-500, GHK-Cu",
+    "Multi-component: see GHK-Cu, TB-500, BPC-157, KPV",
+  "Glow BPC-157 + TB500 + GHK-Cu": "Multi-component: see BPC-157, TB-500, GHK-Cu",
   "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg (70mg)":
-    "Multi-component — see BPC-157, TB-500, GHK-Cu",
-  "CJC-1295 without DAC / Ipamorelin Blend": "Multi-component — see CJC-1295 (no DAC) and Ipamorelin",
+    "Multi-component: see BPC-157, TB-500, GHK-Cu",
+  "CJC-1295 without DAC / Ipamorelin Blend": "Multi-component: see CJC-1295 (no DAC) and Ipamorelin",
   "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend":
-    "Multi-component — see CJC-1295 (no DAC), Sermorelin, Ipamorelin"
+    "Multi-component: see CJC-1295 (no DAC), Sermorelin, Ipamorelin"
 }
 
 const APPEARANCE_DEFAULTS = {

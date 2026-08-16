@@ -72,6 +72,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers collaborating on sermorelin assay protocols at a lab bench",
     2: "Scientist preparing a sermorelin research sample with an electronic micropipette",
   },
+  mazdutide: {
+    0: "Two researchers comparing mazdutide, tirzepatide, and retatrutide molecular diagrams on a lab whiteboard",
+    1: "Scientist reviewing a dual GLP-1/glucagon receptor pathway diagram beside a mazdutide research vial",
+    2: "Lab researcher matching a mazdutide Certificate of Analysis and HPLC chromatogram to its vial",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

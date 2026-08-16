@@ -678,33 +678,59 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   ],
   "mots-c": [
     {
-      question: "What is MOTS-c studied for?",
+      question: "What is MOTS-c peptide?",
       answer:
-        "MOTS-c is a mitochondrial-derived peptide examined in metabolic and exercise-physiology research models. Supplied as Research Use Only.",
+        "MOTS-c is a 16-amino-acid peptide encoded inside the mitochondrial genome, not nuclear DNA, discovered by Lee and colleagues at USC in 2015. It activates AMPK, the cell's energy-sensing switch, by inhibiting the folate cycle and letting the metabolite AICAR build up. Tetrava Labs supplies it as a Research Use Only laboratory reagent, not a human or veterinary product.",
     },
     {
-      question: "COA and purity for MOTS-c?",
+      question: "What is MOTS-c peptide used for in research?",
       answer:
-        "Lots are tested by third-party HPLC-MS. Match the published COA to the vial batch before assays.",
+        "Labs use MOTS-c to study AMPK-linked metabolic signaling, skeletal-muscle exercise adaptation, and insulin-sensitivity pathways in cell and animal models. It's frequently run alongside a folate-cycle or AICAR-pathway comparator to confirm the mechanism, and alongside other mitochondrial-research compounds like SS-31 in comparative designs.",
     },
     {
-      question: "How should MOTS-c be reconstituted?",
+      question: "How does MOTS-c compare to SS-31?",
       answer:
-        "Sterile reconstitution per SOP; document concentration and diluent lot. Not dosing advice.",
+        "MOTS-c vs SS-31 comes down to mechanism and evidence tier. MOTS-c is a signaling peptide that activates AMPK from inside the nucleus; SS-31 (elamipretide) is a synthetic tetrapeptide that binds cardiolipin to stabilize the electron transport chain directly. SS-31 has been through human Phase 3 trials, with an FDA-approved indication for Barth syndrome and a missed endpoint in a separate mitochondrial-myopathy trial. MOTS-c has mouse pharmacology data and small human observational studies, not a human trial program.",
     },
     {
-      question: "Storage requirements?",
+      question: "What benefits has MOTS-c peptide research reported?",
       answer:
-        "Lyophilized at -20°C; reconstituted at 4°C with minimal freeze–thaw cycles.",
+        "In mice, MOTS-c treatment has been associated with reversal of diet-induced obesity and age-related insulin resistance, and with roughly doubled treadmill endurance in middle-aged and old animals. In a small human study, a single bout of cycling raised endogenous MOTS-c protein about 11.9-fold in skeletal muscle. These are published findings in animal models and one human observational study, not claims about Tetrava's research reagent.",
     },
     {
-      question: "Shipping?",
+      question: "What does MOTS-c Reddit discussion usually look like?",
       answer:
-        "Cold-chain-aware packaging where required; tracking emailed after dispatch.",
+        "r/Peptides has an active MOTS-c thread culture built mostly around dosage questions and stacking it with SS-31 or other metabolic peptides. Most posts are anecdotal self-report rather than sourced to a study, though the Lee 2015 and Reynolds 2021 papers get cited secondhand fairly often.",
     },
     {
-      question: "Is MOTS-c for human consumption?",
-      answer: "No. Research Use Only.",
+      question: "Is MOTS-c dosage discussion on Reddit reliable?",
+      answer:
+        "Treat it as a lead, not a source. The published dosing that exists is a mouse mg/kg figure from animal studies, and that doesn't convert to a human number by simple arithmetic. This page doesn't offer that conversion, and a forum post presenting one as settled fact usually isn't citing anything peer-reviewed.",
+    },
+    {
+      question: "What's the best time to take MOTS-c in a research protocol?",
+      answer:
+        "There's no established human dosing schedule to answer that with, since MOTS-c isn't an approved product. What the literature describes is timing relative to exercise: in the human study, MOTS-c rose during and after a cycling bout and returned near baseline after four hours. Protocols involving exercise-adjacent sampling should anchor collection timepoints to the exercise bout itself, not a fixed clock time.",
+    },
+    {
+      question: "Where can you buy MOTS-c for qualified research?",
+      answer:
+        "You can buy MOTS-c peptide online from Tetrava Labs. Every order ships to qualified researchers with lot-linked COA documentation confirming identity and HPLC purity for the exact batch received, not a generic catalog claim.",
+    },
+    {
+      question: "Is MOTS-c Research Use Only?",
+      answer:
+        "Yes. MOTS-c has no FDA-approved human or veterinary indication. Tetrava Labs' listing is strictly a Research Use Only laboratory reagent, not for human or veterinary consumption.",
+    },
+    {
+      question: "How should MOTS-c be reconstituted and stored?",
+      answer:
+        "Store lyophilized vials at -20°C and skip repeated freeze-thaw cycles. Reconstitute under sterile technique with a protocol-appropriate diluent right before use, then log diluent lot, reconstitution date, and operator in your ELN alongside the batch COA.",
+    },
+    {
+      question: "How is MOTS-c purity and identity verified?",
+      answer:
+        "Each lot is checked by independent third-party HPLC-MS analysis reporting both purity and identity. Match the COA batch number in the COA library to the vial you actually received before starting comparative research work.",
     },
   ],
   "glow-bpc-157-tb500-ghk-cu": [

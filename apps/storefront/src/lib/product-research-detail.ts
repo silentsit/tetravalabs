@@ -495,6 +495,117 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-16",
   },
+  "mots-c": {
+    shortDescription: [
+      "MOTS-c is a 16-amino-acid peptide encoded inside the mitochondrial genome itself, not the cell's nuclear DNA. It comes from a short reading frame nested in the MT-RNR1 gene, the same gene that makes the mitochondrial 12S ribosomal RNA. The name is short for Mitochondrial Open Reading Frame of the 12S rRNA-c.[1]",
+      "Tetrava Labs supplies MOTS-c as a sterile, lyophilized reagent for laboratory research only. Labs use it to study AMPK-linked metabolic signaling, skeletal-muscle exercise adaptation, and insulin-sensitivity pathways in cell and animal models. The identity fields in the table above are cross-referenced against the PubChem compound record for MOTS-c.[6] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "Mitochondrial Open Reading Frame of the 12S rRNA-c",
+      "Mitochondrial-derived peptide MOTS-c",
+      "MOTS-c (human)",
+    ],
+    sections: [
+      {
+        heading: "MOTS-c's mitochondrial-encoded mechanism",
+        paragraphs: [
+          "Most peptides a research lab handles are transcribed from nuclear DNA. MOTS-c isn't. It's translated from a short open reading frame inside the mitochondrial 12S rRNA gene, a discovery Lee and colleagues at USC published in 2015.[1]",
+          "Once made, MOTS-c inhibits the cytoplasmic folate cycle. That inhibition causes an intermediate metabolite, AICAR, to build up, and AICAR is a well-characterized activator of AMP-activated protein kinase (AMPK).[1] AMPK is the cell's energy-sensing switch. Once active, it pushes skeletal muscle toward glucose uptake and fatty-acid oxidation instead of storage.",
+          "In that original study, MOTS-c treatment reversed high-fat-diet-induced obesity and age-related insulin resistance in mice, without reducing food intake.[1] Labs running [AMPK-linked metabolic assays](/category/metabolic-mitochondrial) often pair MOTS-c with a folate-cycle or AICAR-pathway comparator to confirm the mechanism holds in their own model.",
+        ],
+      },
+      {
+        heading: "MOTS-c vs SS-31: two different mitochondrial targets",
+        paragraphs: [
+          "MOTS-c and [SS-31](/buy-ss-31-online) both get grouped under \"mitochondrial peptides,\" but they don't do the same job. MOTS-c is a signaling molecule: made inside the mitochondria, it travels to the nucleus and switches on metabolic gene programs through AMPK.[1][2] SS-31 (elamipretide) is a synthetic tetrapeptide that binds cardiolipin, a lipid in the inner mitochondrial membrane, and physically stabilizes the electron transport chain rather than sending a signal anywhere.",
+          "The two also sit at very different points on the evidence ladder. SS-31 has been through human Phase 3 trials. It missed its primary endpoints in the MMPOWER-3 trial for primary mitochondrial myopathy,[4] but a separate Barth-syndrome program supported an FDA accelerated approval in September 2025 under the brand name Forzinity, based on knee-extensor muscle-strength data.[5] MOTS-c has no equivalent human trial program. What's published on MOTS-c is mouse pharmacology plus a handful of small human studies measuring endogenous MOTS-c levels around exercise.[2][3] Comparative protocols should treat that gap as a real difference in evidence tier, not a rounding error.",
+        ],
+      },
+      {
+        heading: "What research has measured for MOTS-c peptide benefits",
+        paragraphs: [
+          "MOTS-c is best documented as an exercise-linked signal. In a 2021 human trial, a single bout of stationary cycling raised MOTS-c protein about 11.9-fold in skeletal muscle, and roughly 1.5- to 1.6-fold in circulating plasma, before returning close to baseline after four hours of rest.[2]",
+          "In mice from the same study, two weeks of daily MOTS-c injection (15 mg/kg) roughly doubled treadmill running time and more than doubled running distance in both middle-aged and old animals. A separate late-life cohort, started at 23.5 months and dosed intermittently three times a week, showed increased physical capacity and a trend toward longer lifespan.[2] A 2022 study found a single 15 mg/kg dose improved total running time by 12% and distance by 15% in an acute treadmill test on untrained mice, and that MOTS-c protein itself accumulated in trained rodent muscle after four to eight weeks of voluntary running, persisting through several weeks of detraining.[3]",
+          "None of this is human dosing data. It's animal pharmacology describing what the molecule does in a mouse model, at a mouse-scaled dose, plus a small human study measuring an endogenous response to exercise rather than an injected dose.",
+        ],
+      },
+      {
+        heading: "Timing MOTS-c in a research protocol",
+        paragraphs: [
+          "\"Best time to take MOTS-c\" isn't a question this page can answer, since MOTS-c isn't an approved product with a human dosing schedule. What the published research does describe is timing relative to an exercise challenge, not time of day.",
+          "In the human cycling study, MOTS-c rose sharply during and immediately after the exercise bout and drifted back toward baseline by the four-hour mark, consistent with a short circulating half-life.[2] In the mouse acute-performance study, the single dose was administered before the treadmill challenge, not on a fixed daily clock.[3] If a protocol involves exercise-adjacent sampling, build collection timepoints around the exercise bout itself. A design that fixes clock time without controlling for exercise proximity will likely add noise that has nothing to do with the compound.",
+        ],
+      },
+      {
+        heading: "MOTS-c peptide on Reddit",
+        paragraphs: [
+          "r/Peptides has an active MOTS-c thread culture, and dosage questions dominate it: how much to reconstitute, how often to inject, whether to stack it with SS-31 or other metabolic peptides. Most of that content is anecdotal self-report, not sourced to a trial.",
+          "Reddit is a reasonable place to find the Lee 2015 and Reynolds 2021 papers cited secondhand. It's a weak place to find an accurate dose-response curve. If a thread states a specific number as fact, check whether it traces back to the mouse studies cited above. A mouse mg/kg dose doesn't translate to a human number by simple arithmetic, and this page doesn't offer that conversion.",
+        ],
+      },
+      {
+        heading: "Buying MOTS-c for research: what to verify",
+        paragraphs: [
+          "Vendor quality is checkable before you buy MOTS-c from anyone. Before you treat a supplier as qualified, look at:",
+        ],
+        bullets: [
+          "Lot identity: does the listing give a batch/lot number that matches the Certificate of Analysis shipped with the vial, or is the PDF generic or reused?",
+          "COA/HPLC traceability: is the COA from an independent third-party lab, reporting purity by area-under-curve HPLC rather than an in-house claim?",
+          "Identity confirmation: does the COA or an accompanying mass-spec report confirm the compound's identity, not just a purity percentage?",
+          "Storage and chain of custody: was the product shipped and stored consistent with a lyophilized peptide, with cold-chain notes where they apply?",
+          "Support: can you get the underlying COA/HPLC report and reach someone who knows the lot, or is documentation withheld?",
+          "If a vendor cannot produce a lot-specific COA on request for a currently listed batch, do not treat them as a qualified research supplier. Price and marketing copy do not fix that.",
+        ],
+      },
+      {
+        heading: "Reconstitution, storage, and documentation",
+        paragraphs: [
+          "Tetrava Labs ships MOTS-c as a lyophilized powder, which keeps it stable during transport. Store sealed vials at -20°C, skip repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent right before use.",
+          "Once reconstituted, store working solutions per your laboratory SOP and log diluent lot, reconstitution date, and operator in your ELN, so preparation conditions stay auditable against the batch [Certificate of Analysis](/coa-library).",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Lee C, Zeng J, Drew BG, et al. The mitochondrial-derived peptide MOTS-c promotes metabolic homeostasis and reduces obesity and insulin resistance. Cell Metab. 2015;21(3):443-454.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/25738459/",
+      },
+      {
+        id: 2,
+        citation:
+          "Reynolds JC, Lai RW, Woodhead JST, et al. MOTS-c is an exercise-induced mitochondrial-encoded regulator of age-dependent physical decline and muscle homeostasis. Nat Commun. 2021;12:470.",
+        url: "https://doi.org/10.1038/s41467-020-20790-0",
+      },
+      {
+        id: 3,
+        citation:
+          "Hyatt JK. MOTS-c increases in skeletal muscle following long-term physical activity and improves acute exercise performance after a single dose. Physiol Rep. 2022;10(13):e15377.",
+        url: "https://doi.org/10.14814/phy2.15377",
+      },
+      {
+        id: 4,
+        citation:
+          "Karaa A, Bertini E, Carelli V, et al. Efficacy and safety of elamipretide in individuals with primary mitochondrial myopathy: the MMPOWER-3 randomized clinical trial. Neurology. 2023;101(3):e238-e252.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/37268435/",
+      },
+      {
+        id: 5,
+        citation:
+          "U.S. Food and Drug Administration. FDA grants accelerated approval to first treatment for Barth syndrome [press release]. Sep 19, 2025.",
+        url: "https://www.fda.gov/news-events/press-announcements/fda-grants-accelerated-approval-first-treatment-barth-syndrome",
+      },
+      {
+        id: 6,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 146675088, Mots-c.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/146675088",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-16",
+  },
 };
 
 export function getProductResearchDetail(

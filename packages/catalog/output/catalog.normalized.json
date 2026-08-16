@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T08:35:31.472Z",
+  "generated_at": "2026-08-16T15:52:01.212Z",
   "sku_scheme": "TV-####-##",
   "compound_merge": true,
   "products": [
@@ -6296,8 +6296,8 @@
         ],
         "product_code": 90,
         "cas_number": "1627580-64-6",
-        "molecular_formula": "C101H168N30O21",
-        "molecular_weight": "2174.66",
+        "molecular_formula": "C101H152N28O22S2",
+        "molecular_weight": "2174.62",
         "sequence": "Met-Arg-Trp-Gln-Glu-Met-Gly-Tyr-Ile-Phe-Tyr-Pro-Arg-Lys-Leu-Arg",
         "storage": "-20C lyophilized",
         "appearance": "White lyophilized powder"

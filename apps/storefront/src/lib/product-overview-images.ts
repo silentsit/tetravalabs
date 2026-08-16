@@ -77,6 +77,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Scientist reviewing a dual GLP-1/glucagon receptor pathway diagram beside a mazdutide research vial",
     2: "Lab researcher matching a mazdutide Certificate of Analysis and HPLC chromatogram to its vial",
   },
+  "mots-c": {
+    0: "Researcher reviewing a mitochondrial AMPK signaling pathway diagram beside a MOTS-c research vial",
+    1: "Lab researcher holding a MOTS-c research vial beside an exercise-capacity metabolic chamber",
+    2: "MOTS-c and SS-31 research vials placed on a chromatogram printout for comparative analysis",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

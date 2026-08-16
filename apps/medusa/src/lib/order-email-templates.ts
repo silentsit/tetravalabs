@@ -1,3 +1,5 @@
+import { storefrontProductReviewUrl, storefrontProductUrl } from "./storefront-product-url"
+
 export const PAYMENT_REMINDER_DELAY_MINUTES = 20
 export const PAYMENT_FOLLOWUP_DELAY_MINUTES = 30
 export const TRACKING_SLA_HOURS = 72
@@ -135,7 +137,7 @@ function renderProductReorderLinks(items: OrderEmailItem[]) {
   if (!withHandles.length) return ""
   const rows = withHandles
     .map((item) => {
-      const url = storefrontUrl(`/product/${encodeURIComponent(item.handle!)}`)
+      const url = storefrontProductUrl(item.handle!)
       return `
         <li style="margin:0 0 8px;color:#8A8AA0;font-size:14px;line-height:1.5;">
           <a href="${escapeHtml(url)}" style="color:#5EEAD4;">${escapeHtml(item.title)}</a>
@@ -512,8 +514,7 @@ export function firstProductHandle(items: OrderEmailItem[]) {
 }
 
 export function buildProductReviewUrl(handle: string) {
-  const storefront = (process.env.STOREFRONT_URL || "https://tetravalabs.com").replace(/\/$/, "")
-  return `${storefront}/product/${encodeURIComponent(handle)}#reviews`
+  return storefrontProductReviewUrl(handle)
 }
 
 type ReviewRequestInput = {

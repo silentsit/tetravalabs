@@ -30,6 +30,7 @@ Source: `apps/storefront` metadata + JSON-LD registry (Jul 2026).
 | `/terms` | Terms of Service \| Tetrava Labs | Terms governing Tetrava Labs website use and research-compound purchases, including RUO requirements, orders, shipping, quality, and liability. | Organization, WebSite, WebPage, BreadcrumbList | |
 | `/refund` | Refund & Delivery Policy \| Tetrava Labs | Tetrava Labs delivery guarantee, reshipment policy, customs exceptions, and refund conditions for research peptides. | Organization, WebSite, WebPage, BreadcrumbList | |
 | `/ruo` | Research Use Only Policy \| Tetrava Labs | Tetrava Labs Research Use Only (RUO) policy — compounds are for qualified laboratory research, not human consumption. | Organization, WebSite, WebPage, BreadcrumbList | |
+| `/sitemap` | Sitemap \| Tetrava Labs | HTML sitemap of Tetrava Labs: research peptide product pages, categories, Research Hub articles, and policy pages. XML index at /sitemap_index.xml. | Organization, WebSite, WebPage, BreadcrumbList | Human-readable HTML sitemap; XML remains `/sitemap_index.xml` |
 | `/reorder/{token}` | Tetrava Labs — Verified. Documented. Delivered. (root default) | (root default) | Organization, WebSite, WebPage (fallback) | **Gap:** no dedicated metadata / noIndex |
 | `(not-found)` | (inherits requesting path / root default) | (root default) | Organization, WebSite | **Gap:** no dedicated metadata / noindex |
 

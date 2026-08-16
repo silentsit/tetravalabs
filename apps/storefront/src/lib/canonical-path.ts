@@ -46,6 +46,7 @@ const RESERVED_SEGMENTS = new Set([
   "shipping",
   "shipping-restricted",
   "shop",
+  "sitemap",
   "terms"
 ])
 

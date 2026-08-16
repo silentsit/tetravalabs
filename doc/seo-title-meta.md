@@ -28,6 +28,7 @@ Default description: Research-use peptides with HPLC-MS verification, lot-linked
 | `/terms` | Terms of Service \| Tetrava Labs | Terms governing Tetrava Labs website use and research-compound purchases, including RUO requirements, orders, shipping, quality, and liability. |
 | `/refund` | Refund & Delivery Policy \| Tetrava Labs | Tetrava Labs delivery guarantee, reshipment policy, customs exceptions, and refund conditions for research peptides. |
 | `/ruo` | Research Use Only Policy \| Tetrava Labs | Tetrava Labs Research Use Only (RUO) policy — compounds are for qualified laboratory research, not human consumption. |
+| `/sitemap` | Sitemap \| Tetrava Labs | HTML sitemap of Tetrava Labs: research peptide product pages, categories, Research Hub articles, and policy pages. XML index at /sitemap_index.xml. |
 
 ## Utility / noIndex pages
 

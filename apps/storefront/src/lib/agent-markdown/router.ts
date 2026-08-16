@@ -5,6 +5,7 @@ import { getStaticAgentMarkdownPage, isStaticAgentMarkdownPath } from "@/lib/age
 import { getCategoryAgentMarkdownPage } from "@/lib/agent-markdown/category"
 import { getBlogPostAgentMarkdownPage } from "@/lib/agent-markdown/blog"
 import { getProductAgentMarkdownPage } from "@/lib/agent-markdown/product"
+import { getHtmlSitemapMarkdownPage } from "@/lib/agent-markdown/sitemap"
 
 const CATEGORY_PATH_RE = /^\/category\/([^/]+)$/
 const BLOG_POST_PATH_RE = /^\/blog\/([^/]+)$/
@@ -12,6 +13,7 @@ const SINGLE_SEGMENT_RE = /^\/([^/]+)$/
 
 /** Resolves a canonical storefront pathname to its AI-agent markdown mirror, or null if none applies. */
 export async function resolveMarkdownForPath(pathname: string): Promise<AgentMarkdownPage | null> {
+  if (pathname === "/sitemap") return getHtmlSitemapMarkdownPage()
   if (isStaticAgentMarkdownPath(pathname)) return getStaticAgentMarkdownPage(pathname)
 
   const categoryMatch = pathname.match(CATEGORY_PATH_RE)

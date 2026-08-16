@@ -20,6 +20,7 @@ const helpLinks = [
 const resourceLinks = [
   { label: "COA Library", href: "/coa-library" },
   { label: "Research Hub", href: "/blog" },
+  { label: "Sitemap", href: "/sitemap" },
   { label: "RUO Disclaimer", href: "/ruo" }
 ]
 

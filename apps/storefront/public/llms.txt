@@ -9,6 +9,7 @@
 - API catalog: https://tetravalabs.com/.well-known/api-catalog
 - OpenAPI (public routes): https://tetravalabs.com/openapi.json
 - Auth instructions: https://tetravalabs.com/auth.md
+- HTML sitemap: https://tetravalabs.com/sitemap
 - Markdown sitemap: https://tetravalabs.com/sitemap.md
 - HTTP `Link` headers on HTML responses point to the resources above.
 

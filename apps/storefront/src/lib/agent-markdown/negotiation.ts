@@ -17,7 +17,8 @@ const STATIC_MARKDOWN_PATHS = new Set([
   "/terms",
   "/privacy",
   "/refund",
-  "/ruo"
+  "/ruo",
+  "/sitemap"
 ])
 
 const EXCLUDED_PREFIXES = [

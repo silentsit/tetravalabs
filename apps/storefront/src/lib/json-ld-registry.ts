@@ -103,6 +103,7 @@ const RESERVED_TOP_LEVEL = new Set([
   "shipping",
   "shipping-restricted",
   "shop",
+  "sitemap",
   "terms"
 ])
 

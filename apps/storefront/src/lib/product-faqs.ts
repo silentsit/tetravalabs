@@ -466,32 +466,59 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   ],
   mazdutide: [
     {
-      question: "What is mazdutide in laboratory research?",
+      question: "What is mazdutide peptide?",
       answer:
-        "Mazdutide is a dual GLP-1/glucagon receptor agonist analogue studied in metabolic research models. Tetrava Labs supplies it as an RUO catalog reagent.",
+        "Mazdutide is a synthetic peptide that activates both the GLP-1 receptor and the glucagon receptor, modeled on the gut hormone oxyntomodulin. It's also known by its development codes IBI362 and LY3305677, and by the brand name Xinermei in China, where it's an approved drug. Tetrava Labs supplies mazdutide as a Research Use Only laboratory reagent, not the approved drug product.",
     },
     {
-      question: "How is mazdutide purity verified?",
+      question: "What is mazdutide peptide used for in research?",
       answer:
-        "Independent HPLC-MS testing supports identity and purity. File lot COAs when published.",
+        "Labs use mazdutide peptide to study dual GLP-1/glucagon receptor signaling, hepatic fat-oxidation pathways, and comparative incretin research against single-receptor agonists like semaglutide, or other dual and triple agonists like tirzepatide and retatrutide. Tetrava Labs supplies it with lot-linked documentation for qualified laboratory professionals. It's not for human or veterinary use.",
     },
     {
-      question: "How should mazdutide be handled after reconstitution?",
+      question: "How does mazdutide compare to tirzepatide?",
       answer:
-        "Prepare under sterile conditions per SOP, aliquot if required, and store reconstituted material at 4°C with limited freeze–thaw cycling.",
+        "Mazdutide vs tirzepatide comes down to the second receptor each one pairs with GLP-1. Mazdutide adds glucagon receptor activity, which drives hepatic fat oxidation and energy expenditure. Tirzepatide adds GIP receptor activity, which improves insulin sensitivity. No trial has tested the two head-to-head; cross-trial data show comparable glycemic effects and a larger pooled weight-loss effect for tirzepatide.",
     },
     {
-      question: "Storage of lyophilized mazdutide?",
-      answer: "Keep sealed lyophilized vials at -20°C for long-term stability.",
-    },
-    {
-      question: "How is mazdutide shipped?",
+      question: "Is mazdutide better than tirzepatide?",
       answer:
-        "Temperature-controlled packaging where required; email tracking after dispatch.",
+        "No published trial has put mazdutide against tirzepatide directly, so \"better\" isn't something the current evidence can answer. Across separate trials and cross-trial meta-analyses, tirzepatide's pooled weight-loss effect has come out larger, while mazdutide has posted the only head-to-head win against semaglutide, a single-receptor GLP-1 drug, reported so far. They're not interchangeable research subjects.",
     },
     {
-      question: "Is mazdutide Research Use Only?",
-      answer: "Yes. Not for human or veterinary administration.",
+      question: "How does mazdutide compare to retatrutide?",
+      answer:
+        "Mazdutide vs retatrutide is a dual-agonist-versus-triple-agonist comparison. Both activate GLP-1 and glucagon receptors; retatrutide adds a third target, GIP. In a 2025 network meta-analysis, retatrutide's pooled weight-loss effect was more than double mazdutide's. Retatrutide remains investigational everywhere, while mazdutide holds two regulatory approvals in China.",
+    },
+    {
+      question: "What benefits has mazdutide peptide research reported?",
+      answer:
+        "In completed Phase 3 trials, mazdutide has been associated with weight reductions of roughly 15% to 18.5% at higher doses over 48 to 60 weeks, plus improvements in blood pressure, lipids, and serum uric acid. A company-reported head-to-head trial found mazdutide outperformed semaglutide on combined glycemic-and-weight-loss response. These are clinical trial findings in human subjects, not claims about Tetrava's research reagent, which is sold strictly for laboratory use.",
+    },
+    {
+      question: "What does mazdutide Reddit discussion usually look like?",
+      answer:
+        "Because mazdutide's retail availability is limited to China, most English-language Reddit threads about it are analytical: people tracking trial data, comparing it to tirzepatide and retatrutide, or asking about its glucagon-driven mechanism, rather than posting personal-use reports. Treat any anecdotal thread as a lead to verify, not as evidence.",
+    },
+    {
+      question: "Where can you buy mazdutide for qualified research?",
+      answer:
+        "You can buy mazdutide peptide online from Tetrava Labs. Every order ships to qualified researchers with lot-linked COA documentation confirming identity and HPLC purity for the exact batch received, not a generic catalog claim.",
+    },
+    {
+      question: "Is mazdutide Research Use Only, or is it an approved drug?",
+      answer:
+        "Both, depending on which product you mean. Mazdutide (brand name Xinermei) is an NMPA-approved drug in China for weight management and type 2 diabetes. It is not FDA-approved. Tetrava Labs' mazdutide listing is a separate, Research Use Only laboratory reagent. It isn't dispensed, prescribed, or described as a medication.",
+    },
+    {
+      question: "How should mazdutide be reconstituted and stored?",
+      answer:
+        "Store lyophilized vials at -20°C and skip repeated freeze-thaw cycles. Reconstitute under sterile technique with a protocol-appropriate diluent right before use, then log diluent lot, reconstitution date, and operator in your ELN alongside the batch COA.",
+    },
+    {
+      question: "How is mazdutide purity and identity verified?",
+      answer:
+        "Each lot is checked by independent third-party HPLC-MS analysis reporting both purity and identity. Match the COA batch number in the COA library to the vial you actually received before starting comparative research work.",
     },
   ],
   nad: [

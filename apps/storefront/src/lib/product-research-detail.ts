@@ -362,6 +362,138 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-14",
   },
+  mazdutide: {
+    shortDescription: [
+      "Mazdutide is a synthetic peptide that activates both the GLP-1 receptor and the glucagon receptor at once. It's modeled on oxyntomodulin, a gut hormone that does the same thing naturally, and it carries the development codes IBI362 and LY3305677 from its Eli Lilly and Innovent Biologics research programs.[1]",
+      "Tetrava Labs sells mazdutide as a sterile, lyophilized reagent for laboratory research only, not the approved drug product sold elsewhere. Labs use it to study dual-agonist receptor signaling, hepatic fat metabolism, and comparative work against other incretin peptides such as [semaglutide](/buy-semaglutide-online), [tirzepatide](/buy-tirzepatide-online), and [retatrutide](/buy-retatrutide-online). The identity fields in the table above are cross-referenced against the PubChem compound record for mazdutide.[7] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "IBI362",
+      "LY3305677",
+      "OXM3",
+      "Xinermei (approved brand name, China)",
+    ],
+    sections: [
+      {
+        heading: "Mazdutide's dual GLP-1/glucagon mechanism",
+        paragraphs: [
+          "Mazdutide was discovered by Eli Lilly and licensed to Innovent Biologics for development in China. It works by activating two receptors at once: the GLP-1 receptor, which slows gastric emptying and drives glucose-dependent insulin secretion, and the glucagon receptor, which pushes the liver toward fat oxidation and raises energy expenditure.[1]",
+          "That second receptor is what separates mazdutide from single-target GLP-1 drugs like semaglutide. Activating glucagon receptors on its own tends to raise blood sugar, so the GLP-1 side of the molecule offsets that effect while still driving appetite and gastric-emptying changes.[1] Labs studying dual-agonist pharmacology often run mazdutide alongside [semaglutide](/buy-semaglutide-online) as a single-receptor comparator.",
+        ],
+      },
+      {
+        heading: "Mazdutide vs tirzepatide",
+        paragraphs: [
+          "Mazdutide and tirzepatide are both once-weekly dual-receptor agonists, but they pair GLP-1 with different second receptors. Tirzepatide activates GLP-1 and GIP. Mazdutide activates GLP-1 and glucagon. GIP mainly improves insulin sensitivity; glucagon mainly drives hepatic fat oxidation and thermogenesis. The two molecules are solving a similar problem from different angles.[1]",
+          "No trial has put mazdutide head-to-head against tirzepatide. A 2025 network meta-analysis pooling 24 trials and more than 9,000 participants found mazdutide and tirzepatide produced comparable HbA1c reductions in people with type 2 diabetes, while tirzepatide's pooled weight-loss effect came out larger.[5] Cross-trial comparisons like this carry the usual caveat: different trial populations, doses, and durations, not a controlled comparison in the same patients.",
+        ],
+      },
+      {
+        heading: "Mazdutide vs retatrutide",
+        paragraphs: [
+          "Retatrutide adds a third receptor, GIP, on top of the same GLP-1/glucagon pairing mazdutide uses, making it a triple agonist instead of a dual one. In the same 2025 network meta-analysis, retatrutide's pooled weight-loss effect (-11.91 kg) came out larger than mazdutide's (-5.31 kg), consistent with the added receptor target.[5]",
+          "Retatrutide remains investigational everywhere, still moving through Eli Lilly's TRIUMPH trial program. Mazdutide is further along administratively: it holds two NMPA approvals in China. No published trial has tested mazdutide against retatrutide directly, so any weight-loss comparison between the two is cross-trial, not head-to-head.",
+        ],
+      },
+      {
+        heading: "What clinical trials have measured for mazdutide",
+        paragraphs: [
+          "Two completed Phase 3 trials anchor most of the public data. GLORY-1 randomized adults in China to 4 mg or 6 mg mazdutide against placebo for 48 weeks; both doses produced clinically relevant weight loss and favorable changes across prespecified cardiometabolic measures, with gastrointestinal events as the most common side effect.[2]",
+          "GLORY-2 tested a 9 mg dose against placebo for 60 weeks in adults with obesity. Mean body weight fell 18.5% in the mazdutide group versus 3.0% with placebo, and the trial also reported improvements in blood pressure, lipids, and serum uric acid.[3] In a head-to-head trial against semaglutide 1 mg presented at the 2026 American Diabetes Association Scientific Sessions, mazdutide 6 mg produced a larger HbA1c reduction and a higher rate of combined glycemic-and-weight-loss response; that result comes from a company-reported conference presentation, not yet a peer-reviewed publication.[4]",
+          "Separately, exploratory work in a diabetic mouse model reported that mazdutide improved spatial-memory performance and myelin-integrity markers in the hippocampus. That's a mechanistic finding in animals, not evidence of a cognitive effect in humans.[6]",
+        ],
+      },
+      {
+        heading: "What is mazdutide peptide used for in research?",
+        paragraphs: [
+          "In the Tetrava Labs catalog, mazdutide sits in [GLP-1 Research](/category/glp-1-research), the same category as semaglutide, tirzepatide, and retatrutide. Labs studying this class typically design receptor-binding assays, cAMP second-messenger readouts, glucose-handling models, and hepatic lipid-metabolism endpoints, often running mazdutide alongside a single-receptor GLP-1 comparator to isolate the glucagon-driven effects.[1]",
+          "Because the compound sits at the intersection of two signaling pathways, comparative protocols benefit from writing the receptor targets, dose, and comparator compound into the study design up front, rather than treating every GLP-1-class peptide as one interchangeable category.",
+        ],
+      },
+      {
+        heading:
+          "Regulatory status: China approval and Tetrava's Research Use Only listing",
+        paragraphs: [
+          "Mazdutide received its first regulatory approval from China's National Medical Products Administration (NMPA) in June 2025, for chronic weight management, under the brand name Xinermei. A second NMPA approval, for glycemic control in adults with type 2 diabetes, followed in September 2025.[1]",
+          "It is not FDA-approved, and no U.S. new drug application has been publicly disclosed. Tetrava Labs' mazdutide listing is a Research Use Only laboratory reagent, not the approved Chinese drug product: it is not dispensed, prescribed, or described as a medication, and this page makes no dosing or treatment claims.",
+        ],
+      },
+      {
+        heading: "Mazdutide on Reddit",
+        paragraphs: [
+          "Because retail access to mazdutide is limited to China, most English-language Reddit discussion, on r/Peptides and r/Semaglutide, reads as analytical rather than experiential: people comparing published trial numbers, tracking the TRIUMPH and GLORY trial programs, or asking how mazdutide's glucagon component differs from tirzepatide's GIP component.",
+          "That's a different texture than the anecdote-heavy threads you see for peptides with wider informal availability. It still isn't clinical evidence. Treat any first-person mazdutide report with the same skepticism you'd apply to an unverified vendor claim, and check whether the person citing a number is quoting an actual trial or repeating a forum summary of one.",
+        ],
+      },
+      {
+        heading: "Buying mazdutide for research: what to verify",
+        paragraphs: [
+          "Vendor quality is checkable before you buy mazdutide from anyone. Before you treat a supplier as qualified, look at:",
+        ],
+        bullets: [
+          "Lot identity: does the listing give a batch/lot number that matches the Certificate of Analysis shipped with the vial, or is the PDF generic or reused?",
+          "COA/HPLC traceability: is the COA from an independent third-party lab, reporting purity by area-under-curve HPLC rather than an in-house claim?",
+          "Identity confirmation: does the COA or an accompanying mass-spec report confirm the compound's identity, not just a purity percentage?",
+          "Storage and chain of custody: was the product shipped and stored consistent with a lyophilized peptide, with cold-chain notes where they apply?",
+          "Support: can you get the underlying COA/HPLC report and reach someone who knows the lot, or is documentation withheld?",
+          "If a vendor cannot produce a lot-specific COA on request for a currently listed batch, do not treat them as a qualified research supplier. Price and marketing copy do not fix that.",
+        ],
+      },
+      {
+        heading: "Reconstitution, storage, and documentation",
+        paragraphs: [
+          "Tetrava Labs ships mazdutide as a lyophilized powder, which keeps it stable during transport. Store sealed vials at -20°C, skip repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent right before use.",
+          "Once reconstituted, store working solutions per your laboratory SOP and log diluent lot, reconstitution date, and operator in your ELN, so preparation conditions stay auditable against the batch [Certificate of Analysis](/coa-library).",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Shirley M. Mazdutide: first approval. Drugs. 2025;85(12):1621-1627.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/41028652/",
+      },
+      {
+        id: 2,
+        citation:
+          "Ji L, Jiang H, Bi Y, et al. Once-weekly mazdutide in Chinese adults with obesity or overweight. N Engl J Med. 2025;392(22):2215-2225.",
+        url: "https://doi.org/10.1056/NEJMoa2411528",
+      },
+      {
+        id: 3,
+        citation:
+          "Ji L, Gao L, Jiang H, et al. Treatment with 9-mg mazdutide for weight reduction in Chinese adults with obesity: the GLORY-2 randomized clinical trial. JAMA. 2026;336(5):e268427.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/42251595/",
+      },
+      {
+        id: 4,
+        citation:
+          "Innovent Biologics. Innovent presents results of the Phase 3 DREAMS-3 head-to-head trial of mazdutide versus semaglutide at the 2026 ADA Scientific Sessions [media release]. Jun 8, 2026.",
+        url: "https://en.innoventbio.com/InvestorsAndMedia/PressReleaseDetail?key=604",
+      },
+      {
+        id: 5,
+        citation:
+          "Liu S, Hu J, Zhao C, Liu H, He C. Comparative efficacy of incretin drugs on glycemic control, body weight, and blood pressure in adults with overweight or obesity and with/without type 2 diabetes: a systematic review and network meta-analysis. Front Endocrinol (Lausanne). 2025;16:1513641.",
+        url: "https://doi.org/10.3389/fendo.2025.1513641",
+      },
+      {
+        id: 6,
+        citation:
+          "Dong W, Bai J, Yuan Q, et al. Mazdutide, a dual agonist targeting GLP-1R and GCGR, mitigates diabetes-associated cognitive dysfunction: mechanistic insights from multi-omics analysis. eBioMedicine. 2025;117:105791.",
+        url: "https://doi.org/10.1016/j.ebiom.2025.105791",
+      },
+      {
+        id: 7,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 167312357, Mazdutide.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/167312357",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-16",
+  },
 };
 
 export function getProductResearchDetail(

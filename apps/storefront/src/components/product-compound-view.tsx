@@ -146,7 +146,7 @@ export function ProductCompoundView({
 
   return (
     <>
-      <div className="grid gap-x-10 gap-y-5 lg:grid-cols-2 lg:gap-y-8">
+      <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
         <div className="flex flex-col gap-4 lg:max-w-md">
           <div className="card overflow-hidden p-4">
             <ProductImageGallery
@@ -157,6 +157,14 @@ export function ProductCompoundView({
             />
           </div>
           <ProductCoaDownload coas={coas} />
+          <ProductReviewsPanel
+            key={`${selectedStrength.handle}-reviews`}
+            productId={selectedStrength.productId}
+            productHandle={selectedStrength.handle}
+            initialData={reviews}
+            mode="quotes"
+            onReviewsChange={setReviewData}
+          />
         </div>
 
         <div className="space-y-5">
@@ -188,31 +196,16 @@ export function ProductCompoundView({
             }
             selectedStrength={selectedStrength}
           />
-        </div>
 
-        <div className="mt-3 min-h-0 lg:relative lg:mt-0 lg:h-full lg:max-w-md">
-          <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
-            <ProductReviewsPanel
-              key={`${selectedStrength.handle}-reviews`}
-              productId={selectedStrength.productId}
-              productHandle={selectedStrength.handle}
-              initialData={reviews}
-              mode="quotes"
-              onReviewsChange={setReviewData}
-            />
-          </div>
-        </div>
+          <ProductPurchasePanel
+            displayName={view.displayName}
+            strengths={view.strengths}
+            selectedStrengthKey={selectedStrength.strengthKey}
+            selectedPackQty={packQty}
+            onStrengthChange={onStrengthChange}
+            onPackChange={onPackChange}
+          />
 
-        <ProductPurchasePanel
-          displayName={view.displayName}
-          strengths={view.strengths}
-          selectedStrengthKey={selectedStrength.strengthKey}
-          selectedPackQty={packQty}
-          onStrengthChange={onStrengthChange}
-          onPackChange={onPackChange}
-        />
-
-        <div className="lg:col-start-2">
           <ProductTrustStrip />
         </div>
       </div>

@@ -192,33 +192,32 @@ export function ProductReviewsPanel({
       <section
         id="reviews"
         aria-label="Customer reviews"
-        className="card mt-8 flex h-full min-h-0 scroll-mt-24 flex-col space-y-3 p-4 lg:mt-0"
+        className="card mt-8 flex max-h-80 min-h-0 flex-1 scroll-mt-24 flex-col overflow-hidden p-4 lg:mt-0 lg:max-h-none"
       >
-        <header className="shrink-0">
+        <header className="shrink-0 space-y-2 pb-3">
           <p className="text-[11px] font-medium uppercase tracking-wide text-[#94A3B8]">
             Lab reviews
           </p>
-          <div className="mt-1 flex items-center justify-between gap-3">
+          <div className="flex items-center justify-between gap-3">
             <h2 className="font-serif text-lg text-[#0F172A]">Customer reviews</h2>
             <p className="shrink-0 font-mono text-xs text-[#0D9488]">
               {aggregate.ratingValue.toFixed(1)} · {aggregate.reviewCount}
             </p>
           </div>
-          <div className="mt-2 flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <StarRating value={Math.round(aggregate.ratingValue)} readOnly size="sm" />
             <span className="text-xs text-[#64748B]">
               {aggregate.reviewCount} {aggregate.reviewCount === 1 ? "review" : "reviews"}
             </span>
           </div>
+          {aggregate.reviewCount > PRODUCT_REVIEWS_DISPLAY_LIMIT ? (
+            <p className="text-xs text-[#64748B]">
+              Showing the {PRODUCT_REVIEWS_DISPLAY_LIMIT} newest of {aggregate.reviewCount} reviews
+            </p>
+          ) : null}
         </header>
 
-        {aggregate.reviewCount > PRODUCT_REVIEWS_DISPLAY_LIMIT ? (
-          <p className="text-xs text-[#64748B]">
-            Showing the {PRODUCT_REVIEWS_DISPLAY_LIMIT} newest of {aggregate.reviewCount} reviews
-          </p>
-        ) : null}
-
-        <ul className="min-h-0 flex-1 divide-y divide-[#E2E8F0] overflow-y-auto pr-1">
+        <ul className="min-h-0 flex-1 divide-y divide-[#E2E8F0] overflow-y-auto overscroll-contain pr-1">
           {ordered.map((review) => (
             <li key={review.id} className="py-3 first:pt-0 last:pb-0">
               <div className="flex items-start justify-between gap-2">
@@ -242,7 +241,7 @@ export function ProductReviewsPanel({
                   ) : null}
                 </div>
               </div>
-              <p className="mt-2 line-clamp-4 text-sm leading-relaxed text-[#475569]">{review.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-[#475569]">{review.body}</p>
             </li>
           ))}
         </ul>

@@ -146,9 +146,9 @@ export function ProductCompoundView({
 
   return (
     <>
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-        <div className="flex flex-col gap-4 lg:max-w-md">
-          <div className="card overflow-hidden p-4">
+      <div className="grid gap-x-10 gap-y-5 lg:grid-cols-2">
+        <div className="flex min-h-0 flex-col gap-4 lg:h-0 lg:max-w-md lg:min-h-full">
+          <div className="card shrink-0 overflow-hidden p-4">
             <ProductImageGallery
               key={selectedStrength.imageHandle}
               productImages={galleryImages}
@@ -156,7 +156,9 @@ export function ProductCompoundView({
               coas={coas}
             />
           </div>
-          <ProductCoaDownload coas={coas} />
+          <div className="shrink-0">
+            <ProductCoaDownload coas={coas} />
+          </div>
           <ProductReviewsPanel
             key={`${selectedStrength.handle}-reviews`}
             productId={selectedStrength.productId}
@@ -205,7 +207,9 @@ export function ProductCompoundView({
             onStrengthChange={onStrengthChange}
             onPackChange={onPackChange}
           />
+        </div>
 
+        <div className="lg:col-start-2">
           <ProductTrustStrip />
         </div>
       </div>

@@ -768,9 +768,24 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "Yes. MOTS-c has no FDA-approved human or veterinary indication. Tetrava Labs' listing is strictly a Research Use Only laboratory reagent, not for human or veterinary consumption.",
     },
     {
-      question: "How should MOTS-c be reconstituted and stored?",
+      question: "Where do you inject MOTS-c, and how do you take it?",
       answer:
-        "Store lyophilized vials at -20°C and skip repeated freeze-thaw cycles. Reconstitute under sterile technique with a protocol-appropriate diluent right before use, then log diluent lot, reconstitution date, and operator in your ELN alongside the batch COA.",
+        "This page doesn't cover injection sites or self-administration, because Tetrava Labs doesn't sell MOTS-c for human use. Every listing here is a Research Use Only laboratory reagent for cell and animal research models, not a product with a human route of administration.",
+    },
+    {
+      question: "How do you dose MOTS-c, and how much should you inject?",
+      answer:
+        "There's no approved human dose to answer that with, since MOTS-c has no FDA-approved indication. The dosing that exists in the literature is a mouse mg/kg figure from animal pharmacology studies (15 mg/kg), and it doesn't convert to a human dose or an injection volume by simple arithmetic. Tetrava Labs doesn't publish that conversion.",
+    },
+    {
+      question: "How long does it take for MOTS-c to work?",
+      answer:
+        "There's no human onset-of-effect timeline to cite, since MOTS-c isn't an approved product. The published kinetics come from a 2021 human trial: MOTS-c protein rose sharply during and immediately after a bout of cycling, then drifted back toward baseline within about four hours. That describes an exercise-linked signal, not how long a dose takes to work in a person.",
+    },
+    {
+      question: "How do you reconstitute MOTS-c, including a 10mg vial?",
+      answer:
+        "Diluent volume for a specific vial size is a laboratory protocol choice, not a catalog constant, so this page doesn't publish a fixed mL amount for the 10mg vial or any other strength. Tetrava Labs ships MOTS-c as a lyophilized powder: store sealed vials at -20°C, skip repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent right before use, per your lab's SOP. Bacteriostatic water is listed separately as a research solvent. It isn't paired to any MOTS-c SKU at a fixed milliliter amount.",
     },
     {
       question: "How is MOTS-c purity and identity verified?",

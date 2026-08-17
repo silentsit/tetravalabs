@@ -30,6 +30,12 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
       "Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale. Get competitive pricing, lab-tested retatrutide peptides & same-day dispatch.",
     imageAlt: "Buy retatrutide peptide for sale in research vial",
   },
+  "mots-c": {
+    absoluteTitle: "Buy MOTS-c Peptide Online | MOTS-c for Sale | Tetrava",
+    description:
+      "Buy MOTS-c peptide online for qualified labs. Get 99%+ HPLC-MS purity, lot-linked COA documentation, competitive pricing, and cold-chain dispatch. RUO only.",
+    imageAlt: "Buy MOTS-c peptide for sale in research vial",
+  },
 };
 
 export function getProductSeoOverride(

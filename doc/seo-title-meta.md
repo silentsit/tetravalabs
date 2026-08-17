@@ -14,6 +14,7 @@ Default description: Research-use peptides with HPLC-MS verification, lot-linked
 | `/{handle}` | {productName with strengths} — {category} \| Tetrava Labs | {productName with strengths} for laboratory research (RUO). {purity} purity with lot-linked COA. [CAS …]. |
 | `/buy-bpc-157-online` | BPC-157 Peptide for Sale • Tissue Repair \| Tetrava Labs | BPC-157 peptide for sale at Tetrava Labs — third-party verified 99%+ purity with lot-linked COA. Buy BPC-157 online with us today. |
 | `/buy-retatrutide-online` | Buy Retatrutide Peptide Online \| Retatrutide for Sale \| Tetrava | Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale. Get competitive pricing, lab-tested retatrutide peptides & same-day dispatch. |
+| `/buy-mots-c-online` | Buy MOTS-c Peptide Online \| MOTS-c for Sale \| Tetrava | Buy MOTS-c peptide online for qualified labs. Get 99%+ HPLC-MS purity, lot-linked COA documentation, competitive pricing, and cold-chain dispatch. RUO only. |
 | `/category/{slug}` | {seoTitle or "{label} — research peptides"} \| Tetrava Labs | Sanity seoDescription → category art description → Shop {label} research compounds… |
 | `/categories` | Product categories \| Tetrava Labs | Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies. |
 | `/blog` | Research Hub — articles & protocols \| Tetrava Labs | Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers. |

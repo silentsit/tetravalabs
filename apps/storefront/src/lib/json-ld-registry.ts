@@ -19,7 +19,7 @@ import {
   type ProductReviewSchemaInput
 } from "@/lib/seo"
 import { getProductResearchDetail } from "@/lib/product-research-detail"
-import { authorBioText, getAuthor } from "@/lib/authors"
+import { authorPersonFields, getAuthor } from "@/lib/authors"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
@@ -158,13 +158,7 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     })
     const researchDetail = getProductResearchDetail(view.parentHandle)
     const researchAuthor = getAuthor(researchDetail?.authorId ?? "editorial-team")
-    const pageAuthor = {
-      name: researchAuthor.name,
-      jobTitle: researchAuthor.title,
-      description: authorBioText(researchAuthor),
-      image: researchAuthor.image,
-      credentials: researchAuthor.credentials
-    }
+    const pageAuthor = authorPersonFields(researchAuthor)
 
     return [
       productJsonLd(productLike, view.parentHandle, image, reviewData),
@@ -209,12 +203,7 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         strengthLabels: []
       }),
       path,
-      author: {
-        name: editorialAuthor.name,
-        jobTitle: editorialAuthor.title,
-        description: authorBioText(editorialAuthor),
-        image: editorialAuthor.image
-      }
+      author: authorPersonFields(editorialAuthor)
     })
   ]
 })
@@ -225,12 +214,7 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
   if (!post) return []
 
   const editorialAuthor = getAuthor("editorial-team")
-  const pageAuthor = {
-    name: editorialAuthor.name,
-    jobTitle: editorialAuthor.title,
-    description: authorBioText(editorialAuthor),
-    image: editorialAuthor.image
-  }
+  const pageAuthor = authorPersonFields(editorialAuthor)
   const path = `/blog/${slug}`
   const description =
     post.seoDescription || post.excerpt || "Research article from Tetrava Labs."

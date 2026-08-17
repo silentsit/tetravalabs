@@ -15,7 +15,7 @@ import { ProductCompoundView } from "@/components/product-compound-view"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { PageJsonLd } from "@/components/page-json-ld"
-import { buildPageMetadata, siteConfig } from "@/lib/seo"
+import { buildPageMetadata, pageUrl, siteConfig } from "@/lib/seo"
 import { getAuthor } from "@/lib/authors"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       }),
     path: productPath(view.parentHandle),
     image: selected?.image,
-    authors: [{ name: editorialAuthor.name }],
+    authors: [{ name: editorialAuthor.name, url: pageUrl(editorialAuthor.url || "/about") }],
     publisher: siteConfig.name
   })
 }

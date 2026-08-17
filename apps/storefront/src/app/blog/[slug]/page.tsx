@@ -21,7 +21,7 @@ import {
   getRelatedBlogPosts,
   isMeaningfullyUpdated
 } from "@/lib/blog-utils"
-import { buildPageMetadata, siteConfig } from "@/lib/seo"
+import { buildPageMetadata, pageUrl, siteConfig } from "@/lib/seo"
 import { getAuthor } from "@/lib/authors"
 
 type Props = { params: Promise<{ slug: string }> }
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     absoluteTitle: post.seoTitle,
     description,
     keywords: post.keywords,
-    authors: [{ name: editorialAuthor.name }],
+    authors: [{ name: editorialAuthor.name, url: pageUrl(editorialAuthor.url || "/about") }],
     publisher: siteConfig.name,
     path: `/blog/${slug}`,
     type: "article",

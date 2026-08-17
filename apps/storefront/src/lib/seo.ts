@@ -76,6 +76,39 @@ export function pageUrl(path = "") {
   return `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`
 }
 
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/
+
+/**
+ * Schema.org datetime: ISO 8601 with timezone.
+ * Date-only strings (`2026-08-17`) become midnight UTC so Google does not flag them.
+ */
+export function toSchemaDateTime(value?: string | null): string | undefined {
+  const trimmed = value?.trim()
+  if (!trimmed) return undefined
+  if (DATE_ONLY.test(trimmed)) return `${trimmed}T00:00:00.000Z`
+  const parsed = new Date(trimmed)
+  if (Number.isNaN(parsed.getTime())) return undefined
+  return parsed.toISOString()
+}
+
+/** Canonical Person URL when no dedicated author profile exists. */
+export const DEFAULT_AUTHOR_PATH = "/about"
+
+export type SchemaPersonInput = {
+  name: string
+  jobTitle?: string
+  description?: string
+  image?: string
+  credentials?: string
+  url?: string
+}
+
+function schemaPersonUrl(url?: string) {
+  if (!url) return pageUrl(DEFAULT_AUTHOR_PATH)
+  if (/^https?:\/\//i.test(url)) return url
+  return pageUrl(url)
+}
+
 const BRAND_SUFFIX = ` | ${siteConfig.titleBrand}`
 
 /** Drop trailing separators left by length clamps (avoids "Name — | Brand"). */
@@ -251,16 +284,11 @@ export function faqJsonLd(items: Array<{ question: string; answer: string }>, pa
 }
 
 /** Person schema for a content author's byline (E-E-A-T authorship signal). */
-export function personJsonLd(author: {
-  name: string
-  jobTitle?: string
-  description?: string
-  image?: string
-  credentials?: string
-}) {
+export function personJsonLd(author: SchemaPersonInput) {
   const graph: JsonLdGraph = {
     "@type": "Person",
-    name: author.name
+    name: author.name,
+    url: schemaPersonUrl(author.url)
   }
   if (author.jobTitle) graph.jobTitle = author.jobTitle
   if (author.description) graph.description = author.description
@@ -299,13 +327,7 @@ export function webPageJsonLd(input: {
   path: string
   type?: "WebPage" | "CollectionPage" | "AboutPage" | "ContactPage"
   /** Byline author, when the page has curated editorial/research content. */
-  author?: {
-    name: string
-    jobTitle?: string
-    description?: string
-    image?: string
-    credentials?: string
-  }
+  author?: SchemaPersonInput
 }) {
   return {
     "@context": "https://schema.org",
@@ -439,21 +461,24 @@ export function productJsonLd(
     const nested = (reviewData.reviews || [])
       .filter((item) => item.rating > 0 && item.body.trim())
       .slice(0, 6)
-      .map((item) => ({
-        "@type": "Review",
-        author: {
-          "@type": "Person",
-          name: item.authorName.trim() || "Verified buyer"
-        },
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: item.rating,
-          bestRating: 5,
-          worstRating: 1
-        },
-        reviewBody: item.body.trim(),
-        ...(item.datePublished ? { datePublished: item.datePublished } : {})
-      }))
+      .map((item) => {
+        const datePublished = toSchemaDateTime(item.datePublished)
+        return {
+          "@type": "Review",
+          author: {
+            "@type": "Person",
+            name: item.authorName.trim() || "Verified buyer"
+          },
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: item.rating,
+            bestRating: 5,
+            worstRating: 1
+          },
+          reviewBody: item.body.trim(),
+          ...(datePublished ? { datePublished } : {})
+        }
+      })
 
     if (nested.length) graph.review = nested
   }
@@ -470,26 +495,22 @@ export function articleJsonLd(post: {
   updatedAt?: string
   category?: string
   image?: string
-  author?: {
-    name: string
-    jobTitle?: string
-    description?: string
-    image?: string
-    credentials?: string
-  }
+  author?: SchemaPersonInput
 }) {
   const imagePath = blogImageForPost({
     image: post.image,
     category: post.category as "Protocols" | "Analytical" | "Compliance" | undefined
   })
+  const datePublished = toSchemaDateTime(post.publishedAt)
+  const dateModified = toSchemaDateTime(post.updatedAt || post.publishedAt)
 
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.seoDescription || post.excerpt,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt || post.publishedAt,
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
     image: imagePath.startsWith("http") ? imagePath : pageUrl(imagePath),
     author: post.author ? personJsonLd(post.author) : defaultPageAuthorJsonLd(),
     publisher: publisherJsonLd(),
@@ -527,10 +548,8 @@ export function videoObjectJsonLd(input: {
 /** Google requires VideoObject.uploadDate — normalize or fall back to a stable ISO date. */
 export function resolveVideoUploadDate(...candidates: Array<string | undefined | null>) {
   for (const value of candidates) {
-    const trimmed = value?.trim()
-    if (!trimmed) continue
-    const parsed = new Date(trimmed)
-    if (!Number.isNaN(parsed.getTime())) return parsed.toISOString()
+    const iso = toSchemaDateTime(value)
+    if (iso) return iso
   }
   return "2026-01-01T00:00:00.000Z"
 }
@@ -543,14 +562,10 @@ export function productResearchArticleJsonLd(input: {
   image?: string
   datePublished?: string
   dateModified?: string
-  author: {
-    name: string
-    jobTitle?: string
-    description?: string
-    image?: string
-    credentials?: string
-  }
+  author: SchemaPersonInput
 }) {
+  const datePublished = toSchemaDateTime(input.datePublished)
+  const dateModified = toSchemaDateTime(input.dateModified)
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -561,8 +576,8 @@ export function productResearchArticleJsonLd(input: {
     ...(input.image
       ? { image: input.image.startsWith("http") ? input.image : pageUrl(input.image) }
       : {}),
-    ...(input.datePublished ? { datePublished: input.datePublished } : {}),
-    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
     author: personJsonLd(input.author),
     publisher: publisherJsonLd()
   }

@@ -21,6 +21,8 @@ export type AuthorProfile = {
   highlights?: string[]
   /** Public path to a headshot/photo for bylines and profile cards. */
   image?: string
+  /** Canonical Person schema URL. Defaults to /about when omitted. */
+  url?: string
 }
 
 export const AUTHORS: Record<AuthorId, AuthorProfile> = {
@@ -33,7 +35,20 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
       "Content published by Tetrava Labs is authored and reviewed by an interdisciplinary panel of biochemists, analytical chemists, and lab technicians.",
       "Our team synthesizes peer-reviewed findings from PubMed, ScienceDirect, and international peptide research journals to ensure technical accuracy and rigorous quality control standards across all product documentation and testing reports."
     ],
-    image: "/authors/tetrava-editorial-team.jpg"
+    image: "/authors/tetrava-editorial-team.jpg",
+    url: "/about"
+  }
+}
+
+/** Fields for Person JSON-LD / page bylines. */
+export function authorPersonFields(author: AuthorProfile) {
+  return {
+    name: author.name,
+    jobTitle: author.title,
+    description: authorBioText(author),
+    image: author.image,
+    credentials: author.credentials,
+    url: author.url || "/about"
   }
 }
 

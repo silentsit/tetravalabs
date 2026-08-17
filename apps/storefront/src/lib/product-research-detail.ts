@@ -26,7 +26,7 @@ export type ProductResearchDetail = {
   references: ResearchReference[];
   /** Byline shown as the Author Profile block beneath the references. */
   authorId: AuthorId;
-  /** ISO date this research detail was last substantively edited (for dateModified schema). */
+  /** Calendar date (`YYYY-MM-DD`) this research detail was last edited. Schema layer expands this to ISO 8601 with timezone. */
   updatedAt?: string;
 };
 

@@ -23,6 +23,13 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
       "Buy sermorelin peptide online in 5mg and 10mg — lot-linked 99%+ HPLC-MS purity, COA on file, and cold-chain shipping for qualified research labs. RUO only.",
     imageAlt: "Buy sermorelin peptide for sale in research vial",
   },
+  retatrutide: {
+    absoluteTitle:
+      "Buy Retatrutide Peptide Online | Retatrutide for Sale | Tetrava",
+    description:
+      "Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale. Get competitive pricing, lab-tested retatrutide peptides & same-day dispatch.",
+    imageAlt: "Buy retatrutide peptide for sale in research vial",
+  },
 };
 
 export function getProductSeoOverride(

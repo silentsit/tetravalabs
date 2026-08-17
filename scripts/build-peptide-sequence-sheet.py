@@ -37,7 +37,7 @@ FORMULAS: dict[str, str] = {
     "cagrilintide": "C194H312N54O59",
     "semaglutide": "C187H291N45O59",
     "tirzepatide": "C225H348N48O68",
-    "retatrutide": "C267H402N64O78",
+    "retatrutide": "C221H342N46O68",
     "mazdutide": "C225H348N48O68",
     "survodutide": "C187H281N45O59",
     "ipamorelin": "C38H49N9O5",

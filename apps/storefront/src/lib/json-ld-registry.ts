@@ -196,6 +196,8 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     productId: product.id
   })
 
+  const editorialAuthor = getAuthor("editorial-team")
+
   return [
     productJsonLd(product, catalogHandle, image, reviewData),
     webPageJsonLd({
@@ -206,7 +208,13 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         displayName: displayTitle,
         strengthLabels: []
       }),
-      path
+      path,
+      author: {
+        name: editorialAuthor.name,
+        jobTitle: editorialAuthor.title,
+        description: authorBioText(editorialAuthor),
+        image: editorialAuthor.image
+      }
     })
   ]
 })

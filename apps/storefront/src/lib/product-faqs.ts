@@ -151,22 +151,22 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "What does retatrutide do?",
       answer:
-        "It binds GLP-1, GIP, and glucagon receptors in the same molecule. Trial and laboratory work studies that combination for insulin secretion, gastric emptying, hepatic fat oxidation, and energy expenditure. Tetrava Labs lists it for those research uses only. It is not sold as a treatment.",
+        "It binds GLP-1, GIP, and glucagon receptors in the same molecule. Labs study that combination for insulin secretion, gastric emptying, hepatic fat oxidation, and energy expenditure. Tetrava Labs does not sell it as a treatment.",
     },
     {
       question: "Is retatrutide FDA approved?",
       answer:
-        "No. Retatrutide has no FDA approval, no brand name, and no legal pharmacy channel. In July 2026 Lilly said it plans to submit a Biologics License Application in the first quarter of 2027; a planned filing is not an approval. Tetrava Labs' listing is a Research Use Only laboratory reagent.",
+        "No. Retatrutide has no FDA approval and no brand name. In July 2026 Lilly said it plans to submit a Biologics License Application in the first quarter of 2027; a planned filing is not an approval. Tetrava Labs' listing is a Research Use Only laboratory reagent.",
     },
     {
       question: "Is retatrutide safe?",
       answer:
-        "There is no FDA safety finding, because there is no FDA approval. Published trial reports describe mostly mild-to-moderate gastrointestinal events (nausea, diarrhea, vomiting, constipation), often during dose escalation, plus a dose-dependent rise in heart rate that later declined. Those results come from supervised clinical protocols, not from informal use of a research reagent, and they do not apply to Tetrava Labs' RUO listing.",
+        "No FDA safety finding exists, because there is no FDA approval. Trial reports describe mostly mild-to-moderate gastrointestinal events (nausea, diarrhea, vomiting, constipation), often during dose escalation, plus a heart-rate rise that later declined. Those results come from supervised protocols, not from Tetrava Labs' RUO listing.",
     },
     {
       question: "Are mild headaches a known side effect of taking retatrutide?",
       answer:
-        "Headache was recorded in the 2023 Phase 2 NEJM trial's less-common events table: 0% on placebo, 11.4% in one 8 mg arm, 6.5% in the 12 mg arm, and 3.3% of participants overall. It was not among the main side effects in that paper, which were gastrointestinal. This page does not describe personal use, and those rates are not a safety claim about Tetrava's research reagent.",
+        "Headache was recorded in the 2023 Phase 2 NEJM trial's less-common events table: 0% on placebo, 11.4% in one 8 mg arm, 6.5% in the 12 mg arm, and 3.3% of participants overall. It was not among the main side effects in that paper, which were gastrointestinal. Those rates are not a safety claim about Tetrava's research reagent.",
     },
     {
       question: "What is retatrutide peptide used for in research?",
@@ -186,7 +186,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "Where to buy retatrutide, and how do I get it?",
       answer:
-        "There is no legal retail or pharmacy channel for human use. The sanctioned treatment path is Lilly's TRIUMPH trials (see ClinicalTrials.gov NCT05929066 and NCT05931367). Tetrava Labs sells retatrutide as an RUO laboratory reagent for qualified researchers, priced and packaged for lab procurement, not personal use. Gray-market \"where to get retatrutide\" listings marketing it as a weight-loss vial sit outside FDA oversight.",
+        "There is no legal retail or pharmacy channel for human use. The sanctioned treatment path is Lilly's TRIUMPH trials (ClinicalTrials.gov NCT05929066 and NCT05931367). Tetrava Labs sells retatrutide as an RUO laboratory reagent for qualified researchers, not as a personal-use vial.",
     },
     {
       question: "What does retatrutide cost, and is there a price per month?",

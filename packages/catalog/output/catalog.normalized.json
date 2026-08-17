@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T15:52:01.212Z",
+  "generated_at": "2026-08-17T10:38:54.090Z",
   "sku_scheme": "TV-####-##",
   "compound_merge": true,
   "products": [
@@ -7204,7 +7204,7 @@
         ],
         "product_code": 104,
         "cas_number": "2381089-83-2",
-        "molecular_formula": "C267H402N64O78",
+        "molecular_formula": "C221H342N46O68",
         "molecular_weight": "4731.33",
         "sequence": "Modified triple-agonist peptide (GLP-1/GIP/glucagon): see literature for full sequence",
         "storage": "-20C lyophilized",

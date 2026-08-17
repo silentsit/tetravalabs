@@ -15,7 +15,8 @@ import { ProductCompoundView } from "@/components/product-compound-view"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { PageJsonLd } from "@/components/page-json-ld"
-import { buildPageMetadata } from "@/lib/seo"
+import { buildPageMetadata, siteConfig } from "@/lib/seo"
+import { getAuthor } from "@/lib/authors"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductFaqs } from "@/lib/product-faqs"
@@ -60,6 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       strengthLabels
     })
 
+  const editorialAuthor = getAuthor("editorial-team")
+
   return buildPageMetadata({
     title: absoluteTitle,
     absoluteTitle,
@@ -72,7 +75,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         casNumber: view.casNumber
       }),
     path: productPath(view.parentHandle),
-    image: selected?.image
+    image: selected?.image,
+    authors: [{ name: editorialAuthor.name }],
+    publisher: siteConfig.name
   })
 }
 

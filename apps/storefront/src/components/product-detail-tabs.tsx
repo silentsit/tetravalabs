@@ -40,6 +40,9 @@ type Props = {
   productId: string
   faqs: FaqItem[]
   reviews: ProductReviewsResponse
+  onReviewsChange?: (data: ProductReviewsResponse) => void
+  /** Catalog handle used for the reviews API (not the image slug). */
+  reviewsHandle?: string
   /** Up to three editorial images for the long-form overview / research article. */
   overviewImages?: ProductOverviewImage[]
   /** Curated short description + Research + References + Author Profile content. */
@@ -114,6 +117,8 @@ export function ProductDetailTabs({
   productId,
   faqs,
   reviews,
+  onReviewsChange,
+  reviewsHandle,
   overviewImages = [],
   researchDetail = null,
   defaultReferences = []
@@ -122,7 +127,8 @@ export function ProductDetailTabs({
 
   useEffect(() => {
     if (typeof window === "undefined") return
-    if (window.location.hash.replace(/^#/, "").toLowerCase() === "reviews") {
+    const hash = window.location.hash.replace(/^#/, "").toLowerCase()
+    if (hash === "write-review" || hash === "reviews-form") {
       setActiveTab("Reviews")
     }
   }, [])
@@ -309,11 +315,13 @@ export function ProductDetailTabs({
           ) : null}
 
           {activeTab === "Reviews" ? (
-            <div id="reviews">
+            <div id="write-review">
               <ProductReviewsPanel
                 productId={productId}
-                productHandle={product.handle}
+                productHandle={reviewsHandle || product.handle}
                 initialData={reviews}
+                mode="form"
+                onReviewsChange={onReviewsChange}
               />
             </div>
           ) : null}

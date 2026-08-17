@@ -43,15 +43,17 @@ async function reviewsForProductSchema(input: {
     return true
   })
 
-  const responses = await Promise.all(
-    uniqueSources.map((source) =>
-      listProductReviews({
-        productHandle: source.productHandle,
-        productId: source.productId,
-        limit: 6
-      })
+  const responses = (
+    await Promise.all(
+      uniqueSources.map((source) =>
+        listProductReviews({
+          productHandle: source.productHandle,
+          productId: source.productId,
+          limit: 6
+        })
+      )
     )
-  )
+  ).filter((response): response is NonNullable<typeof response> => Boolean(response))
 
   const aggregate = responses
     .map((response) => response.aggregate)

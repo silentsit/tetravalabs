@@ -8,7 +8,7 @@ import {
   type StoreCoaDocument,
   type StoreProduct
 } from "@/lib/medusa"
-import { listProductReviews, type ProductReviewsResponse } from "@/lib/reviews"
+import { emptyProductReviews, listProductReviews, type ProductReviewsResponse } from "@/lib/reviews"
 import { storefrontCategoryLabelForProduct } from "@/lib/categories"
 import {
   formatProductLabelWithStrengths,
@@ -535,12 +535,13 @@ export async function loadStrengthSideData(strengths: CompoundStrengthOption[]) 
     ),
     Promise.all(
       strengths.map(async (strength) => {
-        const reviews = sharedReviews
-          ? sharedReviews
-          : await listProductReviews({
-              productHandle: strength.handle,
-              productId: strength.productId
-            })
+        const reviews =
+          sharedReviews ||
+          (await listProductReviews({
+            productHandle: strength.handle,
+            productId: strength.productId
+          })) ||
+          emptyProductReviews(strength.handle)
         return [strength.strengthKey, reviews] as const
       })
     )

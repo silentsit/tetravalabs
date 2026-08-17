@@ -44,12 +44,22 @@ function withHeaders(headers: HeadersInit = {}, authToken?: string | null) {
   }
 }
 
+export function emptyProductReviews(productHandle: string): ProductReviewsResponse {
+  return {
+    product_handle: productHandle,
+    count: 0,
+    aggregate: { ratingValue: 0, reviewCount: 0 },
+    items: [],
+    viewer: null
+  }
+}
+
 export async function listProductReviews(input: {
   productHandle: string
   productId?: string
   authToken?: string | null
   limit?: number
-}): Promise<ProductReviewsResponse> {
+}): Promise<ProductReviewsResponse | null> {
   const params = new URLSearchParams({
     product_handle: input.productHandle,
     limit: String(input.limit ?? PRODUCT_REVIEWS_DISPLAY_LIMIT)
@@ -61,16 +71,10 @@ export async function listProductReviews(input: {
       headers: withHeaders({}, input.authToken),
       next: input.authToken ? undefined : { revalidate: 60, tags: [`reviews:${input.productHandle}`] }
     })
-    if (!response.ok) throw new Error("Failed reviews request")
+    if (!response.ok) return null
     return (await response.json()) as ProductReviewsResponse
   } catch {
-    return {
-      product_handle: input.productHandle,
-      count: 0,
-      aggregate: { ratingValue: 0, reviewCount: 0 },
-      items: [],
-      viewer: null
-    }
+    return null
   }
 }
 

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { StoreCoaDocument } from "@/lib/medusa";
-import type { ProductReviewsResponse } from "@/lib/reviews";
+import { emptyProductReviews, type ProductReviewsResponse } from "@/lib/reviews";
 import type { FaqItem } from "@/lib/faq-content";
 import type { ProductResearchDetail, ResearchReference } from "@/lib/product-research-detail";
 import {
@@ -23,6 +23,7 @@ import { ProductOfferSummary } from "@/components/product-offer-summary";
 import { ProductReviewSummary } from "@/components/product-review-summary";
 import { ProductTrustStrip } from "@/components/product-trust-strip";
 import { ProductCoaDownload } from "@/components/product-coa-download";
+import { ProductReviewsPanel } from "@/components/product-reviews-panel";
 import type { PackTier } from "@/lib/pack-pricing";
 
 type Props = {
@@ -79,6 +80,17 @@ export function ProductCompoundView({
     [strengthKey, view.strengths],
   );
 
+  const serverReviews = selectedStrength
+    ? reviewsByStrength[selectedStrength.strengthKey]
+    : undefined;
+  const [reviewData, setReviewData] = useState<ProductReviewsResponse | null>(
+    () => serverReviews || null,
+  );
+
+  useEffect(() => {
+    if (serverReviews) setReviewData(serverReviews);
+  }, [selectedStrength?.strengthKey]);
+
   const [packQty, setPackQty] = useState<number | null>(() =>
     pickDefaultPackQty(
       view.strengths.find(
@@ -123,13 +135,7 @@ export function ProductCompoundView({
   const galleryAlt = seoOverride?.imageAlt || headingName;
 
   const coas = coasByStrength[selectedStrength.strengthKey] || [];
-  const reviews = reviewsByStrength[selectedStrength.strengthKey] || {
-    product_handle: selectedStrength.handle,
-    count: 0,
-    aggregate: { ratingValue: 0, reviewCount: 0 },
-    items: [],
-    viewer: null,
-  };
+  const reviews = reviewData || serverReviews || emptyProductReviews(selectedStrength.handle);
 
   const galleryImages = selectedStrength.galleryImages.length
     ? selectedStrength.galleryImages
@@ -140,7 +146,7 @@ export function ProductCompoundView({
 
   return (
     <>
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+      <div className="grid gap-x-10 gap-y-5 lg:grid-cols-2 lg:gap-y-8">
         <div className="flex flex-col gap-4 lg:max-w-md">
           <div className="card overflow-hidden p-4">
             <ProductImageGallery
@@ -182,15 +188,31 @@ export function ProductCompoundView({
             }
             selectedStrength={selectedStrength}
           />
+        </div>
 
-          <ProductPurchasePanel
-            displayName={view.displayName}
-            strengths={view.strengths}
-            selectedStrengthKey={selectedStrength.strengthKey}
-            selectedPackQty={packQty}
-            onStrengthChange={onStrengthChange}
-            onPackChange={onPackChange}
-          />
+        <div className="mt-3 min-h-0 lg:relative lg:mt-0 lg:h-full lg:max-w-md">
+          <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
+            <ProductReviewsPanel
+              key={`${selectedStrength.handle}-reviews`}
+              productId={selectedStrength.productId}
+              productHandle={selectedStrength.handle}
+              initialData={reviews}
+              mode="quotes"
+              onReviewsChange={setReviewData}
+            />
+          </div>
+        </div>
+
+        <ProductPurchasePanel
+          displayName={view.displayName}
+          strengths={view.strengths}
+          selectedStrengthKey={selectedStrength.strengthKey}
+          selectedPackQty={packQty}
+          onStrengthChange={onStrengthChange}
+          onPackChange={onPackChange}
+        />
+
+        <div className="lg:col-start-2">
           <ProductTrustStrip />
         </div>
       </div>
@@ -219,6 +241,8 @@ export function ProductCompoundView({
         productId={selectedStrength.productId}
         faqs={faqs}
         reviews={reviews}
+        onReviewsChange={setReviewData}
+        reviewsHandle={selectedStrength.handle}
         overviewImages={overviewImages}
         researchDetail={researchDetail}
         defaultReferences={defaultReferences}

@@ -19,8 +19,9 @@ type Props = {
   productId: string
   productHandle: string
   initialData: ProductReviewsResponse
-  /** Single-column layout for the PDP left-rail reviews panel. */
-  compact?: boolean
+  /** quotes = published reviews under COA. form = write box in the Reviews tab. */
+  mode?: "quotes" | "form"
+  onReviewsChange?: (data: ProductReviewsResponse) => void
 }
 
 function localDateInputValue(date = new Date()) {
@@ -30,12 +31,29 @@ function localDateInputValue(date = new Date()) {
   return `${year}-${month}-${day}`
 }
 
+function formatReviewDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC"
+  })
+}
+
+function newestFirst(items: ProductReview[]) {
+  return [...items].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  )
+}
+
 export function ProductReviewsPanel({
   productId,
   productHandle,
   initialData,
-  compact = false
-}: Props) {  const [reviews, setReviews] = useState<ProductReview[]>(initialData.items)
+  mode = "form",
+  onReviewsChange
+}: Props) {
+  const [reviews, setReviews] = useState<ProductReview[]>(initialData.items)
   const [aggregate, setAggregate] = useState(initialData.aggregate)
   const [viewer, setViewer] = useState<ReviewViewerContext | null>(initialData.viewer)
   const [rating, setRating] = useState(5)
@@ -49,10 +67,20 @@ export function ProductReviewsPanel({
   const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
+    setReviews(initialData.items)
+    setAggregate(initialData.aggregate)
+    setViewer(initialData.viewer)
+  }, [initialData])
+
+  useEffect(() => {
     void (async () => {
       const customer = await retrieveCustomer()
       setSignedIn(Boolean(customer))
       setIsAdmin(isStoreAdminEmail(customer?.email))
+
+      // Quotes stay on the SSR snapshot. A failed browser fetch to Medusa
+      // used to replace them with an empty list and make the card vanish.
+      if (mode === "quotes") return
 
       const authToken = readAuthToken()
       const fresh = await listProductReviews({
@@ -60,15 +88,21 @@ export function ProductReviewsPanel({
         productId,
         authToken
       })
-      setReviews(fresh.items)
-      setAggregate(fresh.aggregate)
+      if (!fresh) return
       setViewer(fresh.viewer)
       if (fresh.viewer?.existing_review && !isStoreAdminEmail(customer?.email)) {
         setRating(fresh.viewer.existing_review.rating)
         setBody(fresh.viewer.existing_review.body)
       }
     })()
-  }, [productHandle, productId])
+  }, [productHandle, productId, mode])
+
+  const applyReviews = (fresh: ProductReviewsResponse) => {
+    setReviews(fresh.items)
+    setAggregate(fresh.aggregate)
+    setViewer(fresh.viewer)
+    onReviewsChange?.(fresh)
+  }
 
   const resetAdminForm = () => {
     setRating(5)
@@ -80,9 +114,8 @@ export function ProductReviewsPanel({
   const refreshReviews = async () => {
     const authToken = readAuthToken()
     const fresh = await listProductReviews({ productHandle, productId, authToken })
-    setReviews(fresh.items)
-    setAggregate(fresh.aggregate)
-    setViewer(fresh.viewer)
+    if (!fresh) return
+    applyReviews(fresh)
   }
 
   const onSubmit = async (event: FormEvent) => {
@@ -151,28 +184,82 @@ export function ProductReviewsPanel({
 
   const adminAccess = isAdmin || Boolean(viewer?.is_admin)
 
+  if (mode === "quotes") {
+    if (reviews.length === 0) return null
+    const ordered = newestFirst(reviews)
+
+    return (
+      <section
+        id="reviews"
+        aria-label="Customer reviews"
+        className="card mt-8 flex h-full min-h-0 scroll-mt-24 flex-col space-y-3 p-4 lg:mt-0"
+      >
+        <header className="shrink-0">
+          <p className="text-[11px] font-medium uppercase tracking-wide text-[#94A3B8]">
+            Lab reviews
+          </p>
+          <div className="mt-1 flex items-center justify-between gap-3">
+            <h2 className="font-serif text-lg text-[#0F172A]">Customer reviews</h2>
+            <p className="shrink-0 font-mono text-xs text-[#0D9488]">
+              {aggregate.ratingValue.toFixed(1)} · {aggregate.reviewCount}
+            </p>
+          </div>
+          <div className="mt-2 flex items-center gap-2">
+            <StarRating value={Math.round(aggregate.ratingValue)} readOnly size="sm" />
+            <span className="text-xs text-[#64748B]">
+              {aggregate.reviewCount} {aggregate.reviewCount === 1 ? "review" : "reviews"}
+            </span>
+          </div>
+        </header>
+
+        {aggregate.reviewCount > PRODUCT_REVIEWS_DISPLAY_LIMIT ? (
+          <p className="text-xs text-[#64748B]">
+            Showing the {PRODUCT_REVIEWS_DISPLAY_LIMIT} newest of {aggregate.reviewCount} reviews
+          </p>
+        ) : null}
+
+        <ul className="min-h-0 flex-1 divide-y divide-[#E2E8F0] overflow-y-auto pr-1">
+          {ordered.map((review) => (
+            <li key={review.id} className="py-3 first:pt-0 last:pb-0">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium text-[#0F172A]">{review.author_name}</p>
+                  <p className="mt-0.5 text-xs text-[#94A3B8]">
+                    {formatReviewDate(review.created_at)}
+                  </p>
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <ReviewRatingDisplay rating={review.rating} size="sm" />
+                  {adminAccess ? (
+                    <button
+                      type="button"
+                      onClick={() => void onDelete(review.id)}
+                      className="rounded p-1 text-[#94A3B8] transition hover:bg-red-50 hover:text-red-600"
+                      aria-label="Delete review"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+              <p className="mt-2 line-clamp-4 text-sm leading-relaxed text-[#475569]">{review.body}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
   return (
-    <div className={compact ? "space-y-5" : "space-y-8"}>
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h3 className={`font-serif text-[#0F172A] ${compact ? "text-lg" : "text-xl"}`}>
-            Customer Reviews
-          </h3>
-          {aggregate.reviewCount > 0 ? (
-            <div className="mt-2 flex items-center gap-3">
-              <StarRating value={Math.round(aggregate.ratingValue)} readOnly size={compact ? "sm" : "md"} />
-              <p className="text-sm text-[#475569]">
-                {aggregate.ratingValue.toFixed(1)} · {aggregate.reviewCount}{" "}
-                {aggregate.reviewCount === 1 ? "review" : "reviews"}
-              </p>
-            </div>
-          ) : (
-            <p className="mt-2 text-sm text-[#475569]">No reviews yet for this product.</p>
-          )}
-        </div>
+    <div className="space-y-4">
+      <div>
+        <h3 className="font-serif text-xl text-[#0F172A]">Write a review</h3>
+        <p className="mt-2 text-sm text-[#475569]">
+          Reviews are limited to verified purchasers. Published reviews appear next to the COA.
+        </p>
       </div>
 
-      <form onSubmit={onSubmit} className={`card space-y-3 p-4 ${compact ? "w-full" : "max-w-md"}`}>
+      <form onSubmit={onSubmit} className="card max-w-md space-y-3 p-4">
         <p className="text-sm font-medium text-[#0F172A]">
           {adminAccess
             ? "Post a review (admin)"
@@ -232,7 +319,7 @@ export function ProductReviewsPanel({
             required
             value={body}
             onChange={(event) => setBody(event.target.value)}
-            rows={compact ? 2 : 3}
+            rows={3}
             minLength={adminAccess ? undefined : 10}
             maxLength={adminAccess ? undefined : 2000}
             className="input-field mt-1 min-h-20"
@@ -255,55 +342,6 @@ export function ProductReviewsPanel({
         {status ? <p className="text-xs text-[#0D9488]">{status}</p> : null}
         {error ? <p className="text-xs text-red-600">{error}</p> : null}
       </form>
-
-      {reviews.length > 0 ? (
-        <div className="space-y-3">
-          {aggregate.reviewCount > PRODUCT_REVIEWS_DISPLAY_LIMIT ? (
-            <p className="text-xs text-[#64748B]">
-              Showing {PRODUCT_REVIEWS_DISPLAY_LIMIT} of {aggregate.reviewCount} reviews
-              (oldest to newest)
-            </p>
-          ) : null}
-          <ul
-            className={
-              compact
-                ? "grid grid-cols-1 gap-3"
-                : "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-            }
-          >
-          {reviews.map((review) => (
-            <li key={review.id} className="flex h-full flex-col rounded-xl border border-[#E2E8F0] bg-white p-4">
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <p className="truncate font-medium text-[#0F172A]">{review.author_name}</p>
-                  <p className="mt-1 text-xs text-[#94A3B8]">
-                    {new Date(review.created_at).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric"
-                    })}
-                  </p>
-                </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <ReviewRatingDisplay rating={review.rating} size="sm" />
-                  {adminAccess ? (
-                    <button
-                      type="button"
-                      onClick={() => void onDelete(review.id)}
-                      className="rounded p-1 text-[#94A3B8] transition hover:bg-red-50 hover:text-red-600"
-                      aria-label="Delete review"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  ) : null}
-                </div>
-              </div>
-              <p className="mt-3 line-clamp-6 flex-1 text-sm leading-relaxed text-[#475569]">{review.body}</p>
-            </li>
-          ))}
-          </ul>
-        </div>
-      ) : null}
     </div>
   )
 }

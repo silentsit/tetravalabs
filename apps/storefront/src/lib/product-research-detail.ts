@@ -616,9 +616,10 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     otherKnownTitles: ["LY3437943", "LY-3437943", "retatrutide [INN]"],
     sections: [
       {
-        heading: "Retatrutide's triple-receptor mechanism",
+        heading: "What retatrutide does",
         paragraphs: [
-          "Retatrutide is built around a GLP-1 backbone, the same peptide scaffold behind semaglutide and tirzepatide, modified so it also binds and activates the GIP receptor and the glucagon receptor.[1] Three receptors, three separate jobs: GLP-1 slows gastric emptying and drives glucose-dependent insulin release, GIP improves insulin sensitivity and fat-cell signaling, and glucagon pushes the liver toward fat oxidation and raises resting energy expenditure.",
+          "Retatrutide binds three metabolic receptors at the same time: GLP-1, GIP, and glucagon.[1] In trial and laboratory work, that combination is studied for insulin secretion, gastric emptying, hepatic fat oxidation, and energy expenditure.",
+          "The peptide is built around a GLP-1 backbone, the same peptide scaffold behind semaglutide and tirzepatide, modified so it also binds and activates the GIP receptor and the glucagon receptor.[1] Three receptors, three separate jobs: GLP-1 slows gastric emptying and drives glucose-dependent insulin release, GIP improves insulin sensitivity and fat-cell signaling, and glucagon pushes the liver toward fat oxidation and raises resting energy expenditure.",
           "That third receptor, glucagon, is what separates retatrutide from GLP-1/GIP dual agonists like tirzepatide. Activating glucagon receptors alone tends to raise blood glucose, so the molecule has to lean on its GLP-1 and GIP activity to keep glycemic control intact while still getting the metabolic-rate boost that glucagon signaling provides.[1] A 2023 Phase 2 trial reported an 86% reduction in liver fat content at the highest dose, a magnitude larger than what's typically reported for GLP-1-only or dual-agonist compounds, and mechanistically consistent with the added glucagon-receptor activity.[2]",
           "Labs studying triple-agonist pharmacology typically run retatrutide alongside a single-receptor GLP-1 comparator and a dual-agonist comparator such as [tirzepatide](/buy-tirzepatide-online), since isolating which effect comes from which receptor is most of the analytical work in this compound class.",
         ],
@@ -627,7 +628,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading: "Retatrutide vs tirzepatide",
         paragraphs: [
           "Retatrutide and [tirzepatide](/buy-tirzepatide-online) share the same GLP-1/GIP foundation. Retatrutide adds a third receptor, glucagon, on top of it. No published trial has tested the two head-to-head. What exists is cross-trial comparison: in retatrutide's Phase 3 TRIUMPH-1 trial, the 12 mg dose produced 28.3% mean weight loss at 80 weeks;[3] tirzepatide's Phase 3 SURMOUNT-1 trial reported roughly 22.5% at 72 weeks in its highest-dose arm. Different trials, different populations, different durations, so that gap is suggestive, not conclusive.",
-          "Tirzepatide has the regulatory head start. It's FDA-approved under the brand names Mounjaro and Zepbound. Retatrutide has none of that: it remains investigational, still moving through Lilly's Phase 3 TRIUMPH program, with no new drug application publicly filed as of this writing. A 2025 NEJM trial, SURMOUNT-5, did run tirzepatide against semaglutide head-to-head and found tirzepatide's weight-loss effect larger,[4] which is the closest published data gets to ranking this drug class, and it still doesn't include retatrutide.",
+          "Tirzepatide has the regulatory head start. It's FDA-approved under the brand names Mounjaro and Zepbound. Retatrutide has none of that: it remains investigational, still moving through Lilly's Phase 3 TRIUMPH program, with no marketing application publicly accepted as of this writing. A 2025 NEJM trial, SURMOUNT-5, did run tirzepatide against semaglutide head-to-head and found tirzepatide's weight-loss effect larger,[4] which is the closest published data gets to ranking this drug class, and it still doesn't include retatrutide.",
         ],
       },
       {
@@ -640,16 +641,25 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "What clinical trials have measured for retatrutide",
         paragraphs: [
-          "The Phase 2 trial that put retatrutide on the map, published in the New England Journal of Medicine in 2023, reported up to 24.2% weight loss at 48 weeks on the 12 mg dose, alongside the liver-fat and glycemic findings noted above.[2] Lilly's Phase 3 TRIUMPH program has since reported two trials. TRIUMPH-1, the pivotal obesity trial (n=2,339), found 80-week weight loss of 19.0%, 25.9%, and 28.3% across the 4 mg, 9 mg, and 12 mg arms, versus 2.2% on placebo; a prespecified extension in participants with baseline BMI ≥35 reached 30.3% at 104 weeks on the 12 mg dose.[3] TRIUMPH-4, in adults with obesity and knee osteoarthritis, reported 28.7% weight loss at 68 weeks alongside a 4.5-point reduction in WOMAC pain score.[5]",
+          "The Phase 2 trial that put retatrutide on the map, published in the New England Journal of Medicine in 2023, reported up to 24.2% weight loss at 48 weeks on the 12 mg dose, alongside the liver-fat and glycemic findings noted above.[2] Lilly's Phase 3 TRIUMPH program has since reported two trials. TRIUMPH-1, the main obesity trial (n=2,339), found 80-week weight loss of 19.0%, 25.9%, and 28.3% across the 4 mg, 9 mg, and 12 mg arms, versus 2.2% on placebo; a prespecified extension in participants with baseline BMI ≥35 reached 30.3% at 104 weeks on the 12 mg dose.[3] TRIUMPH-4, in adults with obesity and knee osteoarthritis, reported 28.7% weight loss at 68 weeks alongside a 4.5-point reduction in WOMAC pain score.[5]",
           "On the safety side, discontinuation due to adverse events in TRIUMPH-1 was lower at the 4 mg dose than at higher doses, and gastrointestinal events, nausea, diarrhea, constipation, are the most consistently reported side effects across every retatrutide trial published so far, matching the pattern seen with other incretin-receptor agonists.[2][3] None of the published trials describe an at-home or self-administered dosing schedule for lay use. The dose-escalation schema used in TRIUMPH-1 started participants at a low dose and stepped up on a fixed schedule under clinical-trial supervision, which is a controlled research protocol, not a set of instructions for individual use.[3]",
           "Two more TRIUMPH trials, in type 2 diabetes and obstructive sleep apnea, have also reported topline results, and additional readouts are expected through 2026 as Lilly's Phase 3 program completes.[6]",
         ],
       },
       {
-        heading: "Regulatory status and availability: why retatrutide isn't for sale as a drug",
+        heading: "Is retatrutide safe? Side effects reported in trials",
         paragraphs: [
-          "Retatrutide is not FDA-approved, has no brand name, and is not legally available as a prescription medication anywhere. The only sanctioned way to receive retatrutide as a treatment is through enrollment in one of Lilly's active TRIUMPH clinical trials; ClinicalTrials.gov lists current trial status and enrollment criteria under identifiers including NCT05929066 (TRIUMPH-1) and NCT05931367 (TRIUMPH-4).",
-          "That regulatory gap is exactly why \"retatrutide for sale\" searches turn up unregulated sellers marketing it for personal use. Tetrava Labs does not sell retatrutide for that purpose. The listing on this page is a Research Use Only laboratory reagent, priced and packaged for laboratory procurement, not a consumer weight-loss product, and this page makes no treatment, dosing, or pricing claims tied to human use.",
+          "There is no FDA safety determination for retatrutide, because there is no FDA approval. The numbers that exist come from supervised clinical trials, not from informal use of research reagents.",
+          "In the 2023 Phase 2 NEJM trial, gastrointestinal events were the most common: nausea, diarrhea, vomiting, and constipation. Most of those events were mild to moderate, most of them happened during dose escalation, and they were the usual reason participants discontinued.[2] Heart rate rose in a dose-dependent way, peaked around week 24, then declined.[2]",
+          "Headache appeared in the trial supplement's less-common events table (Table S10), not in the paper's main safety table. Incidence was 0% on placebo, 11.4% in one 8 mg arm, 6.5% in the 12 mg arm, and 3.3% of all participants.[2] That is enough to say headache was recorded. It is not enough to call mild headaches a defining or expected effect, and it is not a finding about Tetrava's Research Use Only listing.",
+        ],
+      },
+      {
+        heading: "Is retatrutide FDA approved, and how do you get it?",
+        paragraphs: [
+          "No. Retatrutide is not FDA-approved, has no brand name, and is not legally available as a prescription medication anywhere. In July 2026 Lilly said it plans to submit a Biologics License Application in the first quarter of 2027.[8] A planned filing is not an approval, and no application has been publicly accepted by the FDA as of this writing.",
+          "The only sanctioned way to receive retatrutide as a treatment is enrollment in one of Lilly's TRIUMPH trials. ClinicalTrials.gov lists current status and eligibility under identifiers including NCT05929066 (TRIUMPH-1) and NCT05931367 (TRIUMPH-4).",
+          "\"Where to buy retatrutide\" and \"where to get retatrutide\" searches often mean a pharmacy or a gray-market vial for personal use. Tetrava Labs does not sell it for that. The listing on this page is a Research Use Only laboratory reagent for qualified lab procurement, not a consumer weight-loss product, and this page makes no treatment, dosing, or pricing claims tied to human use.",
         ],
       },
       {
@@ -681,10 +691,11 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "Reconstitution, storage, and documentation",
+        heading: "How to reconstitute retatrutide in the lab",
         paragraphs: [
-          "Tetrava Labs ships retatrutide as a lyophilized powder, which keeps it stable during transport. Store sealed vials at -20°C, skip repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent right before use.",
-          "Once reconstituted, store working solutions per your laboratory SOP and log diluent lot, reconstitution date, and operator in your ELN, so preparation conditions stay auditable against the batch [Certificate of Analysis](/coa-library).",
+          "\"How much bac water for 10mg retatrutide\" is asking for a reconstitution recipe. This page does not publish one. Diluent volume is a laboratory protocol choice, written into the assay SOP, not a catalog constant attached to a 10 mg vial.",
+          "Tetrava Labs ships retatrutide as a lyophilized powder. Store sealed vials at -20°C, skip repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent right before use. [Bacteriostatic water](/buy-bacteriostatic-water-online) is listed separately as a research solvent. It is not paired to any retatrutide SKU at a fixed milliliter amount.",
+          "Once reconstituted, store working solutions per your laboratory SOP and log diluent lot, reconstitution date, concentration, and operator in your ELN, so preparation conditions stay auditable against the batch [Certificate of Analysis](/coa-library).",
         ],
       },
     ],
@@ -730,6 +741,12 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         citation:
           "National Center for Biotechnology Information. PubChem Compound Summary for CID 171390338, Retatrutide.",
         url: "https://pubchem.ncbi.nlm.nih.gov/compound/171390338",
+      },
+      {
+        id: 8,
+        citation:
+          "Eli Lilly and Company. Lilly's triple agonist, retatrutide, successful in two additional Phase 3 obesity trials [press release]. Jul 23, 2026.",
+        url: "https://www.prnewswire.com/news-releases/lillys-triple-agonist-retatrutide-successful-in-two-additional-phase-3-obesity-trials-delivering-significant-improvements-in-weight-and-a1c-302832674.html",
       },
     ],
     authorId: "editorial-team",

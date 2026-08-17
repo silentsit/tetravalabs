@@ -149,6 +149,26 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "Retatrutide is a synthetic peptide that activates three receptors at once, GLP-1, GIP, and glucagon, developed by Eli Lilly under the code LY3437943. It's the furthest-along \"triple agonist\" peptide in clinical testing, still investigational and not FDA-approved. Tetrava Labs supplies retatrutide as a Research Use Only laboratory reagent, not the drug being tested in clinical trials.",
     },
     {
+      question: "What does retatrutide do?",
+      answer:
+        "It binds GLP-1, GIP, and glucagon receptors in the same molecule. Trial and laboratory work studies that combination for insulin secretion, gastric emptying, hepatic fat oxidation, and energy expenditure. Tetrava Labs lists it for those research uses only. It is not sold as a treatment.",
+    },
+    {
+      question: "Is retatrutide FDA approved?",
+      answer:
+        "No. Retatrutide has no FDA approval, no brand name, and no legal pharmacy channel. In July 2026 Lilly said it plans to submit a Biologics License Application in the first quarter of 2027; a planned filing is not an approval. Tetrava Labs' listing is a Research Use Only laboratory reagent.",
+    },
+    {
+      question: "Is retatrutide safe?",
+      answer:
+        "There is no FDA safety finding, because there is no FDA approval. Published trial reports describe mostly mild-to-moderate gastrointestinal events (nausea, diarrhea, vomiting, constipation), often during dose escalation, plus a dose-dependent rise in heart rate that later declined. Those results come from supervised clinical protocols, not from informal use of a research reagent, and they do not apply to Tetrava Labs' RUO listing.",
+    },
+    {
+      question: "Are mild headaches a known side effect of taking retatrutide?",
+      answer:
+        "Headache was recorded in the 2023 Phase 2 NEJM trial's less-common events table: 0% on placebo, 11.4% in one 8 mg arm, 6.5% in the 12 mg arm, and 3.3% of participants overall. It was not among the main side effects in that paper, which were gastrointestinal. This page does not describe personal use, and those rates are not a safety claim about Tetrava's research reagent.",
+    },
+    {
       question: "What is retatrutide peptide used for in research?",
       answer:
         "Labs use retatrutide peptide to study triple-receptor incretin signaling, hepatic lipid metabolism, and comparative pharmacology against dual agonists like tirzepatide or single-receptor agonists like semaglutide. Every Tetrava Labs order ships with lot-linked COA documentation. It's not for human or veterinary use.",
@@ -164,14 +184,9 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "Retatrutide vs Ozempic is a triple-agonist-versus-single-agonist comparison. Semaglutide (Ozempic, Wegovy) activates only the GLP-1 receptor; retatrutide adds GIP and glucagon. Semaglutide's Phase 3 program reported up to roughly 14.9% weight loss at 68 weeks, versus 28.3% for retatrutide's 12 mg dose in a separate trial. Semaglutide carries FDA approval and years of prescribing data; retatrutide has neither yet.",
     },
     {
-      question: "What are retatrutide's reported side effects and dosing schedule?",
+      question: "Where to buy retatrutide, and how do I get it?",
       answer:
-        "In every published retatrutide trial, gastrointestinal events, nausea, diarrhea, constipation, are the most common side effects, consistent with other incretin-receptor agonists. Trial protocols used a stepped dose-escalation schedule under clinical supervision, starting low and increasing on a fixed timeline; that's a controlled research design, not a self-administration schedule, and this page does not provide dosing instructions for personal use.",
-    },
-    {
-      question: "Is retatrutide for sale, and where can I buy it?",
-      answer:
-        "Retatrutide isn't an approved drug, so there's no legal retail or pharmacy channel selling it for human use; \"for sale\" listings marketing it that way are outside FDA oversight. Tetrava Labs sells retatrutide as an RUO laboratory reagent for qualified researchers, priced and packaged for lab procurement, not personal use.",
+        "There is no legal retail or pharmacy channel for human use. The sanctioned treatment path is Lilly's TRIUMPH trials (see ClinicalTrials.gov NCT05929066 and NCT05931367). Tetrava Labs sells retatrutide as an RUO laboratory reagent for qualified researchers, priced and packaged for lab procurement, not personal use. Gray-market \"where to get retatrutide\" listings marketing it as a weight-loss vial sit outside FDA oversight.",
     },
     {
       question: "What does retatrutide cost, and is there a price per month?",
@@ -189,19 +204,14 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "Retatrutide threads split into two camps: people tracking TRIUMPH trial data and cross-posting Lilly's press releases, and people discussing personal sourcing and vendor pricing for unregulated retatrutide, which this page doesn't cover or endorse. Dosing, side-effect, and long-term-effects claims on Reddit mix real trial numbers with unverified self-reports; check whether a claim traces back to a named trial before treating it as fact.",
     },
     {
+      question: "How to reconstitute retatrutide, and how much bacteriostatic water for 10 mg?",
+      answer:
+        "This page does not publish a milliliter-per-vial reconstitution recipe, including for a 10 mg vial. Diluent volume belongs in your laboratory SOP for the assay. Store lyophilized vials at -20°C, reconstitute under sterile technique with a protocol-appropriate diluent, and log lot, date, concentration, and operator against the batch COA. Bacteriostatic water is sold separately as a research solvent, not paired to any retatrutide strength at a fixed volume.",
+    },
+    {
       question: "What should I check before buying retatrutide from any vendor?",
       answer:
         "Before treating any seller, including Tetrava Labs, as a qualified research supplier: does the listing give a lot/batch number matching the shipped Certificate of Analysis, is that COA from an independent third-party lab reporting HPLC purity, does it confirm identity rather than just a purity percentage, and does the listing describe a laboratory reagent rather than market dosing charts and monthly pricing for human use? Skip any vendor that won't produce a lot-specific COA on request.",
-    },
-    {
-      question: "Is Tetrava Labs' retatrutide Research Use Only, or an approved drug?",
-      answer:
-        "Research Use Only. Retatrutide has no FDA approval and no brand name anywhere; it remains investigational, moving through Lilly's Phase 3 TRIUMPH program. Tetrava Labs' listing is a laboratory reagent. It is not dispensed, prescribed, or described as a medication.",
-    },
-    {
-      question: "How should retatrutide be reconstituted and stored?",
-      answer:
-        "Store lyophilized vials at -20°C and skip repeated freeze-thaw cycles. Reconstitute under sterile technique with a protocol-appropriate diluent right before use, then log diluent lot, reconstitution date, and operator in your ELN alongside the batch COA.",
     },
     {
       question: "How is retatrutide purity and identity verified?",

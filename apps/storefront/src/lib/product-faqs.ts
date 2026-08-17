@@ -353,34 +353,79 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   // --- Next sales tier (curated) ---
   "aod-9604": [
     {
-      question: "What is AOD-9604 studied for in research?",
+      question: "What is AOD-9604?",
       answer:
-        "AOD-9604 is a modified fragment related to the C-terminal region of growth hormone, examined in metabolic and adipose-biology research models. Tetrava Labs supplies it as Research Use Only material for qualified laboratories.",
+        "AOD-9604 is a synthetic 16-amino-acid peptide built from the C-terminal end of human growth hormone, residues 176-191 in the numbering most literature uses (the catalog fields on this page list it as Tyr-hGH(177-191), the same molecule under a different residue count). Researchers also call it Anti-Obesity Drug 9604 or hGH fragment 176-191. Tetrava Labs supplies it as a Research Use Only laboratory reagent, not the discontinued obesity drug Metabolic Pharmaceuticals once developed.",
     },
     {
-      question: "Does AOD-9604 include third-party purity testing?",
+      question: "Is AOD-9604 a fragment of HGH?",
       answer:
-        "Lots are verified by independent HPLC-MS analysis. Review the lot-linked Certificate of Analysis when published and reconcile batch numbers before comparative assays.",
+        "Yes. It's the isolated carboxy-terminal stretch of the 191-amino-acid hGH molecule, with an added tyrosine residue at the N-terminus for stability. That's why it's often written as hGH fragment 176-191 or hGH fragment 177-191 depending on the numbering convention used.",
     },
     {
-      question: "How should AOD-9604 be reconstituted?",
+      question: "What is AOD-9604 used for in research?",
       answer:
-        "Reconstitute lyophilized powder under sterile technique with a diluent specified by your SOP. Document concentration and operator in your ELN. Laboratory preparation only — not dosing guidance.",
+        "Labs use AOD-9604 to study adipocyte lipolysis, lipogenesis inhibition, and growth-hormone-receptor-independent metabolic signaling, often in comparative work against full-length hGH or other GLP-1 research peptides. Tetrava Labs' listing is a laboratory reagent for qualified researchers, not a supplement or drug product.",
     },
     {
-      question: "How should AOD-9604 be stored?",
+      question: "What is AOD-9604's mechanism of action?",
       answer:
-        "Store lyophilized vials at -20°C. After reconstitution, hold at 4°C with minimal freeze–thaw cycling per your validated method.",
+        "The C-terminal region of hGH carries the hormone's lipid-mobilizing activity on its own, separate from the region that drives growth signaling. Published binding assays show AOD-9604 doesn't compete with hGH for the growth hormone receptor and doesn't trigger the receptor dimerization that full hGH does, which is the proposed reason animal studies find fat-metabolism effects without hGH's growth-promoting or insulin-antagonizing activity.",
     },
     {
-      question: "How is AOD-9604 shipped?",
+      question: "What benefits has AOD-9604 shown in research?",
       answer:
-        "Orders ship in cold-chain-aware packaging where required. Tracking is emailed after dispatch. See Shipping for regional windows.",
+        "In obese mice and rats, AOD-9604 reduced cumulative body-weight gain and adipose-tissue mass and increased lipolytic activity in chronic-dosing studies. Human trial data is thinner: a 12-week, 300-subject study found a modest weight-loss signal (2.6 kg vs. 0.8 kg on placebo at 1 mg/day), but the larger 24-week Phase 2b trial that followed didn't reach statistical significance against placebo. See the Description tab above for the full trial history and citations.",
+    },
+    {
+      question: "Is AOD-9604 FDA-approved?",
+      answer:
+        "No. AOD-9604 has never received FDA approval, or approval from any comparable regulator, for weight loss or any other indication. Metabolic Pharmaceuticals discontinued the obesity development program in 2007 after the 24-week Phase 2b trial missed its primary endpoint. Tetrava Labs sells it strictly as a Research Use Only laboratory reagent.",
+    },
+    {
+      question: "What side effects has AOD-9604 shown in clinical trials?",
+      answer:
+        "In six published human trials, headache was the most common adverse event, and gastrointestinal effects (diarrhea, flatulence, nausea) showed up more at the highest oral doses tested. Across all six studies, AOD-9604 didn't raise IGF-1 levels, didn't affect glucose tolerance, and didn't trigger antibody formation, unlike full-length hGH. That's trial-reported tolerability data from a supervised clinical program, not a safety claim about unsupervised use of a research reagent.",
+    },
+    {
+      question: "Is there before-and-after data on AOD-9604?",
+      answer:
+        "Published human data comes from randomized, placebo-controlled group averages, not individual before-and-after case reports. The one dataset showing a statistically meaningful group difference was a 12-week pilot study; the larger, better-powered 24-week trial found no significant difference from placebo. Treat single-person before-and-after claims online as anecdotal, not clinical evidence.",
+    },
+    {
+      question: "How should AOD-9604 be reconstituted, and how is it taken?",
+      answer:
+        "Tetrava Labs doesn't provide human dosing or administration instructions for AOD-9604. For laboratory use, reconstitute lyophilized powder under sterile technique with a diluent specified by your protocol, and record concentration and operator in your ELN. This is preparation guidance for research settings only.",
+    },
+    {
+      question: "Where can I buy AOD-9604 online, and where can I buy it near me?",
+      answer:
+        "Tetrava Labs ships AOD-9604 directly to qualified laboratories, so you can buy AOD-9604 online here rather than searching for a local walk-in source; RUO research peptides aren't stocked at retail pharmacies. Each vial ships with lot-linked COA documentation so you can verify identity and purity for the specific batch you receive.",
+    },
+    {
+      question: "Does Tetrava Labs sell AOD-9604 as an oral pill or nasal spray?",
+      answer:
+        "No. This catalog lists AOD-9604 as a lyophilized vial (5 mg or 10 mg) for reconstitution in laboratory research. Four of the six published human trials did dose AOD-9604 orally as a capsule or tablet, so oral-route data exists in the literature, but no published trial has tested a nasal-spray formulation, and Tetrava Labs doesn't stock oral tablets or a nasal spray for this compound.",
+    },
+    {
+      question: "What purity and COA documentation come with AOD-9604?",
+      answer:
+        "Each lot is verified by independent third-party HPLC-MS analysis. The purity percentage on this page is confirmed on the Certificate of Analysis when one is published for that batch. Match the COA batch number to the vial label before starting comparative work.",
+    },
+    {
+      question: "Can I buy AOD-9604 in bulk?",
+      answer:
+        "Yes. The 5 mg and 10 mg strengths on this page are available in multi-vial pack sizes with per-unit savings at higher quantities. Choose the pack size that matches your lab's assay cadence and retention policy.",
+    },
+    {
+      question: "How should AOD-9604 be stored and shipped?",
+      answer:
+        "Store lyophilized vials at -20°C. After reconstitution, hold working solutions at 4°C with minimal freeze-thaw cycling. Orders ship in cold-chain-aware packaging where required, with tracking emailed after dispatch. See Shipping for regional delivery windows.",
     },
     {
       question: "Is AOD-9604 for human use?",
       answer:
-        "No. Catalog AOD-9604 is Research Use Only and must not be used for human or veterinary administration.",
+        "No. Catalog AOD-9604 is Research Use Only and must not be used for human or veterinary administration, diagnosis, or treatment.",
     },
   ],
   "cjc-1295-without-dac": [

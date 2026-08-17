@@ -62,6 +62,11 @@ function seoBaseName(productName: string): string {
  * Per-product, per-slot alt overrides for people-focused editorial illustrations (0-based).
  */
 const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> = {
+  "aod-9604": {
+    0: "Scientist reviewing an adipocyte lipolysis pathway diagram beside an AOD-9604 research vial",
+    1: "Two lab researchers comparing the full-length growth hormone chain to the isolated AOD-9604 fragment on a whiteboard",
+    2: "Gloved researcher matching an AOD-9604 Certificate of Analysis and HPLC chromatogram to its vial",
+  },
   "bpc-157": {
     0: "Scientist comparing BPC-157 and TB-500 research vials in a laboratory",
     1: "Two lab researchers examining a BPC-157 peptide vial together under a lab lamp",

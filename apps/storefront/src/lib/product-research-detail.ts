@@ -218,6 +218,123 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-15",
   },
+  "aod-9604": {
+    shortDescription: [
+      "AOD-9604 is a synthetic 16-amino-acid peptide built from the C-terminal end of human growth hormone, the stretch researchers commonly label hGH fragment 176-191. An extra tyrosine residue is added at the N-terminus for stability, which is why the catalog identity below lists it as Tyr-hGH(177-191); the two numbering conventions describe the same molecule.[1][7]",
+      "Tetrava Labs supplies AOD-9604 as a sterile, lyophilized reagent for laboratory research on adipocyte lipolysis, lipogenesis, and comparative growth-hormone-fragment pharmacology. It is not the same product as native hGH, and it carries none of the growth-hormone-receptor activity that full-length hGH does.[4] Every lot ships with third-party HPLC-verified identity and purity data. Buy AOD-9604 online here for research use only; it is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "Anti-Obesity Drug 9604",
+      "hGH Fragment 176-191",
+      "hGH Fragment 177-191",
+      "Tyr-hGH(177-191)",
+      "AOD9604",
+      "MP-104",
+    ],
+    sections: [
+      {
+        heading: "AOD-9604: isolating one domain of a 191-amino-acid hormone",
+        paragraphs: [
+          "Human growth hormone is a 191-amino-acid protein with several separate functional regions packed into one chain. One region near the amino terminus drives insulin-like, growth-promoting signaling. A different region, the carboxy terminus around residues 177-191, was flagged in early work as a lipid-mobilizing domain on its own, independent of the growth-promoting region.[1]",
+          "Biochemist Frank M. Ng and colleagues at Monash University in Melbourne synthesized that C-terminal sequence directly and tested it against fat metabolism in the early 1990s, reporting that the isolated fragment reproduced hGH's antilipogenic activity in rat adipose tissue.[1] Metabolic Pharmaceuticals Ltd. later added the stabilizing tyrosine residue and advanced the resulting molecule, AOD-9604, into a multi-year obesity drug development program.",
+        ],
+      },
+      {
+        heading: "AOD-9604 mechanism of action: lipolysis without the growth signal",
+        paragraphs: [
+          "In obese mice, chronic AOD-9604 treatment cut cumulative body-weight gain and adipose-tissue mass, tracking closely with the effect of full-length hGH in the same model.[2] A related oral-dosing study in obese Zucker rats found that 500 micrograms per kilogram per day for 19 days reduced body-weight gain by more than half relative to untreated controls, with no adverse change in insulin sensitivity on metabolic testing.[3]",
+          "The receptor story is the part that matters for anyone comparing this fragment to hGH itself. Full activation of the growth hormone receptor needs one hGH molecule to bridge two receptor molecules, using two separate binding sites on the hormone. AOD-9604 only covers part of one of those sites, so it can't trigger that dimerization.[5] Competition-binding assays confirmed AOD-9604 doesn't compete with hGH for the receptor, and a BaF3 cell-proliferation assay found no proliferative effect at any tested dose, even at concentrations far above what a lipolysis assay would use.[4]",
+          "A chronic-treatment study in obese mice and beta-3-adrenergic-receptor knockout mice added another layer: both hGH and AOD-9604 raised beta-3-AR RNA expression in fat cells, and that receptor turned out to be necessary for the chronic weight and lipolysis response, since beta-3-AR knockout mice lost the chronic effect entirely. An acute fat-oxidation effect persisted even in the knockout animals, though, pointing to more than one pathway feeding into the same outcome.[4]",
+        ],
+      },
+      {
+        heading: "Human trials: six studies, about 900 subjects, one Phase 2b that missed its endpoint",
+        paragraphs: [
+          "Between 2001 and 2006, Metabolic Pharmaceuticals ran six randomized, double-blind, placebo-controlled trials of AOD-9604 in roughly 900 adult subjects, most of them clinically obese. The first two studies dosed the peptide intravenously; the remaining four used oral capsules or tablets.[6]",
+          "A 12-week, 300-subject dose-ranging study (five oral doses from 1 to 30 mg daily) found that the 1 mg/day group lost an average of 2.6 kg, compared with 0.8 kg on placebo.[6][8] That looked promising enough to fund a bigger trial. The follow-up was a 24-week, double-blind, placebo-controlled study that randomized 502 obese adults to 0.25, 0.5, or 1 mg AOD-9604 daily or placebo.[6] It missed. Weight loss at 24 weeks did not reach statistical significance against placebo at any dose.[8] Metabolic Pharmaceuticals discontinued the obesity development program in 2007, and AOD-9604 has not advanced through a later-phase human obesity trial since.[8]",
+        ],
+      },
+      {
+        heading: "AOD-9604 oral vs injectable: what the trial record actually shows",
+        paragraphs: [
+          "Tetrava Labs' AOD-9604 catalog listing is a lyophilized vial, reconstituted under sterile technique for injectable-route laboratory research. That is worth separating clearly from the human trial record, because four of the six Metabolic Pharmaceuticals studies, including both long-term efficacy trials, dosed AOD-9604 as an oral capsule or tablet rather than an injection.[6] Oral bioavailability data for peptides this size is unusual, and most of the human evidence on AOD-9604 exists because of it.",
+          "No published human trial has tested a nasal-spray formulation of AOD-9604. If a search turns up an AOD-9604 nasal spray for sale, that formulation doesn't trace back to the six registered trials summarized here, and Tetrava Labs doesn't stock one.",
+        ],
+      },
+      {
+        heading: "Reported side effects and safety signals in human trials",
+        paragraphs: [
+          "Headache was the single most common adverse event across the AOD-9604 trials, reported by roughly 70% of subjects in one single-dose obese-volunteer study, mild or moderate in nearly every case.[6] Gastrointestinal effects, diarrhea, flatulence, and nausea, showed up more often at the highest oral dose tested (54 mg) than at the lower doses used in the long-term efficacy trials. Nothing rose to a withdrawal. No study reported a treatment-related withdrawal or a serious adverse event judged possibly related to AOD-9604.[6]",
+          "Because AOD-9604 is a fragment of hGH, the trials paid particular attention to the side effects tied to full-length hGH: elevated IGF-1, glucose intolerance, and antibody formation. None of the six studies found a statistically significant change in IGF-1 levels versus placebo, oral glucose tolerance testing showed no meaningful shift in glucose handling, and no anti-AOD-9604 antibodies turned up in any subject tested at any timepoint, including after 24 weeks of daily dosing.[6] That is trial-reported tolerability data from supervised, monitored studies. It isn't a safety guarantee for unsupervised use, and Tetrava Labs' RUO listing is a laboratory reagent, not the dosed clinical product.",
+        ],
+      },
+      {
+        heading: "Regulatory status: not FDA-approved, program discontinued in 2007",
+        paragraphs: [
+          "AOD-9604 has no FDA approval. None from any comparable regulator either, for weight loss or any other therapeutic indication. Review literature documents the 24-week Phase 2b trial as the reason the obesity program was discontinued in 2007.[8] Tetrava Labs' catalog listing has no connection to that discontinued drug-development program. It is sold strictly as a Research Use Only laboratory reagent for qualified researchers studying the fragment's pharmacology.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "AOD-9604 ships as a lyophilized powder, which keeps it stable in transport. Store sealed vials at -20°C, avoid repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent immediately before use.",
+          "After reconstitution, hold working solutions at 4°C and use them within the window your laboratory SOP sets. Record the diluent lot, reconstitution date, and operator in your ELN so preparation conditions line up with the lot [Certificate of Analysis](/coa-library). This is laboratory preparation guidance only, not dosing instruction.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Wu Z, Ng FM. Antilipogenic action of synthetic C-terminal sequence 177-191 of human growth hormone. Biochem Mol Biol Int. 1993;30(1):187-196.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/8358331/",
+      },
+      {
+        id: 2,
+        citation:
+          "Natera SH, Jiang WJ, Ng FM. Reduction of cumulative body weight gain and adipose tissue mass in obese mice: response to chronic treatment with synthetic hGH 177-191 peptide. Biochem Mol Biol Int. 1994;33(5):1011-1021.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/7987248/",
+      },
+      {
+        id: 3,
+        citation:
+          "Ng FM, Sun J, Sharma L, Libinaka R, Jiang WJ, Gianello R. Metabolic studies of a synthetic lipolytic domain (AOD9604) of human growth hormone. Horm Res. 2000;53(6):274-278.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/11146367/",
+      },
+      {
+        id: 4,
+        citation:
+          "Heffernan M, Summers RJ, Thorburn A, Ogru E, Gianello R, Jiang WJ, Ng FM. The effects of human GH and its lipolytic fragment (AOD9604) on lipid metabolism following chronic treatment in obese mice and beta(3)-AR knock-out mice. Endocrinology. 2001;142(12):5182-5189.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/11713213/",
+      },
+      {
+        id: 5,
+        citation:
+          "Cunningham BC, Ultsch M, De Vos AM, Mulkerrin MG, Clauser KR, Wells JA. Dimerization of the extracellular domain of the human growth hormone receptor by a single hormone molecule. Science. 1991;254(5033):821-825.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/1948064/",
+      },
+      {
+        id: 6,
+        citation:
+          "Stier H, Vos E, Kenley D. Safety and tolerability of the hexadecapeptide AOD9604 in humans. J Endocrinol Metab. 2013;3(1-2):7-15.",
+        url: "https://doi.org/10.4021/jem157w",
+      },
+      {
+        id: 7,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 71300630, AOD-9604.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/71300630",
+      },
+      {
+        id: 8,
+        citation:
+          "Misra M. Obesity pharmacotherapy: current perspectives and future directions. Curr Cardiol Rev. 2013;9(1):33-54.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/23092275/",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
   sermorelin: {
     shortDescription: [
       "Sermorelin is the common name for GHRH(1-29)-NH2, a synthetic 29-amino-acid peptide with a C-terminal amide. It covers the amino-terminal stretch of the naturally occurring 44-residue human growth hormone-releasing hormone, GHRH.[1]",

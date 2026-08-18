@@ -593,6 +593,15 @@
     "appearance": "White lyophilized powder",
     "category": "Longevity & Neuropeptides"
   },
+  "semax-nasal-spray-10mg": {
+    "cas_number": "80714-61-0",
+    "molecular_formula": "C37H51N9O10S",
+    "molecular_weight": "813.93",
+    "sequence": "Met-Glu-His-Phe-Pro-Gly-Pro",
+    "storage": "2-8°C refrigerated; do not freeze",
+    "appearance": "Clear nasal solution",
+    "category": "Longevity & Neuropeptides"
+  },
   "sermorelin": {
     "cas_number": "86168-78-7",
     "molecular_formula": "C149H244N44O42",

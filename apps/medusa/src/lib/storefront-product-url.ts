@@ -77,6 +77,8 @@ const HANDLE_TO_PUBLIC: Record<string, string> = {
   "selank-nasal-spray": "buy-selank-nasal-spray-online",
   "selank-nasal-spray-10mg": "buy-selank-nasal-spray-online",
   semaglutide: "buy-semaglutide-online",
+  "semax-nasal-spray": "buy-semax-nasal-spray-online",
+  "semax-nasal-spray-10mg": "buy-semax-nasal-spray-online",
   semax: "buy-semax-online",
   sermorelin: "buy-sermorelin-peptide",
   "snap-8-10mg": "buy-snap-8-online",

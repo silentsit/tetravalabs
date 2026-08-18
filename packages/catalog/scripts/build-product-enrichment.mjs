@@ -108,7 +108,9 @@ const MW_BY_KEY = {
   "NAD+": "663.43",
   "Oxytocin Acetate": "1007.19",
   Selank: "751.89",
+  "Selank Nasal Spray": "751.89",
   Semax: "813.93",
+  "Semax Nasal Spray": "813.93",
   "Thymosin alpha-1": "3108.37",
   VIP: "3325.87",
   Pinealon: "389.39",
@@ -277,8 +279,8 @@ const APPEARANCE_DEFAULTS = {
 }
 
 const STORAGE_DEFAULTS = {
-  "Selank Nasal Spray": "2-8°C refrigerated",
-  "Semax Nasal Spray": "2-8°C refrigerated",
+  "Selank Nasal Spray": "2-8°C refrigerated; do not freeze",
+  "Semax Nasal Spray": "2-8°C refrigerated; do not freeze",
   "Bacteriostatic Water": "15-30°C (controlled room temperature)",
   "Acetic Acid Water": "15-30°C (controlled room temperature)",
   "Benzyl Alcohol": "15-30°C (controlled room temperature)",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T12:31:47.068Z",
+  "generated_at": "2026-08-18T13:55:11.674Z",
   "sku_scheme": "TV-####-##",
   "compound_merge": true,
   "products": [
@@ -7990,6 +7990,46 @@
             "strength_option": "10mg",
             "legacy_product_handle": "semax-10mg",
             "compound_parent_handle": "semax"
+          }
+        }
+      ]
+    },
+    {
+      "id": "semax-nasal-spray-10mg",
+      "title": "Semax Nasal Spray 10mg",
+      "category": "Longevity & Neuropeptides",
+      "source_category": "Longevity / Thymic / Neuropeptides",
+      "handle": "semax-nasal-spray-10mg",
+      "visual_type": "nasal_spray",
+      "metadata": {
+        "source": "Tiered_Pricing_5_10_20_Vials.xlsx",
+        "ruo": true,
+        "strength": "10mg",
+        "strength_key": "10mg",
+        "product_code": 112,
+        "cas_number": "80714-61-0",
+        "molecular_formula": "C37H51N9O10S",
+        "molecular_weight": "813.93",
+        "sequence": "Met-Glu-His-Phe-Pro-Gly-Pro",
+        "storage": "2-8°C refrigerated; do not freeze",
+        "appearance": "Clear nasal solution"
+      },
+      "variants": [
+        {
+          "id": "semax-nasal-spray-10mg-1-pack",
+          "title": "1 bottle",
+          "sku": "TV-0112-01",
+          "handle": "semax-nasal-spray-10mg-1-pack",
+          "amount_usd": 79,
+          "currency_code": "usd",
+          "metadata": {
+            "catalog_slug": "semax-nasal-spray-10mg",
+            "strength": "10mg",
+            "product_code": 112,
+            "pack_qty": 1,
+            "per_unit_usd": 79,
+            "savings_pct": 0,
+            "strength_key": "10mg"
           }
         }
       ]

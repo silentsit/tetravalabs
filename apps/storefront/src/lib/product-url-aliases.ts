@@ -68,6 +68,7 @@ export const PRODUCT_URL_TO_HANDLE: Record<string, string> = {
   "buy-selank-nasal-spray-online": "selank-nasal-spray-10mg",
   "buy-selank-online": "selank",
   "buy-semaglutide-online": "semaglutide",
+  "buy-semax-nasal-spray-online": "semax-nasal-spray-10mg",
   "buy-semax-online": "semax",
   "buy-sermorelin-peptide": "sermorelin",
   "buy-snap-8-online": "snap-8-10mg",
@@ -118,7 +119,9 @@ export const LEGACY_PRETTY_URL_REDIRECTS: Record<string, string> = {
   "buy-sermorelin-online": "buy-sermorelin-peptide",
   "klow-bpc-157-tb-500-ghk-cu-kpv": "klow-blend",
   "selank-nasal-spray": "buy-selank-nasal-spray-online",
-  "selank-nasal-spray-10mg": "buy-selank-nasal-spray-online"
+  "selank-nasal-spray-10mg": "buy-selank-nasal-spray-online",
+  "semax-nasal-spray": "buy-semax-nasal-spray-online",
+  "semax-nasal-spray-10mg": "buy-semax-nasal-spray-online"
 }
 
 /** Public SKU names that are not Medusa handles; resolve to the compound parent. */

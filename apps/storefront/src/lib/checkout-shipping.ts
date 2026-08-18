@@ -1,26 +1,29 @@
 export const DEFAULT_SHIPPING_USD = 15
-export const SELANK_NASAL_SHIPPING_USD = 9
-export const SELANK_NASAL_HANDLE = "selank-nasal-spray-10mg"
+export const NASAL_SPRAY_SHIPPING_USD = 9
 
 type ShippingItem = {
   handle?: string
   title?: string
 }
 
-export function isSelankNasalSprayOnly(items: ShippingItem[]) {
-  if (!items.length) return false
-  return items.every((item) => {
-    const handle = (item.handle || "").toLowerCase().trim()
-    const title = (item.title || "").toLowerCase()
-    return (
-      handle === SELANK_NASAL_HANDLE ||
-      handle.startsWith("selank-nasal") ||
-      title.includes("selank nasal spray")
-    )
-  })
+function isNasalSprayItem(item: ShippingItem) {
+  const handle = (item.handle || "").toLowerCase().trim()
+  const title = (item.title || "").toLowerCase()
+  return (
+    handle.includes("nasal-spray") ||
+    handle.startsWith("selank-nasal") ||
+    handle.startsWith("semax-nasal") ||
+    title.includes("nasal spray")
+  )
 }
 
-/** Flat $15 shipping, except Selank Nasal Spray-only carts → $9. */
+/** True when every cart line is a finished nasal-spray SKU (Selank, Semax, or mixed sprays). */
+export function isNasalSprayOnly(items: ShippingItem[]) {
+  if (!items.length) return false
+  return items.every(isNasalSprayItem)
+}
+
+/** Flat $15 shipping, except nasal-spray-only carts → $9. Mixed peptide carts stay $15. */
 export function resolveShippingUsd(items: ShippingItem[]) {
-  return isSelankNasalSprayOnly(items) ? SELANK_NASAL_SHIPPING_USD : DEFAULT_SHIPPING_USD
+  return isNasalSprayOnly(items) ? NASAL_SPRAY_SHIPPING_USD : DEFAULT_SHIPPING_USD
 }

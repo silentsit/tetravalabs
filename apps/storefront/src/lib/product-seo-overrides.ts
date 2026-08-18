@@ -73,6 +73,14 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
       "Buy Selank nasal spray online (10mg). 99%+ HPLC-MS purity, lot-linked COA, 2-8C refrigerated research spray. Research use only (RUO).",
     imageAlt: "Buy Selank nasal spray online, 10mg research bottle",
   },
+  "semax-nasal-spray-10mg": {
+    absoluteTitle:
+      "Buy Semax Nasal Spray Online (10mg) | 99%+ Purity COA | Tetrava",
+    pageHeading: "Semax Nasal Spray",
+    description:
+      "Buy Semax nasal spray online (10mg). 99%+ HPLC-MS purity, lot-linked COA, 2-8C refrigerated research spray. Research use only (RUO).",
+    imageAlt: "Buy Semax nasal spray online, 10mg research bottle",
+  },
 };
 
 export function getProductSeoOverride(

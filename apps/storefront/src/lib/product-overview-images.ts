@@ -112,6 +112,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers reviewing a hippocampal BDNF expression chart from an intranasal Selank study beside the nasal spray bottle and an HPLC chromatogram",
     2: "Gloved hand placing a Selank nasal spray bottle onto a 2-8 C refrigerator shelf beside a -20 C lyophilized Selank vial",
   },
+  "semax-nasal-spray-10mg": {
+    0: "Scientist pointing to an ACTH(4-7)-PGP structure diagram of Met-Glu-His-Phe-Pro-Gly-Pro beside a Semax nasal spray bottle",
+    1: "Two lab researchers reviewing a hippocampal BDNF/TrkB fold-change chart from a single-dose intranasal Semax rat study beside the nasal spray bottle",
+    2: "Gloved hand placing a Semax nasal spray bottle onto a 2-8 C refrigerator shelf beside a -20 C lyophilized Semax vial and an Adamax vial",
+  },
   "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
     0: "Gloved researcher matching the KLOW Blend 80mg vial against its four individual component vials, BPC-157, TB-500, GHK-Cu, and KPV, beside a printed Certificate of Analysis",
     1: "Lab monitor showing four converging research pathway diagrams, tissue-repair, copper-peptide gene signaling, actin regulation, and anti-inflammatory cytokine signaling, meeting at a labeled KLOW Blend vial",

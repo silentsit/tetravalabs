@@ -2033,6 +2033,24 @@
       }
     ]
   },
+    {
+      "category": "Longevity / Thymic / Neuropeptides",
+      "name": "Semax Nasal Spray",
+      "strength": "10mg",
+      "price_usd": 79,
+      "slug": "semax-nasal-spray-10mg",
+      "storefront_category": "Longevity & Neuropeptides",
+      "ref_price_usd": 79,
+      "pack_tiers": [
+        {
+          "tier": "1 bottle",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        }
+      ]
+    },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Thymalin",

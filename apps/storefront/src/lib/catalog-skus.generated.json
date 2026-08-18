@@ -1,6 +1,6 @@
 {
   "scheme": "TV-####-##",
-  "generated_at": "2026-08-18T12:31:47.068Z",
+  "generated_at": "2026-08-18T13:55:11.674Z",
   "skus": {
     "5-amino-1mq:1": "TV-0001-01",
     "5-amino-1mq::1 vial": "TV-0001-01",
@@ -1050,6 +1050,10 @@
     "semax:10mg::5 vials": "TV-0110-05",
     "semax:10mg:10": "TV-0110-10",
     "semax:10mg::10 vials": "TV-0110-10",
+    "semax-nasal-spray-10mg:1": "TV-0112-01",
+    "semax-nasal-spray-10mg::1 bottle": "TV-0112-01",
+    "semax-nasal-spray-10mg:10mg:1": "TV-0112-01",
+    "semax-nasal-spray-10mg:10mg::1 bottle": "TV-0112-01",
     "sermorelin:1": "TV-0113-01",
     "sermorelin::1 vial": "TV-0113-01",
     "sermorelin:5mg:1": "TV-0114-01",
@@ -1298,6 +1302,7 @@
     "selank-nasal-spray-10mg": 107,
     "semaglutide": 109,
     "semax": 111,
+    "semax-nasal-spray-10mg": 112,
     "sermorelin": 114,
     "snap-8-10mg": 115,
     "ss-31": 116,

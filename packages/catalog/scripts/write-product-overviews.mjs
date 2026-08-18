@@ -352,6 +352,11 @@ const OVERVIEWS = {
     "CNS research teams use Semax in assays of BDNF-related signaling, cognitive stress models, and comparative neuropeptide studies with Adamax and Selank.",
     "Supplied as lyophilized powder. For research use only. Not for human or veterinary consumption."
   ],
+  "semax-nasal-spray-10mg": [
+    "Buy {productName} online from Tetrava Labs. Semax nasal spray is the ACTH(4-7)-PGP analogue in a finished aqueous research spray, 10 mg, stored at 2-8°C.",
+    "Labs use the spray format when an intranasal research presentation is specified; lyophilized Semax remains the powder vial SKU. This bottle is not N-Acetyl Semax or Adamax.",
+    "Refrigerate 2-8°C; do not freeze. For research use only. Not for human or veterinary consumption."
+  ],
   sermorelin: [
     "Buy {productName} online from Tetrava Labs. Sermorelin is a GHRH(1-29) analogue used in physiological GH-axis research and pituitary stimulation models.",
     "Labs often compare sermorelin with CJC-1295 variants when studying endogenous GH pulse amplification versus extended GHRH analogues.",

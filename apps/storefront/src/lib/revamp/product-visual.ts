@@ -387,6 +387,10 @@ const BPC_TB500_BLEND_NAMES: Record<string, string> = {
   "bpc-157-10mg-tb-500-10mg-20mg": "BPC-157 + TB-500 (Wolverine Blend)"
 }
 
+const SPECIAL_DISPLAY_NAMES: Record<string, string> = {
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "BPC-157 + TB-500 + Cu + KPV (80mg)"
+}
+
 /** Public SKU names for the Wolverine blend. Medusa handles stay on the tb500 slugs. */
 const BPC_TB500_BLEND_PUBLIC_HANDLES: Record<string, string> = {
   "bpc-157-5mg-tb500-5mg-10mg": "bpc-157-5mg-tb-500-5mg-10mg",
@@ -422,6 +426,8 @@ export function normalizeTb500DisplayText(text: string): string {
 }
 
 export function getProductDisplayName(product: StoreProduct) {
+  const specialName = SPECIAL_DISPLAY_NAMES[product.handle]
+  if (specialName) return specialName
   if (isGlowBlendProduct(product)) return "Glow Blend"
   const bpcTb500Name = BPC_TB500_BLEND_NAMES[product.handle]
   if (bpcTb500Name) return bpcTb500Name

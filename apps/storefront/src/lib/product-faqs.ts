@@ -111,35 +111,89 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   ],
   tirzepatide: [
     {
-      question: "What is tirzepatide used for in laboratory research?",
+      question: "What is tirzepatide?",
       answer:
-        "Tirzepatide is a dual GIP/GLP-1 receptor agonist analog studied in metabolic and receptor pharmacology models. Tetrava Labs supplies research-grade material for qualified laboratories under RUO designation only.",
+        "Tirzepatide is a synthetic peptide that activates both the GIP receptor and the GLP-1 receptor. In the approved-drug market it is sold under the brand names Mounjaro and Zepbound. On this page, Tetrava Labs lists tirzepatide as a lyophilized Research Use Only reagent for qualified laboratories, not as a consumer drug product.",
     },
     {
-      question: "Does tirzepatide include a Certificate of Analysis?",
+      question: "Is tirzepatide a peptide, and is it a GLP-1?",
       answer:
-        "When a batch COA is published, it documents third-party HPLC-MS purity and identity data for that lot. Cross-check the batch number on the vial against the COA before locking experimental design.",
+        "Yes, tirzepatide is a peptide. It is also part of the GLP-1 field, but calling it just a GLP-1 leaves out half the mechanism. Tirzepatide is a dual GIP/GLP-1 receptor agonist, which is why labs use it differently from a GLP-1-only comparator like semaglutide.",
     },
     {
-      question:
-        "How does tirzepatide differ from semaglutide in research catalogs?",
+      question: "What does tirzepatide do in research settings?",
       answer:
-        "Semaglutide is typically framed as a GLP-1 pathway research tool; tirzepatide is framed as a dual GIP/GLP-1 pathway tool. Both are RUO reagents here — selection should follow your assay targets and institutional protocol, not therapeutic intent.",
+        "Labs use tirzepatide to study dual-incretin signaling, receptor selectivity, and comparative metabolic pharmacology. It often sits in the middle of a comparison set: semaglutide for GLP-1-only activity, tirzepatide for dual GIP/GLP-1 activity, and retatrutide when the study adds glucagon-receptor activity too.",
     },
     {
-      question: "How should tirzepatide be reconstituted and handled?",
+      question: "How does tirzepatide differ from semaglutide?",
       answer:
-        "Use sterile technique and a diluent specified by your laboratory SOP. Record concentration, operator, and timestamp in your ELN. Handle as a research chemical under institutional PPE and waste rules — not as a clinical preparation.",
+        "Semaglutide is a GLP-1 receptor agonist. Tirzepatide activates both GIP and GLP-1. That receptor split is the reason \"tirzepatide vs semaglutide\" keeps showing up in search. In approved-drug trials, tirzepatide outperformed semaglutide on weight-loss endpoints in SURMOUNT-5. On this page, the practical difference is that tirzepatide is the better lab comparator when a protocol needs dual-incretin activity rather than GLP-1 activity alone.",
+    },
+    {
+      question: "Is Zepbound tirzepatide? Is Mounjaro tirzepatide?",
+      answer:
+        "Yes. Zepbound and Mounjaro both contain tirzepatide. They are approved Lilly products in pen or vial presentations made for prescription use. This Tetrava page is different. It lists a Research Use Only lyophilized reagent for laboratory procurement, not the approved finished product.",
+    },
+    {
+      question: "Can I buy tirzepatide online from this page?",
+      answer:
+        "You can buy tirzepatide online here as a research reagent if you are ordering for qualified laboratory use. This page is not a route to buy a prescription pen, a compounded pharmacy product, or a personal-use injection. The listing is Research Use Only.",
+    },
+    {
+      question: "Where can I buy tirzepatide legally and safely?",
+      answer:
+        "That depends on which category you mean. For human treatment, the legal route is a licensed prescriber and a licensed pharmacy supplying the approved drug product. For laboratory work, the safe route is a documented research supplier that publishes a lot-specific Certificate of Analysis, identifies the lot on the vial, and ships the material as a lyophilized reagent with clear RUO terms.",
+    },
+    {
+      question: "What about compounded tirzepatide or tirzepatide compound online?",
+      answer:
+        "Compounded tirzepatide is not the same thing as a Research Use Only tirzepatide vial. A compounded product comes from a pharmacy under drug-compounding rules. This page does not sell that category. It sells a bulk research reagent for in-vitro and in-vivo laboratory work.",
+    },
+    {
+      question: "Does tirzepatide from Tetrava include a Certificate of Analysis?",
+      answer:
+        "When a batch COA is published, it documents third-party HPLC-MS purity and identity data for that lot. The check that matters is simple: the batch number on the vial should match the batch number on the COA. If those two numbers do not match, the paperwork is not proving the material in hand.",
+    },
+    {
+      question: "How much is tirzepatide, and what does the price on this page mean?",
+      answer:
+        "The price shown on this page is the price of a research vial. It is not a monthly treatment cost, not an insurance price, and not a compounding-pharmacy quote. If you are comparing vendors, the better question is not who is cheapest. It is who can prove the lot, purity, and identity of the vial actually being shipped.",
+    },
+    {
+      question: "Does tirzepatide work?",
+      answer:
+        "The approved-drug literature says tirzepatide works for the indications it was studied for under regulated clinical protocols. That is why Mounjaro and Zepbound exist. This page does not turn those trial results into a claim about personal use of a research vial. It lists tirzepatide for laboratory research on dual-incretin signaling.",
+    },
+    {
+      question: "Is tirzepatide safe, and what side effects are reported?",
+      answer:
+        "Published safety data comes from the approved-drug trials and labels, not from RUO catalog listings. The main reported adverse events are gastrointestinal, nausea, diarrhea, vomiting, and constipation, often during dose escalation. Questions about hair loss, fatigue, or feeling tired come up often, but they are not the main signal the pivotal obesity trials are built around. This page makes no human safety claim.",
+    },
+    {
+      question: "How should tirzepatide be reconstituted and handled in the lab?",
+      answer:
+        "Use sterile technique and the diluent your laboratory SOP specifies. Record concentration, operator, diluent lot, and timestamp in the ELN. Handle it as a research chemical under institutional PPE and waste rules. This page does not publish a human-use mixing recipe.",
     },
     {
       question: "What are the storage requirements for tirzepatide?",
       answer:
-        "Store lyophilized powder at -20°C. Reconstituted stocks are typically held at 4°C with minimal freeze–thaw cycling, per your validated method.",
+        "Store sealed lyophilized material at -20 C. After reconstitution, most labs hold working solutions at 4 C and avoid repeat freeze-thaw cycling, but the exact handling window belongs in the validated method for the assay.",
     },
     {
       question: "How is tirzepatide shipped?",
       answer:
-        "Lyophilized vials ship with temperature-controlled packaging where required. Tracking is provided by email after the label is generated. See Shipping for international windows and customs notes.",
+        "Lyophilized vials ship with cold-chain-aware packaging where required. Tracking is emailed after dispatch. The Shipping page covers delivery windows and country-specific restrictions.",
+    },
+    {
+      question: "Is this the same thing as tirzepatide 20mg/mL, tirzepatide pills, or a tirzepatide injection pen?",
+      answer:
+        "No. This page lists fixed-strength lyophilized vials for research. A 20 mg vial is not the same thing as a 20 mg/mL finished solution. Tetrava also does not sell tirzepatide pills or an approved injection pen on this page.",
+    },
+    {
+      question: "How many units is 2.5 mg of tirzepatide, what is the starting dose, and where do you inject it?",
+      answer:
+        "This page does not provide unit conversions, a starting dose, or injection-site instructions. Those are human-use questions tied to approved labeling or clinical supervision, not to a Research Use Only catalog page.",
     },
   ],
   retatrutide: [

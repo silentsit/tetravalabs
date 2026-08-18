@@ -866,6 +866,117 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-16",
   },
+  tirzepatide: {
+    shortDescription: [
+      "Tirzepatide is a 39-amino-acid synthetic peptide built from the native GIP sequence and modified so one molecule activates both the GIP receptor and the GLP-1 receptor.[1] The best-known brand names are Mounjaro and Zepbound, both Lilly products, but those approved pens are not the same thing as a lyophilized research vial bought through a peptide catalog.[4][5]",
+      "Tetrava Labs sells tirzepatide as a sterile, lyophilized reagent for laboratory work on dual-incretin signaling, receptor pharmacology, and comparative metabolic models. Labs often use tirzepatide as the reference dual agonist when comparing newer compounds against [semaglutide](/buy-semaglutide-online) or [retatrutide](/buy-retatrutide-online). The identity fields in the Specifications tab are cross-checked against the PubChem compound record for tirzepatide.[1] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: ["LY3298176", "LY-3298176", "Mounjaro", "Zepbound"],
+    sections: [
+      {
+        heading: "What tirzepatide is",
+        paragraphs: [
+          "PubChem lists tirzepatide as a 39-amino-acid linear peptide conjugated to a C20 fatty diacid moiety.[1] That lipid tail is why the molecule behaves differently from a short, unmodified peptide in storage and assay design. It is not a simple copy of endogenous GLP-1, and it is not a small molecule dressed up as one.",
+          "Search traffic also mixes together three different things under one name: Lilly's approved drug products, compounded prescription products made in pharmacies, and Research Use Only bulk material sold to laboratories. They are not the same supply chain. This page is the third one: a documented RUO reagent in a lyophilized vial, not a branded pen and not a compounded prescription product.[4][5]",
+        ],
+      },
+      {
+        heading: "How tirzepatide works",
+        paragraphs: [
+          "Tirzepatide activates two incretin receptors at once, GIP and GLP-1.[1] That is the whole reason the molecule matters. A GLP-1 agonist already slows gastric emptying and drives glucose-dependent insulin secretion. Adding GIP changes the signal mix again, which is why tirzepatide is usually discussed as a dual agonist rather than just \"another GLP-1.\"",
+          "In the lab, that dual-receptor profile makes tirzepatide a useful comparator. If a study is trying to separate GLP-1-only activity from dual-incretin activity, [semaglutide](/buy-semaglutide-online) is the obvious single-receptor reference and tirzepatide is the obvious dual-receptor reference. If the study adds glucagon-receptor activity, the next step up is [retatrutide](/buy-retatrutide-online).",
+        ],
+      },
+      {
+        heading: "Tirzepatide vs semaglutide",
+        paragraphs: [
+          "The cleanest published comparison is SURMOUNT-5, a head-to-head obesity trial that compared approved tirzepatide against approved semaglutide, not research vials bought online.[3] Tirzepatide beat semaglutide on body-weight change and waist-circumference change over the same treatment window. That is the trial result people are usually pointing to when they search \"semaglutide vs tirzepatide.\"",
+          "Mechanistically, the split is simpler than the market copy makes it sound. Semaglutide hits GLP-1 only. Tirzepatide hits GIP and GLP-1. That does not make tirzepatide a universal upgrade for every assay. It means the molecule answers a different receptor question, and that question should be written into the protocol before a lab orders the vial.",
+        ],
+      },
+      {
+        heading: "What the human trials actually measured",
+        paragraphs: [
+          "SURMOUNT-1 put tirzepatide on the map for obesity work. Over 72 weeks, the approved once-weekly product produced mean weight-loss figures that ran from about 15% to 21% depending on dose, versus about 3% on placebo.[2] Those numbers belong to a supervised clinical-trial program using a regulated product, a fixed escalation schedule, and named endpoints. They do not tell you what is in a random online vial.",
+          "That distinction matters on this page. Searches like \"tirzepatide for weight loss,\" \"does tirzepatide work,\" and \"what is tirzepatide used for\" usually point back to branded-drug trial data. A research listing borrows the same molecule name, not the same approval status, device, storage chain, or dosing program. The work of a serious supplier is to document identity and purity for the material actually shipped, not to borrow Eli Lilly's trial reputation.",
+        ],
+      },
+      {
+        heading: "Side effects and safety: what the approved-drug literature says",
+        paragraphs: [
+          "The common adverse events in the approved-drug literature are gastrointestinal: nausea, diarrhea, vomiting, constipation, and related dose-escalation dropouts.[2][5] That pattern is not unusual for incretin agonists. It is also the reason trial safety tables need to stay attached to the regulated drug product they came from, not copied onto a research-vial listing as if they were a property of all tirzepatide everywhere.",
+          "Searches for hair loss, fatigue, or \"does tirzepatide make you tired\" are usually looking for patient-experience answers. Those effects do turn up in labels, forums, and post-marketing discussion, but they are not the core signal the pivotal trials are built around. This page does not turn supervised clinical safety data into a safety claim for unsupervised use. It sells a laboratory reagent.",
+        ],
+      },
+      {
+        heading: "FDA approval, brand names, and compounded tirzepatide",
+        paragraphs: [
+          "Mounjaro was FDA-approved in 2022 for glycemic control in type 2 diabetes.[4] Zepbound followed in 2023 for chronic weight management.[5] Those are the two brand names most users mean when they search \"tirzepatide brand name\" or ask whether Zepbound is tirzepatide. Yes, Zepbound contains tirzepatide. No, that fact does not make every tirzepatide listing interchangeable with Zepbound.",
+          "Compounded tirzepatide is a different category again. Pharmacy compounding sits inside federal and state drug-compounding rules, and those rules changed once tirzepatide was no longer being handled under shortage conditions.[6] A lyophilized research vial sold under RUO terms is not an approved pen and not a compounded prescription product. If a page blurs those lines, that is a warning sign, not a convenience.",
+        ],
+      },
+      {
+        heading: "Buying tirzepatide for research: what to verify first",
+        paragraphs: [
+          "\"Best place to buy tirzepatide\" is really a documentation question. A lab does not need the cheapest page. A lab needs the page that can prove what lot is being sold.",
+        ],
+        bullets: [
+          "Lot match: the lot number on the vial should match the lot number on the Certificate of Analysis.",
+          "Identity, not just purity: a 99% line without a lot-linked LC-MS or HPLC record is marketing copy.",
+          "Real storage language: the supplier should describe sealed lyophilized storage, cold handling, and how the material ships.",
+          "No human-use framing: pages built around unit conversions, injections, before-and-after claims, or Reddit-style sourcing chatter are telling you who the real buyer is.",
+          "Price in context: a cheap tirzepatide listing without a lot-specific COA is not a bargain. It is an undocumented purchase.",
+        ],
+      },
+      {
+        heading: "Reconstitution, storage, and the 20mg/mL confusion",
+        paragraphs: [
+          "\"Buy tirzepatide 20mg/ml\" mixes concentration language from other product formats with this page's actual catalog format. Tetrava lists tirzepatide as a lyophilized vial in fixed strengths. A 20 mg vial is not the same thing as a 20 mg/mL finished solution, and the two should not be treated as interchangeable labels.[5][6]",
+          "This page does not publish a starting dose, a milligram-to-units conversion, or injection instructions. In the lab, final concentration belongs in the assay SOP. Store sealed vials at -20 C, reconstitute under sterile technique with a protocol-appropriate diluent, avoid repeat freeze-thaw cycling, and log the diluent lot, concentration, operator, and date against the batch [Certificate of Analysis](/coa-library).",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 156588324, Tirzepatide.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/156588324",
+      },
+      {
+        id: 2,
+        citation:
+          "Jastreboff AM, Aronne LJ, Ahmad NN, et al. Tirzepatide once weekly for the treatment of obesity. N Engl J Med. 2022;387(3):205-216.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/35658024/",
+      },
+      {
+        id: 3,
+        citation:
+          "Aronne LJ, Horn DB, le Roux CW, et al. Tirzepatide as compared with semaglutide for the treatment of obesity (SURMOUNT-5). N Engl J Med. 2025;393(1):26-36.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/40353578/",
+      },
+      {
+        id: 4,
+        citation:
+          "U.S. Food and Drug Administration. FDA approves novel, dual-targeted treatment for type 2 diabetes. May 13, 2022.",
+        url: "https://www.fda.gov/news-events/press-announcements/fda-approves-novel-dual-targeted-treatment-type-2-diabetes",
+      },
+      {
+        id: 5,
+        citation:
+          "U.S. Food and Drug Administration. FDA approves new medication for chronic weight management. Nov 8, 2023.",
+        url: "https://www.fda.gov/news-events/press-announcements/fda-approves-new-medication-chronic-weight-management",
+      },
+      {
+        id: 6,
+        citation:
+          "U.S. Food and Drug Administration. Interim policy on compounding using bulk drug substances under section 503A and 503B of the Federal Food, Drug, and Cosmetic Act.",
+        url: "https://www.fda.gov/media/94155/download",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
   retatrutide: {
     shortDescription: [
       "Retatrutide is a synthetic peptide that activates three different metabolic receptors at once: GLP-1, GIP, and glucagon. Eli Lilly's development code for it is LY3437943. Most of the field calls it a \"triple agonist,\" and it's the furthest along in that class of anything currently in a Phase 3 trial.[1]",

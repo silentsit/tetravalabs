@@ -17,5 +17,31 @@
         "product_code": 19
       }
     ]
+  },
+  "glow-bpc-157-tb500-ghk-cu": {
+    "title": "Glow Blend",
+    "members": [
+      {
+        "legacy_slug": "glow-bpc-157-tb500-ghk-cu-30mg",
+        "strength_key": "30mg",
+        "strength_label": "30mg",
+        "strength_option": "30mg",
+        "product_code": 50
+      },
+      {
+        "legacy_slug": "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg",
+        "strength_key": "70mg",
+        "strength_label": "70mg",
+        "strength_option": "70mg",
+        "product_code": 52
+      },
+      {
+        "legacy_slug": "glow-bpc-157-tb500-ghk-cu-85mg",
+        "strength_key": "85mg",
+        "strength_label": "85mg",
+        "strength_option": "85mg",
+        "product_code": 51
+      }
+    ]
   }
 }

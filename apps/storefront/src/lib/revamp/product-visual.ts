@@ -461,6 +461,13 @@ export function getProductStrengthLabel(product: StoreProduct) {
     product.handle.match(/^bpc-157-5mg-tb-?500-5mg-(\d+mg)$/i) ||
     product.handle.match(/^bpc-157-10mg-tb-?500-10mg-(\d+mg)$/i)
   if (bpcTb) return bpcTb[1]
+  const fromStrengthKey = product.metadata?.strength_key
+  if (fromStrengthKey && fromStrengthKey !== "Standard") {
+    const key = String(fromStrengthKey)
+    if (/^\d+-\d+mg$/i.test(key)) return key.replace("-", ".")
+    if (/^\d+-iu$/i.test(key)) return key.replace(/-iu$/i, " IU")
+    return key
+  }
   const fromMeta = product.metadata?.strength
   if (fromMeta && fromMeta !== "Standard") return String(fromMeta)
   const match = product.handle.match(

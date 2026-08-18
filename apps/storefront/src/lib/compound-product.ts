@@ -502,7 +502,8 @@ export function isVariantInStock(variant: StoreVariant | undefined): boolean {
 export async function getCompoundProductView(
   handle: string
 ): Promise<CompoundProductView | null> {
-  const family = getCompoundFamily(handle)
+  const parentHandle = getCompoundParentHandle(handle)
+  const family = parentHandle ? getCompoundFamily(parentHandle) : getCompoundFamily(handle)
   if (family) {
     const parentProduct = await getProductByHandle(family.parentHandle)
     if (parentProduct && isMergedMedusaProduct(parentProduct)) {

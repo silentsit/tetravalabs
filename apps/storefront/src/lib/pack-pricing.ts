@@ -260,10 +260,10 @@ export function formatShelfPrice(
       ? `$${minPerUnit.toFixed(2)} – $${maxPerUnit.toFixed(2)}`
       : `$${moq.perUnit.toFixed(2)}`
 
-  const packLabel = `packs from $${moq.price.toFixed(2)}`
+  const packLabel = `packs from $${Math.min(...tiers.map((tier) => tier.price)).toFixed(2)}`
   const detail =
     moq.qty <= 1
-      ? `from $${moq.perUnit.toFixed(2)}${unitSuffix} · ${packLabel}`
+      ? `from $${minPerUnit.toFixed(2)}${unitSuffix} · ${packLabel}`
       : `${moq.qty}-${unitWord} minimum · ${packLabel}`
 
   return { unitAmount, unitSuffix, detail, isPackProduct: true }

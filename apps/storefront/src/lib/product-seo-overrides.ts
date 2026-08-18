@@ -57,6 +57,13 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
       "Buy DSIP peptide online in 5mg, 10mg, and 15mg vials. 99%+ HPLC-MS lab-tested purity, lot-linked COA. Delta Sleep-Inducing Peptide for research. RUO.",
     imageAlt: "Buy DSIP peptide for sale in research vial",
   },
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
+    absoluteTitle: "Buy KLOW Blend Online (80mg) | 99%+ Purity COA | Tetrava",
+    pageHeading: "KLOW Blend (80mg)",
+    description:
+      "Buy KLOW Blend (80mg) online: BPC-157 10mg, TB-500 10mg, GHK-Cu 10mg, and KPV 50mg in one lyophilized vial. 99%+ HPLC-MS purity, lot-linked COA. RUO.",
+    imageAlt: "Buy KLOW Blend 80mg research peptide vial",
+  },
 };
 
 export function getProductSeoOverride(

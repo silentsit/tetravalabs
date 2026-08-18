@@ -89,7 +89,7 @@ function topRevenuePaths() {
     "/buy-cagrilintide-semaglutide-online",
     "/cjc-1295-with-dac",
     "/buy-tesamorelin-online",
-    "/klow-bpc-157-tb-500-ghk-cu-kpv",
+    "/klow-blend",
     "/buy-survodutide-online",
     "/glow-bpc-157-tb-500-ghk-cu",
     "/buy-mots-c-online",

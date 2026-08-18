@@ -27,7 +27,7 @@ export const PRODUCT_URL_TO_HANDLE: Record<string, string> = {
   "cjc-1295-without-dac-ipamorelin-blend": "cjc-1295-without-dac-ipamorelin-blend-10mg",
   "cjc-1295-without-dac-sermorelin-ipamorelin-blend":
     "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg",
-  "klow-bpc-157-tb-500-ghk-cu-kpv": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
+  "klow-blend": "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg",
   "buy-dermorphin-online": "dermorphin-5mg",
   "buy-dihexa-online": "dihexa-10mg",
   "buy-dsip-online": "dsip",
@@ -103,7 +103,7 @@ const SHARED_HANDLE_PUBLIC_URL: Record<string, string> = {
   "cjc-1295-without-dac-ipamorelin-blend-10mg": "cjc-1295-without-dac-ipamorelin-blend",
   "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg":
     "cjc-1295-without-dac-sermorelin-ipamorelin-blend",
-  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "klow-bpc-157-tb-500-ghk-cu-kpv"
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "klow-blend"
 }
 
 for (const [handle, urlSegment] of Object.entries(SHARED_HANDLE_PUBLIC_URL)) {
@@ -114,7 +114,8 @@ for (const [handle, urlSegment] of Object.entries(SHARED_HANDLE_PUBLIC_URL)) {
 export const LEGACY_PRETTY_URL_REDIRECTS: Record<string, string> = {
   "bpc-157-capsules": "buy-bpc-157-capsules-online",
   "pinealon-capsules": "buy-pinealon-capsules-online",
-  "buy-sermorelin-online": "buy-sermorelin-peptide"
+  "buy-sermorelin-online": "buy-sermorelin-peptide",
+  "klow-bpc-157-tb-500-ghk-cu-kpv": "klow-blend"
 }
 
 /** Public SKU names that are not Medusa handles; resolve to the compound parent. */

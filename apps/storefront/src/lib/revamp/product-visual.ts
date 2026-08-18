@@ -387,8 +387,13 @@ const BPC_TB500_BLEND_NAMES: Record<string, string> = {
   "bpc-157-10mg-tb-500-10mg-20mg": "BPC-157 + TB-500 (Wolverine Blend)"
 }
 
+export const KLOW_BLEND_HANDLE = "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg"
+
+export const KLOW_BLEND_COMPONENT_LABEL =
+  "BPC-157 10mg + TB-500 10mg + GHK-Cu 10mg + KPV 50mg"
+
 const SPECIAL_DISPLAY_NAMES: Record<string, string> = {
-  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "BPC-157 + TB-500 + Cu + KPV (80mg)"
+  [KLOW_BLEND_HANDLE]: "KLOW Blend (80mg)"
 }
 
 /** Public SKU names for the Wolverine blend. Medusa handles stay on the tb500 slugs. */
@@ -438,6 +443,9 @@ export function getProductDisplayName(product: StoreProduct) {
 
 export function getProductDisplaySubtitle(product: StoreProduct) {
   if (isGlowBlendProduct(product)) return "BPC-157 + TB-500 + GHK-Cu"
+  if (product.handle === KLOW_BLEND_HANDLE) {
+    return KLOW_BLEND_COMPONENT_LABEL
+  }
   const capsuleCopy = CAPSULE_CARD_COPY[product.handle]
   if (capsuleCopy) return capsuleCopy.subtitle
   return null

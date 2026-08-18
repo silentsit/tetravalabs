@@ -11,7 +11,8 @@ import {
   getProductDisplaySubtitle,
   getProductPrice,
   isBlendProduct,
-  isCapsuleProduct
+  isCapsuleProduct,
+  KLOW_BLEND_HANDLE
 } from "@/lib/revamp/product-visual"
 import {
   formatShelfPriceFromProduct,
@@ -53,6 +54,8 @@ export function ProductCard({
       ? getFeaturedProductImage(product.handle)
       : getProductImage(product.handle))
   const showBlendBadge = isBlendProduct(product)
+  const titleLineClamp =
+    product.handle === KLOW_BLEND_HANDLE ? "line-clamp-3" : "line-clamp-2"
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -144,7 +147,7 @@ export function ProductCard({
 
         <div className="flex flex-col px-3.5 pb-2 pt-1">
           <TitleTag
-            className={`product-card-title line-clamp-2 text-base font-bold leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488] ${
+            className={`product-card-title ${titleLineClamp} text-base font-bold leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488] ${
               capsuleSubtitle ? "" : "min-[480px]:min-h-[2.5em]"
             }`}
           >

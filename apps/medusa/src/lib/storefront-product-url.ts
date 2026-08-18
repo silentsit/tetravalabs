@@ -32,7 +32,7 @@ const HANDLE_TO_PUBLIC: Record<string, string> = {
   "cjc-1295-without-dac-ipamorelin-blend-10mg": "cjc-1295-without-dac-ipamorelin-blend",
   "cjc-1295-without-dac-sermorelin-ipamorelin-blend-5mg":
     "cjc-1295-without-dac-sermorelin-ipamorelin-blend",
-  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "klow-bpc-157-tb-500-ghk-cu-kpv",
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "klow-blend",
   "dermorphin-5mg": "buy-dermorphin-online",
   "dihexa-10mg": "buy-dihexa-online",
   dsip: "buy-dsip-online",

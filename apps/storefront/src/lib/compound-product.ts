@@ -19,6 +19,8 @@ import {
   getProductImage,
   getProductPurity,
   getProductStrengthLabel,
+  KLOW_BLEND_COMPONENT_LABEL,
+  KLOW_BLEND_HANDLE,
   normalizeTb500DisplayText,
   stripStrengthFromDisplayName
 } from "@/lib/revamp/product-visual"
@@ -243,7 +245,17 @@ export function getShelfProductLabel(product: StoreProduct): string {
   }
 
   const single = getProductStrengthLabel(product)
-  if (single) return formatProductLabelWithStrengths(baseName, [single])
+  if (single) {
+    const label = formatProductLabelWithStrengths(baseName, [single])
+    if (product.handle === KLOW_BLEND_HANDLE) {
+      return `${label} (${KLOW_BLEND_COMPONENT_LABEL})`
+    }
+    return label
+  }
+
+  if (product.handle === KLOW_BLEND_HANDLE) {
+    return `${formatProductLabelWithStrengths(baseName, [])} (${KLOW_BLEND_COMPONENT_LABEL})`
+  }
 
   return formatProductLabelWithStrengths(baseName, [])
 }

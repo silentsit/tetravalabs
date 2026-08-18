@@ -19,8 +19,8 @@ import {
   getProductImage,
   getProductPurity,
   getProductStrengthLabel,
-  KLOW_BLEND_COMPONENT_LABEL,
   KLOW_BLEND_HANDLE,
+  KLOW_BLEND_SHELF_LABEL,
   normalizeTb500DisplayText,
   stripStrengthFromDisplayName
 } from "@/lib/revamp/product-visual"
@@ -233,6 +233,8 @@ export function getProductHref(handle: string, _packQty?: number): string {
  * - multi: "BPC-157 (5mg / 10mg)"
  */
 export function getShelfProductLabel(product: StoreProduct): string {
+  if (product.handle === KLOW_BLEND_HANDLE) return KLOW_BLEND_SHELF_LABEL
+
   const parent = getCompoundParentHandle(product.handle) || product.handle
   const family = getCompoundFamily(parent)
   const baseName = stripStrengthFromDisplayName(getProductDisplayName(product))
@@ -246,15 +248,7 @@ export function getShelfProductLabel(product: StoreProduct): string {
 
   const single = getProductStrengthLabel(product)
   if (single) {
-    const label = formatProductLabelWithStrengths(baseName, [single])
-    if (product.handle === KLOW_BLEND_HANDLE) {
-      return `${label} (${KLOW_BLEND_COMPONENT_LABEL})`
-    }
-    return label
-  }
-
-  if (product.handle === KLOW_BLEND_HANDLE) {
-    return `${formatProductLabelWithStrengths(baseName, [])} (${KLOW_BLEND_COMPONENT_LABEL})`
+    return formatProductLabelWithStrengths(baseName, [single])
   }
 
   return formatProductLabelWithStrengths(baseName, [])
@@ -262,6 +256,8 @@ export function getShelfProductLabel(product: StoreProduct): string {
 
 /** Search/index fallback when only handle + title are available. */
 export function getShelfLabelForHandle(handle: string, fallbackTitle: string): string {
+  if (handle === KLOW_BLEND_HANDLE) return KLOW_BLEND_SHELF_LABEL
+
   const parent = getCompoundParentHandle(handle) || handle
   const family = getCompoundFamily(parent)
   const baseName = stripStrengthFromDisplayName(normalizeTb500DisplayText(fallbackTitle))

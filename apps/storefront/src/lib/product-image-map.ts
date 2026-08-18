@@ -6,6 +6,7 @@
  * Gallery front+side: tools/label-pipeline/scripts/apply-shots-to-storefront.py
  */
 import compoundFamilies from "@/lib/compound-families.generated.json"
+import compoundFamilyOverrides from "@/lib/compound-family-overrides.json"
 import generatedMap from "@/lib/product-image-map.generated.json"
 import galleryMap from "@/lib/product-gallery-images.generated.json"
 
@@ -28,6 +29,11 @@ const productGalleryMap = galleryMap as Record<string, string[]>
 
 type FamilyMember = { legacy_slug: string; strength_key: string }
 
+const FAMILY_IMAGE_SOURCE: Record<string, { members: FamilyMember[] }> = {
+  ...(compoundFamilies as Record<string, { members: FamilyMember[] }>),
+  ...(compoundFamilyOverrides as Record<string, { members: FamilyMember[] }>)
+}
+
 /** Non-compound / single-SKU base handles → default v2 image. */
 const LEGACY_BASE_IMAGES: Record<string, string> = {
   "bacteriostatic-water": `${V2_BASE}/bac-water-10ml.webp`,
@@ -48,9 +54,7 @@ function strengthSortKey(strengthKey: string): number {
  * has an odd count, otherwise the smallest strength.
  */
 export function getCompoundShelfImageHandle(parentHandle: string): string | null {
-  const family = (compoundFamilies as Record<string, { members: FamilyMember[] }>)[
-    parentHandle
-  ]
+  const family = FAMILY_IMAGE_SOURCE[parentHandle]
   if (!family?.members?.length) return null
 
   const sorted = [...family.members].sort(

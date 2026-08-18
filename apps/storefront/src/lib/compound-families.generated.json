@@ -622,6 +622,25 @@
       }
     ]
   },
+  "bpc-157-tb500-blend": {
+    "title": "BPC-157 + TB-500 (Wolverine Blend)",
+    "members": [
+      {
+        "legacy_slug": "bpc-157-5mg-tb500-5mg-10mg",
+        "strength_key": "10mg",
+        "strength_label": "10mg",
+        "strength_option": "10mg",
+        "product_code": 18
+      },
+      {
+        "legacy_slug": "bpc-157-5mg-tb500-5mg-20mg",
+        "strength_key": "20mg",
+        "strength_label": "20mg",
+        "strength_option": "20mg",
+        "product_code": 19
+      }
+    ]
+  },
   "glow-bpc-157-tb500-ghk-cu": {
     "title": "Glow BPC-157 + TB500 + GHK-Cu",
     "members": [

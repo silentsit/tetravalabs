@@ -98,6 +98,15 @@
     "appearance": "White lyophilized powder",
     "category": "Tissue Repair"
   },
+  "bpc-157-tb500-blend": {
+    "cas_number": "137525-51-0",
+    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
+    "molecular_weight": "See component peptides",
+    "sequence": "Multi-component: see BPC-157 and TB-500",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
+  },
   "bpc-157-5mg-tb500-5mg-10mg": {
     "cas_number": "137525-51-0",
     "molecular_formula": "C62H98N16O22 | C212H350N56O78S",

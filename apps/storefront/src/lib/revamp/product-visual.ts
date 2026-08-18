@@ -380,9 +380,21 @@ export function isGlowBlendProduct(product: StoreProduct) {
 }
 
 const BPC_TB500_BLEND_NAMES: Record<string, string> = {
-  "bpc-157-tb500-blend": "BPC-157 + TB-500 Blend",
-  "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 Blend",
-  "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 Blend"
+  "bpc-157-tb500-blend": "BPC-157 + TB-500 (Wolverine Blend)",
+  "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 (Wolverine Blend)",
+  "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 (Wolverine Blend)",
+  "bpc-157-5mg-tb-500-5mg-10mg": "BPC-157 + TB-500 (Wolverine Blend)",
+  "bpc-157-10mg-tb-500-10mg-20mg": "BPC-157 + TB-500 (Wolverine Blend)"
+}
+
+/** Public SKU names for the Wolverine blend. Medusa handles stay on the tb500 slugs. */
+const BPC_TB500_BLEND_PUBLIC_HANDLES: Record<string, string> = {
+  "bpc-157-5mg-tb500-5mg-10mg": "bpc-157-5mg-tb-500-5mg-10mg",
+  "bpc-157-5mg-tb500-5mg-20mg": "bpc-157-10mg-tb-500-10mg-20mg"
+}
+
+export function publicCatalogHandle(handle: string): string {
+  return BPC_TB500_BLEND_PUBLIC_HANDLES[handle] || handle
 }
 
 const CAPSULE_CARD_COPY: Record<string, { name: string; subtitle: string }> = {
@@ -427,7 +439,9 @@ export function getProductDisplaySubtitle(product: StoreProduct) {
 
 export function getProductStrengthLabel(product: StoreProduct) {
   if (product.handle in CAPSULE_CARD_COPY) return null
-  const bpcTb = product.handle.match(/^bpc-157-5mg-tb500-5mg-(\d+mg)$/i)
+  const bpcTb =
+    product.handle.match(/^bpc-157-5mg-tb-?500-5mg-(\d+mg)$/i) ||
+    product.handle.match(/^bpc-157-10mg-tb-?500-10mg-(\d+mg)$/i)
   if (bpcTb) return bpcTb[1]
   const fromMeta = product.metadata?.strength
   if (fromMeta && fromMeta !== "Standard") return String(fromMeta)

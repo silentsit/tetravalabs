@@ -49,6 +49,7 @@ const SOURCE_SHEET_CATEGORIES = new Set([
 const BLEND_PRODUCTS = new Set([
   "BPC-157 + TB500 Blend",
   "BPC-157 + TB-500 Blend",
+  "BPC-157 + TB-500 (Wolverine Blend)",
   "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
   "CU 50mg + TB-500 10mg + BPC-157 10mg + KPV 10mg",
   "Glow BPC-157 + TB500 + GHK-Cu",

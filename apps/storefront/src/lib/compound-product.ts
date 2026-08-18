@@ -1,4 +1,5 @@
 import compoundFamilies from "@/lib/compound-families.generated.json"
+import compoundFamilyOverrides from "@/lib/compound-family-overrides.json"
 import compoundLegacyRedirects from "@/lib/compound-legacy-redirects.generated.json"
 import productEnrichment from "@/lib/product-enrichment.generated.json"
 import {
@@ -151,6 +152,31 @@ for (const [legacyHandle, redirect] of Object.entries(
   compoundLegacyRedirects as Record<string, LegacyRedirect>
 )) {
   MEMBER_TO_PARENT.set(legacyHandle, redirect.parent)
+}
+
+/** Storefront-only families that catalog merge skipped because SKU titles include strength. */
+for (const [parentHandle, family] of Object.entries(
+  compoundFamilyOverrides as Record<string, GeneratedFamily>
+)) {
+  const members = family.members
+    .map((member) => ({
+      handle: member.legacy_slug,
+      strengthKey: member.strength_key,
+      strengthLabel: member.strength_label || formatStrengthLabel(member.strength_key)
+    }))
+    .sort((a, b) => strengthSortKey(a.strengthKey) - strengthSortKey(b.strengthKey))
+
+  if (members.length >= 2) {
+    FAMILY_INDEX.set(parentHandle, { parentHandle, members })
+  }
+}
+
+for (const family of FAMILY_INDEX.values()) {
+  for (const member of family.members) {
+    if (!MEMBER_TO_PARENT.has(member.handle)) {
+      MEMBER_TO_PARENT.set(member.handle, family.parentHandle)
+    }
+  }
 }
 
 export function getCompoundFamily(parentHandle: string): CompoundFamily | null {

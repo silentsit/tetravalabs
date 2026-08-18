@@ -13,6 +13,7 @@ import {
   type CompoundProductView,
 } from "@/lib/compound-product";
 import { getProductSeoOverride } from "@/lib/product-seo-overrides";
+import { publicCatalogHandle } from "@/lib/revamp/product-visual";
 import { ProductImageGallery } from "@/components/product-image-gallery";
 import { ProductPurchasePanel } from "@/components/product-purchase-panel";
 import {
@@ -50,8 +51,8 @@ function syncUrl(parentHandle: string) {
 
 /** Per-strength catalog handles (legacy slugs when merged). */
 function catalogHandlesForView(view: CompoundProductView): string {
-  const handles = view.strengths.map(
-    (strength) => strength.imageHandle || strength.handle,
+  const handles = view.strengths.map((strength) =>
+    publicCatalogHandle(strength.imageHandle || strength.handle),
   );
   const unique = [...new Set(handles.filter(Boolean))];
   return unique.join(", ");

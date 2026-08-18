@@ -95,6 +95,8 @@ export const PRODUCT_HANDLE_TO_URL: Record<string, string> = Object.fromEntries(
 const SHARED_HANDLE_PUBLIC_URL: Record<string, string> = {
   "bpc-157-5mg-tb500-5mg-10mg": "wolverine-bpc-157-tb-500-blend",
   "bpc-157-5mg-tb500-5mg-20mg": "wolverine-bpc-157-tb-500-blend",
+  "bpc-157-5mg-tb-500-5mg-10mg": "wolverine-bpc-157-tb-500-blend",
+  "bpc-157-10mg-tb-500-10mg-20mg": "wolverine-bpc-157-tb-500-blend",
   "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": "glow-bpc-157-tb-500-ghk-cu",
   "igf-1-lr3-0-1mg": "buy-igf-1-lr3-online",
   "igf-1-lr3-1mg": "buy-igf-1-lr3-online",
@@ -115,9 +117,16 @@ export const LEGACY_PRETTY_URL_REDIRECTS: Record<string, string> = {
   "buy-sermorelin-online": "buy-sermorelin-peptide"
 }
 
+/** Public SKU names that are not Medusa handles; resolve to the compound parent. */
+const PUBLIC_SKU_TO_PARENT: Record<string, string> = {
+  "bpc-157-5mg-tb-500-5mg-10mg": "bpc-157-tb500-blend",
+  "bpc-157-10mg-tb-500-10mg-20mg": "bpc-157-tb500-blend"
+}
+
 /** Resolve any known public/legacy segment to a catalog handle when possible. */
 export function catalogHandleFromPublicSegment(segment: string): string | null {
   if (PRODUCT_URL_TO_HANDLE[segment]) return PRODUCT_URL_TO_HANDLE[segment]
+  if (PUBLIC_SKU_TO_PARENT[segment]) return PUBLIC_SKU_TO_PARENT[segment]
   const next = LEGACY_PRETTY_URL_REDIRECTS[segment]
   if (next && PRODUCT_URL_TO_HANDLE[next]) return PRODUCT_URL_TO_HANDLE[next]
   return null

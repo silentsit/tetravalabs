@@ -1,8 +1,11 @@
 import type { StoreProduct } from "@/lib/medusa"
 import catalogHandles from "@/lib/catalog-handles.generated.json"
 import compoundFamilies from "@/lib/compound-families.generated.json"
+import compoundFamilyOverrides from "@/lib/compound-family-overrides.json"
 import compoundLegacyRedirects from "@/lib/compound-legacy-redirects.generated.json"
 import { getCompoundShelfImageHandle } from "@/lib/product-image-map"
+
+type FamilyTitleRow = { title: string; members?: { legacy_slug: string }[] }
 
 const CATALOG_HANDLES = new Set(catalogHandles as string[])
 const COMPOUND_PARENTS = new Set(Object.keys(compoundFamilies as Record<string, unknown>))
@@ -17,6 +20,18 @@ const COMPOUND_TITLES = new Map(
     family.title
   ])
 )
+
+for (const [parentHandle, family] of Object.entries(
+  compoundFamilyOverrides as Record<string, FamilyTitleRow>
+)) {
+  COMPOUND_PARENTS.add(parentHandle)
+  COMPOUND_TITLES.set(parentHandle, family.title)
+  for (const member of family.members || []) {
+    if (!LEGACY_TO_PARENT.has(member.legacy_slug)) {
+      LEGACY_TO_PARENT.set(member.legacy_slug, parentHandle)
+    }
+  }
+}
 
 export const CATALOG_PRODUCT_COUNT = CATALOG_HANDLES.size
 

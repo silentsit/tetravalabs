@@ -64,6 +64,14 @@ const compoundRedirectsPath = path.join(
   "lib",
   "compound-legacy-redirects.generated.json"
 )
+const compoundFamilyOverridesPath = path.join(
+  workspaceRoot,
+  "apps",
+  "storefront",
+  "src",
+  "lib",
+  "compound-family-overrides.json"
+)
 const storefrontEnrichmentPath = path.join(
   workspaceRoot,
   "apps",
@@ -365,6 +373,27 @@ const run = async () => {
     productCodes
   }
 
+  // Storefront-only families (pretty-URL parents that Medusa still sells as separate SKUs).
+  let familyOverrides = {}
+  try {
+    familyOverrides = JSON.parse(await fs.readFile(compoundFamilyOverridesPath, "utf8"))
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error
+  }
+  for (const [parentHandle, family] of Object.entries(familyOverrides)) {
+    compoundFamilies[parentHandle] = family
+    for (const member of family.members || []) {
+      compoundRedirects[member.legacy_slug] = {
+        parent: parentHandle,
+        strength: member.strength_key
+      }
+    }
+    categorySlugsByHandle[parentHandle] = resolveStorefrontCategorySlug(
+      family.title,
+      "Blends"
+    )
+  }
+
   await fs.writeFile(storefrontHandlesPath, `${JSON.stringify(sortedHandles, null, 2)}\n`, "utf8")
   await fs.writeFile(categorySlugsPath, `${JSON.stringify(categorySlugsByHandle, null, 2)}\n`, "utf8")
   await fs.writeFile(skuLookupPath, `${JSON.stringify(storefrontSkuPayload, null, 2)}\n`, "utf8")
@@ -389,6 +418,16 @@ const run = async () => {
       storage: product.metadata.storage || null,
       appearance: product.metadata.appearance || null,
       category: product.category || null
+    }
+  }
+  for (const [parentHandle, family] of Object.entries(familyOverrides)) {
+    const sampleHandle = family.members?.[0]?.legacy_slug
+    const sample = sampleHandle ? enrichmentByHandle[sampleHandle] : null
+    if (sample && !enrichmentByHandle[parentHandle]) {
+      enrichmentByHandle[parentHandle] = {
+        ...sample,
+        category: "Research Blends"
+      }
     }
   }
   await fs.writeFile(

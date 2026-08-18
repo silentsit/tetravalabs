@@ -374,5 +374,13 @@
   "hgh-191aa-36-iu": {
     "parent": "hgh-191aa",
     "strength": "36-iu"
+  },
+  "bpc-157-5mg-tb500-5mg-10mg": {
+    "parent": "bpc-157-tb500-blend",
+    "strength": "10mg"
+  },
+  "bpc-157-5mg-tb500-5mg-20mg": {
+    "parent": "bpc-157-tb500-blend",
+    "strength": "20mg"
   }
 }

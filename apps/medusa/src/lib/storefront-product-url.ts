@@ -20,6 +20,8 @@ const HANDLE_TO_PUBLIC: Record<string, string> = {
   "bpc-157-tb500-blend": "wolverine-bpc-157-tb-500-blend",
   "bpc-157-5mg-tb500-5mg-10mg": "wolverine-bpc-157-tb-500-blend",
   "bpc-157-5mg-tb500-5mg-20mg": "wolverine-bpc-157-tb-500-blend",
+  "bpc-157-5mg-tb-500-5mg-10mg": "wolverine-bpc-157-tb-500-blend",
+  "bpc-157-10mg-tb-500-10mg-20mg": "wolverine-bpc-157-tb-500-blend",
   "bpc-157-capsules-100-count-500mcg": "buy-bpc-157-capsules-online",
   bremelanotide: "buy-bremelanotide-online",
   cagrilintide: "buy-cagrilintide-online",

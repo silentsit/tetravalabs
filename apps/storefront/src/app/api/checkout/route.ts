@@ -8,6 +8,10 @@ import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
 import { isValidRestockCadence, LAB_RESTOCK_COPY, applyLabRestockPrice } from "@/lib/lab-restock"
 import { buildPeptidepayProductName } from "@/lib/product-sku"
 import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
+import {
+  bindCheckoutCustomerOnMedusa,
+  transferCartToAuthenticatedCustomer
+} from "@/lib/checkout-customer-bind"
 
 type CheckoutItem = {
   variantId: string
@@ -215,6 +219,24 @@ export async function POST(req: Request) {
       provider_id: medusaPaymentProviderId
     })
 
+    if (authToken) {
+      try {
+        const { customer } = await sdk.store.customer.retrieve()
+        const accountEmail = customer?.email?.trim().toLowerCase()
+        if (accountEmail && accountEmail === email.trim().toLowerCase()) {
+          await transferCartToAuthenticatedCustomer(cart.id, authToken)
+        }
+      } catch {
+        // Non-blocking; bind-customer still links when emails match.
+      }
+    }
+
+    await bindCheckoutCustomerOnMedusa({
+      email,
+      cartId: cart.id,
+      authToken
+    })
+
     const completion = await sdk.store.cart.complete(cart.id)
 
     if (completion.type === "cart") {
@@ -229,6 +251,12 @@ export async function POST(req: Request) {
     }
 
     const order = completion.order
+    const linkedCustomer = await bindCheckoutCustomerOnMedusa({
+      email,
+      orderId: order.id,
+      authToken
+    })
+    const linkedCustomerId = linkedCustomer.customer_id || undefined
     const medusaSubtotalCents =
       typeof order.subtotal === "number"
         ? order.subtotal
@@ -343,7 +371,7 @@ export async function POST(req: Request) {
       const registered = await registerLabRestocksFromCheckout({
         orderId: order.id,
         email,
-        customerId: body.customer_id,
+        customerId: linkedCustomerId || body.customer_id,
         shippingAddress: {
           first_name: firstName,
           last_name: lastName,

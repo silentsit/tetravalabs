@@ -25,6 +25,18 @@ export default defineMiddlewares({
       middlewares: [authenticate("customer", ["session", "bearer"])]
     },
     {
+      method: ["POST"],
+      matcher: "/store/checkout/bind-customer",
+      middlewares: [
+        authenticate("customer", ["session", "bearer"], { allowUnauthenticated: true })
+      ]
+    },
+    {
+      method: ["POST"],
+      matcher: "/store/checkout/sync-orders",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
+    {
       method: ["GET"],
       matcher: "/store/lab-restocks",
       middlewares: [authenticate("customer", ["session", "bearer"])]

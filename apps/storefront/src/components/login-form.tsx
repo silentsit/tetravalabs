@@ -7,6 +7,7 @@ import { Eye, EyeOff } from "lucide-react"
 import { FetchError } from "@medusajs/js-sdk"
 import { SocialAuthButtons } from "@/components/social-auth-buttons"
 import { notifyAuthSessionChanged } from "@/lib/medusa-auth"
+import { syncGuestOrdersToAccount } from "@/lib/checkout-customer-bind"
 import { sdk } from "@/lib/medusa-client"
 
 const REMEMBER_EMAIL_KEY = "tetrava_remember_email"
@@ -70,6 +71,7 @@ export function LoginForm({ returnUrl = "/account", layout = "default" }: Props)
       }
 
       notifyAuthSessionChanged()
+      await syncGuestOrdersToAccount(token)
       router.push(safeReturnUrl(redirectTo))
       router.refresh()
     } catch (error) {

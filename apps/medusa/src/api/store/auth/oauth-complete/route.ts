@@ -1,6 +1,7 @@
 import type { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { createCustomerAccountWorkflow } from "@medusajs/core-flows"
 import { MedusaError, Modules } from "@medusajs/framework/utils"
+import { linkGuestOrdersToRegisteredCustomer, findRegisteredCustomerById } from "../../../../lib/checkout-customer-link"
 
 type ProviderMetadata = {
   email?: string
@@ -25,6 +26,13 @@ function splitName(fullName?: string) {
 export const POST = async (req: AuthenticatedMedusaRequest, res: MedusaResponse) => {
   const actorId = req.auth_context?.actor_id
   if (actorId) {
+    const customer = await findRegisteredCustomerById(actorId)
+    if (customer?.email) {
+      await linkGuestOrdersToRegisteredCustomer({
+        customerId: actorId,
+        email: customer.email
+      })
+    }
     return res.status(200).json({ customer_id: actorId, created: false })
   }
 
@@ -62,6 +70,11 @@ export const POST = async (req: AuthenticatedMedusaRequest, res: MedusaResponse)
       },
       authIdentityId
     }
+  })
+
+  await linkGuestOrdersToRegisteredCustomer({
+    customerId: result.id,
+    email
   })
 
   return res.status(200).json({ customer_id: result.id, created: true })

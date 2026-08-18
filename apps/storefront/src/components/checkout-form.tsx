@@ -64,7 +64,6 @@ type PaymentMethod = "card" | "crypto"
 const ORDERS_KEY = "tetrava_orders_v1"
 const CHECKOUT_RETURN_PATH = "/checkout"
 const CHECKOUT_LOGIN_HREF = `/login?returnUrl=${encodeURIComponent(CHECKOUT_RETURN_PATH)}`
-const CHECKOUT_REGISTER_HREF = `/register?returnUrl=${encodeURIComponent(CHECKOUT_RETURN_PATH)}`
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const US_ZIP_PATTERN = /^\d{5}(-\d{4})?$/
 const PHONE_PATTERN = /^[\d\s()+\-.]{7,}$/
@@ -275,39 +274,6 @@ function OptionalExpandField({
 
 type CheckoutStep = "information" | "payment"
 
-function CheckoutAuthBanner({ loggedIn, email }: { loggedIn: boolean; email: string }) {
-  if (loggedIn) {
-    return (
-      <div className="rounded-xl border border-[#0D9488]/25 bg-[#F0FDFA] px-4 py-3 text-sm text-[#475569]">
-        Signed in as{" "}
-        <span className="font-medium text-[#0F172A]">{email || "your account"}</span>.{" "}
-        <Link href="/account" className="font-medium text-[#0D9488] hover:underline">
-          View account
-        </Link>
-      </div>
-    )
-  }
-
-  return (
-    <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-4 sm:px-5">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="space-y-1 text-sm text-[#475569]">
-          <p className="font-medium text-[#0F172A]">Have a Tetrava account?</p>
-          <p>Sign in for saved details and order history, or create an account before you pay.</p>
-        </div>
-        <div className="flex shrink-0 flex-wrap gap-2">
-          <Link href={CHECKOUT_LOGIN_HREF} className="btn-secondary min-h-11 px-4 py-2.5 text-sm">
-            Sign in
-          </Link>
-          <Link href={CHECKOUT_REGISTER_HREF} className="btn-primary min-h-11 px-4 py-2.5 text-sm">
-            Create account
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function CheckoutStepper({ step }: { step: CheckoutStep }) {
   const paymentActive = step === "payment"
 
@@ -506,6 +472,7 @@ type AddressFieldsProps = {
   attemptedSubmit?: boolean
   onFieldBlur?: (field: AddressFieldKey) => void
   onFieldChange?: (field: AddressFieldKey) => void
+  loggedIn?: boolean
 }
 
 function fieldVisibleError(
@@ -550,7 +517,8 @@ function AddressFields({
   touched,
   attemptedSubmit = false,
   onFieldBlur,
-  onFieldChange
+  onFieldChange,
+  loggedIn = false
 }: AddressFieldsProps) {
   const subdivisions = getCheckoutSubdivisions(country)
   const subdivisionLabel = getSubdivisionLabel(country)
@@ -587,24 +555,52 @@ function AddressFields({
     <div className="space-y-4">
       {showEmail && setEmail ? (
         <div>
-          <FieldLabel htmlFor={`${idPrefix}-email`} required>
-            Email
-          </FieldLabel>
-          <input
-            id={`${idPrefix}-email`}
-            required
-            type="email"
-            autoComplete="email"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value)
-              onFieldChange?.("email")
-            }}
-            onBlur={() => onFieldBlur?.("email")}
-            aria-invalid={Boolean(showError("email"))}
-            aria-describedby={showError("email") ? errorId("email") : undefined}
-            className={inputFieldClass(Boolean(showError("email")))}
-          />
+          {loggedIn ? (
+            <p className="mb-2 text-sm text-[#475569]">
+              Signed in as{" "}
+              <span className="font-medium text-[#0F172A]">{email || "your account"}</span>.{" "}
+              <Link href="/account" className="font-medium text-[#0D9488] hover:underline">
+                View account
+              </Link>
+            </p>
+          ) : (
+            <p id={`${idPrefix}-email-guest-note`} className="mb-2 text-sm text-[#64748B]">
+              Guest checkout is available.{" "}
+              <Link href={CHECKOUT_LOGIN_HREF} className="font-medium text-[#0D9488] hover:underline">
+                Log in
+              </Link>{" "}
+              if you already have an account.
+            </p>
+          )}
+          <div className="relative">
+            <label
+              htmlFor={`${idPrefix}-email`}
+              className="pointer-events-none absolute left-3.5 top-2.5 text-xs text-[#64748B]"
+            >
+              Email address
+            </label>
+            <input
+              id={`${idPrefix}-email`}
+              required
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value)
+                onFieldChange?.("email")
+              }}
+              onBlur={() => onFieldBlur?.("email")}
+              aria-invalid={Boolean(showError("email"))}
+              aria-describedby={
+                showError("email")
+                  ? errorId("email")
+                  : !loggedIn
+                    ? `${idPrefix}-email-guest-note`
+                    : undefined
+              }
+              className={`${inputFieldClass(Boolean(showError("email")))} pb-2.5 pt-7`}
+            />
+          </div>
           <FieldError id={errorId("email")} message={showError("email")} />
         </div>
       ) : null}
@@ -1424,7 +1420,6 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-6">
-      <CheckoutAuthBanner loggedIn={loggedIn} email={email} />
       <CheckoutStepper step={step} />
 
       <div className="lg:hidden">
@@ -1475,6 +1470,7 @@ export function CheckoutForm() {
                   setEmail={setEmail}
                   availableCountries={availableCountries}
                   showEmail
+                  loggedIn={loggedIn}
                   errors={billingErrors}
                   touched={billingTouched}
                   attemptedSubmit={attemptedSubmit}

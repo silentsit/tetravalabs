@@ -1,5 +1,6 @@
 import { sdk } from "@/lib/medusa-client"
 import { readAuthToken } from "@/lib/medusa-auth"
+import { syncGuestOrdersToAccount } from "@/lib/checkout-customer-bind"
 import {
   OAUTH_RETURN_URL_KEY,
   oauthCallbackUrl,
@@ -57,6 +58,8 @@ export async function completeSocialAuth(
     const payload = (await response.json().catch(() => null)) as { message?: string } | null
     throw new Error(payload?.message || "Unable to finish social sign-in.")
   }
+
+  await syncGuestOrdersToAccount(token)
 
   const { customer } = await sdk.store.customer.retrieve()
   return customer

@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { FetchError } from "@medusajs/js-sdk"
 import { SocialAuthButtons } from "@/components/social-auth-buttons"
 import { notifyAuthSessionChanged } from "@/lib/medusa-auth"
+import { syncGuestOrdersToAccount } from "@/lib/checkout-customer-bind"
 import { sdk } from "@/lib/medusa-client"
 
 function safeReturnUrl(url: string) {
@@ -44,8 +45,13 @@ export function RegisterForm({ layout = "default", returnUrl = "/account" }: Pro
     setLoading(true)
     setStatus("")
 
+    let authToken: string | null = null
+
     try {
-      await sdk.auth.register("customer", "emailpass", { email, password })
+      const registerResult = await sdk.auth.register("customer", "emailpass", { email, password })
+      if (typeof registerResult === "string") {
+        authToken = registerResult
+      }
     } catch (error) {
       const fetchError = error as FetchError
       const identityExists =
@@ -65,6 +71,7 @@ export function RegisterForm({ layout = "default", returnUrl = "/account" }: Pro
           setLoading(false)
           return
         }
+        authToken = loginToken
       } catch (loginError) {
         const loginFetchError = loginError as FetchError
         setStatus(loginFetchError.message || "An account with this email already exists.")
@@ -74,13 +81,30 @@ export function RegisterForm({ layout = "default", returnUrl = "/account" }: Pro
     }
 
     try {
-      await sdk.store.customer.create({
-        first_name: firstName || "Research",
-        last_name: lastName || "Customer",
-        email
-      })
+      try {
+        await sdk.store.customer.create({
+          first_name: firstName || "Research",
+          last_name: lastName || "Customer",
+          email
+        })
+      } catch {
+        const existing = await sdk.store.customer.retrieve().catch(() => null)
+        if (!existing?.customer) {
+          throw new Error("Account created but profile setup failed.")
+        }
+      }
+
+      if (!authToken) {
+        const loginToken = await sdk.auth.login("customer", "emailpass", { email, password })
+        if (typeof loginToken === "string") {
+          authToken = loginToken
+        }
+      }
 
       notifyAuthSessionChanged()
+      if (authToken) {
+        await syncGuestOrdersToAccount(authToken)
+      }
       router.push(safeReturnUrl(redirectTo))
       router.refresh()
     } catch (error) {

@@ -1,0 +1,576 @@
+[
+  {
+    "_type": "block",
+    "_key": "blk5",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk2",
+        "_type": "link",
+        "href": "https://www.usada.org/spirit-of-sport/bpc-157-peptide-prohibited/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp1",
+        "text": "BPC-157 is one of the most searched research peptides on the market, and also one where the gap between marketing claims and the published evidence is widest. It's a pentadecapeptide, a 15-amino-acid fragment derived from a larger protective protein found in human gastric juice, and nearly everything known about its biological activity comes from animal-model research, not human clinical trials. That's not a minor caveat. As of this writing, there's no published, completed human randomized controlled trial establishing BPC-157's safety or efficacy for any condition, a gap the ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp3",
+        "text": "U.S. Anti-Doping Agency has specifically flagged",
+        "marks": [
+          "lnk2"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp4",
+        "text": " when explaining why it treats the compound as higher-risk than substances with an established human safety record. Understanding that gap, and what the animal literature does and doesn't show, is the starting point for evaluating any BPC-157 sourcing decision.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk7",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp6",
+        "text": "What the rodent literature actually shows, and why it hasn't translated to human trials",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk12",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk9",
+        "_type": "link",
+        "href": "https://www.usada.org/spirit-of-sport/bpc-157-peptide-prohibited/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp8",
+        "text": "BPC-157's research base is built almost entirely on rodent models studying gastrointestinal protection, tendon and ligament healing, and gut-barrier integrity, with mechanistic work proposing effects on angiogenesis and growth-factor signaling pathways involved in tissue repair. That body of preclinical work is genuinely substantial in volume. What's notably absent is the next step. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp10",
+        "text": "USADA's own review",
+        "marks": [
+          "lnk9"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp11",
+        "text": " notes that human trials investigating BPC-157 for inflammatory bowel disease appear to have been discontinued without published conclusions, leaving a research trail that starts strong in animal models and simply stops before reaching the human-trial stage that would normally follow promising preclinical data. Promising rodent data with no completed human follow-through is unusual enough to treat as its own research question, separate from whatever the animal mechanism data suggests.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk14",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp13",
+        "text": "The proposed mechanism: modulated angiogenesis, not direct blood-vessel formation",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk19",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk16",
+        "_type": "link",
+        "href": "https://pubmed.ncbi.nlm.nih.gov/20388964/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp15",
+        "text": "One specific mechanistic finding is worth understanding because it gets misstated in marketing copy often. A ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp17",
+        "text": "2010 rodent study examining BPC-157's effect on muscle and tendon healing",
+        "marks": [
+          "lnk16"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp18",
+        "text": " found no direct angiogenic effect on cell cultures in vitro, meaning the peptide didn't independently trigger new blood vessel formation when tested on cells alone. What the same study did find, using VEGF, CD34, and Factor VIII antibody staining in live tissue, was that BPC-157 appeared to modulate the angiogenesis process already underway during the animal's natural healing response, upregulating specific growth-factor signaling rather than starting blood-vessel growth from nothing. Modulating an existing repair process is a more accurate description of the proposed mechanism than \"grows new blood vessels,\" which is how it sometimes gets simplified in retail product copy.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk21",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp20",
+        "text": "Where the name actually comes from",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img22",
+    "src": "/images/blog/bpc157-gastric-fragment-origin-illustration.webp",
+    "alt": "An illustrated clean scientific diagram showing a stylized cross-section of the stomach lining with a highlighted protective protein molecule, a dotted extraction line leading to a magnified 15-amino-acid peptide chain fragment labeled generically, on a soft clinical white and teal background.",
+    "caption": "A gut-protective protein fragment, studied for tissue repair far beyond its original digestive-health context."
+  },
+  {
+    "_type": "block",
+    "_key": "blk24",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp23",
+        "text": "\"BPC\" stands for Body Protection Compound. The \"157\" designation refers to the specific 15-amino-acid fragment isolated from a larger protective protein naturally present in human gastric juice, work that originated from Croatian research groups studying gut mucosal defense mechanisms in the 1990s and 2000s. That origin explains why so much of the early literature focuses on gastrointestinal protection, ulcer healing, and NSAID-induced gastric lesion models before the research scope expanded into tendon, ligament, and muscle healing questions. It's useful context: BPC-157 isn't a synthetic drug candidate designed from scratch for orthopedic applications. It's a fragment of a naturally occurring protective peptide that researchers later tested across a much broader range of tissue-repair models than its original digestive-health context.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk26",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp25",
+        "text": "BPC-157's regulatory status changed meaningfully in 2022 and 2023",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img27",
+    "src": "/images/blog/bpc157-regulatory-status-board.webp",
+    "alt": "An illustrated editorial infographic styled as a lab bulletin board with two pinned notice cards: one stamped \"WADA Prohibited List, S0 category\" and another stamped \"FDA: not eligible for 503B compounding,\" connected by a red string to a labeled research vial below.",
+    "caption": "Two separate regulatory bodies reached the same conclusion through different processes in back-to-back years."
+  },
+  {
+    "_type": "block",
+    "_key": "blk32",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk29",
+        "_type": "link",
+        "href": "https://www.wada-ama.org/en/news/wadas-2022-prohibited-list-now-force"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp28",
+        "text": "Two separate regulatory developments changed BPC-157's status within about a year of each other. In 2022, the ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp30",
+        "text": "World Anti-Doping Agency added BPC-157 by name",
+        "marks": [
+          "lnk29"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp31",
+        "text": " to its Prohibited List under the S0 Non-Approved Substances category, reserved for substances with no current approval for human therapeutic use by any government health authority. Then in 2023, an FDA review memorandum concluded that BPC-157 \"has not been proven safe or effective for any condition and is not eligible for inclusion on the 503B Bulks List for compounding,\" closing off a pathway some compounding pharmacies had been using to prepare it. Neither action is a lab-scale research ban, but both are useful, citable signals about how the compound's regulatory status has shifted. Marketing copy that ignores this shift is working from an outdated picture.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk34",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp33",
+        "text": "What the current BPC-157 research-supplier landscape looks like",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "tableBlock",
+    "_key": "tbl40",
+    "caption": "BPC-157 research-supplier comparison (verified August 2026)",
+    "hasHeaderRow": true,
+    "rows": [
+      {
+        "_key": "row35",
+        "cells": [
+          "Supplier",
+          "Documentation",
+          "5mg vial (list)",
+          "Shipping"
+        ]
+      },
+      {
+        "_key": "row36",
+        "cells": [
+          "Tetrava Labs",
+          "Batch-specific COA, HPLC purity, lot-linked",
+          "$39.00",
+          "Free over $250, tracked US shipping"
+        ]
+      },
+      {
+        "_key": "row37",
+        "cells": [
+          "Biotech Peptides",
+          "COA on request; purity stated on product page",
+          "$52.00–58.00",
+          "Standard domestic shipping"
+        ]
+      },
+      {
+        "_key": "row38",
+        "cells": [
+          "Core Peptides",
+          "Batch COA available; frequent promotional bundling with other peptides",
+          "$50.00–55.00",
+          "Standard domestic shipping"
+        ]
+      },
+      {
+        "_key": "row39",
+        "cells": [
+          "Polaris Peptides",
+          "COA available; smaller catalog, narrower strength options",
+          "$48.00–54.00",
+          "Standard domestic shipping"
+        ]
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk42",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp41",
+        "text": "BPC-157 is priced closely across the mainstream research-peptide suppliers reviewed for this guide, which makes documentation quality the more useful differentiator, not price. A batch-specific COA with a visible HPLC trace and lot number is the baseline every supplier in that table should produce on request. One that can't should get deprioritized regardless of price.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img43",
+    "src": "/images/blog/bpc157-tissue-repair-mechanism-scene.webp",
+    "alt": "A photorealistic macro laboratory scene showing a petri dish with cultured tissue cells under a fluorescence microscope, the microscope's digital display showing a magnified cellular image with visible branching capillary-like structures highlighted in green fluorescent stain, a researcher's gloved hand adjusting the focus knob.",
+    "caption": "The mechanism research behind BPC-157 happens at exactly this scale — cell cultures and animal tissue, not human trials."
+  },
+  {
+    "_type": "block",
+    "_key": "blk45",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp44",
+        "text": "Red flags specific to BPC-157 listings",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk47",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp46",
+        "text": "Marketing copy that presents BPC-157 as a proven human therapeutic rather than an experimental compound with a rodent-dominated evidence base. Given the absence of completed human trials, any listing making firm efficacy claims is overstating the literature.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk49",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp48",
+        "text": "No mention of the 2022 WADA or 2023 FDA developments anywhere in supplier education content, which suggests either the supplier hasn't kept its own compliance information current or isn't prioritizing accuracy over sales copy.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk51",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp50",
+        "text": "Extremely low pricing with no COA offered on request. BPC-157 synthesis isn't unusually expensive, so a price well under the market range paired with no documentation is a combination worth treating with skepticism.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk53",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp52",
+        "text": "Vials sold in unlabeled or generically labeled packaging with no lot number, which makes it impossible to trace a specific vial back to a specific batch of testing if a question comes up later.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk55",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp54",
+        "text": "Bundling BPC-157 with unrelated compounds at a steep discount as the primary sales pitch, a pattern more associated with clearing inventory than a supplier standing behind a specific product's documentation.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk57",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp56",
+        "text": "FAQ",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk60",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp58",
+        "text": "Has BPC-157 been tested in humans at all?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp59",
+        "text": " Not through any completed, published randomized controlled trial. The compound's evidence base is built on animal models, and USADA has specifically noted that earlier human IBD research appears to have been discontinued without published results.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk63",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp61",
+        "text": "Why does WADA's 2022 listing matter for someone who isn't an athlete?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp62",
+        "text": " It's a useful independent data point regardless of athletic status. WADA's S0 category exists specifically for substances without government approval for human therapeutic use, which is a factual statement about the compound's regulatory standing, not just a sports-eligibility rule.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk66",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp64",
+        "text": "Does the FDA's 2023 compounding decision mean BPC-157 is illegal to sell?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp65",
+        "text": " No. It means BPC-157 isn't eligible for a specific pathway, 503B bulk compounding, used by some compounding pharmacies. That's a narrower, more technical determination than a blanket prohibition, but it does remove one route some sellers had been relying on.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk69",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp67",
+        "text": "What should a legitimate research-use COA for BPC-157 actually show?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp68",
+        "text": " A lot number matching the vial, a stated purity percentage backed by a visible HPLC chromatogram, and ideally a date and named testing method. A round purity number with no chromatogram or lot reference isn't independently verifiable.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk72",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp70",
+        "text": "Does BPC-157 directly cause new blood vessel growth?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp71",
+        "text": " Not according to the in-vitro portion of the available mechanistic data. The 2010 Krivic et al. study found no direct angiogenic effect on isolated cell cultures. The tissue-level effect observed was modulation of the body's existing angiogenesis and growth-factor response during healing, a more precise and more limited claim than \"creates new blood vessels.\"",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk75",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp73",
+        "text": "Why do so many BPC-157 product pages avoid mentioning the lack of human trials?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp74",
+        "text": " It undercuts the sales pitch. A rodent-model evidence base is real and worth discussing, but framing it as equivalent to human-validated efficacy is a common shortcut in this specific market that a careful reader should watch for.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk78",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp76",
+        "text": "Does the animal research at least span multiple labs, or is it concentrated in one group?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp77",
+        "text": " It's broader than a single lab. Independent groups beyond the original Croatian researchers have published rodent findings on gut and tendon healing, which adds some weight to the mechanism data even without a human trial to confirm it translates.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk80",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp79",
+        "text": "BPC-157 sits in an unusual spot: heavily searched, widely sold, and backed by a real but narrow body of animal-model research that hasn't produced a completed human trial. That gap, plus two recent regulatory developments most marketing copy still ignores, is the most useful context for evaluating any sourcing decision. Whatever a listing claims about efficacy, the more actionable question is whether the vial in front of you actually contains what the label says, and that's a documentation question, not a marketing one.",
+        "marks": []
+      }
+    ]
+  }
+]

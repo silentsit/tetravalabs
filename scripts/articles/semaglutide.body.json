@@ -1,0 +1,587 @@
+[
+  {
+    "_type": "block",
+    "_key": "blk2",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp1",
+        "text": "Semaglutide is the most heavily counterfeited peptide on the research market, for a simple reason: it's also one of the best-selling prescription drugs in the world, sold as Ozempic and Wegovy, and that name recognition drags enormous search volume toward unrelated bulk research listings. Search \"where to buy semaglutide\" and you land on pharmacy telehealth funnels, gray-market compounding operations, and dozens of peptide-supplier storefronts selling unformulated lyophilized powder for laboratory work, often on the same results page, with no clear indication which is which. This guide covers the third category. How research-grade semaglutide is actually supplied, what a real certificate of analysis looks like, and how today's suppliers compare on documentation, price, and shipping.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk4",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp3",
+        "text": "What semaglutide is, and how it differs mechanistically from tirzepatide",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk9",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk6",
+        "_type": "link",
+        "href": "https://pubmed.ncbi.nlm.nih.gov/36216945/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp5",
+        "text": "Semaglutide is a synthetic analog of human glucagon-like peptide-1 with roughly 94% sequence homology to the native hormone, modified with a C-18 fatty di-acid side chain that binds albumin and extends its half-life to about a week. That's why the approved drug gets dosed once weekly. The single-receptor design is mechanistically simpler than tirzepatide's dual GIP/GLP-1 agonism, which is exactly why researchers studying receptor selectivity often run the two side by side: semaglutide isolates GLP-1 receptor activity, tirzepatide adds a second variable. In ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp7",
+        "text": "STEP 5",
+        "marks": [
+          "lnk6"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp8",
+        "text": ", a two-year randomized trial, semaglutide produced sustained reductions in body weight in adults with obesity, part of a broader STEP trial program that established the approved drug's efficacy profile. None of that trial infrastructure, controlled manufacturing, verified dosing, clinical monitoring, carries over to a vial bought from a research-peptide supplier. That vial is a separately synthesized, unformulated compound governed entirely by whatever documentation the seller chooses to publish.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk11",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp10",
+        "text": "What the STEP program actually established, and what it didn't",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk13",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp12",
+        "text": "The STEP trials were a coordinated series of randomized controlled trials, not one study, and that distinction matters for how researchers cite semaglutide's evidence base. STEP 5 alone ran two full years, longer than most peptide efficacy trials, and its length is part of why regulators treated the weight-loss indication as durable rather than a short-term effect. Later dose-ranging and combination work has kept probing where semaglutide's effect plateaus and how it compares against dual and triple agonists in development. What none of that literature does is validate any specific bulk-peptide vial sold outside the approved supply chain. Trial-grade material was manufactured under GMP controls with batch release testing that has no equivalent at the point a research lab receives a vial from an online supplier. The mechanism described in the literature is real. The assumption that it transfers cleanly to an unverified vial is not.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk15",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp14",
+        "text": "Why semaglutide's supply landscape looks different from tirzepatide's",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk20",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk17",
+        "_type": "link",
+        "href": "https://www.fda.gov/media/94155/download"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp16",
+        "text": "Semaglutide came off patent-protected exclusivity pressure earlier and spent longer on the FDA's drug shortage list, which meant more compounding pharmacies built semaglutide-specific workflows before the shortage resolved and ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp18",
+        "text": "503A/503B compounding restrictions",
+        "marks": [
+          "lnk17"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp19",
+        "text": " on copies of approved drugs tightened back up. On the research-chemical side, semaglutide is also listed under its own name far more consistently across generalist peptide suppliers than tirzepatide is. In a review of the current market for this guide, most vendors carrying GLP-1 research compounds listed semaglutide directly, while several used internal codes for tirzepatide instead. That naming difference doesn't reflect purity or safety. It probably reflects how each seller manages trademark and compliance risk around Novo Nordisk's and Lilly's respective brand names.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img21",
+    "src": "/images/blog/semaglutide-molecular-identity-scan.webp",
+    "alt": "An illustrated cutaway diagram style scene of a mass spectrometer readout on a lab monitor showing a single sharp molecular identity peak, with a gloved hand annotating it with a stylus, set against a soft blue laboratory backdrop.",
+    "caption": "Identity confirmation by mass spectrometry is what separates \"labeled semaglutide\" from \"confirmed semaglutide.\""
+  },
+  {
+    "_type": "block",
+    "_key": "blk23",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp22",
+        "text": "What a real semaglutide certificate of analysis should show",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk25",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp24",
+        "text": "A batch-specific COA for semaglutide should report molecular identity by LC-MS, purity by HPLC-UV with the actual chromatogram rather than just a summary number, a lot number matching the vial label, net peptide content, and ideally an endotoxin result if the material is marketed at a grade suitable for sterile-technique research. Semaglutide's fatty acid side chain makes it more prone to aggregation during improper lyophilization than a simpler peptide. That's a specific, checkable reason cold storage and defined shelf windows matter more here than for some other research peptides. A supplier who states a shelf-stability window and a reconstituted-use window has validated the compound's behavior, not just its identity at the moment of synthesis.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk27",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp26",
+        "text": "What the STEP program didn't test: bulk vials from unrelated manufacturers",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk29",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp28",
+        "text": "It's worth being direct about a gap most retail copy glosses over. Every regulatory finding cited above came from material manufactured, stored, and dosed inside a controlled trial infrastructure that no research-peptide vial passes through. A supplier repeating \"clinically proven\" language while selling an unformulated bulk powder is borrowing credibility from a trial it had no part in. The credibility that vial can actually claim comes from its own COA, generated on its own batch, by its own named lab, and nowhere else.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk31",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp30",
+        "text": "Where researchers are sourcing semaglutide in 2026",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk33",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp32",
+        "text": "Unlike tirzepatide, semaglutide is carried under its own name by most established research-peptide suppliers, which makes direct price comparison more straightforward. Figures below are single-vial list prices observed at the time of writing.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "tableBlock",
+    "_key": "tbl40",
+    "caption": "Semaglutide research-supplier comparison (verified August 2026)",
+    "hasHeaderRow": true,
+    "rows": [
+      {
+        "_key": "row34",
+        "cells": [
+          "Supplier",
+          "Documentation",
+          "10mg vial (list)",
+          "Shipping"
+        ]
+      },
+      {
+        "_key": "row35",
+        "cells": [
+          "Biotech Peptides",
+          "Batch-dated COA published per listing; USA synthesized and lyophilized",
+          "~$100–$140 (5/10mg tier)",
+          "Free over $200; same-day dispatch before noon PST"
+        ]
+      },
+      {
+        "_key": "row36",
+        "cells": [
+          "Grey Research",
+          "Third-party tested, COA on request",
+          "~$250",
+          "Standard US shipping"
+        ]
+      },
+      {
+        "_key": "row37",
+        "cells": [
+          "Tetrava Labs",
+          "Batch-specific COA published per lot; HPLC-MS identity and purity",
+          "$129",
+          "Tracked US shipping"
+        ]
+      },
+      {
+        "_key": "row38",
+        "cells": [
+          "Palmetto Peptides",
+          "Third-party HPLC verified; product page cites 94% native GLP-1 homology and albumin-binding half-life",
+          "Varies by listing",
+          "US shipping, timeframe listed at checkout"
+        ]
+      },
+      {
+        "_key": "row39",
+        "cells": [
+          "Medica Depot",
+          "Lab-tested claim; COA availability varies by listing",
+          "Varies by listing",
+          "US shipping, timeframe listed at checkout"
+        ]
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk42",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp41",
+        "text": "Price alone tells you little here. A $100 vial with a real batch COA is a better purchase than a $60 vial with none, and a $250 vial isn't automatically better documented than a $100 one. Check the actual report before comparing the number on the label.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img43",
+    "src": "/images/blog/semaglutide-conveyor-inspection.webp",
+    "alt": "An illustrated scene of small labeled research vials moving along a conveyor belt through an inspection checkpoint, where a scanning arm reads a QR code on one vial and projects a green checkmark, while an unlabeled vial further back triggers an amber warning light.",
+    "caption": "Documentation is what turns a vial on a shelf into a vial you can trust in a protocol."
+  },
+  {
+    "_type": "block",
+    "_key": "blk45",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp44",
+        "text": "Red flags specific to semaglutide listings",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk47",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp46",
+        "text": "A listing that emphasizes weight-loss percentages or before-and-after framing over receptor pharmacology. That framing targets personal use, not the laboratory audience the research-use disclaimer claims to serve.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk49",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp48",
+        "text": "No mention of storage or aggregation guidance. Semaglutide's fatty-acid side chain makes improper storage a real degradation risk, and a supplier that skips it may not have validated the batch's stability at all.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk51",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp50",
+        "text": "A COA with no chromatogram, just a stated percentage. A real HPLC-UV report includes the trace, not only a conclusion.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk53",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp52",
+        "text": "Pricing dramatically below the observed market band with no explanation offered, whether that's bulk synthesis capacity or a direct-from-manufacturer relationship.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk55",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp54",
+        "text": "No documented country of manufacture or synthesis facility named anywhere on the page.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img56",
+    "src": "/images/blog/semaglutide-storage-stability-vault.webp",
+    "alt": "A photorealistic macro shot of a small glass semaglutide vial being placed into a chilled laboratory storage rack at -20°C, frost visible on the rack's edges, a digital temperature logger displaying a stable readout in the foreground.",
+    "caption": "Storage discipline is the part of the quality story that a certificate of analysis, generated at the moment of synthesis, can never capture."
+  },
+  {
+    "_type": "block",
+    "_key": "blk58",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp57",
+        "text": "FAQ",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk61",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp59",
+        "text": "Is research-grade semaglutide the same thing as Ozempic or Wegovy?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp60",
+        "text": " No. The approved drugs are manufactured, formulated, and dosed under strict pharmaceutical controls with FDA oversight. Research-grade semaglutide is an unformulated bulk peptide sold for laboratory study, with quality controlled entirely by the seller's own testing and documentation.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk64",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp62",
+        "text": "Why do prices vary so widely between suppliers?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp63",
+        "text": " Differences reflect synthesis scale, testing rigor, and whether the seller owns its own manufacturing or resells from a third party. Price alone isn't a reliable purity signal in either direction.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk67",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp65",
+        "text": "What should I check before trusting a COA?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp66",
+        "text": " Confirm the lot number on the certificate matches the vial label. Check that the testing lab is named and independent of the seller, and look for both an identity result and a purity result rather than a single unreferenced percentage.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk70",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp68",
+        "text": "Does semaglutide require different storage than other research peptides?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp69",
+        "text": " It's more sensitive to aggregation from freeze-thaw cycling and improper lyophilization than simpler short-chain peptides, which is why shelf-stability and reconstitution guidance from the supplier is a real quality signal, not boilerplate.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk73",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp71",
+        "text": "Is a supplier's in-house testing good enough, or does it need to be third-party?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp72",
+        "text": " In-house testing tells you the seller checked its own work. It doesn't independently verify anything. A named, independent third-party laboratory report is a stronger signal, and its absence is one of the more reliable ways to separate a documented supplier from an undocumented one.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk76",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp74",
+        "text": "Why do some listings show a purity number above 99% with no chromatogram?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp75",
+        "text": " A standalone percentage with no accompanying HPLC trace or lot reference is a claim, not a result. Ask for the underlying report before treating that number as verified.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk79",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp77",
+        "text": "Do compounding pharmacies still sell semaglutide legally?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp78",
+        "text": " Only under narrower conditions than during the shortage years. Once the FDA resolved the shortage, blanket compounding of essentially-copies stopped being permitted, and pharmacies now need a documented clinical basis specific to the patient, not a general listing.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk81",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp80",
+        "text": "Semaglutide's brand recognition is exactly what makes sourcing research-grade material confusing. The search demand belongs to a drug most buyers will never actually be shown, and what's actually sold under that search term is an unformulated compound whose only real quality claim is its documentation. Compare suppliers on the COA, the lot match, and the storage guidance, not the price on the landing page.",
+        "marks": []
+      }
+    ]
+  }
+]

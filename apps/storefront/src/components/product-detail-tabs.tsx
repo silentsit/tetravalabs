@@ -104,7 +104,7 @@ function renderWithCitations(text: string) {
   })
 }
 
-const tabs = ["Description", "Reviews"] as const
+const tabs = ["Description", "Specifications", "Reviews"] as const
 type TabId = (typeof tabs)[number]
 
 function tabLabel(tab: TabId, reviewCount: number) {
@@ -130,6 +130,9 @@ export function ProductDetailTabs({
     const hash = window.location.hash.replace(/^#/, "").toLowerCase()
     if (hash === "write-review" || hash === "reviews-form") {
       setActiveTab("Reviews")
+    }
+    if (hash === "specifications" || hash === "specs") {
+      setActiveTab("Specifications")
     }
   }, [])
 
@@ -204,11 +207,6 @@ export function ProductDetailTabs({
                   ))}
                 </div>
               </article>
-
-              <div className="max-w-3xl">
-                <h3 className="mb-4 font-serif text-xl text-[#0F172A]">Specifications</h3>
-                <AnalyticalTable rows={identityRows} />
-              </div>
 
               {researchBlocks.length > 0 ? (
                 <article className="prose prose-base prose-slate max-w-3xl prose-p:text-[16px] prose-li:text-[16px] prose-a:text-[#0D9488] prose-a:no-underline hover:prose-a:underline">
@@ -311,6 +309,13 @@ export function ProductDetailTabs({
                   </div>
                 </section>
               ) : null}
+            </div>
+          ) : null}
+
+          {activeTab === "Specifications" ? (
+            <div id="specifications" className="max-w-3xl">
+              <h2 className="mb-4 font-serif text-2xl text-[#0F172A]">Specifications</h2>
+              <AnalyticalTable rows={identityRows} />
             </div>
           ) : null}
 

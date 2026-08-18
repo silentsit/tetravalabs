@@ -492,7 +492,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Sequence identity",
         paragraphs: [
-          "Sermorelin is the first 29 residues of native human GHRH, with a C-terminal amide swapped in for the free acid. That amide change raises stability in vitro and leaves the receptor-binding region untouched.[1] Guide to Pharmacology lists the sequence as Tyr-Ala-Asp-Ala-Ile-Phe-Thr-Asn-Ser-Tyr-Arg-Lys-Val-Leu-Gly-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Met-Ser-Arg-Gln, matching the identity fields in the table above.",
+          "Sermorelin is the first 29 residues of native human GHRH, with a C-terminal amide swapped in for the free acid. That amide change raises stability in vitro and leaves the receptor-binding region untouched.[1] Guide to Pharmacology lists the sequence as Tyr-Ala-Asp-Ala-Ile-Phe-Thr-Asn-Ser-Tyr-Arg-Lys-Val-Leu-Gly-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Met-Ser-Arg-Gln, matching the identity fields in the Specifications tab.",
           "This listing is the free peptide, not the acetate salt used in the old Geref formulation, so molecular weight and formula will not match an acetate-salt COA. It is not full-length GHRH(1-44) either, and it is not somatropin, human growth hormone itself.",
         ],
       },
@@ -562,7 +562,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading: "5 mg and 10 mg lot documentation",
         paragraphs: [
           "Tetrava Labs lists sermorelin in 5 mg and 10 mg vials, plus volume-tiered packs for labs running multi-vial protocols. The best place to buy sermorelin for a given protocol comes down to which strength and pack size fit your dosing math, not price alone. The current documented lot runs 99% purity by HPLC; cross-check the COA on your order against the [COA library](/coa-library), since lot numbers rotate as new batches get qualified and older stock sells through.",
-          "Identity fields, CAS number, molecular formula, molecular weight, and sequence, for both strengths sit in the specifications table above. They come from the same lot records used to generate each batch COA, not from generic reference tables. Choose 5 mg versus 10 mg, and single-vial versus multi-vial, against that paperwork.",
+          "Identity fields, CAS number, molecular formula, molecular weight, and sequence, for both strengths sit in the Specifications tab. They come from the same lot records used to generate each batch COA, not from generic reference tables. Choose 5 mg versus 10 mg, and single-vial versus multi-vial, against that paperwork.",
         ],
       },
       {
@@ -623,7 +623,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
   mazdutide: {
     shortDescription: [
       "Mazdutide is a synthetic peptide that activates both the GLP-1 receptor and the glucagon receptor at once. It's modeled on oxyntomodulin, a gut hormone that does the same thing naturally, and it carries the development codes IBI362 and LY3305677 from its Eli Lilly and Innovent Biologics research programs.[1]",
-      "Tetrava Labs sells mazdutide as a sterile, lyophilized reagent for laboratory research only, not the approved drug product sold elsewhere. Labs use it to study dual-agonist receptor signaling, hepatic fat metabolism, and comparative work against other incretin peptides such as [semaglutide](/buy-semaglutide-online), [tirzepatide](/buy-tirzepatide-online), and [retatrutide](/buy-retatrutide-online). The identity fields in the table above are cross-referenced against the PubChem compound record for mazdutide.[7] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
+      "Tetrava Labs sells mazdutide as a sterile, lyophilized reagent for laboratory research only, not the approved drug product sold elsewhere. Labs use it to study dual-agonist receptor signaling, hepatic fat metabolism, and comparative work against other incretin peptides such as [semaglutide](/buy-semaglutide-online), [tirzepatide](/buy-tirzepatide-online), and [retatrutide](/buy-retatrutide-online). The identity fields in the Specifications tab are cross-referenced against the PubChem compound record for mazdutide.[7] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
     ],
     otherKnownTitles: [
       "IBI362",
@@ -756,7 +756,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
   "mots-c": {
     shortDescription: [
       "MOTS-c is a 16-amino-acid peptide encoded inside the mitochondrial genome itself, not the cell's nuclear DNA. It comes from a short reading frame nested in the MT-RNR1 gene, the same gene that makes the mitochondrial 12S ribosomal RNA. The name is short for Mitochondrial Open Reading Frame of the 12S rRNA-c.[1]",
-      "Tetrava Labs supplies MOTS-c as a sterile, lyophilized reagent for laboratory research only. Labs use it to study AMPK-linked metabolic signaling, skeletal-muscle exercise adaptation, and insulin-sensitivity pathways in cell and animal models. The identity fields in the table above are cross-referenced against the PubChem compound record for MOTS-c.[6] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
+      "Tetrava Labs supplies MOTS-c as a sterile, lyophilized reagent for laboratory research only. Labs use it to study AMPK-linked metabolic signaling, skeletal-muscle exercise adaptation, and insulin-sensitivity pathways in cell and animal models. The identity fields in the Specifications tab are cross-referenced against the PubChem compound record for MOTS-c.[6] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
     ],
     otherKnownTitles: [
       "Mitochondrial Open Reading Frame of the 12S rRNA-c",
@@ -869,7 +869,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
   retatrutide: {
     shortDescription: [
       "Retatrutide is a synthetic peptide that activates three different metabolic receptors at once: GLP-1, GIP, and glucagon. Eli Lilly's development code for it is LY3437943. Most of the field calls it a \"triple agonist,\" and it's the furthest along in that class of anything currently in a Phase 3 trial.[1]",
-      "Tetrava Labs sells retatrutide as a sterile, lyophilized reagent for laboratory research only. It is not the investigational drug being tested in Lilly's TRIUMPH trials, and it is not available anywhere as an approved medication. Labs use this listing to study triple-receptor signaling, comparative incretin pharmacology, and hepatic lipid metabolism in cell and animal models. The identity fields in the table above are cross-referenced against the PubChem compound record for retatrutide.[7] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
+      "Tetrava Labs sells retatrutide as a sterile, lyophilized reagent for laboratory research only. It is not the investigational drug being tested in Lilly's TRIUMPH trials, and it is not available anywhere as an approved medication. Labs use this listing to study triple-receptor signaling, comparative incretin pharmacology, and hepatic lipid metabolism in cell and animal models. The identity fields in the Specifications tab are cross-referenced against the PubChem compound record for retatrutide.[7] Every lot ships with third-party HPLC-verified identity and purity data. This compound is sold strictly for research use. It is not for human or veterinary consumption.",
     ],
     otherKnownTitles: ["LY3437943", "LY-3437943", "retatrutide [INN]"],
     sections: [

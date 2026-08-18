@@ -732,33 +732,104 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   ],
   selank: [
     {
-      question: "What is Selank studied for in research?",
+      question: "What is Selank?",
       answer:
-        "Selank is a synthetic tuftsin-analogue peptide examined in neuropeptide and stress-pathway research models. Supplied by Tetrava Labs as Research Use Only.",
+        "Selank is a synthetic heptapeptide, seven amino acids: Thr-Lys-Pro-Arg-Pro-Gly-Pro. It's built from tuftsin, a natural immune-signaling peptide, with a Pro-Gly-Pro tail added for metabolic stability. It was developed at Russia's Institute of Molecular Genetics and is catalogued in PubChem under CID 11765600.",
     },
     {
-      question: "How is Selank purity documented?",
+      question: "What is Selank peptide, and what is it used for?",
       answer:
-        "Third-party HPLC-MS supports lot purity and identity. Cross-check the COA batch with the vial label.",
+        "Selank is studied as a candidate anxiolytic and nootropic peptide, with published research covering enkephalin metabolism, GABAergic gene expression, hippocampal BDNF, and immune-cytokine signaling under stress models. Tetrava Labs supplies it as a Research Use Only laboratory reagent, not a consumer wellness product.",
     },
     {
-      question: "How should Selank be reconstituted?",
+      question: "How does Selank work?",
       answer:
-        "Reconstitute lyophilized material under sterile technique per your SOP. Document diluent and concentration in the ELN. Not clinical dosing advice.",
+        "The best-supported mechanism is enkephalinase inhibition: Selank blocks the enzymes that break down enkephalin, an endogenous opioid peptide, which extends its signaling time in the blood. A 2016 rodent study also linked Selank to changes in GABAergic gene expression, the same inhibitory-signaling system benzodiazepines target. Both mechanisms come from separate studies, not one unified pathway.",
     },
     {
-      question: "Storage conditions for Selank?",
+      question: "What does Selank do, and what does Selank peptide do?",
       answer:
-        "Lyophilized: -20°C. Reconstituted: typically 4°C with minimal freeze–thaw cycles.",
+        "In the published research, Selank has been studied for anxiolytic effects comparable to a benzodiazepine in a Russian clinical trial, for its effect on enkephalin half-life, for changes in hippocampal BDNF expression after intranasal dosing in rats, and for shifts in cytokine levels under a rodent stress model. See the Description tab above for the original citations behind each finding.",
     },
     {
-      question: "How is Selank shipped?",
+      question: "What are Selank's studied benefits?",
       answer:
-        "Temperature-controlled packaging where required; discreet parcels; email tracking.",
+        "The strongest evidence is a 2008 Russian trial where Selank produced anxiolytic effects comparable to the benzodiazepine medazepam in patients with generalized anxiety disorder, without the antiasthenic gap medazepam left. Separate rodent studies report effects on BDNF expression and GABAergic gene activity. None of that is FDA-reviewed evidence, and none of it describes an outcome from Tetrava's reagent used outside a laboratory.",
     },
     {
-      question: "Is Selank for human use?",
-      answer: "No. Research Use Only for qualified laboratories.",
+      question: "How does Selank compare to Semax, and what does semax and selank do together?",
+      answer:
+        "Selank and Semax came out of the same Moscow research program and share a stabilizing Pro-Gly-Pro tail, but they're built from different parent molecules. Selank derives from tuftsin and is studied mainly for anxiolytic and immune effects. Semax derives from a fragment of ACTH and is studied mainly for neuroprotective and cerebral-ischemia effects. No published trial tests them administered together, so there's no dosing or interaction data for that combination. Tetrava Labs sells Semax and Selank as separate Research Use Only listings.",
+    },
+    {
+      question: "Selank vs. Semax: which one should a lab use?",
+      answer:
+        "That depends on the research question, not on which peptide is \"better.\" Selank's literature centers on enkephalin metabolism, GABAergic signaling, and anxiety models. Semax's literature centers on neurotrophic signaling and ischemic-stroke models. They're not interchangeable substitutes for the same assay.",
+    },
+    {
+      question: "How long does it take for Selank to work, and how long does Selank last?",
+      answer:
+        "The Russian clinical trial ran a 14-day dosing course before assessing outcomes, which is a protocol length, not a measured onset or half-life. No pharmacokinetic study in the literature reviewed for this page publishes a clearance half-life for intact Selank. That gap is part of why some vendors market a separately modified molecule, N-Acetyl Selank Amidate, on stability claims this page can't verify against a peer-reviewed source.",
+    },
+    {
+      question: "How much Selank should I take? Is there a dosing chart?",
+      answer:
+        "This page doesn't answer that. Tetrava Labs' Selank listing is a lyophilized laboratory reagent for qualified researchers, not a product with human administration instructions, and no dosing chart or calculator here would be sourced from anything more than the single Russian trial's protocol dose.",
+    },
+    {
+      question: "Is Selank safe?",
+      answer:
+        "The 2008 comparative trial reported anxiolytic effects similar to a benzodiazepine without the antiasthenic and psychostimulant gap medazepam left, and no withdrawal symptoms were described after discontinuation. That's one 62-patient, single-country study without a published placebo arm, not a safety database. It hasn't been reviewed by the FDA.",
+    },
+    {
+      question: "Does Selank cause withdrawal symptoms?",
+      answer:
+        "The published trial data doesn't describe withdrawal symptoms after Selank discontinuation, unlike the benzodiazepine comparator class it was tested against. That's based on one clinical study, not a body of long-term discontinuation research, so treat it as a preliminary finding rather than a guarantee.",
+    },
+    {
+      question: "What are Selank's side effects?",
+      answer:
+        "The available trial data reports comparable tolerability to a low-dose benzodiazepine, without the same antiasthenic or sedation profile. Independent Western safety trials haven't been published, and the FDA has not evaluated Selank for safety or efficacy in any indication.",
+    },
+    {
+      question: "Where can I buy Selank online?",
+      answer:
+        "You can buy Selank directly from Tetrava Labs on this page, in 5 mg or 10 mg lyophilized vials. Every vial ships with lot-linked COA documentation confirming identity and HPLC purity for the exact batch received. This is a laboratory reagent for qualified researchers, not a consumer product.",
+    },
+    {
+      question: "Where can I buy Selank nasal spray, and does Tetrava sell one?",
+      answer:
+        "Tetrava Labs doesn't sell a nasal spray. Russia's registered pharmaceutical product, Selank 0.15% intranasal solution, is a specific finished formulation made by a specific Russian manufacturer under that country's drug approval, not a bulk peptide. This catalog lists lyophilized Selank for laboratory reconstitution, and there are no instructions here for compounding a nasal spray from it.",
+    },
+    {
+      question: "Where can I buy Selank amidate or N-Acetyl Selank Amidate, including 30mg?",
+      answer:
+        "Tetrava Labs doesn't carry N-Acetyl Selank Amidate. That's a separately modified molecule, with an added N-terminal acetyl group and a C-terminal amide in place of Selank's native free acid, sold by other vendors under stability claims this page can't verify against a peer-reviewed study. Tetrava's catalog lists unmodified Selank in 5 mg and 10 mg vials.",
+    },
+    {
+      question: "Is Selank FDA-approved, and has it gone through FDA review like Semax?",
+      answer:
+        "No. Selank has no FDA approval and no U.S. drug registration. Russia's Ministry of Health registered it in 2009 for generalized anxiety disorder and neurasthenia. In July 2026, the FDA's Pharmacy Compounding Advisory Committee reviewed seven peptides for the Section 503A Bulks compounding list, and Semax was one of them. Selank was not nominated or reviewed at that meeting, so it currently sits further from any U.S. compounding pathway than its lab-mate.",
+    },
+    {
+      question: "What strengths does Tetrava Labs carry for Selank?",
+      answer:
+        "Selank is listed in 5 mg and 10 mg lyophilized vials. Choose the strength that matches your assay's working-concentration needs, and check the lot COA against the identity data listed above before starting comparative work.",
+    },
+    {
+      question: "Where's the best place to buy Selank peptide online?",
+      answer:
+        "Buy directly from a supplier that publishes a lot-linked Certificate of Analysis you can match to the vial in hand, rather than relying on forum recommendations or unverified third-party marketplaces. Tetrava Labs ships Selank with third-party HPLC-verified identity and purity data for every batch.",
+    },
+    {
+      question: "What does Selank Reddit discussion usually look like, and is it reliable?",
+      answer:
+        "Selank threads on peptide and nootropic forums are mostly first-person mood or focus reports, not measured data. Check whether a poster references an actual third-party COA, whether the vendor they name still lists that lot, and whether the timeline they describe is a subjective impression rather than anything tracked. A thread can point you toward a question worth checking. It isn't clinical evidence.",
+    },
+    {
+      question: "Does Tetrava Labs ship Selank internationally, including to Australia?",
+      answer:
+        "Shipping depends on destination-specific compliance rules, which can change and which this page won't summarize country by country. Check the current [shipping restrictions](/shipping-restricted) before ordering. Tetrava Labs doesn't make regulatory claims about how any individual country classifies Selank; that determination sits with the buyer's local research institution and regulator.",
     },
   ],
   semax: [

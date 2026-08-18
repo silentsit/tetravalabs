@@ -1010,6 +1010,158 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-17",
   },
+  selank: {
+    shortDescription: [
+      "Selank is a synthetic heptapeptide, seven amino acids, built from the natural immunomodulatory peptide tuftsin (Thr-Lys-Pro-Arg) with a Pro-Gly-Pro tail added to the end. That tail is the same stability trick used on Semax, designed at the same Moscow laboratory. The full sequence is Thr-Lys-Pro-Arg-Pro-Gly-Pro, a free carboxylic acid at the C-terminus, molecular formula C33H57N11O9, and it's catalogued in PubChem under CID 11765600.[1]",
+      "Tetrava Labs supplies Selank as a sterile, lyophilized reagent, 5 mg or 10 mg vials, for laboratory research into GABAergic signaling, enkephalin metabolism, and stress-response models. It's a different molecule from N-Acetyl Selank Amidate, a separately modified analog some vendors sell, and Tetrava doesn't carry that variant. Every lot ships with third-party HPLC-verified identity and purity data. Buy Selank online here for research use only; it is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "TP-7",
+      "Selank Acetate",
+      "Tuftsin-PGP",
+      "Thr-Lys-Pro-Arg-Pro-Gly-Pro",
+    ],
+    sections: [
+      {
+        heading:
+          "What Selank is: a tuftsin-derived heptapeptide, not the modified amidate analog",
+        paragraphs: [
+          "Tuftsin is a naturally occurring immunomodulatory tetrapeptide, a four-residue fragment cleaved from the heavy chain of immunoglobulin G. Selank extends that Thr-Lys-Pro-Arg core with a Pro-Gly-Pro tail, the same C-terminal stabilization strategy researchers at Russia's Institute of Molecular Genetics used when they designed Semax from a different parent molecule.[2] The resulting heptapeptide keeps a free carboxylic acid at the C-terminus.",
+          "Search results and some catalog listings surface a second compound, N-Acetyl Selank Amidate, alongside Selank itself, often sold in a 30 mg vial rather than Selank's usual 5 mg or 10 mg. That's a distinct, chemically modified molecule: an acetyl group added to the N-terminus and an amide in place of the C-terminal acid. Vendors market it as more stable. There's no peer-reviewed human or animal study in the literature reviewed for this page that tests the amidated analog directly. Tetrava Labs' catalog lists unmodified Selank only, in 5 mg and 10 mg lyophilized vials, and doesn't carry the 30 mg amidate SKU.",
+        ],
+      },
+      {
+        heading: "How Selank is thought to work: enkephalinase inhibition",
+        paragraphs: [
+          "The most-cited mechanistic study measured how fast the body clears leu-enkephalin, an endogenous opioid peptide, from blood plasma. Patients with generalized anxiety disorder had a shorter enkephalin half-life and lower enkephalinase-inhibiting activity in their blood than healthy controls. Selank, added in vitro, dose-dependently blocked the enzymes that degrade enkephalin, with an IC50 of about 15 micromolar, and outperformed the reference peptidase inhibitors bacitracin and puromycin at that job.[3]",
+          "The proposed chain of causation: less enzymatic breakdown means enkephalin circulates longer, which extends its own signaling at opioid receptors tied to mood and stress response. That's an in vitro enzyme assay plus a correlational patient-blood finding, not a receptor-binding study on Selank itself. Researchers modeling this pathway typically need a direct enkephalinase activity assay to isolate where in the chain an effect originates. An anxiety-scale outcome alone won't do that.",
+        ],
+      },
+      {
+        heading: "Selank and GABAergic gene expression: a 2016 rodent study",
+        paragraphs: [
+          "A separate line of research looks at gene expression rather than enzyme kinetics. A 2016 study administered Selank to rats and measured expression changes across a panel of genes involved in GABAergic neurotransmission, the same inhibitory signaling system that classical benzodiazepines target through allosteric modulation of GABA-A receptors.[4] The paper reported measurable shifts in that gene panel following Selank administration, which the authors used to argue for a GABAergic component to Selank's anxiolytic profile, alongside the enkephalinase mechanism.",
+          "It's a gene-expression readout in whole rat brain tissue, not a radioligand-binding assay showing Selank sitting on the GABA-A receptor itself. A comparative pharmacology model should treat the GABAergic and opioid-system mechanisms as two separate, partially supported hypotheses rather than a single settled pathway.",
+        ],
+      },
+      {
+        heading: "Selank and BDNF: a 2008 intranasal rat hippocampus study",
+        paragraphs: [
+          "A 2008 study gave rats Selank intranasally and measured brain-derived neurotrophic factor (BDNF) expression in the hippocampus afterward.[5] BDNF supports neuron survival and synaptic plasticity, and it's a common readout in stress and neuroplasticity research because chronic stress tends to suppress it. The study reported that intranasal Selank changed hippocampal BDNF expression in vivo.",
+          "That's an intranasal rat study, a delivery route Tetrava Labs doesn't sell a finished product for. It says nothing about oral, subcutaneous, or in vitro BDNF effects, and it doesn't establish a dose-response curve for the reagent form sold here.",
+        ],
+      },
+      {
+        heading:
+          "The foundational human trial: Selank against a benzodiazepine for generalized anxiety",
+        paragraphs: [
+          "The trial most often cited for Selank's anxiolytic claim is a 2008 Russian study, indexed on PubMed as a randomized controlled trial, that enrolled 62 patients with generalized anxiety disorder or neurasthenia.[6] Thirty received Selank and 32 received medazepam, a benzodiazepine, with outcomes tracked on the Hamilton, Zung, and Clinical Global Impression scales alongside blood enkephalin activity. The two treatments produced comparable anxiolytic effects on those scales. Selank also showed antiasthenic and psychostimulant effects that the paper's English abstract does not report for the medazepam arm, and patients with the lowest baseline enkephalin activity showed the strongest response.",
+          "This is the single controlled human trial underpinning most of what gets repeated online about Selank and anxiety. It's a single-country, single-language-publication study without a placebo arm described in the abstract, and it has not been independently replicated in a Western, FDA-reviewed trial. Treat it as the evidentiary basis for Russia's 2009 drug registration, not as FDA-level proof for a research-chemical vial.",
+        ],
+      },
+      {
+        heading: "Selank vs. Semax: same lab, different parent peptide",
+        paragraphs: [
+          "Selank and Semax share a birthplace, Russia's Institute of Molecular Genetics working with the Zakusov Institute of Pharmacology, and both carry the same Pro-Gly-Pro stability tail. That's where the resemblance ends. Semax is built from a fragment of adrenocorticotropic hormone, ACTH(4-10), and the published research around it centers on cerebral ischemia, stroke recovery, and neurotrophic signaling.[2] Selank is built from tuftsin and the published research centers on anxiolysis, enkephalin metabolism, and immune signaling.",
+          "\"Semax and Selank\" gets searched as a pair because researchers studying stress and cognition sometimes look at both, not because a combined-use trial exists. No published study reviewed for this page tests Selank and Semax administered together, so there's no dosing or interaction data to cite for that combination. Tetrava Labs carries [Semax](/buy-semax-online) and Selank as separate Research Use Only catalog listings.",
+        ],
+      },
+      {
+        heading: "Buying Selank for research: what to verify before you order",
+        paragraphs: [
+          "Vendor quality is checkable before you buy Selank from anyone. Before treating a supplier as qualified, look at:",
+        ],
+        bullets: [
+          "Lot identity: does the listing give a batch or lot number that matches the Certificate of Analysis shipped with the vial, or is the PDF generic or reused across products?",
+          "COA/HPLC traceability: is the COA from an independent third-party lab, reporting purity by area-under-curve HPLC rather than an in-house claim?",
+          "Identity confirmation: does the COA or an accompanying mass-spec report confirm Selank's sequence and molecular weight, not just a purity percentage?",
+          "Product clarity: does the listing say plainly whether the vial is unmodified Selank or the separately modified N-Acetyl Selank Amidate, and at what strength?",
+          "Shipping compliance: does the seller disclose which destinations it won't ship to, rather than leaving that out until checkout?",
+        ],
+      },
+      {
+        heading: "Selank on forums and Reddit: anecdote versus evidence",
+        paragraphs: [
+          "Selank comes up regularly in peptide and nootropic forums, usually as first-person reports of mood or focus changes rather than measured data. That's the opposite texture from the published literature above, which is almost entirely Russian clinical and animal research with no comparable body of Western self-report studies behind it.",
+          "A forum thread can point you toward a question worth checking, a vendor worth researching, or a side effect worth reading up on. It isn't a substitute for a lot-specific COA or a peer-reviewed citation, and a poster's subjective account of \"how long it took to work\" carries no more weight than any other uncontrolled, unblinded report.",
+        ],
+      },
+      {
+        heading: "Selank and immune signaling: the tuftsin connection",
+        paragraphs: [
+          "Tuftsin's original research context is immunology, not anxiety. As a natural immunomodulatory peptide, it's studied for effects on phagocyte activity and cytokine signaling, and some of that interest carried over into Selank research. A 2021 study measured cytokine levels under a social-stress model and reported that Selank shifted the measured cytokine profile relative to untreated stressed controls.[7]",
+          "That's a rodent stress-model cytokine panel, not a human immunology trial, and it's a thinner evidence base than the enkephalinase or GABAergic-gene-expression work above. It's worth knowing about mainly because it explains why Selank research sits at the intersection of neuropeptide and immunopeptide literature instead of squarely in one field.",
+        ],
+      },
+      {
+        heading:
+          "Regulatory status: registered in Russia, no FDA approval, and no PCAC review",
+        paragraphs: [
+          "Russia's Ministry of Health registered Selank in 2009 as a 0.15% intranasal solution for generalized anxiety disorder and neurasthenia, manufactured by a specific Russian registrant.[6] The FDA has never approved Selank in any form, and it carries no U.S. drug registration.",
+          "In July 2026, the FDA's Pharmacy Compounding Advisory Committee reviewed seven peptide-related bulk drug substances nominated for the Section 503A Bulks List, the list that lets compounding pharmacies use a substance without a substance-specific approved drug behind it. Semax was one of the seven; Selank was not.[8] That distinction matters for anyone assuming the two peptides share a regulatory track: Semax has an open FDA rulemaking record building toward possible compounding access, and Selank currently doesn't have an equivalent docket. Tetrava Labs' catalog listing is a Research Use Only laboratory reagent regardless of how that rulemaking resolves.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "Selank ships as a lyophilized powder, stable at -20°C away from light. Reconstitute under sterile technique with a protocol-appropriate diluent immediately before use, and avoid repeated freeze-thaw cycling once in solution.",
+          "Hold reconstituted working solutions at 4°C and use them within the window your laboratory SOP sets. Record diluent lot, reconstitution date, and concentration in your ELN, and match those notes to the batch [Certificate of Analysis](/coa-library) so identity and purity data stay traceable to the exact vial used in an assay.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 11765600, Selank.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/11765600",
+      },
+      {
+        id: 2,
+        citation:
+          "Kolomin T, Shadrina M, Slominsky P, et al. A new generation of drugs: synthetic peptides based on natural regulatory peptides. Nat Sci. 2013;5(4A):72-91.",
+        url: "https://doi.org/10.4236/ns.2013.54A011",
+      },
+      {
+        id: 3,
+        citation:
+          "Zozulya AA, Kost NV, Sokolov OYu, Gabaeva MV, Grivennikov IA, Andreeva LN, Zolotarev YA, Ivanov SV, Andryushchenko AV, Myasoedov NF, Smulevich AB. The inhibitory effect of Selank on enkephalin-degrading enzymes as a possible mechanism of its anxiolytic activity. Bull Exp Biol Med. 2001;131(4):315-317.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/11550013/",
+      },
+      {
+        id: 4,
+        citation:
+          "Volkova A, Shadrina M, Kolomin T, Andreeva L, Limborska S, Myasoedov N, Slominsky P. Selank administration affects the expression of some genes involved in GABAergic neurotransmission. Front Pharmacol. 2016;7:31.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/26924987/",
+      },
+      {
+        id: 5,
+        citation:
+          "Inozemtseva LS, Karpenko EA, Dolotov OV, Levitskaya NG, Kamensky AA, Andreeva LA, Grivennikov IA. Intranasal administration of the peptide Selank regulates BDNF expression in the rat hippocampus in vivo. Dokl Biol Sci. 2008;421:241-243.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/18841804/",
+      },
+      {
+        id: 6,
+        citation:
+          "Zozulia AA, Neznamov GG, Siuniakov TS, et al. Efficacy and possible mechanisms of action of a new peptide anxiolytic Selank in the therapy of generalized anxiety disorders and neurasthenia. Zh Nevrol Psikhiatr Im S S Korsakova. 2008;108(4):38-48.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/18454096/",
+      },
+      {
+        id: 7,
+        citation:
+          "The influence of Selank on the level of cytokines under the conditions of social stress. Curr Rev Clin Exp Pharmacol. 2021;16(2):162-167.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/32621722/",
+      },
+      {
+        id: 8,
+        citation:
+          "U.S. Food and Drug Administration. Pharmacy Compounding Advisory Committee; Notice of Meeting; Establishment of a Public Docket; Request for Comments--Bulk Drug Substances Nominated for Inclusion on the Section 503A Bulk Drug Substances List. Fed Regist. 2026;91(73):20465 (Docket No. FDA-2025-N-6895).",
+        url: "https://www.govinfo.gov/content/pkg/FR-2026-04-16/html/2026-07361.htm",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
 };
 
 export function getProductResearchDetail(

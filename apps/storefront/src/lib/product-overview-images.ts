@@ -92,6 +92,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Lab researcher holding a MOTS-c research vial beside an exercise-capacity metabolic chamber",
     2: "MOTS-c and SS-31 research vials placed on a chromatogram printout for comparative analysis",
   },
+  selank: {
+    0: "Scientist pointing to a Selank enkephalinase-inhibition pathway diagram while holding a Selank research vial",
+    1: "Two lab researchers comparing Selank and Semax molecular structure diagrams beside their research vials",
+    2: "Gloved researcher loading a 96-well stress-model assay plate beside a Selank vial and HPLC chromatogram",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

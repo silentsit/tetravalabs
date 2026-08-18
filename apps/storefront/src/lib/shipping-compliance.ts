@@ -1,13 +1,11 @@
-export function getRestrictedCountries() {
-  return (process.env.RESTRICTED_COUNTRIES || "")
-    .split(",")
-    .map((item) => item.trim().toUpperCase())
-    .filter(Boolean)
+export function getDefaultRestrictedCountries(): string[] {
+  return []
 }
 
-export function isRestrictedCountry(countryCode: string) {
-  const normalized = countryCode.trim().toUpperCase()
-  if (!normalized) return false
-  const restricted = new Set(getRestrictedCountries())
-  return restricted.has(normalized)
+export function getRestrictedCountries(): string[] {
+  return []
+}
+
+export function isRestrictedCountry(_countryCode: string) {
+  return false
 }

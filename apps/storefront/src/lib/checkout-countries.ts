@@ -1,33 +1,15 @@
-/** ISO 3166-1 alpha-2 codes for checkout country select. */
-export const CHECKOUT_COUNTRIES: Array<{ code: string; name: string }> = [
-  { code: "US", name: "United States" },
-  { code: "CA", name: "Canada" },
-  { code: "GB", name: "United Kingdom" },
-  { code: "AU", name: "Australia" },
-  { code: "DE", name: "Germany" },
-  { code: "FR", name: "France" },
-  { code: "NL", name: "Netherlands" },
-  { code: "BE", name: "Belgium" },
-  { code: "CH", name: "Switzerland" },
-  { code: "AT", name: "Austria" },
-  { code: "SE", name: "Sweden" },
-  { code: "NO", name: "Norway" },
-  { code: "DK", name: "Denmark" },
-  { code: "FI", name: "Finland" },
-  { code: "IE", name: "Ireland" },
-  { code: "ES", name: "Spain" },
-  { code: "IT", name: "Italy" },
-  { code: "PT", name: "Portugal" },
-  { code: "PL", name: "Poland" },
-  { code: "CZ", name: "Czech Republic" },
-  { code: "NZ", name: "New Zealand" },
-  { code: "SG", name: "Singapore" },
-  { code: "JP", name: "Japan" },
-  { code: "KR", name: "South Korea" },
-  { code: "HK", name: "Hong Kong" },
-  { code: "MX", name: "Mexico" },
-  { code: "BR", name: "Brazil" },
-  { code: "IL", name: "Israel" },
-  { code: "AE", name: "United Arab Emirates" },
-  { code: "ZA", name: "South Africa" }
-]
+/** ISO 3166-1 alpha-2 destinations shown at checkout. */
+import worldCountries from "./world-countries.json"
+
+export type CheckoutCountry = { code: string; name: string }
+
+export const CHECKOUT_COUNTRIES: CheckoutCountry[] = [...worldCountries].sort((a, b) => {
+  if (a.code === "US") return -1
+  if (b.code === "US") return 1
+  return a.name.localeCompare(b.name)
+})
+
+export function isCheckoutCountry(code: string) {
+  const normalized = code.trim().toUpperCase()
+  return CHECKOUT_COUNTRIES.some((entry) => entry.code === normalized)
+}

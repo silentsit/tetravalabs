@@ -30,6 +30,7 @@ import {
   requireMedusaCredentials,
   resolveAdminToken,
   resolveSalesChannelId,
+  resolveShippingProfileId,
   syncTypesenseAfterChanges,
   verifyMedusaReachable
 } from "../lib/medusa-admin.mjs"
@@ -105,6 +106,7 @@ const run = async () => {
   const client = getMedusaClient(token)
   await verifyMedusaReachable(client)
   const salesChannelId = await resolveSalesChannelId(client)
+  const shippingProfileId = await resolveShippingProfileId(client)
 
   const globalRemap = {}
   let mergedCount = 0
@@ -140,7 +142,8 @@ const run = async () => {
         variants: catalogProduct.variants.map((variant) =>
           catalogVariantPayload(variant, true)
         ),
-        sales_channels: [{ id: salesChannelId }]
+        sales_channels: [{ id: salesChannelId }],
+        shipping_profile_id: shippingProfileId
       }
 
       if (dryRun) {
@@ -165,7 +168,8 @@ const run = async () => {
           visual_type: catalogProduct.visual_type,
           source_category: catalogProduct.category
         },
-        options: buildProductOptions(catalogProduct)
+        options: buildProductOptions(catalogProduct),
+        shipping_profile_id: shippingProfileId
       }
 
       if (dryRun) {

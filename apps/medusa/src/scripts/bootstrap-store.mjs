@@ -1,4 +1,5 @@
 import dotenv from "dotenv"
+import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -48,11 +49,28 @@ const request = async (token, method, route, body) => {
   return data
 }
 
+const loadShippableCountryCodes = () => {
+  const countriesPath = path.join(
+    workspaceRoot,
+    "apps",
+    "storefront",
+    "src",
+    "lib",
+    "world-countries.json"
+  )
+  const countries = JSON.parse(fs.readFileSync(countriesPath, "utf8"))
+  return countries
+    .map((country) => String(country.code || "").toLowerCase())
+    .filter(Boolean)
+}
+
+const SHIPPABLE_COUNTRY_CODES = loadShippableCountryCodes()
+
 const getStockLocationDetails = async (token, stockLocationId) => {
   const response = await request(
     token,
     "GET",
-    `/admin/stock-locations/${stockLocationId}?fields=*fulfillment_sets,*fulfillment_sets.service_zones,*fulfillment_providers`
+    `/admin/stock-locations/${stockLocationId}?fields=*fulfillment_sets,*fulfillment_sets.service_zones,*fulfillment_sets.service_zones.geo_zones,*fulfillment_providers`
   )
   return response.stock_location
 }
@@ -106,14 +124,31 @@ const ensureRegion = async (token) => {
     ) || existing.regions?.[0]
 
   if (region) {
-    console.log(`Region ready: ${region.name} (${region.id})`)
-    return region
+    const detailed =
+      (await request(token, "GET", `/admin/regions/${region.id}`)).region || region
+    const existingCodes = new Set(
+      (detailed.countries || []).map((country) =>
+        String(country.iso_2 || country).toLowerCase()
+      )
+    )
+    const missing = SHIPPABLE_COUNTRY_CODES.filter((code) => !existingCodes.has(code))
+    if (missing.length) {
+      const updated = await request(token, "POST", `/admin/regions/${detailed.id}`, {
+        countries: SHIPPABLE_COUNTRY_CODES
+      })
+      console.log(
+        `Region updated with ${missing.length} checkout countries: ${updated.region.name} (${updated.region.id})`
+      )
+      return updated.region
+    }
+    console.log(`Region ready: ${detailed.name} (${detailed.id})`)
+    return detailed
   }
 
   const created = await request(token, "POST", "/admin/regions", {
-    name: "United States",
+    name: "International (USD)",
     currency_code: "usd",
-    countries: ["us"],
+    countries: SHIPPABLE_COUNTRY_CODES,
     automatic_taxes: false,
     payment_providers: ["pp_system_default"]
   })
@@ -156,6 +191,80 @@ const ensureStockLocation = async (token, salesChannelId) => {
   })
 
   return location
+}
+
+const ensureServiceZoneCountries = async (token, fulfillmentSetId, serviceZone) => {
+  const existingZones = serviceZone.geo_zones || []
+  const existingCodes = new Set(
+    existingZones.map((zone) => String(zone.country_code || "").toLowerCase()).filter(Boolean)
+  )
+  const missing = SHIPPABLE_COUNTRY_CODES.filter((code) => !existingCodes.has(code))
+  if (!missing.length) {
+    return serviceZone
+  }
+
+  const geo_zones = [
+    ...existingZones
+      .filter((zone) => zone.id)
+      .map((zone) => ({
+        id: zone.id,
+        type: zone.type,
+        country_code: zone.country_code
+      })),
+    ...missing.map((country_code) => ({ type: "country", country_code }))
+  ]
+
+  const updated = await request(
+    token,
+    "POST",
+    `/admin/fulfillment-sets/${fulfillmentSetId}/service-zones/${serviceZone.id}`,
+    {
+      name: serviceZone.name || "Research destinations",
+      geo_zones
+    }
+  )
+
+  const nextZone =
+    updated.fulfillment_set?.service_zones?.find((zone) => zone.id === serviceZone.id) ||
+    updated.fulfillment_set?.service_zones?.[0] ||
+    serviceZone
+  console.log(`Service zone updated with ${missing.length} checkout countries`)
+  return nextZone
+}
+
+const ensureProductShippingProfiles = async (token, profileId) => {
+  const limit = 100
+  let offset = 0
+  let linked = 0
+  let alreadyLinked = 0
+
+  while (true) {
+    const page = await request(
+      token,
+      "GET",
+      `/admin/products?limit=${limit}&offset=${offset}&fields=id,handle,*shipping_profile`
+    )
+    const products = page.products || []
+    if (!products.length) break
+
+    for (const product of products) {
+      if (product.shipping_profile?.id) {
+        alreadyLinked += 1
+        continue
+      }
+      await request(token, "POST", `/admin/products/${product.id}`, {
+        shipping_profile_id: profileId
+      })
+      linked += 1
+    }
+
+    offset += products.length
+    if (products.length < limit || offset >= (page.count || offset)) break
+  }
+
+  console.log(
+    `Product shipping profiles ready (${alreadyLinked} already linked, ${linked} linked)`
+  )
 }
 
 const ensureShippingOption = async (token, region, stockLocationId) => {
@@ -201,8 +310,11 @@ const ensureShippingOption = async (token, region, stockLocationId) => {
         "POST",
         `/admin/fulfillment-sets/${fulfillmentSet.id}/service-zones`,
         {
-          name: "United States",
-          geo_zones: [{ type: "country", country_code: "us" }]
+          name: "Research destinations",
+          geo_zones: SHIPPABLE_COUNTRY_CODES.map((country_code) => ({
+            type: "country",
+            country_code
+          }))
         }
       )
       serviceZone = createdZone.fulfillment_set?.service_zones?.[0]
@@ -223,6 +335,8 @@ const ensureShippingOption = async (token, region, stockLocationId) => {
   } else {
     console.log(`Service zone ready: ${serviceZone.name}`)
   }
+
+  serviceZone = await ensureServiceZoneCountries(token, fulfillmentSet.id, serviceZone)
 
   await ensureFulfillmentProvider(token, stockLocationId)
 
@@ -300,13 +414,31 @@ const ensurePublishableKey = async (token, salesChannelId) => {
 }
 
 const run = async () => {
+  console.log(`Shippable checkout countries: ${SHIPPABLE_COUNTRY_CODES.length}`)
   requireCredentials()
   MEDUSA_ADMIN_TOKEN = await resolveAdminToken()
 
   const region = await ensureRegion(MEDUSA_ADMIN_TOKEN)
   const salesChannel = await ensureSalesChannel(MEDUSA_ADMIN_TOKEN)
   const stockLocation = await ensureStockLocation(MEDUSA_ADMIN_TOKEN, salesChannel.id)
-  await ensureShippingOption(MEDUSA_ADMIN_TOKEN, region, stockLocation.id)
+  const shippingOption = await ensureShippingOption(
+    MEDUSA_ADMIN_TOKEN,
+    region,
+    stockLocation.id
+  )
+  if (shippingOption?.shipping_profile_id) {
+    await ensureProductShippingProfiles(
+      MEDUSA_ADMIN_TOKEN,
+      shippingOption.shipping_profile_id
+    )
+  } else {
+    const profiles = await request(MEDUSA_ADMIN_TOKEN, "GET", "/admin/shipping-profiles?limit=20")
+    const profile = profiles.shipping_profiles?.[0]
+    if (!profile?.id) {
+      throw new Error("No shipping profile found after migrations.")
+    }
+    await ensureProductShippingProfiles(MEDUSA_ADMIN_TOKEN, profile.id)
+  }
   await ensurePublishableKey(MEDUSA_ADMIN_TOKEN, salesChannel.id)
 
   console.log("\nStore bootstrap complete.")

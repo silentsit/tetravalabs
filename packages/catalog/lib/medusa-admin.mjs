@@ -84,6 +84,15 @@ export async function resolveSalesChannelId(client) {
   return channel.id
 }
 
+export async function resolveShippingProfileId(client) {
+  const response = await client.get("/admin/shipping-profiles", { params: { limit: 20 } })
+  const profile = response.data?.shipping_profiles?.[0]
+  if (!profile?.id) {
+    throw new Error("No shipping profile found. Run npm run medusa:bootstrap first.")
+  }
+  return profile.id
+}
+
 export async function ensureCategory(client, name) {
   const handle = name.toLowerCase().replace(/[^a-z0-9]+/g, "-")
   const search = await client.get("/admin/product-categories", {

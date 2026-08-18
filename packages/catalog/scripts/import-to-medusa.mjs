@@ -119,6 +119,11 @@ const run = async () => {
   MEDUSA_ADMIN_TOKEN = await resolveAdminToken()
   const client = getClient(MEDUSA_ADMIN_TOKEN)
   const salesChannelId = await resolveSalesChannelId(client)
+  const shippingProfiles = await client.get("/admin/shipping-profiles", { params: { limit: 20 } })
+  const shippingProfileId = shippingProfiles.data?.shipping_profiles?.[0]?.id
+  if (!shippingProfileId) {
+    throw new Error("No shipping profile found. Run npm run medusa:bootstrap first.")
+  }
 
   const raw = JSON.parse(await fs.readFile(normalizedPath, "utf8"))
   let createdProducts = 0
@@ -152,7 +157,8 @@ const run = async () => {
       variants: product.variants.map((variant) =>
         catalogVariantPayload(variant, merged)
       ),
-      sales_channels: [{ id: salesChannelId }]
+      sales_channels: [{ id: salesChannelId }],
+      shipping_profile_id: shippingProfileId
     }
 
     await client.post("/admin/products", payload)

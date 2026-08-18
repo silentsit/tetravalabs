@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import Medusa from "@medusajs/js-sdk"
-import { isRestrictedCountry } from "@/lib/shipping-compliance"
+import { isCheckoutCountry } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import { registerLabRestocksFromCheckout } from "@/lib/medusa-lab-restock-register"
@@ -75,14 +75,10 @@ export async function POST(req: Request) {
     )
   }
 
-  if (isRestrictedCountry(country)) {
+  if (!isCheckoutCountry(country)) {
     return NextResponse.json(
-      {
-        ok: false,
-        message: `Shipping to ${country} is restricted under our research compliance policy.`,
-        code: "shipping_restricted"
-      },
-      { status: 403 }
+      { ok: false, message: "Select a valid shipping country." },
+      { status: 400 }
     )
   }
 
@@ -152,7 +148,7 @@ export async function POST(req: Request) {
 
     if (!regionId) {
       return NextResponse.json(
-        { ok: false, message: "No Medusa region configured. Run bootstrap:store on the backend." },
+        { ok: false, message: "Checkout is temporarily unavailable. Please try again in a few minutes." },
         { status: 503 }
       )
     }
@@ -192,7 +188,8 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           ok: false,
-          message: "No shipping options available for this cart. Run bootstrap:store on Medusa.",
+          message:
+            "Shipping is not available for this destination. Try another country or contact support.",
           cart_id: cart.id
         },
         { status: 503 }

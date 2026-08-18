@@ -590,7 +590,6 @@ export function CheckoutForm() {
   const [attemptedSubmit, setAttemptedSubmit] = useState(false)
   const [ruoError, setRuoError] = useState("")
   const [loading, setLoading] = useState(false)
-  const [restrictedCountries, setRestrictedCountries] = useState<string[]>([])
   const [cardAvailable, setCardAvailable] = useState(false)
   const [labRestockAvailable, setLabRestockAvailable] = useState(false)
   const [paymentOptionsLoaded, setPaymentOptionsLoaded] = useState(false)
@@ -704,19 +703,6 @@ export function CheckoutForm() {
   }, [shipToDifferent])
 
   useEffect(() => {
-    void fetch("/api/compliance/restricted-countries")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data?.ok && Array.isArray(data.countries)) {
-          setRestrictedCountries(data.countries)
-        }
-      })
-      .catch(() => {
-        // Server-side checkout still enforces restrictions.
-      })
-  }, [])
-
-  useEffect(() => {
     void fetch("/api/checkout-payment-options", { cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error("Unable to load payment options")
@@ -784,10 +770,7 @@ export function CheckoutForm() {
     return () => window.clearTimeout(timer)
   }, [email, items, subtotal])
 
-  const availableCountries = useMemo(
-    () => CHECKOUT_COUNTRIES.filter((entry) => !restrictedCountries.includes(entry.code)),
-    [restrictedCountries]
-  )
+  const availableCountries = CHECKOUT_COUNTRIES
 
   const submitLabel = useMemo(() => {
     if (loading) return "Processing…"
@@ -915,12 +898,6 @@ export function CheckoutForm() {
       setError(
         "Cryptocurrency checkout is not available right now. Use card payment, or try again once Paymento is configured on the server."
       )
-      return
-    }
-
-    const normalizedCountry = shippingAddress.country.trim().toUpperCase()
-    if (restrictedCountries.includes(normalizedCountry)) {
-      setError(`Shipping to ${normalizedCountry} is restricted under our compliance policy.`)
       return
     }
 

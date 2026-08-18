@@ -25,6 +25,8 @@ import { buildDefaultProductReferences } from "@/lib/product-page-links"
 import { buildResearchOverview } from "@/lib/research-overview"
 import { buildOverviewImages } from "@/lib/product-overview-images"
 import { listProducts } from "@/lib/medusa"
+import { selectRelatedProducts } from "@/lib/related-products"
+import { YouMayAlsoLike } from "@/components/you-may-also-like"
 
 type Props = {
   params: Promise<{ handle: string }>
@@ -91,7 +93,11 @@ export default async function ProductPage({ params }: Props) {
     permanentRedirect(productPath(view.parentHandle))
   }
 
-  const { coasByStrength, reviewsByStrength } = await loadStrengthSideData(view.strengths)
+  const [{ coasByStrength, reviewsByStrength }, catalog] = await Promise.all([
+    loadStrengthSideData(view.strengths),
+    listProducts()
+  ])
+  const relatedProducts = selectRelatedProducts(view.parentHandle, catalog, 3)
 
   const categorySlug = String(categorySlugFromLabel(view.categoryLabel))
   const crumbName = compoundSeoProductName(view)
@@ -156,6 +162,12 @@ export default async function ProductPage({ params }: Props) {
       />
 
       <ComplianceNotice />
+
+      <YouMayAlsoLike
+        products={relatedProducts}
+        categoryHref={`/category/${categorySlug}`}
+        categoryLabel={view.categoryLabel}
+      />
     </article>
   )
 }

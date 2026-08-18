@@ -3,6 +3,8 @@ import "server-only"
 import {
   compoundSeoProductName,
   getCompoundProductView,
+  getProductHref,
+  getShelfProductLabel,
   pickDefaultStrengthKey,
   productPath,
   resolveCatalogHandle
@@ -11,6 +13,8 @@ import { categorySlugFromLabel } from "@/lib/categories"
 import { getProductFaqs } from "@/lib/product-faqs"
 import { getProductResearchDetail } from "@/lib/product-research-detail"
 import { buildResearchOverview } from "@/lib/research-overview"
+import { listProducts } from "@/lib/medusa"
+import { selectRelatedProducts } from "@/lib/related-products"
 import { type AgentMarkdownPage, mdLink, renderQaSection, wrapAgentMarkdown } from "@/lib/agent-markdown/shared"
 
 function renderIdentityTable(view: {
@@ -93,6 +97,14 @@ export async function getProductAgentMarkdownPage(publicHandle: string): Promise
   }
 
   sections.push(renderQaSection("FAQ", faqs))
+
+  const related = selectRelatedProducts(view.parentHandle, await listProducts(), 3)
+  if (related.length) {
+    const links = related
+      .map((product) => `- ${mdLink(getShelfProductLabel(product), getProductHref(product.handle))}`)
+      .join("\n")
+    sections.push(["## You may also like", "", links].join("\n"))
+  }
 
   return {
     title,

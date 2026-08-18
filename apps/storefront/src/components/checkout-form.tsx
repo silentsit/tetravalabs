@@ -4,8 +4,19 @@ import Image from "next/image"
 import Link from "next/link"
 import { FormEvent, useEffect, useMemo, useState, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
-import { Bitcoin, CreditCard } from "lucide-react"
-import { useCart } from "@/components/cart-provider"
+import {
+  Bitcoin,
+  ChevronDown,
+  CreditCard,
+  FileCheck,
+  FlaskConical,
+  HelpCircle,
+  Lock,
+  Minus,
+  Plus,
+  Snowflake
+} from "lucide-react"
+import { useCart, type CartItem } from "@/components/cart-provider"
 import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
 import {
   CHECKOUT_CRYPTO_CATALOG,
@@ -15,6 +26,8 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
   getCheckoutSubdivisions,
+  formatSubdivisionDisplay,
+  getPostalLabel,
   getSubdivisionLabel,
   getSubdivisionPlaceholder,
   isValidSubdivision,
@@ -152,14 +165,14 @@ function firstInvalidFieldId(payload: {
   shipToDifferent: boolean
 }): string | null {
   const billingOrder: Array<{ field: AddressFieldKey; id: string }> = [
+    { field: "email", id: "billing-email" },
     { field: "firstName", id: "billing-first-name" },
     { field: "lastName", id: "billing-last-name" },
-    { field: "email", id: "billing-email" },
-    { field: "country", id: "billing-country" },
     { field: "address1", id: "billing-address1" },
-    { field: "city", id: "billing-city" },
-    { field: "province", id: "billing-province" },
+    { field: "country", id: "billing-country" },
     { field: "postalCode", id: "billing-postal" },
+    { field: "province", id: "billing-province" },
+    { field: "city", id: "billing-city" },
     { field: "phone", id: "billing-phone" }
   ]
 
@@ -210,6 +223,222 @@ function FieldLabel({
   )
 }
 
+function OptionalExpandField({
+  id,
+  toggleLabel,
+  fieldLabel,
+  value,
+  onChange,
+  autoComplete
+}: {
+  id: string
+  toggleLabel: string
+  fieldLabel: string
+  value: string
+  onChange: (value: string) => void
+  autoComplete?: string
+}) {
+  const [open, setOpen] = useState(Boolean(value.trim()))
+
+  useEffect(() => {
+    if (value.trim()) setOpen(true)
+  }, [value])
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="text-sm font-medium text-[#0D9488] hover:underline"
+      >
+        + {toggleLabel}
+      </button>
+    )
+  }
+
+  return (
+    <div>
+      <FieldLabel htmlFor={id}>{fieldLabel}</FieldLabel>
+      <input
+        id={id}
+        autoComplete={autoComplete}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="input-field"
+      />
+    </div>
+  )
+}
+
+type CheckoutStep = "information" | "payment"
+
+function CheckoutStepper({ step }: { step: CheckoutStep }) {
+  const paymentActive = step === "payment"
+
+  return (
+    <nav aria-label="Checkout steps" className="flex items-center gap-2 text-sm sm:gap-3">
+      <Link href="/cart" className="font-medium text-[#0D9488] hover:underline">
+        Cart
+      </Link>
+      <span className="text-[#CBD5E1]" aria-hidden>
+        /
+      </span>
+      <span className={paymentActive ? "text-[#64748B]" : "font-medium text-[#0F172A]"}>
+        Information
+      </span>
+      <span className="text-[#CBD5E1]" aria-hidden>
+        /
+      </span>
+      <span className={paymentActive ? "font-medium text-[#0F172A]" : "text-[#94A3B8]"}>
+        Payment
+      </span>
+    </nav>
+  )
+}
+
+function QtyControl({
+  quantity,
+  onChange
+}: {
+  quantity: number
+  onChange: (quantity: number) => void
+}) {
+  return (
+    <div className="mt-2 inline-flex items-center rounded-lg border border-[#E2E8F0]">
+      <button
+        type="button"
+        className="flex h-8 w-8 items-center justify-center text-[#475569] hover:text-[#0F172A]"
+        onClick={() => onChange(quantity - 1)}
+        aria-label="Decrease quantity"
+      >
+        <Minus className="h-3.5 w-3.5" />
+      </button>
+      <span className="min-w-[1.5rem] text-center text-sm tabular-nums text-[#0F172A]">{quantity}</span>
+      <button
+        type="button"
+        className="flex h-8 w-8 items-center justify-center text-[#475569] hover:text-[#0F172A]"
+        onClick={() => onChange(quantity + 1)}
+        aria-label="Increase quantity"
+      >
+        <Plus className="h-3.5 w-3.5" />
+      </button>
+    </div>
+  )
+}
+
+function CheckoutTrustRow() {
+  const items = [
+    { icon: FileCheck, label: "Lot-linked COA" },
+    { icon: Snowflake, label: "Cold-chain shipping" },
+    { icon: Lock, label: "Encrypted checkout" },
+    { icon: FlaskConical, label: "Research use only" }
+  ]
+
+  return (
+    <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      {items.map((item) => (
+        <li
+          key={item.label}
+          className="flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-2.5 py-2 text-[11px] leading-tight text-[#475569]"
+        >
+          <item.icon className="h-3.5 w-3.5 shrink-0 text-[#0D9488]" aria-hidden />
+          {item.label}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function CheckoutOrderSummary({
+  items,
+  subtotal,
+  shippingUsd,
+  estimatedTotal,
+  hasLabRestock,
+  updateQty
+}: {
+  items: CartItem[]
+  subtotal: number
+  shippingUsd: number
+  estimatedTotal: number
+  hasLabRestock: boolean
+  updateQty: (id: string, quantity: number) => void
+}) {
+  return (
+    <div className="card overflow-hidden">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-[#E2E8F0] bg-[#0F172A] px-4 py-3 text-sm font-medium text-white">
+        <span>Product</span>
+        <span>Subtotal</span>
+      </div>
+
+      {items.length === 0 ? (
+        <div className="px-4 py-6 text-sm text-[#64748B]">
+          Your cart is empty.{" "}
+          <Link href="/shop" className="text-[#0D9488] hover:underline">
+            Browse catalog
+          </Link>
+        </div>
+      ) : (
+        <ul className="divide-y divide-[#E2E8F0]">
+          {items.map((item) => {
+            const image = getProductImage(item.handle)
+            return (
+              <li key={item.id} className="flex gap-3 px-4 py-4">
+                <Image
+                  src={image}
+                  alt={item.title}
+                  width={56}
+                  height={56}
+                  {...localImageProps(image)}
+                  className="h-14 w-14 shrink-0 rounded-lg bg-white object-contain"
+                />
+                <div className="flex min-w-0 flex-1 items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-[#0F172A]">{item.title}</p>
+                    {item.variantTitle ? (
+                      <p className="mt-0.5 text-xs text-[#94A3B8]">{item.variantTitle}</p>
+                    ) : null}
+                    {item.fulfillment === "lab_restock" ? (
+                      <p className="mt-0.5 text-[11px] font-medium text-[#0F766E]">
+                        {LAB_RESTOCK_COPY.cartBadge}
+                        {item.restockCadenceDays ? ` · every ${item.restockCadenceDays}d` : ""}
+                      </p>
+                    ) : null}
+                    <QtyControl
+                      quantity={item.quantity}
+                      onChange={(quantity) => updateQty(item.id, quantity)}
+                    />
+                  </div>
+                  <p className="shrink-0 tabular-nums text-sm text-[#0F172A]">
+                    ${(item.unitPrice * item.quantity).toFixed(2)}
+                  </p>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      )}
+
+      <div className="space-y-2 border-t border-[#E2E8F0] px-4 py-4 text-sm text-[#475569]">
+        <div className="flex items-center justify-between">
+          <span>Subtotal</span>
+          <span className="tabular-nums">${subtotal.toFixed(2)}</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span>Shipping</span>
+          <span className="tabular-nums">
+            {hasLabRestock ? "Free (Peptide Refill)" : `$${shippingUsd.toFixed(2)}`}
+          </span>
+        </div>
+        <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
+          <span>Total</span>
+          <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 type AddressFieldsProps = {
   idPrefix: string
   firstName: string
@@ -241,6 +470,7 @@ type AddressFieldsProps = {
   attemptedSubmit?: boolean
   onFieldBlur?: (field: AddressFieldKey) => void
   onFieldChange?: (field: AddressFieldKey) => void
+  loggedIn?: boolean
 }
 
 function fieldVisibleError(
@@ -285,10 +515,12 @@ function AddressFields({
   touched,
   attemptedSubmit = false,
   onFieldBlur,
-  onFieldChange
+  onFieldChange,
+  loggedIn = false
 }: AddressFieldsProps) {
   const subdivisions = getCheckoutSubdivisions(country)
   const subdivisionLabel = getSubdivisionLabel(country)
+  const postalLabel = getPostalLabel(country)
   const hasSubdivisionSelect = subdivisions.length > 0
 
   const showError = (field: AddressFieldKey) =>
@@ -319,6 +551,41 @@ function AddressFields({
 
   return (
     <div className="space-y-4">
+      {showEmail && setEmail ? (
+        <div>
+          <div className="mb-1.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+            <label htmlFor={`${idPrefix}-email`} className="text-sm text-[#334155]">
+              Email
+              <span className="text-red-500"> *</span>
+            </label>
+            {!loggedIn ? (
+              <p className="text-xs text-[#64748B]">
+                Already have an account?{" "}
+                <Link href="/login" className="font-medium text-[#0D9488] hover:underline">
+                  Log in
+                </Link>
+              </p>
+            ) : null}
+          </div>
+          <input
+            id={`${idPrefix}-email`}
+            required
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value)
+              onFieldChange?.("email")
+            }}
+            onBlur={() => onFieldBlur?.("email")}
+            aria-invalid={Boolean(showError("email"))}
+            aria-describedby={showError("email") ? errorId("email") : undefined}
+            className={inputFieldClass(Boolean(showError("email")))}
+          />
+          <FieldError id={errorId("email")} message={showError("email")} />
+        </div>
+      ) : null}
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <FieldLabel htmlFor={`${idPrefix}-first-name`} required>
@@ -362,46 +629,14 @@ function AddressFields({
         </div>
       </div>
 
-      <div>
-        <FieldLabel htmlFor={`${idPrefix}-company`}>Company name (optional)</FieldLabel>
-        <input
-          id={`${idPrefix}-company`}
-          autoComplete="organization"
-          value={company}
-          onChange={(event) => setCompany(event.target.value)}
-          className="input-field"
-        />
-      </div>
-
-      <div>
-        <FieldLabel htmlFor={`${idPrefix}-country`} required>
-          Country / Region
-        </FieldLabel>
-        <select
-          id={`${idPrefix}-country`}
-          required
-          autoComplete="country"
-          value={country}
-          onChange={(event) => {
-            const nextCountry = event.target.value
-            setCountry(nextCountry)
-            setProvince("")
-            onFieldChange?.("country")
-            onFieldChange?.("province")
-          }}
-          onBlur={() => onFieldBlur?.("country")}
-          aria-invalid={Boolean(showError("country"))}
-          aria-describedby={showError("country") ? errorId("country") : undefined}
-          className={inputFieldClass(Boolean(showError("country")))}
-        >
-          {availableCountries.map((entry) => (
-            <option key={entry.code} value={entry.code}>
-              {entry.name}
-            </option>
-          ))}
-        </select>
-        <FieldError id={errorId("country")} message={showError("country")} />
-      </div>
+      <OptionalExpandField
+        id={`${idPrefix}-company`}
+        toggleLabel="Add company name (optional)"
+        fieldLabel="Company name (optional)"
+        value={company}
+        onChange={setCompany}
+        autoComplete="organization"
+      />
 
       <div>
         <FieldLabel htmlFor={`${idPrefix}-address1`} required>
@@ -426,41 +661,67 @@ function AddressFields({
         <FieldError id={errorId("address1")} message={showError("address1")} />
       </div>
 
-      <div>
-        <FieldLabel htmlFor={`${idPrefix}-address2`}>
-          Apartment, suite, unit, etc. (optional)
-        </FieldLabel>
-        <input
-          id={`${idPrefix}-address2`}
-          autoComplete="address-line2"
-          value={address2}
-          onChange={(event) => setAddress2(event.target.value)}
-          className="input-field"
-        />
-      </div>
+      <OptionalExpandField
+        id={`${idPrefix}-address2`}
+        toggleLabel="Add apartment, suite, unit (optional)"
+        fieldLabel="Apartment, suite, unit, etc. (optional)"
+        value={address2}
+        onChange={setAddress2}
+        autoComplete="address-line2"
+      />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="sm:col-span-1">
-          <FieldLabel htmlFor={`${idPrefix}-city`} required>
-            Town / City
+      <div className="grid gap-4 sm:grid-cols-3">
+        <div>
+          <FieldLabel htmlFor={`${idPrefix}-country`} required>
+            Country / region
+          </FieldLabel>
+          <select
+            id={`${idPrefix}-country`}
+            required
+            autoComplete="country"
+            value={country}
+            onChange={(event) => {
+              const nextCountry = event.target.value
+              setCountry(nextCountry)
+              setProvince("")
+              onFieldChange?.("country")
+              onFieldChange?.("province")
+            }}
+            onBlur={() => onFieldBlur?.("country")}
+            aria-invalid={Boolean(showError("country"))}
+            aria-describedby={showError("country") ? errorId("country") : undefined}
+            className={inputFieldClass(Boolean(showError("country")))}
+          >
+            <option value="">Select a country / region…</option>
+            {availableCountries.map((entry) => (
+              <option key={entry.code} value={entry.code}>
+                {entry.name}
+              </option>
+            ))}
+          </select>
+          <FieldError id={errorId("country")} message={showError("country")} />
+        </div>
+        <div>
+          <FieldLabel htmlFor={`${idPrefix}-postal`} required>
+            {postalLabel}
           </FieldLabel>
           <input
-            id={`${idPrefix}-city`}
+            id={`${idPrefix}-postal`}
             required
-            autoComplete="address-level2"
-            value={city}
+            autoComplete="postal-code"
+            value={postalCode}
             onChange={(event) => {
-              setCity(event.target.value)
-              onFieldChange?.("city")
+              setPostalCode(event.target.value)
+              onFieldChange?.("postalCode")
             }}
-            onBlur={() => onFieldBlur?.("city")}
-            aria-invalid={Boolean(showError("city"))}
-            aria-describedby={showError("city") ? errorId("city") : undefined}
-            className={inputFieldClass(Boolean(showError("city")))}
+            onBlur={() => onFieldBlur?.("postalCode")}
+            aria-invalid={Boolean(showError("postalCode"))}
+            aria-describedby={showError("postalCode") ? errorId("postalCode") : undefined}
+            className={inputFieldClass(Boolean(showError("postalCode")))}
           />
-          <FieldError id={errorId("city")} message={showError("city")} />
+          <FieldError id={errorId("postalCode")} message={showError("postalCode")} />
         </div>
-        <div className="sm:col-span-1">
+        <div>
           <FieldLabel htmlFor={`${idPrefix}-province`} required={hasSubdivisionSelect}>
             {subdivisionLabel}
           </FieldLabel>
@@ -491,7 +752,8 @@ function AddressFields({
               id={`${idPrefix}-province`}
               autoComplete="address-level1"
               value={province}
-              placeholder="State / province"
+              placeholder={country ? "State / province" : "Select a country first"}
+              disabled={!country}
               onChange={(event) => {
                 setProvince(event.target.value)
                 onFieldChange?.("province")
@@ -504,26 +766,27 @@ function AddressFields({
           )}
           <FieldError id={errorId("province")} message={showError("province")} />
         </div>
-        <div className="sm:col-span-1">
-          <FieldLabel htmlFor={`${idPrefix}-postal`} required>
-            ZIP / Postal code
-          </FieldLabel>
-          <input
-            id={`${idPrefix}-postal`}
-            required
-            autoComplete="postal-code"
-            value={postalCode}
-            onChange={(event) => {
-              setPostalCode(event.target.value)
-              onFieldChange?.("postalCode")
-            }}
-            onBlur={() => onFieldBlur?.("postalCode")}
-            aria-invalid={Boolean(showError("postalCode"))}
-            aria-describedby={showError("postalCode") ? errorId("postalCode") : undefined}
-            className={inputFieldClass(Boolean(showError("postalCode")))}
-          />
-          <FieldError id={errorId("postalCode")} message={showError("postalCode")} />
-        </div>
+      </div>
+
+      <div>
+        <FieldLabel htmlFor={`${idPrefix}-city`} required>
+          Town / city
+        </FieldLabel>
+        <input
+          id={`${idPrefix}-city`}
+          required
+          autoComplete="address-level2"
+          value={city}
+          onChange={(event) => {
+            setCity(event.target.value)
+            onFieldChange?.("city")
+          }}
+          onBlur={() => onFieldBlur?.("city")}
+          aria-invalid={Boolean(showError("city"))}
+          aria-describedby={showError("city") ? errorId("city") : undefined}
+          className={inputFieldClass(Boolean(showError("city")))}
+        />
+        <FieldError id={errorId("city")} message={showError("city")} />
       </div>
 
       <div>
@@ -544,37 +807,13 @@ function AddressFields({
         />
         <FieldError id={errorId("phone")} message={showError("phone")} />
       </div>
-
-      {showEmail && setEmail ? (
-        <div>
-          <FieldLabel htmlFor={`${idPrefix}-email`} required>
-            Email address
-          </FieldLabel>
-          <input
-            id={`${idPrefix}-email`}
-            required
-            type="email"
-            autoComplete="email"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value)
-              onFieldChange?.("email")
-            }}
-            onBlur={() => onFieldBlur?.("email")}
-            aria-invalid={Boolean(showError("email"))}
-            aria-describedby={showError("email") ? errorId("email") : undefined}
-            className={inputFieldClass(Boolean(showError("email")))}
-          />
-          <FieldError id={errorId("email")} message={showError("email")} />
-        </div>
-      ) : null}
     </div>
   )
 }
 
 export function CheckoutForm() {
   const router = useRouter()
-  const { items, subtotal, clear, hasLabRestock } = useCart()
+  const { items, subtotal, clear, hasLabRestock, updateQty } = useCart()
   const [email, setEmail] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -614,6 +853,9 @@ export function CheckoutForm() {
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
   const [selectedAsset, setSelectedAsset] = useState("USDT")
+  const [step, setStep] = useState<CheckoutStep>("information")
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [summaryOpen, setSummaryOpen] = useState(false)
 
   const shippingUsd = hasLabRestock ? 0 : resolveShippingUsd(items)
   const estimatedTotal = subtotal + shippingUsd
@@ -757,8 +999,16 @@ export function CheckoutForm() {
   }, [hasLabRestock])
 
   useEffect(() => {
+    if (items.length || step !== "payment") return
+    setStep("information")
+    setError("Your cart is empty.")
+  }, [items.length, step])
+
+  useEffect(() => {
+    setLoggedIn(Boolean(readAuthToken()))
     void retrieveCustomer().then((customer) => {
       if (!customer) return
+      setLoggedIn(true)
       if (customer.email) setEmail(customer.email)
       if (customer.first_name) setFirstName(customer.first_name)
       if (customer.last_name) setLastName(customer.last_name)
@@ -860,8 +1110,53 @@ export function CheckoutForm() {
     window.localStorage.setItem(ORDERS_KEY, JSON.stringify(parsed))
   }
 
+  const validateInformation = () => {
+    const nextBillingErrors = validateAddress(billingValues, { requireEmail: true })
+    const nextShippingErrors = shipToDifferent
+      ? validateAddress(shippingValues, { requireEmail: false })
+      : {}
+
+    setAttemptedSubmit(true)
+    setBillingErrors(nextBillingErrors)
+    setShippingErrors(nextShippingErrors)
+
+    const invalidFieldId = firstInvalidFieldId({
+      billing: nextBillingErrors,
+      shipping: nextShippingErrors,
+      shipToDifferent
+    })
+
+    if (invalidFieldId) {
+      setStep("information")
+      window.requestAnimationFrame(() => {
+        document.getElementById(invalidFieldId)?.focus()
+      })
+      return false
+    }
+
+    return true
+  }
+
+  const goToPayment = () => {
+    setError("")
+    setStatus("")
+    if (!items.length) {
+      setError("Cart is empty.")
+      return
+    }
+    if (!validateInformation()) return
+    setStep("payment")
+    window.requestAnimationFrame(() => {
+      document.getElementById("checkout-payment")?.scrollIntoView({ behavior: "smooth", block: "start" })
+    })
+  }
+
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
+    if (step === "information") {
+      goToPayment()
+      return
+    }
     setError("")
     setStatus("")
     setAttemptedSubmit(true)
@@ -884,7 +1179,12 @@ export function CheckoutForm() {
     })
 
     if (invalidFieldId) {
-      document.getElementById(invalidFieldId)?.focus()
+      if (Object.keys(nextBillingErrors).length || Object.keys(nextShippingErrors).length) {
+        setStep("information")
+      }
+      window.requestAnimationFrame(() => {
+        document.getElementById(invalidFieldId)?.focus()
+      })
       if (nextRuoError && !Object.keys(nextBillingErrors).length && !Object.keys(nextShippingErrors).length) {
         setError(nextRuoError)
       }
@@ -1063,312 +1363,339 @@ export function CheckoutForm() {
     router.push(`/checkout/payment?${params.toString()}`)
   }
 
+  const countryName =
+    availableCountries.find((entry) => entry.code === shippingAddress.country)?.name ||
+    shippingAddress.country
+  const provinceDisplay = shippingAddress.province
+    ? formatSubdivisionDisplay(shippingAddress.country, shippingAddress.province)
+    : ""
+
+  const summaryProps = {
+    items,
+    subtotal,
+    shippingUsd,
+    estimatedTotal,
+    hasLabRestock,
+    updateQty
+  }
+
   return (
-    <form onSubmit={onSubmit} noValidate>
+    <form onSubmit={onSubmit} noValidate className="space-y-6">
+      <CheckoutStepper step={step} />
+
+      <div className="lg:hidden">
+        <button
+          type="button"
+          className="flex w-full items-center justify-between rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-sm"
+          onClick={() => setSummaryOpen((open) => !open)}
+          aria-expanded={summaryOpen}
+        >
+          <span className="flex items-center gap-2 font-medium text-[#0D9488]">
+            {summaryOpen ? "Hide order summary" : "Show order summary"}
+            <ChevronDown className={`h-4 w-4 transition-transform ${summaryOpen ? "rotate-180" : ""}`} />
+          </span>
+          <span className="tabular-nums font-semibold text-[#0F172A]">${estimatedTotal.toFixed(2)}</span>
+        </button>
+        {summaryOpen ? <div className="mt-3"><CheckoutOrderSummary {...summaryProps} /></div> : null}
+      </div>
+
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
-        <div className="space-y-8">
-          <section className="card p-6 sm:p-8">
-            <h2 className="mb-6 font-serif text-xl text-[#0F172A]">Billing details</h2>
-            <AddressFields
-              idPrefix="billing"
-              firstName={firstName}
-              setFirstName={setFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-              company={company}
-              setCompany={setCompany}
-              country={country}
-              setCountry={setCountry}
-              address1={address1}
-              setAddress1={setAddress1}
-              address2={address2}
-              setAddress2={setAddress2}
-              city={city}
-              setCity={setCity}
-              province={province}
-              setProvince={setProvince}
-              postalCode={postalCode}
-              setPostalCode={setPostalCode}
-              phone={phone}
-              setPhone={setPhone}
-              email={email}
-              setEmail={setEmail}
-              availableCountries={availableCountries}
-              showEmail
-              errors={billingErrors}
-              touched={billingTouched}
-              attemptedSubmit={attemptedSubmit}
-              onFieldBlur={handleBillingBlur}
-              onFieldChange={clearBillingError}
-            />
-          </section>
-
-          <section className="card p-6 sm:p-8">
-            <label className="flex cursor-pointer items-center gap-3 text-sm font-medium text-[#0F172A]">
-              <input
-                type="checkbox"
-                checked={shipToDifferent}
-                onChange={(event) => setShipToDifferent(event.target.checked)}
-                className="h-4 w-4 rounded accent-[#0D9488]"
-              />
-              Ship to a different address?
-            </label>
-
-            {shipToDifferent ? (
-              <div className="mt-6 border-t border-[#E2E8F0] pt-6">
-                <h3 className="mb-6 font-serif text-lg text-[#0F172A]">Shipping details</h3>
+        <div className="space-y-6">
+          {step === "information" ? (
+            <>
+              <section className="card p-6 sm:p-8">
+                <h2 className="mb-6 font-serif text-xl text-[#0F172A]">Contact and shipping</h2>
                 <AddressFields
-                  idPrefix="shipping"
-                  firstName={shipFirstName}
-                  setFirstName={setShipFirstName}
-                  lastName={shipLastName}
-                  setLastName={setShipLastName}
-                  company={shipCompany}
-                  setCompany={setShipCompany}
-                  country={shipCountry}
-                  setCountry={setShipCountry}
-                  address1={shipAddress1}
-                  setAddress1={setShipAddress1}
-                  address2={shipAddress2}
-                  setAddress2={setShipAddress2}
-                  city={shipCity}
-                  setCity={setShipCity}
-                  province={shipProvince}
-                  setProvince={setShipProvince}
-                  postalCode={shipPostalCode}
-                  setPostalCode={setShipPostalCode}
-                  phone={shipPhone}
-                  setPhone={setShipPhone}
+                  idPrefix="billing"
+                  firstName={firstName}
+                  setFirstName={setFirstName}
+                  lastName={lastName}
+                  setLastName={setLastName}
+                  company={company}
+                  setCompany={setCompany}
+                  country={country}
+                  setCountry={setCountry}
+                  address1={address1}
+                  setAddress1={setAddress1}
+                  address2={address2}
+                  setAddress2={setAddress2}
+                  city={city}
+                  setCity={setCity}
+                  province={province}
+                  setProvince={setProvince}
+                  postalCode={postalCode}
+                  setPostalCode={setPostalCode}
+                  phone={phone}
+                  setPhone={setPhone}
+                  email={email}
+                  setEmail={setEmail}
                   availableCountries={availableCountries}
-                  errors={shippingErrors}
-                  touched={shippingTouched}
+                  showEmail
+                  loggedIn={loggedIn}
+                  errors={billingErrors}
+                  touched={billingTouched}
                   attemptedSubmit={attemptedSubmit}
-                  onFieldBlur={handleShippingBlur}
-                  onFieldChange={clearShippingError}
+                  onFieldBlur={handleBillingBlur}
+                  onFieldChange={clearBillingError}
                 />
-              </div>
-            ) : null}
-          </section>
+              </section>
 
-          <section className="card bg-[#F0FDFA] p-5 sm:p-6">
-              <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h3>
+              <section className="card p-6 sm:p-8">
+                <label className="flex cursor-pointer items-center gap-3 text-sm font-medium text-[#0F172A]">
+                  <input
+                    type="checkbox"
+                    checked={shipToDifferent}
+                    onChange={(event) => setShipToDifferent(event.target.checked)}
+                    className="h-4 w-4 rounded accent-[#0D9488]"
+                  />
+                  Ship to a different address?
+                </label>
 
-              <label
-                className={`${methodCardClass(paymentMethod === "card")} ${paymentOptionsLoaded && !cardAvailable ? "opacity-70" : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="payment_method"
-                  value="card"
-                  checked={paymentMethod === "card"}
-                  onChange={() => setPaymentMethod("card")}
-                  disabled={paymentOptionsLoaded && !cardAvailable}
-                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
-                />
-                <span className="flex min-w-0 flex-1 flex-col gap-1">
-                  <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                    <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
-                    Credit / debit card
-                  </span>
-                  <span className="text-xs leading-relaxed text-[#64748B]">
-                    Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
-                  </span>
-                  {!paymentOptionsLoaded ? (
-                    <span className="text-xs text-[#64748B]">Checking card availability…</span>
-                  ) : !cardAvailable ? (
-                    <span className="text-xs text-amber-700">
-                      Card gateway did not respond — refresh the page or use cryptocurrency below.
-                    </span>
-                  ) : null}
-                </span>
-              </label>
-
-              <label
-                className={`${methodCardClass(paymentMethod === "crypto")} mt-3 ${hasLabRestock ? "opacity-60" : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="payment_method"
-                  value="crypto"
-                  checked={paymentMethod === "crypto"}
-                  onChange={() => setPaymentMethod("crypto")}
-                  disabled={hasLabRestock}
-                  className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
-                />
-                <span className="flex min-w-0 flex-1 flex-col gap-1">
-                  <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
-                    <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
-                    Cryptocurrency
-                  </span>
-                  <span className="text-xs leading-relaxed text-[#64748B]">
-                    {hasLabRestock
-                      ? LAB_RESTOCK_COPY.cryptoBlocked
-                      : "USDT, ETH, SOL, and other assets via Paymento."}
-                  </span>
-                </span>
-              </label>
-
-              {hasLabRestock ? (
-                <p className="mt-3 rounded-lg border border-[#0D9488]/25 bg-white px-4 py-3 text-xs leading-relaxed text-[#0F766E]">
-                  Cart includes Peptide Refill. First shipment is full price via secure card checkout;
-                  −12% applies from cycle 2. Future refills are scheduled — you pay each cycle (no
-                  auto-charge). Free cold-chain shipping on refill shipments. Skip, pause, or cancel
-                  anytime from your account.
-                </p>
-              ) : null}
-
-              {paymentMethod === "crypto" ? (
-                <div className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4">
-                  <FieldLabel htmlFor="checkout-crypto-asset">Select asset</FieldLabel>
-                  <select
-                    id="checkout-crypto-asset"
-                    value={selectedAsset}
-                    onChange={(event) => setSelectedAsset(event.target.value)}
-                    className="input-field text-sm"
-                  >
-                    {cryptoOptions.map((option) => (
-                      <option key={option.asset} value={option.asset}>
-                        {option.label}
-                        {option.provider === "btcpay"
-                          ? " · BTCPay"
-                          : option.provider === "paymento"
-                            ? " · Paymento"
-                            : ""}
-                      </option>
-                    ))}
-                  </select>
-                  {!cryptoLive ? (
-                    <p className="mt-2 text-xs text-amber-700">
-                      Crypto gateways are not connected in this environment yet.
-                    </p>
-                  ) : null}
-                </div>
-              ) : paymentMethod === "card" ? (
-                <p className="mt-4 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-xs leading-relaxed text-[#64748B]">
-                  Card details are entered on our secure hosted payment page after you place your order.
-                </p>
-              ) : null}
-          </section>
-        </div>
-
-        <aside className="lg:sticky lg:top-6">
-          <div className="card overflow-hidden">
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-[#E2E8F0] bg-[#0F172A] px-4 py-3 text-sm font-medium text-white">
-              <span>Product</span>
-              <span>Subtotal</span>
-            </div>
-
-            {items.length === 0 ? (
-              <div className="px-4 py-6 text-sm text-[#64748B]">
-                Your cart is empty.{" "}
-                <Link href="/shop" className="text-[#0D9488] hover:underline">
-                  Browse catalog
-                </Link>
-              </div>
-            ) : (
-              <ul className="divide-y divide-[#E2E8F0]">
-                {items.map((item) => {
-                  const image = getProductImage(item.handle)
-                  return (
-                  <li key={item.id} className="flex gap-3 px-4 py-4">
-                    <Image
-                      src={image}
-                      alt={item.title}
-                      width={56}
-                      height={56}
-                      {...localImageProps(image)}
-                      className="h-14 w-14 shrink-0 rounded-lg bg-white object-contain"
+                {shipToDifferent ? (
+                  <div className="mt-6 border-t border-[#E2E8F0] pt-6">
+                    <h3 className="mb-6 font-serif text-lg text-[#0F172A]">Shipping details</h3>
+                    <AddressFields
+                      idPrefix="shipping"
+                      firstName={shipFirstName}
+                      setFirstName={setShipFirstName}
+                      lastName={shipLastName}
+                      setLastName={setShipLastName}
+                      company={shipCompany}
+                      setCompany={setShipCompany}
+                      country={shipCountry}
+                      setCountry={setShipCountry}
+                      address1={shipAddress1}
+                      setAddress1={setShipAddress1}
+                      address2={shipAddress2}
+                      setAddress2={setShipAddress2}
+                      city={shipCity}
+                      setCity={setShipCity}
+                      province={shipProvince}
+                      setProvince={setShipProvince}
+                      postalCode={shipPostalCode}
+                      setPostalCode={setShipPostalCode}
+                      phone={shipPhone}
+                      setPhone={setShipPhone}
+                      availableCountries={availableCountries}
+                      errors={shippingErrors}
+                      touched={shippingTouched}
+                      attemptedSubmit={attemptedSubmit}
+                      onFieldBlur={handleShippingBlur}
+                      onFieldChange={clearShippingError}
                     />
-                    <div className="flex min-w-0 flex-1 items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-[#0F172A]">{item.title}</p>
-                        {item.variantTitle ? (
-                          <p className="mt-0.5 text-xs text-[#94A3B8]">{item.variantTitle}</p>
-                        ) : null}
-                        {item.fulfillment === "lab_restock" ? (
-                          <p className="mt-0.5 text-[11px] font-medium text-[#0F766E]">
-                            {LAB_RESTOCK_COPY.cartBadge}
-                            {item.restockCadenceDays
-                              ? ` · every ${item.restockCadenceDays}d`
+                  </div>
+                ) : null}
+              </section>
+
+              <button
+                type="button"
+                onClick={goToPayment}
+                disabled={!items.length}
+                className="btn-primary w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Continue to payment
+              </button>
+            </>
+          ) : (
+            <>
+              <section className="card p-5 sm:p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0 text-sm leading-relaxed text-[#475569]">
+                    <p className="font-medium text-[#0F172A]">{email}</p>
+                    <p className="mt-2">
+                      {shippingAddress.firstName} {shippingAddress.lastName}
+                      {shippingAddress.company ? `, ${shippingAddress.company}` : ""}
+                    </p>
+                    <p>
+                      {shippingAddress.address1}
+                      {shippingAddress.address2 ? `, ${shippingAddress.address2}` : ""}
+                    </p>
+                    <p>
+                      {shippingAddress.city}
+                      {provinceDisplay ? `, ${provinceDisplay}` : ""} {shippingAddress.postalCode}
+                    </p>
+                    <p>{countryName}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setStep("information")}
+                    className="shrink-0 text-sm font-medium text-[#0D9488] hover:underline"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </section>
+
+              <section id="checkout-payment" className="card bg-[#F0FDFA] p-5 sm:p-6">
+                <h2 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h2>
+
+                <label
+                  className={`${methodCardClass(paymentMethod === "card")} ${paymentOptionsLoaded && !cardAvailable ? "opacity-70" : ""}`}
+                >
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="card"
+                    checked={paymentMethod === "card"}
+                    onChange={() => setPaymentMethod("card")}
+                    disabled={paymentOptionsLoaded && !cardAvailable}
+                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
+                  />
+                  <span className="flex min-w-0 flex-1 flex-col gap-1">
+                    <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
+                      <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                      Credit / debit card
+                    </span>
+                    <span className="text-xs leading-relaxed text-[#64748B]">
+                      Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
+                    </span>
+                    {!paymentOptionsLoaded ? (
+                      <span className="text-xs text-[#64748B]">Checking card availability…</span>
+                    ) : !cardAvailable ? (
+                      <span className="text-xs text-amber-700">
+                        Card gateway did not respond — refresh the page or use cryptocurrency below.
+                      </span>
+                    ) : null}
+                  </span>
+                </label>
+
+                <label
+                  className={`${methodCardClass(paymentMethod === "crypto")} mt-3 ${hasLabRestock ? "opacity-60" : ""}`}
+                >
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="crypto"
+                    checked={paymentMethod === "crypto"}
+                    onChange={() => setPaymentMethod("crypto")}
+                    disabled={hasLabRestock}
+                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
+                  />
+                  <span className="flex min-w-0 flex-1 flex-col gap-1">
+                    <span className="flex items-center gap-2 text-sm font-medium text-[#0F172A]">
+                      <Bitcoin className="h-4 w-4 text-[#D97706]" aria-hidden />
+                      Cryptocurrency
+                    </span>
+                    <span className="text-xs leading-relaxed text-[#64748B]">
+                      {hasLabRestock
+                        ? LAB_RESTOCK_COPY.cryptoBlocked
+                        : "USDT, ETH, SOL, and other assets via Paymento."}
+                    </span>
+                  </span>
+                </label>
+
+                {hasLabRestock ? (
+                  <p className="mt-3 rounded-lg border border-[#0D9488]/25 bg-white px-4 py-3 text-xs leading-relaxed text-[#0F766E]">
+                    Cart includes Peptide Refill. First shipment is full price via secure card checkout;
+                    −12% applies from cycle 2. Future refills are scheduled — you pay each cycle (no
+                    auto-charge). Free cold-chain shipping on refill shipments. Skip, pause, or cancel
+                    anytime from your account.
+                  </p>
+                ) : null}
+
+                {paymentMethod === "crypto" ? (
+                  <div className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4">
+                    <FieldLabel htmlFor="checkout-crypto-asset">Select asset</FieldLabel>
+                    <select
+                      id="checkout-crypto-asset"
+                      value={selectedAsset}
+                      onChange={(event) => setSelectedAsset(event.target.value)}
+                      className="input-field text-sm"
+                    >
+                      {cryptoOptions.map((option) => (
+                        <option key={option.asset} value={option.asset}>
+                          {option.label}
+                          {option.provider === "btcpay"
+                            ? " · BTCPay"
+                            : option.provider === "paymento"
+                              ? " · Paymento"
                               : ""}
-                          </p>
-                        ) : null}
-                        <p className="mt-1 text-xs text-[#64748B]">Qty: {item.quantity}</p>
-                      </div>
-                      <p className="shrink-0 tabular-nums text-sm text-[#0F172A]">
-                        ${(item.unitPrice * item.quantity).toFixed(2)}
+                        </option>
+                      ))}
+                    </select>
+                    {!cryptoLive ? (
+                      <p className="mt-2 text-xs text-amber-700">
+                        Crypto gateways are not connected in this environment yet.
                       </p>
-                    </div>
-                  </li>
-                  )
-                })}
-              </ul>
-            )}
+                    ) : null}
+                  </div>
+                ) : paymentMethod === "card" ? (
+                  <p className="mt-4 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-xs leading-relaxed text-[#64748B]">
+                    Card details are entered on our secure hosted payment page after you place your order.
+                  </p>
+                ) : null}
+              </section>
 
-            <div className="space-y-2 border-t border-[#E2E8F0] px-4 py-4 text-sm text-[#475569]">
-              <div className="flex items-center justify-between">
-                <span>Subtotal</span>
-                <span className="tabular-nums">${subtotal.toFixed(2)}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Shipping</span>
-                <span className="tabular-nums">
-                  {hasLabRestock ? "Free (Peptide Refill)" : `$${shippingUsd.toFixed(2)}`}
-                </span>
-              </div>
-              <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
-                <span>Total</span>
-                <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
-              </div>
-            </div>
-          </div>
+              <label
+                className={`flex items-start gap-3 rounded-xl border bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569] ${
+                  ruoError && attemptedSubmit ? "border-red-300" : "border-[#E2E8F0]"
+                }`}
+              >
+                <input
+                  id="checkout-ruo-ack"
+                  checked={ruoAck}
+                  onChange={(event) => {
+                    setRuoAck(event.target.checked)
+                    if (event.target.checked) setRuoError("")
+                  }}
+                  type="checkbox"
+                  aria-invalid={Boolean(ruoError && attemptedSubmit)}
+                  aria-describedby={ruoError && attemptedSubmit ? "checkout-ruo-error" : undefined}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded accent-[#0D9488]"
+                />
+                I confirm these compounds are for research use only and not for human consumption.
+              </label>
+              <FieldError id="checkout-ruo-error" message={attemptedSubmit ? ruoError : undefined} />
 
-          <label
-            className={`mt-4 flex items-start gap-3 rounded-xl border bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569] ${
-              ruoError && attemptedSubmit ? "border-red-300" : "border-[#E2E8F0]"
-            }`}
-          >
-            <input
-              id="checkout-ruo-ack"
-              checked={ruoAck}
-              onChange={(event) => {
-                setRuoAck(event.target.checked)
-                if (event.target.checked) setRuoError("")
-              }}
-              type="checkbox"
-              aria-invalid={Boolean(ruoError && attemptedSubmit)}
-              aria-describedby={ruoError && attemptedSubmit ? "checkout-ruo-error" : undefined}
-              className="mt-0.5 h-4 w-4 shrink-0 rounded accent-[#0D9488]"
-            />
-            I confirm these compounds are for research use only and not for human consumption.
-          </label>
-          <FieldError id="checkout-ruo-error" message={attemptedSubmit ? ruoError : undefined} />
+              <p className="text-xs leading-relaxed text-[#64748B]">
+                Your personal data will be used to process your order and for other purposes described in our{" "}
+                <Link href="/privacy" className="text-[#0D9488] hover:underline">
+                  privacy policy
+                </Link>
+                .
+              </p>
 
-          <p className="mt-5 text-xs leading-relaxed text-[#64748B]">
-            Your personal data will be used to process your order and for other purposes described in our{" "}
-            <Link href="/privacy" className="text-[#0D9488] hover:underline">
-              privacy policy
-            </Link>
-            .
-          </p>
-
-          <button
-            type="submit"
-            disabled={loading || !items.length}
-            className="btn-primary mt-5 w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {submitLabel}
-          </button>
+              <button
+                type="submit"
+                disabled={loading || !items.length}
+                className="btn-primary w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {submitLabel}
+              </button>
+            </>
+          )}
 
           {error ? (
             <p
-              className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+              className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
               role="alert"
             >
               {error}
             </p>
           ) : null}
-          {status ? <p className="mt-4 text-sm text-[#475569]">{status}</p> : null}
+          {status ? <p className="text-sm text-[#475569]">{status}</p> : null}
+
+          <CheckoutTrustRow />
+
+          <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-sm text-[#475569]">
+            <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#0D9488]" aria-hidden />
+            <p>
+              Need help? Email{" "}
+              <a href="mailto:info@tetravalabs.com" className="font-medium text-[#0D9488] hover:underline">
+                info@tetravalabs.com
+              </a>
+              .
+            </p>
+          </div>
+
+          <p className="flex items-center gap-2 text-xs text-[#94A3B8]">
+            <Lock className="h-3.5 w-3.5" aria-hidden />
+            Payments run on a hosted, encrypted checkout. We do not store card numbers.
+          </p>
+        </div>
+
+        <aside className="hidden lg:sticky lg:top-6 lg:block">
+          <CheckoutOrderSummary {...summaryProps} />
         </aside>
       </div>
     </form>

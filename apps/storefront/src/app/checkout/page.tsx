@@ -19,19 +19,12 @@ export default function CheckoutPage() {
         <span className="section-label">Order</span>
         <h1 className="mt-2 font-serif text-3xl text-[#0F172A] sm:text-4xl">Checkout</h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#475569]">
-          Pay securely by card or cryptocurrency. All orders require RUO acknowledgment before
-          fulfillment.{" "}
+          Pay by card or cryptocurrency. All orders require RUO acknowledgment before fulfillment.{" "}
           <Link href="/payment" className="text-[#0D9488] hover:underline">
             Payment guide
           </Link>
         </p>
       </div>
-      <p className="rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm text-[#475569]">
-        Returning customer?{" "}
-        <Link href="/login" className="font-medium text-[#0D9488] hover:underline">
-          Click here to log in
-        </Link>
-      </p>
       <CheckoutForm />
     </section>
   )

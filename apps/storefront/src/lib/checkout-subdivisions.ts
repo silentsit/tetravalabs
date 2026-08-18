@@ -262,6 +262,17 @@ export function getSubdivisionPlaceholder(countryCode: string) {
   }
 }
 
+export function getPostalLabel(countryCode: string) {
+  switch (countryCode.trim().toUpperCase()) {
+    case "US":
+      return "ZIP code"
+    case "GB":
+      return "Postcode"
+    default:
+      return "Postal code"
+  }
+}
+
 export function isValidSubdivision(countryCode: string, value: string) {
   const subdivisions = getCheckoutSubdivisions(countryCode)
   if (!subdivisions.length) return true
@@ -282,4 +293,17 @@ export function normalizeSubdivision(countryCode: string, value: string) {
   if (byCode) return byCode.code
   const byName = subdivisions.find((entry) => entry.name.toLowerCase() === trimmed.toLowerCase())
   return byName?.code ?? trimmed
+}
+
+export function formatSubdivisionDisplay(countryCode: string, value: string) {
+  const trimmed = value.trim()
+  if (!trimmed) return ""
+  const subdivisions = getCheckoutSubdivisions(countryCode)
+  if (!subdivisions.length) return trimmed
+  const normalized = trimmed.toLowerCase()
+  const match = subdivisions.find(
+    (entry) =>
+      entry.code.toLowerCase() === normalized || entry.name.toLowerCase() === normalized
+  )
+  return match?.name ?? trimmed
 }

@@ -13,7 +13,9 @@ export function AccountAuthPanel() {
         </Suspense>
       </div>
       <div className="lg:pl-12 xl:pl-16">
-        <RegisterForm layout="account" />
+        <Suspense fallback={<p className="text-sm text-[#475569]">Loading...</p>}>
+          <RegisterForm layout="account" />
+        </Suspense>
       </div>
     </div>
   )

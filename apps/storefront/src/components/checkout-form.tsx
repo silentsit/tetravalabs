@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { FormEvent, useEffect, useMemo, useState, type ReactNode } from "react"
+import { FormEvent, useCallback, useEffect, useMemo, useState, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
 import {
   Bitcoin,
@@ -17,7 +17,7 @@ import {
   Snowflake
 } from "lucide-react"
 import { useCart, type CartItem } from "@/components/cart-provider"
-import { readAuthToken, retrieveCustomer } from "@/lib/medusa-auth"
+import { readAuthToken, retrieveCustomer, AUTH_SESSION_CHANGED_EVENT } from "@/lib/medusa-auth"
 import {
   CHECKOUT_CRYPTO_CATALOG,
   type CheckoutCryptoOption
@@ -62,6 +62,9 @@ type CheckoutOrder = {
 type PaymentMethod = "card" | "crypto"
 
 const ORDERS_KEY = "tetrava_orders_v1"
+const CHECKOUT_RETURN_PATH = "/checkout"
+const CHECKOUT_LOGIN_HREF = `/login?returnUrl=${encodeURIComponent(CHECKOUT_RETURN_PATH)}`
+const CHECKOUT_REGISTER_HREF = `/register?returnUrl=${encodeURIComponent(CHECKOUT_RETURN_PATH)}`
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const US_ZIP_PATTERN = /^\d{5}(-\d{4})?$/
 const PHONE_PATTERN = /^[\d\s()+\-.]{7,}$/
@@ -272,6 +275,39 @@ function OptionalExpandField({
 
 type CheckoutStep = "information" | "payment"
 
+function CheckoutAuthBanner({ loggedIn, email }: { loggedIn: boolean; email: string }) {
+  if (loggedIn) {
+    return (
+      <div className="rounded-xl border border-[#0D9488]/25 bg-[#F0FDFA] px-4 py-3 text-sm text-[#475569]">
+        Signed in as{" "}
+        <span className="font-medium text-[#0F172A]">{email || "your account"}</span>.{" "}
+        <Link href="/account" className="font-medium text-[#0D9488] hover:underline">
+          View account
+        </Link>
+      </div>
+    )
+  }
+
+  return (
+    <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-4 sm:px-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="space-y-1 text-sm text-[#475569]">
+          <p className="font-medium text-[#0F172A]">Have a Tetrava account?</p>
+          <p>Sign in for saved details and order history, or create an account before you pay.</p>
+        </div>
+        <div className="flex shrink-0 flex-wrap gap-2">
+          <Link href={CHECKOUT_LOGIN_HREF} className="btn-secondary min-h-11 px-4 py-2.5 text-sm">
+            Sign in
+          </Link>
+          <Link href={CHECKOUT_REGISTER_HREF} className="btn-primary min-h-11 px-4 py-2.5 text-sm">
+            Create account
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function CheckoutStepper({ step }: { step: CheckoutStep }) {
   const paymentActive = step === "payment"
 
@@ -470,7 +506,6 @@ type AddressFieldsProps = {
   attemptedSubmit?: boolean
   onFieldBlur?: (field: AddressFieldKey) => void
   onFieldChange?: (field: AddressFieldKey) => void
-  loggedIn?: boolean
 }
 
 function fieldVisibleError(
@@ -515,8 +550,7 @@ function AddressFields({
   touched,
   attemptedSubmit = false,
   onFieldBlur,
-  onFieldChange,
-  loggedIn = false
+  onFieldChange
 }: AddressFieldsProps) {
   const subdivisions = getCheckoutSubdivisions(country)
   const subdivisionLabel = getSubdivisionLabel(country)
@@ -553,20 +587,9 @@ function AddressFields({
     <div className="space-y-4">
       {showEmail && setEmail ? (
         <div>
-          <div className="mb-1.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-            <label htmlFor={`${idPrefix}-email`} className="text-sm text-[#334155]">
-              Email
-              <span className="text-red-500"> *</span>
-            </label>
-            {!loggedIn ? (
-              <p className="text-xs text-[#64748B]">
-                Already have an account?{" "}
-                <Link href="/login" className="font-medium text-[#0D9488] hover:underline">
-                  Log in
-                </Link>
-              </p>
-            ) : null}
-          </div>
+          <FieldLabel htmlFor={`${idPrefix}-email`} required>
+            Email
+          </FieldLabel>
           <input
             id={`${idPrefix}-email`}
             required
@@ -1004,16 +1027,36 @@ export function CheckoutForm() {
     setError("Your cart is empty.")
   }, [items.length, step])
 
-  useEffect(() => {
-    setLoggedIn(Boolean(readAuthToken()))
-    void retrieveCustomer().then((customer) => {
-      if (!customer) return
-      setLoggedIn(true)
-      if (customer.email) setEmail(customer.email)
-      if (customer.first_name) setFirstName(customer.first_name)
-      if (customer.last_name) setLastName(customer.last_name)
-    })
+  const loadCustomerSession = useCallback(async () => {
+    const hasToken = Boolean(readAuthToken())
+    if (!hasToken) {
+      setLoggedIn(false)
+      return
+    }
+
+    const customer = await retrieveCustomer()
+    if (!customer) {
+      setLoggedIn(false)
+      return
+    }
+
+    setLoggedIn(true)
+    if (customer.email) setEmail(customer.email)
+    if (customer.first_name) setFirstName(customer.first_name)
+    if (customer.last_name) setLastName(customer.last_name)
   }, [])
+
+  useEffect(() => {
+    void loadCustomerSession()
+  }, [loadCustomerSession])
+
+  useEffect(() => {
+    const onAuthChange = () => {
+      void loadCustomerSession()
+    }
+    window.addEventListener(AUTH_SESSION_CHANGED_EVENT, onAuthChange)
+    return () => window.removeEventListener(AUTH_SESSION_CHANGED_EVENT, onAuthChange)
+  }, [loadCustomerSession])
 
   useEffect(() => {
     if (!email.trim() || !EMAIL_PATTERN.test(email.trim()) || !items.length) return
@@ -1381,6 +1424,7 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-6">
+      <CheckoutAuthBanner loggedIn={loggedIn} email={email} />
       <CheckoutStepper step={step} />
 
       <div className="lg:hidden">
@@ -1431,7 +1475,6 @@ export function CheckoutForm() {
                   setEmail={setEmail}
                   availableCountries={availableCountries}
                   showEmail
-                  loggedIn={loggedIn}
                   errors={billingErrors}
                   touched={billingTouched}
                   attemptedSubmit={attemptedSubmit}

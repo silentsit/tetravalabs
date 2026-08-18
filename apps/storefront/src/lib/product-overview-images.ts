@@ -107,6 +107,21 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers reviewing a rodent stroke motor-function recovery chart and HPLC purity chromatogram beside a DSIP vial",
     2: "Researcher reviewing an FDA compounding advisory committee review document on a tablet beside a DSIP vial and Certificate of Analysis",
   },
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
+    0: "Gloved researcher matching the KLOW Blend 80mg vial against its four individual component vials, BPC-157, TB-500, GHK-Cu, and KPV, beside a printed Certificate of Analysis",
+    1: "Lab monitor showing four converging research pathway diagrams, tissue-repair, copper-peptide gene signaling, actin regulation, and anti-inflammatory cytokine signaling, meeting at a labeled KLOW Blend vial",
+    2: "Side-by-side HPLC chromatograms comparing the three-component GLOW blend to the four-component KLOW Blend, with a gloved hand pointing at the additional KPV peak",
+  },
+  "pinealon-10mg": {
+    0: "Researcher tracing Pinealon's isolation from human cortex brain tissue through HPLC purification to the finished Glu-Asp-Arg tripeptide vial",
+    1: "Lab researcher holding a Pinealon research vial while reviewing a reactive-oxygen-species suppression chart from a cerebellar granule cell oxidative-stress assay",
+    2: "Gloved hand holding Pinealon and Epitalon research vials side by side in front of a monitor showing their tripeptide and tetrapeptide structures and separate HPLC chromatogram peaks",
+  },
+  semaglutide: {
+    0: "Researcher pointing to a semaglutide molecular engineering diagram showing the Aib2 substitution and C18 fatty diacid side chain beside a labeled Research Use Only vial",
+    1: "Lab researcher reviewing a 68-week body-weight-reduction trial line chart on a monitor beside a semaglutide research vial and printed data sheet",
+    2: "Gloved hand holding semaglutide and tirzepatide research vials side by side in front of a monitor comparing single GLP-1 receptor activation to dual GLP-1/GIP receptor activation",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

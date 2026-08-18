@@ -77,7 +77,7 @@ export function SiteHeader() {
       >
         <div className="page-container flex h-full items-center justify-between">
           <Link href="/" className="flex shrink-0 items-center">
-            <SiteLogo className="w-[156px] sm:w-[216px]" />
+            <SiteLogo className="shrink-0" />
           </Link>
 
           <nav className="hidden items-center gap-5 lg:flex xl:gap-8">
@@ -105,7 +105,7 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex min-w-0 shrink-0 items-center gap-0.5 sm:gap-2">
             <button
               type="button"
               onClick={() => setSearchOpen(true)}

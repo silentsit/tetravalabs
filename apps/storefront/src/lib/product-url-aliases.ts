@@ -115,7 +115,8 @@ export const LEGACY_PRETTY_URL_REDIRECTS: Record<string, string> = {
   "bpc-157-capsules": "buy-bpc-157-capsules-online",
   "pinealon-capsules": "buy-pinealon-capsules-online",
   "buy-sermorelin-online": "buy-sermorelin-peptide",
-  "klow-bpc-157-tb-500-ghk-cu-kpv": "klow-blend"
+  "klow-bpc-157-tb-500-ghk-cu-kpv": "klow-blend",
+  "selank-nasal-spray-10mg": "buy-selank-online"
 }
 
 /** Public SKU names that are not Medusa handles; resolve to the compound parent. */

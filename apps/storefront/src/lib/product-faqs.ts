@@ -79,34 +79,164 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   ],
   semaglutide: [
     {
-      question: "What is semaglutide studied for in research settings?",
+      question: "What is semaglutide?",
       answer:
-        "Semaglutide is a GLP-1 receptor agonist analog used in metabolic, receptor-binding, and signaling research models. Tetrava Labs offers it strictly as an RUO laboratory reagent with identity and purity controls — not as a medication or consumer product.",
+        "A GLP-1 receptor agonist built from native human GLP-1. Novo Nordisk swapped position 2 for Aib so DPP-4 cannot cut it, then hung a C18 fatty diacid off lysine 26 so the peptide binds albumin and lasts about a week instead of a few minutes. Ozempic, Wegovy, and Rybelsus are the approved brand names. Tetrava Labs does not sell those. This page lists a lyophilized Research Use Only reagent, CAS 910463-68-2, in 5 mg and 10 mg research strengths.",
     },
     {
-      question: "How do I verify semaglutide purity and identity?",
+      question: "What does semaglutide do, and how does it work?",
       answer:
-        "Lots are tested by independent third-party HPLC-MS. Review the lot-linked Certificate of Analysis for purity percentage, molecular-weight confirmation, and chromatographic data when published, and file it with your material ID.",
+        "It activates the GLP-1 receptor. Gastric emptying slows. Glucose-dependent insulin release goes up. Food intake drops through hypothalamic circuits. Glucose-dependent is the useful part: the insulin-release effect fades as blood sugar comes back down, unlike older drugs that force insulin release anyway. Labs keep it as the GLP-1-only reference when a protocol has to separate that signal from dual or triple agonists.",
     },
     {
-      question: "What strengths of research semaglutide are available?",
+      question: "Is Ozempic semaglutide? Is semaglutide the same as Ozempic?",
       answer:
-        "Strength options and pack sizes are listed on this product page. Choose the configuration that matches your assay cadence and retention policy so inventory planning stays consistent across study arms.",
+        "Yes. Ozempic is a brand name for semaglutide. So are Wegovy and Rybelsus. Same molecule, different products: Ozempic up to 2 mg weekly for type 2 diabetes, Wegovy up to 2.4 mg weekly for chronic weight management, Rybelsus as the oral tablet. Tetrava's listing is none of those. It is a research vial, not a finished drug.",
     },
     {
-      question: "How should research semaglutide be stored?",
+      question: "What is the semaglutide brand name?",
       answer:
-        "Keep lyophilized material at -20°C. After reconstitution per your SOP, store working solutions at 4°C, protect from unnecessary light exposure if your protocol requires it, and avoid repeated freeze–thaw cycles.",
+        "Ozempic, Wegovy, and Rybelsus, depending on the product. Semaglutide is the generic name. If a search for \"semaglutide vs Ozempic\" is asking whether they are different molecules, they are not.",
     },
     {
-      question: "How is semaglutide shipped for laboratory orders?",
+      question: "How much weight loss, and how long does it take for semaglutide to work?",
       answer:
-        "Orders ship in cold-chain-aware packaging appropriate for lyophilized peptides. Tracking is emailed after dispatch. Delivery windows and rates are summarized on the Shipping page.",
+        "STEP 1 ran 68 weeks in adults with obesity or overweight who did not have diabetes. Mean change was -14.9% on semaglutide 2.4 mg versus -2.4% on placebo, or -15.3 kg versus -2.6 kg. 86.4% lost 5% or more of body weight, versus 31.5% on placebo. Half of the semaglutide group lost 15% or more. The mean curve was still falling at week 68. That is a supervised trial of an approved product, not a timeline for this research reagent.",
+    },
+    {
+      question: "What is oral semaglutide, and do semaglutide pills or tablets work?",
+      answer:
+        "Oral semaglutide is Rybelsus: the peptide co-formulated with SNAC in one tablet. SNAC raises pH next to the dissolving tablet and loosens nearby gastric membrane enough for the peptide to cross before enzymes destroy it. Food or extra water dilutes that local effect, so the approved tablet is taken on an empty stomach with a sip of water. Tetrava does not sell semaglutide tablets. The catalog item is lyophilized powder.",
+    },
+    {
+      question: "What is the difference between semaglutide and tirzepatide?",
+      answer:
+        "Semaglutide hits GLP-1. Tirzepatide hits GIP and GLP-1. SURMOUNT-5 compared the approved products head-to-head in obesity and found a larger drop in body weight and waist circumference on tirzepatide, at those doses, in that population. For lab work the choice is the receptor question, not a ranking copied from a trial.",
+    },
+    {
+      question: "Is tirzepatide better than semaglutide?",
+      answer:
+        "In SURMOUNT-5, on weight-loss endpoints, tirzepatide beat semaglutide. That is the published result. It does not make tirzepatide the right reagent if the assay is supposed to isolate GLP-1-only activity. Pick the molecule that matches the receptor the protocol is testing.",
+    },
+    {
+      question: "What are the side effects of semaglutide, and is it safe?",
+      answer:
+        "STEP 1 reported gastrointestinal events, mainly nausea and diarrhea, in 74.2% on semaglutide versus 47.9% on placebo, mostly mild to moderate and clustered around dose increases. 7.0% quit because of adverse events, versus 3.1%. Gallstones: 1.8% versus 0.6%. Acute pancreatitis: 0.2% versus none. SELECT, a longer cardiovascular trial, had 16.6% permanent discontinuation versus 8.2% on placebo. \"Safe\" is a risk-benefit call in a supervised population. This page does not certify the research vial as a treatment.",
+    },
+    {
+      question: "Does semaglutide cause cancer?",
+      answer:
+        "The FDA label has a boxed warning for thyroid C-cell tumors from rat and mouse studies. Human relevance, the label says, has not been determined. Personal or family history of medullary thyroid carcinoma, or MEN 2, is a contraindication. There is no clean confirmed human cancer link in the trial literature. There is an animal finding and a boxed warning.",
+    },
+    {
+      question: "Does semaglutide cause hair loss?",
+      answer:
+        "Alopecia in STEP 1: 3.3% on semaglutide versus 1.0% on placebo. 4.0% of women, 0.9% of men. The pattern that fits is telogen effluvium, a temporary shed after rapid weight loss, which tends to ease once weight stabilizes. Real trial signal. Not something that happened to most participants.",
+    },
+    {
+      question: "Does semaglutide make you tired?",
+      answer:
+        "Fatigue is not a main finding in STEP 1 or SELECT the way nausea and diarrhea are. There is no strong trial number tying semaglutide to tiredness, either direction.",
+    },
+    {
+      question: "Does semaglutide expire?",
+      answer:
+        "Lyophilized peptide has a shelf life. It depends on storage temperature and how the vial was handled before it reached you. Read the lot paperwork for the batch in hand. This page does not publish an in-use window for an approved pen, because that is not the product sold here.",
+    },
+    {
+      question: "What to eat on semaglutide?",
+      answer:
+        "That is a diet question for someone taking an approved drug under a clinician. An RUO listing has nothing useful to say about it.",
+    },
+    {
+      question: "Does compounded semaglutide work?",
+      answer:
+        "Compounded semaglutide is a pharmacy-made product, often using sodium or acetate salt forms instead of the semaglutide base in Ozempic and Wegovy. FDA said in April 2023 it was not aware of a legal basis for compounding with those salts. Published pharmacokinetics for the salt forms are thin compared with the base compound. Tetrava does not sell a compounded product.",
+    },
+    {
+      question: "Where can I buy compounded semaglutide?",
+      answer:
+        "Not here. Compounded semaglutide comes from a licensed compounding pharmacy under drug-compounding rules, usually with a prescription. Searches for \"buy semaglutide compound\" and \"where to buy semaglutide compound\" are that category. This page sells a bulk research reagent for laboratory work.",
+    },
+    {
+      question: "Can I buy semaglutide online, and is it safe to buy semaglutide online?",
+      answer:
+        "You can buy semaglutide online here as a research reagent, for qualified laboratory use. Safety of the purchase is a documentation question: lot-specific Certificate of Analysis, CAS 910463-68-2 matching the vial, HPLC-MS identity, not a PDF recycled across batches. This page is not a route to a prescription, a compounded product, or a personal-use injection.",
+    },
+    {
+      question: "Can you buy semaglutide over the counter?",
+      answer:
+        "No. Approved semaglutide is prescription-only. There is no OTC version. The RUO vial on this page is a separate category, not an over-the-counter substitute.",
+    },
+    {
+      question: "How do I buy semaglutide, or how do I get it?",
+      answer:
+        "For treatment: a licensed prescriber and a licensed pharmacy dispensing Ozempic, Wegovy, or Rybelsus. For laboratory work: order the research reagent on this page from a supplier that documents lot identity and purity. Two different purchases. This page is the second one. \"Buy semaglutide prescription online\" is the first path, and Tetrava is not it.",
+    },
+    {
+      question: "Where can I buy semaglutide online?",
+      answer:
+        "Here, if the order is for a qualified lab: Tetrava Labs ships lyophilized semaglutide with a lot-linked Certificate of Analysis. If the search is for the approved drug, that is a pharmacy and prescription question this page does not answer.",
+    },
+    {
+      question: "What is the best place to buy semaglutide online?",
+      answer:
+        "For a research reagent, the useful test is paperwork. Lot number on the vial matching the COA. Independent HPLC-MS, not a purity percentage floating without a chromatogram. CAS 910463-68-2 on the label. Price without that is just a cheap undocumented vial.",
+    },
+    {
+      question: "Where can I buy semaglutide in the UK or Canada?",
+      answer:
+        "Tetrava ships from the United States. Typical windows to the UK, Canada, Australia, and the USA are 2-7 business days, with some regions restricted. Check the Shipping page before you order. Customs and duties sit with the recipient. This listing is a lyophilized research vial, not a pre-filled injection pen.",
+    },
+    {
+      question: "What does semaglutide cost, and where can I buy semaglutide tablets?",
+      answer:
+        "The price on this page is per research vial, 5 mg or 10 mg depending on the strength you pick. It is not a monthly prescription cost, an insurance copay, or a compounding-pharmacy quote. Tetrava does not sell semaglutide tablets. Rybelsus is the oral product, and it is prescription-only.",
+    },
+    {
+      question: "Can I buy semaglutide for weight loss on this page?",
+      answer:
+        "No. Searches for \"buy semaglutide for weight loss\" and \"semaglutide weight loss where to buy\" are looking for a treatment. STEP 1 and the Wegovy label are that conversation, under a clinician. Tetrava sells a laboratory reagent. Using it as a substitute for Wegovy is outside the listing and outside the law this page is written under.",
+    },
+    {
+      question: "Where to buy needles for semaglutide?",
+      answer:
+        "Not on this page. Injection supplies and administration guidance belong to an approved drug under clinical instruction. An RUO catalog does not sell that kit and does not tell you how to use one.",
+    },
+    {
+      question: "How to inject semaglutide, and where to inject it?",
+      answer:
+        "This page does not give injection technique or injection-site instructions. Those sit on an approved label, with a prescriber. The catalog item is a lyophilized research peptide, reconstituted in a lab, not a weekly injection.",
+    },
+    {
+      question: "How many mg is 40 units of semaglutide, or 50 units?",
+      answer:
+        "Not published here. Units-to-milligrams depends on the pen or syringe concentration in front of you. Getting it wrong is a dosing-error risk, which is why that conversion belongs with a pharmacist or prescriber, not a research catalog.",
+    },
+    {
+      question: "Where is the semaglutide dosing chart or weight-loss dosage chart?",
+      answer:
+        "Not on this page. The approved drug's escalation schedule is on its prescribing label. Tetrava sells lyophilized 5 mg and 10 mg research vials with no human dosing schedule attached.",
+    },
+    {
+      question: "Where to buy GLP-1 semaglutide, and is this a semaglutide injection?",
+      answer:
+        "This page is where to buy GLP-1 semaglutide as a documented research peptide. It is not a finished semaglutide injection. No pen. No pre-filled syringe. Labs reconstitute the lyophilized cake under their own SOP.",
+    },
+    {
+      question: "What purity and COA documentation come with semaglutide?",
+      answer:
+        "Independent third-party HPLC-MS on each lot. The Certificate of Analysis lists identity and purity for that batch. Match the lot number on the COA to the vial before you start comparative work. A recycled generic PDF is not a lot record.",
+    },
+    {
+      question: "How is semaglutide stored and shipped?",
+      answer:
+        "Lyophilized vial at -20°C. After reconstitution, skip repeat freeze-thaw and follow the lab SOP for the working solution. Orders ship in cold-chain-aware packaging where the route needs it, tracking emailed after dispatch. Typical delivery to USA, Canada, Australia, and UK is 2-7 business days when the destination is not restricted.",
     },
     {
       question: "Can semaglutide from Tetrava Labs be used in humans?",
       answer:
-        "No. This catalog item is Research Use Only and is not intended for human or veterinary administration, compounding for clinical use, or diagnostic applications.",
+        "No. Research Use Only. Not for human or veterinary administration, not for compounding into a clinical product, not for diagnostic use.",
     },
   ],
   tirzepatide: [
@@ -1223,6 +1353,210 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
       question: "How is MOTS-c purity and identity verified?",
       answer:
         "Each lot is checked by independent third-party HPLC-MS analysis reporting both purity and identity. Match the COA batch number in the COA library to the vial you actually received before starting comparative research work.",
+    },
+  ],
+  "pinealon-10mg": [
+    {
+      question: "What is Pinealon peptide / what is Pinealon used for?",
+      answer:
+        "Pinealon is a synthetic tripeptide. Sequence: Glu-Asp-Arg, EDR for short. Researchers at the Saint Petersburg Institute of Bioregulation and Gerontology found the sequence inside Cortexin, a brain-cortex extract, then synthesized it on its own. Tetrava Labs sells it as a lyophilized Research Use Only reagent for CNS and oxidative-stress lab work. Not a supplement. Not a drug. Not used for anything outside a laboratory.",
+    },
+    {
+      question: "Is Pinealon a bioregulator, and what does that mean?",
+      answer:
+        "Yes, that's the research classification Khavinson's group gave it: a short peptide, under eight amino acids, proposed to act on gene expression in a specific tissue rather than through a surface receptor. It's a lab term, not a government-approved category. No agency licenses or defines a product class called \"bioregulator.\"",
+    },
+    {
+      question: "What does Pinealon do, and what does Pinealon peptide do?",
+      answer:
+        "In cell-culture work, a 100 nanomolar dose blocked ouabain-induced free-radical buildup completely, and 500 nanomolar did the same against homocysteine-induced oxidative stress, in rat cerebellar granule cells. Separate rodent studies report protection against prenatal hyperhomocysteinemia and changes in cytokine and caspase-3 levels under hypoxic stress. All preclinical. Tetrava Labs doesn't claim any of it translates to a person.",
+    },
+    {
+      question: "Pinealon peptide: what is it, benefits, and mechanism?",
+      answer:
+        "The leading hypothesis says short peptides like Pinealon bind gene-promoter DNA and adjust transcription from inside the nucleus, instead of signaling through a surface receptor. Fluorescence and computational-docking data support that idea. A structural study actually showing the bound complex doesn't exist yet. \"Benefit\" stays inside the cell-culture and rodent literature; there's no human trial behind it.",
+    },
+    {
+      question: "Pinealon peptide: what is it, benefits, and side effects?",
+      answer:
+        "Check the Description tab for what the published research actually covers. On side effects, there isn't published human safety data, so there's no list to give and none worth guessing at. That absence is itself worth weighing before you trust a summary elsewhere that states one anyway.",
+    },
+    {
+      question: "What is Pinealon peptide used for in research, specifically?",
+      answer:
+        "Oxidative-stress work in cerebellar granule cells, neutrophils, and PC12 cells. Cognitive-aging and CNS gene-expression assays. A couple of rodent hypoxia and prenatal-stress studies. That's the current published scope, not a wider claim.",
+    },
+    {
+      question: "What does Pinealon do for sleep, and is Pinealon good for sleep?",
+      answer:
+        "Nothing published ties it to sleep architecture, sleep onset, or melatonin signaling. The pineal-gland framing gets it lumped in with sleep compounds on forums, but the actual papers are about oxidative stress and cortical gene expression, a different question entirely.",
+    },
+    {
+      question: "Pinealon vs Epitalon: what's the difference?",
+      answer:
+        "Different molecules, same research program. Pinealon is the tripeptide Glu-Asp-Arg. Epitalon is the tetrapeptide Ala-Glu-Asp-Gly. Epitalon's literature is telomerase activity and rodent lifespan. Pinealon's is oxidative stress and neuronal viability. Both trace back to Vladimir Khavinson's lab and both get filed under pineal peptides, but they don't share a sequence, a mechanism paper, or an evidence base you can swap between them.",
+    },
+    {
+      question: "Is there a Pinealon peptide dosage, dosage chart, or protocol?",
+      answer:
+        "No, on purpose. Pinealon is a laboratory reagent, not a product with a human dosing schedule. Published protocols specify nanomolar concentrations for cell assays and milligram-per-kilogram doses scaled to rat body weight, not a milligram-per-day number for a person. Pull the concentration and exposure time from the primary paper for your own model.",
+    },
+    {
+      question: "When to take Pinealon, or when to take Pinealon peptide?",
+      answer:
+        "That's a human-administration question this listing doesn't answer. Published timing is relative to an experimental stressor, a hypoxic challenge or an induced metabolic condition, not a daily schedule for a person. Tetrava Labs sells Pinealon strictly for laboratory research.",
+    },
+    {
+      question: "What are Pinealon's side effects, and is it safe?",
+      answer:
+        "No published human trial has looked at Pinealon's safety profile. There's no side-effect data to report and no safety claim to make. A list you find elsewhere describing human side effects is unsourced until it points to an actual study.",
+    },
+    {
+      question: "Where can I buy Pinealon, or buy Pinealon peptide online?",
+      answer:
+        "Right here. Tetrava Labs ships Pinealon peptide to qualified researchers with a lot-linked Certificate of Analysis and cold-chain-aware packaging. Pinealon capsules are also available for an oral-route research design instead of a reconstituted vial.",
+    },
+    {
+      question: "Pinealon: buy, purchase, or where to get it?",
+      answer:
+        "Tetrava Labs sells Pinealon directly through this page, not through a distributor or a marketplace listing. Order the vial or the capsule format, and a lot-linked COA ships with it.",
+    },
+    {
+      question: "What's the best place to buy Pinealon peptide, or the best place to buy Pinealon peptide in 2026?",
+      answer:
+        "Look for a lot-specific Certificate of Analysis with independent HPLC-MS purity data, not a generic PDF reused across batches. Cold-chain-aware shipping and a CAS number (175175-23-2) that matches the vial label are the other two things worth confirming before you order from anyone.",
+    },
+    {
+      question: "Is Pinealon 20mg, 99% pure, lab-tested?",
+      answer:
+        "This page sells a 10mg vial, not a 20mg one. Whatever the strength, \"99% pure, lab-tested\" only means something if you can match that number to a lot-specific COA from an independent lab. A percentage with no matching batch report is a marketing line, not documentation.",
+    },
+    {
+      question: "Buy Pinealon for sale, buy Pinealon research peptide, or buy Pinealon capsules?",
+      answer:
+        "This page lists Pinealon 10mg as a lyophilized vial. If your protocol calls for an oral-route reagent, Tetrava Labs also carries Pinealon capsules, documented the same way with its own lot-linked COA.",
+    },
+    {
+      question: "Buy Pinealon in the UK or the USA, and is there a Pinealon 20mg option?",
+      answer:
+        "Tetrava Labs ships from the United States to qualified labs, with some regions restricted. Check the Shipping page for current country and state availability, UK included, before ordering. This listing is 10mg only. A \"Pinealon 20mg\" reference elsewhere isn't this SKU; confirm the actual strength against that vendor's own COA.",
+    },
+    {
+      question: "Where to buy Pinealon peptide near me?",
+      answer:
+        "No pharmacy or supplement counter carries an RUO research peptide, so \"near me\" won't turn up a storefront. Tetrava Labs ships Pinealon directly to laboratories with documented lot identity, which matters more than proximity anyway.",
+    },
+    {
+      question: "What purity and COA documentation come with Pinealon?",
+      answer:
+        "Independent third-party HPLC-MS testing backs each lot. The published Certificate of Analysis lists identity and purity for that specific batch. Match the lot number on the COA to the vial before you start comparative work.",
+    },
+    {
+      question: "How is Pinealon stored and shipped?",
+      answer:
+        "Keep the lyophilized vial at -20°C. After reconstitution, avoid repeated freeze-thaw cycles and follow your lab's SOP for working-solution storage. Orders go out in cold-chain-aware packaging where the route requires it, with tracking emailed after dispatch.",
+    },
+    {
+      question: "Is Pinealon Research Use Only?",
+      answer:
+        "Yes. Laboratory research only, for qualified institutions and researchers. Not for a person, not for an animal. No dosing or outcome claims attach to this listing.",
+    },
+  ],
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": [
+    {
+      question: "What is KLOW peptide / what is in KLOW?",
+      answer:
+        "KLOW is shorthand, not a peptide, for an 80mg blend: BPC-157 10mg, TB-500 10mg, GHK-Cu 10mg, and KPV 50mg, lyophilized into one vial. Tetrava Labs sells it as a laboratory research reagent. Nobody regulates or defines \"KLOW\" as a term. It's just what this particular four-peptide combination is called on this page.",
+    },
+    {
+      question: "What does KLOW peptide do, and what is KLOW peptide used for?",
+      answer:
+        "Each of the four components has its own research literature: BPC-157 in tissue repair and angiogenesis, TB-500 in actin regulation and cell migration, GHK-Cu in copper-peptide gene signaling tied to collagen, KPV in anti-inflammatory cytokine work. Tetrava Labs doesn't claim KLOW does anything as a combined product in a human body, because nobody has run that trial. This listing is Research Use Only, full stop.",
+    },
+    {
+      question: "What's the difference between BPC-157, TB-500, GHK-Cu, and KPV in the KLOW blend?",
+      answer:
+        "They're four unrelated peptides sharing a vial, not four versions of one molecule. BPC-157 and TB-500 both come up in tissue-repair research, but through different mechanisms, one derived from gastric tissue, the other a thymosin beta-4 fragment. GHK-Cu is a copper-binding tripeptide with nothing to do with either. KPV is smaller still, three amino acids, studied for inflammation. Trust the Certificate of Analysis over the blend name.",
+    },
+    {
+      question: "GLOW vs KLOW peptide — what's the difference?",
+      answer:
+        "One peptide: KPV. GLOW has BPC-157, TB-500, and GHK-Cu. KLOW has those same three plus KPV. Compare the two Certificates of Analysis and you'll see it directly. GLOW's chromatogram shows three peaks. KLOW's shows four.",
+    },
+    {
+      question: "Is 'KLOW stack' the same as KLOW Blend?",
+      answer:
+        "Yes. Same vial, same four components, same fixed strengths. \"Stack\" and \"blend\" are just two words for the same catalog item on this page.",
+    },
+    {
+      question:
+        "Where can I buy KLOW / buy KLOW online / buy KLOW peptide online?",
+      answer:
+        "Right here. Tetrava Labs ships KLOW Blend (80mg) to qualified researchers with a lot-linked Certificate of Analysis covering all four components, not one blended purity figure. Research Use Only.",
+    },
+    {
+      question:
+        "What's the best place to buy KLOW peptide, or the best place to buy KLOW peptide online?",
+      answer:
+        "Look for a lot-specific COA that identifies all four peaks separately, BPC-157, TB-500, GHK-Cu, KPV, not a single purity percentage covering the whole vial. Cold-chain-aware shipping matters too. A cheaper price on a blend that only tests overall purity tells you less than it looks like it does.",
+    },
+    {
+      question:
+        "Where to buy KLOW peptide online in the USA, and is it available in Canada?",
+      answer:
+        "Tetrava Labs ships from the United States to qualified labs, with some regions restricted. Check the Shipping page for current country and state availability, Canada included, before you order. This is a research reagent, not a consumer product with a retail channel.",
+    },
+    {
+      question: "Where can I buy KLOW peptides near me?",
+      answer:
+        "No pharmacy or supplement store stocks an RUO four-peptide blend, so \"near me\" won't get you far here. Tetrava Labs ships KLOW Blend directly to laboratories, with documented identity for all four components in the vial.",
+    },
+    {
+      question: "What are the benefits of KLOW peptide?",
+      answer:
+        "Tetrava Labs doesn't make benefit claims for KLOW Blend. What exists is published research on the individual peptides: BPC-157 and TB-500 in tissue-repair signaling, GHK-Cu in gene modulation tied to collagen, KPV in anti-inflammatory cytokine work. None of that research has tested this specific four-peptide combination in a person.",
+    },
+    {
+      question: "Are there KLOW peptide before-and-after results?",
+      answer:
+        "None that Tetrava Labs stands behind. No controlled trial has tested this four-peptide combination in humans, so before-and-after posts you find elsewhere are anecdotes, not data.",
+    },
+    {
+      question: "Is there a KLOW dosage chart, or how much KLOW peptide should I take per day?",
+      answer:
+        "There isn't one on this page, on purpose. KLOW Blend is a laboratory reagent, not a product with a human dosing schedule. Concentration and volume for a given assay belong in your lab's own protocol.",
+    },
+    {
+      question:
+        "How much KLOW peptide to take per day, and how often should it be taken?",
+      answer:
+        "Tetrava Labs doesn't publish a daily amount or a frequency, because that's a human-dosing question and this is a Research Use Only catalog listing. Your lab's protocol sets concentration, volume, and frequency for whatever assay you're running.",
+    },
+    {
+      question:
+        "How do you reconstitute KLOW 80mg, and is there a KLOW 80mg reconstitution and dosage chart?",
+      answer:
+        "For lab prep: reconstitute the lyophilized powder under sterile technique with whatever diluent your protocol specifies, right before use, and log the diluent lot, concentration, and operator in your ELN. There's no milliliter-to-dose chart here, because that would pair a lab reagent with a human dose, and this listing doesn't support that.",
+    },
+    {
+      question: "How do you dose or take KLOW peptide, and where do you inject it?",
+      answer:
+        "None of that is on this page. Tetrava Labs doesn't give dosing instructions, administration guidance, or injection sites for KLOW Blend. It's sold to qualified researchers for laboratory use, not for administering to a person or an animal.",
+    },
+    {
+      question: "What purity and COA documentation come with KLOW Blend?",
+      answer:
+        "Independent third-party HPLC-MS testing resolves all four peaks per lot: BPC-157, TB-500, GHK-Cu, KPV. The published Certificate of Analysis lists identity and purity for each one. Match the batch number on the COA to the vial before you start comparative work.",
+    },
+    {
+      question: "How is KLOW Blend stored and shipped?",
+      answer:
+        "Keep the lyophilized vial at -20°C. Once you reconstitute it, skip repeated freeze-thaw cycles. Orders go out in cold-chain-aware packaging where the route requires it, with tracking emailed after dispatch. See the Shipping page for delivery windows by region.",
+    },
+    {
+      question: "Is KLOW Blend Research Use Only?",
+      answer:
+        "Yes. Laboratory research only, for qualified institutions and researchers. Not for a person, not for an animal, and no dosing or outcome claims attach to this listing.",
     },
   ],
   "glow-bpc-157-tb500-ghk-cu": [

@@ -21,7 +21,9 @@ export function SiteLogo({
   className = "",
   showWordmark = true
 }: SiteLogoProps) {
-  const sizeClass = showWordmark ? "h-8 w-auto max-w-[220px]" : "h-6 w-auto max-w-[165px]"
+  const sizeClass = showWordmark
+    ? "h-7 w-auto max-w-[140px] object-contain sm:h-8 sm:max-w-[216px]"
+    : "h-6 w-auto max-w-[165px] object-contain"
   const variantClass = variant === "footer" ? "opacity-95" : ""
   const src = variant === "footer" ? FOOTER_LOGO_SRC : LOGO_SRC
   const width = variant === "footer" ? FOOTER_LOGO_WIDTH : LOGO_WIDTH

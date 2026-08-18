@@ -41,7 +41,7 @@ export const metadata: Metadata = buildPageMetadata({
   title: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
   absoluteTitle: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
   description:
-    "Buy peptides online from Tetrava Labs. Research peptides for sale with verified purity and third-party lab testing.",
+    "Buy peptides online from Tetrava Labs. Research peptides with 99%+ HPLC-MS purity, lot-linked COAs, and cold-chain shipping. Research use only.",
   path: "/",
   jsonLd: faqJsonLd(faqItems.slice(0, 4), "/")
 })

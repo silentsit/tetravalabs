@@ -14,7 +14,7 @@ const notifications = [
   { name: "Dr. Sarah Chen", location: "Palo Alto, CA", product: "BPC-157 / TB-500 Blend", time: "1 hr ago" },
   { name: "BioNova Group", location: "Phoenix, AZ", product: "Retatrutide 5mg", time: "1 hr ago" },
   { name: "Elena R.", location: "Miami, FL", product: "Bacteriostatic Water 10ml", time: "2 hr ago" },
-  { name: "Dr. Rebecca Park", location: "Nashville, TN", product: "Selank Nasal Spray 10mg", time: "8 min ago" },
+  { name: "Dr. Rebecca Park", location: "Nashville, TN", product: "Selank 10mg", time: "8 min ago" },
   { name: "Thomas H.", location: "Portland, OR", product: "Epithalon 10mg", time: "15 min ago" },
   { name: "Amanda W.", location: "Raleigh, NC", product: "BPC-157 Capsules", time: "22 min ago" },
   { name: "David Okoro", location: "Houston, TX", product: "MOTS-c 10mg", time: "29 min ago" },
@@ -128,7 +128,7 @@ export function SocialProofToast() {
 
   return (
     <div
-      className={`pointer-events-none fixed bottom-20 left-4 right-4 z-40 transition-all duration-500 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-sm ${
+      className={`pointer-events-none fixed bottom-24 left-4 z-40 w-[min(20rem,calc(100vw-5.75rem))] transition-all duration-500 sm:bottom-6 sm:left-6 sm:w-full sm:max-w-sm ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >

@@ -1652,6 +1652,333 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-18",
   },
+  "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
+    shortDescription: [
+      "KLOW is what people search for when they mean an 80mg, four-peptide research blend: BPC-157 10mg, TB-500 10mg, GHK-Cu 10mg, and KPV 50mg, lyophilized into one vial. That's the whole product. Tetrava Labs sells it strictly for laboratory research. It isn't an FDA-approved drug, it isn't a supplement, and it isn't meant for a person or an animal to consume.",
+      'The name isn\'t official anywhere.',
+      'It follows the same pattern as [GLOW Blend](/glow-bpc-157-tb-500-ghk-cu), which uses the first three of these four peptides. KLOW just adds a fourth: KPV, a tripeptide studied for anti-inflammatory signaling that has nothing to do with the tissue-repair work behind [BPC-157](/buy-bpc-157-online) and [TB-500](/buy-tb-500-online), or the copper-gene work behind GHK-Cu. Whoever coined "KLOW" and "GLOW" was borrowing initials, not describing a mechanism. The Certificate of Analysis is what actually tells you what\'s in the vial.',
+    ],
+    otherKnownTitles: [
+      "KLOW Blend",
+      "KLOW Stack",
+      "KLOW Peptide Blend",
+      "BPC-157 / TB-500 / GHK-Cu / KPV Blend",
+      "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg (80mg)",
+    ],
+    sections: [
+      {
+        heading: "What each peptide in KLOW Blend is studied for",
+        paragraphs: [
+          "BPC-157 came out of gastric-juice research at the University of Zagreb in the 1990s. It's a synthetic 15-amino-acid fragment built from a longer gastroprotective protein, and it shows up mostly in tissue-repair, angiogenesis, and gut-mucosal-protection studies in animal models.[1]",
+          "TB-500 is a name, not a peptide sequence in its own right. Mass spectrometry traced the material sold under that name to the N-terminal acetylated 17-23 fragment of thymosin beta-4, a short stretch cut from a much larger 4,963-dalton protein.[2] Researchers use it in actin-regulation and cell-migration work. The full-length protein and the fragment aren't interchangeable, and older thymosin beta-4 literature doesn't automatically carry over to TB-500.",
+          "GHK-Cu is older than either of those. Loren Pickart identified the copper-binding tripeptide, glycyl-L-histidyl-L-lysine, in human plasma in 1973, while comparing blood from younger and older donors. Decades of follow-up work since then tie it to gene-expression changes around collagen synthesis, antioxidant activity, and wound healing.[3]",
+          "KPV is the smallest of the four: three amino acids, Lys-Pro-Val, clipped from the tail end of alpha-melanocyte-stimulating hormone. Strip away the rest of alpha-MSH and the pigmentation signaling goes with it, but KPV keeps showing anti-inflammatory activity on its own, including in intestinal-inflammation models.[4]",
+        ],
+      },
+      {
+        heading: "Purity, documentation, and lot verification for a four-component blend",
+        paragraphs: [
+          "One purity number doesn't cut it here. A four-component blend needs four confirmed identities on the same Certificate of Analysis, one per peak: BPC-157, TB-500, GHK-Cu, and KPV. Tetrava Labs publishes that lot-linked HPLC-MS data in the [COA library](/coa-library), so you can check the batch against what's actually in your hands before starting comparative work.",
+          "The FDA put BPC-157 and the thymosin beta-4 fragment sold as TB-500 on its Category 2 list of significant-safety-risk bulk substances back in 2023.[5] Both stayed Research Use Only after that. GHK-Cu and KPV never landed on that list, for what it's worth, but the finished blend still ships under the same RUO restriction. Regulatory history on one ingredient doesn't change how the other three get treated.",
+        ],
+      },
+      {
+        heading: "Why researchers combine four peptides in one lot",
+        paragraphs: [
+          "Buying four peptides from four separate vials means four identity checks and four chances for lot variation to creep in. A fixed-ratio blend collapses that into one lot, one COA, one set of numbers to trust.",
+          "Each of the four sits in its own pathway: tissue-repair signaling for BPC-157, actin regulation for TB-500, copper-peptide gene modulation for GHK-Cu, cytokine-linked anti-inflammatory signaling for KPV. A lab running a comparative protocol, blend against single components, or KLOW against the three-peptide [GLOW Blend](/glow-bpc-157-tb-500-ghk-cu), can isolate exactly what adding KPV changes in a given assay.",
+        ],
+      },
+      {
+        heading: "GLOW vs KLOW: what the fourth peptide changes",
+        paragraphs: [
+          "GLOW and KLOW start the same: BPC-157, TB-500, GHK-Cu. KLOW just keeps going and adds KPV. Run both blends side by side and you're really testing one variable, whether the anti-inflammatory tripeptide shifts the result against the three-peptide baseline, not comparing two unrelated products.",
+          "The fastest way to confirm that difference isn't the label. It's the chromatogram. GLOW resolves three peaks. KLOW resolves four, and that fourth peak needs to match KPV on both mass and retention time. Whatever the marketing name says, the COA is the only thing that actually tells you what's in the vial.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "KLOW Blend ships lyophilized, which is what keeps it stable in transit. Keep sealed vials at -20°C, skip the freeze-thaw cycles, and reconstitute right before use under sterile technique with whatever diluent your protocol calls for.",
+          "Once it's reconstituted, hold it at 4°C and use it inside the window your lab's SOP sets for a multi-peptide prep. Write down the diluent lot, the date, the target concentration, and who did it. That's what keeps a four-component identity auditable against the batch [Certificate of Analysis](/coa-library) later. None of this is dosing advice. It's lab prep, for people running the assay, not for anyone administering it to themselves or anyone else.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Sikiric P, Seiwerth S, Rucman R, et al. Stable gastric pentadecapeptide BPC 157: novel therapy in gastrointestinal tract. Curr Pharm Des. 2011;17(16):1612-1632.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/21548867/",
+      },
+      {
+        id: 2,
+        citation:
+          "Esposito S, Deventer K, Goeman J, Van der Eycken J, Van Eenoo P. Synthesis and characterization of the N-terminal acetylated 17-23 fragment of thymosin beta 4 identified in TB-500, a product suspected to possess doping potential. Drug Test Anal. 2012;4(9):733-738.",
+        url: "https://doi.org/10.1002/dta.1402",
+      },
+      {
+        id: 3,
+        citation:
+          "Pickart L, Margolina A. Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data. Int J Mol Sci. 2018;19(7):1987.",
+        url: "https://doi.org/10.3390/ijms19071987",
+      },
+      {
+        id: 4,
+        citation:
+          "Dalmasso G, Charrier-Hisamuddin L, Nguyen HT, Yan Y, Sitaraman S, Merlin D. PepT1-mediated tripeptide KPV uptake reduces intestinal inflammation. Gastroenterology. 2008;134(1):166-178.",
+        url: "https://doi.org/10.1053/j.gastro.2007.10.026",
+      },
+      {
+        id: 5,
+        citation:
+          "U.S. Food and Drug Administration. Certain Bulk Drug Substances for Use in Compounding That May Present Significant Safety Risks. 2023.",
+        url: "https://www.fda.gov/drugs/human-drug-compounding",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
+  "pinealon-10mg": {
+    shortDescription: [
+      "Pinealon is a synthetic tripeptide. Sequence: Glu-Asp-Arg, EDR for short. Vladimir Khavinson's group built it at the Saint Petersburg Institute of Bioregulation and Gerontology, part of a short-peptide bioregulator program that produced dozens of similar two-to-seven amino acid compounds. The sequence itself turned up first inside Cortexin, a polypeptide extract from bovine and porcine brain cortex, and researchers later synthesized it on its own to test whether the fragment carried any of Cortexin's activity by itself.[2]",
+      "Tetrava Labs sells Pinealon as a sterile, lyophilized reagent for [central-nervous-system and longevity peptide research](/category/longevity-neuropeptides): oxidative stress, neuronal viability, cognitive-aging models in cells and animals. The identity fields in the Specifications tab match the CAS registry (175175-23-2). Every lot ships with third-party HPLC-verified identity and purity data, tested and documented, not just claimed. This is a research reagent. It is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "EDR peptide",
+      "Glu-Asp-Arg tripeptide",
+      "Pineal bioregulator peptide",
+    ],
+    sections: [
+      {
+        heading: "Where Pinealon came from: a Cortexin fragment, not a pineal extract",
+        paragraphs: [
+          "Pinealon's name points to the pineal gland. The peptide itself was pulled out of Cortexin, a neuroprotective polypeptide mixture made from bovine and porcine cerebral cortex.[2] Glu-Asp-Arg was the most common three-amino-acid sequence in that extract, so Khavinson's group isolated it and synthesized a standalone version to see if the short fragment did anything on its own.",
+          "The pineal branding comes from a separate, overlapping thread. The same EDR sequence has also turned up in pineal-derived preparations, which is why older research summaries and marketing copy file Pinealon under \"pineal bioregulators\" next to Epitalon. Cortical origin and pineal association are two different claims. They get blurred often enough that it's worth keeping them apart when you're reading an older paper or a vendor page.",
+        ],
+      },
+      {
+        heading: "What \"bioregulator\" means here",
+        paragraphs: [
+          "Searches for \"Pinealon (bioregulator)\" usually mean the term literally, so it's worth defining once. In the Khavinson framework, a bioregulator is a short peptide, most under eight amino acids, proposed to act on gene expression inside a specific tissue type rather than through a cell-surface receptor. Pinealon, Epitalon, and roughly a dozen related compounds fall under that label. It's a research classification, not a regulatory one. No health authority defines or approves a product category called \"bioregulator.\"",
+        ],
+      },
+      {
+        heading: "Pinealon and oxidative stress: the actual numbers behind the headline claim",
+        paragraphs: [
+          "The paper researchers cite most often is a 2011 Rejuvenation Research study using rat cerebellar granule cells, neutrophils, and PC12 pheochromocytoma cells.[2] The design: expose the cells to a known oxidative trigger, ouabain at 100 nM or homocysteine at 500 micromolar, then add Pinealon and measure free-radical accumulation by flow cytometry.",
+          "A 100 nM dose of Pinealon fully blocked the ouabain-induced rise in reactive oxygen species. Against homocysteine, 500 nM did the same. Downstream, Pinealon delayed ERK 1/2 activation from 2.5 minutes to about 20 minutes in the homocysteine condition, and in PC12 cells, concentrations between 50 and 500 nM shifted the cell-cycle distribution away from the G1 phase.[2] The antioxidant effect and the drop in necrotic cell death both leveled off around 100 to 500 nM, while the cell-cycle shift kept scaling past that point, a split the authors used to argue Pinealon does more than absorb free radicals.",
+          "All of that is one paper, in three cell lines, none of them human tissue and none of them a live animal. Useful for designing a comparator arm. Not evidence of anything happening in a body.",
+        ],
+      },
+      {
+        heading: "Animal-model findings: prenatal hyperhomocysteinemia and aged-rat hypoxia",
+        paragraphs: [
+          "A 2012 study from the same research network tested Pinealon in pregnant rats with induced hyperhomocysteinemia, a metabolic stressor tied to fetal neurodevelopmental disruption, and reported that the peptide protected offspring against some of the resulting damage.[3] A 2014 paper from a different institutional group ran a separate comparison: Pinealon against Cortexin in old rats under acute hypoxic stress, reading out serum cytokines and caspase-3 activity in brain tissue. The two peptides split the results, each doing more on some endpoints than the other.[4]",
+          "Both are small, non-blinded rodent studies published in Russian-language or Russian-affiliated journals. Neither has an independent replication outside that network. That's a real gap, worth naming in any protocol that leans on these papers. It's a reason for caution, not a reason to throw the data out.",
+        ],
+      },
+      {
+        heading: "The DNA-binding mechanism claim, and where the evidence actually stands",
+        paragraphs: [
+          "Khavinson's framework holds that Pinealon and related short peptides bind gene-promoter DNA directly and adjust transcription from inside the nucleus, instead of signaling through a cell-surface receptor. A 2019 physical-chemistry paper modeled how monovalent and divalent ions affect the EDR peptide's interaction with DNA, adding an outside lab's angle to the mechanism.[5]",
+          "What's still missing, more than fifteen years after the idea was proposed, is a structural study, X-ray or cryo-EM, showing a three-residue peptide bound sequence-specifically to a DNA promoter. A folded DNA-binding domain usually needs more scaffolding than three amino acids can provide. Read the genomic-interaction model as a proposed mechanism backed by fluorescence and computational data. It isn't a settled fact.",
+        ],
+      },
+      {
+        heading: "Pinealon vs Epitalon: same research tradition, different molecule",
+        paragraphs: [
+          "Pinealon (Glu-Asp-Arg, three residues) and Epitalon (Ala-Glu-Asp-Gly, four residues) both came out of Khavinson's bioregulator program and both get filed under pineal research, but they aren't interchangeable. Epitalon's literature is about telomerase activity and rodent lifespan studies. Pinealon's is about oxidative stress, neuronal viability, and cortical gene expression, plus a separate paper reporting that short peptides including EDR stimulate serotonin-related gene expression in cultured brain-cortex cells.[1]",
+          "Their regulatory footprint at home differs too. Several related Khavinson bioregulators hold Russian Federation drug registration. Pinealon and Epitalon don't; they're sold there as supplement-tier products. Neither is an FDA-approved drug in the United States. Tetrava Labs sells both strictly as Research Use Only laboratory reagents, and nothing in this section should be read as a recommendation to swap one for the other in a study design.",
+        ],
+      },
+      {
+        heading: "Reading a Pinealon research protocol without turning it into a dosing chart",
+        paragraphs: [
+          "\"Pinealon peptide protocol\" searches usually want a human schedule. This page doesn't have one, and Tetrava Labs won't publish one, because Pinealon is a laboratory reagent, not an approved product with a dosing label.",
+          "What the published protocols do specify is concentration and timing for a given assay: nanomolar-range doses for the cell-culture oxidative-stress work cited above, milligram-per-kilogram dosing scaled for rat body weight in the hyperhomocysteinemia and hypoxia studies, each with its own exposure window and readout. None of that scales to a human number through simple arithmetic, and this page won't do that conversion. If your protocol needs a concentration or exposure time, pull it from the primary paper for your specific model, not from a rearranged version of someone else's rat study.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "Pinealon ships lyophilized. That's what keeps a tripeptide this small stable in transit. Store sealed vials at -20°C, skip repeated freeze-thaw cycles, and reconstitute under sterile technique with a protocol-appropriate diluent right before use.",
+          "Once reconstituted, hold the working solution per your lab's SOP and log the diluent lot, concentration, date, and operator in the ELN, so the prep stays traceable against the batch [Certificate of Analysis](/coa-library). A \"99% pure, lab-tested\" claim only means something if you can match it to that specific lot's COA, not a generic PDF reused across batches. Tetrava Labs also lists [Pinealon capsules](/buy-pinealon-capsules-online) for labs running an oral-route design instead of a reconstituted vial. None of this is dosing or administration guidance for a person or an animal. It's lab-prep documentation for whoever is running the assay.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Khavinson VK, Lin'kova NS, Tarnovskaya SI, Umnov RS, Elashkina EV, Durnova AO. Short peptides stimulate serotonin expression in cells of brain cortex. Bull Exp Biol Med. 2014;157(1):77-80.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/24909721/",
+      },
+      {
+        id: 2,
+        citation:
+          "Khavinson V, Ribakova Y, Kulebiakin K, Vladychenskaya E, Kozina L, Arutjunyan A, Boldyrev A. Pinealon increases cell viability by suppression of free radical levels and activating proliferative processes. Rejuvenation Res. 2011;14(5):535-541.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/21978084/",
+      },
+      {
+        id: 3,
+        citation:
+          "Arutjunyan A, Kozina L, Stvolinskiy S, Bulygina Y, Mashkina A, Khavinson V. Pinealon protects the rat offspring from prenatal hyperhomocysteinemia. Int J Clin Exp Med. 2012;5(2):179-185.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/22567179/",
+      },
+      {
+        id: 4,
+        citation:
+          "Mendzheritskiy AM, Karantysh GV, Ryzhak GA, Demyanenko SV. Regulation of content of cytokines in blood serum and of caspase-3 activity in brains of old rats in model of sharp hypoxic hypoxia with Cortexin and Pinealon. Adv Gerontol. 2014;27(1):94-97.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/25051764/",
+      },
+      {
+        id: 5,
+        citation:
+          "Silanteva IA, Komolkin AV, Morozova EA, Vorontsov-Velyaminov PN, Kasyanenko NA. Role of mono- and divalent ions in peptide Glu-Asp-Arg-DNA interaction. J Phys Chem B. 2019;123(8):1786-1795.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/30762356/",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
+  semaglutide: {
+    shortDescription: [
+      "Semaglutide is a GLP-1 receptor agonist. Novo Nordisk started from native human GLP-1, which DPP-4 chews through in a couple of minutes, and changed two places on the chain. Position 2 got aminoisobutyric acid (Aib) in place of alanine, which blocks that cleavage. Lysine 26 got a C18 fatty diacid hung off an AEEA-AEEA-γ-Glu spacer, so the peptide can bind albumin in blood and stay in circulation for about a week instead of a few minutes.[1]",
+      "Ozempic, Wegovy, and Rybelsus are the FDA-approved brand names for type 2 diabetes and chronic weight management. Tetrava Labs does not sell those products. This page lists a sterile, lyophilized semaglutide reagent for [GLP-1 receptor research](/category/glp-1-research): binding assays, cAMP readouts, glucose-handling models, and head-to-head work against other incretin peptides. The identity fields in the Specifications tab match CAS 910463-68-2, formula C187H291N45O59, molecular weight 4113.58. Every lot ships with third-party HPLC identity and purity data. Research use only. Not for human or veterinary use.",
+    ],
+    otherKnownTitles: [
+      "Ozempic (brand name)",
+      "Wegovy (brand name)",
+      "Rybelsus (brand name)",
+      "GLP-1 analog",
+    ],
+    sections: [
+      {
+        heading: "How semaglutide is built, and how it works",
+        paragraphs: [
+          "Native GLP-1 is a terrible drug candidate for one boring reason: DPP-4 cuts it almost as soon as it is released. The Aib swap at position 2 takes that cut site away. The fatty diacid is a different trick. Bound to albumin, the peptide clears more slowly through the kidney, so a low concentration hangs around for days.[1]",
+          "At the GLP-1 receptor, semaglutide slows gastric emptying and drives glucose-dependent insulin release from the pancreas. It also acts on hypothalamic circuits that cut food intake. Glucose-dependent is the part that matters. The insulin-release effect drops off as blood glucose comes back down, unlike older diabetes drugs that force insulin release no matter what glucose is doing.",
+          "In a lab that is the whole reason to keep a GLP-1-only agonist on the shelf. If the protocol is asking what GLP-1 receptor activity does on its own, semaglutide is the reference. Dual and triple agonists belong in a different arm.",
+        ],
+      },
+      {
+        heading: "The weight-loss data: what STEP 1 actually measured",
+        paragraphs: [
+          "STEP 1 is the trial behind most \"semaglutide weight loss\" numbers. 1,961 adults with obesity, or overweight plus a weight-related condition, none of them diabetic, 68 weeks, placebo-controlled.[2] Semaglutide 2.4 mg weekly produced a mean body-weight change of -14.9%, versus -2.4% on placebo. Absolute change was -15.3 kg versus -2.6 kg.",
+          "The responder cuts are less quoted and more useful. 86.4% of the semaglutide group lost 5% or more of body weight, versus 31.5% on placebo. 69.1% lost 10% or more, versus 12.0%. Half of the semaglutide group, 50.5%, lost 15% or more, versus 4.9% on placebo.[2]",
+          "It was not fast. Investigators used a slow dose-escalation schedule because gastrointestinal events cluster when the dose jumps. At week 68 the mean curve was still going down. \"How long does it take for semaglutide to work\" has a blunt answer in this paper: the trial ran well over a year and the effect was still building.",
+          "Gastrointestinal events, mainly nausea and diarrhea, showed up in 74.2% of the semaglutide group versus 47.9% on placebo. Most were mild to moderate and sat around dose increases. 7.0% quit because of adverse events, versus 3.1% on placebo.[2] Gallstones were less common but still higher: cholelithiasis in 1.8% versus 0.6%. Acute pancreatitis was rare, 3 people (0.2%) versus none on placebo. Those figures come from a supervised trial of an approved product. They are not a safety label for a research vial.",
+        ],
+      },
+      {
+        heading: "Semaglutide and cardiovascular risk: the SELECT trial",
+        paragraphs: [
+          "Weight loss and cardiovascular risk are separate questions. SELECT enrolled 17,604 adults with established cardiovascular disease and overweight or obesity, no diabetes, and followed them for a mean of 39.8 months.[3]",
+          "A primary endpoint event, cardiovascular death, non-fatal heart attack, or non-fatal stroke, happened in 569 of 8,803 people on semaglutide 2.4 mg (6.5%) and 701 of 8,801 on placebo (8.0%). Hazard ratio 0.80. Permanent discontinuation because of adverse events ran 16.6% versus 8.2%.",
+          "That result is why the approved label, for a defined population, includes cardiovascular risk reduction. It does not travel with Tetrava's catalog item. This page sells a laboratory reagent.",
+        ],
+      },
+      {
+        heading: "Oral semaglutide: why a peptide needs a tablet trick",
+        paragraphs: [
+          "A peptide this size usually dies in the stomach. Enzymes and low pH take the backbone apart before much of it can cross. Rybelsus, the oral tablet, puts semaglutide in the same tablet as SNAC, sodium N-(8-[2-hydroxybenzoyl] amino) caprylate.[4]",
+          "SNAC works next to the tablet, not throughout the body. It briefly raises the pH at the tablet surface so pepsin has a harder time chewing the peptide, and it loosens the nearby gastric epithelial membrane just enough for semaglutide to cross through the cells, transcellularly, without opening tight junctions.[4] The window is small and local. Food or extra water dilutes the SNAC concentration at that patch of stomach lining, which is why the approved tablet is taken on an empty stomach with a sip of water.",
+          "That constraint belongs to Rybelsus. Tetrava does not sell semaglutide pills, oral semaglutide, or a SNAC co-formulation. The listing here is a lyophilized vial.",
+        ],
+      },
+      {
+        heading: "Ozempic, Wegovy, Rybelsus: one molecule, three products",
+        paragraphs: [
+          "Yes, Ozempic is semaglutide. Wegovy is too. Rybelsus is the oral one. Same active molecule, different products. Ozempic is the type 2 diabetes injection, labeled up to 2 mg weekly. Wegovy is the chronic weight-management injection, labeled up to 2.4 mg weekly. Rybelsus is the SNAC tablet, approved for type 2 diabetes.",
+          "\"Semaglutide vs Ozempic\" is usually a naming mix-up, not a pharmacology mix-up. The brand names differ in dose, delivery, and the population each was studied in. Tetrava Labs lists none of them. No pen. No prescription. No patient label.",
+        ],
+      },
+      {
+        heading: "What this catalog listing actually is",
+        paragraphs: [
+          "The vial on this page is lyophilized semaglutide in 5 mg and 10 mg research strengths. It is not a finished injection, not a milligram-per-milliliter solution, and not a tablet. A reconstituted research prep is a lab variable you set in the SOP. It is not interchangeable with Ozempic, Wegovy, or Rybelsus.",
+          "Labs that buy semaglutide peptides here usually want a documented GLP-1-only comparator. Common pairings: [tirzepatide](/buy-tirzepatide-online) when the study needs dual GIP/GLP-1 activity, [retatrutide](/buy-retatrutide-online) when glucagon-receptor activity is in the protocol too, and the [cagrilintide + semaglutide blend](/buy-cagrilintide-semaglutide-online) when the question is amylin-plus-GLP-1 rather than GLP-1 alone.",
+          "Identity check is boring and non-negotiable. CAS 910463-68-2 on the paperwork should match the vial. Lot number on the vial should match the lot number on the [Certificate of Analysis](/coa-library). A purity percentage with no lot-linked HPLC-MS record is a catalog claim, not a result.",
+        ],
+      },
+      {
+        heading: "Semaglutide vs tirzepatide",
+        paragraphs: [
+          "Semaglutide hits GLP-1. Tirzepatide hits GIP and GLP-1. That is the difference. Searches for \"tirzepatide vs semaglutide\" and \"is tirzepatide better than semaglutide\" are usually asking which molecule lost more weight in a trial, which is a different question from which receptor profile a protocol needs.",
+          "SURMOUNT-5 ran approved tirzepatide against approved semaglutide in the same obesity protocol, so it is the comparison that does not rest on cross-trial arithmetic.[5] Tirzepatide produced a larger drop in body weight and waist circumference over that window, at those doses, in that population. It does not make tirzepatide the right reagent for every assay. Write the receptor question into the protocol first, then pick the vial.",
+        ],
+      },
+      {
+        heading: "Compounded semaglutide: what the FDA has actually said",
+        paragraphs: [
+          "Compounded semaglutide is a pharmacy-prepared product made outside Novo Nordisk's approved manufacturing. A lot of it showed up during the 2022-2024 Ozempic and Wegovy shortage, when compounding copies of a shortage drug is allowed under narrow conditions.",
+          "FDA drew a line on the salt forms. Ozempic and Wegovy contain semaglutide base. Some compounders used semaglutide sodium or semaglutide acetate instead. In an April 2023 letter to the National Association of Boards of Pharmacy, FDA's Office of Compounding Quality and Compliance wrote that it was \"not aware of any basis for compounding a drug using these semaglutide salts that would meet federal law requirements.\"[6] A public adverse-event warning followed in May 2023. Semaglutide has never been on FDA's 503A bulk-compounding list.",
+          "\"Does compounded semaglutide work\" still does not have a published pharmacokinetics answer for the salt forms the way the base compound does. A compounded product, an approved pen, and Tetrava's RUO vial are three different categories. This page is the third one.",
+        ],
+      },
+      {
+        heading: "Reported safety signals: thyroid tumors, hair loss, and what the label actually says",
+        paragraphs: [
+          "The FDA label carries a boxed warning for thyroid C-cell tumors. The finding is from rats and mice. The label says human relevance \"has not been determined.\"[7] Anyone with a personal or family history of medullary thyroid carcinoma, or with MEN 2, is contraindicated. \"Does semaglutide cause cancer\" does not have a clean human yes or no. What exists is an animal finding, a boxed warning, and a contraindication.",
+          "Alopecia showed up in STEP 1: 3.3% on semaglutide versus 1.0% on placebo, 4.0% of women and 0.9% of men.[2] The pattern that fits is telogen effluvium, a temporary shed after rapid weight loss, which tends to ease once weight stabilizes. Fatigue is not a main signal in those trial tables the way nausea and diarrhea are. \"Does semaglutide make you tired\" does not have a strong trial number behind it either way.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "Tetrava ships semaglutide lyophilized. Store sealed vials at -20°C. Skip repeated freeze-thaw. Reconstitute under sterile technique with the diluent your SOP names, right before use.",
+          "Hold the working solution the way the method says, then log diluent lot, concentration, date, and operator in the ELN so the prep still matches the batch [Certificate of Analysis](/coa-library) a month later. This page does not publish a unit-to-milligram conversion, a starting dose, an injection site, or a weight-loss dosage chart. Those questions belong to an approved label and a clinician. They do not belong on a Research Use Only catalog page.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Lau J, Bloch P, Schäffer L, et al. Discovery of the once-weekly glucagon-like peptide-1 (GLP-1) analogue semaglutide. J Med Chem. 2015;58(18):7370-7380.",
+        url: "https://doi.org/10.1021/acs.jmedchem.5b00726",
+      },
+      {
+        id: 2,
+        citation:
+          "Wilding JPH, Batterham RL, Calanna S, et al. Once-weekly semaglutide in adults with overweight or obesity (STEP 1). N Engl J Med. 2021;384(11):989-1002.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/33567185/",
+      },
+      {
+        id: 3,
+        citation:
+          "Lincoff AM, Brown-Frandsen K, Colhoun HM, et al. Semaglutide and cardiovascular outcomes in obesity without diabetes (SELECT). N Engl J Med. 2023;389(24):2221-2232.",
+        url: "https://doi.org/10.1056/NEJMoa2307563",
+      },
+      {
+        id: 4,
+        citation:
+          "Buckley ST, Bækdal TA, Vegge A, et al. Transcellular stomach absorption of a derivatized glucagon-like peptide-1 receptor agonist. Sci Transl Med. 2018;10(467):eaar7047.",
+        url: "https://doi.org/10.1126/scitranslmed.aar7047",
+      },
+      {
+        id: 5,
+        citation:
+          "Aronne LJ, Horn DB, le Roux CW, et al. Tirzepatide as compared with semaglutide for the treatment of obesity (SURMOUNT-5). N Engl J Med. 2025;393(1):26-36.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/40353578/",
+      },
+      {
+        id: 6,
+        citation:
+          "U.S. Food and Drug Administration, Office of Compounding Quality and Compliance. Letter to the National Association of Boards of Pharmacy regarding semaglutide salt forms. April 27, 2023.",
+        url: "https://www.fda.gov/drugs/human-drug-compounding",
+      },
+      {
+        id: 7,
+        citation:
+          "U.S. Food and Drug Administration. Ozempic and Rybelsus (semaglutide) prescribing information: Boxed Warning, thyroid C-cell tumors.",
+        url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=27f15fac-7d98-4114-a2ec-92494a91da98",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
 };
 
 export function getProductResearchDetail(

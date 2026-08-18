@@ -335,6 +335,147 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-18",
   },
+  nad: {
+    shortDescription: [
+      "NAD+ is short for nicotinamide adenine dinucleotide. Despite the \"NAD peptide\" label search engines keep surfacing, it isn't a peptide. A peptide is a chain of amino acids linked by peptide bonds. NAD+ has neither: it's a dinucleotide, two nucleotides (one built on adenine, one on nicotinamide) joined end to end by a pyrophosphate bridge.[1][2] NAD+ cycles between an oxidized state and a reduced state, NADH, and every living cell runs on that cycle to move electrons through metabolism.",
+      "Tetrava Labs supplies NAD+ as a sterile, lyophilized reagent for laboratory research on redox biochemistry, sirtuin and PARP enzymology, and mitochondrial-aging models. It isn't the same category of molecule as the amino-acid peptides elsewhere in this catalog, and it carries no clinical claim for anti-aging, energy, or cognitive benefit. Every lot ships with third-party HPLC-verified identity and purity data. Buy NAD+ online here for research use only; it is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "NAD",
+      "Nicotinamide Adenine Dinucleotide",
+      "Coenzyme I",
+      "Nadide",
+      "β-NAD",
+      "Diphosphopyridine Nucleotide (DPN)",
+    ],
+    sections: [
+      {
+        heading: "NAD+ is a coenzyme, not a peptide: what the molecule actually is",
+        paragraphs: [
+          "Search volume around \"NAD peptide\" is high enough that the label has stuck, but the chemistry doesn't support it. NAD+ has no amino acid backbone and no peptide bond anywhere in its structure. It's a dinucleotide: an adenine-based nucleotide and a nicotinamide-based nucleotide, each built on a ribose sugar and a phosphate group, linked by a shared pyrophosphate bridge.[1][2] PubChem lists it under CID 5892, molecular formula C21H27N7O14P2, alongside the older name nadide.[1]",
+          "Tetrava Labs does carry genuine peptides discussed in the same longevity and mitochondrial-research conversations as NAD+. [MOTS-c](/buy-mots-c-online) is one: a 16-amino-acid, mitochondrially encoded signaling peptide with an actual sequence and peptide bonds. NAD+ and MOTS-c turn up in the same research literature because both sit inside mitochondrial and metabolic-aging biology, not because they're the same class of molecule.",
+        ],
+      },
+      {
+        heading:
+          "Why NAD+ matters in cellular research: electron carrier, enzyme substrate, and DNA-repair fuel",
+        paragraphs: [
+          "NAD+/NADH is the electron-carrying pair that keeps glycolysis, the citric acid cycle, and oxidative phosphorylation moving, cycling between oxidized and reduced states as it shuttles electrons toward ATP production.[2] That redox role alone would make NAD+ worth studying. It isn't the whole story.",
+          "NAD+ also gets consumed, not just recycled, by three enzyme families driving a lot of current aging research: the sirtuins (SIRT1 through SIRT7), which use NAD+ to strip acetyl groups off histones and other proteins; the PARPs, which burn NAD+ to build poly-ADP-ribose chains during DNA repair; and CD38, an immune-cell enzyme that degrades NAD+ into calcium-signaling metabolites.[2] Sirtuins and PARPs compete for the same limited NAD+ pool. A cell under heavy DNA-damage load can starve its sirtuin activity of substrate, which is the mechanism researchers use to connect oxidative stress to aging phenotypes.[2]",
+        ],
+      },
+      {
+        heading:
+          "NAD+, AMPK, and mitochondrial biogenesis: what a 2009 skeletal-muscle study found",
+        paragraphs: [
+          "A separate line of research ties NAD+ to exercise physiology through AMPK, the cell's fuel-sensing enzyme. A 2009 study in mouse skeletal muscle found that AMPK activation raises cellular NAD+ levels, which in turn boosts SIRT1 activity. SIRT1 then deacetylates PGC-1α, FOXO1, and FOXO3a, three transcription factors that switch on mitochondrial biogenesis and oxidative-metabolism genes.[3] That's the mechanistic chain researchers point to when they connect NAD+ to exercise adaptation and mitochondrial density, not a single \"NAD+ raises energy\" claim.",
+          "It's a mouse skeletal-muscle model, not a human trial, and it says nothing about whether an exogenous NAD+ reagent reproduces the same intracellular AMPK-SIRT1 signaling. Labs studying this pathway typically need an AMPK activator (AICAR or metformin are common choices in the literature) alongside NAD+ and SIRT1 readouts to isolate where in the chain an effect originates.[3]",
+        ],
+      },
+      {
+        heading: "NAD+ decline with age: what the human tissue data shows",
+        paragraphs: [
+          "A 2012 study measured NAD+, PARP activity, and SIRT1 activity directly in human pelvic skin samples from 49 subjects ranging from newborn to age 77.[4] NAD+ levels correlated negatively with age in both sexes. PARP activity rose with age and tracked inversely with tissue NAD+ levels, most strongly in males.[4] The authors' interpretation: age-related oxidative DNA damage drives PARP into overdrive, and the resulting NAD+ consumption may be part of what limits energy production and DNA repair capacity as tissue ages.[4]",
+          "That's a correlational human-tissue dataset, not a controlled intervention trial. It supports the hypothesis that preserving NAD+ pools matters for cellular aging, but it doesn't establish that supplementing NAD+ from outside the cell reverses any of it. A comparative aging model should treat NAD+ depletion as one variable among several, with PARP and sirtuin activity measured directly rather than assumed.",
+        ],
+      },
+      {
+        heading:
+          "Precursor supplementation vs. the intact dinucleotide: what human trials have tested",
+        paragraphs: [
+          "Most of the controlled human evidence on raising NAD+ levels doesn't test the intact dinucleotide. It tests precursors, smaller molecules like nicotinamide mononucleotide (NMN) and nicotinamide riboside (NR), that cells convert into NAD+ through the salvage pathway.[2] A 2021 randomized, placebo-controlled trial gave 25 postmenopausal women with prediabetes either 250 mg of oral NMN daily or placebo for 10 weeks. The NMN group showed increased NAD+ in blood cells and improved skeletal-muscle insulin signaling, with no NMN-attributed adverse events reported.[5]",
+          "NAD+ is a large, charged molecule that doesn't cross cell membranes as readily as its smaller precursors, which is part of why the precursor route dominates the published human trial record.[2] That gap in the literature is exactly why \"how much NAD peptide should I take\" and similar dosing questions don't have a published answer. The best-controlled human data measures a different, smaller molecule than the one in this vial.",
+        ],
+      },
+      {
+        heading: "Intravenous NAD+: what the tolerability studies actually found",
+        paragraphs: [
+          "Wellness clinics market NAD+ by IV infusion or injection for energy, recovery, and anti-aging claims. The tolerability data tells a rougher story than the marketing does. A 2026 retrospective study comparing commercial NAD+ IV against NR IV infusions found that every NAD+ IV participant reported moderate-to-severe abdominal cramping, nausea, vomiting, elevated heart rate, throat pain, and chest pressure during the infusion, all of which resolved once the infusion stopped.[6] Average NAD+ IV infusion time ran 97 minutes, more than double the NR IV group's 37 minutes, largely because clinicians had to slow the drip rate to manage those reactions.[6]",
+          "A separate 2024 randomized pilot study comparing acute NAD+ IV, NR IV, and oral NR found a measurable increase in white blood cell count and neutrophils in the NAD+ IV arm, consistent with an inflammatory response. NR IV raised blood NAD+ levels faster and higher than NAD+ IV did at the three-hour mark.[7] Neither study is large enough to settle safety questions, and both call for more systematic research given how widely IV NAD+ is already marketed.[6][7] Nothing in that literature describes a validated dosing chart, calculator, or injection-site protocol. This page doesn't publish one either.",
+        ],
+      },
+      {
+        heading: "NAD+ serum, patches, and other delivery formats sold outside a lab",
+        paragraphs: [
+          "\"NAD+ serum\" and \"NAD+ patch\" are marketing terms from the skincare and wellness industries, not chemistry terms with a shared research definition behind them. Nothing in the literature reviewed for this page tests a topical serum or transdermal patch route for NAD+.",
+          "That gap tracks with what's already known about the molecule: NAD+ is large and charged, the same membrane-permeability problem that pushes controlled human trials toward smaller precursors instead of the intact dinucleotide.[2] Tetrava Labs doesn't sell a topical serum or a patch. This catalog listing is a lyophilized vial for laboratory reconstitution, nothing else.",
+        ],
+      },
+      {
+        heading:
+          "Regulatory status: not FDA-approved, excluded from the 503A compounding list",
+        paragraphs: [
+          "NAD+ has no FDA-approved indication in any form. In a September 2019 proposed rule, FDA reviewed NAD among 26 nominated substances and proposed not to add it to the Section 503A Bulks List, the list that lets compounding pharmacies use a bulk substance without an individual patient prescription tied to an approved drug.[8] Injectable NAD+ sold by clinics is compounded medication, prepared under FDA's interim compounding enforcement policy rather than as an approved drug product. Oral NMN and NR are marketed as dietary supplements under a completely different regulatory framework.[2][8]",
+          "FDA has separately reminded compounders that food-grade NAD+ isn't suitable for sterile injectable use, since food-grade material isn't manufactured or tested to the sterility and endotoxin standards an IV product requires.[9] Tetrava Labs' catalog listing is a Research Use Only laboratory reagent. It is not a compounded injectable, an IV product, or a dietary supplement.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "NAD+ ships as a lyophilized powder, which keeps it stable in transport and storage. Store sealed vials at -20°C, away from light, and avoid repeated freeze-thaw cycling; NAD+ degrades under both heat and prolonged light exposure in solution.[2] Reconstitute under sterile technique with a protocol-appropriate diluent immediately before use.",
+          "After reconstitution, hold working solutions at 4°C, minimize freeze-thaw cycles, and use them within the window your laboratory SOP sets. Because NAD+/NADH ratios are the actual readout in most redox assays, record diluent lot, reconstitution date, and time-to-assay in your ELN so preparation timing doesn't confound the ratio you're measuring. Keep those preparation notes matched to the batch [Certificate of Analysis](/coa-library).",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 5892, Nadide (NAD+).",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/5892",
+      },
+      {
+        id: 2,
+        citation:
+          "Srivastava S. Emerging therapeutic roles for NAD+ metabolism in mitochondrial and age-related disorders. Clin Transl Med. 2016;5:25.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/27465020/",
+      },
+      {
+        id: 3,
+        citation:
+          "Cantó C, Gerhart-Hines Z, Feige JN, Lagouge M, Noriega L, Milne JC, Elliott PJ, Puigserver P, Auwerx J. AMPK regulates energy expenditure by modulating NAD+ metabolism and SIRT1 activity. Nature. 2009;458(7241):1056-1060.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/19262508/",
+      },
+      {
+        id: 4,
+        citation:
+          "Massudi H, Grant R, Braidy N, Guest J, Farnsworth B, Guillemin GJ. Age-Associated Changes In Oxidative Stress and NAD+ Metabolism In Human Tissue. PLoS ONE. 2012;7(7):e42357.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/22848760/",
+      },
+      {
+        id: 5,
+        citation:
+          "Yoshino M, Yoshino J, Kayser BD, Patti GJ, Franczyk MP, Mills KF, Sindelar M, Pietka T, Patterson BW, Imai SI, Klein S. Nicotinamide mononucleotide increases muscle insulin sensitivity in prediabetic women. Science. 2021;372(6547):1224-1229.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/33888596/",
+      },
+      {
+        id: 6,
+        citation:
+          "Reyna K, Heinzen G, Patel N, Ritter M, Siojo A, Legere H, Pojednic R. Intravenous infusion of nicotinamide adenine dinucleotide (NAD+) versus nicotinamide riboside (NR): a retrospective tolerability pilot study in a real-world setting. Front Aging. 2026;7:1652582.",
+        url: "https://doi.org/10.3389/fragi.2026.1652582",
+      },
+      {
+        id: 7,
+        citation:
+          "Hawkins J, Idoine R, Kwon J, Shao A, Dunne E, Hawkins E, Dawson K, Nkrumah-Elie Y. Randomized, placebo-controlled, pilot clinical study evaluating acute Niagen+ IV and NAD+ IV in healthy adults. medRxiv preprint. 2024.",
+        url: "https://doi.org/10.1101/2024.06.06.24308565",
+      },
+      {
+        id: 8,
+        citation:
+          "U.S. Food and Drug Administration. Bulk Drug Substances for Compounding Under Section 503A of the FD&C Act; Proposed Rule. Fed Regist. 2019;84(172):46628 (Docket No. FDA-2018-N-4845).",
+        url: "https://www.govinfo.gov/content/pkg/FR-2019-09-05/html/2019-18951.htm",
+      },
+      {
+        id: 9,
+        citation:
+          "U.S. Food and Drug Administration. FDA reminds compounders to use ingredients suitable for sterile compounding.",
+        url: "https://www.fda.gov/drugs/human-drug-compounding/fda-reminds-compounders-use-ingredients-suitable-sterile-compounding",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
   sermorelin: {
     shortDescription: [
       "Sermorelin is the common name for GHRH(1-29)-NH2, a synthetic 29-amino-acid peptide with a C-terminal amide. It covers the amino-terminal stretch of the naturally occurring 44-residue human growth hormone-releasing hormone, GHRH.[1]",

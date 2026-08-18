@@ -67,6 +67,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers comparing the full-length growth hormone chain to the isolated AOD-9604 fragment on a whiteboard",
     2: "Gloved researcher matching an AOD-9604 Certificate of Analysis and HPLC chromatogram to its vial",
   },
+  nad: {
+    0: "Scientist pointing to a glowing NAD+/NADH redox cycle diagram beside an NAD+ research vial",
+    1: "Two lab researchers reviewing an NAD+ decline-with-age data chart beside a rack of research vials",
+    2: "Gloved researcher loading a 96-well microplate for a colorimetric NAD+/NADH redox assay beside an HPLC chromatogram and vial",
+  },
   "bpc-157": {
     0: "Scientist comparing BPC-157 and TB-500 research vials in a laboratory",
     1: "Two lab researchers examining a BPC-157 peptide vial together under a lab lamp",

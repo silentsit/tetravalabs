@@ -428,6 +428,93 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "No. Catalog AOD-9604 is Research Use Only and must not be used for human or veterinary administration, diagnosis, or treatment.",
     },
   ],
+  nad: [
+    {
+      question: "Is NAD+ a peptide?",
+      answer:
+        "No. A peptide is a chain of amino acids linked by peptide bonds. NAD+ (nicotinamide adenine dinucleotide) is a dinucleotide: two nucleotides joined by a pyrophosphate bridge, with no amino acid backbone anywhere in it. The \"NAD peptide\" phrasing is a common search shorthand, not an accurate chemical description. Tetrava Labs does carry a genuine peptide studied in the same mitochondrial-research space, MOTS-c, which is a real 16-amino-acid sequence.",
+    },
+    {
+      question: "What is NAD+?",
+      answer:
+        "NAD+ is nicotinamide adenine dinucleotide, a coenzyme found in every living cell. It's built from an adenine-based nucleotide and a nicotinamide-based nucleotide joined end to end. It cycles between an oxidized form (NAD+) and a reduced form (NADH) as it carries electrons through metabolism. PubChem lists it under CID 5892, CAS 53-84-9.",
+    },
+    {
+      question: "What does NAD+ do, and what is it used for in research?",
+      answer:
+        "NAD+ keeps glycolysis, the citric acid cycle, and oxidative phosphorylation running as the electron carrier that feeds ATP production. It's also the substrate three separate enzyme families consume: the sirtuins (SIRT1-7), which regulate gene expression; the PARPs, which use it to repair damaged DNA; and CD38, which degrades it into calcium-signaling metabolites. Tetrava Labs supplies NAD+ as a Research Use Only reagent for labs studying that redox and enzyme-substrate biology, not as a consumer wellness product.",
+    },
+    {
+      question: "What does NAD+ peptide research actually cover?",
+      answer:
+        "Setting the \"peptide\" label aside, published NAD+ research spans several distinct threads: redox biochemistry, sirtuin and PARP enzymology, a 2009 mouse study linking AMPK activation to NAD+-driven mitochondrial biogenesis through SIRT1 and PGC-1α, and a 2012 human-tissue study tracking NAD+ decline with age. None of it is a single unified \"NAD+ research\" finding. Each thread uses a different model system and answers a different question, and the Description tab above cites all four with the original sources.",
+    },
+    {
+      question: "What is NAD+ good for in laboratory settings, and what benefits has it shown?",
+      answer:
+        "Published human tissue data links declining NAD+ with age to rising PARP activity and falling SIRT1 activity, which researchers use to study cellular aging mechanisms. Separately, a randomized trial of the NAD+ precursor NMN, not NAD+ itself, improved insulin signaling in prediabetic women over 10 weeks. Both are legitimate research findings. Neither is evidence of a benefit from Tetrava's reagent used outside a laboratory setting.",
+    },
+    {
+      question: "Does Tetrava Labs sell NAD+ injections, an IV solution, or a nasal spray?",
+      answer:
+        "No. This catalog lists NAD+ as a lyophilized vial (100 mg, 500 mg, or 1000 mg) for reconstitution in laboratory research, not a pre-filled injectable, an IV bag, or a nasal spray. Injectable and IV NAD+ sold by wellness clinics are compounded medications prepared under FDA's interim compounding policy, not an FDA-approved product. Tetrava Labs doesn't manufacture, compound, or ship anything in that category.",
+    },
+    {
+      question: "Where can I buy NAD+ online?",
+      answer:
+        "You can buy NAD+ online directly from Tetrava Labs on this page. Every vial ships to qualified researchers with lot-linked COA documentation confirming identity and HPLC purity for the exact batch received, cold-chain-aware where the strength requires it. This is a laboratory reagent, not a dietary supplement or a wellness-clinic product. It isn't stocked at retail pharmacies or supplement stores.",
+    },
+    {
+      question: "What strengths does Tetrava Labs carry for NAD+?",
+      answer:
+        "NAD+ is listed in 100 mg, 500 mg, and 1000 mg lyophilized vials, with multi-vial pack sizes available at a per-unit discount. Choose the strength and pack size that match your assay's working-concentration needs and your lab's retention policy. Cross-check the lot COA against the identity fields listed above before starting comparative work.",
+    },
+    {
+      question: "Is NAD+ a dietary supplement I can buy over the counter?",
+      answer:
+        "It depends which molecule and route you mean. Oral NAD+ precursors like NMN and nicotinamide riboside are sold as dietary supplements under DSHEA, no prescription required. Injectable NAD+ is a different regulatory category: a compounded medication dispensed through 503A/503B pharmacies. FDA's 2019 proposed rule specifically excluded NAD from the list of substances those pharmacies can use without restriction. Tetrava Labs' NAD+ is neither a supplement nor a compounded injectable. It's a Research Use Only laboratory reagent.",
+    },
+    {
+      question: "How much NAD+ should I take?",
+      answer:
+        "This page doesn't answer that, because no validated human dosing figure exists for NAD+ in the published literature. The best-controlled human trials measure NAD+ precursors (NMN, NR) at defined oral doses, not the intact dinucleotide reconstituted from a vial like this one. Tetrava Labs' listing is a laboratory reagent for qualified researchers, not a product with administration instructions.",
+    },
+    {
+      question: "Is there an NAD+ dosing chart or calculator?",
+      answer:
+        "No. A dosing chart or calculator implies a validated human dose-response relationship, and that dataset doesn't exist for intact NAD+ in the peer-reviewed literature reviewed for this page. If a site publishes one anyway, ask what trial it's based on. Tetrava Labs won't publish a number it can't source.",
+    },
+    {
+      question: "How do you take or reconstitute NAD+ for research use?",
+      answer:
+        "Tetrava Labs doesn't provide human administration instructions for NAD+. For laboratory use, reconstitute the lyophilized powder under sterile technique with a protocol-appropriate diluent, protect the solution from light, and record diluent lot, concentration, and reconstitution time in your ELN. NAD+/NADH ratios are sensitive to preparation timing in most redox assays.",
+    },
+    {
+      question: "What side effects has NAD+ shown, including by IV?",
+      answer:
+        "Published tolerability data comes from IV infusion studies, a route this catalog doesn't sell. A 2026 retrospective study found every NAD+ IV participant reported moderate-to-severe abdominal cramping, nausea, vomiting, elevated heart rate, and chest pressure during infusion, all resolving once the infusion stopped. Average infusion time ran nearly triple that of a comparator NR IV arm because of it. A separate 2024 pilot study found signs of an acute inflammatory response (elevated white blood cell count) in the NAD+ IV group. Neither dataset describes the reconstituted-vial route sold here.",
+    },
+    {
+      question: "Is NAD+ related to MOTS-c, and is MOTS-c a peptide?",
+      answer:
+        "They're related by research context, not by chemistry. MOTS-c is a genuine 16-amino-acid, mitochondrially encoded peptide. NAD+ is a dinucleotide with no amino acid sequence at all. Both show up in mitochondrial and metabolic-aging research because they sit in overlapping pathways, NAD+ as a cofactor and MOTS-c as an AMPK-activating signal, which is likely why search engines cluster \"NAD peptide research MOTS-c\" together. Tetrava Labs carries both as separate Research Use Only reagents.",
+    },
+    {
+      question: "Is NAD+ FDA-approved?",
+      answer:
+        "No. NAD+ has no FDA-approved indication in any form. FDA's September 2019 proposed rule reviewed NAD alongside 25 other substances and proposed not to add it to the Section 503A compounding bulks list. FDA has separately warned compounders that food-grade NAD+ isn't suitable for sterile injectable use. Tetrava Labs sells NAD+ strictly as a Research Use Only laboratory reagent, with no dosing, treatment, or anti-aging claims.",
+    },
+    {
+      question: "What's the difference between NAD+ and NAD+ precursors like NMN or NR?",
+      answer:
+        "NAD+ is the finished coenzyme. NMN and NR are smaller precursor molecules that cells convert into NAD+ through the salvage pathway. Nearly all of the controlled human trial evidence on raising NAD+ levels tests the precursors, largely because NAD+ is a larger, charged molecule that doesn't cross cell membranes as easily. That's why oral NMN/NR research and intact-NAD+ research report different findings, and comparing them directly means tracking which molecule a given study actually dosed.",
+    },
+    {
+      question: "What is \"NAD+ serum\" or \"NAD+ therapy\"?",
+      answer:
+        "Marketing terms from skincare brands and IV-therapy clinics, not standardized scientific categories. No published trial in the literature reviewed for this page tests a topical serum or transdermal route for NAD+, which tracks with the same membrane-permeability problem that limits injectable and oral use of the intact molecule. Tetrava Labs doesn't sell a topical serum, a patch, or any administered therapy. This catalog page is a lyophilized NAD+ vial for laboratory reconstitution.",
+    },
+  ],
   "cjc-1295-without-dac": [
     {
       question: "What is CJC-1295 without DAC used for in research?",
@@ -609,37 +696,6 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
       question: "How is mazdutide purity and identity verified?",
       answer:
         "Each lot is checked by independent third-party HPLC-MS analysis reporting both purity and identity. Match the COA batch number in the COA library to the vial you actually received before starting comparative research work.",
-    },
-  ],
-  nad: [
-    {
-      question: "What is NAD+ used for in research catalogs?",
-      answer:
-        "NAD+ (nicotinamide adenine dinucleotide) research reagents are used in metabolic, redox, and cellular-energy pathway studies. Tetrava Labs lists NAD under Research Use Only.",
-    },
-    {
-      question: "How do I confirm NAD lot quality?",
-      answer:
-        "Review the published Certificate of Analysis for the batch you receive and retain it with inventory records.",
-    },
-    {
-      question: "Which NAD strengths are available?",
-      answer:
-        "Strength options are shown on this product page. Select based on assay design and institutional inventory controls.",
-    },
-    {
-      question: "How should research NAD be stored?",
-      answer:
-        "Follow the storage guidance on this page. Protect lyophilized or liquid forms from unnecessary temperature excursions and light if your SOP requires it.",
-    },
-    {
-      question: "How is NAD shipped?",
-      answer:
-        "Cold-chain-aware packaging where required; tracking emailed after labeling.",
-    },
-    {
-      question: "Is catalog NAD a supplement for personal use?",
-      answer: "No. This is a Research Use Only laboratory reagent.",
     },
   ],
   "bacteriostatic-water": [

@@ -1162,6 +1162,191 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-18",
   },
+  semax: {
+    shortDescription: [
+      "Semax is a synthetic heptapeptide, seven amino acids, built from a fragment of adrenocorticotropic hormone, ACTH(4-7), with the same Pro-Gly-Pro stabilizing tail used on its lab-mate Selank. The full sequence is Met-Glu-His-Phe-Pro-Gly-Pro, molecular formula C37H51N9O10S, molecular weight 813.93, cross-referenced against the PubChem compound record for CAS 80714-61-0.[1]",
+      "Tetrava Labs supplies Semax as a sterile, lyophilized reagent, 5 mg or 10 mg vials, for laboratory research into neurotrophin signaling, cerebral ischemia models, and cognitive-performance assays. It's a different molecule from N-Acetyl Semax Amidate, a separately modified analog sold under other names, including Tetrava's own [Adamax](/buy-adamax-online) listing. Every lot ships with third-party HPLC-verified identity and purity data. Buy Semax online here for research use only; it is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "ACTH(4-10) Analogue",
+      "Semaks",
+      "Met-Glu-His-Phe-Pro-Gly-Pro",
+    ],
+    sections: [
+      {
+        heading:
+          "What Semax is: an ACTH fragment stabilized with a Pro-Gly-Pro tail",
+        paragraphs: [
+          "Adrenocorticotropic hormone, ACTH, is best known for triggering cortisol release, but a small internal fragment of the molecule, residues 4 through 10, carries nootropic and neurotrophic activity without the hormone's adrenal effects. Researchers at Russia's Institute of Molecular Genetics isolated that fragment, trimmed it to residues 4 through 7 (Met-Glu-His-Phe), and extended the C-terminus with the same Pro-Gly-Pro tripeptide they later reused on Selank, a design choice that slows breakdown by carboxypeptidases.[2] The result is Semax, a free carboxylic acid at the C-terminus.",
+          "Search results and some catalog listings surface a second family of compounds alongside plain Semax: N-Acetyl Semax and N-Acetyl Semax Amidate, which add an acetyl group to the N-terminus, an amide in place of the C-terminal acid, or both. Vendors market these as more potent or longer-acting. Tetrava Labs' catalog lists unmodified Semax in 5 mg and 10 mg lyophilized vials under this listing, and carries a separately specified acetylated analog under its own [Adamax](/buy-adamax-online) product page rather than folding it into this one. Check that page directly for Adamax's own identity data and strength; this page describes native Semax only.",
+        ],
+      },
+      {
+        heading: "Adamax vs. Semax: two separate Tetrava Labs listings",
+        paragraphs: [
+          "\"Adamax vs Semax\" gets searched because the names sound related, and the confusion runs deeper than branding. Some vendors use \"Adamax\" for an adamantane-modified peptide built for extra lipophilicity, while others use it as a trade name for an N-acetylated, C-terminally amidated Semax analog. Tetrava Labs' Adamax listing is the latter category: a chemically modified relative of Semax, not the identical molecule at a different concentration.",
+          "That's the practical answer to \"where to buy Semax amidate\" and \"where to buy Semax amidate 30mg\": Tetrava doesn't sell a SKU called \"Semax amidate,\" and doesn't stock a 30 mg vial of any Semax-family compound. Its acetylated analog ships as Adamax, in the strength listed on that product's own page. Don't assume Adamax carries Semax's dosing curve or research literature. They're related by design lineage, not by identical chemistry.",
+        ],
+      },
+      {
+        heading: "How Semax is thought to work: BDNF and NGF gene expression",
+        paragraphs: [
+          "The most-cited mechanistic thread traces Semax's effects to neurotrophin gene expression rather than a single receptor-binding event. A study comparing gene-expression timing across rat hippocampus, frontal cortex, and retina found that Semax shifted both brain-derived neurotrophic factor (BDNF) and nerve growth factor (NGF) mRNA on measurably different schedules depending on the tissue, with the hippocampus showing the earliest response.[3] BDNF supports neuron survival and synaptic plasticity; NGF supports the cholinergic neurons tied to attention and memory. Both are common readouts in neuroplasticity research because they're depressed by chronic stress and injury.",
+          "That's a gene-expression and mRNA-timing study, not a binding assay identifying which receptor Semax engages first. Researchers modeling this pathway typically pair a BDNF/NGF ELISA or qPCR panel with a separate mechanism-of-entry assay, since tissue-specific timing differences like the ones reported here suggest more than one downstream trigger.",
+        ],
+      },
+      {
+        heading:
+          "How Semax breaks down: a degradation pathway, not a published half-life",
+        paragraphs: [
+          "\"How long does Semax last\" doesn't have a clean answer in the literature. No study reviewed for this page publishes a serum half-life for intact Semax the way a drug label would. What's published instead is a breakdown map. A 2006 study using isotopically labeled Semax found that rat basal forebrain plasma membranes and cell cultures degrade the peptide mainly by clipping the Met-Glu pair off the N-terminus and the Gly-Pro pair off the C-terminus, leaving pentapeptide fragments as the dominant byproduct. Glial and neuronal cells produced slightly different fragment patterns from the same starting peptide.[10]",
+          "That's a tissue-culture degradation study. It maps where Semax gets cut once it reaches brain tissue, not how many minutes a given concentration survives in a vial, a syringe, or a nasal spray.",
+        ],
+      },
+      {
+        heading: "Semax and cerebral ischemia: the animal evidence base",
+        paragraphs: [
+          "A 2006 rat study using photochemically induced cortical infarction found that intranasal Semax reduced infarct volume and improved performance on a passive-avoidance memory task compared with untreated controls.[4] Two more recent transcriptome-level studies extended that finding. A 2020 RNA-sequencing analysis of rat brains after transient middle cerebral artery occlusion found Semax suppressed inflammation-related gene expression while activating neurotransmission-related genes; the paper counted 394 differentially expressed genes relative to saline controls.[5] A 2021 follow-up measured actual protein levels instead of transcripts. It found Semax raised active CREB, a transcription factor tied to neuronal recovery, and lowered MMP-9, c-Fos, and active JNK, three proteins tied to inflammation and cell death, in the same ischemia-reperfusion model.[6]",
+          "Three studies, three levels of resolution: whole-animal outcome, gene transcripts, measured protein. All three are rodent, intranasal-or-systemic dosing studies. None establishes a human oral, subcutaneous, or in vitro dose-response curve for the reagent form sold here.",
+        ],
+      },
+      {
+        heading:
+          "The Gusev 2018 clinical trial: Semax across different stages of ischemic stroke",
+        paragraphs: [
+          "The human data most often cited for Semax's stroke-recovery claim comes from a 2018 Russian clinical trial led by neurologist Evgeny Gusev, published in the Korsakov Journal of Neurology and Psychiatry, that evaluated Semax's efficacy in patients treated at different stages of ischemic stroke.[7] It's indexed on PubMed as a clinical trial.",
+          "That's Russian-language, single-health-system evidence. It hasn't been replicated in an independent, FDA-reviewed Western trial. Treat it as the evidentiary basis for a foreign drug registration, not as proof standing behind a Research Use Only vial.",
+        ],
+      },
+      {
+        heading: "Semax and optic-nerve disease: a second human trial line",
+        paragraphs: [
+          "Stroke isn't the only condition Semax has a controlled human trial behind it. A 2000 study in Vestnik Oftalmologii tested Semax against vascular, toxic-allergic, and inflammatory optic-nerve disease, including partial optic-nerve atrophy, across three patient groups: intranasal drops, endonasal electrophoresis, and an untreated control.[11] Both delivery routes were tied to improved visual acuity, a wider visual field, better electrical conductivity through the optic nerve, and improved color vision relative to the control group.",
+          "This trial sits outside the stroke literature that dominates Semax's reputation, and it's easy to miss if a search only turns up the ischemia studies. It's still one Russian trial without independent Western replication, the same limitation attached to the stroke data above.",
+        ],
+      },
+      {
+        heading: "Semax vs. Selank: same lab, different parent peptide",
+        paragraphs: [
+          "Semax and Selank were both designed at Russia's Institute of Molecular Genetics working with the Zakusov Institute of Pharmacology, and both carry the identical Pro-Gly-Pro stability tail.[2] That's where the resemblance ends chemically. Semax is built from a fragment of ACTH and its published research centers on cerebral ischemia, stroke recovery, and neurotrophic gene expression. Selank is built from tuftsin, an immune-signaling tetrapeptide, and its published research centers on enkephalin metabolism, GABAergic gene expression, and anxiety models.",
+          "\"Semax and Selank\" gets searched as a pair, sometimes stacked as a nasal spray combination, because researchers studying stress and cognition sometimes look at both compounds side by side. No published study reviewed for this page tests Semax and Selank administered together, so there's no combined dosage chart, dosing protocol, or interaction data to cite. Tetrava Labs carries Semax and [Selank](/buy-selank-online) as separate Research Use Only catalog listings, each with its own identity data and citations.",
+        ],
+      },
+      {
+        heading: "Buying Semax for research: what to verify before you order",
+        paragraphs: [
+          "Vendor quality is checkable before you buy Semax from anyone, whether you're comparing a specific listing against the best place to buy Semax nasal spray or just trying to confirm a peptide clinic's claims. Before treating a supplier as qualified, look at:",
+        ],
+        bullets: [
+          "Lot identity: does the listing give a batch or lot number that matches the Certificate of Analysis shipped with the vial, or is the PDF generic or reused across products?",
+          "COA/HPLC traceability: is the COA from an independent third-party lab, reporting purity by area-under-curve HPLC rather than an in-house claim?",
+          "Identity confirmation: does the COA or an accompanying mass-spec report confirm Semax's sequence and molecular weight, not just a purity percentage?",
+          "Product clarity: does the listing say plainly whether the vial is unmodified Semax or a separately modified analog like Adamax, and at what strength?",
+          "Shipping compliance: does the seller disclose which destinations it won't ship to, rather than leaving that out until checkout?",
+        ],
+      },
+      {
+        heading:
+          "Semax nasal spray and lab preparation: what this listing does and doesn't cover",
+        paragraphs: [
+          "Semax's Russian clinical history uses an intranasal solution, which is why search traffic clusters around \"Semax nasal spray,\" reconstitution volumes, and questions about how much to use. Tetrava Labs doesn't provide human dosing, injection volumes, or nasal-spray-formulation instructions for Semax, and this page won't walk through how to make or use one. That's a compounding and administration question outside what an RUO catalog listing covers.",
+          "For laboratory use, reconstitute the lyophilized vial under sterile technique with a diluent your protocol specifies, and record diluent lot, concentration, and reconstitution date in your ELN. Match those notes to the batch [Certificate of Analysis](/coa-library) so identity and purity data stay traceable to the exact vial used in an assay. This is preparation guidance for research settings only, not administration instructions.",
+        ],
+      },
+      {
+        heading: "Semax on forums and Reddit: anecdote versus evidence",
+        paragraphs: [
+          "Semax comes up regularly on r/nootropics and similar forums, usually as first-person reports about focus, mood, or how quickly someone noticed an effect. That's a different kind of information than the animal and clinical literature cited above, and it can't be reconciled with it directly, since forum posters aren't running blinded, controlled protocols with a measured endpoint.",
+          "A Reddit thread can flag a vendor worth checking or a side effect worth reading up on. It's not a substitute for a lot-specific COA or a peer-reviewed citation, and a poster's account of how long Semax lasted for them carries no more evidentiary weight than any other uncontrolled report.",
+        ],
+      },
+      {
+        heading:
+          "Is Semax legal in the US? Registered in Russia, reviewed by the FDA's compounding committee",
+        paragraphs: [
+          "Russia's Ministry of Health first registered Semax in 1994 as a low-concentration intranasal solution for cognitive disorders and optic-nerve disease, with a separate registration following for the acute ischemic stroke indication.[8] It has since been carried on Russia's list of vital and essential drugs. The FDA has never approved Semax in any form, and it carries no U.S. drug registration; nothing about the Russian registration changes that.",
+          "In July 2026, the FDA's Pharmacy Compounding Advisory Committee reviewed seven peptide-related bulk drug substances nominated for the Section 503A Bulks List, the list that lets compounding pharmacies use a substance without a substance-specific approved drug behind it. Semax was one of the seven reviewed.[9] That's an open rulemaking docket, not an approval, and it doesn't make Semax legal for human use outside a licensed compounding pathway if one is eventually established. Tetrava Labs' catalog listing is a Research Use Only laboratory reagent regardless of how that rulemaking resolves.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "Semax ships as a lyophilized powder, stable at -20°C away from light. Reconstitute under sterile technique with a protocol-appropriate diluent immediately before use, and avoid repeated freeze-thaw cycling once in solution.",
+          "Hold reconstituted working solutions at 4°C and use them within the window your laboratory SOP sets. Record diluent lot, reconstitution date, and concentration in your ELN, and match those notes to the batch Certificate of Analysis so identity and purity data stay traceable to the exact vial used in an assay.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 9811102, Semax.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/9811102",
+      },
+      {
+        id: 2,
+        citation:
+          "Kolomin T, Shadrina M, Slominsky P, et al. A new generation of drugs: synthetic peptides based on natural regulatory peptides. Nat Sci. 2013;5(4A):72-91.",
+        url: "https://doi.org/10.4236/ns.2013.54A011",
+      },
+      {
+        id: 3,
+        citation:
+          "Shadrina M, Kolomin T, Agapova T, Agniullin Y, Shram S, Slominsky P, Lymborska S, Myasoedov N. Comparison of the temporary dynamics of NGF and BDNF gene expression in rat hippocampus, frontal cortex, and retina under Semax action. J Mol Neurosci. 2010;41(1):30-35.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/19662538/",
+      },
+      {
+        id: 4,
+        citation:
+          "Romanova GA, Silachev DN, Shakova FM, Kvashennikova YN, Viktorov IV, Shram SI, Myasoedov NF. Neuroprotective and antiamnesic effects of Semax during experimental ischemic infarction of the cerebral cortex. Bull Exp Biol Med. 2006;142(6):663-666.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/17603664/",
+      },
+      {
+        id: 5,
+        citation:
+          "Filippenkov IB, Stavchansky VV, Denisova AE, Yuzhakov VV, Sevan'kaeva LE, Sudarkina OY, Dmitrieva VG, Gubsky LV, Myasoedov NF, Limborska SA, Dergunova LV. Novel Insights into the Protective Properties of ACTH(4-7)PGP (Semax) Peptide at the Transcriptome Level Following Cerebral Ischaemia-Reperfusion in Rats. Genes (Basel). 2020;11(6):681.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/32580520/",
+      },
+      {
+        id: 6,
+        citation:
+          "Sudarkina OY, Filippenkov IB, Stavchansky VV, Denisova AE, Yuzhakov VV, Sevan'kaeva LE, Valieva LV, Remizova JA, Dmitrieva VG, Gubsky LV, Myasoedov NF, Limborska SA, Dergunova LV. Brain Protein Expression Profile Confirms the Protective Effect of the ACTH(4-7)PGP Peptide (Semax) in a Rat Model of Cerebral Ischemia-Reperfusion. Int J Mol Sci. 2021;22(12):6179.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/34201112/",
+      },
+      {
+        id: 7,
+        citation:
+          "Gusev EI, Martynov MY, Kostenko EV, Petrova LV, Bobyreva SN. The efficacy of semax in the treatment of patients at different stages of ischemic stroke. Zh Nevrol Psikhiatr Im S S Korsakova. 2018;118(3 Vyp 2):61-68.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/29798983/",
+      },
+      {
+        id: 8,
+        citation:
+          "Federal Service for Surveillance in Healthcare (Roszdravnadzor), Russian Federation. State Registry of Medicines: Semax, registration No. 94/294/18, registered 20.12.1994.",
+        url: "https://www.pharmcontrol.ru/registry/drugs/120688/",
+      },
+      {
+        id: 9,
+        citation:
+          "U.S. Food and Drug Administration. Pharmacy Compounding Advisory Committee; Notice of Meeting; Establishment of a Public Docket; Request for Comments--Bulk Drug Substances Nominated for Inclusion on the Section 503A Bulk Drug Substances List. Fed Regist. 2026;91(73):20465 (Docket No. FDA-2025-N-6895).",
+        url: "https://www.govinfo.gov/content/pkg/FR-2026-04-16/html/2026-07361.htm",
+      },
+      {
+        id: 10,
+        citation:
+          "Zolotarev YA, Dolotov OV, Inozemtseva LS, Dadayan AK, Dorokhova EM, Andreeva LA, Alfeeva LY, Grivennikov IA, Myasoedov NF. Degradation of the ACTH(4-10) analog Semax in the presence of rat basal forebrain cell cultures and plasma membranes. Amino Acids. 2006;30(4):403-408.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/16773243/",
+      },
+      {
+        id: 11,
+        citation:
+          "Polunin GS, Nurieva SM, Baiandin DL, Sheremet NL, Andreeva LA. Evaluation of therapeutic effect of new Russian drug semax in optic nerve disease. Vestn Oftalmol. 2000;116(1):15-18.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/10741256/",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
 };
 
 export function getProductResearchDetail(

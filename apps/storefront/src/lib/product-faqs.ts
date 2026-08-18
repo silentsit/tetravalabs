@@ -834,32 +834,127 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   ],
   semax: [
     {
-      question: "What is Semax used for in laboratory research?",
+      question: "What is Semax?",
       answer:
-        "Semax is an ACTH(4-10) analogue studied in neuropeptide and cognitive-research models. Tetrava Labs provides it strictly as an RUO reagent.",
+        "Semax is a synthetic heptapeptide, seven amino acids: Met-Glu-His-Phe-Pro-Gly-Pro. It's built from a fragment of adrenocorticotropic hormone, ACTH(4-7), with a Pro-Gly-Pro tail added for stability. It was developed at Russia's Institute of Molecular Genetics and is catalogued in PubChem under CID 9811102.",
     },
     {
-      question: "What COA information accompanies Semax?",
+      question:
+        "What is Semax peptide used for, and what does Semax peptide do?",
       answer:
-        "Lot-linked HPLC-MS documentation is published when available. Retain analytical summaries with your material ID.",
+        "In the published research, Semax has been studied for reducing infarct volume and improving memory-task performance in rat stroke models, for raising BDNF and NGF gene expression in rat hippocampus and cortex, and for functional recovery in a 2018 Russian clinical trial across different stages of ischemic stroke. See the Description tab above for the original citations behind each finding.",
     },
     {
-      question: "How should Semax be handled after reconstitution?",
+      question: "Does Semax work, and how does Semax work?",
       answer:
-        "Prepare under sterile conditions, store reconstituted stocks at 4°C, and follow institutional waste and PPE rules.",
+        "The mechanistic research points to Semax modulating neurotrophin gene expression, BDNF and NGF specifically, while suppressing inflammatory gene activity and activating neurotransmission-related genes in ischemic brain tissue. Whether that translates to a given research outcome depends on your model and endpoint. The citations above are animal studies plus one Russian clinical trial, not a guarantee for every assay design.",
     },
     {
-      question: "How should lyophilized Semax be stored?",
-      answer: "Keep sealed vials at -20°C for long-term stability.",
-    },
-    {
-      question: "Shipping for Semax?",
+      question: "What are Semax's studied benefits?",
       answer:
-        "Cold-chain-aware packaging where required; tracking emailed after dispatch.",
+        "The strongest evidence sits in cerebral ischemia models: reduced infarct volume, improved passive-avoidance memory performance, and reproducible BDNF/NGF upregulation across three separate rat studies. A 2018 Russian clinical trial reported efficacy across different stages of ischemic stroke in human patients. None of that is FDA-reviewed evidence for a Research Use Only vial.",
     },
     {
-      question: "Is Semax Research Use Only?",
-      answer: "Yes. Not for human or veterinary administration.",
+      question: "Semax vs. Selank: what's the difference?",
+      answer:
+        "Semax and Selank were designed at the same Moscow laboratory and share a Pro-Gly-Pro stability tail, but they're built from different parent molecules. Semax derives from a fragment of ACTH, and its literature centers on neuroprotection and cerebral ischemia. Selank derives from tuftsin, and its literature centers on anxiolytic and immune effects. They're not interchangeable substitutes for the same assay.",
+    },
+    {
+      question:
+        "Is there a Semax and Selank dosage chart, or should the two be combined?",
+      answer:
+        "No published trial in the literature reviewed for this page tests Semax and Selank administered together, so there's no combined dosage chart or interaction data to publish. Tetrava Labs sells them as separate Research Use Only listings with independent citation records.",
+    },
+    {
+      question: "Adamax vs. Semax: what's the difference?",
+      answer:
+        "Adamax is Tetrava Labs' separate listing for a chemically modified Semax analog, distinct from the unmodified Semax sold on this page. The two aren't the same molecule at different strengths, and this page's citations describe native Semax only. Check the [Adamax](/buy-adamax-online) product page directly for its own identity data.",
+    },
+    {
+      question: "How long does Semax last, and how long does it take to work?",
+      answer:
+        "No study reviewed for this page publishes a serum half-life for Semax the way a drug label would. What's published is a degradation pathway: a study using isotopically labeled Semax found rat brain tissue breaks it down mainly by clipping residues off both ends, generating shorter fragments as the main byproduct. That's a tissue-culture breakdown map, not a blood-clearance timer, so it doesn't translate into a number of hours or minutes. The animal studies measure outcomes at fixed intervals after dosing, commonly 24 hours post-ischemia for gene-expression readouts, which is a study design choice, not a pharmacokinetic answer either.",
+    },
+    {
+      question: "How much Semax should I inject? Is there a dosing calculator?",
+      answer:
+        "This page doesn't answer that. Tetrava Labs' Semax listing is a lyophilized laboratory reagent for qualified researchers, not a product with human administration instructions, and a generic dosing calculator here wouldn't be sourced from anything more reliable than a single foreign clinical trial's protocol dose.",
+    },
+    {
+      question:
+        "How do I take Semax, or use and make a Semax nasal spray?",
+      answer:
+        "Tetrava Labs doesn't provide human dosing, injection volumes, or nasal-spray-formulation instructions for Semax, and doesn't sell a finished nasal spray product. This catalog lists lyophilized Semax for laboratory reconstitution only.",
+    },
+    {
+      question: "How do you reconstitute 10 mg Semax for lab use?",
+      answer:
+        "Reconstitute under sterile technique with a diluent your protocol specifies, and record diluent lot, concentration, and reconstitution date in your ELN. This page doesn't publish a milliliter-per-vial recipe or a human dosing volume; that belongs in your laboratory SOP.",
+    },
+    {
+      question: "Is Semax legal in the US?",
+      answer:
+        "Semax isn't FDA-approved and carries no U.S. drug registration. Russia's Ministry of Health registered it in 1994 for cognitive and optic-nerve indications, with the ischemic-stroke indication added later. In July 2026, the FDA's Pharmacy Compounding Advisory Committee reviewed Semax among seven peptides nominated for the Section 503A Bulks compounding list, an open rulemaking docket, not an approval. Tetrava Labs sells it strictly Research Use Only.",
+    },
+    {
+      question:
+        "How do I buy Semax, and where can I buy Semax peptide online?",
+      answer:
+        "You can buy Semax directly from Tetrava Labs on this page, in 5 mg or 10 mg lyophilized vials, shipped within the USA. Every vial ships with lot-linked COA documentation confirming identity and HPLC purity for the exact batch received.",
+    },
+    {
+      question:
+        "Where can I buy Semax nasal spray, and does Tetrava sell one?",
+      answer:
+        "Tetrava Labs doesn't sell a nasal spray. Russia's registered pharmaceutical product is a specific finished intranasal solution made under that country's drug approval, not a bulk peptide vial. This catalog lists lyophilized Semax for laboratory reconstitution, with no instructions here for compounding a spray from it.",
+    },
+    {
+      question: "Where to buy Semax amidate, including a 30 mg size?",
+      answer:
+        "Tetrava doesn't sell a SKU called \"Semax amidate\" or stock a 30 mg vial of any Semax-family compound. Its chemically modified analog ships under the separate Adamax listing, at the strength specified on that product's own page.",
+    },
+    {
+      question:
+        "Where can I buy Semax and Selank together, including as a nasal spray?",
+      answer:
+        "Tetrava Labs sells Semax and Selank as two separate Research Use Only catalog listings, each in lyophilized vial form. Neither is sold as a nasal spray, and no published trial tests the two peptides combined, so this page can't publish a joint protocol.",
+    },
+    {
+      question: "What's the best place to buy Semax, or Semax nasal spray?",
+      answer:
+        "Buy from a supplier that publishes a lot-linked Certificate of Analysis you can match to the vial in hand, rather than relying on forum recommendations or an unverified marketplace listing. Tetrava Labs ships Semax with third-party HPLC-verified identity and purity data for every batch, and doesn't sell a nasal spray formulation.",
+    },
+    {
+      question: "Can I buy Semax with a prescription?",
+      answer:
+        "Tetrava Labs doesn't operate as a pharmacy and doesn't fill prescriptions. Some U.S. compounding pharmacies dispense Semax-based preparations by prescription under state-specific compounding rules, a separate channel from this catalog's Research Use Only laboratory listing.",
+    },
+    {
+      question:
+        "What does Semax discussion on Reddit and r/nootropics usually look like?",
+      answer:
+        "Semax comes up regularly on r/nootropics and similar forums, mostly as first-person focus or mood reports rather than measured data. Check whether a poster references an actual third-party COA, whether the vendor they name still lists that lot, and whether their timeline is a subjective impression rather than anything tracked. A thread can flag a question worth checking. It isn't clinical evidence.",
+    },
+    {
+      question:
+        "Does Semax's research go beyond stroke, into eyes or cognition generally?",
+      answer:
+        "Yes. The stroke and cerebral-ischemia literature gets the most attention, but a separate controlled trial from 2000 tested Semax in optic-nerve disease, comparing intranasal drops and endonasal electrophoresis against an untreated control group, and reported gains in visual acuity, visual field, and color vision for both treated arms. It's one Russian trial, not a replicated Western study, and it's a different indication than the stroke work most search results lead with.",
+    },
+    {
+      question: "What strengths does Tetrava Labs carry for Semax?",
+      answer:
+        "Semax is listed in 5 mg and 10 mg lyophilized vials. Choose the strength that matches your assay's working-concentration needs, and check the lot COA against the identity data listed above before starting comparative work.",
+    },
+    {
+      question: "What is Semax used for at a peptide clinic?",
+      answer:
+        "Peptide clinics offering Semax-based preparations to patients operate through the compounding-pharmacy channel, under a prescription and a specific state's compounding rules, not through a Research Use Only catalog like this one. Tetrava Labs doesn't supply clinics for patient administration; this listing is a laboratory reagent for qualified researchers only.",
+    },
+    {
+      question: "Does Tetrava Labs ship Semax internationally?",
+      answer:
+        "Shipping depends on destination-specific compliance rules, which can change and which this page won't summarize country by country. Check the current [shipping restrictions](/shipping-restricted) before ordering. Tetrava Labs doesn't make regulatory claims about how any individual country classifies Semax; that determination sits with the buyer's local research institution and regulator.",
     },
   ],
   epithalon: [

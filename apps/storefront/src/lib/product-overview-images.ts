@@ -97,6 +97,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers comparing Selank and Semax molecular structure diagrams beside their research vials",
     2: "Gloved researcher loading a 96-well stress-model assay plate beside a Selank vial and HPLC chromatogram",
   },
+  semax: {
+    0: "Scientist pointing to a Semax BDNF/TrkB neurotrophin signaling pathway diagram while holding a Semax research vial",
+    1: "Two lab researchers comparing Semax and Selank molecular structure diagrams on a whiteboard beside their research vials",
+    2: "Gloved researcher holding a rodent cerebral ischemia infarct-volume brain scan beside a Semax vial and HPLC chromatogram",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

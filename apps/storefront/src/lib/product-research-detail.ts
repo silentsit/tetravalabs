@@ -1347,6 +1347,200 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-18",
   },
+  dsip: {
+    shortDescription: [
+      "DSIP, Delta Sleep-Inducing Peptide, is a nonapeptide, nine amino acids: Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu. Swiss researchers Michel Monnier and Gottfried Schoenenberger isolated it from the cerebral venous blood of rabbits during electrically induced sleep and published the full characterization in 1977.[1] Molecular formula C35H48N10O15, molecular weight 848.8, cross-referenced against the PubChem compound record for CAS 62568-57-4.[2] Its International Nonproprietary Name, the label FDA uses in its own compounding review, is emideltide.",
+      "Tetrava Labs supplies DSIP as a sterile, lyophilized reagent, 5 mg, 10 mg, or 15 mg vials, for laboratory research into sleep architecture, stress physiology, and neuroendocrine signaling. Every lot ships with third-party HPLC-verified identity and purity data. Buy DSIP online here for research use only; it is not for human or veterinary consumption.",
+    ],
+    otherKnownTitles: [
+      "Emideltide",
+      "DSIP Nonapeptide",
+      "Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu",
+    ],
+    sections: [
+      {
+        heading:
+          "What DSIP is: a peptide pulled from the blood of a sleeping rabbit",
+        paragraphs: [
+          "The discovery story is unusual even by peptide standards. Monnier's lab was running cross-circulation experiments, dialyzing blood from rabbits during electrically induced sleep and infusing the dialysate into awake animals, when they noticed the transferred fraction pushed the recipient's EEG toward delta waves, the slow, high-amplitude pattern of deep non-REM sleep. They isolated the active fraction, sequenced it, and published DSIP as a defined nonapeptide in 1977.[1] The name describes the observed effect, not a confirmed hormone class.",
+          "Later structural surveys found DSIP-like immunoreactivity in neurons, peripheral organs, and plasma across several species.[2] Stress hormone regulation, circadian rhythm, and withdrawal pharmacology all show up in the DSIP literature as a result. None of that breadth resolved what DSIP binds to first.",
+        ],
+      },
+      {
+        heading: "How DSIP is thought to work: a mechanism nobody has pinned down",
+        paragraphs: [
+          "A 2006 review in the Journal of Neurochemistry, written by two researchers who had studied DSIP for years, is titled plainly: \"Delta sleep-inducing peptide (DSIP): a still unresolved riddle.\"[3] That title is the honest summary of the field. Decades after the 1977 discovery paper, no study has identified a DSIP-specific receptor, and the peptide's name is now considered something of a misnomer, since some studies find it promotes delta sleep and others don't replicate that effect cleanly.",
+          "What is published are downstream observations: shifts in neurotransmitter levels, hormonal changes, altered locomotor and circadian patterns, and modified responses to other neuropharmacological drugs, including withdrawal symptoms.[3] Researchers designing a DSIP assay are generally not testing a single validated pathway. They're testing one of several candidate effects reported in a literature that never converged on a receptor.",
+        ],
+      },
+      {
+        heading:
+          "The 1980s human trials: chronic pain and withdrawal syndromes",
+        paragraphs: [
+          "DSIP has an older human clinical record than most catalog peptides. A 1983 case series found delta sleep-inducing peptide eased withdrawal symptoms in patients being weaned from opiates, reasoning it might carry weak agonist activity at opiate receptors.[4] A 1984 follow-up in European Neurology tested DSIP specifically against alcohol and opiate withdrawal syndromes.[5] The same 1984 issue carried a separate pilot study using DSIP in patients with chronic, pronounced pain episodes.[6]",
+          "These are small, decades-old European studies, not FDA-reviewed trials, and none of them used the sequence-confirmed reagent grade sold here. Treat them as the historical basis for later interest in DSIP, not as a modern efficacy dataset.",
+        ],
+      },
+      {
+        heading:
+          "Modern preclinical revival: sleep architecture, memory, and stroke models",
+        paragraphs: [
+          "DSIP research didn't stop in the 1980s. A 2018 study in Life Sciences found that a phosphorylated DSIP analog restored spatial memory and CREB phosphorylation in rats whose sleep architecture had been disrupted by simulated high altitude. The memory result and the sleep-quality result came from the same animal model.[7] A 2021 study in Molecules reported that DSIP improved motor-function recovery in rats after a focal cortical stroke.[8] A companion 2021 paper in Biomedicines tested a DSIP-like analog called KND. It reduced brain infarct size in mice and myocardial infarct size in rats when given during reperfusion.[9]",
+          "Most recently, a 2024 paper in Frontiers in Pharmacology engineered a DSIP fusion peptide designed to cross the blood-brain barrier and tested it in a PCPA-induced insomnia mouse model.[10] Read these four papers as a live, active research thread, not a settled conclusion. All four are rodent studies from a small number of labs, and none has an independent Western replication.",
+        ],
+      },
+      {
+        heading:
+          "DSIP and stress physiology: a hepatoprotective signal worth noting",
+        paragraphs: [
+          "A separate line of Russian research looked at DSIP's effect outside the brain entirely. Studies from 2015 and 2016 measured hepatocyte function in rats subjected to restraint stress and foot-shock stress, and found DSIP administration was associated with a protective shift in liver-cell markers compared with stressed, untreated controls.[11] That's a peripheral-organ stress-response finding, a different endpoint than sleep EEG or infarct volume.",
+        ],
+      },
+      {
+        heading: "Engineering DSIP for delivery: fusion peptides and the BBB",
+        paragraphs: [
+          "Native DSIP is a short, unmodified nonapeptide, and short peptides generally clear fast and cross the blood-brain barrier inefficiently. A 2017 paper in Protein & Peptide Letters described producing DSIP fused to a protein transduction domain and human serum albumin in Pichia pastoris yeast, an engineering approach aimed at improving delivery and persistence.[12] The 2024 fusion-peptide insomnia study cited above uses a related strategy.[10] Those are drug-delivery research programs building on DSIP, not descriptions of the lyophilized reagent sold on this page, which is unmodified, sequence-confirmed DSIP only.",
+        ],
+      },
+      {
+        heading: "Buying DSIP for research: what to verify before you order",
+        paragraphs: [
+          "\"DSIP peptide 10mg 99% lab tested\" and similar search phrases point at the same underlying question: is the purity claim backed by anything. Before treating a supplier as qualified, look at:",
+        ],
+        bullets: [
+          "Lot identity: does the listing give a batch or lot number that matches the Certificate of Analysis shipped with the vial, or is the PDF generic or reused across products?",
+          "COA/HPLC traceability: is the COA from an independent third-party lab, reporting purity by area-under-curve HPLC rather than an in-house claim?",
+          "Identity confirmation: does the COA or an accompanying mass-spec report confirm DSIP's nine-residue sequence and molecular weight, not just a purity percentage?",
+          "INN awareness: does the listing recognize emideltide as the same substance, or does it read like a template that's never checked the FDA docket?",
+          "Shipping compliance: does the seller disclose which destinations it won't ship to, rather than leaving that out until checkout?",
+        ],
+      },
+      {
+        heading:
+          "Injecting or dosing DSIP: what this listing does and doesn't cover",
+        paragraphs: [
+          "\"How much DSIP to inject,\" \"where to inject DSIP,\" and \"DSIP dosage calculator\" are common searches, and this page won't answer any of them. Tetrava Labs doesn't provide human dosing, injection volumes, or administration protocols for DSIP, and a dosing chart built from the small 1980s clinical pilots above wouldn't be a responsible thing to publish as a general recommendation. That's a question for a licensed prescriber operating under a specific compounding pathway, not an RUO catalog listing.",
+          "For laboratory use, reconstitute the lyophilized vial under sterile technique with a diluent your protocol specifies, and record diluent lot, concentration, and reconstitution date in your ELN. Match those notes to the batch [Certificate of Analysis](/coa-library) so identity and purity data stay traceable to the exact vial used in an assay.",
+        ],
+      },
+      {
+        heading:
+          "Is DSIP legal in the US? The one peptide the FDA's committee voted down",
+        paragraphs: [
+          "DSIP has never been FDA-approved and carries no U.S. drug registration. In July 2026, the FDA's Pharmacy Compounding Advisory Committee reviewed seven peptide-related bulk drug substances nominated for the Section 503A Bulks List, the list that lets compounding pharmacies use a substance without a substance-specific approved drug behind it.[13] DSIP, listed in the docket under emideltide, was one of them.",
+          "Six of the seven got a favorable recommendation. DSIP didn't. The committee voted against including it, 6 in favor to 7 opposed with one abstention, the sole rejection of the two-day session.[14] FDA staff briefing documents cited two specific gaps: no safety data at all for the subcutaneous route DSIP is typically proposed for, and insufficient safety data even for the intravenous route where some data exists.[15] That's a narrower, more specific finding than a generic \"not enough evidence\" conclusion.",
+          "Committee members who voted against inclusion raised a related point during the hearing: DSIP's clearest supporting human study is from the early 1990s, and the common name has historically covered more than one chemically distinct molecule, which complicates characterization and impurity testing.[16] That's an advisory vote, not a final rule; the FDA can still act independently through formal rulemaking. It's a materially different regulatory posture than the other six peptides reviewed alongside it, and it doesn't change this catalog listing's status: a Research Use Only laboratory reagent, not a compounding-eligible substance.",
+        ],
+      },
+      {
+        heading: "Laboratory handling: reconstitution, storage, and documentation",
+        paragraphs: [
+          "DSIP ships as a lyophilized powder, stable at -20°C away from light. Reconstitute under sterile technique with a protocol-appropriate diluent immediately before use, and avoid repeated freeze-thaw cycling once in solution.",
+          "Hold reconstituted working solutions at 4°C and use them within the window your laboratory SOP sets. Record diluent lot, reconstitution date, and concentration in your ELN, and match those notes to the batch Certificate of Analysis so identity and purity data stay traceable to the exact vial used in an assay.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Schoenenberger GA, Monnier M. Characterization of a delta-electroencephalogram(-sleep)-inducing peptide. Proc Natl Acad Sci U S A. 1977;74(3):1282-1286.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/265572/",
+      },
+      {
+        id: 2,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 68816, Delta Sleep-Inducing Peptide.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/68816",
+      },
+      {
+        id: 3,
+        citation:
+          "Kovalzon VM, Strekalova TV. Delta sleep-inducing peptide (DSIP): a still unresolved riddle. J Neurochem. 2006;97(2):303-309.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/16539679/",
+      },
+      {
+        id: 4,
+        citation:
+          "Dick P, Grandjean ME, Tissot R. Successful treatment of withdrawal symptoms with delta sleep-inducing peptide, a neuropeptide with potential agonistic activity on opiate receptors. Neuropsychobiology. 1983;10(4):205-208.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/6328354/",
+      },
+      {
+        id: 5,
+        citation:
+          "Dick P, Costa C, Fayolle K, Grandjean ME, Khoshbeen A, Tissot R. DSIP in the treatment of withdrawal syndromes from alcohol and opiates. Eur Neurol. 1984;23(5):364-371.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/6548969/",
+      },
+      {
+        id: 6,
+        citation:
+          "Larbig W, Gerber WD, Kluck M, Schoenenberger GA. Therapeutic effects of delta-sleep-inducing peptide (DSIP) in patients with chronic, pronounced pain episodes. A clinical pilot study. Eur Neurol. 1984;23(5):372-385.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/6548970/",
+      },
+      {
+        id: 7,
+        citation:
+          "Roy K, Chauhan G, Kumari P, Wadhwa M, Alam S, Ray K, Panjwani U, Kishore K. Phosphorylated delta sleep inducing peptide restores spatial memory and p-CREB expression by improving sleep architecture at high altitude. Life Sci. 2018;209:282-290.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/30107169/",
+      },
+      {
+        id: 8,
+        citation:
+          "Tukhovskaya EA, Ismailova AM, Shaykhutdinova ER, Slashcheva GA, Prudchenko IA, Mikhaleva II, Khokhlova ON, Murashev AN, Ivanov VT. Delta Sleep-Inducing Peptide Recovers Motor Function in SD Rats after Focal Stroke. Molecules. 2021;26(17):5173.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/34500605/",
+      },
+      {
+        id: 9,
+        citation:
+          "Tukhovskaya EA, Shaykhutdinova ER, Ismailova AM, Slashcheva GA, Prudchenko IA, Mikhaleva II, Khokhlova ON, Murashev AN, Ivanov VT. DSIP-Like KND Peptide Reduces Brain Infarction in C57Bl/6 and Reduces Myocardial Infarction in SD Rats When Administered during Reperfusion. Biomedicines. 2021;9(4):407.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/33918965/",
+      },
+      {
+        id: 10,
+        citation:
+          "Mu X, Qu L, Yin L, Wang L, Liu X, Liu D. Pichia pastoris secreted peptides crossing the blood-brain barrier and DSIP fusion peptide efficacy in PCPA-induced insomnia mouse models. Front Pharmacol. 2024;15:1439536.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/39444618/",
+      },
+      {
+        id: 11,
+        citation:
+          "Bobyntsev II, Kryukov AA, Belykh AE, Dudka VT. Effect of Delta Sleep-Inducing Peptide on Functional State of Hepatocytes in Rats During Restraint Stress. Bull Exp Biol Med. 2016;160(4):421-424.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/26902351/",
+      },
+      {
+        id: 12,
+        citation:
+          "Zhang XG, Wang WN, Zhang CS, Li K, Ma GD, Li JY. Expression and Purification of Delta Sleep-Inducing Peptide Fused with Protein Transduction Domain and Human Serum Albumin in Pichia pastoris. Protein Pept Lett. 2017;24(7):668-675.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/28462721/",
+      },
+      {
+        id: 13,
+        citation:
+          "U.S. Food and Drug Administration. Pharmacy Compounding Advisory Committee; Notice of Meeting; Establishment of a Public Docket; Request for Comments--Bulk Drug Substances Nominated for Inclusion on the Section 503A Bulk Drug Substances List. Fed Regist. 2026;91(73):20465 (Docket No. FDA-2025-N-6895).",
+        url: "https://www.govinfo.gov/content/pkg/FR-2026-04-16/html/2026-07361.htm",
+      },
+      {
+        id: 14,
+        citation:
+          "Kelley Drye & Warren LLP. FDA Advisory Committee Recommends Several Peptides for Compounding for Various Uses Despite Staff Opposition: What Stakeholders Need to Know. Ad Law Access (blog). 2026.",
+        url: "https://www.kelleydrye.com/viewpoints/blogs/ad-law-access/fda-advisory-committee-recommends-several-peptides-for-compounding-for-various-uses-despite-staff-opposition-what-stakeholders-need-to-know",
+      },
+      {
+        id: 15,
+        citation:
+          "Bass, Berry & Sims PLC. FDA Advisory Committee Recommends Six Peptides for Compounding: What the Evaluation Criteria Tell Us About the Road Ahead. Firm publication. 2026.",
+        url: "https://www.bassberry.com/news/fda-advisory-committee-recommends-six-peptides-for-compounding-what-the-evaluation-criteria-tell-us-about-the-road-ahead/",
+      },
+      {
+        id: 16,
+        citation:
+          "Hyman, Phelps & McNamara, P.C. The PEPTIDE-L Wave Rolls On! PCAC Adds Two More Bulk Drug Substances for the 503A List. FDA Law Blog. 2026.",
+        url: "https://www.thefdalawblog.com/2026/07/the-peptide-l-wave-rolls-on-pcac-adds-two-more-bulk-drug-substances-for-the-503a-list/",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
 };
 
 export function getProductResearchDetail(

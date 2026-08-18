@@ -102,6 +102,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers comparing Semax and Selank molecular structure diagrams on a whiteboard beside their research vials",
     2: "Gloved researcher holding a rodent cerebral ischemia infarct-volume brain scan beside a Semax vial and HPLC chromatogram",
   },
+  dsip: {
+    0: "Researcher pointing to delta-wave sleep EEG traces on a polysomnography monitor beside a DSIP research vial",
+    1: "Two lab researchers reviewing a rodent stroke motor-function recovery chart and HPLC purity chromatogram beside a DSIP vial",
+    2: "Researcher reviewing an FDA compounding advisory committee review document on a tablet beside a DSIP vial and Certificate of Analysis",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

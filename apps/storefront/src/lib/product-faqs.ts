@@ -957,6 +957,117 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
         "Shipping depends on destination-specific compliance rules, which can change and which this page won't summarize country by country. Check the current [shipping restrictions](/shipping-restricted) before ordering. Tetrava Labs doesn't make regulatory claims about how any individual country classifies Semax; that determination sits with the buyer's local research institution and regulator.",
     },
   ],
+  dsip: [
+    {
+      question: "What is DSIP?",
+      answer:
+        "DSIP, Delta Sleep-Inducing Peptide, is a synthetic nonapeptide: Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu. Swiss researchers isolated it from the blood of rabbits during electrically induced sleep and published its full characterization in 1977. Its International Nonproprietary Name, the label the FDA uses in its own review documents, is emideltide.",
+    },
+    {
+      question: "What is DSIP peptide used for, and what does DSIP do?",
+      answer:
+        "In the published research, DSIP has been studied for its association with delta-wave, slow-wave sleep on EEG, for restoring spatial memory and sleep architecture in a rat high-altitude model, for motor-function recovery after stroke in rats, and in small 1980s human trials for opiate and alcohol withdrawal and chronic pain. See the Description tab above for the original citations behind each finding.",
+    },
+    {
+      question: "How does DSIP work?",
+      answer:
+        "Honestly, nobody has fully worked that out. A 2006 review by researchers who had studied DSIP for years titled their paper \"a still unresolved riddle,\" because no study has identified a DSIP-specific receptor despite decades of research. What's published are downstream effects: shifts in neurotransmitter levels, hormonal changes, altered locomotor patterns, and modified responses to other drugs, without a settled explanation for what DSIP binds to first.",
+    },
+    {
+      question: "What are DSIP's studied benefits?",
+      answer:
+        "The evidence spans several separate research threads rather than one confirmed effect. Preclinical studies report improved sleep architecture and spatial memory at simulated high altitude, motor-function recovery after stroke, and a liver-protective signal under restraint stress in rats. Small human trials from the 1980s reported reduced withdrawal symptoms in alcohol and opiate withdrawal and reduced pain in a chronic-pain pilot study. None of this is FDA-reviewed evidence for a Research Use Only vial.",
+    },
+    {
+      question: "What do DSIP's clinical trials show?",
+      answer:
+        "The human trial record is older than most catalog peptides. A 1983 case series and a 1984 follow-up in European Neurology both tested DSIP against alcohol and opiate withdrawal syndromes. A separate 1984 pilot study tested it in patients with chronic, pronounced pain. These are small, decades-old European studies, not FDA-reviewed trials, and none used the sequence-confirmed reagent grade sold here.",
+    },
+    {
+      question: "Does DSIP have side effects?",
+      answer:
+        "There's no modern, FDA-reviewed safety profile for DSIP. The published human data comes from small 1980s trials that weren't designed as safety studies in the way a current clinical trial would be. Tetrava Labs' listing is a laboratory reagent for qualified researchers, not a product with a human safety label, and this page won't publish a side-effect list it can't back with current data.",
+    },
+    {
+      question: "How long does DSIP take to work, and how long does it last?",
+      answer:
+        "No study reviewed for this page publishes a serum half-life or onset time for DSIP that would answer that as a general question. The published trials measure outcomes at study-specific intervals, an EEG reading during a sleep session, a motor-function score days after a stroke model, not a pharmacokinetic clearance curve for the reagent.",
+    },
+    {
+      question:
+        "How much DSIP should I inject or take? Is there a dosing calculator or dosing chart?",
+      answer:
+        "This page doesn't answer that. Tetrava Labs' DSIP listing is a lyophilized laboratory reagent for qualified researchers, not a product with human administration instructions. A generic dosing chart here would only be sourced from small 1980s clinical pilots, which isn't a responsible basis for a public recommendation.",
+    },
+    {
+      question: "When should I take DSIP peptide?",
+      answer:
+        "Tetrava Labs doesn't provide timing guidance for human use. That's a question for a licensed prescriber operating under a specific compounding pathway, not an RUO catalog listing. This page describes a laboratory reagent only.",
+    },
+    {
+      question: "How do I use or take DSIP peptide?",
+      answer:
+        "Tetrava Labs doesn't provide human dosing, injection volumes, or administration instructions for DSIP. For laboratory use, reconstitute under sterile technique with a diluent your protocol specifies, and record diluent lot, concentration, and reconstitution date in your ELN.",
+    },
+    {
+      question: "Where do I inject DSIP?",
+      answer:
+        "This page doesn't cover injection sites or routes. DSIP is sold here as a lyophilized vial for laboratory reconstitution, not as a product with human administration instructions.",
+    },
+    {
+      question: "Is there a DSIP protocol Tetrava Labs recommends?",
+      answer:
+        "No. Tetrava Labs doesn't publish a research or administration protocol for DSIP. Design your own protocol around your assay's endpoint, your institution's IACUC or IRB requirements, and the published studies cited in the Description tab, not a generic template.",
+    },
+    {
+      question:
+        "Does Tetrava Labs sell DSIP nasal spray, or DSIP delta sleep inducing peptide nasal spray?",
+      answer:
+        "No. Tetrava Labs sells lyophilized DSIP in 5 mg, 10 mg, and 15 mg vials for laboratory reconstitution. It doesn't sell a finished nasal spray product, and this page doesn't provide instructions for compounding one.",
+    },
+    {
+      question: "How do you reconstitute 10 mg DSIP for lab use?",
+      answer:
+        "Reconstitute under sterile technique with a diluent your protocol specifies, and record diluent lot, concentration, and reconstitution date in your ELN. This page doesn't publish a milliliter-per-vial recipe or a human dosing volume; that belongs in your laboratory SOP.",
+    },
+    {
+      question: "Is DSIP legal in the US?",
+      answer:
+        "DSIP isn't FDA-approved and carries no U.S. drug registration. In July 2026, the FDA's Pharmacy Compounding Advisory Committee reviewed seven peptides nominated for the Section 503A Bulks compounding list, and DSIP, listed under its INN emideltide, was the only one of the seven the committee voted against, 6 in favor to 7 opposed. That's an advisory vote against inclusion, not a ban, and Tetrava Labs sells DSIP strictly Research Use Only regardless of how the rulemaking resolves.",
+    },
+    {
+      question: "Why did the FDA's committee vote against DSIP specifically?",
+      answer:
+        "FDA staff briefing documents flagged two specific gaps: no safety data at all for the subcutaneous route DSIP is usually proposed for, and insufficient safety data even for the intravenous route where some exists. Committee members who voted against inclusion also pointed out that DSIP's clearest supporting human study dates to the early 1990s, and that the name has historically covered more than one chemically distinct molecule, which complicates identity testing. None of that changes the status of Tetrava Labs' listing, a Research Use Only reagent regardless of the rulemaking outcome.",
+    },
+    {
+      question: "What strengths does Tetrava Labs carry for DSIP?",
+      answer:
+        "DSIP is listed in 5 mg, 10 mg, and 15 mg lyophilized vials. Choose the strength that matches your assay's working-concentration needs, and check the lot COA against the identity data listed above before starting comparative work.",
+    },
+    {
+      question:
+        "Where can I buy DSIP peptide online, and what's the best place to buy DSIP?",
+      answer:
+        "You can buy DSIP directly from Tetrava Labs on this page, in 5 mg, 10 mg, or 15 mg lyophilized vials, shipped within the USA. The best place to buy DSIP publishes a lot-linked Certificate of Analysis you can match to the vial in hand, rather than an unverified marketplace listing or a forum recommendation.",
+    },
+    {
+      question:
+        "I saw \"DSIP peptide 10mg 99% lab tested\" advertised. How do I check that claim?",
+      answer:
+        "Ask for the batch-specific Certificate of Analysis, not a generic purity statement. A real COA comes from an independent third-party lab, reports purity by area-under-curve HPLC, and confirms DSIP's nine-residue sequence and molecular weight alongside the percentage. Every Tetrava Labs lot ships with that documentation matched to the batch you receive.",
+    },
+    {
+      question: "Is DSIP the same thing as emideltide?",
+      answer:
+        "Yes. Emideltide is the International Nonproprietary Name for delta sleep-inducing peptide; it's the label that appears in FDA regulatory documents and PubChem, referring to the identical nine-amino-acid sequence sold on this page as DSIP.",
+    },
+    {
+      question: "Does Tetrava Labs ship DSIP within the USA?",
+      answer:
+        "Yes, Tetrava Labs ships DSIP to qualified laboratories within the USA with cold-chain-aware fulfillment. Check the current [shipping restrictions](/shipping-restricted) before ordering, since destination-specific compliance rules can change.",
+    },
+  ],
   epithalon: [
     {
       question: "What is Epithalon (Epitalon) in research catalogs?",

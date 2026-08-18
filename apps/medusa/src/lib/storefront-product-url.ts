@@ -74,6 +74,8 @@ const HANDLE_TO_PUBLIC: Record<string, string> = {
   "pinealon-capsules-100-count": "buy-pinealon-capsules-online",
   retatrutide: "buy-retatrutide-online",
   selank: "buy-selank-online",
+  "selank-nasal-spray": "buy-selank-nasal-spray-online",
+  "selank-nasal-spray-10mg": "buy-selank-nasal-spray-online",
   semaglutide: "buy-semaglutide-online",
   semax: "buy-semax-online",
   sermorelin: "buy-sermorelin-peptide",

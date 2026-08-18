@@ -65,6 +65,7 @@ export const PRODUCT_URL_TO_HANDLE: Record<string, string> = {
   "buy-pinealon-online": "pinealon-10mg",
   "buy-pinealon-capsules-online": "pinealon-capsules-100-count",
   "buy-retatrutide-online": "retatrutide",
+  "buy-selank-nasal-spray-online": "selank-nasal-spray-10mg",
   "buy-selank-online": "selank",
   "buy-semaglutide-online": "semaglutide",
   "buy-semax-online": "semax",
@@ -116,7 +117,8 @@ export const LEGACY_PRETTY_URL_REDIRECTS: Record<string, string> = {
   "pinealon-capsules": "buy-pinealon-capsules-online",
   "buy-sermorelin-online": "buy-sermorelin-peptide",
   "klow-bpc-157-tb-500-ghk-cu-kpv": "klow-blend",
-  "selank-nasal-spray-10mg": "buy-selank-online"
+  "selank-nasal-spray": "buy-selank-nasal-spray-online",
+  "selank-nasal-spray-10mg": "buy-selank-nasal-spray-online"
 }
 
 /** Public SKU names that are not Medusa handles; resolve to the compound parent. */

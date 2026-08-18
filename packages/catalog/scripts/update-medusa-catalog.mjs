@@ -40,6 +40,7 @@ const normalizedPath = path.join(
 )
 
 const dryRun = process.argv.includes("--dry-run")
+const onlyHandle = process.argv.find((arg) => arg.startsWith("--only="))?.slice("--only=".length)
 
 const run = async () => {
   loadMedusaEnv()
@@ -56,6 +57,7 @@ const run = async () => {
   let renamedProducts = 0
 
   for (const catalogProduct of raw.products) {
+    if (onlyHandle && catalogProduct.handle !== onlyHandle) continue
     const { existing, legacyHandle } = await fetchCatalogProduct(client, catalogProduct.handle)
     if (!existing) {
       missingProducts += 1

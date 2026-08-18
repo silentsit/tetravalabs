@@ -70,8 +70,9 @@ const RELATED_BY_HANDLE: Record<string, readonly string[]> = {
   "lemon-bottle-10ml": ["lipo-c-10ml", "l-carnitine-600mg-10ml", "aod-9604"],
   "lipo-c-10ml": ["l-carnitine-600mg-10ml", "lemon-bottle-10ml", "glutathione"],
 
-  semax: ["selank", "adamax-10mg", "dihexa-10mg"],
-  selank: ["semax", "dsip", "epithalon"],
+  semax: ["selank", "selank-nasal-spray-10mg", "adamax-10mg"],
+  selank: ["selank-nasal-spray-10mg", "semax", "dsip"],
+  "selank-nasal-spray-10mg": ["selank", "semax", "dsip"],
   "adamax-10mg": ["semax", "dihexa-10mg", "selank"],
   "dihexa-10mg": ["semax", "adamax-10mg", "cerebrolysin-10mg"],
   "cerebrolysin-10mg": ["semax", "dihexa-10mg", "pinealon-10mg"],

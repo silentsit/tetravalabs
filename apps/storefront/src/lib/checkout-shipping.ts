@@ -12,7 +12,11 @@ export function isSelankNasalSprayOnly(items: ShippingItem[]) {
   return items.every((item) => {
     const handle = (item.handle || "").toLowerCase().trim()
     const title = (item.title || "").toLowerCase()
-    return handle === SELANK_NASAL_HANDLE || title.includes("selank nasal spray")
+    return (
+      handle === SELANK_NASAL_HANDLE ||
+      handle.startsWith("selank-nasal") ||
+      title.includes("selank nasal spray")
+    )
   })
 }
 

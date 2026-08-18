@@ -1942,47 +1942,65 @@
         "per_unit_usd": 32,
         "savings_pct": 0.0857
       },
-      {
-        "tier": "10 vials",
-        "qty": 10,
-        "price_usd": 290,
-        "per_unit_usd": 29,
-        "savings_pct": 0.1714
-      }
-    ]
-  },
-  {
-    "category": "Longevity / Thymic / Neuropeptides",
-    "name": "Semax",
-    "strength": "10mg",
-    "price_usd": 55,
-    "slug": "semax-10mg",
-    "storefront_category": "Longevity & Neuropeptides",
-    "ref_price_usd": 55,
-    "pack_tiers": [
-      {
-        "tier": "1 vial",
-        "qty": 1,
-        "price_usd": 55,
-        "per_unit_usd": 55,
-        "savings_pct": 0
-      },
-      {
-        "tier": "5 vials",
-        "qty": 5,
-        "price_usd": 245,
-        "per_unit_usd": 49,
-        "savings_pct": 0.1091
-      },
-      {
-        "tier": "10 vials",
-        "qty": 10,
-        "price_usd": 390,
-        "per_unit_usd": 39,
-        "savings_pct": 0.2909
-      }
-    ]
-  },
+        {
+          "tier": "10 vials",
+          "qty": 10,
+          "price_usd": 290,
+          "per_unit_usd": 29,
+          "savings_pct": 0.1714
+        }
+      ]
+    },
+    {
+      "category": "Longevity / Thymic / Neuropeptides",
+      "name": "Selank Nasal Spray",
+      "strength": "10mg",
+      "price_usd": 79,
+      "slug": "selank-nasal-spray-10mg",
+      "storefront_category": "Longevity & Neuropeptides",
+      "ref_price_usd": 79,
+      "pack_tiers": [
+        {
+          "tier": "1 bottle",
+          "qty": 1,
+          "price_usd": 79,
+          "per_unit_usd": 79,
+          "savings_pct": 0
+        }
+      ]
+    },
+    {
+      "category": "Longevity / Thymic / Neuropeptides",
+      "name": "Semax",
+      "strength": "10mg",
+      "price_usd": 55,
+      "slug": "semax-10mg",
+      "storefront_category": "Longevity & Neuropeptides",
+      "ref_price_usd": 55,
+      "pack_tiers": [
+        {
+          "tier": "1 vial",
+          "qty": 1,
+          "price_usd": 55,
+          "per_unit_usd": 55,
+          "savings_pct": 0
+        },
+        {
+          "tier": "5 vials",
+          "qty": 5,
+          "price_usd": 245,
+          "per_unit_usd": 49,
+          "savings_pct": 0.1091
+        },
+        {
+          "tier": "10 vials",
+          "qty": 10,
+          "price_usd": 390,
+          "per_unit_usd": 39,
+          "savings_pct": 0.2909
+        }
+      ]
+    },
   {
     "category": "Longevity / Thymic / Neuropeptides",
     "name": "Semax",

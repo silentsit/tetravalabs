@@ -224,8 +224,11 @@ export function ProductCompoundView({
           category: view.categoryLabel,
           purity: selectedStrength.purity,
           primaryVariantTitle:
-            selectedStrength.variants[0]?.title ||
-            selectedStrength.strengthLabel,
+            selectedStrength.strengthLabel &&
+            selectedStrength.strengthLabel.toLowerCase() !== "standard"
+              ? selectedStrength.strengthLabel
+              : selectedStrength.variants[0]?.title ||
+                selectedStrength.strengthLabel,
           casNumber: view.casNumber,
           molecularFormula: view.molecularFormula,
           molecularWeight: view.molecularWeight,

@@ -16,8 +16,8 @@ const HERO_PRODUCTS = [
   {
     slot: "center" as const,
     src: "/products/v2/hero/selank-nasal-spray-10mg.webp",
-    href: getProductHref("selank"),
-    label: "Selank",
+    href: getProductHref("selank-nasal-spray-10mg"),
+    label: "Selank Nasal Spray",
     width: 220,
     height: 420,
     priority: false

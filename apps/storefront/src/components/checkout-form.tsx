@@ -13,7 +13,13 @@ import {
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
-import { CHECKOUT_US_STATES, normalizeUsStateCode } from "@/lib/checkout-us-states"
+import {
+  getCheckoutSubdivisions,
+  getSubdivisionLabel,
+  getSubdivisionPlaceholder,
+  isValidSubdivision,
+  normalizeSubdivision
+} from "@/lib/checkout-subdivisions"
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
 import { storePaymentUrl } from "@/components/payment-confirmation"
@@ -107,15 +113,24 @@ function validateAddress(values: AddressValues, options?: { requireEmail?: boole
 
   if (country === "US") {
     if (!values.province.trim()) errors.province = "State is required."
-    else if (!CHECKOUT_US_STATES.some((state) => state.code === values.province)) {
+    else if (!isValidSubdivision("US", values.province)) {
       errors.province = "Select a valid US state."
     }
 
     const postal = values.postalCode.trim()
     if (!postal) errors.postalCode = "ZIP code is required."
     else if (!US_ZIP_PATTERN.test(postal)) errors.postalCode = "Enter a valid US ZIP code."
-  } else if (!values.postalCode.trim()) {
-    errors.postalCode = "Postal code is required."
+  } else {
+    const subdivisions = getCheckoutSubdivisions(country)
+    const label = getSubdivisionLabel(country)
+    if (subdivisions.length) {
+      if (!values.province.trim()) errors.province = `${label} is required.`
+      else if (!isValidSubdivision(country, values.province)) {
+        errors.province = `Select a valid ${label.toLowerCase()}.`
+      }
+    }
+
+    if (!values.postalCode.trim()) errors.postalCode = "Postal code is required."
   }
 
   const phone = values.phone.trim()
@@ -272,7 +287,9 @@ function AddressFields({
   onFieldBlur,
   onFieldChange
 }: AddressFieldsProps) {
-  const isUs = country === "US"
+  const subdivisions = getCheckoutSubdivisions(country)
+  const subdivisionLabel = getSubdivisionLabel(country)
+  const hasSubdivisionSelect = subdivisions.length > 0
 
   const showError = (field: AddressFieldKey) =>
     fieldVisibleError(field, errors, touched, attemptedSubmit)
@@ -283,11 +300,7 @@ function AddressFields({
     if (parsed.address1) setAddress1(parsed.address1)
     if (parsed.city) setCity(parsed.city)
     if (parsed.province) {
-      setProvince(
-        parsed.country.toUpperCase() === "US" || country === "US"
-          ? normalizeUsStateCode(parsed.province)
-          : parsed.province
-      )
+      setProvince(normalizeSubdivision(parsed.country || country, parsed.province))
     }
     if (parsed.postalCode) setPostalCode(parsed.postalCode)
     if (
@@ -370,8 +383,11 @@ function AddressFields({
           autoComplete="country"
           value={country}
           onChange={(event) => {
-            setCountry(event.target.value)
+            const nextCountry = event.target.value
+            setCountry(nextCountry)
+            setProvince("")
             onFieldChange?.("country")
+            onFieldChange?.("province")
           }}
           onBlur={() => onFieldBlur?.("country")}
           aria-invalid={Boolean(showError("country"))}
@@ -445,15 +461,15 @@ function AddressFields({
           <FieldError id={errorId("city")} message={showError("city")} />
         </div>
         <div className="sm:col-span-1">
-          <FieldLabel htmlFor={`${idPrefix}-province`} required={isUs}>
-            State
+          <FieldLabel htmlFor={`${idPrefix}-province`} required={hasSubdivisionSelect}>
+            {subdivisionLabel}
           </FieldLabel>
-          {isUs ? (
+          {hasSubdivisionSelect ? (
             <select
               id={`${idPrefix}-province`}
               required
               autoComplete="address-level1"
-              value={province}
+              value={subdivisions.some((entry) => entry.code === province) ? province : ""}
               onChange={(event) => {
                 setProvince(event.target.value)
                 onFieldChange?.("province")
@@ -463,10 +479,10 @@ function AddressFields({
               aria-describedby={showError("province") ? errorId("province") : undefined}
               className={inputFieldClass(Boolean(showError("province")))}
             >
-              <option value="">Select a state</option>
-              {CHECKOUT_US_STATES.map((state) => (
-                <option key={state.code} value={state.code}>
-                  {state.name}
+              <option value="">{getSubdivisionPlaceholder(country)}</option>
+              {subdivisions.map((entry) => (
+                <option key={entry.code} value={entry.code}>
+                  {entry.name}
                 </option>
               ))}
             </select>
@@ -475,6 +491,7 @@ function AddressFields({
               id={`${idPrefix}-province`}
               autoComplete="address-level1"
               value={province}
+              placeholder="State / province"
               onChange={(event) => {
                 setProvince(event.target.value)
                 onFieldChange?.("province")

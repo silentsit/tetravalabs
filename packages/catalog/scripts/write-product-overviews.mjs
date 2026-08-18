@@ -337,6 +337,11 @@ const OVERVIEWS = {
     "Neuropeptide labs commonly study Selank in stress-axis assays and comparative work with related peptides such as Semax.",
     "Available in research presentations suited to laboratory handling. For research use only. Not for human or veterinary consumption."
   ],
+  "selank-nasal-spray-10mg": [
+    "Buy {productName} online from Tetrava Labs. Selank nasal spray is the tuftsin analogue in a finished aqueous research spray, 10 mg, stored at 2-8°C.",
+    "Labs use the spray format when an intranasal research presentation is specified; lyophilized Selank remains the powder vial SKU.",
+    "Refrigerate 2-8°C; do not freeze. For research use only. Not for human or veterinary consumption."
+  ],
   semaglutide: [
     "Buy {productName} online from Tetrava Labs. Semaglutide is a long-acting GLP-1 receptor agonist and a reference compound in incretin, appetite, and glycemic pathway research.",
     "It is widely used as a benchmark GLP-1 agonist when labs compare next-generation dual and triple agonists in metabolic models.",

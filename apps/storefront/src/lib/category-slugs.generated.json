@@ -44,6 +44,7 @@
   "dermorphin-5mg": "longevity-neuropeptides",
   "foxo4-dri-10mg": "longevity-neuropeptides",
   "ll-37-5mg": "longevity-neuropeptides",
+  "selank-nasal-spray-10mg": "longevity-neuropeptides",
   "thymalin-10mg": "longevity-neuropeptides",
   "vip-10mg": "longevity-neuropeptides",
   "pinealon-10mg": "longevity-neuropeptides",
@@ -58,7 +59,6 @@
   "lipo-c-10ml": "metabolic-mitochondrial",
   "mk-677-5mg": "metabolic-mitochondrial",
   "bpc-157-capsules-100-count-500mcg": "tissue-repair",
-  "bpc-157-tb500-blend": "research-blends",
   "bpc-157-5mg-tb500-5mg-10mg": "research-blends",
   "bpc-157-5mg-tb500-5mg-20mg": "research-blends",
   "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": "research-blends",
@@ -74,5 +74,6 @@
   "mgf-2mg": "growth-hormone-axis",
   "peg-mgf-2mg": "growth-hormone-axis",
   "l-glu-100mg": "longevity-neuropeptides",
-  "pinealon-capsules-100-count": "longevity-neuropeptides"
+  "pinealon-capsules-100-count": "longevity-neuropeptides",
+  "bpc-157-tb500-blend": "research-blends"
 }

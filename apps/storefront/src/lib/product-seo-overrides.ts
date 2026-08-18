@@ -65,6 +65,14 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
       "Buy KLOW Blend (80mg) online: BPC-157 10mg, TB-500 10mg, GHK-Cu 10mg, and KPV 50mg in one lyophilized vial. 99%+ HPLC-MS purity, lot-linked COA. RUO.",
     imageAlt: "Buy KLOW Blend 80mg research peptide vial",
   },
+  "selank-nasal-spray-10mg": {
+    absoluteTitle:
+      "Buy Selank Nasal Spray Online (10mg) | 99%+ Purity COA | Tetrava",
+    pageHeading: "Selank Nasal Spray",
+    description:
+      "Buy Selank nasal spray online (10mg). 99%+ HPLC-MS purity, lot-linked COA, 2-8C refrigerated research spray. Research use only (RUO).",
+    imageAlt: "Buy Selank nasal spray online, 10mg research bottle",
+  },
 };
 
 export function getProductSeoOverride(

@@ -4,7 +4,12 @@ import { FormEvent, useEffect, useState } from "react"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import { AccountEmptyNotice } from "@/components/account/account-empty-notice"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
-import { CHECKOUT_US_STATES, normalizeUsStateCode } from "@/lib/checkout-us-states"
+import {
+  getCheckoutSubdivisions,
+  getSubdivisionLabel,
+  getSubdivisionPlaceholder,
+  normalizeSubdivision
+} from "@/lib/checkout-subdivisions"
 import type { ParsedAddress } from "@/lib/google-places"
 import {
   createCustomerAddress,
@@ -74,7 +79,8 @@ export function AccountAddressesPanel() {
     void loadAddresses()
   }, [])
 
-  const isUs = form.country_code === "US"
+  const subdivisions = getCheckoutSubdivisions(form.country_code)
+  const hasSubdivisionSelect = subdivisions.length > 0
 
   const applyParsedAddress = (parsed: ParsedAddress) => {
     if (parsed.address1) setForm((prev) => ({ ...prev, address_1: parsed.address1 }))
@@ -82,10 +88,7 @@ export function AccountAddressesPanel() {
     if (parsed.province) {
       setForm((prev) => ({
         ...prev,
-        province:
-          parsed.country.toUpperCase() === "US" || prev.country_code === "US"
-            ? normalizeUsStateCode(parsed.province)
-            : parsed.province
+        province: normalizeSubdivision(parsed.country || prev.country_code, parsed.province)
       }))
     }
     if (parsed.postalCode) setForm((prev) => ({ ...prev, postal_code: parsed.postalCode }))
@@ -277,7 +280,13 @@ export function AccountAddressesPanel() {
               id="addr-country"
               className="input-field mt-1"
               value={form.country_code}
-              onChange={(event) => setForm((prev) => ({ ...prev, country_code: event.target.value }))}
+              onChange={(event) =>
+                setForm((prev) => ({
+                  ...prev,
+                  country_code: event.target.value,
+                  province: ""
+                }))
+              }
             >
               {CHECKOUT_COUNTRIES.map((entry) => (
                 <option key={entry.code} value={entry.code}>
@@ -324,17 +333,23 @@ export function AccountAddressesPanel() {
               />
             </div>
             <div>
-              <RequiredLabel htmlFor="addr-province">{isUs ? "State" : "State / province"}</RequiredLabel>
-              {isUs ? (
+              {hasSubdivisionSelect ? (
+                <RequiredLabel htmlFor="addr-province">{getSubdivisionLabel(form.country_code)}</RequiredLabel>
+              ) : (
+                <label htmlFor="addr-province" className="block text-sm text-[#0F172A]">
+                  {getSubdivisionLabel(form.country_code)}
+                </label>
+              )}
+              {hasSubdivisionSelect ? (
                 <select
                   id="addr-province"
                   className="input-field mt-1"
-                  value={form.province}
+                  value={subdivisions.some((entry) => entry.code === form.province) ? form.province : ""}
                   onChange={(event) => setForm((prev) => ({ ...prev, province: event.target.value }))}
                   required
                 >
-                  <option value="">Select state</option>
-                  {CHECKOUT_US_STATES.map((entry) => (
+                  <option value="">{getSubdivisionPlaceholder(form.country_code)}</option>
+                  {subdivisions.map((entry) => (
                     <option key={entry.code} value={entry.code}>
                       {entry.name}
                     </option>
@@ -345,8 +360,8 @@ export function AccountAddressesPanel() {
                   id="addr-province"
                   className="input-field mt-1"
                   value={form.province}
+                  placeholder="State / province"
                   onChange={(event) => setForm((prev) => ({ ...prev, province: event.target.value }))}
-                  required
                 />
               )}
             </div>

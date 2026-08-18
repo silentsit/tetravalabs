@@ -30,6 +30,18 @@ export type ProductDetailData = {
   researchSummary: string
 }
 
+function specFormLabel(appearance: string, handle?: string) {
+  const hay = `${appearance} ${handle || ""}`.toLowerCase()
+  if (/nasal/.test(hay)) return "Nasal spray"
+  return "Lyophilized Powder"
+}
+
+function specStabilityLabel(appearance: string, storage: string) {
+  const hay = `${appearance} ${storage}`.toLowerCase()
+  if (/nasal/.test(hay)) return storage.trim() || "2–8°C refrigerated; do not freeze"
+  return "24 months at -20°C (lyophilized)"
+}
+
 export type ProductOverviewImage = {
   src: string
   alt: string
@@ -165,8 +177,8 @@ export function ProductDetailTabs({
     { label: "Storage", value: product.storage },
     { label: "Category", value: normalizeTb500DisplayText(product.category) },
     { label: "Strength", value: product.primaryVariantTitle },
-    { label: "Form", value: "Lyophilized Powder" },
-    { label: "Stability", value: "24 months at -20°C (lyophilized)" },
+    { label: "Form", value: specFormLabel(product.appearance, product.handle) },
+    { label: "Stability", value: specStabilityLabel(product.appearance, product.storage) },
     { label: "Catalog Handle", value: product.catalogHandleLabel || product.handle }
   ]
 

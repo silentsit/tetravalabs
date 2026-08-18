@@ -538,9 +538,9 @@
   "Selank Nasal Spray": {
     "cas_number": "129954-34-3",
     "molecular_formula": "C33H57N11O9",
-    "molecular_weight": null,
+    "molecular_weight": "751.89",
     "sequence": "Thr-Lys-Pro-Arg-Pro-Gly-Pro",
-    "storage": "2-8°C refrigerated",
+    "storage": "2-8°C refrigerated; do not freeze",
     "appearance": "Clear nasal solution"
   },
   "Semaglutide": {

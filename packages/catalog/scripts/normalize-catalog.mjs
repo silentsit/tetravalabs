@@ -153,7 +153,7 @@ const buildRowVariants = (row, productCode, skuRegistry) => {
   return tiers.map((tier) => {
     const qty = Number(tier.qty)
     const packQty = Number.isFinite(qty) && qty > 0 ? Math.floor(qty) : 1
-    const variantTitle = packQty === 1 ? "1 vial" : tier.tier
+    const variantTitle = packQty === 1 ? (isNasalSpray(row.name) ? "1 bottle" : "1 vial") : tier.tier
     const sku = formatOpaqueSku(productCode, packQty)
     const variantMeta = {
       catalog_slug: row.slug,

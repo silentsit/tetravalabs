@@ -98,15 +98,6 @@
     "appearance": "White lyophilized powder",
     "category": "Tissue Repair"
   },
-  "bpc-157-tb500-blend": {
-    "cas_number": "137525-51-0",
-    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
-    "molecular_weight": "See component peptides",
-    "sequence": "Multi-component: see BPC-157 and TB-500",
-    "storage": "-20C lyophilized",
-    "appearance": "White lyophilized powder",
-    "category": "Research Blends"
-  },
   "bpc-157-5mg-tb500-5mg-10mg": {
     "cas_number": "137525-51-0",
     "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
@@ -575,6 +566,15 @@
     "appearance": "White lyophilized powder",
     "category": "Longevity & Neuropeptides"
   },
+  "selank-nasal-spray-10mg": {
+    "cas_number": "129954-34-3",
+    "molecular_formula": "C33H57N11O9",
+    "molecular_weight": "751.89",
+    "sequence": "Thr-Lys-Pro-Arg-Pro-Gly-Pro",
+    "storage": "2-8°C refrigerated; do not freeze",
+    "appearance": "Clear nasal solution",
+    "category": "Longevity & Neuropeptides"
+  },
   "semaglutide": {
     "cas_number": "910463-68-2",
     "molecular_formula": "C187H291N45O59",
@@ -682,5 +682,14 @@
     "storage": "-20C lyophilized",
     "appearance": "White lyophilized powder",
     "category": "Longevity & Neuropeptides"
+  },
+  "bpc-157-tb500-blend": {
+    "cas_number": "137525-51-0",
+    "molecular_formula": "C62H98N16O22 | C212H350N56O78S",
+    "molecular_weight": "See component peptides",
+    "sequence": "Multi-component: see BPC-157 and TB-500",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "category": "Research Blends"
   }
 }

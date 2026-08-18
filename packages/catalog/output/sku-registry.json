@@ -1799,6 +1799,12 @@
     "pack_qty": 10,
     "variant_title": "10 vials"
   },
+  "TV-0107-01": {
+    "handle": "selank-nasal-spray-10mg",
+    "title": "Selank Nasal Spray 10mg",
+    "pack_qty": 1,
+    "variant_title": "1 bottle"
+  },
   "TV-0125-01": {
     "handle": "thymalin-10mg",
     "title": "Thymalin 10mg",

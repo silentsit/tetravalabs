@@ -107,6 +107,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers reviewing a rodent stroke motor-function recovery chart and HPLC purity chromatogram beside a DSIP vial",
     2: "Researcher reviewing an FDA compounding advisory committee review document on a tablet beside a DSIP vial and Certificate of Analysis",
   },
+  "selank-nasal-spray-10mg": {
+    0: "Scientist pointing to an intranasal research-delivery diagram of olfactory and hippocampal pathways beside a Selank nasal spray bottle",
+    1: "Two lab researchers reviewing a hippocampal BDNF expression chart from an intranasal Selank study beside the nasal spray bottle and an HPLC chromatogram",
+    2: "Gloved hand placing a Selank nasal spray bottle onto a 2-8 C refrigerator shelf beside a -20 C lyophilized Selank vial",
+  },
   "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": {
     0: "Gloved researcher matching the KLOW Blend 80mg vial against its four individual component vials, BPC-157, TB-500, GHK-Cu, and KPV, beside a printed Certificate of Analysis",
     1: "Lab monitor showing four converging research pathway diagrams, tissue-repair, copper-peptide gene signaling, actin regulation, and anti-inflammatory cytokine signaling, meeting at a labeled KLOW Blend vial",

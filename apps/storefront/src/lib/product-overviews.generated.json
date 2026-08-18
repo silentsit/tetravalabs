@@ -1196,6 +1196,15 @@
       "Available in research presentations suited to laboratory handling. For research use only. Not for human or veterinary consumption."
     ]
   },
+  "selank-nasal-spray-10mg": {
+    "paragraphs": [
+      "Buy {productName} online from Tetrava Labs. Selank nasal spray is the tuftsin analogue Thr-Lys-Pro-Arg-Pro-Gly-Pro supplied as a finished 10 mg aqueous research spray, stored at 2-8°C.",
+      "This SKU is not lyophilized Selank. The powder vials remain a separate listing. Use the spray when a protocol specifies an intranasal research presentation; use the vial when you need a dry reagent to reconstitute under your own SOP.",
+      "{productName} is a single-bottle catalog item with lot-linked HPLC identity and purity documentation. Keep the bottle sealed until use, refrigerate at 2-8°C, and do not freeze the solution. Record lot, operator, and temperature in the ELN before any assay work.",
+      "Published identity markers include CAS 129954-34-3; molecular formula C33H57N11O9; approximate molecular weight 751.89. Sequence: Thr-Lys-Pro-Arg-Pro-Gly-Pro. Match those fields to the lot COA before starting comparative work.",
+      "Buy {productName} online for qualified laboratory research only. Not for human or veterinary consumption."
+    ]
+  },
   "semaglutide": {
     "paragraphs": [
       "Buy {productName} online from Tetrava Labs. Semaglutide is a long-acting GLP-1 receptor agonist and a reference compound in incretin, appetite, and glycemic pathway research.",

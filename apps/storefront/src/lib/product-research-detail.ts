@@ -1159,7 +1159,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading: "Selank and BDNF: a 2008 intranasal rat hippocampus study",
         paragraphs: [
           "A 2008 study gave rats Selank intranasally and measured brain-derived neurotrophic factor (BDNF) expression in the hippocampus afterward.[5] BDNF supports neuron survival and synaptic plasticity, and it's a common readout in stress and neuroplasticity research because chronic stress tends to suppress it. The study reported that intranasal Selank changed hippocampal BDNF expression in vivo.",
-          "That's an intranasal rat study, a delivery route Tetrava Labs doesn't sell a finished product for. It says nothing about oral, subcutaneous, or in vitro BDNF effects, and it doesn't establish a dose-response curve for the reagent form sold here.",
+          "That's an intranasal rat study. Tetrava Labs lists a finished [Selank nasal spray](/buy-selank-nasal-spray-online) as a separate catalog SKU; this page is the lyophilized vial. The 2008 paper does not publish a dose-response curve for either form.",
         ],
       },
       {
@@ -1174,7 +1174,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading: "Selank vs. Semax: same lab, different parent peptide",
         paragraphs: [
           "Selank and Semax share a birthplace, Russia's Institute of Molecular Genetics working with the Zakusov Institute of Pharmacology, and both carry the same Pro-Gly-Pro stability tail. That's where the resemblance ends. Semax is built from a fragment of adrenocorticotropic hormone, ACTH(4-10), and the published research around it centers on cerebral ischemia, stroke recovery, and neurotrophic signaling.[2] Selank is built from tuftsin and the published research centers on anxiolysis, enkephalin metabolism, and immune signaling.",
-          "\"Semax and Selank\" gets searched as a pair because researchers studying stress and cognition sometimes look at both, not because a combined-use trial exists. No published study reviewed for this page tests Selank and Semax administered together, so there's no dosing or interaction data to cite for that combination. Tetrava Labs carries [Semax](/buy-semax-online) and Selank as separate Research Use Only catalog listings.",
+          "\"Semax and Selank\" gets searched as a pair because researchers studying stress and cognition sometimes look at both, not because a combined-use trial exists. No published study reviewed for this page tests Selank and Semax administered together, so there's no dosing or interaction data to cite for that combination. Tetrava Labs carries [Semax](/buy-semax-online) and Selank as separate Research Use Only catalog listings. Selank also has a finished [nasal spray](/buy-selank-nasal-spray-online) SKU.",
         ],
       },
       {
@@ -1273,6 +1273,144 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-18",
   },
+  "selank-nasal-spray-10mg": {
+    shortDescription: [
+      "Selank nasal spray is the same tuftsin-derived heptapeptide as lyophilized Selank, Thr-Lys-Pro-Arg-Pro-Gly-Pro, supplied here as a finished aqueous research spray rather than a powder vial. PubChem lists the compound under CID 11765600, molecular formula C33H57N11O9, molecular weight 751.89.[1] Russia's Ministry of Health registered Selank in 2009 as a 0.15% intranasal solution, which is why so much of the published work, and so much of the search traffic, is about a spray and not a syringe.[6]",
+      "Tetrava Labs lists this SKU as a single 10 mg research spray at $79, with no pack tiers and no second strength. Every lot ships with third-party HPLC-verified identity and purity data. Buy Selank nasal spray online here for laboratory research only. It is not for human or veterinary consumption, and this page will not tell you how to take it.",
+    ],
+    otherKnownTitles: [
+      "TP-7",
+      "Selank Acetate",
+      "Tuftsin-PGP",
+      "Thr-Lys-Pro-Arg-Pro-Gly-Pro",
+      "Selank peptide nasal spray",
+    ],
+    sections: [
+      {
+        heading: "What Selank nasal spray is, and what it is not",
+        paragraphs: [
+          "Selank is a seven-residue analog of tuftsin, the tetrapeptide Thr-Lys-Pro-Arg cleaved from immunoglobulin G, with a Pro-Gly-Pro tail added at the C-terminus. That tail is the same carboxypeptidase-slowing trick used on Semax at Russia's Institute of Molecular Genetics.[2] The molecule on this page is unmodified Selank, a free carboxylic acid at the C-terminus, not N-Acetyl Selank Amidate.",
+          "This listing is a finished nasal spray. It is not the 5 mg or 10 mg lyophilized [Selank](/buy-selank-online) vial, and it is not a kit for mixing powder into a pump bottle. If a protocol needs a dry reagent you reconstitute yourself, use the vial SKU. If the protocol needs a ready aqueous spray format, this is the catalog item.",
+        ],
+      },
+      {
+        heading: "Why so much Selank research is intranasal",
+        paragraphs: [
+          "The registered Russian product is an intranasal solution. That fact drives the literature more than any marketing claim about 'better bioavailability.' The 2008 trial most often cited for Selank's anxiolytic profile used that pharmaceutical context, and the 2008 rat BDNF paper dosed Selank into the nose on purpose.[5][6]",
+          "Intranasal peptide work in animals is often chosen because the olfactory and trigeminal routes can put material near CNS tissue without a systemic injection. That is a study-design reason, not a proven human pharmacokinetic map for this 10 mg research spray. If your assay is in vitro, a spray bottle is the wrong tool.",
+        ],
+      },
+      {
+        heading: "What does Selank nasal spray do in the published literature",
+        paragraphs: [
+          "The mechanistic papers do not describe a consumer wellness product. They describe enzyme kinetics, gene panels, and a small clinical comparison.",
+          "In vitro, Selank blocked the peptidases that degrade leu-enkephalin, with an IC50 around 15 micromolar, and outperformed bacitracin and puromycin in that assay.[3] A 2016 rat study then reported expression changes across genes involved in GABAergic neurotransmission after Selank administration, the same inhibitory system benzodiazepines hit at GABA-A receptors.[4] Those are two separate hypotheses, enzyme blockade and gene-expression shift, not one settled receptor-binding story.",
+        ],
+      },
+      {
+        heading: "Intranasal Selank and hippocampal BDNF",
+        paragraphs: [
+          "A 2008 paper gave rats Selank intranasally and measured BDNF expression in the hippocampus afterward.[5] BDNF is a standard neurotrophin readout in stress and plasticity models because chronic stress tends to suppress it. The study reported that the intranasal route changed hippocampal BDNF in vivo.",
+          "That is the citation behind 'does Selank nasal spray work' questions that want a brain-side mechanism. It is a rat paper with a fixed protocol, not a timer for when a person would feel something, and not a claim about Tetrava's bottle used outside a laboratory.",
+        ],
+      },
+      {
+        heading: "The anxiety trial people quote, and its limits",
+        paragraphs: [
+          "The human study behind most 'Selank for anxiety' copy is a 2008 Russian randomized comparison in 62 patients with generalized anxiety disorder or neurasthenia: 30 on Selank, 32 on medazepam, scored on Hamilton, Zung, and Clinical Global Impression scales plus blood enkephalin activity.[6] Anxiolytic scores were comparable. The abstract also reports antiasthenic and psychostimulant effects on the Selank arm that it does not report for medazepam.",
+          "One single-country trial, no placebo arm described in the abstract, no FDA review. Treat it as the basis for Russia's 2009 registration, not as proof that a research spray treats anxiety. Tetrava Labs does not sell a medicine.",
+        ],
+      },
+      {
+        heading: "Selank nasal spray vs injection, and vs mixing powder",
+        paragraphs: [
+          "Searches for 'Selank nasal spray vs injection which is better' assume a personal-use ranking. In the literature, route follows the question. The registered pharmaceutical product is nasal. Mechanistic enzyme work was done in vitro. Some animal gene-expression work is not even specified as nasal in the English abstract.[4] Injection from a reconstituted lyophilized vial is a different experimental setup: known volume, known concentration, no spray-device variability.",
+          "This SKU does not need reconstitution. Questions about how to make Selank nasal spray, how to mix it, how to prepare it, or how to reconstitute Selank powder for a spray are asking for a compounding recipe. This page will not publish one. If you need powder, buy the [lyophilized Selank](/buy-selank-online) vial and write the diluent, concentration, and device into your laboratory SOP. Do not treat a forum recipe as a method.",
+        ],
+      },
+      {
+        heading: "Does Selank nasal spray need to be refrigerated",
+        paragraphs: [
+          "Yes. The lot paperwork for this spray specifies 2-8°C, protected from light, and do not freeze. That is a different storage rule from lyophilized Selank, which is held at -20°C dry.",
+          "How to store Selank nasal spray in a lab: keep the primary container sealed until use, log temperature excursions, and do not freeze the aqueous solution. How long the unopened bottle is dated for is on the COA (manufacture and expiry for the batch in hand), not a universal number this page can invent. Once a spray device is in use, follow your SOP for in-use time; this catalog listing will not give a household 'how long does it last after opening' window.",
+        ],
+      },
+      {
+        heading: "How long it lasts, and how long until effects",
+        paragraphs: [
+          "No pharmacokinetic study reviewed for this page publishes a plasma half-life for intact Selank the way a drug label would. The 2008 clinical comparison ran a 14-day course before scoring outcomes, which is a protocol length, not an onset clock.[6] The BDNF rat paper measured expression after intranasal dosing; it does not translate into 'how long until effects' for a person.",
+          "Forum timelines about feeling something in minutes are uncontrolled reports. They are not a substitute for the assay timepoints in the paper you are actually replicating.",
+        ],
+      },
+      {
+        heading: "Selank and Semax nasal spray: two peptides, no combo product",
+        paragraphs: [
+          "Selank and Semax share a Moscow origin and the Pro-Gly-Pro tail. Selank is built from tuftsin and is studied for anxiolytic and immune-adjacent endpoints. Semax is built from an ACTH fragment and is studied for neurotrophic and ischemia endpoints.[2] They are not interchangeable, and they are not a single spray.",
+          "No published trial reviewed here tests Semax and Selank together, so there is no combined dosage chart and no instruction for how to make Semax and Selank nasal spray. Tetrava Labs sells [Semax](/buy-semax-online) as lyophilized powder and Selank in both vial and this spray format. If a protocol needs both molecules, they stay separate reagents.",
+        ],
+      },
+      {
+        heading: "Where to buy Selank nasal spray, and what to check",
+        paragraphs: [
+          "You can buy Selank nasal spray online from Tetrava Labs on this page, 10 mg, one bottle, $79. Shipping for a spray-only cart is $9 on this site; mixed carts use the standard research-peptide rate. Checkout is card (Peptide Pay) or crypto. ACH is not a listed method here, even if a search query names it.",
+          "UK and other international orders depend on destination rules that change. Check [shipping restrictions](/shipping-restricted) before you order. Tetrava Labs does not tell you how any country classifies this peptide.",
+        ],
+        bullets: [
+          "Lot match: the COA batch number has to match the bottle in hand, not a recycled PDF.",
+          "Identity: HPLC purity plus sequence or mass confirmation for Thr-Lys-Pro-Arg-Pro-Gly-Pro, CAS 129954-34-3.",
+          "Format: the listing should say finished nasal spray versus lyophilized powder, and the storage temperature should match (2-8°C here, not -20°C).",
+          "Claims: a vendor ranking itself 'best place to buy Selank nasal spray 2026' without a lot-linked COA is selling a sentence, not a reagent.",
+        ],
+      },
+      {
+        heading: "How to use this spray in a laboratory, and what this page will not answer",
+        paragraphs: [
+          "Handle the bottle under your chemical-hygiene plan. Prime a research spray device only if your SOP says to. Record operator, time, lot, and any temperature excursion in the ELN. Do not share applicators across operators or study arms.",
+          "This page does not answer how to take Selank nasal spray, how to use it on a person, or what dose to administer. Those queries are asking for human instructions. The catalog item is Research Use Only. For reconstitution math on powder, use the lyophilized Selank page and your own SOP, not a copy-pasted milliliter chart from a forum.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 11765600, Selank.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/11765600",
+      },
+      {
+        id: 2,
+        citation:
+          "Kolomin T, Shadrina M, Slominsky P, et al. A new generation of drugs: synthetic peptides based on natural regulatory peptides. Nat Sci. 2013;5(4A):72-91.",
+        url: "https://doi.org/10.4236/ns.2013.54A011",
+      },
+      {
+        id: 3,
+        citation:
+          "Zozulya AA, Kost NV, Sokolov OYu, Gabaeva MV, Grivennikov IA, Andreeva LN, Zolotarev YA, Ivanov SV, Andryushchenko AV, Myasoedov NF, Smulevich AB. The inhibitory effect of Selank on enkephalin-degrading enzymes as a possible mechanism of its anxiolytic activity. Bull Exp Biol Med. 2001;131(4):315-317.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/11550013/",
+      },
+      {
+        id: 4,
+        citation:
+          "Volkova A, Shadrina M, Kolomin T, Andreeva L, Limborska S, Myasoedov N, Slominsky P. Selank administration affects the expression of some genes involved in GABAergic neurotransmission. Front Pharmacol. 2016;7:31.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/26924987/",
+      },
+      {
+        id: 5,
+        citation:
+          "Inozemtseva LS, Karpenko EA, Dolotov OV, Levitskaya NG, Kamensky AA, Andreeva LA, Grivennikov IA. Intranasal administration of the peptide Selank regulates BDNF expression in the rat hippocampus in vivo. Dokl Biol Sci. 2008;421:241-243.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/18841804/",
+      },
+      {
+        id: 6,
+        citation:
+          "Zozulia AA, Neznamov GG, Siuniakov TS, et al. Efficacy and possible mechanisms of action of a new peptide anxiolytic Selank in the therapy of generalized anxiety disorders and neurasthenia. Zh Nevrol Psikhiatr Im S S Korsakova. 2008;108(4):38-48.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/18454096/",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-18",
+  },
   semax: {
     shortDescription: [
       "Semax is a synthetic heptapeptide, seven amino acids, built from a fragment of adrenocorticotropic hormone, ACTH(4-7), with the same Pro-Gly-Pro stabilizing tail used on its lab-mate Selank. The full sequence is Met-Glu-His-Phe-Pro-Gly-Pro, molecular formula C37H51N9O10S, molecular weight 813.93, cross-referenced against the PubChem compound record for CAS 80714-61-0.[1]",
@@ -1340,7 +1478,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
         heading: "Semax vs. Selank: same lab, different parent peptide",
         paragraphs: [
           "Semax and Selank were both designed at Russia's Institute of Molecular Genetics working with the Zakusov Institute of Pharmacology, and both carry the identical Pro-Gly-Pro stability tail.[2] That's where the resemblance ends chemically. Semax is built from a fragment of ACTH and its published research centers on cerebral ischemia, stroke recovery, and neurotrophic gene expression. Selank is built from tuftsin, an immune-signaling tetrapeptide, and its published research centers on enkephalin metabolism, GABAergic gene expression, and anxiety models.",
-          "\"Semax and Selank\" gets searched as a pair, sometimes stacked as a nasal spray combination, because researchers studying stress and cognition sometimes look at both compounds side by side. No published study reviewed for this page tests Semax and Selank administered together, so there's no combined dosage chart, dosing protocol, or interaction data to cite. Tetrava Labs carries Semax and [Selank](/buy-selank-online) as separate Research Use Only catalog listings, each with its own identity data and citations.",
+          "\"Semax and Selank\" gets searched as a pair, sometimes stacked as a nasal spray combination, because researchers studying stress and cognition sometimes look at both compounds side by side. No published study reviewed for this page tests Semax and Selank administered together, so there's no combined dosage chart, dosing protocol, or interaction data to cite. Tetrava Labs carries Semax and [Selank](/buy-selank-online) as separate Research Use Only catalog listings. Selank also has a finished [nasal spray](/buy-selank-nasal-spray-online); Semax on this page is lyophilized powder.",
         ],
       },
       {

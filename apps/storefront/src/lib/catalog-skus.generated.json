@@ -1,6 +1,6 @@
 {
   "scheme": "TV-####-##",
-  "generated_at": "2026-08-16T15:52:01.212Z",
+  "generated_at": "2026-08-18T12:31:47.068Z",
   "skus": {
     "5-amino-1mq:1": "TV-0001-01",
     "5-amino-1mq::1 vial": "TV-0001-01",
@@ -1010,6 +1010,10 @@
     "selank:10mg::5 vials": "TV-0105-05",
     "selank:10mg:10": "TV-0105-10",
     "selank:10mg::10 vials": "TV-0105-10",
+    "selank-nasal-spray-10mg:1": "TV-0107-01",
+    "selank-nasal-spray-10mg::1 bottle": "TV-0107-01",
+    "selank-nasal-spray-10mg:10mg:1": "TV-0107-01",
+    "selank-nasal-spray-10mg:10mg::1 bottle": "TV-0107-01",
     "semaglutide:1": "TV-0108-01",
     "semaglutide::1 vial": "TV-0108-01",
     "semaglutide:5mg:1": "TV-0109-01",
@@ -1291,6 +1295,7 @@
     "pinealon-capsules-100-count": 99,
     "retatrutide": 104,
     "selank": 106,
+    "selank-nasal-spray-10mg": 107,
     "semaglutide": 109,
     "semax": 111,
     "sermorelin": 114,

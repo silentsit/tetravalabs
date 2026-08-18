@@ -126,10 +126,12 @@ const run = async () => {
   }
 
   const raw = JSON.parse(await fs.readFile(normalizedPath, "utf8"))
+  const onlyHandle = process.argv.find((arg) => arg.startsWith("--only="))?.slice("--only=".length)
   let createdProducts = 0
   let skippedProducts = 0
 
   for (const product of raw.products) {
+    if (onlyHandle && product.handle !== onlyHandle) continue
     if (await productExists(client, product.handle)) {
       skippedProducts += 1
       continue

@@ -983,7 +983,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "Where can I buy Selank nasal spray, and does Tetrava sell one?",
       answer:
-        "Tetrava Labs doesn't sell a nasal spray. Russia's registered pharmaceutical product, Selank 0.15% intranasal solution, is a specific finished formulation made by a specific Russian manufacturer under that country's drug approval, not a bulk peptide. This catalog lists lyophilized Selank for laboratory reconstitution, and there are no instructions here for compounding a nasal spray from it.",
+        "Yes. Tetrava Labs lists a finished [Selank nasal spray](/buy-selank-nasal-spray-online) as a separate 10 mg research SKU stored at 2-8°C. This page is lyophilized Selank in 5 mg and 10 mg vials. The spray is not mixed from these vials, and this page does not publish a recipe for compounding a nasal spray from powder.",
     },
     {
       question: "Where can I buy Selank amidate or N-Acetyl Selank Amidate, including 30mg?",
@@ -1014,6 +1014,68 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
       question: "Does Tetrava Labs ship Selank internationally, including to Australia?",
       answer:
         "Shipping depends on destination-specific compliance rules, which can change and which this page won't summarize country by country. Check the current [shipping restrictions](/shipping-restricted) before ordering. Tetrava Labs doesn't make regulatory claims about how any individual country classifies Selank; that determination sits with the buyer's local research institution and regulator.",
+    },
+  ],
+  "selank-nasal-spray-10mg": [
+    {
+      question: "What is Selank nasal spray?",
+      answer:
+        "Selank nasal spray is unmodified Selank (Thr-Lys-Pro-Arg-Pro-Gly-Pro) supplied as a finished aqueous research spray. It is the same heptapeptide as lyophilized Selank, in a different format. Tetrava Labs lists a single 10 mg bottle. Research use only.",
+    },
+    {
+      question: "What does Selank nasal spray do?",
+      answer:
+        "Published work studies enkephalinase inhibition, GABAergic gene-expression changes, hippocampal BDNF after intranasal dosing in rats, and a 2008 Russian anxiety-scale comparison against medazepam. Those papers describe laboratory and clinical-trial endpoints, not an outcome from this research bottle used on a person. See the Description tab for citations.",
+    },
+    {
+      question: "Does Selank nasal spray work?",
+      answer:
+        "In the 2008 rat study, intranasal Selank changed hippocampal BDNF expression. In the 2008 clinical comparison, Selank scores were comparable to medazepam on anxiety scales in 62 patients. That is the published evidence. It is not FDA-reviewed, and it is not a guarantee for any given assay or for unsupervised use.",
+    },
+    {
+      question: "Does Selank nasal spray need to be refrigerated? How do I store it?",
+      answer:
+        "Yes. Store at 2-8°C, protected from light, and do not freeze. That is different from lyophilized Selank, which is held dry at -20°C. Log temperature excursions. In-use time after first opening belongs in your laboratory SOP, not a household expiry guess on this page.",
+    },
+    {
+      question: "How long does Selank nasal spray last, and how long until effects?",
+      answer:
+        "Unopened dating is on the lot COA (manufacture and expiry for the batch you received). No paper reviewed for this page publishes a plasma half-life for intact Selank. The clinical comparison ran 14 days before scoring; that is a protocol length, not an onset clock. This page will not convert rat BDNF timepoints into a human 'how long until effects' number.",
+    },
+    {
+      question: "Selank nasal spray vs injection: which is better?",
+      answer:
+        "Neither is 'better' as a personal ranking. The registered Russian product is nasal. Injection from reconstituted powder is a different experimental setup with a known volume and concentration. Pick the format that matches the protocol. This SKU is the finished spray; lyophilized Selank is the powder vial.",
+    },
+    {
+      question: "How do I make, mix, prepare, or reconstitute Selank nasal spray?",
+      answer:
+        "You don't, not from this listing. This is a finished spray. Tetrava Labs will not publish a compounding recipe for how to make Selank nasal spray, how to make Semax and Selank nasal spray, or how to reconstitute Selank powder into a pump bottle. If you need powder, use the [lyophilized Selank](/buy-selank-online) vial and write reconstitution into your SOP.",
+    },
+    {
+      question: "How do I take or use Selank nasal spray? What is the dosage?",
+      answer:
+        "This page does not answer that. The listing is Research Use Only. There is no human dosing chart, no 'how to take' instructions, and no administration video. Laboratory handling: keep the bottle sealed until use, store at 2-8°C, record lot and operator in the ELN, and follow your institution's chemical-hygiene plan.",
+    },
+    {
+      question: "Where can I buy Selank nasal spray online, including in the UK?",
+      answer:
+        "You can buy Selank nasal spray online from Tetrava Labs on this page, 10 mg, $79, one bottle. UK and other international shipping depends on destination rules; check [shipping restrictions](/shipping-restricted) before ordering. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method on this site.",
+    },
+    {
+      question: "What is the best place to buy Selank nasal spray in 2026?",
+      answer:
+        "Buy from a supplier that publishes a lot-linked COA matching the bottle in hand, states the format (spray vs powder), and states storage (2-8°C for this spray). Tetrava Labs ships this SKU with third-party HPLC identity and purity data. A 'best place' claim without that paperwork is not a method.",
+    },
+    {
+      question: "Does Tetrava sell Semax and Selank nasal spray together?",
+      answer:
+        "No combo spray. [Semax](/buy-semax-online) is listed as lyophilized powder. Selank is listed as lyophilized vials and as this finished nasal spray. No published trial tests the two peptides administered together, so there is no joint protocol here.",
+    },
+    {
+      question: "Is Selank nasal spray Research Use Only?",
+      answer:
+        "Yes. Not for human or veterinary consumption, diagnosis, or therapy. The Russian 0.15% pharmaceutical product is a different, country-specific registered medicine. This catalog item is a laboratory reagent.",
     },
   ],
   semax: [
@@ -1068,7 +1130,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
       question:
         "How do I take Semax, or use and make a Semax nasal spray?",
       answer:
-        "Tetrava Labs doesn't provide human dosing, injection volumes, or nasal-spray-formulation instructions for Semax, and doesn't sell a finished nasal spray product. This catalog lists lyophilized Semax for laboratory reconstitution only.",
+        "Tetrava Labs doesn't provide human dosing, injection volumes, or nasal-spray-formulation instructions for Semax. This page lists lyophilized Semax for laboratory reconstitution only. A finished [Selank nasal spray](/buy-selank-nasal-spray-online) is a separate SKU; Tetrava does not currently list a Semax nasal spray.",
     },
     {
       question: "How do you reconstitute 10 mg Semax for lab use?",
@@ -1090,7 +1152,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
       question:
         "Where can I buy Semax nasal spray, and does Tetrava sell one?",
       answer:
-        "Tetrava Labs doesn't sell a nasal spray. Russia's registered pharmaceutical product is a specific finished intranasal solution made under that country's drug approval, not a bulk peptide vial. This catalog lists lyophilized Semax for laboratory reconstitution, with no instructions here for compounding a spray from it.",
+        "Tetrava Labs does not list a Semax nasal spray. This page is lyophilized Semax for laboratory reconstitution, with no compounding recipe. A finished [Selank nasal spray](/buy-selank-nasal-spray-online) is a separate SKU.",
     },
     {
       question: "Where to buy Semax amidate, including a 30 mg size?",
@@ -1101,12 +1163,12 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
       question:
         "Where can I buy Semax and Selank together, including as a nasal spray?",
       answer:
-        "Tetrava Labs sells Semax and Selank as two separate Research Use Only catalog listings, each in lyophilized vial form. Neither is sold as a nasal spray, and no published trial tests the two peptides combined, so this page can't publish a joint protocol.",
+        "Tetrava Labs sells Semax and Selank as separate Research Use Only listings. Selank has a finished [nasal spray](/buy-selank-nasal-spray-online) SKU; Semax on this page is lyophilized powder. No published trial tests the two peptides combined, so this page can't publish a joint protocol or a mixed spray recipe.",
     },
     {
       question: "What's the best place to buy Semax, or Semax nasal spray?",
       answer:
-        "Buy from a supplier that publishes a lot-linked Certificate of Analysis you can match to the vial in hand, rather than relying on forum recommendations or an unverified marketplace listing. Tetrava Labs ships Semax with third-party HPLC-verified identity and purity data for every batch, and doesn't sell a nasal spray formulation.",
+        "Buy from a supplier that publishes a lot-linked Certificate of Analysis you can match to the vial in hand, rather than relying on forum recommendations or an unverified marketplace listing. Tetrava Labs ships Semax with third-party HPLC-verified identity and purity data for every batch. For a finished spray format, see [Selank nasal spray](/buy-selank-nasal-spray-online); Semax is not listed as a spray.",
     },
     {
       question: "Can I buy Semax with a prescription?",

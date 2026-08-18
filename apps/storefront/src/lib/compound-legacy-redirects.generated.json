@@ -382,5 +382,9 @@
   "bpc-157-5mg-tb500-5mg-20mg": {
     "parent": "bpc-157-tb500-blend",
     "strength": "20mg"
+  },
+  "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": {
+    "parent": "glow-bpc-157-tb500-ghk-cu",
+    "strength": "70mg"
   }
 }

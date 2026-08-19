@@ -26,7 +26,6 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
   getCheckoutSubdivisions,
-  formatSubdivisionDisplay,
   getPostalLabel,
   getSubdivisionLabel,
   getSubdivisionPlaceholder,
@@ -273,11 +272,7 @@ function OptionalExpandField({
   )
 }
 
-type CheckoutStep = "information" | "payment"
-
-function CheckoutStepper({ step }: { step: CheckoutStep }) {
-  const paymentActive = step === "payment"
-
+function CheckoutStepper() {
   return (
     <nav aria-label="Checkout steps" className="flex items-center gap-2 text-sm sm:gap-3">
       <Link href="/cart" className="font-medium text-[#0D9488] hover:underline">
@@ -286,15 +281,7 @@ function CheckoutStepper({ step }: { step: CheckoutStep }) {
       <span className="text-[#CBD5E1]" aria-hidden>
         /
       </span>
-      <span className={paymentActive ? "text-[#64748B]" : "font-medium text-[#0F172A]"}>
-        Information
-      </span>
-      <span className="text-[#CBD5E1]" aria-hidden>
-        /
-      </span>
-      <span className={paymentActive ? "font-medium text-[#0F172A]" : "text-[#94A3B8]"}>
-        Payment
-      </span>
+      <span className="font-medium text-[#0F172A]">Checkout</span>
     </nav>
   )
 }
@@ -873,7 +860,6 @@ export function CheckoutForm() {
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
   const [selectedAsset, setSelectedAsset] = useState("USDT")
-  const [step, setStep] = useState<CheckoutStep>("information")
   const [loggedIn, setLoggedIn] = useState(false)
   const [summaryOpen, setSummaryOpen] = useState(false)
 
@@ -1018,12 +1004,6 @@ export function CheckoutForm() {
     if (hasLabRestock) setPaymentMethod("card")
   }, [hasLabRestock])
 
-  useEffect(() => {
-    if (items.length || step !== "payment") return
-    setStep("information")
-    setError("Your cart is empty.")
-  }, [items.length, step])
-
   const loadCustomerSession = useCallback(async () => {
     try {
       const hasToken = Boolean(readAuthToken())
@@ -1154,53 +1134,8 @@ export function CheckoutForm() {
     window.localStorage.setItem(ORDERS_KEY, JSON.stringify(parsed))
   }
 
-  const validateInformation = () => {
-    const nextBillingErrors = validateAddress(billingValues, { requireEmail: true })
-    const nextShippingErrors = shipToDifferent
-      ? validateAddress(shippingValues, { requireEmail: false })
-      : {}
-
-    setAttemptedSubmit(true)
-    setBillingErrors(nextBillingErrors)
-    setShippingErrors(nextShippingErrors)
-
-    const invalidFieldId = firstInvalidFieldId({
-      billing: nextBillingErrors,
-      shipping: nextShippingErrors,
-      shipToDifferent
-    })
-
-    if (invalidFieldId) {
-      setStep("information")
-      window.requestAnimationFrame(() => {
-        document.getElementById(invalidFieldId)?.focus()
-      })
-      return false
-    }
-
-    return true
-  }
-
-  const goToPayment = () => {
-    setError("")
-    setStatus("")
-    if (!items.length) {
-      setError("Cart is empty.")
-      return
-    }
-    if (!validateInformation()) return
-    setStep("payment")
-    window.requestAnimationFrame(() => {
-      document.getElementById("checkout-payment")?.scrollIntoView({ behavior: "smooth", block: "start" })
-    })
-  }
-
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    if (step === "information") {
-      goToPayment()
-      return
-    }
     setError("")
     setStatus("")
     setAttemptedSubmit(true)
@@ -1223,9 +1158,6 @@ export function CheckoutForm() {
     })
 
     if (invalidFieldId) {
-      if (Object.keys(nextBillingErrors).length || Object.keys(nextShippingErrors).length) {
-        setStep("information")
-      }
       window.requestAnimationFrame(() => {
         document.getElementById(invalidFieldId)?.focus()
       })
@@ -1407,13 +1339,6 @@ export function CheckoutForm() {
     router.push(`/checkout/payment?${params.toString()}`)
   }
 
-  const countryName =
-    availableCountries.find((entry) => entry.code === shippingAddress.country)?.name ||
-    shippingAddress.country
-  const provinceDisplay = shippingAddress.province
-    ? formatSubdivisionDisplay(shippingAddress.country, shippingAddress.province)
-    : ""
-
   const summaryProps = {
     items,
     subtotal,
@@ -1425,7 +1350,7 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-6">
-      <CheckoutStepper step={step} />
+      <CheckoutStepper />
 
       <div className="lg:hidden">
         <button
@@ -1445,9 +1370,7 @@ export function CheckoutForm() {
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
         <div className="space-y-6">
-          {step === "information" ? (
-            <>
-              <section className="card p-6 sm:p-8">
+          <section className="card p-6 sm:p-8">
                 <h2 className="mb-6 font-serif text-xl text-[#0F172A]">Contact and shipping</h2>
                 <AddressFields
                   idPrefix="billing"
@@ -1529,45 +1452,6 @@ export function CheckoutForm() {
                     />
                   </div>
                 ) : null}
-              </section>
-
-              <button
-                type="button"
-                onClick={goToPayment}
-                disabled={!items.length}
-                className="btn-primary w-full py-3.5 text-base disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                Continue to payment
-              </button>
-            </>
-          ) : (
-            <>
-              <section className="card p-5 sm:p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0 text-sm leading-relaxed text-[#475569]">
-                    <p className="font-medium text-[#0F172A]">{email}</p>
-                    <p className="mt-2">
-                      {shippingAddress.firstName} {shippingAddress.lastName}
-                      {shippingAddress.company ? `, ${shippingAddress.company}` : ""}
-                    </p>
-                    <p>
-                      {shippingAddress.address1}
-                      {shippingAddress.address2 ? `, ${shippingAddress.address2}` : ""}
-                    </p>
-                    <p>
-                      {shippingAddress.city}
-                      {provinceDisplay ? `, ${provinceDisplay}` : ""} {shippingAddress.postalCode}
-                    </p>
-                    <p>{countryName}</p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setStep("information")}
-                    className="shrink-0 text-sm font-medium text-[#0D9488] hover:underline"
-                  >
-                    Edit
-                  </button>
-                </div>
               </section>
 
               <section id="checkout-payment" className="card bg-[#F0FDFA] p-5 sm:p-6">
@@ -1706,8 +1590,6 @@ export function CheckoutForm() {
               >
                 {submitLabel}
               </button>
-            </>
-          )}
 
           {error ? (
             <p

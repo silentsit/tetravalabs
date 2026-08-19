@@ -700,5 +700,14 @@
     "storage": "-20C lyophilized",
     "appearance": "White lyophilized powder",
     "category": "Research Blends"
+  },
+  "igf-1-lr3": {
+    "cas_number": "946870-92-4",
+    "molecular_formula": "C473H711N131O101S10",
+    "molecular_weight": "9111.0",
+    "sequence": "Long Arg3 IGF-1 (83 aa analogue of IGF-1)",
+    "storage": "-20C lyophilized",
+    "appearance": "White lyophilized powder",
+    "category": "Growth Hormone Axis"
   }
 }

@@ -386,5 +386,13 @@
   "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg": {
     "parent": "glow-bpc-157-tb500-ghk-cu",
     "strength": "70mg"
+  },
+  "igf-1-lr3-0-1mg": {
+    "parent": "igf-1-lr3",
+    "strength": "0-1mg"
+  },
+  "igf-1-lr3-1mg": {
+    "parent": "igf-1-lr3",
+    "strength": "1mg"
   }
 }

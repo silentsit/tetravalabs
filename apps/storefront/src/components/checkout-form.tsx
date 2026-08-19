@@ -1024,22 +1024,26 @@ export function CheckoutForm() {
   }, [items.length, step])
 
   const loadCustomerSession = useCallback(async () => {
-    const hasToken = Boolean(readAuthToken())
-    if (!hasToken) {
-      setLoggedIn(false)
-      return
-    }
+    try {
+      const hasToken = Boolean(readAuthToken())
+      if (!hasToken) {
+        setLoggedIn(false)
+        return
+      }
 
-    const customer = await retrieveCustomer()
-    if (!customer) {
-      setLoggedIn(false)
-      return
-    }
+      const customer = await retrieveCustomer()
+      if (!customer) {
+        setLoggedIn(false)
+        return
+      }
 
-    setLoggedIn(true)
-    if (customer.email) setEmail(customer.email)
-    if (customer.first_name) setFirstName(customer.first_name)
-    if (customer.last_name) setLastName(customer.last_name)
+      setLoggedIn(true)
+      if (customer.email) setEmail(customer.email)
+      if (customer.first_name) setFirstName(customer.first_name)
+      if (customer.last_name) setLastName(customer.last_name)
+    } catch {
+      setLoggedIn(false)
+    }
   }, [])
 
   useEffect(() => {

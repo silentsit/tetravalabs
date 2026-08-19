@@ -7,6 +7,7 @@ import { DefaultChatTransport } from "ai"
 import { MessageCircle, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import { buildReorderCartItems } from "@/lib/reorder-cart"
+import { formatClientError } from "@/lib/format-client-error"
 
 const TEASER_STORAGE_KEY = "tetrava-chat-teaser-dismissed"
 
@@ -200,7 +201,7 @@ export function AiChatWidget() {
             })}
             {error ? (
               <p className="text-xs text-red-600">
-                {error.message || "Chat unavailable. Email us via Contact."}
+                {formatClientError(error, "Chat unavailable. Email us via Contact.")}
               </p>
             ) : null}
           </div>

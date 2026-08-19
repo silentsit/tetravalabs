@@ -31,7 +31,8 @@ import {
   getSubdivisionLabel,
   getSubdivisionPlaceholder,
   isValidSubdivision,
-  normalizeSubdivision
+  normalizeSubdivision,
+  resolveSubdivisionSelectValue
 } from "@/lib/checkout-subdivisions"
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
@@ -749,7 +750,7 @@ function AddressFields({
               id={`${idPrefix}-province`}
               required
               autoComplete="address-level1"
-              value={subdivisions.some((entry) => entry.code === province) ? province : ""}
+              value={resolveSubdivisionSelectValue(country, province)}
               onChange={(event) => {
                 setProvince(event.target.value)
                 onFieldChange?.("province")

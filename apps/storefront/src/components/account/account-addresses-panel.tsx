@@ -8,7 +8,8 @@ import {
   getCheckoutSubdivisions,
   getSubdivisionLabel,
   getSubdivisionPlaceholder,
-  normalizeSubdivision
+  normalizeSubdivision,
+  resolveSubdivisionSelectValue
 } from "@/lib/checkout-subdivisions"
 import type { ParsedAddress } from "@/lib/google-places"
 import {
@@ -113,7 +114,7 @@ export function AccountAddressesPanel() {
       address_1: address.address_1 || "",
       address_2: address.address_2 || "",
       city: address.city || "",
-      province: address.province || "",
+      province: normalizeSubdivision(address.country_code || "US", address.province || ""),
       postal_code: address.postal_code || "",
       country_code: (address.country_code || "US").toUpperCase(),
       phone: address.phone || "",
@@ -344,7 +345,7 @@ export function AccountAddressesPanel() {
                 <select
                   id="addr-province"
                   className="input-field mt-1"
-                  value={subdivisions.some((entry) => entry.code === form.province) ? form.province : ""}
+                  value={resolveSubdivisionSelectValue(form.country_code, form.province)}
                   onChange={(event) => setForm((prev) => ({ ...prev, province: event.target.value }))}
                   required
                 >

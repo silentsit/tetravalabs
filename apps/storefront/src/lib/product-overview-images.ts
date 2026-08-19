@@ -132,6 +132,11 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Lab researcher reviewing a 68-week body-weight-reduction trial line chart on a monitor beside a semaglutide research vial and printed data sheet",
     2: "Gloved hand holding semaglutide and tirzepatide research vials side by side in front of a monitor comparing single GLP-1 receptor activation to dual GLP-1/GIP receptor activation",
   },
+  "ss-31": {
+    0: "Two researchers pointing at a mitochondrion cutaway model of inner-membrane cristae and cardiolipin while a monitor shows the SS-31 tetrapeptide sequence D-Arg-Dmt-Lys-Phe-NH2",
+    1: "Two lab researchers comparing an MMPOWER-3 six-minute-walk chart that missed its endpoints with a Barth syndrome knee-extensor strength chart beside SS-31 RUO vials and a Forzinity carton",
+    2: "Two researchers comparing a MOTS-c AMPK nuclear-signaling diagram with an SS-31 cardiolipin inner-membrane diagram beside both research vials and a 96-well assay plate",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

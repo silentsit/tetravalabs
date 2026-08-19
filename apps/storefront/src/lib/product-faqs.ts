@@ -1982,33 +1982,74 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
   ],
   "ss-31": [
     {
-      question: "What is SS-31 (Elamipretide) in research?",
+      question: "What is SS-31 peptide / elamipretide?",
       answer:
-        "SS-31 is a mitochondria-targeting peptide studied in bioenergetics and oxidative-stress models. Tetrava Labs supplies it as RUO material.",
+        "SS-31 is a synthetic tetrapeptide, sequence D-Arg-Dmt-Lys-Phe-NH2. Elamipretide is the INN for that sequence. MTP-131 and Bendavia are older Stealth codes. It concentrates on the inner mitochondrial membrane and binds cardiolipin. Tetrava sells lyophilized 10 mg and 50 mg research vials. Forzinity is Stealth's approved Barth syndrome injection of elamipretide, a different product from this powder.",
     },
     {
-      question: "COA expectations for SS-31?",
+      question: "What does SS-31 peptide do?",
       answer:
-        "Third-party HPLC-MS documentation is published per lot when available. Match batch identity before assays.",
+        "Zhao 2004 reported about 1,000-fold concentration in the inner mitochondrial membrane, less ROS in N2A cells and isolated mitochondria, and less cytochrome c release after Ca2+ load. Analogues without dimethyltyrosine failed those mitochondrial readouts and failed an isolated-heart stunning model. Birk 2013 measured cardiolipin binding at KD 1.87 µM and cytochrome c peroxidase inhibition at EC50 3.5 µM in a purified system. In rats, pretreatment kept proximal-tubule cristae intact through 30 minutes of renal ischemia. None of that is a human energy claim.",
     },
     {
-      question: "Reconstitution guidance?",
+      question: "What is SS-31 peptide used for in research?",
       answer:
-        "Sterile technique and SOP-defined diluent; record concentration in the ELN. Not clinical dosing advice.",
+        "Cardiolipin-binding assays, inner-membrane stress, oxidative phosphorylation, and ischemia-reperfusion models (the published rat work is kidney). Labs that need an AMPK signal instead use MOTS-c. Labs that need a redox-pool reagent use NAD+. Humanin is another mtDNA-encoded peptide in this category; SS-31 is synthetic and is not in that family.",
     },
     {
-      question: "Storage?",
+      question: "How does SS-31 relate to mitochondrial dysfunction?",
       answer:
-        "Lyophilized at -20°C; reconstituted at 4°C with minimal freeze–thaw cycles.",
+        "The design target is cardiolipin peroxidation and cristae collapse. SS-31 sits on that lipid. MMPOWER-3 later tested daily subcutaneous elamipretide in 218 adults with mixed primary mitochondrial myopathy and missed both primary endpoints (6-minute walk and PMMSA fatigue). A cell-membrane mechanism and a failed broad myopathy trial can sit next to each other. They answer different questions.",
     },
     {
-      question: "Shipping?",
+      question: "How does SS-31 compare to MOTS-c, and how long before MOTS-c?",
       answer:
-        "Cold-chain-aware packaging where required; tracking emailed after labeling.",
+        "MOTS-c is 16 amino acids from mtDNA and turns on AMPK through the folate cycle. SS-31 is a four-residue synthetic peptide that binds cardiolipin. This page does not publish a take-SS-31-before-MOTS-c schedule. If a lab uses both, they are separate experimental factors with their own vehicle controls.",
+    },
+    {
+      question: "What benefits has SS-31 research reported, including bodybuilding?",
+      answer:
+        "Preclinical papers report less isolated-mitochondria ROS, preserved cristae, and faster ATP recovery after rat renal ischemia. MMPOWER-3 did not improve 6-minute walk distance or fatigue versus placebo. There is no bodybuilding trial here. Tetrava does not sell SS-31 for training.",
+    },
+    {
+      question: "What side effects have been reported for elamipretide?",
+      answer:
+        "Forzinity's FDA letter lists mild-to-moderate injection-site reactions as the common trial finding and notes that serious reactions have been reported. MMPOWER-3 called subcutaneous elamipretide well-tolerated, with most events mild or moderate. Those tables describe a finished injection in clinic. They are not a leaflet for Tetrava's lyophilized vial.",
+    },
+    {
+      question: "How much SS-31 should I take, and is there a dosage chart?",
+      answer:
+        "No human dose, no dose-per-day table, no dosing-protocol PDF. 10 mg and 50 mg are how much peptide is in the sealed vial. MMPOWER-3 used 40 mg/day subcutaneous elamipretide in a drug trial. That number does not convert a research vial into a human schedule.",
+    },
+    {
+      question: "How do I take SS-31, and when should I take it?",
+      answer:
+        "Tetrava does not sell SS-31 for human use, so this page has no take-it / when-to-take-it / injection-site answer. Forzinity's approved route is once-daily subcutaneous injection for Barth syndrome in people who meet that label. That label does not apply to this SKU.",
+    },
+    {
+      question: "How do I reconstitute SS-31 10mg?",
+      answer:
+        "Diluent volume is a laboratory choice. Tetrava ships lyophilized powder. Store sealed vials at -20°C. Skip repeated freeze-thaw. Reconstitute under sterile technique with the diluent the SOP names. Bacteriostatic water is a separate research solvent. It is not paired to the 10 mg vial at a fixed milliliter amount.",
+    },
+    {
+      question: "Where can I buy SS-31 peptide online?",
+      answer:
+        "You can buy SS-31 peptide online from Tetrava Labs on this page, 10 mg at $69 for one vial and 50 mg at $199 for one vial, packs of 1, 5, or 10 vials. Checkout is card (Peptide Pay) or crypto. ACH is not listed. Check [shipping restrictions](/shipping-restricted) before ordering to the UK, Australia, or other destinations. A qualified vendor still means a lot-linked third-party HPLC-MS COA that matches the vial in the box.",
+    },
+    {
+      question: "Does Tetrava sell SS-31 25mg?",
+      answer:
+        "No. The listed strengths are 10 mg and 50 mg. There is no 25 mg vial on this page. If a protocol wants more mass per vial, the 50 mg listing is the one that exists.",
+    },
+    {
+      question: "Is SS-31 10mg or 50mg the research peptide for sale here?",
+      answer:
+        "Both. Same sequence, two vial sizes. 10 mg is $69 per vial on the 1-vial pack. 50 mg is $199. Choose the size that matches assay consumption and retention policy, not a human daily amount.",
     },
     {
       question: "Is SS-31 Research Use Only?",
-      answer: "Yes. Not for human or veterinary administration.",
+      answer:
+        "Yes. Tetrava's SS-31 is a Research Use Only laboratory reagent, not for human or veterinary consumption. Forzinity is a separate FDA-approved elamipretide injection for Barth syndrome, granted accelerated approval on 19 September 2025 for patients weighing at least 30 kg. This catalog SKU is the lyophilized powder.",
     },
   ],
 };

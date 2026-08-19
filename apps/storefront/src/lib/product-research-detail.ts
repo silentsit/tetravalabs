@@ -2224,6 +2224,162 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
     authorId: "editorial-team",
     updatedAt: "2026-08-18",
   },
+  "ss-31": {
+    shortDescription: [
+      "SS-31 is four amino acids: D-arginine, 2',6'-dimethyltyrosine (Dmt), lysine, and phenylalanine-amide. Sequence D-Arg-Dmt-Lys-Phe-NH2. The INN is elamipretide. Older Stealth codes are MTP-131 and Bendavia. PubChem CID 11764719. Catalog fields on this page: CAS 736992-21-5, C32H49N9O5, 639.79 g/mol.[6]",
+      "Buy SS-31 online from Tetrava Labs as a lyophilized research peptide in 10 mg ($69) and 50 mg ($199) vials. Packs are 1, 5, or 10 vials. Every lot ships with third-party HPLC-MS identity and purity data in the [COA library](/coa-library). Labs use it when the question is cardiolipin on the inner mitochondrial membrane, often next to [MOTS-c](/buy-mots-c-online) or [NAD+](/buy-nad-online). Research use only. Not for human or veterinary consumption. Forzinity is a separate FDA-approved elamipretide injection for Barth syndrome.[4] This SKU is the powder vial.",
+    ],
+    otherKnownTitles: [
+      "Elamipretide",
+      "MTP-131",
+      "Bendavia",
+      "Szeto-Schiller peptide SS-31",
+      "D-Arg-Dmt-Lys-Phe-NH2",
+      "Forzinity (approved injection; not this SKU)",
+    ],
+    sections: [
+      {
+        heading: "What SS-31 peptide is",
+        paragraphs: [
+          "Four residues. D-arginine, dimethyltyrosine, lysine, phenylalanine-amide. Hazel Szeto's group at Weill Cornell Medical College built that motif so the peptide would cross cell membranes and sit on the inner mitochondrial membrane instead of lingering in cytosol.[1] Alternating aromatic and basic residues. Dmt is the scavenger.",
+          "Elamipretide is the same sequence under its International Nonproprietary Name. MTP-131 and Bendavia are older development codes from Stealth BioTherapeutics. Forzinity is the brand name of an approved daily subcutaneous injection for Barth syndrome in people who weigh at least 30 kg.[4] Same tetrapeptide backbone. Different product: finished sterile injection versus lyophilized research powder.",
+          "SS-31 for sale on this page is the powder. 10 mg and 50 mg. White lyophilized cake, stored at -20°C until a lab reconstitutes it under its own SOP.",
+        ],
+      },
+      {
+        heading: "How SS-31 concentrates on the inner mitochondrial membrane",
+        paragraphs: [
+          "Zhao, Szeto, and colleagues wrote in 2004 that these peptides concentrate about 1,000-fold in the inner mitochondrial membrane.[1] They tested that in N2A neuronal cells hit with tert-butyl hydroperoxide, and in isolated mitochondria loaded with Ca2+.",
+          "In the N2A work, potency sat in the nanomolar EC50 range for cutting intracellular ROS and cell death. Isolated mitochondria made less ROS, swelled less, and released less cytochrome c. The same peptides blocked permeability transition after 3-nitropropionic acid.[1]",
+          "They also ran an isolated-heart model of reperfusion stunning. Contractile force recovered when the Dmt-containing peptide was present. Analogues that kept the motif but dropped dimethyltyrosine did not stop mitochondrial ROS or swelling, and they did not prevent that stunning.[1] Dmt is doing work in that paper. The rest of the chain gets the peptide to the membrane.",
+        ],
+      },
+      {
+        heading: "SS-31 and mitochondrial dysfunction",
+        paragraphs: [
+          "Cardiolipin is an anionic phospholipid found almost only on the inner mitochondrial membrane. Cristae are built from it. When cardiolipin peroxidizes, cytochrome c can leave the membrane and the cristae collapse. That is the mitochondrial-dysfunction story SS-31 was designed around.",
+          "Birk's 2013 JASN paper used a polarity-sensitive fluorescent analog of SS-31. Binding to cardiolipin was saturable: KD 1.87 \u00b1 0.64 \u00b5M.[2] SS-31 also displaced nonyl acridine orange from cardiolipin in a competition assay. The SS-31/cardiolipin complex inhibited cytochrome c peroxidase, the enzyme activity that peroxidizes cardiolipin during ischemia: EC50 3.5 \u00b1 0.03 \u00b5M in a purified system, 0.8 \u00b1 0.06 \u00b5M in permeabilized mitochondria.[2]",
+          "Rats got 30 minutes of renal ischemia. Pretreatment with SS-31 kept proximal-tubule cristae from swelling the way saline controls did. After five minutes of reperfusion, brush-border actin and cell polarity (E-cadherin, \u03b21-integrin) had already started to return in the SS-31 group.[2] TUNEL staining at 24 hours showed fewer apoptotic cells in both proximal and distal tubules. That is a rat kidney ischemia model. It is not a human energy protocol.",
+        ],
+      },
+      {
+        heading: "MMPOWER-3: the Phase 3 trial that missed",
+        paragraphs: [
+          "SS-31 has a human Phase 3 record. The result is a miss.",
+          "MMPOWER-3 (NCT03323749) screened 296 adults with genetically confirmed primary mitochondrial myopathy and randomized 218 of them, 109 to subcutaneous elamipretide 40 mg per day for 24 weeks and 109 to placebo.[3] Mean age 45.6 years. 64% women. 94% White. 162 of 218 (74%) had mtDNA alterations; the rest had nuclear-DNA defects. At screening, the most frequent bothersome symptom on the Primary Mitochondrial Myopathy Symptom Assessment was tiredness during activities (28.9%). Baseline 6-minute walk was 336.7 \u00b1 81.2 meters. Baseline PMMSA total fatigue was 10.6 \u00b1 2.5. Neuro-QoL Fatigue T score 54.7 \u00b1 7.5.[3]",
+          "Co-primary endpoints: 6-minute walk test, and total fatigue on the PMMSA. Neither moved. Least-squares mean difference on walk distance, elamipretide minus placebo, was -3.2 meters (95% CI -18.7 to 12.3; p = 0.69). PMMSA total fatigue difference -0.07 (95% CI -0.10 to 0.26; p = 0.37).[3] Neurology classified that as Class I evidence that elamipretide does not improve 6MWT or fatigue at 24 weeks versus placebo in broad PMM.",
+          "Most adverse events were mild or moderate. The 40 mg/day figure is a Stealth clinic protocol. It is not a reconstitution recipe for a 10 mg research vial.",
+        ],
+      },
+      {
+        heading: "Barth syndrome, TAZPOWER, and Forzinity",
+        paragraphs: [
+          "Barth syndrome is X-linked. Pathogenic variants in TAZ (TAFAZZIN) break cardiolipin remodeling. That is a tighter match for a cardiolipin-binding peptide than mixed primary mitochondrial myopathy, where the genetics scatter across mtDNA and nuclear genes.",
+          "On 19 September 2025 the FDA granted accelerated approval to Forzinity (elamipretide) injection as the first treatment for Barth syndrome in patients weighing at least 30 kg.[4] Applicant: Stealth Biotherapeutics Inc. The application got priority review and a rare pediatric disease designation, plus a rare pediatric disease priority review voucher. Approval rests on improved knee-extensor muscle strength, which FDA called reasonably likely to predict a later benefit such as standing more easily or walking farther. As a condition of accelerated approval, FDA required a post-approval randomized, double-blind, placebo-controlled trial to test whether that strength change becomes a patient-visible benefit.[4]",
+          "Forzinity is injected under the skin once daily. The most common trial side effects were mild-to-moderate injection-site reactions. Serious reactions have been reported.[4] TAZPOWER's 168-week open-label extension is a separate Genetics in Medicine paper from Thompson and colleagues. It belongs to that drug program, not to a catalog RUO lot.[5]",
+        ],
+      },
+      {
+        heading: "What Tetrava lists for SS-31",
+        paragraphs: [
+          "Lyophilized SS-31 peptide. 10 mg and 50 mg. Appearance: white lyophilized powder. Storage on the spec sheet: -20°C. Packs of 1, 5, or 10 vials. Tetrava does not list 25 mg, even though that strength shows up in buy queries.",
+          "A reconstituted research solution is whatever concentration the SOP writes down. There is no milligram-per-milliliter finished product here, and no autoinjector.",
+          "CAS 736992-21-5 on the paperwork has to match the vial. The lot number on the vial has to match the lot on the [Certificate of Analysis](/coa-library). A purity percentage with no lot-linked HPLC-MS trace is a catalog sentence, not a result.",
+        ],
+      },
+      {
+        heading: "SS-31 peptide benefits, bodybuilding, and side effects",
+        paragraphs: [
+          "The papers measure cristae shape, cytochrome c peroxidase, isolated-mitochondria ROS, rat kidney ATP after ischemia, a failed 6-minute walk in broad PMM, and knee-extensor strength in a Barth program.[1][2][3][4] They do not measure gym performance.",
+          "Tetrava does not sell SS-31 for training or recovery. Research use only.",
+          "Forzinity's FDA letter lists mild-to-moderate injection-site reactions as the common trial finding, and notes that serious reactions have occurred.[4] MMPOWER-3 called subcutaneous elamipretide well-tolerated, with most events mild or moderate.[3] Those tables describe a finished injection given in clinic. They do not travel with a lyophilized research vial as a side-effect leaflet.",
+        ],
+      },
+      {
+        heading: "Dosage, how to take SS-31, and reconstituting a 10 mg vial",
+        paragraphs: [
+          "This page does not publish an SS-31 dosage chart, a dose-per-day table, a dosing-protocol PDF, or a milligram amount to take. 10 mg and 50 mg are how much peptide is in the sealed vial. They are inventory sizes.",
+          "Forzinity's approved schedule is once-daily subcutaneous injection for Barth syndrome in people who meet that label.[4] That schedule does not apply to this SKU. There is no catalog answer to when to take SS-31, how to dose it, or where to inject it, because Tetrava does not sell it for human use.",
+          "How to reconstitute SS-31 10 mg is a lab variable: diluent, target concentration, aliquot plan. Tetrava ships powder. Store sealed vials at -20°C. Reconstitute under sterile technique with the diluent the method names. Bacteriostatic water is a separate catalog solvent. It is not paired to the 10 mg vial at a fixed milliliter amount.",
+        ],
+      },
+      {
+        heading: "Where to buy SS-31 peptide online",
+        paragraphs: [
+          "You can buy SS-31 peptide online from Tetrava Labs on this page. 10 mg is $69 for one vial. 50 mg is $199 for one vial. Packs of 1, 5, and 10. Checkout is card (Peptide Pay) or crypto. ACH is not listed.",
+          "\"Best place to buy\" is a documentation check, not a ranking. Lot number on the COA has to match the vial. The COA should be third-party HPLC-MS, identity plus purity. Cold-chain notes should match a lyophilized peptide. If a vendor will not produce the chromatogram for the batch in the box, the price is irrelevant.",
+          "UK, Australia, and other destinations follow [shipping restrictions](/shipping-restricted). Tetrava does not publish a country-by-country legal status for elamipretide. That sits with the buyer's institution and regulator.",
+        ],
+      },
+      {
+        heading: "SS-31 on Reddit and other forums",
+        paragraphs: [
+          "Threads tend to be reconstitution arithmetic, daily milligrams, and stacks with MOTS-c. Most of that is first-person report. The papers that exist are Zhao 2004, Birk 2013, Karaa 2023, and the FDA Forzinity letter.[1][2][3][4] If a post treats 40 mg/day as a catalog conversion, that number came from MMPOWER-3's clinic arm. It does not scale a 10 mg vial into a human schedule.",
+        ],
+      },
+      {
+        heading: "SS-31 vs MOTS-c",
+        paragraphs: [
+          "People file both under mitochondrial peptides. The jobs differ. MOTS-c is 16 amino acids encoded in mtDNA. Lee's 2015 Cell Metabolism paper showed it inhibits the folate cycle, lets AICAR accumulate, and turns on AMPK.[7] SS-31 is a synthetic tetrapeptide made in a lab, not translated from the mitochondrial genome. It binds cardiolipin.[1][2] [Humanin](/buy-humanin-online) is another mtDNA-encoded peptide. SS-31 is not in that family.",
+          "Evidence is also split. SS-31 has MMPOWER-3 (missed in broad PMM) and Forzinity's Barth accelerated approval.[3][4] MOTS-c has mouse pharmacology and small human studies of endogenous peptide after exercise. No Phase 3 drug program.[7]",
+          "How long to take SS-31 before MOTS-c is a self-administration schedule. This page does not publish one. If a lab uses both reagents, write separate arms or a stated co-exposure with independent vehicle controls. Washout times belong in the protocol.",
+        ],
+      },
+      {
+        heading: "Laboratory handling",
+        paragraphs: [
+          "Tetrava ships SS-31 lyophilized. Store sealed vials at -20°C. Skip repeated freeze-thaw. Reconstitute under sterile technique with the diluent the SOP names, right before use.",
+          "Log diluent lot, concentration, date, and operator in the ELN so the prep still matches the batch [Certificate of Analysis](/coa-library) later. Other [metabolic and mitochondrial reagents](/category/metabolic-mitochondrial) sit in the same category if the study needs an AMPK or NAD comparator in a parallel arm.",
+        ],
+      },
+    ],
+    references: [
+      {
+        id: 1,
+        citation:
+          "Zhao K, Zhao GM, Wu D, et al. Cell-permeable peptide antioxidants targeted to inner mitochondrial membrane inhibit mitochondrial swelling, oxidative cell death, and reperfusion injury. J Biol Chem. 2004;279(33):34682-34690.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/15178689/",
+      },
+      {
+        id: 2,
+        citation:
+          "Birk AV, Liu S, Soong Y, et al. The mitochondrial-targeted compound SS-31 re-energizes ischemic mitochondria by interacting with cardiolipin. J Am Soc Nephrol. 2013;24(8):1250-1261.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/23813215/",
+      },
+      {
+        id: 3,
+        citation:
+          "Karaa A, Bertini E, Carelli V, et al. Efficacy and safety of elamipretide in individuals with primary mitochondrial myopathy: the MMPOWER-3 randomized clinical trial. Neurology. 2023;101(3):e238-e252.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/37268435/",
+      },
+      {
+        id: 4,
+        citation:
+          "U.S. Food and Drug Administration. FDA grants accelerated approval to first treatment for Barth syndrome [press release]. Sep 19, 2025.",
+        url: "https://www.fda.gov/news-events/press-announcements/fda-grants-accelerated-approval-first-treatment-barth-syndrome",
+      },
+      {
+        id: 5,
+        citation:
+          "Thompson WR, Manuel R, Abbruscato A, et al. Long-term efficacy and safety of elamipretide in patients with Barth syndrome: 168-week open-label extension results of TAZPOWER. Genet Med. 2024;26(7):101138.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/38602181/",
+      },
+      {
+        id: 6,
+        citation:
+          "National Center for Biotechnology Information. PubChem Compound Summary for CID 11764719, Elamipretide.",
+        url: "https://pubchem.ncbi.nlm.nih.gov/compound/11764719",
+      },
+      {
+        id: 7,
+        citation:
+          "Lee C, Zeng J, Drew BG, et al. The mitochondrial-derived peptide MOTS-c promotes metabolic homeostasis and reduces obesity and insulin resistance. Cell Metab. 2015;21(3):443-454.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/25738459/",
+      },
+    ],
+    authorId: "editorial-team",
+    updatedAt: "2026-08-20",
+  },
   semaglutide: {
     shortDescription: [
       "Semaglutide is a GLP-1 receptor agonist. Novo Nordisk started from native human GLP-1, which DPP-4 chews through in a couple of minutes, and changed two places on the chain. Position 2 got aminoisobutyric acid (Aib) in place of alanine, which blocks that cleavage. Lysine 26 got a C18 fatty diacid hung off an AEEA-AEEA-γ-Glu spacer, so the peptide can bind albumin in blood and stay in circulation for about a week instead of a few minutes.[1]",

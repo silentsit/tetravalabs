@@ -16,6 +16,7 @@ import {
   type LabRestockRow
 } from "./lab-restock-db"
 import { createPeptidepayCheckoutSession } from "./peptidepay"
+import { resolvePeptidepayOnramp, restockShippingCountry } from "./peptidepay-onramps"
 import { buildPeptidepayProductName } from "./product-sku"
 import { createLabRestockRenewalOrder } from "./lab-restock-order"
 import { sendHtmlEmail } from "./order-email-send"
@@ -298,11 +299,21 @@ async function createNewRenewalCheckout(
     }
   ])
 
+  const payOnramp = resolvePeptidepayOnramp({
+    country: restockShippingCountry(restock.shipping_address),
+    amountUsd: lineTotal
+  })
+  if (!payOnramp.ok) {
+    await rollbackFailedClaim(restock.id)
+    return { ok: false, reason: payOnramp.error }
+  }
+
   const paySession = await createPeptidepayCheckoutSession({
     orderId: orderResult.orderId,
     email: restock.email,
     amountUsd: lineTotal,
-    productName
+    productName,
+    provider: payOnramp.provider
   })
 
   if (!paySession.ok) {

@@ -18,6 +18,8 @@ export async function createPeptidepayPaymentIntent(input: {
   amountUsd: number
   currency?: string
   productName?: string
+  provider: string
+  country: string
 }): Promise<PeptidepayIntentResult | null> {
   if (!PUBLISHABLE_KEY) return null
 
@@ -33,7 +35,9 @@ export async function createPeptidepayPaymentIntent(input: {
         email: input.email,
         amount_usd: input.amountUsd,
         currency: input.currency || "USD",
-        product_name: input.productName
+        product_name: input.productName,
+        provider: input.provider,
+        country: input.country
       }),
       cache: "no-store"
     })

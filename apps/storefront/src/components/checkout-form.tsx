@@ -25,6 +25,14 @@ import {
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
+  defaultPeptidepayOnramp,
+  peptidepayOnrampEligible,
+  peptidepayOnrampNoticeText,
+  resolvePeptidepayOnramp,
+  visiblePeptidepayOnramps,
+  type PeptidepayOnrampId
+} from "@/lib/peptidepay-onramps"
+import {
   getCheckoutSubdivisions,
   getPostalLabel,
   getSubdivisionLabel,
@@ -205,6 +213,17 @@ function methodCardClass(selected: boolean) {
     selected
       ? "border-[#0D9488] bg-white shadow-[0_0_0_1px_#0D9488]"
       : "border-[#E2E8F0] bg-white hover:border-[#CBD5E1]"
+  ].join(" ")
+}
+
+function onrampCardClass(selected: boolean, disabled: boolean) {
+  return [
+    "relative flex w-full items-start gap-3 rounded-lg border p-2.5 text-left transition-all",
+    disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer",
+    selected && !disabled
+      ? "border-[#0D9488] bg-white shadow-[0_0_0_1px_#0D9488]"
+      : "border-[#E2E8F0] bg-white",
+    !disabled && !selected ? "hover:border-[#CBD5E1]" : ""
   ].join(" ")
 }
 
@@ -859,6 +878,7 @@ export function CheckoutForm() {
   const [cryptoLive, setCryptoLive] = useState(false)
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
+  const [cardOnramp, setCardOnramp] = useState<PeptidepayOnrampId>("stripe")
   const [selectedAsset, setSelectedAsset] = useState("USDT")
   const [loggedIn, setLoggedIn] = useState(false)
   const [summaryOpen, setSummaryOpen] = useState(false)
@@ -1120,6 +1140,22 @@ export function CheckoutForm() {
     shipCountry
   ])
 
+  const cardOnrampOptions = useMemo(() => visiblePeptidepayOnramps(), [])
+
+  const defaultCardOnramp = useMemo(
+    () => defaultPeptidepayOnramp(shippingAddress.country, estimatedTotal),
+    [shippingAddress.country, estimatedTotal]
+  )
+
+  useEffect(() => {
+    const stillEligible = cardOnrampOptions.some(
+      (option) => option.id === cardOnramp && peptidepayOnrampEligible(option, estimatedTotal)
+    )
+    if (!stillEligible && defaultCardOnramp) {
+      setCardOnramp(defaultCardOnramp)
+    }
+  }, [cardOnramp, cardOnrampOptions, defaultCardOnramp, estimatedTotal])
+
   const persistLocalOrder = (order: CheckoutOrder) => {
     const raw = window.localStorage.getItem(ORDERS_KEY)
     let parsed: CheckoutOrder[] = []
@@ -1187,6 +1223,21 @@ export function CheckoutForm() {
       setError("Card checkout is temporarily unavailable. Please pay with cryptocurrency.")
       return
     }
+
+    if (paymentMethod === "card") {
+      const onramp = resolvePeptidepayOnramp({
+        requested: cardOnramp,
+        country: shippingAddress.country,
+        amountUsd: estimatedTotal
+      })
+      if (!onramp.ok) {
+        setError(onramp.error)
+        window.requestAnimationFrame(() => {
+          document.getElementById("checkout-card-onramp")?.focus()
+        })
+        return
+      }
+    }
     if (paymentMethod === "crypto" && !cryptoLive) {
       setError(
         "Cryptocurrency checkout is not available right now. Use card payment, or try again once Paymento is configured on the server."
@@ -1223,6 +1274,7 @@ export function CheckoutForm() {
           phone: shippingAddress.phone,
           country: shippingAddress.country,
           payment_method: hasLabRestock ? "card" : paymentMethod,
+          peptidepay_provider: hasLabRestock || paymentMethod === "card" ? cardOnramp : undefined,
           crypto_asset: selectedAsset,
           items: items.map((item) => ({
             variantId: item.variantId,
@@ -1548,9 +1600,56 @@ export function CheckoutForm() {
                     ) : null}
                   </div>
                 ) : paymentMethod === "card" ? (
-                  <p className="mt-4 rounded-lg border border-[#E2E8F0] bg-white px-4 py-3 text-xs leading-relaxed text-[#64748B]">
-                    Card details are entered on our secure hosted payment page after you place your order.
-                  </p>
+                  <fieldset
+                    id="checkout-card-onramp"
+                    tabIndex={-1}
+                    className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4"
+                  >
+                    <legend className="px-1 text-sm font-medium text-[#0F172A]">Card processor</legend>
+                    <p className="mb-3 text-xs leading-relaxed text-[#64748B]">
+                      Card details are entered on the processor's hosted page after you place the order.
+                    </p>
+                    <div className="flex flex-col gap-2">
+                      {cardOnrampOptions.map((option) => {
+                        const eligible = peptidepayOnrampEligible(option, estimatedTotal)
+                        const selected = cardOnramp === option.id
+                        const notice = peptidepayOnrampNoticeText(option)
+                        return (
+                          <label key={option.id} className={onrampCardClass(selected, !eligible)}>
+                            <input
+                              type="radio"
+                              name="card_onramp"
+                              value={option.id}
+                              checked={selected}
+                              disabled={!eligible}
+                              onChange={() => setCardOnramp(option.id)}
+                              className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
+                            />
+                            <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                              <span className="text-sm font-medium text-[#0F172A]">{option.label}</span>
+                              <span className="text-xs leading-relaxed text-[#64748B]">
+                                {option.description}
+                                {option.minUsd > 2 ? ` Minimum $${option.minUsd}.` : ""}
+                              </span>
+                              {notice ? (
+                                <span className="text-xs leading-relaxed text-[#B45309]">{notice}</span>
+                              ) : null}
+                              {!eligible ? (
+                                <span className="text-xs text-amber-700">
+                                  Available from ${option.minUsd.toFixed(0)}.
+                                </span>
+                              ) : null}
+                            </span>
+                          </label>
+                        )
+                      })}
+                    </div>
+                    {!defaultCardOnramp ? (
+                      <p className="mt-3 text-xs text-amber-700">
+                        No card processor is available for this total. Pay with cryptocurrency.
+                      </p>
+                    ) : null}
+                  </fieldset>
                 ) : null}
               </section>
 

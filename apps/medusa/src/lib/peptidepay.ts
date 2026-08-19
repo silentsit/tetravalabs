@@ -1,4 +1,5 @@
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto"
+import type { PeptidepayOnrampId } from "./peptidepay-onramps"
 import { getHeaderValue } from "./webhook-raw-body"
 
 const API_BASE = "https://peptide-pay.com/api/v1"
@@ -11,6 +12,7 @@ export type PeptidepayCheckoutInput = {
   productName?: string
   successUrl?: string
   cancelUrl?: string
+  provider: PeptidepayOnrampId
 }
 
 export type PeptidepayCheckoutSession = {
@@ -96,7 +98,7 @@ export async function createPeptidepayCheckoutSession(
         cancel_url: input.cancelUrl || `${storefront}/checkout`,
         webhook_url: peptidepayWebhookUrl(),
         product_name: productName,
-        provider: "gateway",
+        provider: input.provider,
         metadata: { order_id: input.orderId }
       })
     })

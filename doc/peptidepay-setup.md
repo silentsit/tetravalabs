@@ -7,7 +7,7 @@ Tetrava uses **Peptide Pay** for card checkout (Visa, Mastercard, Amex, Apple Pa
 ```
 Checkout: payment_method = card | crypto
          │
-         ├─ card ──→ Peptide Pay hosted checkout
+         ├─ card ──→ Peptide Pay hosted checkout (Transak / Topper / Banxa / Stripe / PayPal)
          │              └─ webhook → /webhooks/payments/peptidepay
          │
          └─ crypto ──→ BTC → BTCPay
@@ -57,7 +57,13 @@ See [Peptide Pay docs](https://peptide-pay.com/docs#testing).
 ## Storefront behavior
 
 - Default payment method: **Credit or debit card**
-- Crypto option reveals asset picker (BTC → BTCPay, others → Paymento)
-- Card flow redirects immediately to Peptide Pay; return URL is `/checkout/success`
+- Card checkout shows every processor to every shopper (shipping country does not hide rails) and sends the chosen id as `provider` on Peptide Pay `/checkout/init` (never silent `gateway`):
+  - **Stripe**, **PayPal**, **Transak**, **Topper**, **Banxa**
+  - **Banxa**, **Transak**, and **Topper** are labeled as requiring their own account and simple KYC (3 min)
+  - **PayPal** notes you can pay with a PayPal account or by card
+  - Pre-selected default: Stripe for US shipping, Transak otherwise (buyer can change it)
+- Crypto option remains the global backup (asset picker: BTC → BTCPay, others → Paymento)
+- Card flow redirects immediately to the selected Peptide Pay rail; return URL is `/checkout/success`
+- Peptide Refill renewals pick Stripe for US shipping addresses and Transak otherwise, with the same min fallbacks
 
 See also: [doc/paymento-setup.md](./paymento-setup.md), [doc/btcpay-setup.md](./btcpay-setup.md).

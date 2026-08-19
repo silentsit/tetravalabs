@@ -5,6 +5,7 @@ import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import { registerLabRestocksFromCheckout } from "@/lib/medusa-lab-restock-register"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
+import { isPeptidepayOnrampId, resolvePeptidepayOnramp } from "@/lib/peptidepay-onramps"
 import { isValidRestockCadence, LAB_RESTOCK_COPY, applyLabRestockPrice } from "@/lib/lab-restock"
 import { buildPeptidepayProductName } from "@/lib/product-sku"
 import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
@@ -41,6 +42,7 @@ type CheckoutBody = {
   orderNotes?: string
   payment_method?: "card" | "crypto"
   crypto_asset?: string
+  peptidepay_provider?: string
   customer_id?: string
   items?: CheckoutItem[]
 }
@@ -142,6 +144,18 @@ export async function POST(req: Request) {
           { status: 400 }
         )
       }
+    }
+  }
+
+  const intendedPaymentMethod = hasLabRestock
+    ? "card"
+    : body.payment_method === "crypto"
+      ? "crypto"
+      : "card"
+  if (intendedPaymentMethod === "card") {
+    const requestedOnramp = body.peptidepay_provider?.trim().toLowerCase()
+    if (requestedOnramp && !isPeptidepayOnrampId(requestedOnramp)) {
+      return NextResponse.json({ ok: false, message: "Choose a supported card processor." }, { status: 400 })
     }
   }
 
@@ -336,12 +350,25 @@ export async function POST(req: Request) {
         : "card"
     const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "USDT"
     const peptidepayProductName = buildPeptidepayProductName(items)
+    const cardOnramp =
+      paymentMethod === "card"
+        ? resolvePeptidepayOnramp({
+            requested: body.peptidepay_provider,
+            country,
+            amountUsd: totalUsd
+          })
+        : null
+
+    const peptidepayProvider = cardOnramp?.ok ? cardOnramp.provider : null
 
     let paymentUrl: string | null = null
     let paymentProvider: string | null = null
     let paymentError: string | null = null
 
-    if (hasLabRestock) {
+    if (paymentMethod === "card" && !peptidepayProvider) {
+      paymentError =
+        cardOnramp && !cardOnramp.ok ? cardOnramp.error : "Choose a card processor."
+    } else if (hasLabRestock) {
       const mappedRestockItems = restockItems
         .filter(
           (item) =>
@@ -394,29 +421,43 @@ export async function POST(req: Request) {
         )
       }
 
-      const cardIntent = await createPeptidepayPaymentIntent({
-        orderId: order.id,
-        email,
-        amountUsd: totalUsd,
-        currency: "USD",
-        productName: peptidepayProductName
-      })
-      paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
-      paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"
-      paymentError =
-        cardIntent?.ok === false ? cardIntent.message || "Card payment setup failed" : null
+      if (!peptidepayProvider) {
+        paymentError =
+          cardOnramp && !cardOnramp.ok ? cardOnramp.error : "Choose a card processor."
+      } else {
+        const cardIntent = await createPeptidepayPaymentIntent({
+          orderId: order.id,
+          email,
+          amountUsd: totalUsd,
+          currency: "USD",
+          productName: peptidepayProductName,
+          provider: peptidepayProvider,
+          country
+        })
+        paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
+        paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"
+        paymentError =
+          cardIntent?.ok === false ? cardIntent.message || "Card payment setup failed" : null
+      }
     } else if (paymentMethod === "card") {
-      const cardIntent = await createPeptidepayPaymentIntent({
-        orderId: order.id,
-        email,
-        amountUsd: totalUsd,
-        currency: "USD",
-        productName: peptidepayProductName
-      })
-      paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
-      paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"
-      paymentError =
-        cardIntent?.ok === false ? cardIntent.message || "Card payment setup failed" : null
+      if (!peptidepayProvider) {
+        paymentError =
+          cardOnramp && !cardOnramp.ok ? cardOnramp.error : "Choose a card processor."
+      } else {
+        const cardIntent = await createPeptidepayPaymentIntent({
+          orderId: order.id,
+          email,
+          amountUsd: totalUsd,
+          currency: "USD",
+          productName: peptidepayProductName,
+          provider: peptidepayProvider,
+          country
+        })
+        paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
+        paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"
+        paymentError =
+          cardIntent?.ok === false ? cardIntent.message || "Card payment setup failed" : null
+      }
     } else {
       const intent = await createCryptoPaymentIntent({
         orderId: order.id,

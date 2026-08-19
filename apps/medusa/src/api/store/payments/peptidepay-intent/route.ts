@@ -1,6 +1,7 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
 import { createPeptidepayCheckoutSession, isPeptidepayConfigured } from "../../../../lib/peptidepay"
+import { resolvePeptidepayOnramp } from "../../../../lib/peptidepay-onramps"
 
 type Body = {
   order_id?: string
@@ -8,6 +9,8 @@ type Body = {
   amount_usd?: number
   currency?: string
   product_name?: string
+  provider?: string
+  country?: string
 }
 
 async function saveIntent(
@@ -80,6 +83,7 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   const amountUsd = Number(req.body?.amount_usd || 0)
   const currency = (req.body?.currency || "USD").toUpperCase()
   const productName = req.body?.product_name?.trim()
+  const country = req.body?.country?.trim().toUpperCase() || "US"
 
   if (!orderId || !email || amountUsd <= 0) {
     return res.status(400).json({ message: "order_id, email, amount_usd are required" })
@@ -92,12 +96,22 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     })
   }
 
+  const onramp = resolvePeptidepayOnramp({
+    requested: req.body?.provider,
+    country,
+    amountUsd
+  })
+  if (!onramp.ok) {
+    return res.status(400).json({ ok: false, message: onramp.error })
+  }
+
   const sessionResult = await createPeptidepayCheckoutSession({
     orderId,
     email,
     amountUsd,
     currency,
-    productName
+    productName,
+    provider: onramp.provider
   })
 
   if (!sessionResult.ok) {

@@ -19,7 +19,7 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
   },
   "bpc-157": {
     absoluteTitle:
-      "Buy BPC-157 Peptide Online | BPC-157 Peptides for Sale | Tetrava",
+      "Buy BPC-157 Peptide Online | BPC-157 for Sale | Tetrava",
     description:
       "Buy BPC-157 peptide online from Tetrava Labs — BPC-157 peptides for sale with third-party 99%+ HPLC-MS purity and lot-linked COAs. Best place to buy BPC-157 for qualified labs (RUO).",
     pageHeading: "BPC-157",

@@ -14,6 +14,7 @@ Default description: Research-use peptides with HPLC-MS verification, lot-linked
 | `/{handle}` | {productName with strengths} — {category} \| Tetrava Labs | {productName with strengths} for laboratory research (RUO). {purity} purity with lot-linked COA. [CAS …]. |
 | `/buy-bpc-157-online` | BPC-157 Peptide for Sale • Tissue Repair \| Tetrava Labs | BPC-157 peptide for sale at Tetrava Labs — third-party verified 99%+ purity with lot-linked COA. Buy BPC-157 online with us today. |
 | `/buy-retatrutide-online` | Buy Retatrutide Peptide Online \| Retatrutide for Sale \| Tetrava | Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale. Get competitive pricing, lab-tested retatrutide peptides & same-day dispatch. |
+| `/buy-semaglutide-online` | Buy Semaglutide Online (5mg, 10mg) \| 99% Purity \| Tetrava | Buy research-grade Semaglutide online in 5mg and 10mg. Verified 99%+ HPLC-MS purity with lot-linked COAs. Cold-chain shipping. RUO. CAS 910463-68-2. |
 | `/buy-mots-c-online` | Buy MOTS-c Peptide Online \| MOTS-c for Sale \| Tetrava | Buy MOTS-c peptide online for qualified labs. Get 99%+ HPLC-MS purity, lot-linked COA documentation, competitive pricing, and cold-chain dispatch. RUO only. |
 | `/buy-aod-9604-online` | Buy AOD-9604 Peptide Online (5mg / 10mg) \| 99%+ COA \| Tetrava | Buy AOD-9604 peptide online in 5mg and 10mg vials. 99%+ HPLC-MS lab-tested purity, lot-linked COA. Research-grade hGH fragment 176-191. RUO. |
 | `/buy-nad-online` | Buy NAD+ Peptide Online (100mg/500mg/1000mg) \| 99%+ Purity \| Tetrava | Buy research-grade NAD+ online in 100mg, 500mg, and 1000mg. Verified 99%+ HPLC-MS purity with lot-linked COAs. Cold-chain shipping. Research use only (RUO). |
@@ -27,7 +28,7 @@ Default description: Research-use peptides with HPLC-MS verification, lot-linked
 | `/coa-library/{handle}` | {displayName} — COA documents \| Tetrava Labs | Lot-linked Certificates of Analysis for {displayName}. {N} research document(s) available. |
 | `/about` | About Tetrava Labs \| Verified Research-Use-Only Peptides | Tetrava Labs supplies HPLC-MS verified, COA-documented research peptides with cold-chain shipping to qualified labs. Verified. Documented. Delivered. RUO. |
 | `/faq` | FAQ — ordering, shipping & COAs \| Tetrava Labs | Answers about research-use peptides, HPLC verification, certificates of analysis, shipping, and payment. |
-| `/contact` | Contact \| Tetrava Labs | Contact Tetrava Labs for research support, order questions, COA documents, and compliance inquiries. |
+| `/contact` | Contact Tetrava Labs \| Customer & Technical Support | Contact Tetrava Labs for research support, order questions, COA documents, and compliance inquiries. |
 | `/payment` | How to pay — card & crypto checkout \| Tetrava Labs | Step-by-step payment guide for Tetrava Labs orders using credit card, Apple Pay, BTC, USDT, ETH, and other supported assets. |
 | `/shipping` | Shipping Information \| Tetrava Labs | Tetrava Labs international delivery times, fulfillment, cold-chain packaging, tracking guidance, and customs information for research peptide orders. |
 | `/privacy` | Privacy Policy \| Tetrava Labs | How Tetrava Labs collects, uses, stores, and protects personal information for research-use customers on tetravalabs.com. |

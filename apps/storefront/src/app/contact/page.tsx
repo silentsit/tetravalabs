@@ -4,7 +4,8 @@ import { ContactForm } from "@/components/contact-form"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Contact",
+  title: "Contact Tetrava Labs",
+  absoluteTitle: "Contact Tetrava Labs | Customer & Technical Support",
   description:
     "Contact Tetrava Labs for research support, order questions, COA documents, and compliance inquiries.",
   path: "/contact",

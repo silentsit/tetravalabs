@@ -38,6 +38,13 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
       "Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale. Get competitive pricing, lab-tested retatrutide peptides & same-day dispatch.",
     imageAlt: "Buy retatrutide peptide for sale in research vial",
   },
+  semaglutide: {
+    absoluteTitle:
+      "Buy Semaglutide Online (5mg, 10mg) | 99% Purity | Tetrava",
+    description:
+      "Buy research-grade Semaglutide online in 5mg and 10mg. Verified 99%+ HPLC-MS purity with lot-linked COAs. Cold-chain shipping. RUO. CAS 910463-68-2.",
+    imageAlt: "Buy semaglutide peptide for sale in research vial",
+  },
   "mots-c": {
     absoluteTitle: "Buy MOTS-c Peptide Online | MOTS-c for Sale | Tetrava",
     description:

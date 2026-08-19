@@ -488,6 +488,9 @@ export function stripStrengthFromDisplayName(title: string): string {
   const cleaned = title
     .replace(/\s+\d+(?:\.\d+)?\s*(mg|ml|mcg|iu)\b/gi, "")
     .replace(/\s*\(\d+(?:\.\d+)?\s*(mg|ml|mcg|iu)(?:\s*\/\s*\d+(?:\.\d+)?\s*(mg|ml|mcg|iu))*\)\s*$/i, "")
+    .replace(/\s*\(\d+\s*count\)\s*/gi, "")
+    .replace(/\s+\d+\s*count\)?/gi, "")
+    .replace(/\)+$/g, "")
     .replace(/\s{2,}/g, " ")
     .trim()
   return cleaned || title

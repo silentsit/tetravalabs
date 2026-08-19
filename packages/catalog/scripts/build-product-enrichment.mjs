@@ -67,7 +67,7 @@ const NAME_ALIASES = {
   "GHK-Cu": ["GHK-Cu", "GHK-CU"],
   "MOTS-c": ["MOTS-c", "MOTS-C"],
   "BPC-157 (Capsules)": ["BPC-157"],
-  "Pinealon (Capsules) (100 count)": ["Pinealon"],
+  "Pinealon Capsules": ["Pinealon"],
   "IGF-1 LR3 0.1mg": ["IGF-1 LR3"],
   "L-Carnitine 600mg (10ml)": ["L-Carnitine"],
   "5-amino-1mq": ["5-amino-1mq", "5-Amino-1MQ"]
@@ -153,7 +153,7 @@ const MW_BY_KEY = {
   "CJC-1295 without DAC / Ipamorelin Blend": "See component peptides",
   "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend": "See component peptides",
   "IGF-1 LR3 0.1mg": "9111.0",
-  "Pinealon (Capsules) (100 count)": "389.39"
+  "Pinealon Capsules": "389.39"
 }
 
 /** Fallback formulas when sheet/COA omit them */
@@ -224,7 +224,7 @@ const SEQUENCE_BY_KEY = {
     "Ac-Ser-Asp-Ala-Ala-Val-Asp-Thr-Ser-Ser-Glu-Ile-Thr-Thr-Lys-Asp-Leu-Lys-Glu-Lys-Lys-Glu-Val-Val-Glu-Glu-Ala-Glu-Asn-OH",
   VIP: "His-Ser-Asp-Ala-Val-Phe-Thr-Asp-Asn-Tyr-Thr-Arg-Leu-Arg-Lys-Gln-Met-Ala-Val-Lys-Lys-Tyr-Leu-Asn-Ser-Ile-Leu-Asn-NH2",
   Pinealon: "Glu-Asp-Arg",
-  "Pinealon (Capsules) (100 count)": "Glu-Asp-Arg",
+  "Pinealon Capsules": "Glu-Asp-Arg",
   Humanin: "Met-Ala-Pro-Arg-Gly-Phe-Ser-Cys-Leu-Leu-Leu-Leu-Thr-Ser-Glu-Ile-Asp-Leu-Pro-Val-Lys-Arg-Arg-Ala",
   Adamax: "Ac-Met-Glu-His-Phe-Pro-Gly-Pro-NH2 (N-acetyl Semax amidate analogue)",
   Glutathione: "γ-Glu-Cys-Gly",
@@ -275,7 +275,7 @@ const APPEARANCE_DEFAULTS = {
   "L-Carnitine 600mg (10ml)": "Clear sterile solution",
   "GHK-Cu": "Blue to blue-green lyophilized powder",
   "BPC-157 (Capsules)": "White capsule",
-  "Pinealon (Capsules) (100 count)": "White capsule"
+  "Pinealon Capsules": "White capsule"
 }
 
 const STORAGE_DEFAULTS = {

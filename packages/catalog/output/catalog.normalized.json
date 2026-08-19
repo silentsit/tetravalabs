@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T13:55:11.674Z",
+  "generated_at": "2026-08-19T04:27:51.938Z",
   "sku_scheme": "TV-####-##",
   "compound_merge": true,
   "products": [
@@ -7111,7 +7111,7 @@
     },
     {
       "id": "pinealon-capsules-100-count",
-      "title": "Pinealon (Capsules) (100 count) 100 count)",
+      "title": "Pinealon Capsules 500 mcg",
       "category": "Longevity & Neuropeptides",
       "source_category": "Legacy Catalog",
       "handle": "pinealon-capsules-100-count",
@@ -7119,7 +7119,7 @@
       "metadata": {
         "source": "Tiered_Pricing_5_10_20_Vials.xlsx",
         "ruo": true,
-        "strength": "100 count)",
+        "strength": "500 mcg",
         "strength_key": null,
         "product_code": 99,
         "cas_number": "175175-23-2",
@@ -7139,7 +7139,7 @@
           "currency_code": "usd",
           "metadata": {
             "catalog_slug": "pinealon-capsules-100-count",
-            "strength": "100 count)",
+            "strength": "500 mcg",
             "product_code": 99,
             "pack_qty": 1,
             "per_unit_usd": 99,
@@ -7156,7 +7156,7 @@
           "currency_code": "usd",
           "metadata": {
             "catalog_slug": "pinealon-capsules-100-count",
-            "strength": "100 count)",
+            "strength": "500 mcg",
             "product_code": 99,
             "pack_qty": 5,
             "per_unit_usd": 89,
@@ -7173,7 +7173,7 @@
           "currency_code": "usd",
           "metadata": {
             "catalog_slug": "pinealon-capsules-100-count",
-            "strength": "100 count)",
+            "strength": "500 mcg",
             "product_code": 99,
             "pack_qty": 10,
             "per_unit_usd": 79,

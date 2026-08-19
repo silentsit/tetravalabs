@@ -81,6 +81,13 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
       "Buy Semax nasal spray online (10mg). 99%+ HPLC-MS purity, lot-linked COA, 2-8C refrigerated research spray. Research use only (RUO).",
     imageAlt: "Buy Semax nasal spray online, 10mg research bottle",
   },
+  "pinealon-capsules-100-count": {
+    absoluteTitle: "Buy Pinealon Capsules (500 mcg) | 100 capsules | Tetrava",
+    pageHeading: "Pinealon Capsules (500 mcg)",
+    description:
+      "Buy Pinealon capsules (500 mcg, 100 count) for oral-route Glu-Asp-Arg research. Lot-linked COA. Research use only (RUO).",
+    imageAlt: "Buy Pinealon capsules 500 mcg, 100-count research bottle",
+  },
 };
 
 export function getProductSeoOverride(

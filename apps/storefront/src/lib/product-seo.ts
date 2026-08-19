@@ -5,7 +5,12 @@ function uniqueStrengthLabels(labels: Array<string | null | undefined>) {
   return [
     ...new Set(
       labels
-        .map((label) => String(label || "").trim())
+        .map((label) =>
+          String(label || "")
+            .trim()
+            .replace(/\)+$/g, "")
+            .replace(/^\(+/, "")
+        )
         .filter((label) => label && label.toLowerCase() !== "standard")
     )
   ]

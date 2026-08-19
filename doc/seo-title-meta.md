@@ -18,6 +18,7 @@ Default description: Research-use peptides with HPLC-MS verification, lot-linked
 | `/buy-aod-9604-online` | Buy AOD-9604 Peptide Online (5mg / 10mg) \| 99%+ COA \| Tetrava | Buy AOD-9604 peptide online in 5mg and 10mg vials. 99%+ HPLC-MS lab-tested purity, lot-linked COA. Research-grade hGH fragment 176-191. RUO. |
 | `/buy-nad-online` | Buy NAD+ Peptide Online (100mg/500mg/1000mg) \| 99%+ Purity \| Tetrava | Buy research-grade NAD+ online in 100mg, 500mg, and 1000mg. Verified 99%+ HPLC-MS purity with lot-linked COAs. Cold-chain shipping. Research use only (RUO). |
 | `/buy-dsip-online` | Buy DSIP Peptide Online (5mg / 10mg / 15mg) \| 99%+ COA \| Tetrava | Buy DSIP peptide online in 5mg, 10mg, and 15mg vials. 99%+ HPLC-MS lab-tested purity, lot-linked COA. Delta Sleep-Inducing Peptide for research. RUO. |
+| `/buy-pinealon-capsules-online` | Buy Pinealon Capsules (500 mcg) \| 100 capsules \| Tetrava | Buy Pinealon capsules (500 mcg, 100 count) for oral-route Glu-Asp-Arg research. Lot-linked COA. Research use only (RUO). |
 | `/category/{slug}` | {seoTitle or "{label} — research peptides"} \| Tetrava Labs | Sanity seoDescription → category art description → Shop {label} research compounds… |
 | `/categories` | Product categories \| Tetrava Labs | Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies. |
 | `/blog` | Research Hub — articles & protocols \| Tetrava Labs | Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers. |

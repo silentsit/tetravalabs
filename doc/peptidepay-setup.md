@@ -59,7 +59,7 @@ See [Peptide Pay docs](https://peptide-pay.com/docs#testing).
 - Default payment method: **Credit or debit card**
 - Card checkout shows every processor to every shopper (shipping country does not hide rails) and sends the chosen id as `provider` on Peptide Pay `/checkout/init` (never silent `gateway`):
   - **Stripe**, **PayPal**, **Transak**, **Topper**, **Banxa**
-  - **Banxa**, **Transak**, and **Topper** are labeled as requiring their own account and simple KYC (3 min)
+  - **Banxa**, **Transak**, and **Topper** note a quick account setup and verification (~3 min)
   - **PayPal** notes you can pay with a PayPal account or by card
   - Stripe and PayPal are Peptide Pay US-IP rails. Outside the US, Peptide Pay ignores the pin and opens Banxa, so checkout disables those two with "Not available from your location" instead of redirecting
   - Pre-selected default: Stripe for US shipping **and** US IP, Transak otherwise (buyer can change it)

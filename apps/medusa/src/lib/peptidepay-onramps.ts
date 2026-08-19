@@ -19,7 +19,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "stripe",
     label: "Stripe",
     minUsd: 2,
-    description: "Card checkout.",
+    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
     restrictedTo: ["US"]
   },
   {
@@ -33,28 +33,28 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "transak",
     label: "Transak",
     minUsd: 15,
-    description: "Card checkout.",
+    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
     notice: "account_kyc"
   },
   {
     id: "topper",
     label: "Topper",
     minUsd: 10,
-    description: "Card checkout.",
+    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
     notice: "account_kyc"
   },
   {
     id: "banxa",
     label: "Banxa",
     minUsd: 10,
-    description: "Card checkout.",
+    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
     notice: "account_kyc"
   }
 ]
 
 export function peptidepayOnrampNoticeText(option: PeptidepayOnrampOption): string | null {
   if (option.notice === "account_kyc") {
-    return `Requires a ${option.label} account and simple KYC (3 min).`
+    return "Quick account setup and verification (~3 min)"
   }
   return null
 }

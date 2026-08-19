@@ -1647,7 +1647,7 @@ export function CheckoutForm() {
                               <span className="text-sm font-medium text-[#0F172A]">{option.label}</span>
                               <span className="text-xs leading-relaxed text-[#64748B]">
                                 {option.description}
-                                {option.minUsd > 2 ? ` Minimum $${option.minUsd}.` : ""}
+                                {` Minimum $${option.minUsd}.`}
                               </span>
                               {notice ? (
                                 <span className="text-xs leading-relaxed text-[#B45309]">{notice}</span>

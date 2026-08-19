@@ -26,6 +26,7 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
   defaultPeptidepayOnramp,
+  peptidepayOnrampAvailableForIp,
   peptidepayOnrampEligible,
   peptidepayOnrampNoticeText,
   resolvePeptidepayOnramp,
@@ -897,6 +898,7 @@ export function CheckoutForm() {
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
   const [cardOnramp, setCardOnramp] = useState<PeptidepayOnrampId>("stripe")
+  const [buyerIpCountry, setBuyerIpCountry] = useState<string | null>(null)
   const [selectedAsset, setSelectedAsset] = useState("USDT")
   const [loggedIn, setLoggedIn] = useState(false)
   const [summaryOpen, setSummaryOpen] = useState(false)
@@ -1039,6 +1041,17 @@ export function CheckoutForm() {
   }, [])
 
   useEffect(() => {
+    void fetch("/api/geo", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        const code =
+          typeof data?.country === "string" && data.country.trim() ? data.country.trim().toUpperCase() : null
+        if (code && code !== "XX" && code !== "T1") setBuyerIpCountry(code)
+      })
+      .catch(() => undefined)
+  }, [])
+
+  useEffect(() => {
     if (hasLabRestock) setPaymentMethod("card")
   }, [hasLabRestock])
 
@@ -1161,18 +1174,21 @@ export function CheckoutForm() {
   const cardOnrampOptions = useMemo(() => visiblePeptidepayOnramps(), [])
 
   const defaultCardOnramp = useMemo(
-    () => defaultPeptidepayOnramp(shippingAddress.country, estimatedTotal),
-    [shippingAddress.country, estimatedTotal]
+    () => defaultPeptidepayOnramp(shippingAddress.country, estimatedTotal, buyerIpCountry),
+    [buyerIpCountry, shippingAddress.country, estimatedTotal]
   )
 
   useEffect(() => {
-    const stillEligible = cardOnrampOptions.some(
-      (option) => option.id === cardOnramp && peptidepayOnrampEligible(option, estimatedTotal)
+    const selected = cardOnrampOptions.find((option) => option.id === cardOnramp)
+    const stillEligible = Boolean(
+      selected &&
+        peptidepayOnrampEligible(selected, estimatedTotal) &&
+        peptidepayOnrampAvailableForIp(selected, buyerIpCountry)
     )
     if (!stillEligible && defaultCardOnramp) {
       setCardOnramp(defaultCardOnramp)
     }
-  }, [cardOnramp, cardOnrampOptions, defaultCardOnramp, estimatedTotal])
+  }, [buyerIpCountry, cardOnramp, cardOnrampOptions, defaultCardOnramp, estimatedTotal])
 
   const persistLocalOrder = (order: CheckoutOrder) => {
     const raw = window.localStorage.getItem(ORDERS_KEY)
@@ -1246,7 +1262,8 @@ export function CheckoutForm() {
       const onramp = resolvePeptidepayOnramp({
         requested: cardOnramp,
         country: shippingAddress.country,
-        amountUsd: estimatedTotal
+        amountUsd: estimatedTotal,
+        ipCountry: buyerIpCountry
       })
       if (!onramp.ok) {
         setError(onramp.error)
@@ -1306,7 +1323,8 @@ export function CheckoutForm() {
             restockCadenceDays: item.restockCadenceDays,
             oneTimeUnitPrice: item.oneTimeUnitPrice
           }))
-        })
+        }),
+        signal: AbortSignal.timeout(45000)
       })
       const checkoutJson = await checkoutResponse.json()
       if (!checkoutJson?.ok) {
@@ -1336,30 +1354,37 @@ export function CheckoutForm() {
       if (checkoutJson.payment_error && !checkoutJson.payment_url) {
         setStatus(checkoutJson.payment_error)
       }
-    } catch {
-      setError("Could not reach checkout API.")
+    } catch (error) {
+      const timedOut =
+        error instanceof DOMException
+          ? error.name === "TimeoutError" || error.name === "AbortError"
+          : error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")
+      setError(
+        timedOut
+          ? "Checkout is taking too long. Wait a moment and try again."
+          : "Could not reach checkout API."
+      )
       setLoading(false)
       return
     }
 
-    try {
-      await fetch(
-        `${process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"}/store/compliance/acknowledge`,
-        {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            order_id: orderId,
-            disclaimer_version: "v1",
-            acknowledged_at: new Date().toISOString(),
-            shipping_country: shippingAddress.country,
-            ip_country: null
-          })
-        }
-      )
-    } catch {
-      // Non-blocking in development.
-    }
+    void fetch(
+      `${process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000"}/store/compliance/acknowledge`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          order_id: orderId,
+          disclaimer_version: "v1",
+          acknowledged_at: new Date().toISOString(),
+          shipping_country: shippingAddress.country,
+          ip_country: null
+        }),
+        signal: AbortSignal.timeout(4000)
+      }
+    ).catch(() => {
+      // Must not delay redirect to Peptide Pay.
+    })
 
     const order: CheckoutOrder = {
       id: orderId,
@@ -1627,19 +1652,26 @@ export function CheckoutForm() {
                     <p className="mb-3 text-xs leading-relaxed text-[#64748B]">
                       Card details are entered on the processor's hosted page after you place the order.
                     </p>
+                    {buyerIpCountry && buyerIpCountry !== "US" ? (
+                      <p className="mb-3 text-xs leading-relaxed text-[#475569]">
+                        Stripe and PayPal need a US connection.
+                      </p>
+                    ) : null}
                     <div className="flex flex-col gap-2">
                       {cardOnrampOptions.map((option) => {
                         const eligible = peptidepayOnrampEligible(option, estimatedTotal)
+                        const inLocation = peptidepayOnrampAvailableForIp(option, buyerIpCountry)
+                        const selectable = eligible && inLocation
                         const selected = cardOnramp === option.id
                         const notice = peptidepayOnrampNoticeText(option)
                         return (
-                          <label key={option.id} className={onrampCardClass(selected, !eligible)}>
+                          <label key={option.id} className={onrampCardClass(selected, !selectable)}>
                             <input
                               type="radio"
                               name="card_onramp"
                               value={option.id}
                               checked={selected}
-                              disabled={!eligible}
+                              disabled={!selectable}
                               onChange={() => setCardOnramp(option.id)}
                               className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
                             />
@@ -1652,7 +1684,9 @@ export function CheckoutForm() {
                               {notice ? (
                                 <span className="text-xs leading-relaxed text-[#B45309]">{notice}</span>
                               ) : null}
-                              {!eligible ? (
+                              {!inLocation ? (
+                                <span className="text-xs text-amber-700">Not available from your location.</span>
+                              ) : !eligible ? (
                                 <span className="text-xs text-amber-700">
                                   Available from ${option.minUsd.toFixed(0)}.
                                 </span>

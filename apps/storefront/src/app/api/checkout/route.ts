@@ -5,7 +5,14 @@ import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import { registerLabRestocksFromCheckout } from "@/lib/medusa-lab-restock-register"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
-import { isPeptidepayOnrampId, resolvePeptidepayOnramp } from "@/lib/peptidepay-onramps"
+import {
+  isPeptidepayOnrampId,
+  peptidepayBuyerIpCountry,
+  PEPTIDEPAY_ONRAMPS,
+  peptidepayOnrampAvailableForIp,
+  peptidepayOnrampLocationError,
+  resolvePeptidepayOnramp
+} from "@/lib/peptidepay-onramps"
 import { isValidRestockCadence, LAB_RESTOCK_COPY, applyLabRestockPrice } from "@/lib/lab-restock"
 import { buildPeptidepayProductName } from "@/lib/product-sku"
 import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
@@ -13,6 +20,8 @@ import {
   bindCheckoutCustomerOnMedusa,
   transferCartToAuthenticatedCustomer
 } from "@/lib/checkout-customer-bind"
+
+export const maxDuration = 60
 
 type CheckoutItem = {
   variantId: string
@@ -147,6 +156,11 @@ export async function POST(req: Request) {
     }
   }
 
+  const ipCountry = peptidepayBuyerIpCountry(
+    req.headers.get("cf-ipcountry") ||
+      req.headers.get("x-vercel-ip-country") ||
+      req.headers.get("x-country-code")
+  )
   const intendedPaymentMethod = hasLabRestock
     ? "card"
     : body.payment_method === "crypto"
@@ -156,6 +170,13 @@ export async function POST(req: Request) {
     const requestedOnramp = body.peptidepay_provider?.trim().toLowerCase()
     if (requestedOnramp && !isPeptidepayOnrampId(requestedOnramp)) {
       return NextResponse.json({ ok: false, message: "Choose a supported card processor." }, { status: 400 })
+    }
+    const requestedOption = PEPTIDEPAY_ONRAMPS.find((option) => option.id === requestedOnramp)
+    if (requestedOption && !peptidepayOnrampAvailableForIp(requestedOption, ipCountry)) {
+      return NextResponse.json(
+        { ok: false, message: peptidepayOnrampLocationError(requestedOption) },
+        { status: 400 }
+      )
     }
   }
 
@@ -355,7 +376,8 @@ export async function POST(req: Request) {
         ? resolvePeptidepayOnramp({
             requested: body.peptidepay_provider,
             country,
-            amountUsd: totalUsd
+            amountUsd: totalUsd,
+            ipCountry
           })
         : null
 
@@ -432,7 +454,8 @@ export async function POST(req: Request) {
           currency: "USD",
           productName: peptidepayProductName,
           provider: peptidepayProvider,
-          country
+          country,
+          ipCountry
         })
         paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
         paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"
@@ -451,7 +474,8 @@ export async function POST(req: Request) {
           currency: "USD",
           productName: peptidepayProductName,
           provider: peptidepayProvider,
-          country
+          country,
+          ipCountry
         })
         paymentUrl = cardIntent?.ok === false ? null : cardIntent?.provider_url || null
         paymentProvider = cardIntent?.ok === false ? null : cardIntent?.provider || "peptidepay"

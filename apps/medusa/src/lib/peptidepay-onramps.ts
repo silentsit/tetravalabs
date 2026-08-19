@@ -9,6 +9,8 @@ export type PeptidepayOnrampOption = {
   minUsd: number
   description: string
   notice?: PeptidepayOnrampNotice
+  /** Peptide Pay GET /providers restrictedTo. Missing = worldwide. */
+  restrictedTo?: string[]
 }
 
 /** Shown to every shopper, in this order. Shipping country does not hide rails. */
@@ -17,13 +19,15 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "stripe",
     label: "Stripe",
     minUsd: 2,
-    description: "Card checkout."
+    description: "Card checkout.",
+    restrictedTo: ["US"]
   },
   {
     id: "paypal",
     label: "PayPal",
     minUsd: 5,
-    description: "Pay with a PayPal account, or pay by card."
+    description: "Pay with a PayPal account, or pay by card.",
+    restrictedTo: ["US"]
   },
   {
     id: "transak",
@@ -63,20 +67,47 @@ export function isUsShippingCountry(country: string | undefined | null): boolean
   return (country || "").trim().toUpperCase() === "US"
 }
 
+export function peptidepayBuyerIpCountry(value: unknown): string | null {
+  const code = typeof value === "string" ? value.trim().toUpperCase() : ""
+  if (!code || code === "XX" || code === "T1") return null
+  return code
+}
+
 export function peptidepayOnrampEligible(option: PeptidepayOnrampOption, amountUsd: number): boolean {
   return amountUsd + 1e-9 >= option.minUsd
+}
+
+/** Peptide Pay pins Stripe/PayPal to buyer IP, not shipping country. Unknown IP is not blocked. */
+export function peptidepayOnrampAvailableForIp(
+  option: PeptidepayOnrampOption,
+  ipCountry: string | null | undefined
+): boolean {
+  if (!option.restrictedTo?.length) return true
+  if (!ipCountry) return true
+  return option.restrictedTo.includes(ipCountry)
+}
+
+export function peptidepayOnrampLocationError(option: PeptidepayOnrampOption): string {
+  return `${option.label} is not available from your location. Choose Transak, Topper, or Banxa.`
 }
 
 export function visiblePeptidepayOnramps(): PeptidepayOnrampOption[] {
   return PEPTIDEPAY_ONRAMPS
 }
 
-export function listEligiblePeptidepayOnramps(amountUsd: number) {
-  return PEPTIDEPAY_ONRAMPS.filter((option) => peptidepayOnrampEligible(option, amountUsd))
+export function listEligiblePeptidepayOnramps(amountUsd: number, ipCountry?: string | null) {
+  return PEPTIDEPAY_ONRAMPS.filter(
+    (option) =>
+      peptidepayOnrampEligible(option, amountUsd) && peptidepayOnrampAvailableForIp(option, ipCountry)
+  )
 }
 
-export function defaultPeptidepayOnramp(country: string, amountUsd: number): PeptidepayOnrampId | null {
-  const eligible = listEligiblePeptidepayOnramps(amountUsd)
+export function defaultPeptidepayOnramp(
+  country: string,
+  amountUsd: number,
+  ipCountry?: string | null
+): PeptidepayOnrampId | null {
+  const eligible = listEligiblePeptidepayOnramps(amountUsd, ipCountry)
   if (!eligible.length) return null
   if (isUsShippingCountry(country)) {
     return (
@@ -98,6 +129,7 @@ export function resolvePeptidepayOnramp(input: {
   requested?: string | null
   country: string
   amountUsd: number
+  ipCountry?: string | null
 }): { ok: true; provider: PeptidepayOnrampId } | { ok: false; error: string } {
   const requested = input.requested?.trim().toLowerCase() || ""
   if (requested) {
@@ -108,6 +140,9 @@ export function resolvePeptidepayOnramp(input: {
     if (!option) {
       return { ok: false, error: "Choose a supported card processor." }
     }
+    if (!peptidepayOnrampAvailableForIp(option, input.ipCountry)) {
+      return { ok: false, error: peptidepayOnrampLocationError(option) }
+    }
     if (!peptidepayOnrampEligible(option, input.amountUsd)) {
       return {
         ok: false,
@@ -117,7 +152,7 @@ export function resolvePeptidepayOnramp(input: {
     return { ok: true, provider: requested }
   }
 
-  const fallback = defaultPeptidepayOnramp(input.country, input.amountUsd)
+  const fallback = defaultPeptidepayOnramp(input.country, input.amountUsd, input.ipCountry)
   if (!fallback) {
     return {
       ok: false,

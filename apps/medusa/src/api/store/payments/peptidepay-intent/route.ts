@@ -1,7 +1,7 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
 import { createPeptidepayCheckoutSession, isPeptidepayConfigured } from "../../../../lib/peptidepay"
-import { resolvePeptidepayOnramp } from "../../../../lib/peptidepay-onramps"
+import { peptidepayBuyerIpCountry, resolvePeptidepayOnramp } from "../../../../lib/peptidepay-onramps"
 
 type Body = {
   order_id?: string
@@ -11,6 +11,7 @@ type Body = {
   product_name?: string
   provider?: string
   country?: string
+  ip_country?: string
 }
 
 async function saveIntent(
@@ -99,7 +100,8 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   const onramp = resolvePeptidepayOnramp({
     requested: req.body?.provider,
     country,
-    amountUsd
+    amountUsd,
+    ipCountry: peptidepayBuyerIpCountry(req.body?.ip_country)
   })
   if (!onramp.ok) {
     return res.status(400).json({ ok: false, message: onramp.error })

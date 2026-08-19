@@ -61,7 +61,8 @@ See [Peptide Pay docs](https://peptide-pay.com/docs#testing).
   - **Stripe**, **PayPal**, **Transak**, **Topper**, **Banxa**
   - **Banxa**, **Transak**, and **Topper** are labeled as requiring their own account and simple KYC (3 min)
   - **PayPal** notes you can pay with a PayPal account or by card
-  - Pre-selected default: Stripe for US shipping, Transak otherwise (buyer can change it)
+  - Stripe and PayPal are Peptide Pay US-IP rails. Outside the US, Peptide Pay ignores the pin and opens Banxa, so checkout disables those two with "Not available from your location" instead of redirecting
+  - Pre-selected default: Stripe for US shipping **and** US IP, Transak otherwise (buyer can change it)
 - Crypto option remains the global backup (asset picker: BTC → BTCPay, others → Paymento)
 - Card flow redirects immediately to the selected Peptide Pay rail; return URL is `/checkout/success`
 - Peptide Refill renewals pick Stripe for US shipping addresses and Transak otherwise, with the same min fallbacks

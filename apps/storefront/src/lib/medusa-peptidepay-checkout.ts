@@ -20,6 +20,7 @@ export async function createPeptidepayPaymentIntent(input: {
   productName?: string
   provider: string
   country: string
+  ipCountry?: string | null
 }): Promise<PeptidepayIntentResult | null> {
   if (!PUBLISHABLE_KEY) return null
 
@@ -37,9 +38,11 @@ export async function createPeptidepayPaymentIntent(input: {
         currency: input.currency || "USD",
         product_name: input.productName,
         provider: input.provider,
-        country: input.country
+        country: input.country,
+        ip_country: input.ipCountry || undefined
       }),
-      cache: "no-store"
+      cache: "no-store",
+      signal: AbortSignal.timeout(25000)
     })
 
     const rawText = await response.text()
@@ -61,7 +64,14 @@ export async function createPeptidepayPaymentIntent(input: {
     }
 
     return data
-  } catch {
-    return null
+  } catch (error) {
+    const timedOut =
+      error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")
+    return {
+      ok: false,
+      message: timedOut
+        ? "Peptide Pay did not respond in time. Try again, or choose another card processor."
+        : "Could not reach Peptide Pay."
+    }
   }
 }

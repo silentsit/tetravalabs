@@ -100,7 +100,8 @@ export async function createPeptidepayCheckoutSession(
         product_name: productName,
         provider: input.provider,
         metadata: { order_id: input.orderId }
-      })
+      }),
+      signal: AbortSignal.timeout(20000)
     })
 
     const rawText = await response.text()
@@ -138,7 +139,13 @@ export async function createPeptidepayCheckoutSession(
       }
     }
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Peptide Pay request failed"
+    const timedOut =
+      error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")
+    const message = timedOut
+      ? "Peptide Pay did not respond in time. Try again, or choose another card processor."
+      : error instanceof Error
+        ? error.message
+        : "Peptide Pay request failed"
     return { ok: false, error: message }
   }
 }

@@ -1653,7 +1653,7 @@ export function CheckoutForm() {
                       Card details are entered on the processor's hosted page after you place the order.
                     </p>
                     {buyerIpCountry && buyerIpCountry !== "US" ? (
-                      <p className="mb-3 text-xs leading-relaxed text-[#475569]">
+                      <p className="mb-3 text-xs font-semibold leading-relaxed text-[#475569]">
                         Stripe and PayPal need a US connection.
                       </p>
                     ) : null}

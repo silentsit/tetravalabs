@@ -358,6 +358,21 @@ function CheckoutTrustRow() {
   )
 }
 
+function CheckoutHelpBanner() {
+  return (
+    <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-sm text-[#475569]">
+      <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#0D9488]" aria-hidden />
+      <p>
+        Need help? Email{" "}
+        <a href="mailto:info@tetravalabs.com" className="font-medium text-[#0D9488] hover:underline">
+          info@tetravalabs.com
+        </a>
+        .
+      </p>
+    </div>
+  )
+}
+
 function CheckoutOrderSummary({
   items,
   subtotal,
@@ -374,7 +389,8 @@ function CheckoutOrderSummary({
   updateQty: (id: string, quantity: number) => void
 }) {
   return (
-    <div className="card overflow-hidden">
+    <div className="space-y-3">
+      <div className="card overflow-hidden">
       <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-[#E2E8F0] bg-[#0F172A] px-4 py-3 text-sm font-medium text-white">
         <span>Product</span>
         <span>Subtotal</span>
@@ -444,6 +460,8 @@ function CheckoutOrderSummary({
           <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
         </div>
       </div>
+      </div>
+      <CheckoutHelpBanner />
     </div>
   )
 }
@@ -1404,7 +1422,7 @@ export function CheckoutForm() {
     <form onSubmit={onSubmit} noValidate className="space-y-6">
       <CheckoutStepper />
 
-      <div className="lg:hidden">
+      <div className="space-y-3 lg:hidden">
         <button
           type="button"
           className="flex w-full items-center justify-between rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-sm"
@@ -1417,7 +1435,7 @@ export function CheckoutForm() {
           </span>
           <span className="tabular-nums font-semibold text-[#0F172A]">${estimatedTotal.toFixed(2)}</span>
         </button>
-        {summaryOpen ? <div className="mt-3"><CheckoutOrderSummary {...summaryProps} /></div> : null}
+        {summaryOpen ? <CheckoutOrderSummary {...summaryProps} /> : <CheckoutHelpBanner />}
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
@@ -1701,17 +1719,6 @@ export function CheckoutForm() {
           {status ? <p className="text-sm text-[#475569]">{status}</p> : null}
 
           <CheckoutTrustRow />
-
-          <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-sm text-[#475569]">
-            <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#0D9488]" aria-hidden />
-            <p>
-              Need help? Email{" "}
-              <a href="mailto:info@tetravalabs.com" className="font-medium text-[#0D9488] hover:underline">
-                info@tetravalabs.com
-              </a>
-              .
-            </p>
-          </div>
 
           <p className="flex items-center gap-2 text-xs text-[#94A3B8]">
             <Lock className="h-3.5 w-3.5" aria-hidden />

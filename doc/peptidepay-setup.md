@@ -65,6 +65,5 @@ See [Peptide Pay docs](https://peptide-pay.com/docs#testing).
   - Pre-selected default: Stripe for US shipping **and** US IP, Transak otherwise (buyer can change it)
 - Crypto option remains the global backup (asset picker: BTC → BTCPay, others → Paymento)
 - Card flow redirects immediately to the selected Peptide Pay rail; return URL is `/checkout/success`
-- Peptide Refill renewals pick Stripe for US shipping addresses and Transak otherwise, with the same min fallbacks
 
 See also: [doc/paymento-setup.md](./paymento-setup.md), [doc/btcpay-setup.md](./btcpay-setup.md).

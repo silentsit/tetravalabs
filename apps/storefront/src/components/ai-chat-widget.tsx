@@ -152,39 +152,11 @@ export function AiChatWidget() {
           <div className="flex-1 space-y-3 overflow-y-auto px-3 py-3">
             {!messages.length ? (
               <p className="text-xs text-[#64748B]">
-                Ask about shipping, COA/lots, payments, Peptide Refill vs one-time reorder, or find a
-                compound.
+                Ask about shipping, COA/lots, payments, or find a compound.
               </p>
             ) : null}
             {messages.map((message) => {
               const text = textFromParts(message.parts as Array<{ type: string; text?: string }>)
-              if (!text && message.role === "assistant") {
-                const refill = (message.parts || []).find(
-                  (part) => (part as { type?: string }).type === "tool-suggestPeptideRefill"
-                ) as
-                  | {
-                      state?: string
-                      output?: { href?: string; label?: string; note?: string }
-                    }
-                  | undefined
-                if (refill?.state === "output-available" && refill.output?.href) {
-                  return (
-                    <div
-                      key={message.id}
-                      className="rounded-xl bg-[#F1F5F9] px-3 py-2 text-xs text-[#334155]"
-                    >
-                      <p className="font-medium text-[#0F172A]">{refill.output.label || "Peptide Refill"}</p>
-                      <p className="mt-1">{refill.output.note}</p>
-                      <a
-                        href={refill.output.href}
-                        className="mt-2 inline-block font-semibold text-[#0D9488]"
-                      >
-                        Open product page
-                      </a>
-                    </div>
-                  )
-                }
-              }
               if (!text) return null
               return (
                 <div

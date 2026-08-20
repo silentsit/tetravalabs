@@ -2,7 +2,6 @@ import { createHash } from "node:crypto"
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
 import { captureOrderPayment } from "../../../../lib/capture-order-payment"
-import { handleLabRestockOrderPaid } from "../../../../lib/lab-restock-processor"
 import { cancelReplenishmentEmailsOnPaidOrder } from "../../../../lib/order-fulfillment-emails"
 import {
   getPeptidepaySignatureHeader,
@@ -63,7 +62,6 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
     )
 
     if (duplicate) {
-      await handleLabRestockOrderPaid(orderId).catch(() => undefined)
       return res.status(200).json({ ok: true, duplicate: true })
     }
 
@@ -113,9 +111,6 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
       },
       async () => undefined
     )
-
-    // Advance Peptide Refill schedule (idempotent via paid shipment check)
-    await handleLabRestockOrderPaid(orderId).catch(() => undefined)
 
     if (orderId && intentEmail && !alreadyCompleted && intentAmount != null) {
       const capture = await captureOrderPayment(orderId, req.scope)

@@ -397,29 +397,6 @@ export async function processDueReplenishmentEmails() {
   }
 
   for (const row of due) {
-    // Active Peptide Refill subscribers get scheduled refills — skip soft R1–R3 nudges.
-    const hasActiveRestock = await withDb(
-      async (db) => {
-        const result = await db.query(
-          `
-          SELECT 1
-          FROM lab_restocks
-          WHERE lower(email) = lower($1)
-            AND status IN ('active', 'paused', 'pending', 'past_due')
-          LIMIT 1
-          `,
-          [row.email]
-        )
-        return Boolean(result.rows[0])
-      },
-      async () => false
-    )
-
-    if (hasActiveRestock) {
-      await cancelReplenishmentEmailsOnPaidOrder({ email: row.email })
-      continue
-    }
-
     const step = row.kind === "r1" ? 1 : row.kind === "r2" ? 2 : 3
     let items = normalizeOrderEmailItems(row.items)
     if (!items.some((item) => item.variantId)) {

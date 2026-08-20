@@ -225,7 +225,7 @@ Keep current C1a (+1h) and C1b (+24h).
 - Full discount ladders (occasional env promo codes on C1c / WB1 / R2 only)  
 - Separate P3 product (use R1–R3)
 
-**Peptide Refill billing** is implemented separately (`doc/lab-restock-subscriptions.md`). Soft R1–R3 remain for **one-time** buyers only; active Peptide Refill subscribers are skipped/cancelled from the soft ladder.
+Soft R1–R3 reorder reminders apply to one-time buyers only.
 
 ---
 

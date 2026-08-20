@@ -162,12 +162,3 @@ export function resolvePeptidepayOnramp(input: {
   }
   return { ok: true, provider: fallback }
 }
-
-export function restockShippingCountry(shippingAddress: Record<string, unknown> | null | undefined): string {
-  const ship = shippingAddress || {}
-  const raw =
-    (typeof ship.country_code === "string" && ship.country_code) ||
-    (typeof ship.country === "string" && ship.country) ||
-    "US"
-  return raw.trim().toUpperCase()
-}

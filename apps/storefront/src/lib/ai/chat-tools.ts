@@ -2,7 +2,6 @@ import { tool } from "ai"
 import { z } from "zod"
 import { faqItems } from "@/lib/faq-content"
 import { searchProducts } from "@/lib/search"
-import { LAB_RESTOCK_COPY } from "@/lib/lab-restock"
 import { getProductByHandle } from "@/lib/medusa"
 import { getVariantPriceCents } from "@/lib/product-price"
 import { getProductHref } from "@/lib/compound-product"
@@ -63,7 +62,7 @@ export const chatTools = {
     inputSchema: z.object({}),
     execute: async () => ({
       summary:
-        "Orders typically process within 12 hours. Lyophilized peptides ship with temperature-controlled packaging where required. Typical windows: 2–7 business days (USA/Canada/Australia/UK), 2–4 (SEA), 5–11 (rest of world). Tracking is emailed after dispatch. Customs/duties are the recipient’s responsibility. Peptide Refill checkouts include free cold-chain shipping.",
+        "Orders typically process within 12 hours. Lyophilized peptides ship with temperature-controlled packaging where required. Typical windows: 2–7 business days (USA/Canada/Australia/UK), 2–4 (SEA), 5–11 (rest of world). Tracking is emailed after dispatch. Customs/duties are the recipient's responsibility. Flat $15 shipping on every order.",
       href: "/shipping"
     })
   }),
@@ -100,22 +99,9 @@ export const chatTools = {
     }
   }),
 
-  suggestPeptideRefill: tool({
-    description:
-      "Explain Peptide Refill and link to the product page for one-time purchase. Does not create billing or subscriptions. New refill enrollments are not offered on the product page.",
-    inputSchema: z.object({
-      handle: z.string().min(1).describe("Product handle from searchProducts")
-    }),
-    execute: async ({ handle }) => ({
-      href: getProductHref(handle),
-      label: LAB_RESTOCK_COPY.restockLabel,
-      note: "Product pages sell one-time packs (1/5/10). Existing Peptide Refills are managed under Account → Peptide Refills — no silent card charges."
-    })
-  }),
-
   addToCart: tool({
     description:
-      "Add one-time catalog lines to the customer cart by product handle (and optional variant title). Resolves real variant IDs and prices from Medusa — never invent IDs. Never Peptide Refill.",
+      "Add one-time catalog lines to the customer cart by product handle (and optional variant title). Resolves real variant IDs and prices from Medusa — never invent IDs.",
     inputSchema: z.object({
       items: z
         .array(
@@ -169,7 +155,6 @@ export const chatTools = {
 
       return {
         action: "add_to_cart" as const,
-        fulfillment: "one_time" as const,
         items: resolved,
         skipped,
         note:

@@ -110,16 +110,6 @@ async function linkOrderCustomer(db: import("pg").Pool, orderId: string, custome
     `,
     [customerId, orderId]
   )
-
-  await db.query(
-    `
-    UPDATE lab_restocks
-    SET customer_id = $1, updated_at = NOW()
-    WHERE order_id = $2
-      AND (customer_id IS NULL OR customer_id <> $1)
-    `,
-    [customerId, orderId]
-  )
 }
 
 export async function bindCheckoutCustomer(input: {
@@ -214,20 +204,7 @@ export async function linkGuestOrdersToRegisteredCustomer(input: {
         [customerId, normalizedEmail]
       )
 
-      const orderIds = result.rows.map((row) => row.id)
-      if (orderIds.length) {
-        await db.query(
-          `
-          UPDATE lab_restocks
-          SET customer_id = $1, updated_at = NOW()
-          WHERE order_id = ANY($2::text[])
-            AND (customer_id IS NULL OR customer_id <> $1)
-          `,
-          [customerId, orderIds]
-        )
-      }
-
-      return orderIds.length
+      return result.rows.length
     },
     async () => 0
   )

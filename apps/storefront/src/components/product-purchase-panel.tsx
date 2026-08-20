@@ -11,7 +11,7 @@ import {
 import { getVariantPriceCents } from "@/lib/product-price"
 import type { PackTier } from "@/lib/pack-pricing"
 import { showCompareAtPricingForHandle } from "@/lib/pack-pricing"
-import { cartLineId } from "@/lib/lab-restock"
+import { cartLineId } from "@/lib/cart-line-id"
 
 type Props = {
   displayName: string
@@ -65,7 +65,7 @@ export function ProductPurchasePanel({
   const showStrengthSelector = strengths.length > 1
   const showPackSelector = packTiers.length >= 2
   const variantTitle = selectedTier?.tier || selectedVariant.title
-  const lineId = cartLineId(selectedStrength.productId, selectedVariant.id, "one_time")
+  const lineId = cartLineId(selectedStrength.productId, selectedVariant.id)
 
   return (
     <section className="card space-y-5 p-6" aria-label="Purchase options">
@@ -122,7 +122,6 @@ export function ProductPurchasePanel({
             variantTitle={variantTitle}
             unitPrice={unitPrice}
             lineId={lineId}
-            fulfillment="one_time"
             label="Add to cart"
           />
         ) : (

@@ -4,7 +4,6 @@ import {
   LayoutDashboard,
   LogOut,
   MapPin,
-  RotateCcw,
   ShoppingBag,
   User
 } from "lucide-react"
@@ -19,7 +18,6 @@ export type AccountNavItem = {
 export const ACCOUNT_NAV_ITEMS: AccountNavItem[] = [
   { href: "/account", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/account/orders", label: "Orders", icon: ShoppingBag },
-  { href: "/account/restocks", label: "Peptide Refills", icon: RotateCcw },
   { href: "/account/downloads", label: "Downloads", icon: Download },
   { href: "/account/addresses", label: "Addresses", icon: MapPin },
   { href: "/account/details", label: "Account details", icon: User }

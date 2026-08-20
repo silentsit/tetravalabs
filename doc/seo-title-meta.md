@@ -53,7 +53,6 @@ Default description: Research-use peptides with HPLC-MS verification, lot-linked
 | `/account/addresses` | Addresses \| Tetrava Labs | Manage billing and shipping addresses for your Tetrava Labs account. |
 | `/account/orders` | Orders \| Tetrava Labs | View your Tetrava Labs order history. |
 | `/account/downloads` | Downloads \| Tetrava Labs | Access COA and batch documents for your Tetrava Labs orders. |
-| `/account/restocks` | Peptide Refills \| Tetrava Labs | Manage your Tetrava Labs Peptide Refill schedules. |
 | `/account/forgot-password` | Forgot Password \| Tetrava Labs | Request a secure password reset link for your Tetrava Labs account. |
 | `/account/reset-password` | Reset Password \| Tetrava Labs | Set a new password for your Tetrava Labs account. |
 | `/reorder/{token}` | (site default) | (site default) |

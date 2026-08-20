@@ -56,7 +56,6 @@ Source: `apps/storefront` metadata + JSON-LD registry (Jul 2026).
 | `/account/addresses` | Addresses \| Tetrava Labs | Manage billing and shipping addresses for your Tetrava Labs account. | Organization, WebSite | |
 | `/account/orders` | Orders \| Tetrava Labs | View your Tetrava Labs order history. | Organization, WebSite | |
 | `/account/downloads` | Downloads \| Tetrava Labs | Access COA and batch documents for your Tetrava Labs orders. | Organization, WebSite | |
-| `/account/restocks` | Peptide Refills \| Tetrava Labs | Manage your Tetrava Labs Peptide Refill schedules. | Organization, WebSite | |
 | `/account/forgot-password` | Forgot Password \| Tetrava Labs | Request a secure password reset link for your Tetrava Labs account. | Organization, WebSite | |
 | `/account/reset-password` | Reset Password \| Tetrava Labs | Set a new password for your Tetrava Labs account. | Organization, WebSite | |
 | `/account/oauth/{provider}/callback` | Account \| Tetrava Labs (inherited) | (inherited from account layout) | Organization, WebSite | No page-level metadata |

@@ -16,7 +16,6 @@ export type ReorderSeedResult = {
   skipped: string[]
 }
 
-/** Map order/email lines into one-time cart items (never Peptide Refill). */
 export function buildReorderCartItems(lines: ReorderLineInput[]): {
   items: Array<Omit<CartItem, "quantity"> & { quantity: number }>
   skipped: string[]
@@ -45,9 +44,7 @@ export function buildReorderCartItems(lines: ReorderLineInput[]): {
       variantId,
       variantTitle: (line.variantTitle || "").trim(),
       unitPrice,
-      quantity,
-      fulfillment: "one_time",
-      oneTimeUnitPrice: unitPrice
+      quantity
     })
   }
 

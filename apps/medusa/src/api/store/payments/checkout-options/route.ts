@@ -23,12 +23,6 @@ export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
       provider: peptidepay ? "peptidepay" : null,
       label: "Credit or debit card"
     },
-    lab_restock: {
-      available: peptidepay,
-      provider: peptidepay ? "peptidepay" : null,
-      discount_pct: 12,
-      billing: "hybrid"
-    },
     crypto: {
       available: assets.length > 0,
       btcpay_configured: isBtcpayCheckoutEnabled() && isBtcpayConfigured(),

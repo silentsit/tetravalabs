@@ -4,14 +4,13 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { faqItems } from "@/lib/faq-content"
-import { buildPageMetadata, faqJsonLd } from "@/lib/seo"
+import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "FAQ — ordering, shipping & COAs",
   description:
     "Answers about research-use peptides, HPLC verification, certificates of analysis, shipping, and payment.",
-  path: "/faq",
-  jsonLd: faqJsonLd(faqItems, "/faq")
+  path: "/faq"
 })
 
 export default function FaqPage() {

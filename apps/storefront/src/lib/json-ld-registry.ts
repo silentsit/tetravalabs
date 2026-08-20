@@ -16,14 +16,18 @@ import {
   videoObjectJsonLd,
   webPageJsonLd,
   type JsonLdGraph,
+  type ProductOfferVariantInput,
   type ProductReviewSchemaInput
 } from "@/lib/seo"
+import { packTiersFromVariants } from "@/lib/pack-pricing"
+import { getVariantPriceCents, type StoreVariant } from "@/lib/product-price"
+import { resolveProductSku, resolveStrengthPackSku, packQtyFromVariantTitle } from "@/lib/product-sku"
+import { getProductImage, getProductFullName, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 import { getProductResearchDetail } from "@/lib/product-research-detail"
 import { authorPersonFields, getAuthor } from "@/lib/authors"
 import { buildProductSeoDescription, buildProductSeoTitle } from "@/lib/product-seo"
 import { getProductSeoOverride } from "@/lib/product-seo-overrides"
 import { getProductImage as getMappedHandleImage } from "@/lib/product-image-map"
-import { getProductImage, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
 import { listProductReviews, type ProductReview } from "@/lib/reviews"
 
 async function reviewsForProductSchema(input: {
@@ -78,6 +82,108 @@ async function reviewsForProductSchema(input: {
       datePublished: item.created_at
     }))
   }
+}
+
+function variantInStock(variant?: StoreVariant): boolean {
+  if (!variant) return true
+  if (variant.manage_inventory === false) return true
+  if (variant.allow_backorder) return true
+  if (variant.inventory_quantity == null) return true
+  return variant.inventory_quantity > 0
+}
+
+function offerName(displayName: string, strengthLabel: string, packTitle: string) {
+  const productName = getProductFullName(
+    displayName,
+    strengthLabel.toLowerCase() === "standard" ? null : strengthLabel
+  )
+  return `${productName} · ${packTitle}`
+}
+
+function offersFromCompoundView(
+  view: NonNullable<Awaited<ReturnType<typeof getCompoundProductView>>>
+): ProductOfferVariantInput[] {
+  const rows: ProductOfferVariantInput[] = []
+  for (const strength of view.strengths) {
+    const tiers = strength.packTiers.length
+      ? strength.packTiers
+      : packTiersFromVariants(strength.variants)
+    if (tiers.length) {
+      for (const tier of tiers) {
+        if (tier.price <= 0) continue
+        const variant = strength.variants.find((item) => item.id === tier.variantId)
+        rows.push({
+          name: offerName(view.displayName, strength.strengthLabel, tier.tier),
+          sku: resolveStrengthPackSku({
+            handle: strength.imageHandle || strength.handle,
+            parentHandle: view.parentHandle,
+            strengthKey: strength.strengthKey,
+            packQty: tier.qty,
+            variantTitle: tier.tier,
+            sku: variant?.sku
+          }),
+          priceUsd: tier.price,
+          inStock: variantInStock(variant)
+        })
+      }
+      continue
+    }
+    for (const variant of strength.variants) {
+      const priceUsd = getVariantPriceCents(variant) / 100
+      if (priceUsd <= 0) continue
+      rows.push({
+        name: offerName(view.displayName, strength.strengthLabel, variant.title || "1 vial"),
+        sku: resolveStrengthPackSku({
+          handle: strength.imageHandle || strength.handle,
+          parentHandle: view.parentHandle,
+          strengthKey: strength.strengthKey,
+          packQty: packQtyFromVariantTitle(variant.title),
+          variantTitle: variant.title,
+          sku: variant.sku
+        }),
+        priceUsd,
+        inStock: variantInStock(variant)
+      })
+    }
+  }
+  return rows
+}
+
+function offersFromStoreProduct(product: StoreProduct): ProductOfferVariantInput[] {
+  const displayName = normalizeTb500DisplayText(product.title)
+  const tiers = packTiersFromVariants((product.variants || []) as StoreVariant[])
+  if (tiers.length) {
+    return tiers
+      .filter((tier) => tier.price > 0)
+      .map((tier) => {
+        const variant = product.variants?.find((item) => item.id === tier.variantId)
+        return {
+          name: `${displayName} · ${tier.tier}`,
+          sku: resolveProductSku({
+            handle: product.handle,
+            variantTitle: tier.tier,
+            sku: variant?.sku
+          }),
+          priceUsd: tier.price,
+          inStock: variantInStock(variant as StoreVariant | undefined)
+        }
+      })
+  }
+  return (product.variants || [])
+    .map((variant) => {
+      const priceUsd = getVariantPriceCents(variant as StoreVariant) / 100
+      return {
+        name: `${displayName} · ${variant.title || "1 vial"}`,
+        sku: resolveProductSku({
+          handle: product.handle,
+          variantTitle: variant.title,
+          sku: variant.sku
+        }),
+        priceUsd,
+        inStock: variantInStock(variant as StoreVariant)
+      }
+    })
+    .filter((offer) => offer.priceUsd > 0)
 }
 
 const RESERVED_TOP_LEVEL = new Set([
@@ -161,7 +267,7 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
     const pageAuthor = authorPersonFields(researchAuthor)
 
     return [
-      productJsonLd(productLike, view.parentHandle, image, reviewData),
+      productJsonLd(productLike, view.parentHandle, image, reviewData, offersFromCompoundView(view)),
       webPageJsonLd({
         title: pageTitle,
         description: pageDescription,
@@ -193,7 +299,7 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
   const editorialAuthor = getAuthor("editorial-team")
 
   return [
-    productJsonLd(product, catalogHandle, image, reviewData),
+    productJsonLd(product, catalogHandle, image, reviewData, offersFromStoreProduct(product)),
     webPageJsonLd({
       title: stripBrandTitleSuffix(
         buildProductSeoTitle({ displayName: displayTitle, strengthLabels: [] })

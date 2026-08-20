@@ -77,7 +77,7 @@ Canonical inventories: `doc/seo-title-meta.md`, `doc/seo-page-inventory.md`.
 ### Technical SEO (do not regress)
 
 - `buildPageMetadata()` in `apps/storefront/src/lib/seo.ts` — titles, OG, Twitter, canonical, JSON-LD registration.
-- Schema: Organization + WebSite globally; Product/Offer on PDPs; Article on Research Hub; FAQPage only where FAQs are visible and accurate; BreadcrumbList on indexable templates. No fabricated Review/AggregateRating.
+- Schema: Organization + WebSite globally; Product/Offer on PDPs (one Offer per strength × pack); Article on Research Hub; no FAQPage (Google retired FAQ rich results); BreadcrumbList on indexable templates. No fabricated Review/AggregateRating.
 - Sitemaps: `sitemap_index.xml`, image sitemap limited to product + blog images, markdown sitemap at `/sitemap.md`.
 - IndexNow on revalidate (`apps/storefront/src/lib/indexnow.ts`).
 - Agent discovery: `/llms.txt`, `/.well-known/api-catalog`, `Accept: text/markdown` negotiation (`apps/storefront/src/lib/agent-markdown/`). Preserve `Content-Signal: search=yes, ai-input=yes, ai-train=no` in `apps/storefront/src/app/robots.txt/route.ts`.

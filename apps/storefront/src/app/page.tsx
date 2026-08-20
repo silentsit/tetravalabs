@@ -23,7 +23,7 @@ import { faqItems } from "@/lib/faq-content"
 import { listProducts, getFeaturedCoaDocument } from "@/lib/medusa"
 import { listBlogPosts } from "@/lib/sanity"
 import { CoaDocumentPreview } from "@/components/coa-document-preview"
-import { buildPageMetadata, faqJsonLd } from "@/lib/seo"
+import { buildPageMetadata } from "@/lib/seo"
 import { getProductHref } from "@/lib/compound-product"
 import { PageJsonLd } from "@/components/page-json-ld"
 
@@ -43,7 +43,6 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Buy peptides online from Tetrava Labs. Research peptides with 99%+ HPLC-MS purity, lot-linked COAs, and cold-chain shipping. Research use only.",
   path: "/",
-  jsonLd: faqJsonLd(faqItems.slice(0, 4), "/")
 })
 
 export default async function HomePage() {

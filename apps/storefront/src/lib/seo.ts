@@ -275,32 +275,6 @@ export function breadcrumbJsonLd(items: Array<{ label: string; href?: string }>)
   }
 }
 
-export function faqJsonLd(items: Array<{ question: string; answer: string }>, path = "/faq") {
-  const url = pageUrl(path)
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "@id": `${url}#faq`,
-    name: "Frequently asked questions",
-    url,
-    inLanguage: "en-US",
-    isPartOf: {
-      "@type": "WebSite",
-      name: siteConfig.name,
-      url: siteConfig.url
-    },
-    mainEntity: items.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer
-      }
-    }))
-  }
-}
-
 /** Person schema for a content author's byline (E-E-A-T authorship signal). */
 export function personJsonLd(author: SchemaPersonInput) {
   const graph: JsonLdGraph = {
@@ -413,95 +387,168 @@ export type ProductReviewSchemaInput = {
   }>
 }
 
+export type ProductOfferVariantInput = {
+  name: string
+  sku?: string | null
+  priceUsd: number
+  inStock: boolean
+}
+
+function offerAvailability(inStock: boolean) {
+  return inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+}
+
+function schemaOfferNode(input: ProductOfferVariantInput, productUrl: string) {
+  return {
+    "@type": "Offer",
+    name: input.name,
+    url: productUrl,
+    priceCurrency: "USD",
+    price: input.priceUsd.toFixed(2),
+    availability: offerAvailability(input.inStock),
+    itemCondition: "https://schema.org/NewCondition",
+    seller: {
+      "@type": "Organization",
+      name: siteConfig.name
+    }
+  } satisfies JsonLdGraph
+}
+
+function schemaOffers(
+  product: ProductLike,
+  productUrl: string,
+  variantOffers?: ProductOfferVariantInput[]
+) {
+  const explicit = (variantOffers || []).filter((offer) => offer.priceUsd > 0)
+  if (explicit.length === 1) return schemaOfferNode(explicit[0], productUrl)
+  if (explicit.length > 1) return explicit.map((offer) => schemaOfferNode(offer, productUrl))
+
+  const { low, high } = productPriceRange(product)
+  const offerPrice = low || high
+  const availability = productAvailability(product)
+  const hasRange = Boolean(low && high && low !== high)
+  if (hasRange) {
+    return {
+      "@type": "AggregateOffer",
+      url: productUrl,
+      priceCurrency: "USD",
+      lowPrice: low.toFixed(2),
+      highPrice: high.toFixed(2),
+      offerCount: product.variants?.length || 1,
+      availability,
+      itemCondition: "https://schema.org/NewCondition"
+    }
+  }
+  return {
+    "@type": "Offer",
+    url: productUrl,
+    priceCurrency: "USD",
+    price: offerPrice ? offerPrice.toFixed(2) : undefined,
+    availability,
+    itemCondition: "https://schema.org/NewCondition"
+  }
+}
+
+function attachProductReviews(graph: JsonLdGraph, reviewData?: ProductReviewSchemaInput | null) {
+  if (!reviewData || reviewData.reviewCount <= 0 || reviewData.ratingValue <= 0) return graph
+
+  graph.aggregateRating = {
+    "@type": "AggregateRating",
+    ratingValue: Number(reviewData.ratingValue.toFixed(1)),
+    reviewCount: reviewData.reviewCount,
+    bestRating: 5,
+    worstRating: 1
+  }
+
+  const nested = (reviewData.reviews || [])
+    .filter((item) => item.rating > 0 && item.body.trim())
+    .slice(0, 6)
+    .map((item) => {
+      const datePublished = toSchemaDateTime(item.datePublished)
+      return {
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: item.authorName.trim() || "Verified buyer"
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: item.rating,
+          bestRating: 5,
+          worstRating: 1
+        },
+        reviewBody: item.body.trim(),
+        ...(datePublished ? { datePublished } : {})
+      }
+    })
+
+  if (nested.length) graph.review = nested
+  return graph
+}
+
 export function productJsonLd(
   product: ProductLike,
   handle: string,
   imagePath?: string,
-  reviewData?: ProductReviewSchemaInput | null
+  reviewData?: ProductReviewSchemaInput | null,
+  variantOffers?: ProductOfferVariantInput[]
 ) {
   const displayTitle = normalizeTb500DisplayText(product.title)
   const categoryLabel = normalizeTb500DisplayText(
     String(product.metadata?.source_category || "Research Product")
   )
-  const { low, high } = productPriceRange(product)
-  const offerPrice = low || high
   const image = imagePath || `/products/${handle}.jpg`
+  const imageUrl = image.startsWith("http") ? image : pageUrl(image)
   const sku =
-    product.variants?.find((variant) => variant.sku)?.sku || product.variants?.[0]?.id
+    variantOffers?.find((offer) => offer.sku)?.sku ||
+    product.variants?.find((variant) => variant.sku)?.sku ||
+    product.variants?.[0]?.id
   const description = normalizeTb500DisplayText(
     (typeof product.description === "string" && product.description.trim()) ||
       `${displayTitle} — research-use only (RUO) peptide with HPLC-MS verification.`
   )
-  const availability = productAvailability(product)
-  const hasRange = Boolean(low && high && low !== high)
-  const offers = hasRange
-    ? {
-        "@type": "AggregateOffer",
-        url: pageUrl(productPath(handle)),
-        priceCurrency: "USD",
-        lowPrice: low,
-        highPrice: high,
-        offerCount: product.variants?.length || 1,
-        availability,
-        itemCondition: "https://schema.org/NewCondition"
-      }
-    : {
-        "@type": "Offer",
-        url: pageUrl(productPath(handle)),
-        priceCurrency: "USD",
-        price: offerPrice || undefined,
-        availability,
-        itemCondition: "https://schema.org/NewCondition"
-      }
+  const productUrl = pageUrl(productPath(handle))
+  const pricedOffers = (variantOffers || []).filter((offer) => offer.priceUsd > 0)
+  const brand = { "@type": "Brand", name: "Tetrava Labs" }
+
+  if (pricedOffers.length > 1) {
+    return attachProductReviews(
+      {
+        "@context": "https://schema.org/",
+        "@type": "ProductGroup",
+        name: displayTitle,
+        description,
+        image: imageUrl,
+        category: categoryLabel,
+        brand,
+        productGroupID: handle,
+        variesBy: ["https://schema.org/size"],
+        hasVariant: pricedOffers.map((offer) => ({
+          "@type": "Product",
+          name: offer.name,
+          image: imageUrl,
+          brand,
+          ...(offer.sku ? { sku: offer.sku } : {}),
+          offers: schemaOfferNode(offer, productUrl)
+        }))
+      },
+      reviewData
+    )
+  }
 
   const graph: JsonLdGraph = {
     "@context": "https://schema.org/",
     "@type": "Product",
     name: displayTitle,
     description,
-    image: image.startsWith("http") ? image : pageUrl(image),
+    image: imageUrl,
     sku,
     category: categoryLabel,
-    brand: { "@type": "Brand", name: "Tetrava Labs" },
-    offers
+    brand,
+    offers: schemaOffers(product, productUrl, variantOffers)
   }
 
-  // Only emit when real reviews exist — never invent ratings for GSC.
-  if (reviewData && reviewData.reviewCount > 0 && reviewData.ratingValue > 0) {
-    graph.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: Number(reviewData.ratingValue.toFixed(1)),
-      reviewCount: reviewData.reviewCount,
-      bestRating: 5,
-      worstRating: 1
-    }
-
-    const nested = (reviewData.reviews || [])
-      .filter((item) => item.rating > 0 && item.body.trim())
-      .slice(0, 6)
-      .map((item) => {
-        const datePublished = toSchemaDateTime(item.datePublished)
-        return {
-          "@type": "Review",
-          author: {
-            "@type": "Person",
-            name: item.authorName.trim() || "Verified buyer"
-          },
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: item.rating,
-            bestRating: 5,
-            worstRating: 1
-          },
-          reviewBody: item.body.trim(),
-          ...(datePublished ? { datePublished } : {})
-        }
-      })
-
-    if (nested.length) graph.review = nested
-  }
-
-  return graph
+  return attachProductReviews(graph, reviewData)
 }
 
 export function articleJsonLd(post: {

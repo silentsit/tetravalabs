@@ -76,7 +76,7 @@ Full disclaimer: https://tetravalabs.com/ruo
 - Payment instructions provided after checkout (see /payment)
 
 ## Structured data
-Product pages include schema.org Product + Offer / AggregateOffer markup.
-FAQ page includes FAQPage schema.
+Product pages include schema.org Product markup with one Offer per strength and pack quantity.
+Research Hub articles include Article schema and a visible Tetrava Labs Editorial Team byline.
 Organization and WebSite schema on all pages.
 BreadcrumbList schema on indexable content templates.

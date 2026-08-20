@@ -43,6 +43,7 @@ export type StoreProduct = {
       amount: number
       currency_code: string
     }>
+    sku?: string | null
     calculated_price?: {
       calculated_amount?: number
       original_amount?: number

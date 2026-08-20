@@ -13,6 +13,7 @@ import { CitationFootnote } from "@/components/citation-footnote"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { PageJsonLd } from "@/components/page-json-ld"
 import { YoutubeEmbed, youtubeThumbnailUrl } from "@/components/youtube-embed"
+import { EditorialByline } from "@/components/editorial-byline"
 import {
   blogImageForPost,
   collectProductEmbedHandles,
@@ -99,12 +100,15 @@ export default async function BlogArticlePage({ params }: Props) {
           </span>
         ) : null}
         <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">{post.title}</h1>
+        <div className="mt-5">
+          <EditorialByline
+            publishedAt={post.publishedAt}
+            updatedAt={
+              isMeaningfullyUpdated(post.publishedAt, post.updatedAt) ? post.updatedAt : undefined
+            }
+          />
+        </div>
         <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-[#94A3B8]">
-          <span>{getAuthor("editorial-team").name}</span>
-          {post.publishedAt ? <span>{new Date(post.publishedAt).toLocaleDateString()}</span> : null}
-          {post.updatedAt && isMeaningfullyUpdated(post.publishedAt, post.updatedAt) ? (
-            <span>Updated {new Date(post.updatedAt).toLocaleDateString()}</span>
-          ) : null}
           <span className="flex items-center gap-1">
             <Clock className="h-4 w-4" aria-hidden />
             {formatReadTime(post.readTimeMinutes)}

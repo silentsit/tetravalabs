@@ -4,6 +4,7 @@ import { Clock } from "lucide-react"
 import type { BlogPost } from "@/lib/sanity"
 import { blogImageForPost, formatReadTime } from "@/lib/blog-utils"
 import { localImageProps } from "@/lib/local-image"
+import { getAuthor } from "@/lib/authors"
 
 type Props = {
   post: BlogPost
@@ -44,6 +45,7 @@ export function BlogPostCard({ post, compact = false }: Props) {
         </h3>
         <p className="mt-2 line-clamp-2 text-sm text-[#94A3B8]">{post.excerpt || "Research article"}</p>
         <div className="mt-auto flex flex-wrap items-center gap-3 pt-4 text-xs text-[#94A3B8]">
+          <span className="font-medium text-[#0F172A]">{getAuthor("editorial-team").name}</span>
           {post.publishedAt ? (
             <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
           ) : null}

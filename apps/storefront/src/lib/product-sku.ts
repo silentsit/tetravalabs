@@ -60,6 +60,25 @@ export function resolveProductSku(item: SkuLookupItem): string | null {
   return null
 }
 
+export function resolveStrengthPackSku(input: SkuLookupItem & {
+  parentHandle?: string
+  strengthKey?: string
+  packQty?: number
+}): string | null {
+  const explicit = input.sku?.trim()
+  if (explicit && isOpaqueSku(explicit)) return explicit.toUpperCase()
+
+  const parent = input.parentHandle?.trim()
+  const strength = input.strengthKey?.trim()
+  const qty = input.packQty ?? packQtyFromVariantTitle(input.variantTitle)
+  if (parent && strength && qty) {
+    const byStrength = SKU_BY_KEY[`${parent}:${strength}:${qty}`]
+    if (byStrength && isOpaqueSku(byStrength)) return byStrength.toUpperCase()
+  }
+
+  return resolveProductSku(input)
+}
+
 /**
  * Peptide Pay `product_name` — opaque SKU codes only (no human product titles).
  * Single-item carts send one SKU; multi-item carts join with "+" (max 80 chars).

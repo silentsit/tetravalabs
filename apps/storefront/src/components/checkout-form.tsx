@@ -1650,8 +1650,8 @@ export function CheckoutForm() {
               </section>
 
               {paymentMethod === "card" ? (
-                <div className="space-y-1.5 text-xs leading-relaxed text-[#64748B]">
-                  <p className="font-medium text-[#0F172A]">What happens next</p>
+                <div className="space-y-3 text-sm leading-relaxed text-[#64748B]">
+                  <h3 className="font-serif text-lg text-[#0F172A]">What happens next</h3>
                   <ul className="list-disc space-y-1 pl-4">
                     <li>
                       You'll leave this page briefly. Peptide Pay opens your selected provider (Stripe,

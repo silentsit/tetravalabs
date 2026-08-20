@@ -13,6 +13,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import {
   clampMetaDescription,
+  INDEXABLE_ROBOTS,
   organizationJsonLd,
   resolveMetaTitles,
   siteConfig,
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     images: [siteConfig.defaultOgImage],
     ...(siteConfig.twitterHandle ? { site: siteConfig.twitterHandle } : {})
   },
-  robots: { index: true, follow: true },
+  robots: INDEXABLE_ROBOTS,
   icons: {
     icon: "/brand/tetravalabs-icon.png",
     apple: "/brand/tetravalabs-icon.png"

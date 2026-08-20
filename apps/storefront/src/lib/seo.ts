@@ -12,6 +12,24 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com")
 export const META_TITLE_MAX = 70
 export const META_DESCRIPTION_MAX = 160
 
+/** Indexable pages: allow full snippets and large image previews (Discover / rich SERP). */
+export const INDEXABLE_ROBOTS = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large" as const,
+    "max-video-preview": -1
+  }
+}
+
+export const NOINDEX_ROBOTS = {
+  index: false,
+  follow: false
+}
+
 export type JsonLdGraph = Record<string, unknown>
 
 export const siteConfig = {
@@ -220,7 +238,7 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
     ...(authors ? { authors } : {}),
     ...(publisher ? { publisher } : {}),
     alternates: { canonical: url },
-    robots: input.noIndex ? { index: false, follow: false } : { index: true, follow: true },
+    robots: input.noIndex ? NOINDEX_ROBOTS : INDEXABLE_ROBOTS,
     openGraph: {
       title: fullTitle,
       description,

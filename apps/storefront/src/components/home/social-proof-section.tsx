@@ -1,4 +1,5 @@
-import { LiveVisitorCounter, SocialProofReviews } from "@/components/social-proof-widget"
+import { LiveVisitorCounter } from "@/components/social-proof-widget"
+import { HomepageTestimonials } from "@/components/home/homepage-testimonials"
 
 export function SocialProofSection() {
   return (
@@ -13,7 +14,7 @@ export function SocialProofSection() {
         </div>
         <LiveVisitorCounter />
       </div>
-      <SocialProofReviews />
+      <HomepageTestimonials />
     </section>
   )
 }

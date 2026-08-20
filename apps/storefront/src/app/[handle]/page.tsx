@@ -77,6 +77,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         casNumber: view.casNumber
       }),
     path: productPath(view.parentHandle),
+    ogTitle: view.displayName,
+    ogEyebrow: "Research Use Only",
+    ogKicker: [
+      strengthLabels.filter(Boolean).join(" / "),
+      selected?.purity ? `${selected.purity} HPLC-MS` : null
+    ]
+      .filter(Boolean)
+      .join(" | "),
     image: selected?.image,
     authors: [{ name: editorialAuthor.name, url: pageUrl(editorialAuthor.url || "/about") }],
     publisher: siteConfig.name

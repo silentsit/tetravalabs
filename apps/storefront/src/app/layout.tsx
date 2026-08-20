@@ -19,6 +19,7 @@ import {
   siteConfig,
   websiteJsonLd
 } from "@/lib/seo"
+import { buildOgImagePath, OG_IMAGE_HEIGHT, OG_IMAGE_TYPE, OG_IMAGE_WIDTH } from "@/lib/og"
 
 const jost = Jost({
   subsets: ["latin"],
@@ -45,6 +46,17 @@ const defaultSiteTitle = resolveMetaTitles({
   title: `${siteConfig.name} — ${siteConfig.tagline}`
 }).fullTitle
 const defaultSiteDescription = clampMetaDescription(siteConfig.description)
+const defaultOgImage = {
+  url: buildOgImagePath({
+    title: siteConfig.name,
+    eyebrow: "Research Use Only",
+    kicker: siteConfig.tagline
+  }),
+  width: OG_IMAGE_WIDTH,
+  height: OG_IMAGE_HEIGHT,
+  type: OG_IMAGE_TYPE,
+  alt: siteConfig.name
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -61,19 +73,19 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     type: "website",
-    images: [{ url: siteConfig.defaultOgImage, alt: siteConfig.name }]
+    images: [defaultOgImage]
   },
   twitter: {
     card: "summary_large_image",
     title: defaultSiteTitle,
     description: defaultSiteDescription,
-    images: [siteConfig.defaultOgImage],
+    images: [defaultOgImage],
     ...(siteConfig.twitterHandle ? { site: siteConfig.twitterHandle } : {})
   },
   robots: INDEXABLE_ROBOTS,
   icons: {
-    icon: "/brand/tetravalabs-icon.png",
-    apple: "/brand/tetravalabs-icon.png"
+    icon: siteConfig.logo,
+    apple: siteConfig.logo
   }
 }
 

@@ -13,7 +13,10 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs.",
   path: "/shop",
-  pageType: "CollectionPage"
+  pageType: "CollectionPage",
+  ogTitle: "Research peptides for sale",
+  ogEyebrow: "Catalog",
+  ogKicker: "HPLC-MS verified. Lot-linked COAs."
 })
 
 export default async function ShopPage() {

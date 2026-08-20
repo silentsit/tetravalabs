@@ -35,7 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     title: `${product.displayName} — COA documents`,
     description: `Lot-linked Certificates of Analysis for ${product.displayName}. ${product.documentCount} research document${product.documentCount === 1 ? "" : "s"} available.`,
-    path: coaLibraryProductPath(product.parentHandle)
+    path: coaLibraryProductPath(product.parentHandle),
+    ogTitle: product.displayName,
+    ogEyebrow: "COA library",
+    ogKicker: `${product.documentCount} lot-linked certificate${product.documentCount === 1 ? "" : "s"}`,
+    image: product.image
   })
 }
 

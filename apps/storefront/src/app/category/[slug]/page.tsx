@@ -53,6 +53,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       art.description ||
       `Shop ${label} research peptides with verified 99%+ HPLC-MS purity, lot-linked COAs, and cold-chain shipping. Research use only (RUO).`,
     path: `/category/${normalized}`,
+    ogTitle: label,
+    ogEyebrow: "Research peptides",
+    ogKicker: "99%+ HPLC-MS purity. Lot-linked COAs.",
     image: art.image,
     pageType: "CollectionPage"
   })

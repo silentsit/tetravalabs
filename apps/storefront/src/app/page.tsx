@@ -12,6 +12,7 @@ import type { Metadata } from "next"
 import { FeaturedProducts } from "@/components/home/featured-products"
 import { HeroProductStage } from "@/components/home/hero-product-stage"
 import { HeroTrustStrip } from "@/components/home/hero-trust-strip"
+import { HomepageTestimonials } from "@/components/home/homepage-testimonials"
 import { BlogPostCard } from "@/components/blog-post-card"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
@@ -32,17 +33,15 @@ const LiveVisitorCounter = dynamic(
   { loading: () => <span className="inline-block h-5 w-40 animate-pulse rounded bg-[#E2E8F0]" /> }
 )
 
-const SocialProofReviews = dynamic(
-  () => import("@/components/social-proof-widget").then((mod) => mod.SocialProofReviews),
-  { loading: () => <div className="h-48 animate-pulse rounded-xl bg-[#E2E8F0]" /> }
-)
-
 export const metadata: Metadata = buildPageMetadata({
   title: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
   absoluteTitle: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
   description:
     "Buy peptides online from Tetrava Labs. Research peptides with 99%+ HPLC-MS purity, lot-linked COAs, and cold-chain shipping. Research use only.",
   path: "/",
+  ogTitle: "Buy peptides online",
+  ogEyebrow: "Research Use Only",
+  ogKicker: "99%+ HPLC-MS purity. Lot-linked COAs."
 })
 
 export default async function HomePage() {
@@ -108,7 +107,7 @@ export default async function HomePage() {
             <span className="section-label">Testimonials</span>
             <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Trusted by Researchers Worldwide</h2>
           </div>
-          <SocialProofReviews />
+          <HomepageTestimonials />
         </div>
       </section>
 

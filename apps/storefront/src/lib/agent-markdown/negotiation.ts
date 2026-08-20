@@ -35,7 +35,8 @@ const EXCLUDED_PREFIXES = [
   "/.well-known",
   "/coa-library/",
   "/reviews",
-  "/shipping-restricted"
+  "/shipping-restricted",
+  "/og"
 ]
 
 /** Exact paths that look like single segments but are not product handles. */
@@ -44,7 +45,8 @@ const EXCLUDED_PATHS = new Set([
   "/auth.md",
   "/openapi.json",
   "/robots.txt",
-  "/favicon.ico"
+  "/favicon.ico",
+  "/og"
 ])
 
 const CATEGORY_PATH_RE = /^\/category\/[^/]+$/

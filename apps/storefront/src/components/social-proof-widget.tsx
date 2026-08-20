@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ShoppingBag, Star, Users, X } from "lucide-react"
+import { ShoppingBag, Users, X } from "lucide-react"
 
 const notifications = [
   { name: "Dr. Martinez", location: "Boston, MA", product: "BPC-157 10mg", time: "12 min ago" },
@@ -19,69 +19,6 @@ const notifications = [
   { name: "Amanda W.", location: "Raleigh, NC", product: "BPC-157 Capsules", time: "22 min ago" },
   { name: "David Okoro", location: "Houston, TX", product: "MOTS-c 10mg", time: "29 min ago" },
   { name: "Rachel M.", location: "Minneapolis, MN", product: "Selank 10mg", time: "36 min ago" }
-]
-
-const reviews = [
-  {
-    name: "Dr. Sarah Chen",
-    institution: "Stanford Research",
-    rating: 5,
-    text: "Exceptional purity consistency for our longitudinal studies."
-  },
-  {
-    name: "Michael Torres",
-    institution: "MIT Bioengineering",
-    rating: 5,
-    text: "Reliable cold-chain shipping and great scientific support."
-  },
-  {
-    name: "Emily Watson",
-    institution: "Oxford Molecular",
-    rating: 5,
-    text: "HPLC-MS verification gives us total confidence in our data."
-  },
-  {
-    name: "Helix Core Lab",
-    institution: "Independent CRO",
-    rating: 5,
-    text: "Batch-level COAs are easy to pull from the library before each run."
-  },
-  {
-    name: "James Okonkwo",
-    institution: "Cambridge Analytical",
-    rating: 5,
-    text: "Consistent batch documentation makes our QC workflow straightforward."
-  },
-  {
-    name: "NovaPeptide Group",
-    institution: "Contract research",
-    rating: 5,
-    text: "Fast fulfillment and responsive support on compound specifications."
-  },
-  {
-    name: "Dr. Rebecca Park",
-    institution: "Vanderbilt Research",
-    rating: 5,
-    text: "Lot-linked COAs make our peptide validation workflow much faster."
-  },
-  {
-    name: "Thomas Hartley",
-    institution: "Oregon State Lab",
-    rating: 5,
-    text: "Shipping has been reliable even for temperature-sensitive compounds."
-  },
-  {
-    name: "Amanda Weiss",
-    institution: "Duke Molecular",
-    rating: 5,
-    text: "Clear labeling and documentation — exactly what we need for RUO work."
-  },
-  {
-    name: "David Okoro",
-    institution: "Houston Analytical",
-    rating: 5,
-    text: "Purity results have been consistent across every batch we've ordered."
-  }
 ]
 
 function randomToastIntervalMs() {
@@ -154,25 +91,6 @@ export function SocialProofToast() {
           <X className="h-4 w-4" />
         </button>
       </div>
-    </div>
-  )
-}
-
-export function SocialProofReviews() {
-  return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {reviews.slice(0, 6).map((review) => (
-        <div key={`${review.name}-${review.institution}`} className="rounded-xl border border-[#E2E8F0] bg-white p-6">
-          <div className="mb-3 flex gap-0.5">
-            {Array.from({ length: review.rating }).map((_, i) => (
-              <Star key={i} className="h-4 w-4 fill-[#F59E0B] text-[#F59E0B]" />
-            ))}
-          </div>
-          <p className="mb-4 text-sm italic leading-relaxed text-[#0F172A]">&ldquo;{review.text}&rdquo;</p>
-          <p className="text-sm font-medium text-[#0F172A]">{review.name}</p>
-          <p className="text-xs text-[#94A3B8]">{review.institution}</p>
-        </div>
-      ))}
     </div>
   )
 }

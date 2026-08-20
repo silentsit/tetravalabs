@@ -12,7 +12,7 @@ import { BlogTableOfContents } from "@/components/blog-table-of-contents"
 import { CitationFootnote } from "@/components/citation-footnote"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { PageJsonLd } from "@/components/page-json-ld"
-import { YoutubeEmbed, youtubeThumbnailUrl } from "@/components/youtube-embed"
+import { YoutubeEmbed } from "@/components/youtube-embed"
 import { EditorialByline } from "@/components/editorial-byline"
 import {
   blogImageForPost,
@@ -48,7 +48,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   const description =
     post.seoDescription || post.excerpt || "Research article from Tetrava Labs."
-  const image = post.video?.youtubeId ? youtubeThumbnailUrl(post.video.youtubeId) : blogImageForPost(post)
   const editorialAuthor = getAuthor("editorial-team")
   return buildPageMetadata({
     title: post.seoTitle || post.title,
@@ -60,7 +59,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/blog/${slug}`,
     type: "article",
     publishedTime: post.publishedAt,
-    image,
+    ogTitle: post.title,
+    ogEyebrow: post.category || "Research Hub",
+    ogKicker: editorialAuthor.name,
+    image: blogImageForPost(post),
     registerWebPage: false
   })
 }

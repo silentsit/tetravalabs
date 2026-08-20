@@ -5,6 +5,12 @@ Rendered titles use the template `%s | Tetrava Labs` unless noted as absolute.
 Default (fallback): **Tetrava Labs — Verified. Documented. Delivered.**  
 Default description: Research-use peptides with HPLC-MS verification, lot-linked COAs, and cold-chain shipping for qualified laboratories.
 
+## Open Graph / Twitter cards
+
+Social previews are **1200×630 PNG** cards from `/og` (`apps/storefront/src/app/og/route.tsx`). `buildPageMetadata` always emits `og:image` / `twitter:image` with width, height, and type. Do not use `/brand/tetravalabs-icon.png` as a share image (favicon / Organization.logo only).
+
+Product, article, and category cards include the page title, RUO eyebrow, and a composited catalog photo when one exists.
+
 ## Public pages
 
 | Path | Title tag | Meta description |

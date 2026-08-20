@@ -14,7 +14,10 @@ export const metadata: Metadata = buildPageMetadata({
   title: "Product categories",
   description: "Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies.",
   path: "/categories",
-  pageType: "CollectionPage"
+  pageType: "CollectionPage",
+  ogTitle: "Research peptide categories",
+  ogEyebrow: "Catalog",
+  ogKicker: "Shop by research area."
 })
 
 export default async function CategoriesPage() {

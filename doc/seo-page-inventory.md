@@ -7,6 +7,7 @@ Source: `apps/storefront` metadata + JSON-LD registry (Jul 2026).
 - Default title: `Tetrava Labs — Verified. Documented. Delivered.`
 - Default description: Research-use peptides with HPLC-MS verification, lot-linked COAs, and cold-chain shipping for qualified laboratories.
 - Always inject: `Organization` (incl. `PostalAddress`: 455 Gateway Drive, Pacifica, CA 94044, US), `WebSite` (SearchAction → `/search?q=…`)
+- Social cards: 1200×630 PNG via `/og` (not the brand icon). Per-page title, eyebrow, and optional catalog photo.
 
 ## Indexable pages
 

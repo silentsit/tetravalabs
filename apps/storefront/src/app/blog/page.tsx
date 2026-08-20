@@ -13,7 +13,11 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers.",
   path: "/blog",
-  pageType: "CollectionPage"
+  pageType: "CollectionPage",
+  ogTitle: "Research Hub",
+  ogEyebrow: "Articles & protocols",
+  ogKicker: "Analytical notes for qualified research buyers.",
+  image: "/v2/blog-research.jpg"
 })
 
 export default async function BlogPage() {

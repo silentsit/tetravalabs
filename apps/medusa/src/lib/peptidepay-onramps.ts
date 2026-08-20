@@ -1,14 +1,11 @@
 export const PEPTIDEPAY_ONRAMP_IDS = ["stripe", "paypal", "transak", "topper", "banxa"] as const
 export type PeptidepayOnrampId = (typeof PEPTIDEPAY_ONRAMP_IDS)[number]
 
-export type PeptidepayOnrampNotice = "account_kyc"
-
 export type PeptidepayOnrampOption = {
   id: PeptidepayOnrampId
   label: string
   minUsd: number
   description: string
-  notice?: PeptidepayOnrampNotice
   /** Peptide Pay GET /providers restrictedTo. Missing = worldwide. */
   restrictedTo?: string[]
 }
@@ -19,45 +16,35 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "stripe",
     label: "Stripe",
     minUsd: 2,
-    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
+    description: "Secure card payment via Peptide Pay → Stripe",
     restrictedTo: ["US"]
   },
   {
     id: "paypal",
     label: "PayPal",
     minUsd: 5,
-    description: "Pay with a PayPal account, or pay by card.",
+    description: "Secure checkout via Peptide Pay → PayPal",
     restrictedTo: ["US"]
   },
   {
     id: "transak",
     label: "Transak",
     minUsd: 15,
-    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
-    notice: "account_kyc"
+    description: "Via Peptide Pay → Transak · First time: a quick ID check, then you're done"
   },
   {
     id: "topper",
     label: "Topper",
     minUsd: 10,
-    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
-    notice: "account_kyc"
+    description: "Via Peptide Pay → Topper · First time: a quick ID check, then you're done"
   },
   {
     id: "banxa",
     label: "Banxa",
     minUsd: 10,
-    description: "Credit/Debit Card, Apple Pay, Google Pay checkout.",
-    notice: "account_kyc"
+    description: "Via Peptide Pay → Banxa · First time: a quick ID check. Sometimes a short wait."
   }
 ]
-
-export function peptidepayOnrampNoticeText(option: PeptidepayOnrampOption): string | null {
-  if (option.notice === "account_kyc") {
-    return "Quick account setup and verification (~3 min)"
-  }
-  return null
-}
 
 export function isPeptidepayOnrampId(value: unknown): value is PeptidepayOnrampId {
   return typeof value === "string" && (PEPTIDEPAY_ONRAMP_IDS as readonly string[]).includes(value)

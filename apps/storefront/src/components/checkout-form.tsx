@@ -28,7 +28,6 @@ import {
   defaultPeptidepayOnramp,
   peptidepayOnrampAvailableForIp,
   peptidepayOnrampEligible,
-  peptidepayOnrampNoticeText,
   resolvePeptidepayOnramp,
   visiblePeptidepayOnramps,
   type PeptidepayOnrampId
@@ -1602,9 +1601,6 @@ export function CheckoutForm() {
                     className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4"
                   >
                     <legend className="px-1 text-sm font-medium text-[#0F172A]">Card processor</legend>
-                    <p className="mb-3 text-xs leading-relaxed text-[#64748B]">
-                      Card details are entered on the processor's hosted page after you place the order.
-                    </p>
                     {buyerIpCountry && buyerIpCountry !== "US" ? (
                       <p className="mb-3 text-xs font-semibold leading-relaxed text-[#475569]">
                         Stripe and PayPal need a US connection.
@@ -1616,7 +1612,6 @@ export function CheckoutForm() {
                         const inLocation = peptidepayOnrampAvailableForIp(option, buyerIpCountry)
                         const selectable = eligible && inLocation
                         const selected = cardOnramp === option.id
-                        const notice = peptidepayOnrampNoticeText(option)
                         return (
                           <label key={option.id} className={onrampCardClass(selected, !selectable)}>
                             <input
@@ -1633,9 +1628,6 @@ export function CheckoutForm() {
                               <span className="text-xs leading-relaxed text-[#64748B]">
                                 {option.description}
                               </span>
-                              {notice ? (
-                                <span className="text-xs leading-relaxed text-[#B45309]">{notice}</span>
-                              ) : null}
                               {!inLocation ? (
                                 <span className="text-xs text-amber-700">Not available from your location.</span>
                               ) : !eligible ? (
@@ -1685,6 +1677,24 @@ export function CheckoutForm() {
                 </Link>
                 .
               </p>
+
+              {paymentMethod === "card" ? (
+                <div className="space-y-1.5 text-xs leading-relaxed text-[#64748B]">
+                  <p className="font-medium text-[#0F172A]">What happens next</p>
+                  <ul className="list-disc space-y-1 pl-4">
+                    <li>
+                      You'll leave this page briefly. Peptide Pay opens your selected provider (Stripe,
+                      PayPal, Transak, Topper, or Banxa).
+                    </li>
+                    <li>Your bank may ask you to confirm the payment. That's normal.</li>
+                    <li>
+                      First time with Transak, Topper, or Banxa? You'll complete a quick, secure ID check,
+                      usually under two minutes (Banxa can take a little longer).
+                    </li>
+                    <li>Once payment is confirmed, you're automatically returned here with your order.</li>
+                  </ul>
+                </div>
+              ) : null}
 
               <button
                 type="submit"

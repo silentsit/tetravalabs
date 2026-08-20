@@ -1649,6 +1649,23 @@ export function CheckoutForm() {
                 ) : null}
               </section>
 
+              {paymentMethod === "card" ? (
+                <div className="space-y-1.5 text-xs leading-relaxed text-[#64748B]">
+                  <p className="font-medium text-[#0F172A]">What happens next</p>
+                  <ul className="list-disc space-y-1 pl-4">
+                    <li>
+                      You'll leave this page briefly. Peptide Pay opens your selected provider (Stripe,
+                      PayPal, Transak, Topper, or Banxa).
+                    </li>
+                    <li>
+                      First time with Transak, Topper, or Banxa? You'll complete a quick, secure ID check,
+                      usually under two minutes (Banxa can take a little longer).
+                    </li>
+                    <li>Once payment is confirmed, you're automatically returned here with your order.</li>
+                  </ul>
+                </div>
+              ) : null}
+
               <label
                 className={`flex items-start gap-3 rounded-xl border bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569] ${
                   ruoError && attemptedSubmit ? "border-red-300" : "border-[#E2E8F0]"
@@ -1677,23 +1694,6 @@ export function CheckoutForm() {
                 </Link>
                 .
               </p>
-
-              {paymentMethod === "card" ? (
-                <div className="space-y-1.5 text-xs leading-relaxed text-[#64748B]">
-                  <p className="font-medium text-[#0F172A]">What happens next</p>
-                  <ul className="list-disc space-y-1 pl-4">
-                    <li>
-                      You'll leave this page briefly. Peptide Pay opens your selected provider (Stripe,
-                      PayPal, Transak, Topper, or Banxa).
-                    </li>
-                    <li>
-                      First time with Transak, Topper, or Banxa? You'll complete a quick, secure ID check,
-                      usually under two minutes (Banxa can take a little longer).
-                    </li>
-                    <li>Once payment is confirmed, you're automatically returned here with your order.</li>
-                  </ul>
-                </div>
-              ) : null}
 
               <button
                 type="submit"

@@ -93,10 +93,13 @@ const fallbackPosts = researchArticles as BlogPost[]
 const fallbackCategorySeo: CategorySeoBlock[] = [
   {
     categorySlug: "glp-1-research",
+    seoTitle: "Buy GLP-1 Research Peptides | Semaglutide, Tirzepatide & Retatrutide | 99%+ Purity COA | Tetrava",
+    seoDescription:
+      "GLP-1 research peptides for laboratory use: semaglutide, tirzepatide (dual GLP-1/GIP), and retatrutide (triple agonist). 99%+ HPLC-MS purity, lot-linked COA, cold-chain shipping. Research use only.",
     introCopy:
-      "GLP-1 and incretin research peptides for laboratory investigation of metabolic pathways, appetite signaling, and glucose regulation models.",
+      "GLP-1 and incretin research compounds for laboratory investigation of metabolic pathways, appetite signalling, glucose regulation, and neuroprotection models. Catalogue includes semaglutide, tirzepatide, retatrutide, and related GLP-1-class peptides — all verified at 99%+ HPLC-MS purity with lot-linked COA documentation.",
     supportingCopy:
-      "All compounds ship lyophilized with lot-linked COA and HPLC documentation. Store at -20°C until reconstitution per your lab SOP."
+      "All compounds ship lyophilized with lot-linked COA and HPLC-MS documentation. Store at -20°C until reconstitution per your lab SOP. Research use only (RUO)."
   },
   {
     categorySlug: "tissue-repair",

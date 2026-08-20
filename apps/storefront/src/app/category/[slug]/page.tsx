@@ -18,6 +18,7 @@ import { categoryArtForSlug } from "@/lib/revamp/category-art"
 import { buildPageMetadata } from "@/lib/seo"
 import { sortProducts } from "@/lib/sort-products"
 import { PageJsonLd } from "@/components/page-json-ld"
+import { GlpOneResearchContent } from "@/components/category/GlpOneResearchContent"
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -124,6 +125,8 @@ export default async function CategoryPage({ params }: Props) {
           before starting experiments.
         </section>
       )}
+
+      {normalized === "glp-1-research" && <GlpOneResearchContent />}
     </section>
   )
 }

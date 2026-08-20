@@ -1686,7 +1686,6 @@ export function CheckoutForm() {
                       You'll leave this page briefly. Peptide Pay opens your selected provider (Stripe,
                       PayPal, Transak, Topper, or Banxa).
                     </li>
-                    <li>Your bank may ask you to confirm the payment. That's normal.</li>
                     <li>
                       First time with Transak, Topper, or Banxa? You'll complete a quick, secure ID check,
                       usually under two minutes (Banxa can take a little longer).

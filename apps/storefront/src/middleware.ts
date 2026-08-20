@@ -63,7 +63,12 @@ function finalize(request: NextRequest, response: NextResponse) {
   return response
 }
 
-/** One-hop 301 using WHATWG URL — NextURL.clone() re-adds trailing slashes and loops. */
+/**
+ * One-hop 301 with an absolute Location.
+ * Next/Vercel rewrites same-origin redirects to `/path`, which Googlebot
+ * reports as "Redirect error". Force https off localhost so HTTP crawls
+ * do not hop to another http URL.
+ */
 function redirect301(
   request: NextRequest,
   pathname: string,
@@ -72,9 +77,16 @@ function redirect301(
 ) {
   const url = new URL(request.url)
   if (hostname) url.hostname = hostname
+  const host = url.hostname.toLowerCase()
+  if (host !== "localhost" && host !== "127.0.0.1") {
+    url.protocol = "https:"
+  }
   url.pathname = pathname
   url.search = searchParams.toString() ? `?${searchParams.toString()}` : ""
-  return NextResponse.redirect(url, 301)
+  return new NextResponse(null, {
+    status: 301,
+    headers: { Location: url.toString() }
+  })
 }
 
 function apexHostname(hostHeader: string | null): string | null {

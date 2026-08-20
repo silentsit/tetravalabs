@@ -2,58 +2,91 @@ import Image from "next/image"
 import Link from "next/link"
 
 /**
- * Longform editorial content for /category/glp-1-research.
- * Rendered below the product grid. ~1700 words. RUO-compliant. Fully cited.
+ * Longform editorial for /category/glp-1-research.
+ * Rendered below the product grid. ~1700–1900 words. RUO. Cited.
  */
 export function GlpOneResearchContent() {
   return (
     <article className="mx-auto max-w-4xl space-y-12 py-4 text-[#0F172A]">
-      {/* ── Section 1: Receptor pharmacology ── */}
       <section className="space-y-4">
-        <h2 className="font-serif text-2xl text-[#0F172A]">What GLP-1 receptors actually do</h2>
+        <h2 className="font-serif text-2xl text-[#0F172A]">What research shows about GLP-1 drugs</h2>
         <p className="leading-relaxed text-[#475569]">
-          Glucagon-like peptide-1 is a 30-amino-acid incretin hormone secreted by intestinal L-cells in
-          response to nutrient ingestion. Its receptor (GLP-1R) is a class B G protein-coupled receptor
-          expressed across a wider tissue distribution than the original diabetes literature suggested.
-          Beyond pancreatic beta cells, GLP-1R expression has been confirmed in the hypothalamus and
-          brainstem (appetite regulation), cardiac myocytes and vascular endothelium (cardioprotection),
-          proximal tubule cells of the kidney (natriuresis, renoprotection), hepatocytes (lipid flux), and
-          multiple CNS nuclei including the substantia nigra and cortex (neuroprotection).{" "}
+          GLP-1 research peptides are tools for studying incretin signalling. The short answer to "what does
+          research show about GLP-1 drugs?" is that the clinical and preclinical records do not say the same
+          thing in every tissue. In metabolic trials, selective GLP-1 receptor agonists cut mean body weight
+          by roughly 15%. Dual GLP-1/GIP agonists cut it further. Triple agonists that also hit the glucagon
+          receptor have posted still higher Phase 2 means. In the brain, the same receptor class reduces
+          amyloid load and inflammatory markers in rodents, and Phase 3 Alzheimer's programmes are now
+          testing whether that signal survives in people.{" "}
           <a
-            href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12653004/"
+            href="https://www.sciencedirect.com/science/article/abs/pii/S2451847626000047"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
             [1]
-          </a>
-        </p>
-        <p className="leading-relaxed text-[#475569]">
-          When a GLP-1R agonist binds, the receptor couples primarily to G&alpha;s, activating adenylyl
-          cyclase and elevating intracellular cAMP. This triggers protein kinase A and exchange protein
-          activated by cAMP (Epac2), which together close ATP-sensitive potassium channels, depolarize the
-          cell membrane, and — in beta cells — gate calcium influx to drive glucose-dependent insulin
-          secretion. The same cAMP cascade in hypothalamic neurons suppresses neuropeptide Y signaling,
-          reducing food intake. In cardiomyocytes it improves contractile function and attenuates
-          ischaemia-reperfusion injury. In the kidney it reduces albuminuria through haemodynamic and
-          anti-inflammatory mechanisms. One receptor, one ligand class, at least six physiologically
-          distinct research targets.
-        </p>
-        <p className="leading-relaxed text-[#475569]">
-          The peptide's native half-life is under two minutes in vivo — it is rapidly cleaved by dipeptidyl
-          peptidase-4 (DPP-4) and neutral endopeptidase 24.11. Synthetic research analogues extend that
-          window through fatty acid conjugation (liraglutide: 13h), albumin-binding side chains (semaglutide:
-          ~168h), or by building agonist activity into a single hybrid peptide backbone that targets two or
-          three receptors simultaneously. These structural modifications are themselves active areas of
-          preclinical investigation.{" "}
+          </a>{" "}
           <a
-            href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12668848/"
+            href="https://www.sciencedirect.com/science/article/pii/S2590112526000411"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
             [2]
           </a>
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          This page is for laboratory buyers of GLP-1 research compounds. It covers receptor biology, the
+          three agonist generations you will see on a product list, neuroprotection data, the microdosing
+          debate, free tools that actually help bench work, and what to demand on a certificate of analysis
+          before you buy GLP-1 research peptides online.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-serif text-2xl text-[#0F172A]">What GLP-1 receptors do in tissue</h2>
+        <p className="leading-relaxed text-[#475569]">
+          Glucagon-like peptide-1 is a 30-amino-acid incretin made by intestinal L-cells after a meal. Its
+          receptor, GLP-1R, is a class B G protein-coupled receptor. Early diabetes papers treated it as a
+          beta-cell story. That was incomplete.
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          GLP-1R is also found in the hypothalamus and brainstem, in cardiac myocytes and vascular
+          endothelium, in proximal tubule cells, in hepatocytes, and in CNS nuclei such as the substantia
+          nigra and cortex.{" "}
+          <a
+            href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12653004/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#0D9488] hover:underline"
+          >
+            [3]
+          </a>{" "}
+          Agonist binding couples mainly to G&alpha;s, raises cAMP, and turns on protein kinase A and Epac2.
+          In beta cells that closes KATP channels, opens calcium channels, and releases insulin only when
+          glucose is high. In hypothalamic neurons the same cascade damps neuropeptide Y signalling. In
+          heart muscle it changes contractile behaviour after ischaemia. In kidney it lowers albuminuria in
+          model systems.
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          Native GLP-1 lasts under two minutes in vivo. DPP-4 and neutral endopeptidase 24.11 cut it. Research
+          analogues stretch that window with fatty-acid conjugation (liraglutide, about 13 hours) or
+          albumin-binding side chains (semaglutide, roughly a week). Dual and triple agonists fold a second or
+          third receptor into one peptide backbone.{" "}
+          <a
+            href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12668848/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#0D9488] hover:underline"
+          >
+            [4]
+          </a>
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          Those side chains matter for lab work. Fatty-acylated GLP-1 research peptides adsorb to plastic
+          more than bare peptides. Labs that tip reconstituted stock into untreated polypropylene tubes often
+          measure a lower free concentration than the nominal dilution implies. Glass or low-bind plastic
+          and a documented stock protocol fix most of that noise.
         </p>
 
         <figure className="overflow-hidden rounded-xl">
@@ -71,106 +104,101 @@ export function GlpOneResearchContent() {
         </figure>
       </section>
 
-      {/* ── Section 2: Compound generations ── */}
       <section className="space-y-4">
-        <h2 className="font-serif text-2xl text-[#0F172A]">Three generations of GLP-1 research compounds</h2>
+        <h2 className="font-serif text-2xl text-[#0F172A]">GLP-1 research compounds by generation</h2>
         <p className="leading-relaxed text-[#475569]">
-          The GLP-1 research landscape in 2026 spans three pharmacological generations, each building on
-          evidence from the previous. Understanding the distinctions matters for designing experiments that
-          ask the right mechanistic questions.
+          Most GLP-1 research products fall into three agonist classes. Pick the class that matches the
+          receptor question you are asking, not the class with the loudest clinical headline.
         </p>
 
-        <h3 className="text-lg font-semibold text-[#0F172A]">
-          First generation: selective GLP-1R agonists
-        </h3>
+        <h3 className="text-lg font-semibold text-[#0F172A]">Selective GLP-1R agonists</h3>
         <p className="leading-relaxed text-[#475569]">
-          Semaglutide remains the reference single-receptor GLP-1R agonist. The STEP clinical programme
-          established ~14.9% mean body weight reduction over 68 weeks in non-diabetic subjects.{" "}
+          Semaglutide is still the reference single-receptor agonist. The STEP programme reported about 14.9%
+          mean weight reduction over 68 weeks in non-diabetic subjects.{" "}
           <a
             href="https://www.sciencedirect.com/science/article/abs/pii/S2451847626000047"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
-            [3]
+            [1]
           </a>{" "}
-          In preclinical models it reduces amyloid-beta (A&beta;) deposition, attenuates neuroinflammation
-          via AMP-activated protein kinase activation, and inhibits TLR4/NF-&kappa;B signalling.{" "}
+          In rodent models it lowers amyloid-beta deposition, slows neuroinflammation through AMPK, and
+          dampens TLR4/NF-&kappa;B signalling.{" "}
           <a
             href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12653004/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
-            [1]
+            [3]
           </a>{" "}
-          Two Phase 3 trials (EVOKE and EVOKE+) are currently evaluating semaglutide as a disease-modifying
-          agent in Alzheimer's disease — a direct translation of the preclinical neuroprotection signal.{" "}
+          The Phase 3 EVOKE and EVOKE+ trials are testing whether that CNS signal shows up as a cognitive
+          endpoint in early Alzheimer's disease.{" "}
           <a
             href="https://www.sciencedirect.com/science/article/pii/S2590112526000411"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
-            [4]
+            [2]
           </a>
         </p>
 
         <h3 className="text-lg font-semibold text-[#0F172A]">
-          Second generation: dual GLP-1/GIP receptor agonists
+          Dual GLP-1/GIP agonists and the tirzepatide research peptide
         </h3>
         <p className="leading-relaxed text-[#475569]">
-          Tirzepatide co-activates the glucose-dependent insulinotropic polypeptide receptor (GIPR)
-          alongside GLP-1R. GIPR agonism adds distinct mechanisms: increased energy expenditure through
-          brown adipose tissue activation, improved postprandial insulin secretion, and — in preclinical
-          models — attenuation of Alzheimer's pathology through cerebral glucose metabolism normalisation and
-          neurotrophic factor upregulation.{" "}
+          Tirzepatide activates GIPR as well as GLP-1R. GIPR activity changes energy expenditure and
+          postprandial insulin release in ways a pure GLP-1 agonist does not. Preclinical work also links
+          dual agonism to cerebral glucose metabolism and neurotrophic factor expression in Alzheimer model
+          rats.{" "}
           <a
             href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12653004/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
-            [1]
-          </a>{" "}
-          The SURMOUNT-1 trial recorded mean weight loss of 22.5% at the highest dose — approximately 7.6
-          percentage points more than semaglutide in comparable populations.{" "}
-          <a
-            href="https://www.sciencedirect.com/science/article/abs/pii/S2451847626000047"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#0D9488] hover:underline"
-          >
             [3]
-          </a>{" "}
-          For laboratory research, the added GIPR component makes tirzepatide useful for dissecting
-          incretin co-operativity: experiments comparing tirzepatide vs. semaglutide head-to-head in the
-          same in-vitro system can isolate the marginal effect of GIPR activation.
+          </a>
         </p>
-
-        <h3 className="text-lg font-semibold text-[#0F172A]">
-          Third generation: triple GLP-1/GIP/glucagon receptor agonists
-        </h3>
         <p className="leading-relaxed text-[#475569]">
-          Retatrutide adds glucagon receptor (GCGR) agonism to the dual backbone. Glucagon drives hepatic
-          glucose output and thermogenesis; GCGR co-activation amplifies energy expenditure beyond what the
-          incretin axis alone can achieve. In a Phase 2 dose-ranging trial, retatrutide produced 24.2% mean
-          weight reduction over 48 weeks — the largest reported in a GLP-class trial to date.{" "}
+          SURMOUNT-1 reported mean weight loss of 22.5% at the highest tirzepatide dose, several percentage
+          points above semaglutide in similar populations.{" "}
           <a
-            href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12304053/"
+            href="https://pubmed.ncbi.nlm.nih.gov/35658024/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
             [5]
           </a>{" "}
-          Phase 3 data are anticipated in 2026. As an investigational compound, retatrutide is available for
-          preclinical research use; it is not approved for human administration.
+          For a GLP-1 research lab that wants the marginal GIPR contribution, the clean design is
+          tirzepatide versus semaglutide in the same assay, same buffer, same readout. That isolates
+          co-operativity without inventing a new endpoint.
+        </p>
+
+        <h3 className="text-lg font-semibold text-[#0F172A]">Triple GLP-1/GIP/glucagon agonists</h3>
+        <p className="leading-relaxed text-[#475569]">
+          Retatrutide adds glucagon receptor agonism. Glucagon raises hepatic glucose output and
+          thermogenesis. In Phase 2 dose-ranging work, retatrutide produced 24.2% mean weight reduction over
+          48 weeks.{" "}
+          <a
+            href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12304053/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#0D9488] hover:underline"
+          >
+            [6]
+          </a>{" "}
+          Phase 3 packages are still in progress. Retatrutide is investigational. It is sold here as a
+          research compound, not as a drug.
         </p>
         <p className="leading-relaxed text-[#475569]">
-          The generation map is also a mechanistic map. Each successive receptor addition changes the
-          downstream signal profile in a way that produces distinct readouts in glucose tolerance tests,
-          adipose tissue histology, hepatic lipid panels, and — increasingly — neurological endpoint assays.
+          Pipeline neighbours such as survodutide (GLP-1/glucagon) and cagrilintide plus semaglutide
+          combinations show the same pattern: more receptors, different hepatic and adipose readouts. If your
+          endpoint is hepatic lipid flux, a triple agonist is a different tool from a selective GLP-1R peptide.
+          If your endpoint is GLP-1R-only signalling, start with semaglutide.
         </p>
 
         <figure className="overflow-hidden rounded-xl">
@@ -182,96 +210,78 @@ export function GlpOneResearchContent() {
             className="w-full object-cover"
           />
           <figcaption className="mt-2 text-center text-xs text-[#94A3B8]">
-            Semaglutide, tirzepatide (dual-agonist), and retatrutide (triple-agonist) lyophilized research
-            compounds. All compounds for research use only (RUO).
+            Semaglutide, tirzepatide (dual agonist), and retatrutide (triple agonist) lyophilized research
+            compounds. Research use only.
           </figcaption>
         </figure>
       </section>
 
-      {/* ── Section 3: Neuroprotection frontier ── */}
       <section className="space-y-4">
-        <h2 className="font-serif text-2xl text-[#0F172A]">The neuroprotection frontier</h2>
+        <h2 className="font-serif text-2xl text-[#0F172A]">GLP-1 research updates in the CNS</h2>
         <p className="leading-relaxed text-[#475569]">
-          GLP-1 receptor expression in the CNS was first described in 2002. For over a decade the finding
-          was a footnote. By 2026 it has become one of the most actively funded research directions in
-          neuroscience, with a mechanistic rationale grounded in at least four distinct pathways.{" "}
+          CNS expression of GLP-1R was reported in 2002. For years it sat in review footnotes. By 2025–2026 it
+          is a funded neuroscience line, not a metabolic side note.{" "}
           <a
             href="https://www.sciencedirect.com/science/article/pii/S2590112526000411"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
-            [4]
+            [2]
           </a>
         </p>
-        <ul className="space-y-3 pl-5 text-[#475569]">
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">Amyloid-beta and tau reduction.</span> In APP/PS1
-            transgenic mouse models, liraglutide reduced cerebral A&beta; plaque burden and improved spatial
-            learning. Semaglutide reduced A&beta; deposition and tau hyperphosphorylation in multiple rodent
-            paradigms.{" "}
-            <a
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12653004/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0D9488] hover:underline"
-            >
-              [1]
-            </a>
-          </li>
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">Neuroinflammation suppression.</span> GLP-1R
-            agonism inhibits microglial activation and reduces pro-inflammatory cytokine release (IL-1&beta;,
-            TNF-&alpha;, IL-6) in in-vitro neuroinflammation models. The TLR4/NF-&kappa;B pathway is a
-            primary target.{" "}
-            <a
-              href="https://www.mdpi.com/1422-0067/26/21/10743"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0D9488] hover:underline"
-            >
-              [6]
-            </a>
-          </li>
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">Mitochondrial function and oxidative stress.</span>{" "}
-            Preclinical data show GLP-1R agonists reduce ROS production, inhibit neuronal apoptosis, and
-            improve mitochondrial membrane potential in stressed dopaminergic neurons — a key mechanism for
-            Parkinson's disease models.{" "}
-            <a
-              href="https://www.mdpi.com/1422-0067/26/21/10743"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0D9488] hover:underline"
-            >
-              [6]
-            </a>
-          </li>
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">Cerebral insulin resistance.</span> Type 2
-            diabetes and Alzheimer's disease share overlapping insulin signalling deficits in the brain. GLP-1R
-            agonists restore cerebral glucose utilisation in FDG-PET studies and normalise downstream
-            PI3K/Akt activity.{" "}
-            <a
-              href="https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2025.1708565/full"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0D9488] hover:underline"
-            >
-              [7]
-            </a>
-          </li>
-        </ul>
         <p className="leading-relaxed text-[#475569]">
-          The Phase 3 EVOKE programme (semaglutide vs. placebo in early Alzheimer's) is the first
-          large-scale clinical test of this preclinical signal. Results, when published, will define whether
-          GLP-1R agonism produces a measurable cognitive benefit or whether the preclinical effect sizes
-          were an artefact of rodent models. Either outcome significantly advances the field. Researchers
-          running parallel preclinical work now — using semaglutide,{" "}
+          In APP/PS1 mice, liraglutide cut cerebral amyloid plaque load and improved spatial learning.
+          Semaglutide reduced amyloid deposition and tau hyperphosphorylation in several rodent paradigms.{" "}
+          <a
+            href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12653004/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#0D9488] hover:underline"
+          >
+            [3]
+          </a>{" "}
+          In vitro, GLP-1R agonism lowers microglial activation and cuts IL-1&beta;, TNF-&alpha;, and IL-6 release;
+          TLR4/NF-&kappa;B is a frequent pathway hit.{" "}
+          <a
+            href="https://www.mdpi.com/1422-0067/26/21/10743"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#0D9488] hover:underline"
+          >
+            [7]
+          </a>
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          Stressed dopaminergic neurons show less ROS, less apoptosis, and better mitochondrial membrane
+          potential under GLP-1R agonists in Parkinson model systems.{" "}
+          <a
+            href="https://www.mdpi.com/1422-0067/26/21/10743"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#0D9488] hover:underline"
+          >
+            [7]
+          </a>{" "}
+          Type 2 diabetes and Alzheimer's disease share overlapping cerebral insulin signalling failures.
+          FDG-PET work and pathway studies report restored glucose use and more normal PI3K/Akt activity after
+          GLP-1R agonism.{" "}
+          <a
+            href="https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2025.1708565/full"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#0D9488] hover:underline"
+          >
+            [8]
+          </a>
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          EVOKE is the first large clinical test of that preclinical pile. Until those results land, parallel
+          in-vitro and rodent work with{" "}
           <Link href="/shop" className="text-[#0D9488] hover:underline">
-            tirzepatide, or retatrutide
+            tirzepatide or retatrutide
           </Link>{" "}
-          as tools — are building the interpretive framework that will contextualise those results.
+          still needs a fixed assay design, a documented stock concentration, and a lot number on every figure.
         </p>
 
         <figure className="overflow-hidden rounded-xl">
@@ -283,36 +293,34 @@ export function GlpOneResearchContent() {
             className="w-full object-cover"
           />
           <figcaption className="mt-2 text-center text-xs text-[#94A3B8]">
-            Preclinical GLP-1 neuroprotection research: synaptic modelling and in-vitro neuroinflammation
-            analysis. Research use only.
+            Preclinical GLP-1 neuroprotection work: synaptic modelling and neuroinflammation assays. Research
+            use only.
           </figcaption>
         </figure>
       </section>
 
-      {/* ── Section 4: Microdosing question ── */}
       <section className="space-y-4">
-        <h2 className="font-serif text-2xl text-[#0F172A]">The microdosing question</h2>
+        <h2 className="font-serif text-2xl text-[#0F172A]">Microdosing GLP-1 research</h2>
         <p className="leading-relaxed text-[#475569]">
-          A prevalent discussion in the research community concerns sub-therapeutic dosing: whether very low
-          concentrations of GLP-1R agonists retain meaningful receptor activity while reducing off-target
-          effects. The current evidence base is instructive precisely because it is mixed.
+          "Microdosing GLP-1 research" usually means testing concentrations well below the clinical maintenance
+          range. The clinical evidence for that practice in people is thin.
         </p>
         <p className="leading-relaxed text-[#475569]">
-          The SURMOUNT-1 dose-response data for tirzepatide show a classic diminishing-returns curve: 5 mg
-          produced 15% weight loss, 10 mg produced 19.5%, and 15 mg produced 20.9% — a 100% dose increase
-          from 5 to 10 mg added 4.5 percentage points, while a 50% increase from 10 to 15 mg added only 1.4
-          percentage points.{" "}
+          SURMOUNT-1 dose arms for tirzepatide were 5 mg, 10 mg, and 15 mg, with mean weight losses of 15%,
+          19.5%, and 20.9%. Doubling from 5 mg to 10 mg added 4.5 percentage points. Raising from 10 mg to 15
+          mg added 1.4.{" "}
           <a
-            href="https://formblends.com/articles/glp1-hub/glp1-microdosing-low-dose-protocol"
+            href="https://pubmed.ncbi.nlm.nih.gov/35658024/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0D9488] hover:underline"
           >
-            [8]
+            [5]
           </a>{" "}
-          This curve has led some researchers to hypothesise that much of the pharmacodynamic effect is
-          captured at relatively low receptor occupancy. A 2025 ClinicalTrials.gov registration
-          (NCT07092605) is evaluating sub-therapeutic dosing in metabolic models.{" "}
+          That curve invites low-occupancy hypotheses. It does not prove them.
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          ClinicalTrials.gov lists NCT07092605 for microdosed GLP-1 work in metabolic endpoints.{" "}
           <a
             href="https://clinicaltrials.gov/study/NCT07092605"
             target="_blank"
@@ -320,12 +328,9 @@ export function GlpOneResearchContent() {
             className="text-[#0D9488] hover:underline"
           >
             [9]
-          </a>
-        </p>
-        <p className="leading-relaxed text-[#475569]">
-          STAT News (2025) reviewed the microdosing literature and concluded there is no robust clinical
-          evidence that semaglutide or tirzepatide produce clinically significant effects at sub-therapeutic
-          doses in randomised trials.{" "}
+          </a>{" "}
+          A November 2025 STAT News review of the clinical literature found no solid randomised evidence that
+          semaglutide or tirzepatide produce clinically meaningful effects at sub-therapeutic doses.{" "}
           <a
             href="https://www.statnews.com/2025/11/04/microdosing-glp-1-drugs-no-clinical-evidence-effective/"
             target="_blank"
@@ -333,75 +338,132 @@ export function GlpOneResearchContent() {
             className="text-[#0D9488] hover:underline"
           >
             [10]
-          </a>{" "}
-          This is not the same as evidence of absence. What it reflects is that the controlled trials do not
-          yet exist. For in-vitro and rodent model researchers, dose-response characterisation across a wide
-          range — including sub-therapeutic concentrations — remains an open and scientifically productive
-          question. The mechanistic readouts in cell culture (cAMP accumulation, downstream kinase activity,
-          gene expression) can be quantified at concentrations below those used in clinical dosing. The
-          relationship between those in-vitro signals and in-vivo pharmacology is part of what GLP-1
-          research is actively working to clarify.
+          </a>
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          Cell culture is a different problem. cAMP assays, kinase panels, and transcript readouts can be
+          run across a wide concentration range, including levels far below human trial doses. That is
+          legitimate GLP-1 research. It is not a dosing protocol for people, and this catalogue does not
+          supply one.
         </p>
       </section>
 
-      {/* ── Section 5: Analytical standards ── */}
       <section className="space-y-4">
-        <h2 className="font-serif text-2xl text-[#0F172A]">Analytical standards for GLP-1 research compounds</h2>
+        <h2 className="font-serif text-2xl text-[#0F172A]">Free tools for a GLP-1 research lab</h2>
         <p className="leading-relaxed text-[#475569]">
-          GLP-1 class peptides are structurally complex: semaglutide is a 31-residue peptide with a C-18
-          fatty diacid side chain via a linker; tirzepatide is a 39-amino-acid dual-agonist; retatrutide
-          adds a C-20 fatty diacid to a 39-residue backbone. Minor sequence errors, incomplete conjugation,
-          or aggregate formation change pharmacodynamic profiles in ways that plain UV absorbance assays
-          cannot detect. For research where mechanistic conclusions depend on compound identity, the minimum
-          analytical documentation should include:
+          Search traffic for "best free GLP-1 research tools and calculators" and "top peptide dosage
+          calculators for GLP-1 research" usually wants a human dosing widget. That is the wrong tool class
+          for RUO reagents. What helps at the bench is different.
         </p>
-        <ul className="space-y-2 pl-5 text-[#475569]">
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">HPLC purity trace</span> — identifies peptide
-            degradation products and confirms &ge;99% area-under-curve purity at the lot level.
+        <ul className="list-disc space-y-2 pl-5 text-[#475569]">
+          <li className="leading-relaxed">
+            <a
+              href="https://clinicaltrials.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0D9488] hover:underline"
+            >
+              ClinicalTrials.gov
+            </a>{" "}
+            with filters for semaglutide, tirzepatide, retatrutide, Alzheimer, HFpEF, MASH, and CKD. Use it to
+            track GLP-1 research news and protocol designs, not to invent a lab dose from a trial arm.
           </li>
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">Mass spectrometry identity</span> — confirms
-            molecular mass to &lt;5 ppm, ruling out sequence scrambles, truncations, or adducts that HPLC
-            alone misses.
+          <li className="leading-relaxed">
+            <a
+              href="https://pubchem.ncbi.nlm.nih.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0D9488] hover:underline"
+            >
+              PubChem
+            </a>{" "}
+            for molecular weight, structure, and synonyms when you write a materials section.
           </li>
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">Lot-linked documentation</span> — each shipped
-            vial traceable to the specific analytical batch, not a generic COA from a different production
-            run.
+          <li className="leading-relaxed">
+            A molarity calculator that converts mg of lyophilized peptide into molar stock for in-vitro
+            media. That is volume and concentration math for assays. It is not a human reconstitution or
+            injection schedule.
           </li>
-          <li className="list-disc leading-relaxed">
-            <span className="font-medium text-[#0F172A]">Storage format</span> — lyophilized (
-            <em>not</em> pre-dissolved) for shelf stability at -20°C; solubilisation per lab SOP immediately
-            before experiment.
+          <li className="leading-relaxed">
+            Lot-linked COA PDFs from the supplier you actually ordered. A generic purity claim with no batch
+            ID is not a tool. It is a risk.
           </li>
         </ul>
         <p className="leading-relaxed text-[#475569]">
-          All GLP-1 research compounds in this catalogue ship as lyophilized powder with{" "}
-          <Link href="/coa-library" className="text-[#0D9488] hover:underline">
-            lot-linked COA documentation
-          </Link>{" "}
-          including HPLC-MS analytical data. Browse compound specifications, purity traces, and batch
-          records in the{" "}
-          <Link href="/coa-library" className="text-[#0D9488] hover:underline">
-            COA Library
-          </Link>{" "}
-          before committing to an experimental design.
+          Named-entity searches such as "professor peptides GLP-1 research compounds" or "Rebecca Diamond
+          GLP-1 research" often land on third-party blogs or other sellers. Treat those as navigation noise.
+          Match your order to compound identity, HPLC-MS data, and a lot number instead.
         </p>
       </section>
 
-      {/* ── Section 6: CTA + RUO ── */}
+      <section className="space-y-4">
+        <h2 className="font-serif text-2xl text-[#0F172A]">Storage before the assay</h2>
+        <p className="leading-relaxed text-[#475569]">
+          Keep lyophilized GLP-1 research peptides at -20°C, dry, and dark until you open the vial. Once
+          reconstituted under your lab SOP, aliquot. Avoid repeated freeze-thaw. Fatty-acylated analogues
+          (semaglutide, tirzepatide, retatrutide) are more prone to surface loss and aggregation than short
+          linear peptides, so document solvent, concentration, and hold time on every aliquot label.
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          Do not treat a "dosage calculator" screenshot as a stability study. If you need working-concentration
+          guidance, derive it from your assay's EC50 literature and your own titration curve.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-serif text-2xl text-[#0F172A]">
+          Analytical checks before you buy GLP-1 research peptides
+        </h2>
+        <p className="leading-relaxed text-[#475569]">
+          Semaglutide is a 31-residue peptide with a C-18 fatty diacid on a linker. Tirzepatide is a
+          39-amino-acid dual agonist. Retatrutide adds a C-20 fatty diacid to a 39-residue backbone. A UV
+          absorbance number alone will not catch a truncated sequence, a missing side chain, or an aggregate
+          that still looks "pure" on a crude chromatogram.
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          Ask for an HPLC purity trace at the lot level (aim for &ge;99% area under curve), mass spectrometry
+          identity within a few ppm of the theoretical mass, and a COA tied to the vial you receive, not a
+          stock PDF from another run. Prefer lyophilized powder over pre-dissolved liquid for shelf life.
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          Tetrava ships GLP-1 research peptides lyophilized with{" "}
+          <Link href="/coa-library" className="text-[#0D9488] hover:underline">
+            lot-linked COA
+          </Link>{" "}
+          files that include HPLC-MS data. Read the batch record before you lock an experimental design.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="font-serif text-2xl text-[#0F172A]">
+          Where to buy GLP-1 research peptides online
+        </h2>
+        <p className="leading-relaxed text-[#475569]">
+          If the query is "GLP-1 research peptides where to buy" or "where to buy online," the useful filter
+          is documentation, not a discount code. Confirm the compound name and strength match your protocol,
+          open the COA for that lot, check cold-chain shipping, and keep the order for research use only.
+        </p>
+        <p className="leading-relaxed text-[#475569]">
+          This catalogue lists GLP-1 research peptides for sale as RUO reagents. They are not for human
+          consumption, diagnosis, or therapy. Browse the products above for semaglutide, tirzepatide, and
+          related incretin compounds, then cross-check purity in the{" "}
+          <Link href="/coa-library" className="text-[#0D9488] hover:underline">
+            COA Library
+          </Link>
+          .
+        </p>
+      </section>
+
       <section className="space-y-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
         <h2 className="font-serif text-xl text-[#0F172A]">GLP-1 research compounds at Tetrava</h2>
         <p className="leading-relaxed text-[#475569]">
-          All compounds are for <strong>research use only (RUO)</strong> — not for human consumption,
-          diagnosis, or therapy. The catalogue includes semaglutide, tirzepatide, and retatrutide at
-          multiple mass points, all shipped lyophilized with lot-linked HPLC-MS documentation and cold-chain
-          packaging.
+          All compounds are for <strong>research use only (RUO)</strong>. Not for human consumption,
+          diagnosis, or therapy. Semaglutide, tirzepatide, and retatrutide ship lyophilized with lot-linked
+          HPLC-MS documentation and cold-chain packaging.
         </p>
         <div className="flex flex-wrap gap-3">
           <Link href="/shop" className="btn-primary text-sm">
-            Browse all GLP-1 compounds
+            Browse GLP-1 research products
           </Link>
           <Link href="/coa-library" className="btn-secondary text-sm">
             View COA library
@@ -409,10 +471,31 @@ export function GlpOneResearchContent() {
         </div>
       </section>
 
-      {/* ── References ── */}
       <section className="space-y-2 border-t border-[#E2E8F0] pt-6 text-xs text-[#94A3B8]">
         <p className="font-medium text-[#475569]">References</p>
         <ol className="list-decimal space-y-1 pl-5">
+          <li>
+            Semaglutide and tirzepatide efficacy summary.{" "}
+            <a
+              href="https://www.sciencedirect.com/science/article/abs/pii/S2451847626000047"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0D9488] hover:underline"
+            >
+              ScienceDirect S2451847626000047
+            </a>
+          </li>
+          <li>
+            GLP-1 agonists in movement disorders and CNS Phase 3 context.{" "}
+            <a
+              href="https://www.sciencedirect.com/science/article/pii/S2590112526000411"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0D9488] hover:underline"
+            >
+              ScienceDirect S2590112526000411
+            </a>
+          </li>
           <li>
             Pharmacological mechanisms of GLP-1/GIP receptor agonists.{" "}
             <a
@@ -425,7 +508,7 @@ export function GlpOneResearchContent() {
             </a>
           </li>
           <li>
-            GLP-1RA prospects and obstacles — FDA approvals pipeline.{" "}
+            GLP-1RA pipeline and related indications.{" "}
             <a
               href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12668848/"
               target="_blank"
@@ -436,29 +519,18 @@ export function GlpOneResearchContent() {
             </a>
           </li>
           <li>
-            Revolutionizing obesity treatment — semaglutide and tirzepatide efficacy data.{" "}
+            Jastreboff et al., SURMOUNT-1 (tirzepatide dose response).{" "}
             <a
-              href="https://www.sciencedirect.com/science/article/abs/pii/S2451847626000047"
+              href="https://pubmed.ncbi.nlm.nih.gov/35658024/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0D9488] hover:underline"
             >
-              ScienceDirect S2451847626000047
+              PubMed 35658024
             </a>
           </li>
           <li>
-            GLP-1 agonists in movement disorders and the CNS — Phase 3 context.{" "}
-            <a
-              href="https://www.sciencedirect.com/science/article/pii/S2590112526000411"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0D9488] hover:underline"
-            >
-              ScienceDirect S2590112526000411
-            </a>
-          </li>
-          <li>
-            Triple agonism therapies for obesity — retatrutide Phase 2 data.{" "}
+            Triple agonism and retatrutide Phase 2 data.{" "}
             <a
               href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12304053/"
               target="_blank"
@@ -469,7 +541,7 @@ export function GlpOneResearchContent() {
             </a>
           </li>
           <li>
-            GLP-1 and the degenerating brain — oxidative stress and mitochondrial mechanisms.{" "}
+            GLP-1 and neurodegeneration mechanisms.{" "}
             <a
               href="https://www.mdpi.com/1422-0067/26/21/10743"
               target="_blank"
@@ -491,18 +563,7 @@ export function GlpOneResearchContent() {
             </a>
           </li>
           <li>
-            Tirzepatide dose-response and microdosing analysis.{" "}
-            <a
-              href="https://formblends.com/articles/glp1-hub/glp1-microdosing-low-dose-protocol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0D9488] hover:underline"
-            >
-              FormBlends GLP-1 microdosing review
-            </a>
-          </li>
-          <li>
-            Microdosing GLP-1 in metabolic models — ClinicalTrials.gov NCT07092605.{" "}
+            Microdosing GLP-1 metabolic study registration.{" "}
             <a
               href="https://clinicaltrials.gov/study/NCT07092605"
               target="_blank"
@@ -513,14 +574,14 @@ export function GlpOneResearchContent() {
             </a>
           </li>
           <li>
-            No robust clinical evidence for microdosing at sub-therapeutic doses — STAT News 2025.{" "}
+            STAT News review of microdosing evidence, November 2025.{" "}
             <a
               href="https://www.statnews.com/2025/11/04/microdosing-glp-1-drugs-no-clinical-evidence-effective/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0D9488] hover:underline"
             >
-              STAT News, November 2025
+              STAT News
             </a>
           </li>
         </ol>

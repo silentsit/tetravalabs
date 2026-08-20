@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import type { ReactNode } from "react"
 import { PortableText, type PortableTextComponents } from "@portabletext/react"
 import { ProductCard } from "@/components/product-card"
 import { BlogTable, type BlogTableValue } from "@/components/blog-table"
@@ -20,6 +21,39 @@ type BlogImageValue = {
 type Props = {
   body?: BlogBody
   productsByHandle: Map<string, StoreProduct>
+}
+
+/** Renders [label](/path) links in legacy plain-text blog bodies. */
+function renderPlainTextWithLinks(text: string): ReactNode {
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)/g
+  const nodes: ReactNode[] = []
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(text.slice(lastIndex, match.index))
+    }
+    const href = match[2]
+    const external = href.startsWith("http")
+    nodes.push(
+      <Link
+        key={`${match.index}-${href}`}
+        href={href}
+        className="text-[#0D9488] underline-offset-2 hover:underline"
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {match[1]}
+      </Link>
+    )
+    lastIndex = match.index + match[0].length
+  }
+
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex))
+  }
+
+  return nodes.length ? nodes : text
 }
 
 function resolveCardVariant(value: unknown): CardVariant {
@@ -189,7 +223,7 @@ export function BlogBody({ body, productsByHandle }: Props) {
               </h3>
             )
           }
-          return <p key={`p-${index}`}>{block.text}</p>
+          return <p key={`p-${index}`}>{renderPlainTextWithLinks(block.text)}</p>
         })}
       </div>
     )

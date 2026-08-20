@@ -37,8 +37,11 @@ export function GlpOneResearchContent() {
         </p>
         <p className="leading-relaxed text-[#475569]">
           This page is for laboratory buyers of GLP-1 research compounds. It covers receptor biology, the
-          three agonist generations you will see on a product list, neuroprotection data, the microdosing
-          debate, free tools that actually help bench work, and what to demand on a certificate of analysis
+          three agonist generations you will see in the product grid above, neuroprotection data, the
+          microdosing debate, free tools that actually help bench work, and what to demand on a{" "}
+          <Link href="/coa-library" className="text-[#0D9488] hover:underline">
+            certificate of analysis
+          </Link>{" "}
           before you buy GLP-1 research peptides online.
         </p>
       </section>
@@ -113,7 +116,10 @@ export function GlpOneResearchContent() {
 
         <h3 className="text-lg font-semibold text-[#0F172A]">Selective GLP-1R agonists</h3>
         <p className="leading-relaxed text-[#475569]">
-          Semaglutide is still the reference single-receptor agonist. The STEP programme reported about 14.9%
+          <Link href="/semaglutide" className="text-[#0D9488] hover:underline">
+            Semaglutide
+          </Link>{" "}
+          is still the reference single-receptor agonist. The STEP programme reported about 14.9%
           mean weight reduction over 68 weeks in non-diabetic subjects.{" "}
           <a
             href="https://www.sciencedirect.com/science/article/abs/pii/S2451847626000047"
@@ -149,7 +155,10 @@ export function GlpOneResearchContent() {
           Dual GLP-1/GIP agonists and the tirzepatide research peptide
         </h3>
         <p className="leading-relaxed text-[#475569]">
-          Tirzepatide activates GIPR as well as GLP-1R. GIPR activity changes energy expenditure and
+          <Link href="/tirzepatide" className="text-[#0D9488] hover:underline">
+            Tirzepatide
+          </Link>{" "}
+          activates GIPR as well as GLP-1R. GIPR activity changes energy expenditure and
           postprandial insulin release in ways a pure GLP-1 agonist does not. Preclinical work also links
           dual agonism to cerebral glucose metabolism and neurotrophic factor expression in Alzheimer model
           rats.{" "}
@@ -174,13 +183,20 @@ export function GlpOneResearchContent() {
             [5]
           </a>{" "}
           For a GLP-1 research lab that wants the marginal GIPR contribution, the clean design is
-          tirzepatide versus semaglutide in the same assay, same buffer, same readout. That isolates
-          co-operativity without inventing a new endpoint.
+          tirzepatide versus{" "}
+          <Link href="/semaglutide" className="text-[#0D9488] hover:underline">
+            semaglutide
+          </Link>{" "}
+          in the same assay, same buffer, same readout. That isolates co-operativity without inventing a new
+          endpoint.
         </p>
 
         <h3 className="text-lg font-semibold text-[#0F172A]">Triple GLP-1/GIP/glucagon agonists</h3>
         <p className="leading-relaxed text-[#475569]">
-          Retatrutide adds glucagon receptor agonism. Glucagon raises hepatic glucose output and
+          <Link href="/retatrutide" className="text-[#0D9488] hover:underline">
+            Retatrutide
+          </Link>{" "}
+          adds glucagon receptor agonism. Glucagon raises hepatic glucose output and
           thermogenesis. In Phase 2 dose-ranging work, retatrutide produced 24.2% mean weight reduction over
           48 weeks.{" "}
           <a
@@ -192,10 +208,25 @@ export function GlpOneResearchContent() {
             [6]
           </a>{" "}
           Phase 3 packages are still in progress. Retatrutide is investigational. It is sold here as a
-          research compound, not as a drug.
+          research compound, not as a drug. For a longer look at liver, kidney, and osteoarthritis readouts
+          beyond weight loss, see{" "}
+          <Link
+            href="/blog/retatrutide-benefits-beyond-weight-loss"
+            className="text-[#0D9488] hover:underline"
+          >
+            retatrutide benefits beyond weight loss
+          </Link>
+          .
         </p>
         <p className="leading-relaxed text-[#475569]">
-          Pipeline neighbours such as survodutide (GLP-1/glucagon) and cagrilintide plus semaglutide
+          Pipeline neighbours such as{" "}
+          <Link href="/survodutide-10mg" className="text-[#0D9488] hover:underline">
+            survodutide
+          </Link>{" "}
+          (GLP-1/glucagon) and{" "}
+          <Link href="/cagrilintide-semaglutide" className="text-[#0D9488] hover:underline">
+            cagrilintide plus semaglutide
+          </Link>{" "}
           combinations show the same pattern: more receptors, different hepatic and adipose readouts. If your
           endpoint is hepatic lipid flux, a triple agonist is a different tool from a selective GLP-1R peptide.
           If your endpoint is GLP-1R-only signalling, start with semaglutide.
@@ -278,10 +309,19 @@ export function GlpOneResearchContent() {
         <p className="leading-relaxed text-[#475569]">
           EVOKE is the first large clinical test of that preclinical pile. Until those results land, parallel
           in-vitro and rodent work with{" "}
-          <Link href="/shop" className="text-[#0D9488] hover:underline">
-            tirzepatide or retatrutide
+          <Link href="/tirzepatide" className="text-[#0D9488] hover:underline">
+            tirzepatide
+          </Link>{" "}
+          or{" "}
+          <Link href="/retatrutide" className="text-[#0D9488] hover:underline">
+            retatrutide
           </Link>{" "}
           still needs a fixed assay design, a documented stock concentration, and a lot number on every figure.
+          Related metabolic assays also sit in the{" "}
+          <Link href="/category/metabolic-mitochondrial" className="text-[#0D9488] hover:underline">
+            metabolic and mitochondrial
+          </Link>{" "}
+          catalogue when the question is energy flux rather than incretin receptor identity.
         </p>
 
         <figure className="overflow-hidden rounded-xl">
@@ -385,14 +425,22 @@ export function GlpOneResearchContent() {
             injection schedule.
           </li>
           <li className="leading-relaxed">
-            Lot-linked COA PDFs from the supplier you actually ordered. A generic purity claim with no batch
-            ID is not a tool. It is a risk.
+            Lot-linked COA PDFs from the supplier you actually ordered. Browse Tetrava's{" "}
+            <Link href="/coa-library" className="text-[#0D9488] hover:underline">
+              COA Library
+            </Link>{" "}
+            by compound before you commit a protocol. A generic purity claim with no batch ID is not a tool.
+            It is a risk.
           </li>
         </ul>
         <p className="leading-relaxed text-[#475569]">
           Named-entity searches such as "professor peptides GLP-1 research compounds" or "Rebecca Diamond
           GLP-1 research" often land on third-party blogs or other sellers. Treat those as navigation noise.
-          Match your order to compound identity, HPLC-MS data, and a lot number instead.
+          Match your order to compound identity, HPLC-MS data, and a lot number instead. The{" "}
+          <Link href="/blog" className="text-[#0D9488] hover:underline">
+            Research Hub
+          </Link>{" "}
+          is the place for longer compound write-ups on this site.
         </p>
       </section>
 
@@ -401,8 +449,28 @@ export function GlpOneResearchContent() {
         <p className="leading-relaxed text-[#475569]">
           Keep lyophilized GLP-1 research peptides at -20°C, dry, and dark until you open the vial. Once
           reconstituted under your lab SOP, aliquot. Avoid repeated freeze-thaw. Fatty-acylated analogues
-          (semaglutide, tirzepatide, retatrutide) are more prone to surface loss and aggregation than short
-          linear peptides, so document solvent, concentration, and hold time on every aliquot label.
+          (
+          <Link href="/semaglutide" className="text-[#0D9488] hover:underline">
+            semaglutide
+          </Link>
+          ,{" "}
+          <Link href="/tirzepatide" className="text-[#0D9488] hover:underline">
+            tirzepatide
+          </Link>
+          ,{" "}
+          <Link href="/retatrutide" className="text-[#0D9488] hover:underline">
+            retatrutide
+          </Link>
+          ) are more prone to surface loss and aggregation than short linear peptides, so document solvent,
+          concentration, and hold time on every aliquot label. Cold-chain packaging details are on the{" "}
+          <Link href="/shipping" className="text-[#0D9488] hover:underline">
+            shipping
+          </Link>{" "}
+          page. Diluents and related lab reagents live under{" "}
+          <Link href="/category/lab-supplies" className="text-[#0D9488] hover:underline">
+            lab supplies
+          </Link>
+          .
         </p>
         <p className="leading-relaxed text-[#475569]">
           Do not treat a "dosage calculator" screenshot as a stability study. If you need working-concentration
@@ -441,12 +509,31 @@ export function GlpOneResearchContent() {
         <p className="leading-relaxed text-[#475569]">
           If the query is "GLP-1 research peptides where to buy" or "where to buy online," the useful filter
           is documentation, not a discount code. Confirm the compound name and strength match your protocol,
-          open the COA for that lot, check cold-chain shipping, and keep the order for research use only.
+          open the COA for that lot, check{" "}
+          <Link href="/shipping" className="text-[#0D9488] hover:underline">
+            cold-chain shipping
+          </Link>
+          , and keep the order for{" "}
+          <Link href="/ruo" className="text-[#0D9488] hover:underline">
+            research use only
+          </Link>
+          .
         </p>
         <p className="leading-relaxed text-[#475569]">
           This catalogue lists GLP-1 research peptides for sale as RUO reagents. They are not for human
-          consumption, diagnosis, or therapy. Browse the products above for semaglutide, tirzepatide, and
-          related incretin compounds, then cross-check purity in the{" "}
+          consumption, diagnosis, or therapy. Start with{" "}
+          <Link href="/semaglutide" className="text-[#0D9488] hover:underline">
+            semaglutide
+          </Link>
+          ,{" "}
+          <Link href="/tirzepatide" className="text-[#0D9488] hover:underline">
+            tirzepatide
+          </Link>
+          , or{" "}
+          <Link href="/retatrutide" className="text-[#0D9488] hover:underline">
+            retatrutide
+          </Link>
+          , then cross-check purity in the{" "}
           <Link href="/coa-library" className="text-[#0D9488] hover:underline">
             COA Library
           </Link>
@@ -457,16 +544,33 @@ export function GlpOneResearchContent() {
       <section className="space-y-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
         <h2 className="font-serif text-xl text-[#0F172A]">GLP-1 research compounds at Tetrava</h2>
         <p className="leading-relaxed text-[#475569]">
-          All compounds are for <strong>research use only (RUO)</strong>. Not for human consumption,
-          diagnosis, or therapy. Semaglutide, tirzepatide, and retatrutide ship lyophilized with lot-linked
-          HPLC-MS documentation and cold-chain packaging.
+          All compounds are for{" "}
+          <Link href="/ruo" className="font-medium text-[#0D9488] hover:underline">
+            research use only (RUO)
+          </Link>
+          . Not for human consumption, diagnosis, or therapy.{" "}
+          <Link href="/semaglutide" className="text-[#0D9488] hover:underline">
+            Semaglutide
+          </Link>
+          ,{" "}
+          <Link href="/tirzepatide" className="text-[#0D9488] hover:underline">
+            tirzepatide
+          </Link>
+          , and{" "}
+          <Link href="/retatrutide" className="text-[#0D9488] hover:underline">
+            retatrutide
+          </Link>{" "}
+          ship lyophilized with lot-linked HPLC-MS documentation and cold-chain packaging.
         </p>
         <div className="flex flex-wrap gap-3">
           <Link href="/shop" className="btn-primary text-sm">
-            Browse GLP-1 research products
+            Browse all research peptides
           </Link>
           <Link href="/coa-library" className="btn-secondary text-sm">
             View COA library
+          </Link>
+          <Link href="/blog/retatrutide-benefits-beyond-weight-loss" className="btn-secondary text-sm">
+            Retatrutide research article
           </Link>
         </div>
       </section>

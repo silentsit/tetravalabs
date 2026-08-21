@@ -131,10 +131,13 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   },
   {
     categorySlug: "research-blends",
+    seoTitle: "Research Blends | Peptide Blends for Sale",
+    seoDescription:
+      "Shop research blends and peptide blends for laboratory use. Fixed-ratio RUO reagents with 99%+ HPLC-MS purity, lot-linked COA, and cold-chain shipping.",
     introCopy:
-      "Multi-peptide research blends formulated for studies that require combined compound profiles in a single vial.",
+      "Research blends and peptide blends for laboratory studies that need fixed-ratio, multi-compound reagents in one vial. Browse tissue-repair, GH-axis, and incretin blend products with 99%+ HPLC-MS purity and lot-linked COA documentation. Research use only.",
     supportingCopy:
-      "Each blend SKU includes variant-level COA documentation where published. Verify batch IDs before use."
+      "Each blend SKU includes variant-level COA documentation where published. Verify batch IDs and component identity before use."
   },
   {
     categorySlug: "lab-supplies",

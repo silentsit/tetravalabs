@@ -19,6 +19,7 @@ import { buildPageMetadata } from "@/lib/seo"
 import { sortProducts } from "@/lib/sort-products"
 import { PageJsonLd } from "@/components/page-json-ld"
 import { GlpOneResearchContent } from "@/components/category/GlpOneResearchContent"
+import { ResearchBlendsContent } from "@/components/category/ResearchBlendsContent"
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -127,6 +128,7 @@ export default async function CategoryPage({ params }: Props) {
       )}
 
       {normalized === "glp-1-research" && <GlpOneResearchContent />}
+      {normalized === "research-blends" && <ResearchBlendsContent />}
     </section>
   )
 }

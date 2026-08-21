@@ -6,6 +6,9 @@ import { localImageProps } from "@/lib/local-image"
 type Props = {
   publishedAt?: string | null
   updatedAt?: string | null
+  /** Compact meta under the title. Default is the full E-E-A-T card. */
+  variant?: "compact" | "card"
+  readTime?: string
 }
 
 function formatDate(value?: string | null) {
@@ -16,13 +19,46 @@ function formatDate(value?: string | null) {
 }
 
 /** Visible Research Hub byline — Tetrava Labs Editorial Team only (no invented reviewers). */
-export function EditorialByline({ publishedAt, updatedAt }: Props) {
+export function EditorialByline({
+  publishedAt,
+  updatedAt,
+  variant = "card",
+  readTime
+}: Props) {
   const author = getAuthor("editorial-team")
   const published = formatDate(publishedAt)
   const updated = formatDate(updatedAt)
   const showUpdated = Boolean(updated && updated !== published)
   const aboutHref = author.url || "/about"
   const photo = author.image || "/authors/tetrava-editorial-team.jpg"
+
+  if (variant === "compact") {
+    return (
+      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[#94A3B8]">
+        <Link href={aboutHref} className="font-medium text-[#475569] hover:text-[#0D9488]">
+          {author.name}
+        </Link>
+        {published ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <time dateTime={publishedAt || undefined}>{published}</time>
+          </>
+        ) : null}
+        {showUpdated ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <time dateTime={updatedAt || undefined}>Updated {updated}</time>
+          </>
+        ) : null}
+        {readTime ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>{readTime}</span>
+          </>
+        ) : null}
+      </p>
+    )
+  }
 
   return (
     <div className="flex gap-4 rounded-xl border border-[#E2E8F0] bg-white p-4">

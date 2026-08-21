@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Clock } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { getBlogPostBySlug, listBlogPosts } from "@/lib/sanity"
 import { listProductsByHandles, type StoreProduct } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
@@ -14,6 +14,7 @@ import { ComplianceNotice } from "@/components/compliance-notice"
 import { PageJsonLd } from "@/components/page-json-ld"
 import { YoutubeEmbed } from "@/components/youtube-embed"
 import { EditorialByline } from "@/components/editorial-byline"
+import { ArticleShareLinks } from "@/components/article-share-links"
 import {
   blogImageForPost,
   collectProductEmbedHandles,
@@ -102,21 +103,20 @@ export default async function BlogArticlePage({ params }: Props) {
           </span>
         ) : null}
         <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">{post.title}</h1>
-        <div className="mt-5">
+        <div className="mt-4">
           <EditorialByline
+            variant="compact"
             publishedAt={post.publishedAt}
             updatedAt={
               isMeaningfullyUpdated(post.publishedAt, post.updatedAt) ? post.updatedAt : undefined
             }
+            readTime={formatReadTime(post.readTimeMinutes)}
           />
         </div>
-        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-[#94A3B8]">
-          <span className="flex items-center gap-1">
-            <Clock className="h-4 w-4" aria-hidden />
-            {formatReadTime(post.readTimeMinutes)}
-          </span>
-        </div>
         {post.excerpt ? <p className="mt-4 text-lg text-[#475569]">{post.excerpt}</p> : null}
+        <div className="mt-6">
+          <ArticleShareLinks url={pageUrl(`/blog/${slug}`)} title={post.title} />
+        </div>
       </header>
 
       {video ? (
@@ -147,6 +147,19 @@ export default async function BlogArticlePage({ params }: Props) {
       <BlogBody body={post.body} productsByHandle={productsByHandle} />
 
       <CitationFootnote references={post.references} />
+
+      <EditorialByline
+        publishedAt={post.publishedAt}
+        updatedAt={
+          isMeaningfullyUpdated(post.publishedAt, post.updatedAt) ? post.updatedAt : undefined
+        }
+      />
+
+      <ArticleShareLinks
+        url={pageUrl(`/blog/${slug}`)}
+        title={post.title}
+        label="Share this article at the end"
+      />
 
       <div className="flex flex-wrap gap-3">
         <Link href="/shop" className="btn-primary inline-flex">

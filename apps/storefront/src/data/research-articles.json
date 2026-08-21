@@ -340,6 +340,11 @@
         "style": "normal",
         "markDefs": [
           {
+            "_key": "lnkhome1",
+            "_type": "link",
+            "href": "/"
+          },
+          {
             "_key": "lnksem1",
             "_type": "link",
             "href": "/semaglutide"
@@ -359,7 +364,19 @@
           {
             "_type": "span",
             "_key": "sp41b",
-            "text": "For laboratory receptor-selectivity work, ",
+            "text": "For ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp41bhome",
+            "text": "laboratory research",
+            "marks": ["lnkhome1"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp41b",
+            "text": " on receptor selectivity, ",
             "marks": []
           },
           {
@@ -846,6 +863,11 @@
         "style": "normal",
         "markDefs": [
           {
+            "_key": "lnkhome-reta",
+            "_type": "link",
+            "href": "/"
+          },
+          {
             "_key": "lnk106",
             "_type": "link",
             "href": "/category/glp-1-research"
@@ -870,7 +892,19 @@
           {
             "_type": "span",
             "_key": "sp105",
-            "text": "For qualified laboratories studying GIP/GLP-1/glucagon triple agonism, Tetrava's ",
+            "text": "For qualified laboratories studying GIP/GLP-1/glucagon triple agonism, ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp105home",
+            "text": "Tetrava Labs",
+            "marks": ["lnkhome-reta"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp105b",
+            "text": "' ",
             "marks": []
           },
           {
@@ -1029,7 +1063,7 @@
     "readTimeMinutes": 7,
     "publishedAt": "2026-08-08T00:00:00.000Z",
     "updatedAt": "2026-08-14T00:00:00.000Z",
-    "body": "\"BPC-157 vs TB-500\" gets framed as a matchup between two healing peptides. That framing skips the real question: how much of what people say about either one comes from a study you could hand to a doctor? Not much. Neither peptide is FDA-approved. Both sit on the 2026 World Anti-Doping Agency (WADA) Prohibited List at all times, with no exception for reason or dose. Beyond that shared regulatory status, the two compounds split in a way most comparisons skip entirely: TB-500 sold on the research-chemical market has been chemically identified as a short fragment of a different, better-studied protein, not as the protein itself. That distinction changes what evidence you're allowed to borrow.\n\n## Quick comparison\n\nBPC-157 is a synthetic pentadecapeptide, 15 amino acids, modeled on a fragment of a human gastric protein. TB-500 is marketed as thymosin beta-4, but analytical testing identified it as the acetylated 17-23 fragment (Ac-LKKTETQ) of that protein instead. Weight tells the same story: BPC-157 runs about 1,419 daltons. The TB-500 fragment comes in at roughly 888 daltons, next to about 4,963 daltons for full-length thymosin beta-4. On evidence, BPC-157 has a deep pool of animal and cell data on tendon and muscle angiogenesis. TB-500's human trials, meanwhile, were run almost entirely on full-length recombinant thymosin beta-4, not the fragment actually sold under that name. Human exposure numbers are thin on both sides: fewer than 30 subjects across uncontrolled BPC-157 pilot work, according to a 2026 pharmaceutical development review, against Phase I safety data in 54 healthy volunteers for full-length thymosin beta-4. Regulators treat them alike. The FDA added both BPC-157 and the thymosin beta-4 fragment LKKTETQ to its Category 2 significant safety risk list in September 2023. WADA bans both at all times in 2026: BPC-157 under S0, Non-Approved Substances; TB-500 under S2, Growth Factors, as a thymosin beta-4 derivative.\n\n## BPC-157 vs TB-500: what are you actually comparing?\n\nHere's the part most articles miss. A head-to-head between BPC-157 and TB-500 isn't a clean two-molecule comparison. BPC-157 is one defined sequence. TB-500 is a product name, not a settled structure.\n\nMass-spectrometry work published in Drug Testing and Analysis analyzed vials sold as TB-500 and found a molecule weighing 888.49 daltons: the N-terminal acetylated 17-23 fragment of thymosin beta-4, written as Ac-LKKTETQ. That's not the intact protein, which runs 43 amino acids and about 4,963 daltons. The gap matters because most of the credible human research on thymosin beta-4, including a Phase I dose-escalation trial in 54 healthy volunteers, a European randomized trial in venous leg ulcers, and ongoing cardiac trials for heart attack recovery, used the full-length recombinant protein. None of it used the seven-residue fragment. So when a vendor or forum post cites a thymosin beta-4 heart or wound-healing study to back up TB-500, they're borrowing evidence from one molecule and applying it to a smaller, different one that was never tested that way. Independent lab checks of research-market vials are still limited, so nobody can even confirm that every vial labeled TB-500 contains a consistent fragment at a consistent purity. This one point of confusion probably drives more overstated claims about TB-500 than anything else, because it lets sellers borrow decades of a different molecule's clinical history for free.\n\n## What the BPC-157 evidence actually shows\n\nBPC-157's animal and cell-culture data are genuinely deep. Studies link it to VEGF-driven angiogenesis in healing tendon and muscle tissue, and to higher growth hormone receptor expression in Achilles tendon fibroblasts, a mechanism researchers proposed as one driver of the tendon-repair effects seen in rodents.\n\nA 2026 orthopaedic sports medicine systematic review counted 36 total studies through mid-2024. Thirty-five were preclinical. One was clinical. That one clinical study was a retrospective case series: 7 of 12 patients with chronic knee pain reported relief lasting more than six months after an intra-articular injection. No control group. No standardized product. A separately registered human safety trial, NCT02637284, was never published, and reporting cited in an independent evidence review says its data were pulled before outside review could happen.\n\nAs of 2026, one placebo-controlled Phase 2 trial, BPC-HAMSTR (NCT07437547), is actively recruiting to test BPC-157 for acute hamstring strains. It's worth watching, because it would be the first controlled human efficacy data for a musculoskeletal indication. Until it reads out, every claim about BPC-157 speeding tendon or ligament recovery in people rests on rodent extrapolation, not confirmed human outcomes.\n\n## What the TB-500/thymosin beta-4 evidence actually shows\n\nSet the fragment-versus-protein issue aside for a second and look at what's actually been tested.\n\nFull-length recombinant thymosin beta-4 has a real, if narrow, human safety record. A randomized Phase I study gave single and multiple intravenous doses to 54 healthy volunteers and reported only mild-to-moderate adverse events, with no dose-limiting toxicities. Topical thymosin beta-4 has also been studied in a compassionate-use case series for chronic corneal defects, nine patients, and in a randomized European trial for venous leg ulcers. On the cardiac side, a completed Phase IIa trial (NCT05485818) and an upcoming Phase IIc trial (NCT07586865) are evaluating intravenous recombinant thymosin beta-4 after heart attacks, using cardiac MRI to measure infarct size.\n\nNone of these trials used the LKKTETQ fragment identified in TB-500 vials. None targeted the tendon, ligament, or soft-tissue injuries that TB-500 is typically marketed for in fitness and recovery circles. The mechanistic case for the fragment rests on in-vitro cell-migration assays showing LKKTETQ can copy some of the parent protein's actin-regulating activity. That's a real finding. It's also one step removed from a clinical outcome in an actual person.\n\n## An evidence-portability check before you trust any claim\n\nBefore accepting a claim about either peptide, run it through four questions. Was this shown in a dish, an animal, or a person? If it was an animal, has anyone confirmed the same result in humans? If the human study used a different formulation, full protein versus fragment, or pharmaceutical-grade compound versus an online vial, does the finding actually carry over? And has the specific product been independently checked to contain what the label says?\n\nMost enthusiastic claims about BPC-157 and TB-500 fail at least one of those checks. Usually it's the animal-to-human step for BPC-157, or the full-protein-to-fragment step for TB-500. Running a claim through this list takes under a minute, and it filters out most of the marketing language built on borrowed evidence.\n\n## Safety and regulatory reality\n\nThe FDA placed both BPC-157 and the thymosin beta-4 fragment LKKTETQ into Category 2 of its 503A bulk drug substance list in September 2023. Compounding pharmacies can't use either as an active ingredient as a result. The agency's stated reasoning: immunogenicity risk for certain routes of administration, unresolved peptide-impurity characterization, and not enough safety data to rule out harm. That last point matters. It's not a finding that the substances are dangerous. It's an admission that nobody has the data to say they aren't.\n\nBoth substances are also banned at all times under WADA's 2026 Prohibited List. Any athlete subject to testing risks a sanction regardless of why they used it, including cosmetic reasons or off-label recovery.\n\n## The bottom line\n\nBPC-157 has a large, consistent animal literature and almost no controlled human data. TB-500 inherits a stronger human safety record only by association with a different, larger molecule that most vials probably don't contain. Neither one has been shown, in a controlled human trial, to do what it's commonly sold for.\n\nIf you're recovering from a soft-tissue injury, the option with the most actual evidence behind it is still the boring one: physical therapy, graded loading, and, where you qualify, enrollment in one of the ongoing registered trials rather than an unregulated vial from a research-chemical seller.\n\n## Sourcing for laboratory research\n\nFor in-vitro or animal model work, compare [BPC-157](/bpc-157) and [TB-500](/tb500) lot documentation in the [COA Library](/coa-library). Related repair peptides are listed in the [tissue repair category](/category/tissue-repair).\n\n## FAQ\n\nIs TB-500 the same as thymosin beta-4? No. Analytical testing identified TB-500 as a seven-amino-acid acetylated fragment of the 43-amino-acid thymosin beta-4 protein. Labeling in the research-chemical market is inconsistent, so purity and identity aren't guaranteed from vial to vial.\n\nAre BPC-157 and TB-500 legal to buy? They're sold as research chemicals. The FDA has said there's no legal basis for compounding pharmacies to use either in a prescription product, and both are banned in tested sports.\n\nIs there any ongoing human research? Yes. A Phase 2 trial of BPC-157 for hamstring strains and Phase II cardiac trials of full-length recombinant thymosin beta-4 are both active right now, and either one could meaningfully change this picture.\n\nWhat does it mean that both are on WADA's Prohibited List \"at all times\"? It means the ban applies in and out of competition, with no minimum dose and no therapeutic-use exception for either substance. A tested athlete can be sanctioned for using either one for recovery, even outside a competition window.",
+    "body": "\"BPC-157 vs TB-500\" gets framed as a matchup between two healing peptides. That framing skips the real question: how much of what people say about either one comes from a study you could hand to a doctor? Not much. Neither peptide is FDA-approved. Both sit on the 2026 World Anti-Doping Agency (WADA) Prohibited List at all times, with no exception for reason or dose. Beyond that shared regulatory status, the two compounds split in a way most comparisons skip entirely: TB-500 sold on the research-chemical market has been chemically identified as a short fragment of a different, better-studied protein, not as the protein itself. That distinction changes what evidence you're allowed to borrow.\n\n## Quick comparison\n\nBPC-157 is a synthetic pentadecapeptide, 15 amino acids, modeled on a fragment of a human gastric protein. TB-500 is marketed as thymosin beta-4, but analytical testing identified it as the acetylated 17-23 fragment (Ac-LKKTETQ) of that protein instead. Weight tells the same story: BPC-157 runs about 1,419 daltons. The TB-500 fragment comes in at roughly 888 daltons, next to about 4,963 daltons for full-length thymosin beta-4. On evidence, BPC-157 has a deep pool of animal and cell data on tendon and muscle angiogenesis. TB-500's human trials, meanwhile, were run almost entirely on full-length recombinant thymosin beta-4, not the fragment actually sold under that name. Human exposure numbers are thin on both sides: fewer than 30 subjects across uncontrolled BPC-157 pilot work, according to a 2026 pharmaceutical development review, against Phase I safety data in 54 healthy volunteers for full-length thymosin beta-4. Regulators treat them alike. The FDA added both BPC-157 and the thymosin beta-4 fragment LKKTETQ to its Category 2 significant safety risk list in September 2023. WADA bans both at all times in 2026: BPC-157 under S0, Non-Approved Substances; TB-500 under S2, Growth Factors, as a thymosin beta-4 derivative.\n\n## BPC-157 vs TB-500: what are you actually comparing?\n\nHere's the part most articles miss. A head-to-head between BPC-157 and TB-500 isn't a clean two-molecule comparison. BPC-157 is one defined sequence. TB-500 is a product name, not a settled structure.\n\nMass-spectrometry work published in Drug Testing and Analysis analyzed vials sold as TB-500 and found a molecule weighing 888.49 daltons: the N-terminal acetylated 17-23 fragment of thymosin beta-4, written as Ac-LKKTETQ. That's not the intact protein, which runs 43 amino acids and about 4,963 daltons. The gap matters because most of the credible human research on thymosin beta-4, including a Phase I dose-escalation trial in 54 healthy volunteers, a European randomized trial in venous leg ulcers, and ongoing cardiac trials for heart attack recovery, used the full-length recombinant protein. None of it used the seven-residue fragment. So when a vendor or forum post cites a thymosin beta-4 heart or wound-healing study to back up TB-500, they're borrowing evidence from one molecule and applying it to a smaller, different one that was never tested that way. Independent lab checks of research-market vials are still limited, so nobody can even confirm that every vial labeled TB-500 contains a consistent fragment at a consistent purity. This one point of confusion probably drives more overstated claims about TB-500 than anything else, because it lets sellers borrow decades of a different molecule's clinical history for free.\n\n## What the BPC-157 evidence actually shows\n\nBPC-157's animal and cell-culture data are genuinely deep. Studies link it to VEGF-driven angiogenesis in healing tendon and muscle tissue, and to higher growth hormone receptor expression in Achilles tendon fibroblasts, a mechanism researchers proposed as one driver of the tendon-repair effects seen in rodents.\n\nA 2026 orthopaedic sports medicine systematic review counted 36 total studies through mid-2024. Thirty-five were preclinical. One was clinical. That one clinical study was a retrospective case series: 7 of 12 patients with chronic knee pain reported relief lasting more than six months after an intra-articular injection. No control group. No standardized product. A separately registered human safety trial, NCT02637284, was never published, and reporting cited in an independent evidence review says its data were pulled before outside review could happen.\n\nAs of 2026, one placebo-controlled Phase 2 trial, BPC-HAMSTR (NCT07437547), is actively recruiting to test BPC-157 for acute hamstring strains. It's worth watching, because it would be the first controlled human efficacy data for a musculoskeletal indication. Until it reads out, every claim about BPC-157 speeding tendon or ligament recovery in people rests on rodent extrapolation, not confirmed human outcomes.\n\n## What the TB-500/thymosin beta-4 evidence actually shows\n\nSet the fragment-versus-protein issue aside for a second and look at what's actually been tested.\n\nFull-length recombinant thymosin beta-4 has a real, if narrow, human safety record. A randomized Phase I study gave single and multiple intravenous doses to 54 healthy volunteers and reported only mild-to-moderate adverse events, with no dose-limiting toxicities. Topical thymosin beta-4 has also been studied in a compassionate-use case series for chronic corneal defects, nine patients, and in a randomized European trial for venous leg ulcers. On the cardiac side, a completed Phase IIa trial (NCT05485818) and an upcoming Phase IIc trial (NCT07586865) are evaluating intravenous recombinant thymosin beta-4 after heart attacks, using cardiac MRI to measure infarct size.\n\nNone of these trials used the LKKTETQ fragment identified in TB-500 vials. None targeted the tendon, ligament, or soft-tissue injuries that TB-500 is typically marketed for in fitness and recovery circles. The mechanistic case for the fragment rests on in-vitro cell-migration assays showing LKKTETQ can copy some of the parent protein's actin-regulating activity. That's a real finding. It's also one step removed from a clinical outcome in an actual person.\n\n## An evidence-portability check before you trust any claim\n\nBefore accepting a claim about either peptide, run it through four questions. Was this shown in a dish, an animal, or a person? If it was an animal, has anyone confirmed the same result in humans? If the human study used a different formulation, full protein versus fragment, or pharmaceutical-grade compound versus an online vial, does the finding actually carry over? And has the specific product been independently checked to contain what the label says?\n\nMost enthusiastic claims about BPC-157 and TB-500 fail at least one of those checks. Usually it's the animal-to-human step for BPC-157, or the full-protein-to-fragment step for TB-500. Running a claim through this list takes under a minute, and it filters out most of the marketing language built on borrowed evidence.\n\n## Safety and regulatory reality\n\nThe FDA placed both BPC-157 and the thymosin beta-4 fragment LKKTETQ into Category 2 of its 503A bulk drug substance list in September 2023. Compounding pharmacies can't use either as an active ingredient as a result. The agency's stated reasoning: immunogenicity risk for certain routes of administration, unresolved peptide-impurity characterization, and not enough safety data to rule out harm. That last point matters. It's not a finding that the substances are dangerous. It's an admission that nobody has the data to say they aren't.\n\nBoth substances are also banned at all times under WADA's 2026 Prohibited List. Any athlete subject to testing risks a sanction regardless of why they used it, including cosmetic reasons or off-label recovery.\n\n## The bottom line\n\nBPC-157 has a large, consistent animal literature and almost no controlled human data. TB-500 inherits a stronger human safety record only by association with a different, larger molecule that most vials probably don't contain. Neither one has been shown, in a controlled human trial, to do what it's commonly sold for.\n\nIf you're recovering from a soft-tissue injury, the option with the most actual evidence behind it is still the boring one: physical therapy, graded loading, and, where you qualify, enrollment in one of the ongoing registered trials rather than an unregulated vial from a research-chemical seller.\n\n## Sourcing for laboratory research\n\nFor [laboratory research](/) in vitro or in animal models, compare [BPC-157](/bpc-157) and [TB-500](/tb500) lot documentation in the [COA Library](/coa-library). Related repair peptides are listed in the [tissue repair category](/category/tissue-repair).\n\n## FAQ\n\nIs TB-500 the same as thymosin beta-4? No. Analytical testing identified TB-500 as a seven-amino-acid acetylated fragment of the 43-amino-acid thymosin beta-4 protein. Labeling in the research-chemical market is inconsistent, so purity and identity aren't guaranteed from vial to vial.\n\nAre BPC-157 and TB-500 legal to buy? They're sold as research chemicals. The FDA has said there's no legal basis for compounding pharmacies to use either in a prescription product, and both are banned in tested sports.\n\nIs there any ongoing human research? Yes. A Phase 2 trial of BPC-157 for hamstring strains and Phase II cardiac trials of full-length recombinant thymosin beta-4 are both active right now, and either one could meaningfully change this picture.\n\nWhat does it mean that both are on WADA's Prohibited List \"at all times\"? It means the ban applies in and out of competition, with no minimum dose and no therapeutic-use exception for either substance. A tested athlete can be sanctioned for using either one for recovery, even outside a competition window.",
     "image": "/images/blog/asian-biochemist-comparing-bpc-157-vs-tb-500.webp",
     "references": [
       {
@@ -1564,6 +1598,11 @@
         "style": "normal",
         "markDefs": [
           {
+            "_key": "lnk-home-ipa",
+            "_type": "link",
+            "href": "/"
+          },
+          {
             "_key": "lnk62",
             "_type": "link",
             "href": "/category/growth-hormone-axis"
@@ -1593,7 +1632,19 @@
           {
             "_type": "span",
             "_key": "sp61",
-            "text": "For laboratory research, that means treating claims about each compound as claims about that compound specifically. Sermorelin's elderly-adult and pediatric data do not transfer to ipamorelin, and ipamorelin's selectivity data do not transfer to sermorelin. Cross-reference ",
+            "text": "For ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp61home",
+            "text": "laboratory research",
+            "marks": ["lnk-home-ipa"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp61",
+            "text": ", that means treating claims about each compound as claims about that compound specifically. Sermorelin's elderly-adult and pediatric data do not transfer to ipamorelin, and ipamorelin's selectivity data do not transfer to sermorelin. Cross-reference ",
             "marks": []
           },
           {
@@ -1826,18 +1877,47 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-15T08:11:28.490Z",
-    "updatedAt": "2026-08-15T08:25:00.000Z",
+    "updatedAt": "2026-08-21T04:20:00.000Z",
     "body": [
       {
         "_type": "block",
         "_key": "blk1",
         "style": "normal",
-        "markDefs": [],
+        "markDefs": [
+          {
+            "_key": "lnk-tesa-intro",
+            "_type": "link",
+            "href": "/tesamorelin"
+          },
+          {
+            "_key": "lnk-sermo-intro",
+            "_type": "link",
+            "href": "/sermorelin"
+          }
+        ],
         "children": [
           {
             "_type": "span",
-            "_key": "sp2",
-            "text": "Tesamorelin is sold as an FDA-approved prescription drug, yet a compounding pharmacy cannot legally make it. Sermorelin has not been sold as an approved drug since 2008, but pharmacies still compound it. The odd result has little to do with which peptide has better trials. It starts with chain length: tesamorelin has 44 amino acids and sermorelin has 29.",
+            "_key": "sp2a",
+            "text": "Tesamorelin",
+            "marks": ["lnk-tesa-intro"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp2b",
+            "text": " is sold as an FDA-approved prescription drug, yet a compounding pharmacy cannot legally make it. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp2c",
+            "text": "Sermorelin",
+            "marks": ["lnk-sermo-intro"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp2d",
+            "text": " has not been sold as an approved drug since 2008, but pharmacies still compound it. The odd result has little to do with which peptide has better trials. It starts with chain length: tesamorelin has 44 amino acids and sermorelin has 29.",
             "marks": []
           }
         ]
@@ -1846,12 +1926,30 @@
         "_type": "block",
         "_key": "blk3",
         "style": "normal",
-        "markDefs": [],
+        "markDefs": [
+          {
+            "_key": "lnk-gha-intro",
+            "_type": "link",
+            "href": "/category/growth-hormone-axis"
+          }
+        ],
         "children": [
           {
             "_type": "span",
-            "_key": "sp4",
-            "text": "Both peptides copy part of human growth hormone-releasing hormone (GHRH), and both stimulate the same pituitary receptor. Their records part company after that. Tesamorelin has two large Phase 3 trials for one narrow indication. Sermorelin has older pediatric approval data and small adult studies. Comparing them requires keeping three questions separate: what the molecule does, what was tested in people, and what federal law permits a pharmacy to prepare.",
+            "_key": "sp4a",
+            "text": "Both peptides copy part of human ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp4b",
+            "text": "growth hormone-releasing hormone (GHRH)",
+            "marks": ["lnk-gha-intro"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp4c",
+            "text": ", and both stimulate the same pituitary receptor. Their records part company after that. Tesamorelin has two large Phase 3 trials for one narrow indication. Sermorelin has older pediatric approval data and small adult studies. Comparing them requires keeping three questions separate: what the molecule does, what was tested in people, and what federal law permits a pharmacy to prepare.",
             "marks": []
           }
         ]
@@ -1890,6 +1988,18 @@
         "src": "/images/blog/tesamorelin-vs-sermorelin-lab-comparison.webp",
         "alt": "Researcher holding two labeled vials, tesamorelin and sermorelin, beside a monitor displaying overlapping peptide chain diagrams",
         "caption": "Both peptides reach the same receptor. Fifteen extra amino acids put tesamorelin in a different legal category."
+      },
+      {
+        "_type": "productEmbed",
+        "_key": "pe-tesamorelin",
+        "handle": "tesamorelin",
+        "cardVariant": "featured"
+      },
+      {
+        "_type": "productEmbed",
+        "_key": "pe-sermorelin",
+        "handle": "sermorelin",
+        "cardVariant": "featured"
       },
       {
         "_type": "block",
@@ -2217,6 +2327,11 @@
         "style": "normal",
         "markDefs": [
           {
+            "_key": "lnk-home",
+            "_type": "link",
+            "href": "/"
+          },
+          {
             "_key": "lnk51",
             "_type": "link",
             "href": "/category/growth-hormone-axis"
@@ -2251,7 +2366,19 @@
           {
             "_type": "span",
             "_key": "sp50",
-            "text": "For laboratory research, approval and compounding legality need separate checks. Tesamorelin is the useful counterexample: approval did not make it compoundable. Compare ",
+            "text": "For ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp50home",
+            "text": "laboratory research",
+            "marks": ["lnk-home"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp50",
+            "text": ", approval and compounding legality need separate checks. Tesamorelin is the useful counterexample: approval did not make it compoundable. Compare ",
             "marks": []
           },
           {
@@ -2414,12 +2541,47 @@
         "_type": "block",
         "_key": "blk68",
         "style": "normal",
-        "markDefs": [],
+        "markDefs": [
+          {
+            "_key": "lnk-ipa-faq",
+            "_type": "link",
+            "href": "/ipamorelin"
+          },
+          {
+            "_key": "lnk-ipa-vs-sermo-faq",
+            "_type": "link",
+            "href": "/blog/ipamorelin-vs-sermorelin"
+          }
+        ],
         "children": [
           {
             "_type": "span",
-            "_key": "sp69",
-            "text": "Can tesamorelin and sermorelin be used together? No published human trial has tested that combination. Both act on the same GHRH receptor, so stacking two agonists at one receptor is not the same idea as pairing a GHRH-receptor peptide with a ghrelin-receptor peptide like ipamorelin.",
+            "_key": "sp69a",
+            "text": "Can tesamorelin and sermorelin be used together? No published human trial has tested that combination. Both act on the same GHRH receptor, so stacking two agonists at one receptor is not the same idea as pairing a GHRH-receptor peptide with a ghrelin-receptor peptide like ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp69b",
+            "text": "ipamorelin",
+            "marks": ["lnk-ipa-faq"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp69c",
+            "text": ". See ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "sp69d",
+            "text": "ipamorelin vs sermorelin",
+            "marks": ["lnk-ipa-vs-sermo-faq"]
+          },
+          {
+            "_type": "span",
+            "_key": "sp69e",
+            "text": " for that receptor split.",
             "marks": []
           }
         ]

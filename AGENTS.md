@@ -87,7 +87,7 @@ Canonical inventories: `doc/seo-title-meta.md`, `doc/seo-page-inventory.md`.
 
 - One `h1` per page. `h2` / `h3` for sections. Short paragraphs (3–4 sentences). Lists for dense science.
 - Every scientific claim, trial mention, or mechanism needs an outbound link to PubMed, NCBI, ClinicalTrials.gov, or a peer-reviewed journal. Numbered `[n]` citations on PDPs (`product-research-detail.ts`); Research Hub uses `CitationFootnote`.
-- Internal links: exact- or partial-match anchors to compound PDPs, category pages, `/coa-library`, `/shop`. CTA is specifications, purity/COA, or catalog — never “start your protocol.”
+- Internal links: exact- or partial-match anchors to the homepage (`/`), compound PDPs, category pages, `/coa-library`, `/shop`. Every article or long-form research block needs at least one homepage anchor (prefer "research peptides", "Tetrava Labs", or "laboratory research"). CTA is specifications, purity/COA, or catalog — never "start your protocol."
 - Information gain: compare half-life, stability, binding, or evidence tier. Myth-bust bro-science. No cliché intros.
 - After substantive URL or metadata changes: update `doc/seo-title-meta.md` / `doc/seo-page-inventory.md` and consider IndexNow.
 

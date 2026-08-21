@@ -7,7 +7,7 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react"
 import { ProductCard } from "@/components/product-card"
 import { BlogTable, type BlogTableValue } from "@/components/blog-table"
 import { isPortableBlogBody, parsePlainBlogBlocks, createHeadingIdFactory, portableBlockPlainText, slugifyHeading } from "@/lib/blog-utils"
-import type { BlogBody } from "@/lib/sanity"
+import type { BlogBody, BlogPortableBlock } from "@/lib/sanity"
 import type { StoreProduct } from "@/lib/medusa"
 
 type CardVariant = "shop" | "featured" | "default"
@@ -40,7 +40,7 @@ function renderPlainTextWithLinks(text: string): ReactNode {
       <Link
         key={`${match.index}-${href}`}
         href={href}
-        className="text-[#0D9488] underline-offset-2 hover:underline"
+        className="font-medium text-[#0D9488] underline underline-offset-2 hover:text-[#0F766E]"
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
         {match[1]}
@@ -102,6 +102,43 @@ function BlogImage({ value }: { value: BlogImageValue }) {
   )
 }
 
+function groupPortableBlocks(body: BlogPortableBlock[]): BlogPortableBlock[] {
+  const grouped: BlogPortableBlock[] = []
+  let embeds: BlogPortableBlock[] = []
+
+  const flushEmbeds = () => {
+    if (embeds.length === 1) grouped.push(embeds[0])
+    if (embeds.length > 1) {
+      grouped.push({
+        _type: "productEmbedGroup",
+        _key: `${embeds[0]?._key || "pe"}-group`,
+        items: embeds
+      })
+    }
+    embeds = []
+  }
+
+  for (const block of body) {
+    if (block._type === "productEmbed") {
+      embeds.push(block)
+      continue
+    }
+    flushEmbeds()
+    grouped.push(block)
+  }
+  flushEmbeds()
+  return grouped
+}
+
+function resolveEmbeddedProduct(
+  value: { handle?: string } | null | undefined,
+  productsByHandle: Map<string, StoreProduct>
+): StoreProduct | null {
+  const handle = typeof value?.handle === "string" ? value.handle.trim() : ""
+  if (!handle) return null
+  return productsByHandle.get(handle) || productsByHandle.get(handle.toLowerCase()) || null
+}
+
 function createPortableTextComponents(
   productsByHandle: Map<string, StoreProduct>
 ): PortableTextComponents {
@@ -148,7 +185,7 @@ function createPortableTextComponents(
         return (
           <Link
             href={href}
-            className="text-[#0D9488] underline-offset-2 hover:underline"
+            className="font-medium text-[#0D9488] underline underline-offset-2 hover:text-[#0F766E]"
             {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             {children}
@@ -158,15 +195,27 @@ function createPortableTextComponents(
     },
     types: {
       productEmbed: ({ value }) => {
-        const handle = typeof value?.handle === "string" ? value.handle.trim() : ""
-        if (!handle) return null
-        const product = productsByHandle.get(handle) || productsByHandle.get(handle.toLowerCase())
+        const product = resolveEmbeddedProduct(value, productsByHandle)
         if (!product) return null
         return (
           <div className="my-8 max-w-sm">
             <ProductCard product={product} variant={resolveCardVariant(value?.cardVariant)} />
           </div>
         )
+      },
+      productEmbedGroup: ({ value }) => {
+        const items = Array.isArray(value?.items) ? value.items : []
+        const cards = items.flatMap((item: { handle?: string; cardVariant?: unknown; _key?: string }, index: number) => {
+          const product = resolveEmbeddedProduct(item, productsByHandle)
+          if (!product) return []
+          return [
+            <div key={item._key || `pe-${index}`} className="max-w-sm">
+              <ProductCard product={product} variant={resolveCardVariant(item?.cardVariant)} />
+            </div>
+          ]
+        })
+        if (!cards.length) return null
+        return <div className="my-8 grid gap-6 sm:grid-cols-2">{cards}</div>
       },
       // Custom studio table + @sanity/table plugin documents both use rows[].cells
       tableBlock: ({ value }) => <BlogTable value={(value || {}) as BlogTableValue} />,
@@ -231,7 +280,10 @@ export function BlogBody({ body, productsByHandle }: Props) {
 
   return (
     <div className="card space-y-4 p-6 text-base leading-relaxed text-[#475569]">
-      <PortableText value={body as never} components={createPortableTextComponents(productsByHandle)} />
+      <PortableText
+        value={groupPortableBlocks(body) as never}
+        components={createPortableTextComponents(productsByHandle)}
+      />
     </div>
   )
 }

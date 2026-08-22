@@ -4,7 +4,6 @@ import { SiteLogo } from "@/components/site-logo"
 
 const shopLinks = [
   { label: "All Products", href: "/shop" },
-  { label: "About", href: "/about" },
   { label: "GLP-1 Research", href: "/category/glp-1-research" },
   { label: "Tissue Repair", href: "/category/tissue-repair" },
   { label: "Lab Supplies", href: "/category/lab-supplies" },

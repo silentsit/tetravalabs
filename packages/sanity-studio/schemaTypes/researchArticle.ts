@@ -31,6 +31,25 @@ export const researchArticle = defineType({
       rows: 3
     }),
     defineField({
+      name: "seoTitle",
+      title: "SEO title",
+      type: "string",
+      validation: (rule) => rule.max(70)
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO description",
+      type: "text",
+      rows: 3,
+      validation: (rule) => rule.max(160)
+    }),
+    defineField({
+      name: "keywords",
+      title: "Target keywords and questions",
+      type: "array",
+      of: [{ type: "string" }]
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "string",
@@ -93,6 +112,7 @@ export const researchArticle = defineType({
             ]
           }
         }),
+        defineArrayMember({ type: "blogImage" }),
         defineArrayMember({ type: "productEmbed" }),
         defineArrayMember({ type: "tableBlock" })
       ]

@@ -23,9 +23,9 @@ type Props = {
   productsByHandle: Map<string, StoreProduct>
 }
 
-/** Renders [label](/path) links in legacy plain-text blog bodies. */
+/** Renders [label](/path) links and **bold** in legacy plain-text blog bodies. */
 function renderPlainTextWithLinks(text: string): ReactNode {
-  const pattern = /\[([^\]]+)\]\(([^)]+)\)/g
+  const pattern = /\*\*(.+?)\*\*|\[([^\]]+)\]\(([^)]+)\)/g
   const nodes: ReactNode[] = []
   let lastIndex = 0
   let match: RegExpExecArray | null
@@ -34,18 +34,26 @@ function renderPlainTextWithLinks(text: string): ReactNode {
     if (match.index > lastIndex) {
       nodes.push(text.slice(lastIndex, match.index))
     }
-    const href = match[2]
-    const external = href.startsWith("http")
-    nodes.push(
-      <Link
-        key={`${match.index}-${href}`}
-        href={href}
-        className="font-medium text-[#0D9488] underline underline-offset-2 hover:text-[#0F766E]"
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      >
-        {match[1]}
-      </Link>
-    )
+    if (match[1] != null) {
+      nodes.push(
+        <strong key={`${match.index}-strong`} className="font-semibold text-[#0F172A]">
+          {match[1]}
+        </strong>
+      )
+    } else {
+      const href = match[3]
+      const external = href.startsWith("http")
+      nodes.push(
+        <Link
+          key={`${match.index}-${href}`}
+          href={href}
+          className="font-medium text-[#0D9488] underline underline-offset-2 hover:text-[#0F766E]"
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {match[2]}
+        </Link>
+      )
+    }
     lastIndex = match.index + match[0].length
   }
 

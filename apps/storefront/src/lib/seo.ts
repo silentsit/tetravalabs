@@ -13,6 +13,10 @@ import {
   OG_IMAGE_TYPE,
   OG_IMAGE_WIDTH
 } from "@/lib/og"
+import {
+  merchantReturnPolicyJsonLd,
+  offerShippingDetailsJsonLd
+} from "@/lib/merchant-listing-schema"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 
@@ -429,10 +433,26 @@ export type ProductOfferVariantInput = {
   sku?: string | null
   priceUsd: number
   inStock: boolean
+  /** Strength × pack label (ProductGroup variesBy size). */
+  size?: string | null
 }
 
 function offerAvailability(inStock: boolean) {
   return inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+}
+
+function offerSizeLabel(input: ProductOfferVariantInput) {
+  const explicit = input.size?.trim()
+  if (explicit) return explicit
+  const parts = input.name.split(" · ").map((part) => part.trim()).filter(Boolean)
+  return parts.length > 1 ? parts.slice(1).join(" · ") : input.name
+}
+
+function merchantOfferFields() {
+  return {
+    shippingDetails: offerShippingDetailsJsonLd(),
+    hasMerchantReturnPolicy: merchantReturnPolicyJsonLd()
+  }
 }
 
 function schemaOfferNode(input: ProductOfferVariantInput, productUrl: string) {
@@ -447,7 +467,8 @@ function schemaOfferNode(input: ProductOfferVariantInput, productUrl: string) {
     seller: {
       "@type": "Organization",
       name: siteConfig.name
-    }
+    },
+    ...merchantOfferFields()
   } satisfies JsonLdGraph
 }
 
@@ -473,7 +494,8 @@ function schemaOffers(
       highPrice: high.toFixed(2),
       offerCount: product.variants?.length || 1,
       availability,
-      itemCondition: "https://schema.org/NewCondition"
+      itemCondition: "https://schema.org/NewCondition",
+      ...merchantOfferFields()
     }
   }
   return {
@@ -482,7 +504,8 @@ function schemaOffers(
     priceCurrency: "USD",
     price: offerPrice ? offerPrice.toFixed(2) : undefined,
     availability,
-    itemCondition: "https://schema.org/NewCondition"
+    itemCondition: "https://schema.org/NewCondition",
+    ...merchantOfferFields()
   }
 }
 
@@ -560,19 +583,26 @@ export function productJsonLd(
         brand,
         productGroupID: handle,
         variesBy: ["https://schema.org/size"],
-        hasVariant: pricedOffers.map((offer) => ({
-          "@type": "Product",
-          name: offer.name,
-          image: imageUrl,
-          brand,
-          ...(offer.sku ? { sku: offer.sku } : {}),
-          offers: schemaOfferNode(offer, productUrl)
-        }))
+        hasVariant: pricedOffers.map((offer) => {
+          const size = offerSizeLabel(offer)
+          return {
+            "@type": "Product",
+            name: offer.name,
+            description,
+            image: imageUrl,
+            brand,
+            size,
+            inProductGroupWithID: handle,
+            ...(offer.sku ? { sku: offer.sku } : {}),
+            offers: schemaOfferNode(offer, productUrl)
+          }
+        })
       },
       reviewData
     )
   }
 
+  const size = pricedOffers[0] ? offerSizeLabel(pricedOffers[0]) : undefined
   const graph: JsonLdGraph = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -580,6 +610,7 @@ export function productJsonLd(
     description,
     image: imageUrl,
     sku,
+    ...(size ? { size } : {}),
     category: categoryLabel,
     brand,
     offers: schemaOffers(product, productUrl, variantOffers)
@@ -733,6 +764,7 @@ export function organizationJsonLd() {
       email: siteConfig.contactEmail,
       availableLanguage: "English"
     },
+    hasMerchantReturnPolicy: merchantReturnPolicyJsonLd(),
     ...(sameAs.length ? { sameAs } : {})
   }
 }

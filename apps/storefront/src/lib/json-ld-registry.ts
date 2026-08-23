@@ -20,6 +20,7 @@ import {
   type ProductReviewSchemaInput
 } from "@/lib/seo"
 import { packTiersFromVariants } from "@/lib/pack-pricing"
+import { variantSizeLabel } from "@/lib/merchant-listing-schema"
 import { getVariantPriceCents, type StoreVariant } from "@/lib/product-price"
 import { resolveProductSku, resolveStrengthPackSku, packQtyFromVariantTitle } from "@/lib/product-sku"
 import { getProductImage, getProductFullName, normalizeTb500DisplayText } from "@/lib/revamp/product-visual"
@@ -114,6 +115,7 @@ function offersFromCompoundView(
         const variant = strength.variants.find((item) => item.id === tier.variantId)
         rows.push({
           name: offerName(view.displayName, strength.strengthLabel, tier.tier),
+          size: variantSizeLabel(strength.strengthLabel, tier.tier),
           sku: resolveStrengthPackSku({
             handle: strength.imageHandle || strength.handle,
             parentHandle: view.parentHandle,
@@ -133,6 +135,7 @@ function offersFromCompoundView(
       if (priceUsd <= 0) continue
       rows.push({
         name: offerName(view.displayName, strength.strengthLabel, variant.title || "1 vial"),
+        size: variantSizeLabel(strength.strengthLabel, variant.title || "1 vial"),
         sku: resolveStrengthPackSku({
           handle: strength.imageHandle || strength.handle,
           parentHandle: view.parentHandle,
@@ -159,6 +162,7 @@ function offersFromStoreProduct(product: StoreProduct): ProductOfferVariantInput
         const variant = product.variants?.find((item) => item.id === tier.variantId)
         return {
           name: `${displayName} · ${tier.tier}`,
+          size: variantSizeLabel("standard", tier.tier),
           sku: resolveProductSku({
             handle: product.handle,
             variantTitle: tier.tier,
@@ -174,6 +178,7 @@ function offersFromStoreProduct(product: StoreProduct): ProductOfferVariantInput
       const priceUsd = getVariantPriceCents(variant as StoreVariant) / 100
       return {
         name: `${displayName} · ${variant.title || "1 vial"}`,
+        size: variantSizeLabel("standard", variant.title || "1 vial"),
         sku: resolveProductSku({
           handle: product.handle,
           variantTitle: variant.title,

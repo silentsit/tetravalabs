@@ -8,12 +8,12 @@ import {
 import { getBlogPostBySlug } from "@/lib/sanity"
 import { getProductByHandle, listProducts, type StoreProduct } from "@/lib/medusa"
 import { registerDynamicJsonLd } from "@/lib/json-ld-store"
+import { blogImageForPost } from "@/lib/blog-utils"
 import {
   articleJsonLd,
   productJsonLd,
   productResearchArticleJsonLd,
   stripBrandTitleSuffix,
-  videoObjectJsonLd,
   webPageJsonLd,
   type JsonLdGraph,
   type ProductOfferVariantInput,
@@ -329,12 +329,9 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
   const path = `/blog/${slug}`
   const description =
     post.seoDescription || post.excerpt || "Research article from Tetrava Labs."
-  const image = post.video?.youtubeId
-    ? post.video.thumbnail || `https://i.ytimg.com/vi/${post.video.youtubeId}/maxresdefault.jpg`
-    : post.image
 
-  const graphs: JsonLdGraph[] = [
-    articleJsonLd({ ...post, image, author: pageAuthor }),
+  return [
+    articleJsonLd({ ...post, image: blogImageForPost(post), author: pageAuthor }),
     webPageJsonLd({
       title: post.seoTitle || post.title,
       description,
@@ -342,22 +339,6 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
       author: pageAuthor
     })
   ]
-
-  if (post.video?.youtubeId) {
-    graphs.push(
-      videoObjectJsonLd({
-        name: post.video.title || post.title,
-        description: post.video.description || description,
-        youtubeId: post.video.youtubeId,
-        path,
-        uploadDate:
-          post.video.uploadDate || post.publishedAt || post.updatedAt || undefined,
-        thumbnail: post.video.thumbnail
-      })
-    )
-  }
-
-  return graphs
 })
 
 registerDynamicJsonLd(/^\/category\/([^/]+)$/, async (match) => {

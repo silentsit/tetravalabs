@@ -119,28 +119,28 @@ export default async function BlogArticlePage({ params }: Props) {
         </div>
       </header>
 
+      <div className="overflow-hidden rounded-xl border border-[#E2E8F0]">
+        <Image
+          src={heroImage}
+          alt={post.title}
+          width={1200}
+          height={800}
+          priority
+          unoptimized
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="h-auto w-full object-cover"
+        />
+      </div>
+
       {video ? (
         <figure>
           <YoutubeEmbed video={video} />
           <figcaption className="mt-2 text-sm text-[#94A3B8]">
-            Source video: {video.title || "Referenced video"}
-            {video.presenter ? ` — presented by ${video.presenter}, fact-checked by the Tetrava editorial team below.` : null}
+            Source video cited in this article
+            {video.presenter ? `: ${video.presenter}, fact-checked below.` : "."}
           </figcaption>
         </figure>
-      ) : (
-        <div className="overflow-hidden rounded-xl border border-[#E2E8F0]">
-          <Image
-            src={heroImage}
-            alt={post.title}
-            width={1200}
-            height={800}
-            priority
-            unoptimized
-            sizes="(max-width: 768px) 100vw, 768px"
-            className="h-auto w-full object-cover"
-          />
-        </div>
-      )}
+      ) : null}
 
       <BlogTableOfContents headings={collectBlogHeadings(post.body)} />
 

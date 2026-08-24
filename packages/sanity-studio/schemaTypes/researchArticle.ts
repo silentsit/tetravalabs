@@ -195,7 +195,8 @@ export const researchArticle = defineType({
       name: "video",
       title: "Source video (YouTube)",
       type: "object",
-      description: "Optional embedded source video. uploadDate is required for Google Video rich results.",
+      description:
+        "Optional source YouTube video. Linked out from the article; do not use VideoObject schema on Research Hub posts (they are not Google watch pages).",
       fields: [
         defineField({
           name: "youtubeId",
@@ -223,7 +224,7 @@ export const researchArticle = defineType({
           name: "uploadDate",
           title: "Upload date",
           type: "datetime",
-          description: "Original YouTube upload date (ISO). Required for VideoObject rich results.",
+          description: "Original YouTube upload date (ISO).",
           validation: (rule) => rule.required()
         }),
         defineField({

@@ -651,7 +651,7 @@ export function articleJsonLd(post: {
   }
 }
 
-/** VideoObject graph for research articles that embed a source YouTube video. */
+/** VideoObject for a dedicated watch page only. Do not emit on Research Hub articles. */
 export function videoObjectJsonLd(input: {
   name: string
   description: string

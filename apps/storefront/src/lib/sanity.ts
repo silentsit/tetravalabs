@@ -221,7 +221,7 @@ function resolveBlogBody(primary?: BlogBody, fallback?: BlogBody): BlogBody | un
   return primary ?? fallback
 }
 
-/** Prefer CMS video when present; always backfill uploadDate for Google VideoObject. */
+/** Prefer CMS video when present; backfill uploadDate from the article publish date. */
 function resolveBlogVideo(
   cmsVideo: BlogPost["video"] | undefined,
   fallbackVideo: BlogPost["video"] | undefined,

@@ -1,0 +1,77 @@
+{
+  "title": "BPC-157 and TB-500 Research Peptide Blend: Evidence, Identity, and Study Design",
+  "slug": "bpc-157-tb-500-research-peptide-blend",
+  "excerpt": "A research-use review of BPC-157 and TB-500 blend identity, evidence limits, fixed-ratio controls, pathway hypotheses, and multi-analyte LC/MS verification.",
+  "seoTitle": "BPC-157 and TB-500 Blend: Research Evidence Guide",
+  "seoDescription": "Review BPC-157 and TB-500 blend evidence, fragment identity, fixed-ratio study controls, and multi-analyte LC/MS verification for RUO studies.",
+  "keywords": [
+    "BPC-157 and TB-500 blend",
+    "BPC-157 TB-500 research peptide blend",
+    "Ac-LKKTETQ",
+    "TB-500 fragment identity",
+    "fixed-ratio peptide study",
+    "multi-analyte LC/MS"
+  ],
+  "category": "Protocols",
+  "readTimeMinutes": 11,
+  "publishedAt": "2026-08-24T14:10:00.000Z",
+  "image": "/images/blog/bpc-157-tb-500-blend-1.webp",
+  "references": [
+    {
+      "title": "Synthesis and characterization of the N-terminal acetylated 17-23 fragment of thymosin beta 4 identified in TB-500, a product suspected to possess doping potential",
+      "authors": "Esposito S, Deventer K, Goeman J, Van der Eycken J, Van Eenoo P",
+      "publication": "Drug Testing and Analysis",
+      "year": "2012",
+      "url": "https://doi.org/10.1002/dta.1402"
+    },
+    {
+      "title": "Gastric pentadecapeptide BPC 157 accelerates healing of transected rat Achilles tendon and in vitro stimulates tendocytes growth",
+      "authors": "Staresinic M, et al.",
+      "publication": "Journal of Orthopaedic Research",
+      "year": "2003",
+      "url": "https://doi.org/10.1016/S0736-0266(03)00110-4"
+    },
+    {
+      "title": "The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration",
+      "authors": "Chang CH, Tsai WC, Lin MS, Hsu YH, Pang JH",
+      "publication": "Journal of Applied Physiology",
+      "year": "2011",
+      "url": "https://doi.org/10.1152/japplphysiol.00945.2010"
+    },
+    {
+      "title": "Therapeutic potential of pro-angiogenic BPC157 is associated with VEGFR2 activation and up-regulation",
+      "authors": "Hsieh MJ, et al.",
+      "publication": "Journal of Molecular Medicine",
+      "year": "2017",
+      "url": "https://doi.org/10.1007/s00109-016-1488-y"
+    },
+    {
+      "title": "Modulatory effects of BPC 157 on vasomotor tone and the activation of Src-Caveolin-1-endothelial nitric oxide synthase pathway",
+      "authors": "Hsieh MJ, et al.",
+      "publication": "Scientific Reports",
+      "year": "2020",
+      "url": "https://doi.org/10.1038/s41598-020-74022-y"
+    },
+    {
+      "title": "Thymosin beta 4 stimulates directional migration of human umbilical vein endothelial cells",
+      "authors": "Malinda KM, Goldstein AL, Kleinman HK",
+      "publication": "The FASEB Journal",
+      "year": "1997",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9194528/"
+    },
+    {
+      "title": "Thymosin beta4 accelerates wound healing",
+      "authors": "Malinda KM, Sidhu GS, Mani H, et al.",
+      "publication": "Journal of Investigative Dermatology",
+      "year": "1999",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10469335/"
+    },
+    {
+      "title": "The actin binding site on thymosin beta4 promotes angiogenesis",
+      "authors": "Philp D, Huff T, Gho YS, Hannappel E, Kleinman HK",
+      "publication": "The FASEB Journal",
+      "year": "2003",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14500546/"
+    }
+  ]
+}

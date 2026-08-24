@@ -1,0 +1,85 @@
+{
+  "title": "What ISO/IEC 17025 Accreditation Means for Peptide Testing",
+  "slug": "what-iso-iec-17025-accreditation-means-for-peptide-testing",
+  "excerpt": "ISO/IEC 17025 accreditation applies to a laboratory's defined testing scope, not to a peptide product. Learn how to verify methods, results, and conformity claims.",
+  "seoTitle": "ISO 17025 Accreditation for Peptide Testing",
+  "seoDescription": "Learn what ISO/IEC 17025 accreditation proves for peptide testing, how to verify method scope, and how to read identity, purity, and uncertainty.",
+  "keywords": [
+    "ISO 17025 peptide testing",
+    "ISO/IEC 17025 accreditation",
+    "peptide COA verification",
+    "laboratory scope of accreditation",
+    "HPLC purity and identity",
+    "measurement uncertainty",
+    "peptide testing decision rules"
+  ],
+  "category": "Compliance",
+  "readTimeMinutes": 11,
+  "publishedAt": "2026-08-24T14:20:00.000Z",
+  "image": "/images/blog/iso-17025-peptide-testing-1.webp",
+  "references": [
+    {
+      "title": "ISO/IEC 17025 - Testing and calibration laboratories",
+      "authors": "International Organization for Standardization",
+      "publication": "ISO",
+      "year": "2017",
+      "url": "https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+    },
+    {
+      "title": "ISO 9001:2015 - Quality management systems - Requirements",
+      "authors": "International Organization for Standardization",
+      "publication": "ISO",
+      "year": "2015",
+      "url": "https://www.iso.org/standard/62085.html"
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "authors": "ANSI National Accreditation Board",
+      "publication": "ANAB",
+      "year": "2026",
+      "url": "https://anab.ansi.org/about-anab/faq/"
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "authors": "American Association for Laboratory Accreditation",
+      "publication": "A2LA",
+      "year": "2026",
+      "url": "https://a2la.org/faq/"
+    },
+    {
+      "title": "ILAC Signatory Search",
+      "authors": "International Laboratory Accreditation Cooperation",
+      "publication": "ILAC",
+      "year": "2026",
+      "url": "https://ilac.org/signatory-search/"
+    },
+    {
+      "title": "<1226> Verification of Compendial Procedures",
+      "authors": "United States Pharmacopeia",
+      "publication": "USP-NF",
+      "year": "2026",
+      "url": "https://doi.usp.org/USPNF/USPNF_M870_03_01.html"
+    },
+    {
+      "title": "Metrological Traceability: Frequently Asked Questions and NIST Policy",
+      "authors": "National Institute of Standards and Technology",
+      "publication": "NIST",
+      "year": "2021",
+      "url": "https://www.nist.gov/metrology/metrological-traceability"
+    },
+    {
+      "title": "ILAC G17:01/2021 Guidelines for Measurement Uncertainty in Testing",
+      "authors": "International Laboratory Accreditation Cooperation",
+      "publication": "ILAC",
+      "year": "2021",
+      "url": "https://ilac.org/publications-and-resources/ilac-guidance-series/"
+    },
+    {
+      "title": "ILAC G8:09/2019 Guidelines on Decision Rules and Statements of Conformity",
+      "authors": "International Laboratory Accreditation Cooperation",
+      "publication": "ILAC",
+      "year": "2019",
+      "url": "https://ilac.org/?ddownload=122722"
+    }
+  ]
+}

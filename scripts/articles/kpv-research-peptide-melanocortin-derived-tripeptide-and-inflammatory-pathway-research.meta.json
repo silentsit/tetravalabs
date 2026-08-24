@@ -1,0 +1,63 @@
+{
+  "title": "KPV Research Peptide: Melanocortin-Derived Tripeptide and Inflammatory Pathway Research",
+  "slug": "kpv-research-peptide-melanocortin-derived-tripeptide-and-inflammatory-pathway-research",
+  "excerpt": "KPV is alpha-MSH(11-13), a tripeptide studied in PepT1 transport, NF-kB and MAPK assays, murine colitis models, and cultured airway epithelium.",
+  "seoTitle": "KPV Research Peptide: Mechanism and Evidence",
+  "seoDescription": "KPV research peptide explained as alpha-MSH(11-13): PepT1 uptake, NF-kB and MAPK findings, murine colitis evidence, and analytical identity limits.",
+  "keywords": [
+    "KPV research peptide",
+    "alpha-MSH 11-13",
+    "KPV PepT1 uptake",
+    "KPV NF-kB MAPK",
+    "KPV murine colitis research",
+    "KPV analytical identity"
+  ],
+  "category": "Protocols",
+  "readTimeMinutes": 10,
+  "publishedAt": "2026-08-24T14:00:00.000Z",
+  "image": "/images/blog/kpv-research-peptide-1.webp",
+  "references": [
+    {
+      "title": "Antiinflammatory activity of a COOH-terminal fragment of the neuropeptide alpha-MSH",
+      "authors": "Hiltz ME, Lipton JM",
+      "publication": "The FASEB Journal",
+      "year": "1989",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2550304/"
+    },
+    {
+      "title": "Dissection of the anti-inflammatory effect of the core and C-terminal (KPV) alpha-melanocyte-stimulating hormone peptides",
+      "authors": "Getting SJ, Schiöth HB, Perretti M",
+      "publication": "The Journal of Pharmacology and Experimental Therapeutics",
+      "year": "2003",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12750433/"
+    },
+    {
+      "title": "Melanocortin-derived tripeptide KPV has anti-inflammatory potential in murine models of inflammatory bowel disease",
+      "authors": "Kannengiesser K, Maaser C, Heidemann J, Luegering A, Ross M, Brzoska T, Böhm M, Luger TA, Domschke W, Kucharzik T",
+      "publication": "Inflammatory Bowel Diseases",
+      "year": "2008",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18092346/"
+    },
+    {
+      "title": "PepT1-mediated tripeptide KPV uptake reduces intestinal inflammation",
+      "authors": "Dalmasso G, Charrier-Hisamuddin L, Nguyen HT, Yan Y, Sitaraman S, Merlin D",
+      "publication": "Gastroenterology",
+      "year": "2008",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18061177/"
+    },
+    {
+      "title": "Inhibition of cellular and systemic inflammation cues in human bronchial epithelial cells by melanocortin-related peptides: mechanism of KPV action and a role for MC3R agonists",
+      "authors": "Land SC",
+      "publication": "International Journal of Physiology, Pathophysiology and Pharmacology",
+      "year": "2012",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3403564/"
+    },
+    {
+      "title": "Alpha-melanocyte-stimulating hormone and related tripeptides: biochemistry, antiinflammatory and protective effects in vitro and in vivo, and future perspectives for the treatment of immune-mediated inflammatory diseases",
+      "authors": "Brzoska T, Luger TA, Maaser C, Abels C, Böhm M",
+      "publication": "Endocrine Reviews",
+      "year": "2008",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18612139/"
+    }
+  ]
+}

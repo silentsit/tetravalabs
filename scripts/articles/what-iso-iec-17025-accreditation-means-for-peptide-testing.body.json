@@ -1,0 +1,1183 @@
+[
+  {
+    "_type": "block",
+    "_key": "blk2",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp1",
+        "text": "Introduction",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk4",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp3",
+        "text": "ISO/IEC 17025 accreditation is evidence that an accreditation body has assessed a laboratory's competence for defined testing or calibration activities. For peptide testing, that distinction matters: the laboratory name and accreditation certificate are only the starting points. The test method, analyte, matrix, measurement range, and laboratory location listed on the current scope determine whether a result was produced within the accredited scope.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk12",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk6",
+        "_type": "link",
+        "href": "https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html"
+      },
+      {
+        "_key": "lnk9",
+        "_type": "link",
+        "href": "/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp5",
+        "text": "The ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp7",
+        "text": "ISO overview of ISO/IEC 17025",
+        "marks": [
+          "lnk6"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp8",
+        "text": " describes a framework for competent operation and valid results. It does not certify a peptide product, guarantee that every method offered by a laboratory is accredited, or prescribe a universal peptide test panel. A buyer comparing ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp10",
+        "text": "research peptides",
+        "marks": [
+          "lnk9"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp11",
+        "text": " should therefore verify the scope behind the certificate and then read the certificate of analysis (COA) as a record of specific measurements, not as a blanket seal of quality.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk14",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp13",
+        "text": "What ISO/IEC 17025 accreditation covers",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk16",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp15",
+        "text": "The 2017 edition addresses impartiality, personnel competence, facilities, equipment, metrological traceability, externally provided services, method selection, method validation, sampling, handling of test items, technical records, uncertainty, reporting, complaints, nonconforming work, data control, and management-system processes. Accreditation bodies assess these requirements and issue a certificate with a separate scope.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk24",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk18",
+        "_type": "link",
+        "href": "https://anab.ansi.org/about-anab/faq/"
+      },
+      {
+        "_key": "lnk21",
+        "_type": "link",
+        "href": "https://a2la.org/faq/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp17",
+        "text": "That scope is laboratory- and method-specific. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp19",
+        "text": "ANAB explains",
+        "marks": [
+          "lnk18"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp20",
+        "text": " that a laboratory scope lists the particular tests or calibrations verified by the accreditation body. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp22",
+        "text": "A2LA states",
+        "marks": [
+          "lnk21"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp23",
+        "text": " that capabilities omitted from the scope are not covered by its accreditation. The scope may also be restricted to one site, one technical field, named procedures, stated matrices, or defined ranges.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk26",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp25",
+        "text": "Four common myths fail under this structure:",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk28",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp27",
+        "text": "Accreditation recognizes a laboratory's competence for listed activities; it does not certify the peptide, vial, batch, supplier, or brand.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk30",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp29",
+        "text": "An accredited laboratory can perform both in-scope and out-of-scope work. The certificate alone does not prove that a reported peptide method was accredited.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk32",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp31",
+        "text": "ISO/IEC 17025 does not dictate one universal panel for peptides. Identity, purity, water, residual solvents, counterions, endotoxin, bioburden, and content answer different questions, and the required panel depends on the stated specification and research use.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk34",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp33",
+        "text": "HPLC purity is not identity. A chromatographic area percentage estimates the relative distribution of detected components under specified conditions. Identity requires suitable orthogonal evidence, commonly mass spectrometry against an expected molecular mass and, where necessary, further structural analysis.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk39",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk36",
+        "_type": "link",
+        "href": "https://www.iso.org/standard/62085.html"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp35",
+        "text": "ISO 9001 is different. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp37",
+        "text": "ISO describes ISO 9001",
+        "marks": [
+          "lnk36"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp38",
+        "text": " as a quality-management-system standard applicable across organizations. It assesses whether an organization manages processes to meet customer and regulatory requirements, but it does not itself establish technical competence for a named laboratory test. ISO/IEC 17025 includes management-system requirements and adds laboratory-specific technical requirements.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk41",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp40",
+        "text": "Scope verification workflow",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk43",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp42",
+        "text": "A procurement or quality team can verify a laboratory claim without interpreting the entire standard:",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk45",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp44",
+        "text": "Obtain the current accreditation certificate and complete scope directly from the accreditation body's directory when possible. Confirm the legal laboratory name, physical location, certificate number, accreditation body, issue or revision date, and expiration status.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk50",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk47",
+        "_type": "link",
+        "href": "https://ilac.org/signatory-search/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp46",
+        "text": "Confirm that the accreditation body participates in the applicable international recognition arrangement. The ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp48",
+        "text": "ILAC signatory search",
+        "marks": [
+          "lnk47"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp49",
+        "text": " is a useful starting point, but recognition status does not replace review of the laboratory's own scope.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk52",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp51",
+        "text": "Match the COA method to the scope. Look for the technology and procedure, such as LC-UV purity or LC-MS identity, plus the relevant material or matrix. A scope containing environmental metals testing does not cover peptide LC-MS merely because both activities occur in one accredited facility.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk54",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp53",
+        "text": "Check limitations. A scope may specify analytes, ranges, detection limits, standards, internal procedure numbers, or fixed versus flexible scope conditions. Ask the laboratory to map the COA method identifier to the exact scope entry if the connection is unclear.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk56",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp55",
+        "text": "Verify the site that performed the work. Accreditation held by one branch does not automatically cover an affiliated laboratory at another address.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk58",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp57",
+        "text": "Determine whether the report marks results as accredited or unaccredited. If subcontracting occurred, identify the performing laboratory and verify its scope separately.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk60",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp59",
+        "text": "Save the certificate, scope, directory record, and COA together. Scope revisions can change over time, so the version in force on the test date matters.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img61",
+    "src": "/images/blog/iso-17025-peptide-testing-2.webp",
+    "alt": "Certified reference material, calibrated pipette, analytical balance, sample vial, and chromatograph arranged as a traceability chain.",
+    "caption": "Traceability connects a result to stated references through documented calibration and uncertainty, not through a logo."
+  },
+  {
+    "_type": "block",
+    "_key": "blk63",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp62",
+        "text": "Method validation and verification",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk65",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp64",
+        "text": "Method fitness depends on intended use. A laboratory-developed or materially modified procedure generally needs validation showing that it can produce suitable results for its purpose. Relevant characteristics may include specificity, accuracy, precision, linearity, range, detection or quantitation limits, and resistance to small procedural changes. The required set is not identical for every method.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk70",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk67",
+        "_type": "link",
+        "href": "https://doi.usp.org/USPNF/USPNF_M870_03_01.html"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp66",
+        "text": "Verification is narrower. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp68",
+        "text": "USP General Chapter <1226>",
+        "marks": [
+          "lnk67"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp69",
+        "text": " explains that a laboratory adopting a compendial procedure assesses selected performance characteristics under its actual personnel, equipment, and reagent conditions rather than simply repeating the original validation. Transfer from another laboratory also requires evidence that the receiving laboratory can execute the procedure as intended.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk72",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp71",
+        "text": "For peptides, specificity deserves close attention. An HPLC-UV method may separate the main peak from detectable impurities yet still fail to establish that the main peak is the named peptide. LC-MS can support identity through molecular mass, but a mass match alone may not resolve every sequence isomer, modification, or coeluting species. The method package should connect the analytical question, sample preparation, reference material, system suitability, acceptance criteria, and reportable result.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk74",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp73",
+        "text": "Traceability and measurement uncertainty",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk79",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk76",
+        "_type": "link",
+        "href": "https://www.nist.gov/metrology/metrological-traceability"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp75",
+        "text": "Metrological traceability concerns a measurement result, not a laboratory logo. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp77",
+        "text": "NIST defines traceability",
+        "marks": [
+          "lnk76"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp78",
+        "text": " as a documented, unbroken calibration chain to a stated reference, with each link contributing to measurement uncertainty. NIST also warns that traceability alone does not guarantee fitness for purpose.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk81",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp80",
+        "text": "In peptide analysis, traceability can involve calibrated balances and volumetric equipment, instrument calibration or qualification, certified reference materials where available, purity or potency assignments for standards, and documented preparation of calibration solutions. Traceability does not mean that NIST tested the sample. Nor does the phrase \"NIST traceable\" have meaning without a supported chain tied to the reported result.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk86",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk83",
+        "_type": "link",
+        "href": "https://ilac.org/publications-and-resources/ilac-guidance-series/"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp82",
+        "text": "Measurement uncertainty expresses the dispersion reasonably associated with a measured value. It is especially relevant for quantitative assay, water, residual solvent, or other results compared with a numerical limit. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp84",
+        "text": "ILAC G17",
+        "marks": [
+          "lnk83"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp85",
+        "text": " addresses uncertainty in testing and explains how laboratories and accreditation bodies approach evaluation and reporting. A bare result with many decimal places can look precise while concealing larger contributions from sampling, preparation, reference-standard assignment, calibration, recovery, and repeatability.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk88",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp87",
+        "text": "One more mark is worth reading correctly. Reports from an accredited laboratory often carry a combined accreditation-body and ILAC MRA symbol, which signals cross-border recognition of the accredited activity. That symbol still points back to the scope. It tells a reader that results within the accredited scope should be recognized by other MRA signatories; it does not extend accreditation to any method the laboratory left off that scope.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk90",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp89",
+        "text": "Decision rules and conformity statements",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk95",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk92",
+        "_type": "link",
+        "href": "https://ilac.org/?ddownload=122722"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp91",
+        "text": "A result and a specification do not by themselves define \"pass.\" When a laboratory states conformity, the decision rule determines how uncertainty is considered and allocates the risks of false acceptance and false rejection. ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp93",
+        "text": "ILAC G8",
+        "marks": [
+          "lnk92"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp94",
+        "text": " explains that no single decision rule fits every test and that the rule should be defined, agreed when necessary, documented, and applied.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk97",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp96",
+        "text": "Suppose an assay minimum is 95.0% and the reported result is 95.2% with an expanded uncertainty of 0.6 percentage point. A simple rule based only on the measured value could pass it. A guard-band rule requiring the lower uncertainty boundary to meet the limit would not. Neither outcome should be inferred until the specification, uncertainty treatment, coverage basis, and decision rule are known.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk99",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp98",
+        "text": "Peptide COA worked example",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk101",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp100",
+        "text": "Consider a hypothetical research-use peptide COA. It reports \"Purity by HPLC: 99.3%\" and \"Identity by LC-MS: conforms,\" and it displays an ISO/IEC 17025 symbol. The HPLC chromatogram shows one dominant peak. This is not enough to conclude that the product itself is \"ISO certified.\"",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk103",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp102",
+        "text": "Review it in layers:",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk105",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp104",
+        "text": "Check document linkage. Confirm that the COA lot number matches the vial and that the report identifies the sample, test dates, methods, performing laboratory, and authorized report status. A copied accreditation symbol cannot replace this linkage.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk107",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp106",
+        "text": "Match the scope. Find the laboratory in the accreditation-body directory. The scope must cover the relevant site and the reported peptide methods or an applicable flexible scope. If LC-MS is listed but HPLC purity is absent, only the identity activity may be in scope.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk109",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp108",
+        "text": "Read the identity evidence on its own. Take the LC-MS result independently from purity. The expected ion pattern, charge states, molecular mass interpretation, acceptance criterion, and method suitability support identity. The 99.3% HPLC area result cannot fill an identity gap.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk111",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp110",
+        "text": "Read the purity evidence carefully. Check wavelength, column or method identifier, integration conventions, system suitability, and whether the percentage is area normalization or a quantitative mass-balance result. HPLC area purity is method-dependent and may not detect compounds with weak response at the selected wavelength.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk113",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp112",
+        "text": "Find the specification and the rule. Identify who set the acceptance criteria and whether \"conforms\" uses a documented decision rule. A numeric result near a limit needs context on uncertainty.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk115",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp114",
+        "text": "Note the panel limits. Identity and chromatographic purity do not establish peptide content per vial, sterility, endotoxin, residual solvents, water, counterion content, or absence of every possible contaminant.",
+        "marks": []
+      }
+    ],
+    "listItem": "number",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk123",
+    "style": "normal",
+    "markDefs": [
+      {
+        "_key": "lnk117",
+        "_type": "link",
+        "href": "/coa-library"
+      },
+      {
+        "_key": "lnk120",
+        "_type": "link",
+        "href": "/blog/why-manufacturing-source-and-verification-matter-in-research-peptide-quality"
+      }
+    ],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp116",
+        "text": "The ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp118",
+        "text": "COA Library",
+        "marks": [
+          "lnk117"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp119",
+        "text": " can be used to compare lot-linked documents, while the ",
+        "marks": []
+      },
+      {
+        "_type": "span",
+        "_key": "sp121",
+        "text": "manufacturing and verification guide",
+        "marks": [
+          "lnk120"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp122",
+        "text": " explains why source records and analytical verification answer separate questions.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "blogImage",
+    "_key": "img124",
+    "src": "/images/blog/iso-17025-peptide-testing-3.webp",
+    "alt": "Peptide certificate of analysis beside an HPLC chromatogram and LC-MS spectrum on a white laboratory bench.",
+    "caption": "HPLC purity and LC-MS identity are separate results that must each be matched to method, scope, and specification."
+  },
+  {
+    "_type": "block",
+    "_key": "blk126",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp125",
+        "text": "Red flags",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk128",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp127",
+        "text": "The supplier says the product is \"ISO/IEC 17025 certified.\"",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk130",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp129",
+        "text": "Only a certificate image is provided; the current scope is missing.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk132",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp131",
+        "text": "The scope belongs to a different legal entity, address, or testing site.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk134",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp133",
+        "text": "The COA method name cannot be mapped to a scope entry.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk136",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp135",
+        "text": "An accreditation symbol appears beside tests that the report does not distinguish as out of scope.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk138",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp137",
+        "text": "HPLC purity is presented as proof of identity, content, sterility, or universal product quality.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk140",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp139",
+        "text": "\"NIST traceable\" appears without a stated reference, calibration chain, or applicable measurement result.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk142",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp141",
+        "text": "A pass/fail statement near a limit gives no specification source or decision rule.",
+        "marks": []
+      }
+    ],
+    "listItem": "bullet",
+    "level": 1
+  },
+  {
+    "_type": "block",
+    "_key": "blk144",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp143",
+        "text": "Frequently Asked Questions (FAQ)",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk147",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp145",
+        "text": "Does ISO/IEC 17025 accreditation certify a peptide product?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp146",
+        "text": " No. Accreditation recognizes a laboratory's competence for activities on its approved scope. Product certification is a different conformity-assessment activity, and a COA reports results for the identified sample or batch under stated methods.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk150",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp148",
+        "text": "Does an accredited laboratory perform every test under accreditation?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp149",
+        "text": " No. Laboratories may offer methods outside their accredited scope. Verify each COA method, material or matrix, location, and any stated range against the scope current on the test date.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk153",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp151",
+        "text": "Does ISO/IEC 17025 require HPLC and mass spectrometry for every peptide?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp152",
+        "text": " No. The standard does not prescribe a universal peptide panel. Test selection follows the analytical purpose, specification, applicable regulation or contract, and the risks that need to be controlled.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk156",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp154",
+        "text": "Can a 99% HPLC purity result prove peptide identity?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp155",
+        "text": " No. HPLC purity and identity are different analytical claims. Chromatography estimates detected component distribution under one method; suitable mass spectrometric or other orthogonal analysis is needed to support identity.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk159",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp157",
+        "text": "Is ISO 9001 equivalent to ISO/IEC 17025?",
+        "marks": [
+          "strong"
+        ]
+      },
+      {
+        "_type": "span",
+        "_key": "sp158",
+        "text": " No. ISO 9001 addresses an organization's quality management system. ISO/IEC 17025 is used to assess laboratory competence, impartiality, and consistent operation for a defined testing or calibration scope.",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk161",
+    "style": "h2",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp160",
+        "text": "Conclusion",
+        "marks": []
+      }
+    ]
+  },
+  {
+    "_type": "block",
+    "_key": "blk163",
+    "style": "normal",
+    "markDefs": [],
+    "children": [
+      {
+        "_type": "span",
+        "_key": "sp162",
+        "text": "ISO/IEC 17025 accreditation is useful when it is read precisely. Verify the accreditation body, laboratory identity, site, dates, and full scope; then map each COA result to an in-scope method and read identity, purity, quantity, and safety-related tests as separate claims. The strongest documentation does not stretch accreditation into product certification. It shows exactly what was measured, how it was measured, and how the laboratory decided whether the result met a stated requirement.",
+        "marks": []
+      }
+    ]
+  }
+]

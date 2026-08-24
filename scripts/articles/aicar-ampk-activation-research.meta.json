@@ -1,0 +1,70 @@
+{
+  "title": "AICAR and AMPK Activation: What Laboratory Research Actually Shows",
+  "slug": "aicar-ampk-activation-research",
+  "excerpt": "AICAr forms ZMP and can activate AMPK, but knockout studies show that several metabolic effects are AMPK-independent. This RUO review explains the evidence and controls.",
+  "seoTitle": "AICAR and AMPK Activation in Laboratory Research",
+  "seoDescription": "Review AICAR uptake, ZMP formation, AMPK signaling, mouse evidence, off-target effects, analytical identity, and controls for RUO laboratory research.",
+  "keywords": [
+    "AICAR AMPK activation",
+    "AICAr ZMP research",
+    "AICAR exercise mimetic mouse study",
+    "AMPK-independent AICAR effects",
+    "AICAR analytical identity",
+    "AICAR laboratory controls"
+  ],
+  "category": "Protocols",
+  "readTimeMinutes": 10,
+  "publishedAt": "2026-08-24T14:15:00.000Z",
+  "image": "/images/blog/aicar-ampk-research-1.webp",
+  "references": [
+    {
+      "title": "5-Aminoimidazole-4-carboxamide ribonucleoside: a specific method for activating AMP-activated protein kinase in intact cells?",
+      "authors": "Corton JM, Gillespie JG, Hawley SA, Hardie DG",
+      "publication": "European Journal of Biochemistry",
+      "year": "1995",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7744080/"
+    },
+    {
+      "title": "AICA riboside increases AMP-activated protein kinase, fatty acid oxidation, and glucose uptake in rat muscle",
+      "authors": "Merrill GF, Kurth EJ, Hardie DG, Winder WW",
+      "publication": "American Journal of Physiology",
+      "year": "1997",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9435525/"
+    },
+    {
+      "title": "Knockout of the alpha2 but not alpha1 AMPK isoform abolishes AICAR- but not contraction-induced glucose uptake in skeletal muscle",
+      "authors": "Jorgensen SB, et al.",
+      "publication": "Journal of Biological Chemistry",
+      "year": "2004",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14573616/"
+    },
+    {
+      "title": "AMPK and PPARdelta agonists are exercise mimetics",
+      "authors": "Narkar VA, et al.",
+      "publication": "Cell",
+      "year": "2008",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18674809/"
+    },
+    {
+      "title": "AMP-activated protein kinase: an energy sensor that regulates all aspects of cell function",
+      "authors": "Hardie DG",
+      "publication": "Genes & Development",
+      "year": "2011",
+      "url": "https://doi.org/10.1101/gad.17420111"
+    },
+    {
+      "title": "AICAR effect on glucose production, but not energy metabolism, is independent of hepatic AMPK in vivo",
+      "authors": "Hasenour CM, et al.",
+      "publication": "Journal of Biological Chemistry",
+      "year": "2014",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24403081/"
+    },
+    {
+      "title": "AICAr, a Widely Used AMPK Activator with Important AMPK-Independent Effects: A Systematic Review",
+      "authors": "Visnjic D, et al.",
+      "publication": "Cells",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34064363/"
+    }
+  ]
+}

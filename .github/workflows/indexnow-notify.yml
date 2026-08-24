@@ -1,0 +1,34 @@
+name: IndexNow notify
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  notify:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Vercel production deploy
+        if: github.event_name != 'workflow_dispatch'
+        run: sleep 120
+
+      - name: Submit sitemap URLs to IndexNow
+        env:
+          SECRET: ${{ secrets.REVALIDATE_SECRET }}
+          NOTIFY_URL: ${{ vars.INDEXNOW_NOTIFY_URL }}
+        run: |
+          if [ -z "$SECRET" ]; then
+            echo "REVALIDATE_SECRET GitHub secret is not set; skipping IndexNow notify."
+            exit 0
+          fi
+          URL="${NOTIFY_URL:-https://tetravalabs.com/api/cron/indexnow}"
+          curl -fsS -X POST "$URL" \
+            -H "Authorization: Bearer $SECRET" \
+            -H "x-revalidate-secret: $SECRET" \
+            -H "Content-Type: application/json"

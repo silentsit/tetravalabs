@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   LogOut,
   MapPin,
+  Search,
   ShoppingBag,
   User
 } from "lucide-react"
@@ -21,6 +22,10 @@ export const ACCOUNT_NAV_ITEMS: AccountNavItem[] = [
   { href: "/account/downloads", label: "Downloads", icon: Download },
   { href: "/account/addresses", label: "Addresses", icon: MapPin },
   { href: "/account/details", label: "Account details", icon: User }
+]
+
+export const ACCOUNT_ADMIN_NAV_ITEMS: AccountNavItem[] = [
+  { href: "/account/indexing", label: "Indexing", icon: Search }
 ]
 
 export const ACCOUNT_LOGOUT_ITEM = {

@@ -16,6 +16,10 @@ function indexNowKey(): string | null {
   return key || null
 }
 
+export function isIndexNowConfigured() {
+  return Boolean(indexNowKey())
+}
+
 /** Absolute https URL on this host, or null if invalid / off-host. */
 export function toIndexNowUrl(pathOrUrl: string): string | null {
   const origin = siteOrigin()

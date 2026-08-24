@@ -24,6 +24,8 @@ Create separate env sets for:
 - `NEXT_PUBLIC_MEDUSA_URL`
 - `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`
 - `REVALIDATE_SECRET`
+- `INDEXNOW_KEY` (key file at `/public/{KEY}.txt`; GitHub Action `IndexNow notify` needs `REVALIDATE_SECRET` as a repo secret)
+- Optional: `GOOGLE_SEARCH_CONSOLE_JSON` + `GOOGLE_SEARCH_CONSOLE_SITE_URL` (sitemap resubmit)
 
 ### Medusa env
 

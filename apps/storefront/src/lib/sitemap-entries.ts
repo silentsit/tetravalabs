@@ -371,6 +371,18 @@ export async function getSitemapIndexEntries() {
   })
 }
 
+/** Indexable page URLs from the public sitemaps (pages, posts, products, categories). */
+export async function getAllIndexableSitemapUrls(): Promise<string[]> {
+  const [pages, posts, products, categories] = await Promise.all([
+    getPageSitemapEntries(),
+    getPostSitemapEntries(),
+    getAllProductSitemapEntries(),
+    getCategorySitemapEntries()
+  ])
+
+  return [...new Set([...pages, ...posts, ...products, ...categories].map((entry) => entry.loc))]
+}
+
 export async function getSitemapEntriesById(id: string): Promise<SitemapUrlEntry[]> {
   if (id === "pages") return getPageSitemapEntries()
   if (id === "posts") return getPostSitemapEntries()

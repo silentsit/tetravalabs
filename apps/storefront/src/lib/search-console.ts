@@ -18,6 +18,10 @@ function siteOrigin() {
 
 function gscSiteUrl() {
   const raw = (process.env.GOOGLE_SEARCH_CONSOLE_SITE_URL || `${siteOrigin()}/`).trim()
+  // Domain properties must stay `sc-domain:example.com` with no trailing slash.
+  if (raw.toLowerCase().startsWith("sc-domain:")) {
+    return raw.replace(/\/+$/, "")
+  }
   return raw.endsWith("/") ? raw : `${raw}/`
 }
 

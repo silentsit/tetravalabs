@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { Suspense, useEffect, useRef, useState } from "react"
 import { ArrowRight, Menu, Search, ShoppingCart, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
+import { PreferredSourcesButton } from "@/components/preferred-sources-button"
 import { ShopNavMenu } from "@/components/shop-nav-menu"
 import { SiteLogo } from "@/components/site-logo"
 import { shopNavLabel } from "@/lib/shop-filters"
@@ -103,6 +104,7 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
+            <PreferredSourcesButton />
           </nav>
 
           <div className="flex min-w-0 shrink-0 items-center gap-0.5 sm:gap-2">
@@ -234,6 +236,7 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
+              <PreferredSourcesButton className="mt-1 self-start" />
             </nav>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link

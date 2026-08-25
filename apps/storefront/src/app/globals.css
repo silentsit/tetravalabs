@@ -641,4 +641,81 @@
     stroke-dashoffset: 0;
     animation: none !important;
   }
+
+  .google-pref-btn::before {
+    animation: none;
+  }
+}
+
+@property --google-pref-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes google-pref-spin {
+  to {
+    --google-pref-angle: 360deg;
+  }
+}
+
+.google-pref-btn {
+  position: relative;
+  display: inline-flex;
+  min-height: 2.75rem;
+  isolation: isolate;
+  padding: 2px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .google-pref-btn {
+    min-height: 2rem;
+  }
+
+  .google-pref-btn__inner {
+    min-height: calc(2rem - 4px);
+    font-size: 0.75rem;
+  }
+}
+
+.google-pref-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--google-pref-angle),
+    #4285f4,
+    #ea4335,
+    #fbbc05,
+    #34a853,
+    #4285f4
+  );
+  animation: google-pref-spin 2.8s linear infinite;
+}
+
+.google-pref-btn__inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  min-height: calc(2.75rem - 4px);
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: inherit;
+  background: #ffffff;
+  padding: 0 0.7rem 0 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #3c4043;
+  line-height: 1;
+}
+
+.google-pref-btn:hover .google-pref-btn__inner {
+  background: #f8fafc;
 }

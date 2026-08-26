@@ -16,7 +16,7 @@ Sanity powers blog posts, category SEO blocks, and optional legal page copy. Com
 
 ## Bootstrap
 
-Source of truth for seed content: `apps/storefront/src/data/research-articles.json` (2 live articles).
+Source of truth for live Research Hub posts: **Sanity** (`researchArticle`, published). JSON at `apps/storefront/src/data/research-articles.json` is the outage fallback and seed source.
 
 ```bash
 # apps/storefront/.env.local
@@ -24,16 +24,16 @@ SANITY_PROJECT_ID=...
 SANITY_DATASET=production
 SANITY_API_WRITE_TOKEN=...
 
+# Push JSON → Sanity (all 16 KEPT_BLOG_SLUGS) + homepage-link patches
+npm run sanity:sync-blog
+
+# Legacy one-way seed (creates missing docs only; does not full-sync)
 npm run sanity:seed
 ```
 
-Existing slugs are patched when category, read time, excerpt, or body were empty; unchanged docs are skipped.
+## Article inventory (16 live slugs)
 
-## Article inventory (2)
-
-| Category | Count | Topics |
-|----------|-------|--------|
-| Protocols | 2 | Retatrutide trial data, BPC-157 vs TB-500 |
+All slugs in `apps/storefront/src/lib/retired-blog-slugs.ts` (`KEPT_BLOG_SLUGS`). Categories include Protocols, Analytical, and Compliance sourcing guides.
 
 ## Publishing flow
 

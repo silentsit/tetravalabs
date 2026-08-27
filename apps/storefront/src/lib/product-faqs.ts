@@ -1162,7 +1162,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "Is Semax nasal spray for sale as a bottle, and what is the price?",
       answer:
-        "Yes. One 10 mg research bottle, $79, no pack tiers. Flat $15 shipping on every order. That is the catalog price, not a monthly treatment quote.",
+        "Yes. One 10 mg research bottle, $79, no pack tiers. Shipping is free on all orders. That is the catalog price, not a monthly treatment quote.",
     },
     {
       question: "Is Semax nasal spray Research Use Only?",

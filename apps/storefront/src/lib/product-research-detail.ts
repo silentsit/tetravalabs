@@ -1379,7 +1379,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Where to buy Selank nasal spray",
         paragraphs: [
-          "You can buy Selank nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Flat $15 shipping on every order. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method.",
+          "You can buy Selank nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Shipping is free on all orders. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method.",
           "UK and other international orders depend on destination rules that change. Check [shipping restrictions](/shipping-restricted) before you order. Tetrava Labs does not tell you how any country classifies this peptide.",
           "\"Best place to buy Selank nasal spray 2026\" is a slogan unless the listing can show paperwork. Same test for the Semax-plus-Selank version of that query. Tetrava does not sell a combo spray.",
         ],
@@ -1560,7 +1560,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Where to buy Semax nasal spray",
         paragraphs: [
-          "You can buy Semax nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Semax nasal spray for sale here means that SKU, not a 5-pack and not a mixed Selank bottle. Flat $15 shipping on every order. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method.",
+          "You can buy Semax nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Semax nasal spray for sale here means that SKU, not a 5-pack and not a mixed Selank bottle. Shipping is free on all orders. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method.",
           "Where to buy Semax nasal spray in the UK, Australia, or elsewhere depends on destination rules. Check [shipping restrictions](/shipping-restricted) before you order. Tetrava Labs does not tell you how any country classifies this peptide.",
           "\"Best place to buy Semax nasal spray 2026\" is a slogan unless the listing can show paperwork. Same test for the Semax-plus-Selank version of that query. Tetrava does not sell a combo spray. A reputable vendor for this format publishes a lot-linked COA, states that the bottle is unmodified Semax rather than N-Acetyl Semax, and states 2-8°C storage.",
         ],

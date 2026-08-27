@@ -257,8 +257,8 @@ export async function POST(req: Request) {
       }
     }
 
-    const shippingUsd = resolveShippingUsd(items)
     const subtotalUsd = medusaSubtotalCents / 100
+    const shippingUsd = resolveShippingUsd(subtotalUsd)
     const totalUsd =
       shippingUsd === medusaShippingCents / 100
         ? (typeof order.total === "number" ? order.total : medusaSubtotalCents + medusaShippingCents) /

@@ -3,12 +3,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useCart } from "@/components/cart-provider"
+import { ShippingCharge } from "@/components/shipping-charge"
+import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { getProductHref } from "@/lib/compound-product"
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
 
 export function CartPanel() {
   const { items, subtotal, totalItems, removeItem, updateQty } = useCart()
+  const shippingUsd = resolveShippingUsd(subtotal)
+  const estimatedTotal = subtotal + shippingUsd
 
   return (
     <section className="card space-y-4 p-5">
@@ -74,8 +78,19 @@ export function CartPanel() {
               )
             })}
           </ul>
-          <div className="border-t border-[#E2E8F0] pt-3 text-sm text-[#475569]">
-            <p>Subtotal: ${subtotal.toFixed(2)}</p>
+          <div className="space-y-1 border-t border-[#E2E8F0] pt-3 text-sm text-[#475569]">
+            <div className="flex justify-between">
+              <span>Subtotal</span>
+              <span className="tabular-nums text-[#0F172A]">${subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Shipping</span>
+              <ShippingCharge amount={shippingUsd} />
+            </div>
+            <div className="flex justify-between pt-1 font-medium text-[#0F172A]">
+              <span>Total</span>
+              <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
+            </div>
             <div className="mt-3 flex gap-2">
               <Link href="/cart" className="btn-secondary px-3 py-2 text-xs">
                 View cart

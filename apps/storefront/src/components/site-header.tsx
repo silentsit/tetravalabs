@@ -72,16 +72,16 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur-md transition-all duration-200 ${
+        className={`sticky top-0 z-50 h-16 border-b bg-white/95 backdrop-blur-md transition-all duration-200 ${
           scrolled ? "border-slate-200 shadow-sm" : "border-slate-200/60"
         }`}
       >
-        <div className="page-container flex h-16 items-center justify-between gap-3 lg:h-[4.75rem]">
+        <div className="page-container flex h-full items-center justify-between">
           <Link href="/" className="flex shrink-0 items-center">
             <SiteLogo className="shrink-0" />
           </Link>
 
-          <nav className="hidden min-w-0 items-center gap-3 lg:flex xl:gap-6">
+          <nav className="hidden items-center gap-5 lg:flex xl:gap-8">
             <Suspense
               fallback={
                 <Link href="/shop" className="text-sm text-[#475569] hover:text-[#0F172A]">
@@ -104,7 +104,7 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <PreferredSourcesButton variant="compact" />
+            <PreferredSourcesButton />
           </nav>
 
           <div className="flex min-w-0 shrink-0 items-center gap-0.5 sm:gap-2">
@@ -223,7 +223,6 @@ export function SiteHeader() {
               </button>
             </div>
             <nav className="mt-8 flex flex-1 flex-col gap-5">
-              <PreferredSourcesButton className="w-full max-w-full self-stretch" />
               <Suspense fallback={<Link href="/shop" className="font-serif text-2xl text-[#0F172A]">{shopNavLabel}</Link>}>
                 <ShopNavMenu variant="mobile" onNavigate={() => setMobileOpen(false)} />
               </Suspense>
@@ -237,6 +236,7 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
+              <PreferredSourcesButton className="mt-1 self-start" />
             </nav>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link

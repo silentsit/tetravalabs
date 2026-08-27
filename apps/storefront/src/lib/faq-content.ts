@@ -35,7 +35,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What shipping methods do you use?",
     answer:
-      "We ship with temperature-controlled packaging where appropriate for lyophilized peptides. Orders are processed within 12 hours; delivery times vary by region (e.g. 2–7 business days to USA, Canada, Australia, and UK). Shipping is free on all orders. Tracking is emailed after dispatch — use Post Track or 17 Track for the most accurate updates."
+      "We ship with temperature-controlled packaging where appropriate for lyophilized peptides. Orders are processed within 12 hours; delivery times vary by region (e.g. 2–7 business days to USA, Canada, Australia, and UK). Shipping rate is shown at checkout. Tracking is emailed after dispatch — use Post Track or 17 Track for the most accurate updates."
   },
   {
     question: "How should peptides be stored?",

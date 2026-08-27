@@ -4,8 +4,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { Lock, Minus, Plus, Trash2, Truck, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
-import { ShippingCharge } from "@/components/shipping-charge"
-import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
 
@@ -14,8 +12,6 @@ const iconBtn =
 
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQty, subtotal } = useCart()
-  const shippingUsd = resolveShippingUsd(subtotal)
-  const estimatedTotal = subtotal + shippingUsd
   if (!isOpen) return null
 
   return (
@@ -116,15 +112,15 @@ export function CartDrawer() {
             <div className="mb-4 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-[#475569]">Subtotal</span>
-                <span className="tabular-nums text-[#0F172A]">${subtotal.toFixed(2)}</span>
+                <span className="text-[#0F172A]">${subtotal.toFixed(2)}</span>
               </div>
-              <div className="flex items-center justify-between text-sm">
+              <div className="flex items-start justify-between gap-4 text-sm">
                 <span className="text-[#475569]">Shipping</span>
-                <ShippingCharge amount={shippingUsd} />
+                <span className="text-right text-xs text-[#94A3B8] sm:text-sm">Calculated at checkout</span>
               </div>
               <div className="flex justify-between border-t border-[#E2E8F0] pt-2">
                 <span className="font-medium text-[#0F172A]">Total</span>
-                <span className="font-medium tabular-nums text-[#0F172A]">${estimatedTotal.toFixed(2)}</span>
+                <span className="font-medium text-[#0F172A]">${subtotal.toFixed(2)}</span>
               </div>
             </div>
             <Link href="/checkout" onClick={() => setIsOpen(false)} className="btn-primary w-full min-h-11 gap-2">

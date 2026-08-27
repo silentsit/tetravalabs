@@ -1,10 +1,6 @@
-/** Standard shipping is included on every order at no extra charge. */
-export function resolveShippingUsd(_subtotalUsd?: number) {
-  return 0
-}
+export const DEFAULT_SHIPPING_USD = 15
 
-export function formatUsdAmount(value: number) {
-  const rounded = Math.round(value * 100) / 100
-  if (Number.isInteger(rounded)) return `$${rounded}`
-  return `$${rounded.toFixed(2)}`
+/** Flat $15 shipping on every order. */
+export function resolveShippingUsd(_items?: unknown[]) {
+  return DEFAULT_SHIPPING_USD
 }

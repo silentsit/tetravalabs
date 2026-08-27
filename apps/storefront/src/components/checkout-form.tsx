@@ -23,7 +23,6 @@ import {
   type CheckoutCryptoOption
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
-import { ShippingCharge } from "@/components/shipping-charge"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
   defaultPeptidepayOnramp,
@@ -443,7 +442,7 @@ function CheckoutOrderSummary({
         </div>
         <div className="flex items-center justify-between">
           <span>Shipping</span>
-          <ShippingCharge amount={shippingUsd} />
+          <span className="tabular-nums">${shippingUsd.toFixed(2)}</span>
         </div>
         <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 text-base font-semibold text-[#0F172A]">
           <span>Total</span>
@@ -891,7 +890,7 @@ export function CheckoutForm() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [summaryOpen, setSummaryOpen] = useState(false)
 
-  const shippingUsd = resolveShippingUsd(subtotal)
+  const shippingUsd = resolveShippingUsd(items)
   const estimatedTotal = subtotal + shippingUsd
 
   const billingValues = useMemo<AddressValues>(

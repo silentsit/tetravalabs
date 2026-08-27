@@ -62,7 +62,7 @@ export const chatTools = {
     inputSchema: z.object({}),
     execute: async () => ({
       summary:
-        "Orders typically process within 12 hours. Lyophilized peptides ship with temperature-controlled packaging where required. Typical windows: 2–7 business days (USA/Canada/Australia/UK), 2–4 (SEA), 5–11 (rest of world). Tracking is emailed after dispatch. Customs/duties are the recipient's responsibility. Shipping is free on all orders.",
+        "Orders typically process within 12 hours. Lyophilized peptides ship with temperature-controlled packaging where required. Typical windows: 2–7 business days (USA/Canada/Australia/UK), 2–4 (SEA), 5–11 (rest of world). Tracking is emailed after dispatch. Customs/duties are the recipient's responsibility. Flat $15 shipping on every order.",
       href: "/shipping"
     })
   }),

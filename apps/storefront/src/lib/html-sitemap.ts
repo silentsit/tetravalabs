@@ -1,8 +1,9 @@
 import "server-only"
 
 import { groupProductsByCategory } from "@/lib/categories"
+import { coaLibraryProductPath, groupCoasByProduct } from "@/lib/coa-library"
 import { getCompoundParentHandle, productPath } from "@/lib/compound-product"
-import { listAllProducts } from "@/lib/medusa"
+import { listAllProducts, listRecentCoas } from "@/lib/medusa"
 import { getProductDisplayName } from "@/lib/revamp/product-visual"
 import { listBlogPosts } from "@/lib/sanity"
 
@@ -22,6 +23,7 @@ export type HtmlSitemapData = {
   categories: HtmlSitemapLink[]
   productsByCategory: HtmlSitemapGroup[]
   posts: HtmlSitemapLink[]
+  coaProducts: HtmlSitemapLink[]
 }
 
 const PAGE_LINKS: HtmlSitemapLink[] = [
@@ -47,8 +49,18 @@ function sortLinks(links: HtmlSitemapLink[]) {
 }
 
 export async function getHtmlSitemapData(): Promise<HtmlSitemapData> {
-  const [products, posts] = await Promise.all([listAllProducts(), listBlogPosts()])
+  const [products, posts, coaDocs] = await Promise.all([
+    listAllProducts(),
+    listBlogPosts(),
+    listRecentCoas(500)
+  ])
   const categories = groupProductsByCategory(products)
+  const coaProducts = sortLinks(
+    groupCoasByProduct(coaDocs).map((product) => ({
+      href: coaLibraryProductPath(product.parentHandle),
+      label: `${product.displayName} COA`
+    }))
+  )
 
   const productsByCategory = categories
     .map((category) => {
@@ -88,7 +100,8 @@ export async function getHtmlSitemapData(): Promise<HtmlSitemapData> {
         href: `/blog/${post.slug}`,
         label: post.title
       }))
-    )
+    ),
+    coaProducts
   }
 }
 
@@ -111,6 +124,8 @@ export function renderHtmlSitemapMarkdown(data: HtmlSitemapData): string {
     "## Products by category",
     productBlocks,
     "## Research Hub",
-    list(data.posts)
+    list(data.posts),
+    "## COA library",
+    list(data.coaProducts)
   ].join("\n\n")
 }

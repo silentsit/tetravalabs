@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { listRecentCoas } from "@/lib/medusa"
 import { CoaLibraryProductDetail } from "@/components/coa-library-product-detail"
+import { PageJsonLd } from "@/components/page-json-ld"
 import {
   coaLibraryProductPath,
   findCoaLibraryProduct,
@@ -48,5 +49,10 @@ export default async function CoaLibraryProductPage({ params }: Props) {
   const product = await loadProduct(handle)
   if (!product) notFound()
 
-  return <CoaLibraryProductDetail product={product} />
+  return (
+    <>
+      <PageJsonLd pathname={coaLibraryProductPath(product.parentHandle)} />
+      <CoaLibraryProductDetail product={product} />
+    </>
+  )
 }

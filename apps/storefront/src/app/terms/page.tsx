@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function TermsPage() {
   return (
-    <LegalPageShell eyebrow="Legal" title="Terms of Service">
+    <LegalPageShell eyebrow="Legal" title="Terms of Service" pathname="/terms">
       <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
         <p>
           These Terms of Service (&quot;Terms&quot;) govern your access to tetravalabs.com and any

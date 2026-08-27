@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <LegalPageShell eyebrow="Legal" title="Privacy Policy">
+    <LegalPageShell eyebrow="Legal" title="Privacy Policy" pathname="/privacy">
       <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
         <p>
           This Privacy Policy explains how Tetrava Labs (&quot;we,&quot; &quot;us,&quot; or

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { buildPageMetadata, webPageJsonLd } from "@/lib/seo"
 
@@ -73,11 +74,12 @@ const catalogCategories = [
 export default function AboutPage() {
   return (
     <section className="page-container mx-auto max-w-4xl space-y-10 py-8">
+      <PageJsonLd pathname="/about" />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
 
       <div>
         <span className="section-label">About us</span>
-        <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">About Tetrava Labs</h1>
+        <h1 className="mt-4 font-serif text-3xl text-[#0F172A] sm:text-4xl md:text-5xl">About Tetrava Labs</h1>
         <p className="mt-4 font-serif text-xl text-[#0F766E]">Verified. Documented. Delivered.</p>
       </div>
 

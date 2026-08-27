@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { ShopCatalog, ShopCatalogFallback } from "@/components/shop-catalog"
 import { listProducts } from "@/lib/medusa"
 import { shopNavLabel } from "@/lib/shop-filters"
@@ -24,6 +25,7 @@ export default async function ShopPage() {
 
   return (
     <section className="page-container space-y-8 py-8">
+      <PageJsonLd pathname="/shop" />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: shopNavLabel }]} />
       <Suspense fallback={<ShopCatalogFallback products={products} />}>
         <ShopCatalog products={products} />

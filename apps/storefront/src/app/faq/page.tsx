@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { faqItems } from "@/lib/faq-content"
@@ -16,10 +17,11 @@ export const metadata: Metadata = buildPageMetadata({
 export default function FaqPage() {
   return (
     <section className="page-container mx-auto max-w-3xl space-y-8 py-8">
+      <PageJsonLd pathname="/faq" />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} />
       <div>
         <span className="section-label">Support</span>
-        <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">Frequently asked questions</h1>
+        <h1 className="mt-4 font-serif text-3xl text-[#0F172A] sm:text-4xl">Frequently asked questions</h1>
         <p className="mt-4 text-[#475569]">
           Answers about research compounds, ordering, shipping, and analytical documentation.
         </p>

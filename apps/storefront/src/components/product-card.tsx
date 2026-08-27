@@ -113,7 +113,7 @@ export function ProductCard({
               type="button"
               onClick={handleQuickAdd}
               disabled={!inStock}
-              className="flex h-8 items-center gap-1.5 rounded-lg bg-[#0D9488] px-3 text-xs font-semibold text-white transition-all hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex min-h-11 items-center gap-1.5 rounded-lg bg-[#0D9488] px-3 text-xs font-semibold text-white transition-all hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-40"
             >
               <ShoppingCart className="h-3.5 w-3.5" /> Add
             </button>
@@ -164,7 +164,7 @@ export function ProductCard({
         {needsOptions ? (
           <Link
             href={productHref}
-            className="flex h-10 w-full items-center justify-center rounded-full border border-[#0D9488] bg-white text-sm font-semibold text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
+            className="flex min-h-11 w-full items-center justify-center rounded-full border border-[#0D9488] bg-white text-sm font-semibold text-[#0D9488] transition-colors hover:bg-[#0D9488] hover:text-white"
           >
             Select options
           </Link>
@@ -173,7 +173,7 @@ export function ProductCard({
             type="button"
             onClick={handleQuickAdd}
             disabled={!inStock}
-            className="flex h-10 w-full items-center justify-center gap-2 rounded-full bg-[#0D9488] text-sm font-semibold text-white transition-colors hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-45"
+            className="flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-[#0D9488] text-sm font-semibold text-white transition-colors hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-45"
           >
             <ShoppingCart className="h-4 w-4" strokeWidth={2.25} />
             Add to cart

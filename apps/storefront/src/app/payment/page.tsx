@@ -10,6 +10,7 @@ import {
   ShieldCheck
 } from "lucide-react"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
@@ -84,6 +85,7 @@ const paymentFaqs = [
 export default function PaymentGuidePage() {
   return (
     <div className="min-h-screen">
+      <PageJsonLd pathname="/payment" />
       <section className="border-b border-[#E2E8F0] bg-white py-12">
         <div className="page-container">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Payment Guide" }]} />

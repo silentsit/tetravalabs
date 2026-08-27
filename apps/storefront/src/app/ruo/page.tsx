@@ -11,8 +11,8 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function RuoGatePage() {
   return (
-    <LegalPageShell eyebrow="Compliance" title="Research Use Only Policy">
-      <div className="space-y-6 text-sm leading-relaxed text-[#8A8AA0]">
+    <LegalPageShell eyebrow="Compliance" title="Research Use Only Policy" pathname="/ruo">
+      <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
         <p>
           Tetrava Labs supplies peptides and research compounds exclusively for in-vitro laboratory
           research by qualified professionals. Products are not approved for human or veterinary

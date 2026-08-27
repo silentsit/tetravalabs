@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 import { JetBrains_Mono, Jost, Lora } from "next/font/google"
 import "./globals.css"
@@ -56,6 +56,12 @@ const defaultOgImage = {
   height: OG_IMAGE_HEIGHT,
   type: OG_IMAGE_TYPE,
   alt: siteConfig.name
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#F8FAFC"
 }
 
 export const metadata: Metadata = {

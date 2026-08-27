@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { listProducts } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { groupProductsByCategory } from "@/lib/categories"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
 import { localImageProps } from "@/lib/local-image"
@@ -26,10 +27,11 @@ export default async function CategoriesPage() {
 
   return (
     <section className="page-container space-y-8 py-8">
+      <PageJsonLd pathname="/categories" />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Categories" }]} />
       <div>
         <span className="section-label">Browse</span>
-        <h1 className="mt-4 font-serif text-4xl text-[#0F172A]">Product categories</h1>
+        <h1 className="mt-4 font-serif text-3xl text-[#0F172A] sm:text-4xl">Product categories</h1>
         <p className="mt-4 max-w-2xl text-[#475569]">
           Explore the live catalog grouped by compound class and application area.
         </p>

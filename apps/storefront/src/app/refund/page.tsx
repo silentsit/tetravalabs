@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function RefundPage() {
   return (
-    <LegalPageShell eyebrow="Legal" title="Refund & Delivery Policy">
+    <LegalPageShell eyebrow="Legal" title="Refund & Delivery Policy" pathname="/refund">
       <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
         <p className="text-base text-[#0F172A]">
           <strong>We guarantee delivery.</strong> If your order does not arrive, we will resend it.

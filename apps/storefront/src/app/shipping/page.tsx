@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ShippingPage() {
   return (
-    <LegalPageShell title="Shipping Information">
+    <LegalPageShell title="Shipping Information" pathname="/shipping">
       <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
         <p>
           Orders begin processing after payment is confirmed. Lyophilized peptides are packed with
@@ -154,7 +154,10 @@ export default function ShippingPage() {
 
         <section className="space-y-3">
           <h2 className="text-base font-medium text-[#0F172A]">Rates and packaging</h2>
-          <p>Shipping rate is shown at checkout before payment.</p>
+          <p>
+            Shipping is $15 per order. Orders of $180 and above include free worldwide shipping. The
+            rate is confirmed at checkout before payment.
+          </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>Cold-chain packing with cold packs when required for lyophilized peptides</li>
             <li>Discreet, unmarked outer packaging</li>

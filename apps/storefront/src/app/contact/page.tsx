@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { ContactForm } from "@/components/contact-form"
 import { buildPageMetadata } from "@/lib/seo"
 
@@ -15,9 +16,10 @@ export const metadata: Metadata = buildPageMetadata({
 export default function ContactPage() {
   return (
     <section className="page-container mx-auto max-w-4xl space-y-8 pt-8 pb-20">
+      <PageJsonLd pathname="/contact" />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
       <div>
-        <h1 className="font-serif text-4xl text-[#0F172A]">Contact us</h1>
+        <h1 className="font-serif text-3xl text-[#0F172A] sm:text-4xl">Contact us</h1>
         <p className="mt-4 text-[#475569]">
           Reach our research support team about products, orders, COA documents, or compliance questions.
         </p>

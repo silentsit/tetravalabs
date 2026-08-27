@@ -19,7 +19,7 @@ Product, article, and category cards include the page title, RUO eyebrow, and a 
 | `/shop` | Research Peptides for Sale \| Tetrava Labs | Browse the full Tetrava Labs catalog — GLP-1 peptides, tissue repair compounds, growth secretagogues, and lab supplies with batch COAs. |
 | `/{handle}` | {productName with strengths} — {category} \| Tetrava Labs | {productName with strengths} for laboratory research (RUO). {purity} purity with lot-linked COA. [CAS …]. |
 | `/buy-bpc-157-online` | BPC-157 Peptide for Sale • Tissue Repair \| Tetrava Labs | BPC-157 peptide for sale at Tetrava Labs — third-party verified 99%+ purity with lot-linked COA. Buy BPC-157 online with us today. |
-| `/buy-retatrutide-online` | Buy Retatrutide Peptide Online \| Retatrutide for Sale \| Tetrava | Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale. Get competitive pricing, lab-tested retatrutide peptides & same-day dispatch. |
+| `/buy-retatrutide-online` | Buy Retatrutide Peptide Online \| Retatrutide for Sale \| Tetrava | Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale with lot-linked COA, competitive pricing, and cold-chain dispatch. RUO. |
 | `/buy-semaglutide-online` | Buy Semaglutide Online (5mg, 10mg) \| 99% Purity \| Tetrava | Buy research-grade Semaglutide online in 5mg and 10mg. Verified 99%+ HPLC-MS purity with lot-linked COAs. Cold-chain shipping. RUO. CAS 910463-68-2. |
 | `/buy-mots-c-online` | Buy MOTS-c Peptide Online \| MOTS-c for Sale \| Tetrava | Buy MOTS-c peptide online for qualified labs. Get 99%+ HPLC-MS purity, lot-linked COA documentation, competitive pricing, and cold-chain dispatch. RUO only. |
 | `/buy-aod-9604-online` | Buy AOD-9604 Peptide Online (5mg / 10mg) \| 99%+ COA \| Tetrava | Buy AOD-9604 peptide online in 5mg and 10mg vials. 99%+ HPLC-MS lab-tested purity, lot-linked COA. Research-grade hGH fragment 176-191. RUO. |
@@ -61,6 +61,7 @@ Product, article, and category cards include the page title, RUO eyebrow, and a 
 | `/account/downloads` | Downloads \| Tetrava Labs | Access COA and batch documents for your Tetrava Labs orders. |
 | `/account/forgot-password` | Forgot Password \| Tetrava Labs | Request a secure password reset link for your Tetrava Labs account. |
 | `/account/reset-password` | Reset Password \| Tetrava Labs | Set a new password for your Tetrava Labs account. |
-| `/reorder/{token}` | (site default) | (site default) |
+| `/reorder/{token}` | Reorder \| Tetrava | Reload a previous Tetrava Labs research order from your secure email link. |
+| `(not-found)` | Page not found \| Tetrava | The page you requested does not exist on tetravalabs.com. Browse the research peptide catalog or return home. |
 
-Source: `apps/storefront` `buildPageMetadata` (Jul 2026). For schema markup too, see `doc/seo-page-inventory.md`.
+Source: `apps/storefront` `buildPageMetadata` (Aug 2026). For schema markup too, see `doc/seo-page-inventory.md`.

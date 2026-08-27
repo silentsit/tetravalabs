@@ -3,6 +3,7 @@ export const revalidate = 300
 import type { Metadata } from "next"
 import { listRecentCoas } from "@/lib/medusa"
 import { CoaLibraryList } from "@/components/coa-library-list"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { groupCoasByProduct } from "@/lib/coa-library"
 import { buildPageMetadata } from "@/lib/seo"
 
@@ -21,5 +22,10 @@ export default async function CoaLibraryPage() {
   const docs = await listRecentCoas(500)
   const products = groupCoasByProduct(docs)
 
-  return <CoaLibraryList products={products} />
+  return (
+    <>
+      <PageJsonLd pathname="/coa-library" />
+      <CoaLibraryList products={products} />
+    </>
+  )
 }

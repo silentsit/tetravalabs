@@ -35,7 +35,7 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
     absoluteTitle:
       "Buy Retatrutide Peptide Online | Retatrutide for Sale | Tetrava",
     description:
-      "Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale. Get competitive pricing, lab-tested retatrutide peptides & same-day dispatch.",
+      "Wondering where to buy retatrutide? Find 99%+ pure retatrutide for sale with lot-linked COA, competitive pricing, and cold-chain dispatch. RUO.",
     imageAlt: "Buy retatrutide peptide for sale in research vial",
   },
   semaglutide: {

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { PageJsonLd } from "@/components/page-json-ld"
 import { getHtmlSitemapData, type HtmlSitemapLink } from "@/lib/html-sitemap"
 import { buildPageMetadata, webPageJsonLd } from "@/lib/seo"
 
@@ -47,10 +48,11 @@ export default async function SitemapPage() {
 
   return (
     <section className="page-container mx-auto max-w-5xl space-y-10 py-8 pb-20">
+      <PageJsonLd pathname="/sitemap" />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Sitemap" }]} />
 
       <div>
-        <h1 className="font-serif text-4xl text-[#0F172A] md:text-5xl">Sitemap</h1>
+        <h1 className="font-serif text-3xl text-[#0F172A] sm:text-4xl md:text-5xl">Sitemap</h1>
         <p className="mt-4 max-w-2xl text-[16px] leading-7 text-[#475569]">
           Every public page on tetravalabs.com, grouped the way the catalog is organized. Search
           engines should use the{" "}
@@ -107,6 +109,13 @@ export default async function SitemapPage() {
           </p>
         )}
       </section>
+
+      {data.coaProducts.length ? (
+        <section className="space-y-4">
+          <h2 className="font-serif text-2xl text-[#0F172A]">COA library</h2>
+          <LinkList links={data.coaProducts} columns />
+        </section>
+      ) : null}
     </section>
   )
 }

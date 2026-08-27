@@ -1,7 +1,8 @@
 import { blogImageForPost } from "@/lib/blog-utils"
 import { groupProductsByCategory } from "@/lib/categories"
+import { coaLibraryProductPath, groupCoasByProduct } from "@/lib/coa-library"
 import { getCompoundParentHandle, productPath } from "@/lib/compound-product"
-import { listAllProducts } from "@/lib/medusa"
+import { listAllProducts, listRecentCoas } from "@/lib/medusa"
 import { getProductGalleryImages } from "@/lib/product-image-map"
 import { getProductDisplayName } from "@/lib/revamp/product-visual"
 import { listBlogPosts } from "@/lib/sanity"
@@ -39,6 +40,7 @@ const STATIC_PAGE_ROUTES: Array<{
 }> = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/shop", changeFrequency: "daily", priority: 0.9 },
+  { path: "/categories", changeFrequency: "weekly", priority: 0.7 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
   { path: "/coa-library", changeFrequency: "weekly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
@@ -176,12 +178,20 @@ function maxDate(dates: Array<Date | undefined>) {
 
 export async function getPageSitemapEntries(): Promise<SitemapUrlEntry[]> {
   const baseUrl = getSitemapBaseUrl()
-
-  return STATIC_PAGE_ROUTES.map((route) => ({
+  const staticEntries = STATIC_PAGE_ROUTES.map((route) => ({
     loc: `${baseUrl}${route.path}`,
     changeFrequency: route.changeFrequency,
     priority: route.priority
   }))
+
+  const coaProducts = groupCoasByProduct(await listRecentCoas(500))
+  const coaEntries = coaProducts.map((product) => ({
+    loc: `${baseUrl}${coaLibraryProductPath(product.parentHandle)}`,
+    changeFrequency: "weekly" as const,
+    priority: 0.5
+  }))
+
+  return [...staticEntries, ...coaEntries]
 }
 
 export async function getPostSitemapEntries(): Promise<SitemapUrlEntry[]> {

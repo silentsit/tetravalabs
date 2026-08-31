@@ -17,6 +17,7 @@ import {
   merchantReturnPolicyJsonLd,
   offerShippingDetailsJsonLd
 } from "@/lib/merchant-listing-schema"
+import { resolveSocialProfileUrls } from "@/lib/social-profiles"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 
@@ -739,29 +740,6 @@ export function productResearchArticleJsonLd(input: {
   }
 }
 
-/** Verified live social profiles. Env vars can override any entry per-deployment. */
-const DEFAULT_SOCIAL_PROFILES = {
-  facebook: "https://www.facebook.com/tetravalabs",
-  instagram: "https://www.instagram.com/tetravalabs",
-  medium: "https://medium.com/@tetravalabs",
-  quora: "https://www.quora.com/profile/tetrava-labs"
-}
-
-function resolveSocialProfiles() {
-  const fromEnv = [
-    process.env.NEXT_PUBLIC_TWITTER_URL,
-    process.env.NEXT_PUBLIC_INSTAGRAM_URL || DEFAULT_SOCIAL_PROFILES.instagram,
-    process.env.NEXT_PUBLIC_LINKEDIN_URL,
-    process.env.NEXT_PUBLIC_FACEBOOK_URL || DEFAULT_SOCIAL_PROFILES.facebook,
-    process.env.NEXT_PUBLIC_MEDIUM_URL || DEFAULT_SOCIAL_PROFILES.medium,
-    process.env.NEXT_PUBLIC_QUORA_URL || DEFAULT_SOCIAL_PROFILES.quora
-  ]
-    .map((value) => value?.trim())
-    .filter((value): value is string => Boolean(value))
-
-  return fromEnv
-}
-
 type SitePostalAddress = {
   streetAddress: string
   addressLocality: string
@@ -782,7 +760,7 @@ function postalAddressJsonLd(address: SitePostalAddress) {
 }
 
 export function organizationJsonLd() {
-  const sameAs = resolveSocialProfiles()
+  const sameAs = resolveSocialProfileUrls()
   return {
     "@context": "https://schema.org",
     "@type": "Organization",

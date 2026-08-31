@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { PageJsonLd } from "@/components/page-json-ld"
 import { ContactForm } from "@/components/contact-form"
+import { SocialProfileLinks } from "@/components/social-profile-links"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
@@ -34,6 +35,10 @@ export default function ContactPage() {
           <div className="card p-4">
             <p className="font-medium text-[#0F172A]">Order questions</p>
             <p className="mt-2">Include your order ID or display number for faster lookup.</p>
+          </div>
+          <div className="card p-4">
+            <p className="font-medium text-[#0F172A]">Social</p>
+            <SocialProfileLinks className="mt-2" />
           </div>
         </aside>
       </div>

@@ -31,9 +31,6 @@ export default function ContactPage() {
           <div className="card p-4">
             <p className="font-medium text-[#0F172A]">Research support</p>
             <p className="mt-2">Typical response within 1–2 business days.</p>
-          </div>
-          <div className="card p-4">
-            <p className="font-medium text-[#0F172A]">Order questions</p>
             <p className="mt-2">Include your order ID or display number for faster lookup.</p>
           </div>
           <div className="card p-4">

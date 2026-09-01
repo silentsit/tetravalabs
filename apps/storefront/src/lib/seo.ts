@@ -57,11 +57,12 @@ export const siteConfig = {
   locale: "en_US",
   twitterHandle: "@tetravalabs",
   contactEmail: "info@tetravalabs.com",
+  contactPhone: "+66 61 121 6690",
   address: {
-    streetAddress: "455 Gateway Drive",
-    addressLocality: "Pacifica",
+    streetAddress: "580 California Street, 12th and 16th Floor",
+    addressLocality: "San Francisco",
     addressRegion: "CA",
-    postalCode: "94044",
+    postalCode: "94104",
     addressCountry: "US"
   },
   /** Additional regional offices for Organization schema (Knowledge Graph entity association). */
@@ -769,6 +770,7 @@ export function organizationJsonLd() {
     url: siteConfig.url,
     logo: pageUrl(siteConfig.logo),
     email: siteConfig.contactEmail,
+    telephone: siteConfig.contactPhone,
     description: siteConfig.description,
     address: [
       postalAddressJsonLd(siteConfig.address),
@@ -778,6 +780,7 @@ export function organizationJsonLd() {
       "@type": "ContactPoint",
       contactType: "customer support",
       email: siteConfig.contactEmail,
+      telephone: siteConfig.contactPhone,
       availableLanguage: "English"
     },
     hasMerchantReturnPolicy: merchantReturnPolicyJsonLd(),

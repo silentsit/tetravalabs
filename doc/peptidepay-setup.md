@@ -64,6 +64,6 @@ See [Peptide Pay docs](https://peptide-pay.com/docs#testing).
   - Stripe and PayPal are Peptide Pay US-IP rails. Outside the US, Peptide Pay ignores the pin and opens Banxa, so checkout disables those two with "Not available from your location" instead of redirecting
   - Pre-selected default: Stripe for US shipping **and** US IP, Transak otherwise (buyer can change it)
 - Crypto option remains the global backup (asset picker: BTC → BTCPay, others → Paymento)
-- Card flow routes through `/checkout/payment` (branded handoff, 3s auto-redirect) before the selected Peptide Pay rail; return URL is `/checkout/payment` (holding state polls until paid, then `/orders?payment=complete`)
+- Card flow routes through `/checkout/payment` (HSP-style handoff: "Complete your purchase" screen, Pay Now opens Peptide Pay in a new tab, parent tab shows "Payment processing" and polls until paid, then `/orders?payment=complete`). Crypto on the same route keeps site chrome.
 
 See also: [doc/paymento-setup.md](./paymento-setup.md), [doc/btcpay-setup.md](./btcpay-setup.md).

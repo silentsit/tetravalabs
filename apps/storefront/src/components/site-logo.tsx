@@ -1,9 +1,10 @@
 import Image from "next/image"
 import { localImageProps } from "@/lib/local-image"
 
-const LOGO_SRC = "/brand/tetrava-logo-header.webp"
+const LOGO_SRC = "/brand/tetrava-logo-header.png"
 const LOGO_WIDTH = 480
 const LOGO_HEIGHT = 73
+const LOGO_ALT = "tetrava labs website logo"
 
 const FOOTER_LOGO_SRC = "/brand/tetrava-logo-footer.webp"
 const FOOTER_LOGO_WIDTH = 480
@@ -32,7 +33,7 @@ export function SiteLogo({
   return (
     <Image
       src={src}
-      alt="TETRAVA Labs"
+      alt={LOGO_ALT}
       width={width}
       height={height}
       priority={variant === "default"}

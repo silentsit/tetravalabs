@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { Suspense } from "react"
 import { PaymentConfirmation } from "@/components/payment-confirmation"
 import { buildPageMetadata } from "@/lib/seo"
 
@@ -11,10 +10,24 @@ export const metadata: Metadata = buildPageMetadata({
   registerWebPage: false
 })
 
-export default function CheckoutPaymentPage() {
+type PageProps = {
+  searchParams: Promise<{
+    order_id?: string
+    display_id?: string
+    total?: string
+    onramp?: string
+  }>
+}
+
+export default async function CheckoutPaymentPage({ searchParams }: PageProps) {
+  const params = await searchParams
+
   return (
-    <Suspense fallback={<p className="text-sm text-[#8A8AA0]">Loading payment details...</p>}>
-      <PaymentConfirmation />
-    </Suspense>
+    <PaymentConfirmation
+      orderId={params.order_id ?? ""}
+      displayId={params.display_id ?? ""}
+      total={params.total ?? ""}
+      onrampFromUrl={params.onramp ?? ""}
+    />
   )
 }

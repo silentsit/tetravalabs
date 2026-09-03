@@ -2,9 +2,10 @@
 
 import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { Check, Lock } from "lucide-react"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { CheckoutHandoffShell } from "@/components/checkout-handoff-shell"
 import { SiteLogo } from "@/components/site-logo"
 import {
   getPeptidepayOnramp,
@@ -17,7 +18,6 @@ const payUrlKey = (orderId: string) => `tetrava_pay_${orderId}`
 const handoffKey = (orderId: string) => `tetrava_handoff_${orderId}`
 const onrampKey = (orderId: string) => `tetrava_onramp_${orderId}`
 const POLL_MS = 12_000
-const HANDOFF_DELAY_MS = 3_000
 
 type PaymentStatus = {
   status?: string
@@ -49,6 +49,18 @@ function readStoredOnramp(orderId: string) {
   return sessionStorage.getItem(onrampKey(orderId)) || ""
 }
 
+function readStoredPayUrl(orderId: string) {
+  if (typeof window === "undefined" || !orderId) return ""
+  return sessionStorage.getItem(payUrlKey(orderId)) || ""
+}
+
+export type PaymentConfirmationProps = {
+  orderId?: string
+  displayId?: string
+  total?: string
+  onrampFromUrl?: string
+}
+
 function ProcessorMarks({ methods }: { methods: PeptidepayOnrampMethod[] }) {
   if (!methods.length) return null
   return (
@@ -73,42 +85,43 @@ function ProcessorMarks({ methods }: { methods: PeptidepayOnrampMethod[] }) {
   )
 }
 
-export function PaymentConfirmation() {
+export function PaymentConfirmation({
+  orderId = "",
+  displayId = "",
+  total = "",
+  onrampFromUrl = ""
+}: PaymentConfirmationProps) {
   const router = useRouter()
-  const params = useSearchParams()
-  const orderId = params.get("order_id") || ""
-  const displayId = params.get("display_id") || ""
-  const total = params.get("total") || ""
-  const onrampFromUrl = params.get("onramp") || ""
   const [payUrl, setPayUrl] = useState("")
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus | null>(null)
   const [polling, setPolling] = useState(false)
   const [handedOff, setHandedOff] = useState(false)
   const [onrampId, setOnrampId] = useState(onrampFromUrl)
-  const [secondsLeft, setSecondsLeft] = useState(3)
-  const [leaving, setLeaving] = useState(false)
-  const [sessionReady, setSessionReady] = useState(false)
+  const [payLinkResolved, setPayLinkResolved] = useState(false)
   const handoffStarted = useRef(false)
 
   useEffect(() => {
     if (onrampFromUrl) {
       setOnrampId(onrampFromUrl)
       if (orderId) sessionStorage.setItem(onrampKey(orderId), onrampFromUrl)
-    } else if (orderId) {
+    } else {
       const storedOnramp = readStoredOnramp(orderId)
       if (storedOnramp) setOnrampId(storedOnramp)
     }
     if (orderId && readStoredHandoff(orderId)) setHandedOff(true)
-    setSessionReady(true)
+
+    const storedPayUrl = readStoredPayUrl(orderId)
+    if (storedPayUrl) setPayUrl(storedPayUrl)
   }, [orderId, onrampFromUrl])
 
   useEffect(() => {
-    if (!orderId) return
-
-    const stored = sessionStorage.getItem(payUrlKey(orderId))
-    if (stored) setPayUrl(stored)
+    if (!orderId) {
+      setPayLinkResolved(true)
+      return
+    }
 
     let active = true
+    const storedPayUrl = readStoredPayUrl(orderId)
 
     const loadStatus = async () => {
       try {
@@ -126,7 +139,7 @@ export function PaymentConfirmation() {
 
         if (active) {
           setPaymentStatus(nextStatus)
-          if (data.provider_url && !stored) {
+          if (data.provider_url && !storedPayUrl) {
             setPayUrl(data.provider_url)
             sessionStorage.setItem(payUrlKey(orderId), data.provider_url)
           }
@@ -135,10 +148,14 @@ export function PaymentConfirmation() {
         return nextStatus
       } catch {
         return null
+      } finally {
+        if (active) setPayLinkResolved(true)
       }
     }
 
     let interval: number | undefined
+
+    if (storedPayUrl) setPayLinkResolved(true)
 
     void loadStatus().then((status) => {
       if (!active) return
@@ -181,44 +198,28 @@ export function PaymentConfirmation() {
     handoffStarted.current = true
     if (orderId) sessionStorage.setItem(handoffKey(orderId), "1")
     setHandedOff(true)
-    setLeaving(true)
-    window.location.assign(resolvedUrl)
+
+    const popup = window.open(resolvedUrl, "_blank", "noopener,noreferrer")
+    if (!popup) {
+      window.location.assign(resolvedUrl)
+    }
   }, [canOpenPayUrl, orderId, resolvedUrl])
-
-  useEffect(() => {
-    if (!sessionReady || !isCard || handedOff || isPaid || !canOpenPayUrl || leaving) return
-    const startedAt = Date.now()
-    setSecondsLeft(3)
-    const tick = window.setInterval(() => {
-      const left = Math.max(0, Math.ceil((HANDOFF_DELAY_MS - (Date.now() - startedAt)) / 1000))
-      setSecondsLeft(left)
-      if (left === 0) {
-        window.clearInterval(tick)
-        beginHandoff()
-      }
-    }, 200)
-    return () => window.clearInterval(tick)
-  }, [beginHandoff, canOpenPayUrl, handedOff, isCard, isPaid, leaving, sessionReady])
-
-  if (isCard && !isPaid && !sessionReady) {
-    return <p className="page-container py-8 text-sm text-[#8A8AA0]">Loading payment details...</p>
-  }
 
   if (isCard && !isPaid) {
     return (
-      <CardHandoff
-        amount={amount}
-        beginHandoff={beginHandoff}
-        canOpenPayUrl={canOpenPayUrl}
-        handedOff={handedOff}
-        label={label}
-        leaving={leaving}
-        onramp={onramp}
-        polling={polling}
-        processorName={processorName}
-        resolvedUrl={resolvedUrl}
-        secondsLeft={secondsLeft}
-      />
+      <CheckoutHandoffShell>
+        <CardHandoff
+          amount={amount}
+          beginHandoff={beginHandoff}
+          canOpenPayUrl={canOpenPayUrl}
+          handedOff={handedOff}
+          onramp={onramp}
+          payLinkResolved={payLinkResolved}
+          polling={polling}
+          processorName={processorName}
+          resolvedUrl={resolvedUrl}
+        />
+      </CheckoutHandoffShell>
     )
   }
 
@@ -297,154 +298,131 @@ function CardHandoff({
   beginHandoff,
   canOpenPayUrl,
   handedOff,
-  label,
-  leaving,
   onramp,
+  payLinkResolved,
   polling,
   processorName,
-  resolvedUrl,
-  secondsLeft
+  resolvedUrl
 }: {
   amount: string
   beginHandoff: () => void
   canOpenPayUrl: boolean
   handedOff: boolean
-  label: string
-  leaving: boolean
   onramp?: PeptidepayOnrampOption
+  payLinkResolved: boolean
   polling: boolean
   processorName: string
   resolvedUrl: string
-  secondsLeft: number
 }) {
   const formattedAmount =
-    amount && !Number.isNaN(Number(amount)) ? `$${Number(amount).toFixed(2)} USD` : ""
-  const idStep =
-    onramp?.idCheck === "none" ? "Confirm payment" : "Quick ID check (first time only)"
+    amount && !Number.isNaN(Number(amount)) ? Number(amount).toFixed(2) : ""
+
+  if (!payLinkResolved && !handedOff) {
+    return (
+      <div className="handoff-page">
+        <div className="handoff-card handoff-card--loading">
+          <SiteLogo className="mx-auto h-10 sm:h-11" />
+          <p className="mt-6 text-center text-sm text-[#64748B]">Preparing your secure payment link…</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <section className="page-container mx-auto max-w-lg space-y-6 py-8">
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Checkout", href: "/checkout" },
-          { label: "Payment" }
-        ]}
-        includeSchema={false}
-      />
+    <div className="handoff-page">
+      <div className="handoff-card">
+        {handedOff ? (
+          <div className="handoff-processing">
+            <div className="handoff-processing__icon" aria-hidden>
+              <Check className="h-8 w-8" strokeWidth={2.5} />
+            </div>
+            <h1 className="handoff-processing__title">Payment processing</h1>
+            <p className="handoff-processing__lead">
+              Complete your purchase on the {processorName} page that just opened. If nothing opened,
+              use the button below. When payment clears, this page updates automatically and Tetrava
+              is notified.
+            </p>
+            {polling ? (
+              <p className="handoff-processing__meta">Checking payment status every few seconds.</p>
+            ) : null}
+            <p className="handoff-processing__hint">Taking longer than expected? You can choose a different processor.</p>
+            <Link href="/payment" className="handoff-processing__link">
+              Surprised by identity verification? Here&apos;s why it&apos;s needed.
+            </Link>
+            {canOpenPayUrl ? (
+              <a href={resolvedUrl} target="_blank" rel="noopener noreferrer" className="handoff-btn handoff-btn--outline">
+                Reopen {processorName}
+              </a>
+            ) : null}
+            <Link href="/checkout" className="handoff-btn handoff-btn--outline">
+              Select another payment provider
+            </Link>
+          </div>
+        ) : (
+          <>
+            <div className="handoff-card__header">
+              <SiteLogo className="mx-auto h-10 sm:h-11" />
+              <h1 className="handoff-card__title">Complete your purchase</h1>
+              <p className="handoff-card__secure">
+                <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                Secure &amp; Encrypted Payment
+              </p>
+            </div>
 
-      <div className="flex items-center justify-between gap-3">
-        <SiteLogo className="h-7 sm:h-8" />
-        <p className="flex items-center gap-1.5 text-xs font-medium text-[#0D9488]">
-          <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden />
-          Secure checkout
-        </p>
+            <p className="handoff-card__notice">
+              You&apos;ll finish on a licensed payment provider&apos;s secure page. Do not change the
+              amount on their checkout. Once payment clears, you&apos;ll get confirmation and Tetrava is
+              notified instantly.
+            </p>
+
+            <div className="handoff-provider-tile" aria-label={`Selected processor: ${processorName}`}>
+              <p className="handoff-provider-tile__name">{processorName}</p>
+              {onramp?.eta ? <p className="handoff-provider-tile__eta">{onramp.eta}</p> : null}
+              <div className="handoff-provider-tile__marks">
+                {onramp?.id === "paypal" ? (
+                  <span className="handoff-provider-tile__paypal">PayPal</span>
+                ) : (
+                  <ProcessorMarks methods={onramp?.methods || []} />
+                )}
+              </div>
+            </div>
+
+            <p className="handoff-card__kyc">
+              Identity verification may be required by {processorName}.{" "}
+              <Link href="/payment" className="handoff-card__kyc-link">
+                What to expect?
+              </Link>
+            </p>
+
+            {formattedAmount ? (
+              <div className="handoff-total-bar">
+                <p className="handoff-total-bar__label">Total amount</p>
+                <p className="handoff-total-bar__amount">{formattedAmount} USD</p>
+              </div>
+            ) : null}
+
+            {canOpenPayUrl ? (
+              <button type="button" className="handoff-btn handoff-btn--primary" onClick={beginHandoff}>
+                Pay Now
+              </button>
+            ) : (
+              <p className="handoff-card__error">
+                The payment link is not ready yet.{" "}
+                <Link href="/checkout" className="text-[#0D9488] hover:underline">
+                  Return to checkout
+                </Link>
+              </p>
+            )}
+
+            <Link href="/checkout" className="handoff-card__back">
+              Use a different processor
+            </Link>
+          </>
+        )}
       </div>
 
-      {handedOff ? (
-        <div className="card space-y-5 p-6 text-center sm:p-8">
-          <div
-            className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0D9488] text-white"
-            aria-hidden
-          >
-            <Check className="h-7 w-7" strokeWidth={2.5} />
-          </div>
-          <div>
-            <h1 className="font-serif text-3xl text-[#0F172A]">Waiting for your payment</h1>
-            <p className="mt-3 text-sm leading-relaxed text-[#475569]">
-              Finish on {processorName}. We'll update this page automatically.
-            </p>
-          </div>
-          {formattedAmount ? (
-            <p className="font-mono text-lg text-[#0F172A]">You pay {formattedAmount}</p>
-          ) : null}
-          {label ? <p className="text-sm text-[#64748B]">{label}</p> : null}
-          {polling ? (
-            <p className="text-xs text-[#94A3B8]">Checking payment status every few seconds.</p>
-          ) : null}
-          {canOpenPayUrl ? (
-            <a href={resolvedUrl} className="btn-secondary block w-full py-3 text-center">
-              Reopen {processorName}
-            </a>
-          ) : (
-            <p className="text-sm text-amber-700">
-              The payment link is missing. Return to checkout and choose a processor again.
-            </p>
-          )}
-          <Link href="/checkout" className="block text-center text-sm text-[#0D9488] hover:underline">
-            Use a different processor
-          </Link>
-        </div>
-      ) : (
-        <div className="card space-y-5 p-6 sm:p-8">
-          <div>
-            <h1 className="font-serif text-3xl text-[#0F172A]">Secure checkout</h1>
-            {formattedAmount ? (
-              <p className="mt-3 font-mono text-lg text-[#0F172A]">You pay {formattedAmount}</p>
-            ) : null}
-            {label ? <p className="mt-1 text-sm text-[#64748B]">{label}</p> : null}
-          </div>
-
-          <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3">
-            <p className="text-sm font-medium text-[#0F172A]">{processorName}</p>
-            {onramp?.eta ? <p className="mt-0.5 text-xs text-[#64748B]">{onramp.eta}</p> : null}
-            <div className="mt-2">
-              <ProcessorMarks methods={onramp?.methods || []} />
-            </div>
-          </div>
-
-          <ol className="grid grid-cols-1 gap-3 text-sm text-[#475569] sm:grid-cols-3">
-            <li className="rounded-xl border border-[#E2E8F0] px-3 py-3">
-              <span className="font-mono text-xs text-[#94A3B8]">1</span>
-              <p className="mt-1 font-medium text-[#0F172A]">
-                {onramp?.id === "paypal" ? "Sign in to PayPal" : "Enter your card"}
-              </p>
-            </li>
-            <li className="rounded-xl border border-[#E2E8F0] px-3 py-3">
-              <span className="font-mono text-xs text-[#94A3B8]">2</span>
-              <p className="mt-1 font-medium text-[#0F172A]">{idStep}</p>
-            </li>
-            <li className="rounded-xl border border-[#E2E8F0] px-3 py-3">
-              <span className="font-mono text-xs text-[#94A3B8]">3</span>
-              <p className="mt-1 font-medium text-[#0F172A]">You come back here</p>
-            </li>
-          </ol>
-
-          <p className="text-sm leading-relaxed text-[#475569]">
-            You'll finish on {processorName}'s secure page. Card details never touch Tetrava.
-          </p>
-
-          {canOpenPayUrl ? (
-            <button
-              type="button"
-              className="btn-primary w-full py-3"
-              onClick={beginHandoff}
-              disabled={leaving}
-            >
-              {leaving ? "Opening payment" : "Continue to payment"}
-            </button>
-          ) : (
-            <p className="text-sm text-amber-700">
-              The payment link is not ready yet. Wait a moment, or return to checkout.
-            </p>
-          )}
-
-          {canOpenPayUrl && !leaving ? (
-            <p className="text-center text-xs text-[#94A3B8]" aria-live="polite">
-              Continuing in {secondsLeft}s
-            </p>
-          ) : null}
-
-          <Link href="/checkout" className="block text-center text-sm text-[#0D9488] hover:underline">
-            Use a different processor
-          </Link>
-        </div>
-      )}
-
-      <p className="text-xs text-[#94A3B8]">
-        Research Use Only. Not for human consumption.
-      </p>
-    </section>
+      <p className="handoff-ruo">Research Use Only. Not for human consumption.</p>
+    </div>
   )
 }
 

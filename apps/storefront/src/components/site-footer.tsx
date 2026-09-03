@@ -17,7 +17,6 @@ const helpLinks = [
 ]
 
 const resourceLinks = [
-  { label: "Tetrava Labs", href: "/" },
   { label: "COA Library", href: "/coa-library" },
   { label: "Research Hub", href: "/blog" },
   { label: "Sitemap", href: "/sitemap" },

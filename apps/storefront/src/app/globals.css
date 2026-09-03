@@ -752,7 +752,7 @@ body[data-checkout-handoff="true"] main {
 
 .handoff-card {
   width: 100%;
-  max-width: 28rem;
+  max-width: 32rem;
   border-radius: 1rem;
   background: #ffffff;
   padding: 1.75rem 1.5rem 1.5rem;
@@ -799,7 +799,7 @@ body[data-checkout-handoff="true"] main {
 }
 
 .handoff-provider-tile {
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   border: 1px solid #dbeafe;
   border-radius: 0.875rem;
   background: #f8fafc;
@@ -823,6 +823,10 @@ body[data-checkout-handoff="true"] main {
   display: flex;
   justify-content: center;
   margin-top: 0.75rem;
+}
+
+.handoff-provider-tile__marks ul {
+  justify-content: center;
 }
 
 .handoff-provider-tile__paypal {
@@ -883,8 +887,13 @@ body[data-checkout-handoff="true"] main {
   color: #ffffff;
 }
 
-.handoff-btn--primary:hover {
+.handoff-btn--primary:hover:not(:disabled) {
   background: #0f766e;
+}
+
+.handoff-btn--primary:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }
 
 .handoff-btn--outline {

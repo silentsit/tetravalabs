@@ -8,13 +8,15 @@ export type PeptidepayIntentResult =
       provider: "peptidepay"
       provider_url: string
       session_id?: string
+      card_onramp?: string
+      session_onramp?: string
       message?: string
     }
   | { ok: false; message?: string }
 
 export async function createPeptidepayPaymentIntent(input: {
   orderId: string
-  email: string
+  email?: string
   amountUsd: number
   currency?: string
   productName?: string
@@ -33,7 +35,7 @@ export async function createPeptidepayPaymentIntent(input: {
       },
       body: JSON.stringify({
         order_id: input.orderId,
-        email: input.email,
+        ...(input.email?.trim() ? { email: input.email.trim() } : {}),
         amount_usd: input.amountUsd,
         currency: input.currency || "USD",
         product_name: input.productName,

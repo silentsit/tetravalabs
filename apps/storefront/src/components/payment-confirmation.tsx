@@ -54,6 +54,11 @@ function readStoredPayUrl(orderId: string) {
   return sessionStorage.getItem(payUrlKey(orderId)) || ""
 }
 
+function resolveOnrampId(orderId: string, onrampFromUrl: string) {
+  if (onrampFromUrl) return onrampFromUrl
+  return readStoredOnramp(orderId)
+}
+
 export type PaymentConfirmationProps = {
   orderId?: string
   displayId?: string
@@ -92,12 +97,14 @@ export function PaymentConfirmation({
   onrampFromUrl = ""
 }: PaymentConfirmationProps) {
   const router = useRouter()
-  const [payUrl, setPayUrl] = useState("")
+  const [payUrl, setPayUrl] = useState(() => readStoredPayUrl(orderId))
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus | null>(null)
   const [polling, setPolling] = useState(false)
-  const [handedOff, setHandedOff] = useState(false)
-  const [onrampId, setOnrampId] = useState(onrampFromUrl)
-  const [payLinkResolved, setPayLinkResolved] = useState(false)
+  const [handedOff, setHandedOff] = useState(() => readStoredHandoff(orderId))
+  const [onrampId, setOnrampId] = useState(() => resolveOnrampId(orderId, onrampFromUrl))
+  const [payLinkResolved, setPayLinkResolved] = useState(() => Boolean(readStoredPayUrl(orderId)))
+  const [opening, setOpening] = useState(false)
+  const [handoffError, setHandoffError] = useState("")
   const handoffStarted = useRef(false)
 
   useEffect(() => {
@@ -192,18 +199,60 @@ export function PaymentConfirmation({
     isPeptidepayOnrampId(onrampId) || provider === "peptidepay" || Boolean(onramp)
   const canOpenPayUrl = Boolean(resolvedUrl && !resolvedUrl.includes("example.com"))
   const processorName = onramp?.label || "your processor"
+  const amountUsd = amount && !Number.isNaN(Number(amount)) ? Number(amount) : 0
+  const canStartHandoff = Boolean(orderId && isPeptidepayOnrampId(onrampId) && amountUsd > 0)
 
-  const beginHandoff = useCallback(() => {
-    if (!canOpenPayUrl || handoffStarted.current) return
-    handoffStarted.current = true
-    if (orderId) sessionStorage.setItem(handoffKey(orderId), "1")
-    setHandedOff(true)
+  const beginHandoff = useCallback(async () => {
+    if (!canStartHandoff || handoffStarted.current || opening) return
+    setHandoffError("")
+    setOpening(true)
 
-    const popup = window.open(resolvedUrl, "_blank", "noopener,noreferrer")
-    if (!popup) {
-      window.location.assign(resolvedUrl)
+    try {
+      const response = await fetch("/api/checkout/card-handoff", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          order_id: orderId,
+          provider: onrampId
+        })
+      })
+      const data = (await response.json()) as {
+        ok?: boolean
+        message?: string
+        provider_url?: string
+        card_onramp?: string
+      }
+
+      if (!response.ok || !data.ok || !data.provider_url) {
+        setHandoffError(data.message || "Could not open your card checkout. Try another processor.")
+        handoffStarted.current = false
+        setOpening(false)
+        return
+      }
+
+      handoffStarted.current = true
+      if (orderId) {
+        sessionStorage.setItem(handoffKey(orderId), "1")
+        sessionStorage.setItem(payUrlKey(orderId), data.provider_url)
+        if (data.card_onramp) sessionStorage.setItem(onrampKey(orderId), data.card_onramp)
+      }
+      setPayUrl(data.provider_url)
+      if (data.card_onramp && isPeptidepayOnrampId(data.card_onramp)) {
+        setOnrampId(data.card_onramp)
+      }
+      setHandedOff(true)
+      setOpening(false)
+
+      const popup = window.open(data.provider_url, "_blank", "noopener,noreferrer")
+      if (!popup) {
+        window.location.assign(data.provider_url)
+      }
+    } catch {
+      setHandoffError("Could not reach the payment server. Try again in a moment.")
+      handoffStarted.current = false
+      setOpening(false)
     }
-  }, [canOpenPayUrl, orderId, resolvedUrl])
+  }, [canStartHandoff, onrampId, opening, orderId])
 
   if (isCard && !isPaid) {
     return (
@@ -212,8 +261,11 @@ export function PaymentConfirmation({
           amount={amount}
           beginHandoff={beginHandoff}
           canOpenPayUrl={canOpenPayUrl}
+          canStartHandoff={canStartHandoff}
           handedOff={handedOff}
+          handoffError={handoffError}
           onramp={onramp}
+          opening={opening}
           payLinkResolved={payLinkResolved}
           polling={polling}
           processorName={processorName}
@@ -293,22 +345,50 @@ export function PaymentConfirmation({
   )
 }
 
+function HandoffProcessorSummary({
+  onramp,
+  processorName
+}: {
+  onramp?: PeptidepayOnrampOption
+  processorName: string
+}) {
+  return (
+    <div className="handoff-provider-tile" aria-label={`Payment via ${processorName}`}>
+      <p className="handoff-provider-tile__name">{processorName}</p>
+      {onramp?.eta ? <p className="handoff-provider-tile__eta">{onramp.eta}</p> : null}
+      <div className="handoff-provider-tile__marks">
+        {onramp?.id === "paypal" ? (
+          <span className="handoff-provider-tile__paypal">PayPal</span>
+        ) : (
+          <ProcessorMarks methods={onramp?.methods || []} />
+        )}
+      </div>
+    </div>
+  )
+}
+
 function CardHandoff({
   amount,
   beginHandoff,
   canOpenPayUrl,
+  canStartHandoff,
   handedOff,
+  handoffError,
   onramp,
+  opening,
   payLinkResolved,
   polling,
   processorName,
   resolvedUrl
 }: {
   amount: string
-  beginHandoff: () => void
+  beginHandoff: () => void | Promise<void>
   canOpenPayUrl: boolean
+  canStartHandoff: boolean
   handedOff: boolean
+  handoffError: string
   onramp?: PeptidepayOnrampOption
+  opening: boolean
   payLinkResolved: boolean
   polling: boolean
   processorName: string
@@ -322,7 +402,7 @@ function CardHandoff({
       <div className="handoff-page">
         <div className="handoff-card handoff-card--loading">
           <SiteLogo className="mx-auto h-10 sm:h-11" />
-          <p className="mt-6 text-center text-sm text-[#64748B]">Preparing your secure payment link…</p>
+          <p className="mt-6 text-center text-sm text-[#64748B]">Loading your order…</p>
         </div>
       </div>
     )
@@ -345,7 +425,7 @@ function CardHandoff({
             {polling ? (
               <p className="handoff-processing__meta">Checking payment status every few seconds.</p>
             ) : null}
-            <p className="handoff-processing__hint">Taking longer than expected? You can choose a different processor.</p>
+            <p className="handoff-processing__hint">Taking longer than expected?</p>
             <Link href="/payment" className="handoff-processing__link">
               Surprised by identity verification? Here&apos;s why it&apos;s needed.
             </Link>
@@ -355,7 +435,7 @@ function CardHandoff({
               </a>
             ) : null}
             <Link href="/checkout" className="handoff-btn handoff-btn--outline">
-              Select another payment provider
+              Return to checkout
             </Link>
           </div>
         ) : (
@@ -370,22 +450,11 @@ function CardHandoff({
             </div>
 
             <p className="handoff-card__notice">
-              You&apos;ll finish on a licensed payment provider&apos;s secure page. Do not change the
-              amount on their checkout. Once payment clears, you&apos;ll get confirmation and Tetrava is
-              notified instantly.
+              You&apos;ll finish on {processorName}&apos;s secure page. Do not change the amount there.
+              Once payment clears, you&apos;ll get confirmation and Tetrava is notified instantly.
             </p>
 
-            <div className="handoff-provider-tile" aria-label={`Selected processor: ${processorName}`}>
-              <p className="handoff-provider-tile__name">{processorName}</p>
-              {onramp?.eta ? <p className="handoff-provider-tile__eta">{onramp.eta}</p> : null}
-              <div className="handoff-provider-tile__marks">
-                {onramp?.id === "paypal" ? (
-                  <span className="handoff-provider-tile__paypal">PayPal</span>
-                ) : (
-                  <ProcessorMarks methods={onramp?.methods || []} />
-                )}
-              </div>
-            </div>
+            <HandoffProcessorSummary onramp={onramp} processorName={processorName} />
 
             <p className="handoff-card__kyc">
               Identity verification may be required by {processorName}.{" "}
@@ -401,22 +470,25 @@ function CardHandoff({
               </div>
             ) : null}
 
-            {canOpenPayUrl ? (
-              <button type="button" className="handoff-btn handoff-btn--primary" onClick={beginHandoff}>
-                Pay Now
+            {handoffError ? <p className="handoff-card__error">{handoffError}</p> : null}
+
+            {canStartHandoff ? (
+              <button
+                type="button"
+                className="handoff-btn handoff-btn--primary"
+                onClick={() => void beginHandoff()}
+                disabled={opening}
+              >
+                {opening ? "Opening payment…" : "Pay Now"}
               </button>
             ) : (
               <p className="handoff-card__error">
-                The payment link is not ready yet.{" "}
+                This order cannot start card checkout yet.{" "}
                 <Link href="/checkout" className="text-[#0D9488] hover:underline">
                   Return to checkout
                 </Link>
               </p>
             )}
-
-            <Link href="/checkout" className="handoff-card__back">
-              Use a different processor
-            </Link>
           </>
         )}
       </div>

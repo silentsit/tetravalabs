@@ -4,7 +4,13 @@ import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { CheckoutForm } from "@/components/checkout-form"
 
-export default function CheckoutPage() {
+type PageProps = {
+  searchParams: Promise<{ card_onramp?: string }>
+}
+
+export default async function CheckoutPage({ searchParams }: PageProps) {
+  const params = await searchParams
+
   return (
     <section className="page-container space-y-6 py-6 pb-20 sm:space-y-8 sm:py-8 sm:pb-24 lg:pb-28">
       <Breadcrumbs
@@ -25,7 +31,7 @@ export default function CheckoutPage() {
           </Link>
         </p>
       </div>
-      <CheckoutForm />
+      <CheckoutForm initialCardOnramp={params.card_onramp} />
     </section>
   )
 }

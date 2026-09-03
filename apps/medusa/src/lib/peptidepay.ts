@@ -20,6 +20,8 @@ export type PeptidepayCheckoutSession = {
   url: string
   status: string
   tracking_number?: string
+  /** Echo from Peptide Pay /checkout/init (may differ from the requested pin). */
+  provider?: string
 }
 
 export type PeptidepayWebhookEvent = {
@@ -123,6 +125,7 @@ export async function createPeptidepayCheckoutSession(
     const id = typeof data.id === "string" ? data.id : ""
     const url = typeof data.url === "string" ? data.url : ""
     const status = typeof data.status === "string" ? data.status : "pending"
+    const echoedProvider = typeof data.provider === "string" ? data.provider : input.provider
 
     if (!id || !url) {
       return { ok: false, error: "Peptide Pay returned an incomplete session" }
@@ -134,6 +137,7 @@ export async function createPeptidepayCheckoutSession(
         id,
         url,
         status,
+        provider: echoedProvider,
         tracking_number:
           typeof data.tracking_number === "string" ? data.tracking_number : undefined
       }

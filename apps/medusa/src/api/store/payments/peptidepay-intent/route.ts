@@ -14,6 +14,20 @@ type Body = {
   ip_country?: string
 }
 
+async function loadIntent(orderId: string) {
+  return withDb(
+    async (db) => {
+      const result = await db.query(
+        `SELECT order_id, email, amount_usd, currency, provider_url, provider_payment_id, status
+         FROM crypto_payment_intents WHERE order_id = $1 LIMIT 1`,
+        [orderId]
+      )
+      return result.rows[0] || null
+    },
+    async () => null
+  )
+}
+
 async function saveIntent(
   orderId: string,
   email: string,
@@ -79,10 +93,11 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
 }
 
 export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
-  const orderId = req.body?.order_id
-  const email = req.body?.email
-  const amountUsd = Number(req.body?.amount_usd || 0)
-  const currency = (req.body?.currency || "USD").toUpperCase()
+  const orderId = req.body?.order_id?.trim()
+  const existing = orderId ? await loadIntent(orderId) : null
+  const email = (req.body?.email || existing?.email || "").trim()
+  const amountUsd = Number(req.body?.amount_usd || existing?.amount_usd || 0)
+  const currency = (req.body?.currency || existing?.currency || "USD").toUpperCase()
   const productName = req.body?.product_name?.trim()
   const country = req.body?.country?.trim().toUpperCase() || "US"
 
@@ -129,6 +144,8 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     provider: "peptidepay",
     provider_url: session.url,
     session_id: session.id,
+    card_onramp: onramp.provider,
+    session_onramp: session.provider || onramp.provider,
     message: "Peptide Pay checkout session created"
   })
 }

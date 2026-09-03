@@ -26,6 +26,7 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
   defaultPeptidepayOnramp,
+  isPeptidepayOnrampId,
   peptidepayOnrampAvailableForIp,
   peptidepayOnrampEligible,
   resolvePeptidepayOnramp,
@@ -844,7 +845,7 @@ function AddressFields({
   )
 }
 
-export function CheckoutForm() {
+export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string }) {
   const router = useRouter()
   const { items, subtotal, clear, updateQty } = useCart()
   const [email, setEmail] = useState("")
@@ -1036,6 +1037,15 @@ export function CheckoutForm() {
       })
       .catch(() => undefined)
   }, [])
+
+  useEffect(() => {
+    if (!initialCardOnramp || !isPeptidepayOnrampId(initialCardOnramp)) return
+    setCardOnramp(initialCardOnramp)
+    setPaymentMethod("card")
+    window.requestAnimationFrame(() => {
+      document.getElementById("checkout-card-onramp")?.scrollIntoView({ behavior: "smooth", block: "center" })
+    })
+  }, [initialCardOnramp])
 
   const loadCustomerSession = useCallback(async () => {
     try {
@@ -1378,8 +1388,15 @@ export function CheckoutForm() {
     })
     clear()
 
-    if (paymentUrl && (paymentProvider === "peptidepay" || resolvedPaymentMethod === "card")) {
+    if (paymentUrl && paymentProvider === "paymento") {
       storePaymentUrl(orderId, paymentUrl)
+      setLoading(false)
+      window.location.assign(paymentUrl)
+      return
+    }
+
+    if (resolvedPaymentMethod === "card" || paymentProvider === "peptidepay") {
+      if (paymentUrl) storePaymentUrl(orderId, paymentUrl)
       const params = new URLSearchParams({
         order_id: orderId,
         total: orderTotal.toFixed(2)
@@ -1391,13 +1408,6 @@ export function CheckoutForm() {
       }
       setLoading(false)
       router.push(`/checkout/payment?${params.toString()}`)
-      return
-    }
-
-    if (paymentUrl && paymentProvider === "paymento") {
-      storePaymentUrl(orderId, paymentUrl)
-      setLoading(false)
-      window.location.assign(paymentUrl)
       return
     }
 

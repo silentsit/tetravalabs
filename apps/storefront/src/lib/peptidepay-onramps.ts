@@ -1,11 +1,17 @@
 export const PEPTIDEPAY_ONRAMP_IDS = ["stripe", "paypal", "transak", "topper", "banxa"] as const
 export type PeptidepayOnrampId = (typeof PEPTIDEPAY_ONRAMP_IDS)[number]
 
+export type PeptidepayOnrampMethod = "visa" | "mastercard" | "applepay"
+export type PeptidepayOnrampIdCheck = "none" | "quick" | "standard"
+
 export type PeptidepayOnrampOption = {
   id: PeptidepayOnrampId
   label: string
   minUsd: number
   description: string
+  methods: PeptidepayOnrampMethod[]
+  idCheck: PeptidepayOnrampIdCheck
+  eta: string
   /** Peptide Pay GET /providers restrictedTo. Missing = worldwide. */
   restrictedTo?: string[]
 }
@@ -16,38 +22,58 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "stripe",
     label: "Stripe",
     minUsd: 2,
-    description: "Secure card payment via Peptide Pay → Stripe",
+    description: "Pay by card or Apple Pay (~2 min)",
+    methods: ["visa", "mastercard", "applepay"],
+    idCheck: "none",
+    eta: "~2 min",
     restrictedTo: ["US"]
   },
   {
     id: "paypal",
     label: "PayPal",
     minUsd: 5,
-    description: "Secure checkout via Peptide Pay → PayPal",
+    description: "Pay with PayPal (~2 min)",
+    methods: [],
+    idCheck: "none",
+    eta: "~2 min",
     restrictedTo: ["US"]
   },
   {
     id: "transak",
     label: "Transak",
     minUsd: 15,
-    description: "Via Peptide Pay → Transak · First time: a quick ID check, then you're done"
+    description: "Pay by card or Apple Pay (~2 min)",
+    methods: ["visa", "mastercard", "applepay"],
+    idCheck: "quick",
+    eta: "~2 min"
   },
   {
     id: "topper",
     label: "Topper",
     minUsd: 10,
-    description: "Via Peptide Pay → Topper · First time: a quick ID check, then you're done"
+    description: "Pay by card or Apple Pay (~2 min)",
+    methods: ["visa", "mastercard", "applepay"],
+    idCheck: "quick",
+    eta: "~2 min"
   },
   {
     id: "banxa",
     label: "Banxa",
     minUsd: 10,
-    description: "Via Peptide Pay → Banxa · First time: a quick ID check. Sometimes a short wait."
+    description: "Pay by card or Apple Pay (~3 min)",
+    methods: ["visa", "mastercard", "applepay"],
+    idCheck: "standard",
+    eta: "~3 min"
   }
 ]
 
 export function isPeptidepayOnrampId(value: unknown): value is PeptidepayOnrampId {
   return typeof value === "string" && (PEPTIDEPAY_ONRAMP_IDS as readonly string[]).includes(value)
+}
+
+export function getPeptidepayOnramp(id: string | null | undefined): PeptidepayOnrampOption | undefined {
+  if (!isPeptidepayOnrampId(id)) return undefined
+  return PEPTIDEPAY_ONRAMPS.find((entry) => entry.id === id)
 }
 
 export function isUsShippingCountry(country: string | undefined | null): boolean {

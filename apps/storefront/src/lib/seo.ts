@@ -59,6 +59,7 @@ export const siteConfig = {
   contactEmail: "info@tetravalabs.com",
   contactPhone: "+66 61 121 6690",
   contactName: "Piper Finch",
+  contactLanguages: ["English", "Thai", "Chinese"],
   address: {
     streetAddress: "580 California Street, 12th and 16th Floor",
     addressLocality: "San Francisco",
@@ -783,7 +784,7 @@ export function organizationJsonLd() {
       contactType: "customer support",
       email: siteConfig.contactEmail,
       telephone: siteConfig.contactPhone,
-      availableLanguage: "English"
+      availableLanguage: siteConfig.contactLanguages
     },
     hasMerchantReturnPolicy: merchantReturnPolicyJsonLd(),
     ...(sameAs.length ? { sameAs } : {})

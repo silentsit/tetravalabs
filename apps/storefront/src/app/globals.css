@@ -642,78 +642,85 @@
     animation: none !important;
   }
 
-  .google-pref-btn::before {
+  .google-pref-btn__spin {
     animation: none;
   }
 }
 
-@property --google-pref-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
 @keyframes google-pref-spin {
   to {
-    --google-pref-angle: 360deg;
+    transform: rotate(360deg);
   }
 }
 
 .google-pref-btn {
   position: relative;
   display: inline-flex;
-  min-height: 2.75rem;
   isolation: isolate;
-  padding: 2px;
+  overflow: hidden;
+  max-width: 100%;
+  flex-shrink: 1;
+  padding: 3px;
   border: 0;
-  border-radius: 9999px;
-  background: transparent;
+  border-radius: 10px;
+  background: #fff;
   cursor: pointer;
-  flex-shrink: 0;
+  text-align: left;
 }
 
-@media (min-width: 1024px) {
-  .google-pref-btn {
-    min-height: 2rem;
-  }
-
-  .google-pref-btn__inner {
-    min-height: calc(2rem - 4px);
-    font-size: 0.75rem;
-  }
-}
-
-.google-pref-btn::before {
-  content: "";
+.google-pref-btn__spin {
   position: absolute;
-  inset: 0;
+  inset: -140%;
   z-index: 0;
-  border-radius: inherit;
   background: conic-gradient(
-    from var(--google-pref-angle),
-    #4285f4,
-    #ea4335,
-    #fbbc05,
-    #34a853,
-    #4285f4
+    #4285f4 0deg,
+    #ea4335 90deg,
+    #fbbc05 180deg,
+    #34a853 270deg,
+    #4285f4 360deg
   );
-  animation: google-pref-spin 2.8s linear infinite;
+  animation: google-pref-spin 2.4s linear infinite;
 }
 
 .google-pref-btn__inner {
   position: relative;
   z-index: 1;
   display: inline-flex;
-  min-height: calc(2.75rem - 4px);
+  width: 100%;
   align-items: center;
-  gap: 0.4rem;
-  border-radius: inherit;
+  gap: 0.5rem;
+  border-radius: 6px;
   background: #ffffff;
-  padding: 0 0.7rem 0 0.5rem;
-  font-size: 0.8125rem;
+  padding: 0.35rem 0.7rem 0.35rem 0.5rem;
+}
+
+.google-pref-btn__mark {
+  height: 1.25rem;
+  width: 1.25rem;
+  flex-shrink: 0;
+}
+
+.google-pref-btn__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: #3c4043;
+  line-height: 1.2;
+  color: #202124;
+}
+
+.google-pref-btn__copy--compact {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
   line-height: 1;
+  white-space: nowrap;
+}
+
+.google-pref-btn__accent {
+  color: #34a853;
 }
 
 .google-pref-btn:hover .google-pref-btn__inner {

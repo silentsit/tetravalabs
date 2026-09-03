@@ -45,7 +45,7 @@ Anti-aging or reversal-of-aging claims in the marketing copy. The current human 
 
 Bulk powder with no lot number or COA, common among the lowest-priced listings, where verifying identity after purchase is effectively impossible without independent testing the buyer would have to arrange.
 
-## FAQ
+## Frequently Asked Questions (FAQ)
 
 **Is NMN or NR the better research choice?** Neither is definitively superior across the board. They enter the salvage pathway at different points and have different published pharmacokinetic profiles. The more useful question is which one has trial data relevant to your specific research application, since both have separate human dosing literature.
 

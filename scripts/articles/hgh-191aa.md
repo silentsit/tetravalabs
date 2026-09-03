@@ -45,7 +45,7 @@ Marketing copy centered on physique, anti-aging, or recovery outcomes rather tha
 
 Confusing "191aa" and "Fragment 176-191" in the same listing, or using the terms interchangeably. They're different molecules with different research applications, and a supplier that conflates them either doesn't understand its own inventory or is counting on the buyer not to check.
 
-## FAQ
+## Frequently Asked Questions (FAQ)
 
 **Is HGH 191aa the same thing as Fragment 176-191?** No. HGH 191aa is the complete, full-length recombinant growth hormone sequence. Fragment 176-191 is a short 15-amino-acid piece of that sequence, studied for a narrower set of metabolic research questions, and priced and manufactured more like a standard synthetic peptide.
 

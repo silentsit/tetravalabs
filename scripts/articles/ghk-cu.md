@@ -46,7 +46,7 @@ Pricing pegged to "anti-aging" demand rather than comparable peptide-synthesis c
 
 No lot-specific documentation on bundled "beauty stack" listings, a pattern common when GHK-Cu gets bundled with other peptides under lifestyle branding rather than sold as a standalone, documented research compound.
 
-## FAQ
+## Frequently Asked Questions (FAQ)
 
 **Is research-grade GHK-Cu the same molecule sold in skincare serums?** Chemically, yes, same tripeptide, same copper complexation. What differs is the formulation: a finished cosmetic product includes a delivery vehicle, preservative system, and stability testing that a research-grade lyophilized vial does not.
 

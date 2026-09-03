@@ -52,7 +52,7 @@ Marketing copy built around human dosing schedules, injection technique, or befo
 
 <!--image:/images/blog/tirzepatide-lot-verification-macro.webp|A macro, photorealistic close-up of a gloved hand aligning a vial's printed lot number against the matching lot number on a certificate of analysis under a lab magnifier lamp.|The two numbers matching is the entire verification. Everything else on the page is marketing.-->
 
-## FAQ
+## Frequently Asked Questions (FAQ)
 
 **Is tirzepatide legal to buy as a research chemical?** Selling an unapproved bulk peptide for research use is a different legal category from selling a prescription drug. It doesn't make the material appropriate for personal use, and reputable suppliers say so explicitly in their terms.
 

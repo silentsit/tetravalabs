@@ -43,7 +43,7 @@ import {
 } from "@/lib/checkout-subdivisions"
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
-import { storePaymentUrl } from "@/components/payment-confirmation"
+import { storeCardOnramp, storePaymentUrl } from "@/components/payment-confirmation"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import type { ParsedAddress } from "@/lib/google-places"
 import {
@@ -1257,6 +1257,7 @@ export function CheckoutForm() {
     let paymentUrl: string | null = null
     let paymentProvider: string | null = null
     let resolvedPaymentMethod: PaymentMethod = paymentMethod
+    let resolvedCardOnramp: string = cardOnramp
 
     try {
       const authToken = readAuthToken()
@@ -1321,6 +1322,9 @@ export function CheckoutForm() {
       if (checkoutJson.payment_error && !checkoutJson.payment_url) {
         setStatus(checkoutJson.payment_error)
       }
+      if (typeof checkoutJson.card_onramp === "string" && checkoutJson.card_onramp) {
+        resolvedCardOnramp = checkoutJson.card_onramp
+      }
     } catch (error) {
       const timedOut =
         error instanceof DOMException
@@ -1376,12 +1380,23 @@ export function CheckoutForm() {
 
     if (paymentUrl && (paymentProvider === "peptidepay" || resolvedPaymentMethod === "card")) {
       storePaymentUrl(orderId, paymentUrl)
-      window.location.assign(paymentUrl)
+      const params = new URLSearchParams({
+        order_id: orderId,
+        total: orderTotal.toFixed(2)
+      })
+      if (displayId) params.set("display_id", String(displayId))
+      if (resolvedCardOnramp) {
+        params.set("onramp", resolvedCardOnramp)
+        storeCardOnramp(orderId, resolvedCardOnramp)
+      }
+      setLoading(false)
+      router.push(`/checkout/payment?${params.toString()}`)
       return
     }
 
     if (paymentUrl && paymentProvider === "paymento") {
       storePaymentUrl(orderId, paymentUrl)
+      setLoading(false)
       window.location.assign(paymentUrl)
       return
     }
@@ -1654,14 +1669,13 @@ export function CheckoutForm() {
                   <h3 className="font-serif text-lg text-[#0F172A]">What happens next</h3>
                   <ul className="list-disc space-y-1 pl-4">
                     <li>
-                      You'll leave this page briefly. Peptide Pay opens your selected provider (Stripe,
-                      PayPal, Transak, Topper, or Banxa).
+                      Tetrava confirms the order, then you finish on your selected processor's secure page.
                     </li>
                     <li>
-                      First time with Transak, Topper, or Banxa? You'll complete a quick, secure ID check,
-                      usually under two minutes (Banxa can take a little longer).
+                      First time with Transak, Topper, or Banxa? A quick ID check, usually under two minutes
+                      (Banxa can take a little longer).
                     </li>
-                    <li>Once payment is confirmed, you're automatically returned here with your order.</li>
+                    <li>Once payment is confirmed, you return here and fulfillment begins.</li>
                   </ul>
                 </div>
               ) : null}

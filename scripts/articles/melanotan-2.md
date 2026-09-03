@@ -45,7 +45,7 @@ No batch-specific COA or lot tracking, especially concerning here given how seri
 
 Bundled sales alongside sunless-tanning or beauty products, a pattern that signals a consumer-cosmetic sales channel rather than a documented research supplier.
 
-## FAQ
+## Frequently Asked Questions (FAQ)
 
 **Has Melanotan 2 been formally approved for any use anywhere?** No. It has no approved therapeutic or cosmetic indication from any major regulatory body, and the MHRA has explicitly and repeatedly stated its safety is unknown and it remains unlicensed in the UK.
 

@@ -359,6 +359,7 @@ export async function POST(req: Request) {
       payment_provider: paymentProvider,
       payment_method: paymentMethod,
       payment_error: paymentError,
+      card_onramp: paymentMethod === "card" ? peptidepayProvider : null,
       crypto_asset: paymentMethod === "crypto" ? cryptoAsset : null
     })
   } catch (error) {

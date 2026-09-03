@@ -46,7 +46,7 @@ function loadPreferredSourcesLibrary() {
 
 function GoogleGMark() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden>
+    <svg viewBox="0 0 24 24" className="google-pref-btn__mark" aria-hidden>
       <path
         fill="#4285F4"
         d="M23.49 12.27c0-.82-.07-1.64-.23-2.43H12v4.6h6.46a5.52 5.52 0 0 1-2.4 3.63v3h3.88c2.27-2.09 3.55-5.17 3.55-8.8z"
@@ -69,9 +69,10 @@ function GoogleGMark() {
 
 type Props = {
   className?: string
+  variant?: "compact" | "full"
 }
 
-export function PreferredSourcesButton({ className = "" }: Props) {
+export function PreferredSourcesButton({ className = "", variant = "full" }: Props) {
   useEffect(() => {
     loadPreferredSourcesLibrary()
   }, [])
@@ -90,11 +91,22 @@ export function PreferredSourcesButton({ className = "" }: Props) {
       type="button"
       onClick={onClick}
       className={`google-pref-btn ${className}`.trim()}
-      aria-label="Add Tetrava Labs as a Google Preferred Source"
+      aria-label="Add Tetrava as a preferred source on Google"
     >
+      <span className="google-pref-btn__spin" aria-hidden />
       <span className="google-pref-btn__inner">
         <GoogleGMark />
-        <span>Preferred</span>
+        {variant === "compact" ? (
+          <span className="google-pref-btn__copy google-pref-btn__copy--compact">Preferred</span>
+        ) : (
+          <span className="google-pref-btn__copy">
+            <span>
+              Add <strong>Tetrav</strong>
+              <strong className="google-pref-btn__accent">a</strong> as a preferred
+            </span>
+            <span>source on Google</span>
+          </span>
+        )}
       </span>
     </button>
   )

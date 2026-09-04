@@ -1639,10 +1639,6 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                     className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4"
                   >
                     <legend className="px-1 text-sm font-medium text-[#0F172A]">Card processor</legend>
-                    <p className="mb-3 text-xs leading-relaxed text-[#64748B]">
-                      You finish on the processor&apos;s secure page. Same card flow on each — they differ by
-                      location, minimum order, and first-time ID checks.
-                    </p>
                     {buyerIpCountry && buyerIpCountry !== "US" ? (
                       <p className="mb-3 text-xs font-semibold leading-relaxed text-[#475569]">
                         Stripe and PayPal need a US connection.

@@ -13,6 +13,7 @@ import {
   type PeptidepayOnrampMethod,
   type PeptidepayOnrampOption
 } from "@/lib/peptidepay-onramps"
+import { readCardHandoffContext } from "@/lib/card-handoff-context"
 
 const payUrlKey = (orderId: string) => `tetrava_pay_${orderId}`
 const handoffKey = (orderId: string) => `tetrava_handoff_${orderId}`
@@ -207,13 +208,36 @@ export function PaymentConfirmation({
     setHandoffError("")
     setOpening(true)
 
+    const handoffContext = readCardHandoffContext(orderId)
+
+    const openPaymentUrl = (url: string) => {
+      handoffStarted.current = true
+      if (orderId) {
+        sessionStorage.setItem(handoffKey(orderId), "1")
+        sessionStorage.setItem(payUrlKey(orderId), url)
+        sessionStorage.setItem(onrampKey(orderId), onrampId)
+      }
+      setPayUrl(url)
+      setHandedOff(true)
+      setOpening(false)
+
+      const popup = window.open(url, "_blank", "noopener,noreferrer")
+      if (!popup) {
+        window.location.assign(url)
+      }
+    }
+
     try {
       const response = await fetch("/api/checkout/card-handoff", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           order_id: orderId,
-          provider: onrampId
+          provider: onrampId,
+          email: handoffContext?.email,
+          amount_usd: handoffContext?.amountUsd ?? amountUsd,
+          country: handoffContext?.country,
+          fallback_url: handoffContext?.fallbackUrl || resolvedUrl || undefined
         })
       })
       const data = (await response.json()) as {
@@ -221,38 +245,36 @@ export function PaymentConfirmation({
         message?: string
         provider_url?: string
         card_onramp?: string
+        used_fallback?: boolean
       }
 
       if (!response.ok || !data.ok || !data.provider_url) {
-        setHandoffError(data.message || "Could not open your card checkout. Try another processor.")
+        const fallback = handoffContext?.fallbackUrl || resolvedUrl
+        if (fallback && !fallback.includes("example.com")) {
+          openPaymentUrl(fallback)
+          return
+        }
+        setHandoffError(data.message || "Could not open payment. Wait a moment and tap Pay Now again.")
         handoffStarted.current = false
         setOpening(false)
         return
       }
 
-      handoffStarted.current = true
-      if (orderId) {
-        sessionStorage.setItem(handoffKey(orderId), "1")
-        sessionStorage.setItem(payUrlKey(orderId), data.provider_url)
-        if (data.card_onramp) sessionStorage.setItem(onrampKey(orderId), data.card_onramp)
-      }
-      setPayUrl(data.provider_url)
       if (data.card_onramp && isPeptidepayOnrampId(data.card_onramp)) {
         setOnrampId(data.card_onramp)
       }
-      setHandedOff(true)
-      setOpening(false)
-
-      const popup = window.open(data.provider_url, "_blank", "noopener,noreferrer")
-      if (!popup) {
-        window.location.assign(data.provider_url)
-      }
+      openPaymentUrl(data.provider_url)
     } catch {
-      setHandoffError("Could not reach the payment server. Try again in a moment.")
+      const fallback = handoffContext?.fallbackUrl || resolvedUrl
+      if (fallback && !fallback.includes("example.com")) {
+        openPaymentUrl(fallback)
+        return
+      }
+      setHandoffError("Could not reach the payment server. Wait a moment and tap Pay Now again.")
       handoffStarted.current = false
       setOpening(false)
     }
-  }, [canStartHandoff, onrampId, opening, orderId])
+  }, [amountUsd, canStartHandoff, onrampId, opening, orderId, resolvedUrl])
 
   if (isCard && !isPaid) {
     return (

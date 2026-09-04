@@ -13,6 +13,9 @@ type Body = {
   order_id?: string
   provider?: string
   country?: string
+  email?: string
+  amount_usd?: number
+  fallback_url?: string
 }
 
 async function loadIntent(orderId: string) {
@@ -37,6 +40,26 @@ async function loadIntent(orderId: string) {
   }
 }
 
+function isUsablePayUrl(url: string) {
+  return Boolean(url && !url.includes("example.com"))
+}
+
+function fallbackResponse(input: {
+  orderId: string
+  provider: string
+  fallbackUrl: string
+  reason: string
+}) {
+  return NextResponse.json({
+    ok: true,
+    order_id: input.orderId,
+    provider_url: input.fallbackUrl,
+    card_onramp: input.provider,
+    used_fallback: true,
+    message: input.reason
+  })
+}
+
 export async function POST(req: Request) {
   let body: Body
   try {
@@ -47,6 +70,7 @@ export async function POST(req: Request) {
 
   const orderId = body.order_id?.trim()
   const provider = body.provider?.trim().toLowerCase() || ""
+  const fallbackUrl = body.fallback_url?.trim() || ""
   const country = body.country?.trim().toUpperCase() || "US"
 
   if (!orderId) {
@@ -57,20 +81,41 @@ export async function POST(req: Request) {
   }
 
   const intent = await loadIntent(orderId)
-  if (!intent) {
+  if (intent?.status === "paid" || intent?.status === "completed" || intent?.status === "settled") {
+    return NextResponse.json({ ok: false, message: "This order is already paid." }, { status: 409 })
+  }
+
+  const amountFromBody = Number(body.amount_usd)
+  const amountUsd = Number.isFinite(amountFromBody) && amountFromBody > 0
+    ? amountFromBody
+    : Number(intent?.amount_usd)
+  const email = body.email?.trim() || ""
+
+  if (!Number.isFinite(amountUsd) || amountUsd <= 0) {
+    if (isUsablePayUrl(fallbackUrl)) {
+      return fallbackResponse({
+        orderId,
+        provider,
+        fallbackUrl,
+        reason: "Using your checkout payment link while order totals sync."
+      })
+    }
+    return NextResponse.json({ ok: false, message: "Order total is invalid." }, { status: 400 })
+  }
+
+  if (!intent && !email) {
+    if (isUsablePayUrl(fallbackUrl)) {
+      return fallbackResponse({
+        orderId,
+        provider,
+        fallbackUrl,
+        reason: "Using your checkout payment link while the order record syncs."
+      })
+    }
     return NextResponse.json(
       { ok: false, message: "Order payment record not found. Return to checkout and try again." },
       { status: 404 }
     )
-  }
-
-  if (intent.status === "paid" || intent.status === "completed" || intent.status === "settled") {
-    return NextResponse.json({ ok: false, message: "This order is already paid." }, { status: 409 })
-  }
-
-  const amountUsd = Number(intent.amount_usd)
-  if (!Number.isFinite(amountUsd) || amountUsd <= 0) {
-    return NextResponse.json({ ok: false, message: "Order total is invalid." }, { status: 400 })
   }
 
   const ipCountry = peptidepayBuyerIpCountry(
@@ -89,18 +134,34 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, message: onramp.error }, { status: 400 })
   }
 
-  const session = await createPeptidepayPaymentIntent({
-    orderId,
-    amountUsd,
-    currency: intent.currency || "USD",
-    provider: onramp.provider,
-    country,
-    ipCountry
-  })
+  const mintSession = async () =>
+    createPeptidepayPaymentIntent({
+      orderId,
+      email: email || undefined,
+      amountUsd,
+      currency: intent?.currency || "USD",
+      provider: onramp.provider,
+      country,
+      ipCountry
+    })
+
+  let session = await mintSession()
+  if (!session || session.ok === false) {
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    session = await mintSession()
+  }
 
   if (!session || session.ok === false) {
+    if (isUsablePayUrl(fallbackUrl)) {
+      return fallbackResponse({
+        orderId,
+        provider: onramp.provider,
+        fallbackUrl,
+        reason: "Payment server is busy. Opening your checkout payment link instead."
+      })
+    }
     return NextResponse.json(
-      { ok: false, message: session?.message || "Could not open card checkout." },
+      { ok: false, message: session?.message || "Could not open card checkout. Try again in a moment." },
       { status: 502 }
     )
   }
@@ -111,6 +172,7 @@ export async function POST(req: Request) {
     provider_url: session.provider_url,
     session_id: session.session_id,
     card_onramp: onramp.provider,
-    session_onramp: session.session_onramp || onramp.provider
+    session_onramp: session.session_onramp || onramp.provider,
+    used_fallback: false
   })
 }

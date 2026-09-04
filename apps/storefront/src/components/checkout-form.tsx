@@ -45,6 +45,7 @@ import {
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
 import { storeCardOnramp, storePaymentUrl } from "@/components/payment-confirmation"
+import { storeCardHandoffContext } from "@/lib/card-handoff-context"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import type { ParsedAddress } from "@/lib/google-places"
 import {
@@ -1397,6 +1398,15 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
 
     if (resolvedPaymentMethod === "card" || paymentProvider === "peptidepay") {
       if (paymentUrl) storePaymentUrl(orderId, paymentUrl)
+      if (resolvedCardOnramp && isPeptidepayOnrampId(resolvedCardOnramp)) {
+        storeCardHandoffContext(orderId, {
+          email,
+          country: shippingAddress.country,
+          amountUsd: orderTotal,
+          provider: resolvedCardOnramp,
+          fallbackUrl: paymentUrl || undefined
+        })
+      }
       const params = new URLSearchParams({
         order_id: orderId,
         total: orderTotal.toFixed(2)

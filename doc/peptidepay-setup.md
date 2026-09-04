@@ -67,5 +67,7 @@ See [Peptide Pay docs](https://peptide-pay.com/docs#testing).
 - Card processor is chosen **once** at checkout (no second picker on the handoff page)
 - Card flow routes through `/checkout/payment` (HSP-style handoff: "Complete your purchase", read-only processor summary, green total bar). **Pay Now** calls `POST /api/checkout/card-handoff`, which mints a fresh Peptide Pay session pinned to the checkout processor, opens it in a new tab, and leaves this tab on "Payment processing" until paid → `/orders?payment=complete`. Crypto on the same route keeps site chrome.
 - Medusa `POST /store/payments/peptidepay-intent` can refresh an existing order intent (email/amount loaded from DB when omitted) so Pay Now always uses the latest pinned rail.
+- **Resilience:** Checkout stores a handoff snapshot (email, country, amount, processor, fallback Peptide Pay URL) in `sessionStorage`. Pay Now retries mint once, then falls back to the checkout URL so buyers are not blocked during Medusa/Render deploys.
+- **Deploy order:** Ship Medusa (Render) first and wait for `/health` before relying on new payment API behavior; storefront (Vercel) can follow. The fallback path keeps Pay Now working if storefront leads.
 
 See also: [doc/paymento-setup.md](./paymento-setup.md), [doc/btcpay-setup.md](./btcpay-setup.md).

@@ -58,6 +58,8 @@ Create separate env sets for:
 7. Enable payment webhook and revalidation webhook.
 8. Put Cloudflare in front and verify WAF + bot rules.
 
+When a push changes **Medusa payment routes** (`peptidepay-intent`, webhooks), wait for Render `tetrava-medusa` to finish deploy (`GET /health` → 200) before treating a matching Vercel storefront deploy as fully live. The storefront handoff falls back to the checkout Peptide Pay URL if mint fails, but fresh processor pinning needs Medusa up to date.
+
 ## Vercel (Storefront)
 
 **Required:** In Vercel Project Settings → General → **Root Directory**, set `apps/storefront`.

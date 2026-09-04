@@ -1,6 +1,10 @@
-export const DEFAULT_SHIPPING_USD = 15
+/** All orders ship free worldwide. */
+export function resolveShippingUsd(_subtotalUsd?: number) {
+  void _subtotalUsd
+  return 0
+}
 
-/** Flat $15 shipping on every order. */
-export function resolveShippingUsd(_items?: unknown[]) {
-  return DEFAULT_SHIPPING_USD
+export function checkoutShippingMethodLabel(shippingUsd: number) {
+  if (shippingUsd === 0) return "Free Shipping"
+  return "Express Shipping"
 }

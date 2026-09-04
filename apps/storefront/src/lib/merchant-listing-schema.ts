@@ -1,4 +1,4 @@
-import { DEFAULT_SHIPPING_USD } from "@/lib/checkout-shipping"
+import { resolveShippingUsd } from "@/lib/checkout-shipping"
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com").replace(/\/$/, "")
 
@@ -16,7 +16,7 @@ export function merchantReturnPolicyJsonLd() {
 }
 
 /**
- * Flat $15 shipping from checkout-shipping.ts.
+ * Free standard shipping on all orders (resolveShippingUsd).
  * Transit windows match /shipping for USA, Canada, Australia, and UK (2–7 business days).
  * Handling is same-day / next-day (orders process within 12 hours of payment).
  */
@@ -25,7 +25,7 @@ export function offerShippingDetailsJsonLd() {
     "@type": "OfferShippingDetails",
     shippingRate: {
       "@type": "MonetaryAmount",
-      value: DEFAULT_SHIPPING_USD,
+      value: resolveShippingUsd().toFixed(2),
       currency: "USD"
     },
     shippingDestination: {

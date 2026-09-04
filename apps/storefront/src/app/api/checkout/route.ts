@@ -169,12 +169,6 @@ export async function POST(req: Request) {
       option_id: shippingOption.id
     })
 
-    const shippingTotal =
-      cartWithShipping.shipping_total ??
-      shippingOption.amount ??
-      shippingOption.prices?.[0]?.amount ??
-      1500
-
     const { payment_providers } = await sdk.store.payment.listPaymentProviders({
       region_id: regionId
     })
@@ -227,12 +221,6 @@ export async function POST(req: Request) {
         : typeof order.item_total === "number"
           ? order.item_total
           : 0
-    const medusaShippingCents =
-      typeof shippingTotal === "number"
-        ? shippingTotal
-        : typeof order.shipping_total === "number"
-          ? order.shipping_total
-          : 1500
 
     // Prefer Medusa catalog unit prices (cents → USD) over client-supplied cart prices.
     const catalogUnitUsdByVariant = new Map<string, number>()
@@ -255,13 +243,9 @@ export async function POST(req: Request) {
       }
     }
 
-    const shippingUsd = resolveShippingUsd(items)
     const subtotalUsd = medusaSubtotalCents / 100
-    const totalUsd =
-      shippingUsd === medusaShippingCents / 100
-        ? (typeof order.total === "number" ? order.total : medusaSubtotalCents + medusaShippingCents) /
-          100
-        : subtotalUsd + shippingUsd
+    const shippingUsd = resolveShippingUsd(subtotalUsd)
+    const totalUsd = subtotalUsd + shippingUsd
 
     const emailItems = items
       .filter((item) => item.title && item.unitPrice != null)

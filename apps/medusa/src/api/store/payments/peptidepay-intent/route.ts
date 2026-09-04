@@ -1,7 +1,7 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
 import { createPeptidepayCheckoutSession, isPeptidepayConfigured } from "../../../../lib/peptidepay"
-import { peptidepayBuyerIpCountry, resolvePeptidepayOnramp } from "../../../../lib/peptidepay-onramps"
+import { peptidepayBuyerIpCountry, isPeptidepayOnrampId, resolvePeptidepayOnramp } from "../../../../lib/peptidepay-onramps"
 
 type Body = {
   order_id?: string
@@ -136,6 +136,20 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   }
 
   const { session } = sessionResult
+  const sessionOnramp = session.provider?.trim().toLowerCase() || ""
+  if (
+    sessionOnramp &&
+    sessionOnramp !== onramp.provider &&
+    (sessionOnramp === "gateway" || isPeptidepayOnrampId(sessionOnramp))
+  ) {
+    return res.status(502).json({
+      ok: false,
+      message: `Peptide Pay assigned ${sessionOnramp} instead of ${onramp.provider}. Try again or choose ${sessionOnramp} at checkout.`,
+      session_onramp: sessionOnramp,
+      requested_onramp: onramp.provider
+    })
+  }
+
   await saveIntent(orderId, email, amountUsd, currency, session.url, session.id)
 
   return res.json({
@@ -145,7 +159,8 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     provider_url: session.url,
     session_id: session.id,
     card_onramp: onramp.provider,
-    session_onramp: session.provider || onramp.provider,
+    session_onramp: sessionOnramp || onramp.provider,
+    requested_onramp: onramp.provider,
     message: "Peptide Pay checkout session created"
   })
 }

@@ -15,7 +15,6 @@ type Body = {
   country?: string
   email?: string
   amount_usd?: number
-  fallback_url?: string
 }
 
 async function loadIntent(orderId: string) {
@@ -40,26 +39,6 @@ async function loadIntent(orderId: string) {
   }
 }
 
-function isUsablePayUrl(url: string) {
-  return Boolean(url && !url.includes("example.com"))
-}
-
-function fallbackResponse(input: {
-  orderId: string
-  provider: string
-  fallbackUrl: string
-  reason: string
-}) {
-  return NextResponse.json({
-    ok: true,
-    order_id: input.orderId,
-    provider_url: input.fallbackUrl,
-    card_onramp: input.provider,
-    used_fallback: true,
-    message: input.reason
-  })
-}
-
 export async function POST(req: Request) {
   let body: Body
   try {
@@ -70,7 +49,6 @@ export async function POST(req: Request) {
 
   const orderId = body.order_id?.trim()
   const provider = body.provider?.trim().toLowerCase() || ""
-  const fallbackUrl = body.fallback_url?.trim() || ""
   const country = body.country?.trim().toUpperCase() || "US"
 
   if (!orderId) {
@@ -92,26 +70,10 @@ export async function POST(req: Request) {
   const email = body.email?.trim() || ""
 
   if (!Number.isFinite(amountUsd) || amountUsd <= 0) {
-    if (isUsablePayUrl(fallbackUrl)) {
-      return fallbackResponse({
-        orderId,
-        provider,
-        fallbackUrl,
-        reason: "Using your checkout payment link while order totals sync."
-      })
-    }
     return NextResponse.json({ ok: false, message: "Order total is invalid." }, { status: 400 })
   }
 
   if (!intent && !email) {
-    if (isUsablePayUrl(fallbackUrl)) {
-      return fallbackResponse({
-        orderId,
-        provider,
-        fallbackUrl,
-        reason: "Using your checkout payment link while the order record syncs."
-      })
-    }
     return NextResponse.json(
       { ok: false, message: "Order payment record not found. Return to checkout and try again." },
       { status: 404 }
@@ -152,16 +114,25 @@ export async function POST(req: Request) {
   }
 
   if (!session || session.ok === false) {
-    if (isUsablePayUrl(fallbackUrl)) {
-      return fallbackResponse({
-        orderId,
-        provider: onramp.provider,
-        fallbackUrl,
-        reason: "Payment server is busy. Opening your checkout payment link instead."
-      })
-    }
     return NextResponse.json(
       { ok: false, message: session?.message || "Could not open card checkout. Try again in a moment." },
+      { status: 502 }
+    )
+  }
+
+  const sessionOnramp = session.session_onramp?.trim().toLowerCase() || ""
+  if (
+    sessionOnramp &&
+    sessionOnramp !== onramp.provider &&
+    (sessionOnramp === "gateway" || isPeptidepayOnrampId(sessionOnramp))
+  ) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `Peptide Pay assigned ${sessionOnramp} instead of ${onramp.provider}. Try Pay Now again or choose ${sessionOnramp} at checkout.`,
+        session_onramp: sessionOnramp,
+        requested_onramp: onramp.provider
+      },
       { status: 502 }
     )
   }
@@ -172,7 +143,8 @@ export async function POST(req: Request) {
     provider_url: session.provider_url,
     session_id: session.session_id,
     card_onramp: onramp.provider,
-    session_onramp: session.session_onramp || onramp.provider,
+    session_onramp: sessionOnramp || onramp.provider,
+    requested_onramp: onramp.provider,
     used_fallback: false
   })
 }

@@ -62,12 +62,13 @@ See [Peptide Pay docs](https://peptide-pay.com/docs#testing).
   - **Banxa**, **Transak**, and **Topper** note a quick account setup and verification (~3 min)
   - **PayPal** notes you can pay with a PayPal account or by card
   - Stripe and PayPal are Peptide Pay US-IP rails. Outside the US, Peptide Pay ignores the pin and opens Banxa, so checkout disables those two with "Not available from your location" instead of redirecting
+  - Transak, Topper, and Banxa are pinned by id on `/checkout/init`. If Peptide Pay reassigns the session (echoes a different `provider`), Pay Now shows an error instead of opening the wrong on-ramp
   - Pre-selected default: Stripe for US shipping **and** US IP, Transak otherwise (buyer can change it)
 - Crypto option remains the global backup (asset picker: BTC → BTCPay, others → Paymento)
 - Card processor is chosen **once** at checkout (no second picker on the handoff page)
 - Card flow routes through `/checkout/payment` (HSP-style handoff: "Complete your purchase", read-only processor summary, green total bar). **Pay Now** calls `POST /api/checkout/card-handoff`, which mints a fresh Peptide Pay session pinned to the checkout processor, opens it in a new tab, and leaves this tab on "Payment processing" until paid → `/orders?payment=complete`. Crypto on the same route keeps site chrome.
 - Medusa `POST /store/payments/peptidepay-intent` can refresh an existing order intent (email/amount loaded from DB when omitted) so Pay Now always uses the latest pinned rail.
-- **Resilience:** Checkout stores a handoff snapshot (email, country, amount, processor) in `sessionStorage`. Pay Now retries mint once, then falls back to any stored checkout URL if mint fails.
+  - **Resilience:** Checkout stores a handoff snapshot (email, country, amount, processor) in `sessionStorage`. Pay Now mints a fresh session pinned to that processor; if Peptide Pay echoes a different on-ramp id, checkout blocks the redirect instead of silently opening the wrong provider.
 - **Speed:** Card checkout does **not** call Peptide Pay during `/api/checkout`. Order creation (Medusa on Render) runs first; the external Peptide Pay session is minted only when the buyer taps **Pay Now** on the handoff page.
 - **Deploy order:** Ship Medusa (Render) first and wait for `/health` before relying on new payment API behavior; storefront (Vercel) can follow. The fallback path keeps Pay Now working if storefront leads.
 

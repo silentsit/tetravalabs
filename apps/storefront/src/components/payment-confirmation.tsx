@@ -10,6 +10,7 @@ import { SiteLogo } from "@/components/site-logo"
 import {
   getPeptidepayOnramp,
   isPeptidepayOnrampId,
+  type PeptidepayOnrampId,
   type PeptidepayOnrampMethod,
   type PeptidepayOnrampOption
 } from "@/lib/peptidepay-onramps"
@@ -56,8 +57,19 @@ function readStoredPayUrl(orderId: string) {
 }
 
 function resolveOnrampId(orderId: string, onrampFromUrl: string) {
-  if (onrampFromUrl) return onrampFromUrl
-  return readStoredOnramp(orderId)
+  if (onrampFromUrl && isPeptidepayOnrampId(onrampFromUrl)) return onrampFromUrl
+  const handoffContext = readCardHandoffContext(orderId)
+  if (handoffContext?.provider) return handoffContext.provider
+  const stored = readStoredOnramp(orderId)
+  if (stored && isPeptidepayOnrampId(stored)) return stored
+  return ""
+}
+
+function resolveRequestedProvider(orderId: string, onrampId: string): PeptidepayOnrampId | "" {
+  const handoffContext = readCardHandoffContext(orderId)
+  if (handoffContext?.provider) return handoffContext.provider
+  if (isPeptidepayOnrampId(onrampId)) return onrampId
+  return ""
 }
 
 export type PaymentConfirmationProps = {
@@ -109,12 +121,10 @@ export function PaymentConfirmation({
   const handoffStarted = useRef(false)
 
   useEffect(() => {
-    if (onrampFromUrl) {
-      setOnrampId(onrampFromUrl)
-      if (orderId) sessionStorage.setItem(onrampKey(orderId), onrampFromUrl)
-    } else {
-      const storedOnramp = readStoredOnramp(orderId)
-      if (storedOnramp) setOnrampId(storedOnramp)
+    const resolved = resolveOnrampId(orderId, onrampFromUrl)
+    if (resolved) {
+      setOnrampId(resolved)
+      if (orderId) sessionStorage.setItem(onrampKey(orderId), resolved)
     }
     if (orderId && readStoredHandoff(orderId)) setHandedOff(true)
 
@@ -147,7 +157,8 @@ export function PaymentConfirmation({
 
         if (active) {
           setPaymentStatus(nextStatus)
-          if (data.provider_url && !storedPayUrl) {
+          // Do not hydrate payUrl from Medusa before Pay Now — stale sessions can point at the wrong on-ramp.
+          if (data.provider_url && !storedPayUrl && readStoredHandoff(orderId)) {
             setPayUrl(data.provider_url)
             sessionStorage.setItem(payUrlKey(orderId), data.provider_url)
           }
@@ -209,14 +220,21 @@ export function PaymentConfirmation({
     setOpening(true)
 
     const handoffContext = readCardHandoffContext(orderId)
+    const requestedProvider = resolveRequestedProvider(orderId, onrampId)
+    if (!requestedProvider) {
+      setHandoffError("Processor choice was lost. Return to checkout and select your card processor again.")
+      setOpening(false)
+      return
+    }
 
     const openPaymentUrl = (url: string) => {
       handoffStarted.current = true
       if (orderId) {
         sessionStorage.setItem(handoffKey(orderId), "1")
         sessionStorage.setItem(payUrlKey(orderId), url)
-        sessionStorage.setItem(onrampKey(orderId), onrampId)
+        sessionStorage.setItem(onrampKey(orderId), requestedProvider)
       }
+      setOnrampId(requestedProvider)
       setPayUrl(url)
       setHandedOff(true)
       setOpening(false)
@@ -233,11 +251,10 @@ export function PaymentConfirmation({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           order_id: orderId,
-          provider: onrampId,
+          provider: requestedProvider,
           email: handoffContext?.email,
           amount_usd: handoffContext?.amountUsd ?? amountUsd,
-          country: handoffContext?.country,
-          fallback_url: handoffContext?.fallbackUrl || resolvedUrl || undefined
+          country: handoffContext?.country
         })
       })
       const data = (await response.json()) as {
@@ -245,36 +262,48 @@ export function PaymentConfirmation({
         message?: string
         provider_url?: string
         card_onramp?: string
+        session_onramp?: string
+        requested_onramp?: string
         used_fallback?: boolean
       }
 
       if (!response.ok || !data.ok || !data.provider_url) {
-        const fallback = handoffContext?.fallbackUrl || resolvedUrl
-        if (fallback && !fallback.includes("example.com")) {
-          openPaymentUrl(fallback)
-          return
-        }
         setHandoffError(data.message || "Could not open payment. Wait a moment and tap Pay Now again.")
         handoffStarted.current = false
         setOpening(false)
         return
       }
 
-      if (data.card_onramp && isPeptidepayOnrampId(data.card_onramp)) {
-        setOnrampId(data.card_onramp)
-      }
-      openPaymentUrl(data.provider_url)
-    } catch {
-      const fallback = handoffContext?.fallbackUrl || resolvedUrl
-      if (fallback && !fallback.includes("example.com")) {
-        openPaymentUrl(fallback)
+      const sessionOnramp = data.session_onramp || data.card_onramp
+      if (
+        sessionOnramp &&
+        isPeptidepayOnrampId(sessionOnramp) &&
+        sessionOnramp !== requestedProvider
+      ) {
+        setHandoffError(
+          `Peptide Pay assigned ${getPeptidepayOnramp(sessionOnramp)?.label || sessionOnramp} instead of ${getPeptidepayOnramp(requestedProvider)?.label || requestedProvider}. Try Pay Now again, pick ${getPeptidepayOnramp(sessionOnramp)?.label || sessionOnramp} at checkout, or use another processor.`
+        )
+        handoffStarted.current = false
+        setOpening(false)
         return
       }
+
+      if (data.used_fallback) {
+        setHandoffError(
+          "Payment server was busy and could not confirm your processor. Wait a moment and tap Pay Now again."
+        )
+        handoffStarted.current = false
+        setOpening(false)
+        return
+      }
+
+      openPaymentUrl(data.provider_url)
+    } catch {
       setHandoffError("Could not reach the payment server. Wait a moment and tap Pay Now again.")
       handoffStarted.current = false
       setOpening(false)
     }
-  }, [amountUsd, canStartHandoff, onrampId, opening, orderId, resolvedUrl])
+  }, [amountUsd, canStartHandoff, onrampId, opening, orderId])
 
   if (isCard && !isPaid) {
     return (

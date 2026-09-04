@@ -1,0 +1,28 @@
+name: Production health smoke
+
+# Alert-only: does not gate Vercel deploys. Fails the workflow so GitHub can notify you.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  medusa-health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Wait for Render / Vercel deploy propagation
+        run: sleep 90
+
+      - name: Medusa health smoke
+        env:
+          SMOKE_MEDUSA_URL: ${{ vars.SMOKE_MEDUSA_URL }}
+          SMOKE_MEDUSA_PUBLISHABLE_KEY: ${{ secrets.SMOKE_MEDUSA_PUBLISHABLE_KEY }}
+          SMOKE_MEDUSA_RETRIES: "6"
+          SMOKE_MEDUSA_RETRY_DELAY_MS: "20000"
+        run: node scripts/smoke-medusa-health.mjs

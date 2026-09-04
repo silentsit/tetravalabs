@@ -1108,7 +1108,9 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
   const availableCountries = CHECKOUT_COUNTRIES
 
   const submitLabel = useMemo(() => {
-    if (loading) return "Processing…"
+    if (loading) {
+      return paymentMethod === "card" ? "Creating your order…" : "Processing…"
+    }
     if (paymentMethod === "card") return "Continue to card payment"
     return "Continue to crypto payment"
   }, [loading, paymentMethod])
@@ -1403,8 +1405,7 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
           email,
           country: shippingAddress.country,
           amountUsd: orderTotal,
-          provider: resolvedCardOnramp,
-          fallbackUrl: paymentUrl || undefined
+          provider: resolvedCardOnramp
         })
       }
       const params = new URLSearchParams({

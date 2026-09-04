@@ -96,3 +96,5 @@ Required env: see `apps/storefront/.env.example`
 
 - Local: `npm run smoke:local`
 - Production: `SMOKE_STOREFRONT_URL=... SMOKE_MEDUSA_URL=... npm run smoke:production`
+- Medusa only (no checkout side effects): `npm run smoke:medusa-health`
+- GitHub Action **Production health smoke** runs on every push to `main` (alert-only; does not block Vercel). Set repo variable `SMOKE_MEDUSA_URL` and secret `SMOKE_MEDUSA_PUBLISHABLE_KEY` for the optional store products check.

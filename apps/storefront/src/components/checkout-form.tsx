@@ -29,6 +29,7 @@ import {
   isPeptidepayOnrampId,
   peptidepayOnrampAvailableForIp,
   peptidepayOnrampEligible,
+  peptidepayOnrampPickerFacts,
   resolvePeptidepayOnramp,
   visiblePeptidepayOnramps,
   type PeptidepayOnrampId
@@ -1637,6 +1638,10 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                     className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4"
                   >
                     <legend className="px-1 text-sm font-medium text-[#0F172A]">Card processor</legend>
+                    <p className="mb-3 text-xs leading-relaxed text-[#64748B]">
+                      You finish on the processor&apos;s secure page. Same card flow on each — they differ by
+                      location, minimum order, and first-time ID checks.
+                    </p>
                     {buyerIpCountry && buyerIpCountry !== "US" ? (
                       <p className="mb-3 text-xs font-semibold leading-relaxed text-[#475569]">
                         Stripe and PayPal need a US connection.
@@ -1660,9 +1665,19 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                               className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
                             />
                             <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                              <span className="text-sm font-medium text-[#0F172A]">{option.label}</span>
+                              <span className="text-sm font-medium text-[#0F172A]">
+                                {option.label}
+                                {selectable && option.id === defaultCardOnramp ? (
+                                  <span className="ml-1.5 text-[11px] font-normal text-[#0D9488]">
+                                    Recommended
+                                  </span>
+                                ) : null}
+                              </span>
                               <span className="text-xs leading-relaxed text-[#64748B]">
                                 {option.description}
+                              </span>
+                              <span className="text-[11px] leading-relaxed text-[#94A3B8]">
+                                {peptidepayOnrampPickerFacts(option).join(" · ")}
                               </span>
                               {!inLocation ? (
                                 <span className="text-xs text-amber-700">Not available from your location.</span>

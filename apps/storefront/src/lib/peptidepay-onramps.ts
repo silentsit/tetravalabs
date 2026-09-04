@@ -22,7 +22,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "stripe",
     label: "Stripe",
     minUsd: 2,
-    description: "Pay by card or Apple Pay (~2 min)",
+    description: "Fastest US checkout. Card or Apple Pay on Stripe's page.",
     methods: ["visa", "mastercard", "applepay"],
     idCheck: "none",
     eta: "~2 min",
@@ -32,7 +32,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "paypal",
     label: "PayPal",
     minUsd: 5,
-    description: "Pay with PayPal (~2 min)",
+    description: "Pay with a PayPal balance or card through PayPal.",
     methods: [],
     idCheck: "none",
     eta: "~2 min",
@@ -42,7 +42,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "transak",
     label: "Transak",
     minUsd: 15,
-    description: "Pay by card or Apple Pay (~2 min)",
+    description: "Worldwide card rail. Default pick outside the US.",
     methods: ["visa", "mastercard", "applepay"],
     idCheck: "quick",
     eta: "~2 min"
@@ -51,7 +51,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "topper",
     label: "Topper",
     minUsd: 10,
-    description: "Pay by card or Apple Pay (~2 min)",
+    description: "Worldwide card rail with a $10 minimum (vs $15 on Transak).",
     methods: ["visa", "mastercard", "applepay"],
     idCheck: "quick",
     eta: "~2 min"
@@ -60,7 +60,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     id: "banxa",
     label: "Banxa",
     minUsd: 10,
-    description: "Pay by card or Apple Pay (~3 min)",
+    description: "Worldwide card rail. Fuller identity check the first time.",
     methods: ["visa", "mastercard", "applepay"],
     idCheck: "standard",
     eta: "~3 min"
@@ -74,6 +74,25 @@ export function isPeptidepayOnrampId(value: unknown): value is PeptidepayOnrampI
 export function getPeptidepayOnramp(id: string | null | undefined): PeptidepayOnrampOption | undefined {
   if (!isPeptidepayOnrampId(id)) return undefined
   return PEPTIDEPAY_ONRAMPS.find((entry) => entry.id === id)
+}
+
+/** Short comparison facts for the checkout processor picker. */
+export function peptidepayOnrampPickerFacts(option: PeptidepayOnrampOption): string[] {
+  const facts: string[] = []
+  if (option.restrictedTo?.length) {
+    facts.push("US connection required")
+  } else {
+    facts.push("Works worldwide")
+  }
+  facts.push(`$${option.minUsd} min order`)
+  if (option.idCheck === "none") {
+    facts.push("No extra signup")
+  } else if (option.idCheck === "quick") {
+    facts.push("First-time ID check ~2 min")
+  } else if (option.idCheck === "standard") {
+    facts.push("First-time ID check ~3 min")
+  }
+  return facts
 }
 
 export function isUsShippingCountry(country: string | undefined | null): boolean {

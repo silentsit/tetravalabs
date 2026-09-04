@@ -4,11 +4,16 @@ import { isCheckoutCountry } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
 import {
+  loadPeptidepayLiveOnrampStatuses,
+  peptidepayLiveIdSet
+} from "@/lib/peptidepay-live-providers"
+import {
   isPeptidepayOnrampId,
   peptidepayBuyerIpCountry,
   PEPTIDEPAY_ONRAMPS,
   peptidepayOnrampAvailableForIp,
   peptidepayOnrampLocationError,
+  peptidepayOnrampOfflineError,
   resolvePeptidepayOnramp
 } from "@/lib/peptidepay-onramps"
 import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
@@ -96,6 +101,10 @@ export async function POST(req: Request) {
       req.headers.get("x-country-code")
   )
   const intendedPaymentMethod = body.payment_method === "crypto" ? "crypto" : "card"
+  const cardLiveIds =
+    intendedPaymentMethod === "card"
+      ? peptidepayLiveIdSet(await loadPeptidepayLiveOnrampStatuses())
+      : null
   if (intendedPaymentMethod === "card") {
     const requestedOnramp = body.peptidepay_provider?.trim().toLowerCase()
     if (requestedOnramp && !isPeptidepayOnrampId(requestedOnramp)) {
@@ -105,6 +114,12 @@ export async function POST(req: Request) {
     if (requestedOption && !peptidepayOnrampAvailableForIp(requestedOption, ipCountry)) {
       return NextResponse.json(
         { ok: false, message: peptidepayOnrampLocationError(requestedOption) },
+        { status: 400 }
+      )
+    }
+    if (requestedOption && cardLiveIds && !cardLiveIds.has(requestedOption.id)) {
+      return NextResponse.json(
+        { ok: false, message: peptidepayOnrampOfflineError(requestedOption) },
         { status: 400 }
       )
     }
@@ -270,7 +285,8 @@ export async function POST(req: Request) {
             requested: body.peptidepay_provider,
             country,
             amountUsd: totalUsd,
-            ipCountry
+            ipCountry,
+            liveIds: cardLiveIds
           })
         : null
 

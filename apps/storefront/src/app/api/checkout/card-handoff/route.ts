@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server"
 import { createPeptidepayPaymentIntent } from "@/lib/medusa-peptidepay-checkout"
 import {
+  loadPeptidepayLiveOnrampStatuses,
+  peptidepayLiveIdSet
+} from "@/lib/peptidepay-live-providers"
+import {
   isPeptidepayOnrampId,
   peptidepayBuyerIpCountry,
   resolvePeptidepayOnramp
@@ -86,11 +90,13 @@ export async function POST(req: Request) {
       req.headers.get("x-country-code")
   )
 
+  const liveIds = peptidepayLiveIdSet(await loadPeptidepayLiveOnrampStatuses())
   const onramp = resolvePeptidepayOnramp({
     requested: provider,
     country,
     amountUsd,
-    ipCountry
+    ipCountry,
+    liveIds
   })
   if (!onramp.ok) {
     return NextResponse.json({ ok: false, message: onramp.error }, { status: 400 })

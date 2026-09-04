@@ -35,6 +35,8 @@ import {
   visiblePeptidepayOnramps,
   type PeptidepayOnrampId
 } from "@/lib/peptidepay-onramps"
+import type { PeptidepayLiveOnrampStatus } from "@/lib/peptidepay-live-providers"
+import { peptidepayLiveIdSet } from "@/lib/peptidepay-live-providers"
 import {
   getCheckoutSubdivisions,
   getPostalLabel,
@@ -889,6 +891,7 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
   const [cardOnramp, setCardOnramp] = useState<PeptidepayOnrampId>("stripe")
+  const [cardOnrampStatus, setCardOnrampStatus] = useState<PeptidepayLiveOnrampStatus[]>([])
   const [buyerIpCountry, setBuyerIpCountry] = useState<string | null>(null)
   const [selectedAsset, setSelectedAsset] = useState("USDT")
   const [loggedIn, setLoggedIn] = useState(false)
@@ -1010,6 +1013,9 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
         setCardAvailable(Boolean(data.cardAvailable))
         setCryptoLive(Boolean(data.cryptoLive))
         setCryptoOptions(Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG)
+        if (Array.isArray(data.cardOnrampStatus)) {
+          setCardOnrampStatus(data.cardOnrampStatus)
+        }
 
         const options = Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG
         const preferred =
@@ -1169,10 +1175,11 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
   ])
 
   const cardOnrampOptions = useMemo(() => visiblePeptidepayOnramps(), [])
+  const liveOnrampIds = useMemo(() => peptidepayLiveIdSet(cardOnrampStatus), [cardOnrampStatus])
 
   const defaultCardOnramp = useMemo(
-    () => defaultPeptidepayOnramp(shippingAddress.country, estimatedTotal, buyerIpCountry),
-    [buyerIpCountry, shippingAddress.country, estimatedTotal]
+    () => defaultPeptidepayOnramp(shippingAddress.country, estimatedTotal, buyerIpCountry, liveOnrampIds),
+    [buyerIpCountry, liveOnrampIds, shippingAddress.country, estimatedTotal]
   )
 
   useEffect(() => {
@@ -1180,12 +1187,13 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
     const stillEligible = Boolean(
       selected &&
         peptidepayOnrampEligible(selected, estimatedTotal) &&
-        peptidepayOnrampAvailableForIp(selected, buyerIpCountry)
+        peptidepayOnrampAvailableForIp(selected, buyerIpCountry) &&
+        (!liveOnrampIds || liveOnrampIds.has(selected.id))
     )
     if (!stillEligible && defaultCardOnramp) {
       setCardOnramp(defaultCardOnramp)
     }
-  }, [buyerIpCountry, cardOnramp, cardOnrampOptions, defaultCardOnramp, estimatedTotal])
+  }, [buyerIpCountry, cardOnramp, cardOnrampOptions, defaultCardOnramp, estimatedTotal, liveOnrampIds])
 
   const persistLocalOrder = (order: CheckoutOrder) => {
     const raw = window.localStorage.getItem(ORDERS_KEY)
@@ -1248,7 +1256,8 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
         requested: cardOnramp,
         country: shippingAddress.country,
         amountUsd: estimatedTotal,
-        ipCountry: buyerIpCountry
+        ipCountry: buyerIpCountry,
+        liveIds: liveOnrampIds
       })
       if (!onramp.ok) {
         setError(onramp.error)
@@ -1648,7 +1657,8 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                       {cardOnrampOptions.map((option) => {
                         const eligible = peptidepayOnrampEligible(option, estimatedTotal)
                         const inLocation = peptidepayOnrampAvailableForIp(option, buyerIpCountry)
-                        const selectable = eligible && inLocation
+                        const live = !liveOnrampIds || liveOnrampIds.has(option.id)
+                        const selectable = eligible && inLocation && live
                         const selected = cardOnramp === option.id
                         return (
                           <label key={option.id} className={onrampCardClass(selected, !selectable)}>
@@ -1676,7 +1686,11 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                               <span className="text-[11px] leading-relaxed text-[#94A3B8]">
                                 {peptidepayOnrampPickerFacts(option).join(" · ")}
                               </span>
-                              {!inLocation ? (
+                              {!live ? (
+                                <span className="text-xs text-amber-700">
+                                  Temporarily unavailable. Peptide Pay is routing other processors instead.
+                                </span>
+                              ) : !inLocation ? (
                                 <span className="text-xs text-amber-700">Not available from your location.</span>
                               ) : !eligible ? (
                                 <span className="text-xs text-amber-700">

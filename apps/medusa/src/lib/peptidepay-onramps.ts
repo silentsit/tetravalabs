@@ -1,4 +1,4 @@
-export const PEPTIDEPAY_ONRAMP_IDS = ["stripe", "paypal", "transak", "topper", "banxa"] as const
+export const PEPTIDEPAY_ONRAMP_IDS = ["stripe", "paypal", "banxa", "topper", "transak"] as const
 export type PeptidepayOnrampId = (typeof PEPTIDEPAY_ONRAMP_IDS)[number]
 
 export type PeptidepayOnrampOption = {
@@ -27,10 +27,10 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     restrictedTo: ["US"]
   },
   {
-    id: "transak",
-    label: "Transak",
-    minUsd: 15,
-    description: "Via Peptide Pay → Transak · First time: a quick ID check, then you're done"
+    id: "banxa",
+    label: "Banxa",
+    minUsd: 10,
+    description: "Via Peptide Pay → Banxa · First time: a quick ID check. Sometimes a short wait."
   },
   {
     id: "topper",
@@ -39,10 +39,10 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     description: "Via Peptide Pay → Topper · First time: a quick ID check, then you're done"
   },
   {
-    id: "banxa",
-    label: "Banxa",
-    minUsd: 10,
-    description: "Via Peptide Pay → Banxa · First time: a quick ID check. Sometimes a short wait."
+    id: "transak",
+    label: "Transak",
+    minUsd: 15,
+    description: "Via Peptide Pay → Transak · First time: a quick ID check, then you're done"
   }
 ]
 
@@ -104,9 +104,9 @@ export function defaultPeptidepayOnramp(
     )
   }
   return (
-    eligible.find((option) => option.id === "transak")?.id ||
-    eligible.find((option) => option.id === "topper")?.id ||
     eligible.find((option) => option.id === "banxa")?.id ||
+    eligible.find((option) => option.id === "topper")?.id ||
+    eligible.find((option) => option.id === "transak")?.id ||
     eligible.find((option) => option.id === "stripe")?.id ||
     eligible[0].id
   )

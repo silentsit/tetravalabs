@@ -1,4 +1,4 @@
-export const PEPTIDEPAY_ONRAMP_IDS = ["stripe", "paypal", "transak", "topper", "banxa"] as const
+export const PEPTIDEPAY_ONRAMP_IDS = ["stripe", "paypal", "banxa", "topper", "transak"] as const
 export type PeptidepayOnrampId = (typeof PEPTIDEPAY_ONRAMP_IDS)[number]
 
 export type PeptidepayOnrampMethod = "visa" | "mastercard" | "applepay"
@@ -39,13 +39,13 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     restrictedTo: ["US"]
   },
   {
-    id: "transak",
-    label: "Transak",
-    minUsd: 15,
-    description: "Worldwide card rail. Default pick outside the US.",
+    id: "banxa",
+    label: "Banxa",
+    minUsd: 10,
+    description: "Worldwide card rail. Recommended default outside the US.",
     methods: ["visa", "mastercard", "applepay"],
-    idCheck: "quick",
-    eta: "~2 min"
+    idCheck: "standard",
+    eta: "~3 min"
   },
   {
     id: "topper",
@@ -57,13 +57,13 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
     eta: "~2 min"
   },
   {
-    id: "banxa",
-    label: "Banxa",
-    minUsd: 10,
-    description: "Worldwide card rail. Fuller identity check the first time.",
+    id: "transak",
+    label: "Transak",
+    minUsd: 15,
+    description: "Worldwide card rail. Higher $15 minimum than Banxa or Topper.",
     methods: ["visa", "mastercard", "applepay"],
-    idCheck: "standard",
-    eta: "~3 min"
+    idCheck: "quick",
+    eta: "~2 min"
   }
 ]
 
@@ -127,19 +127,26 @@ export function visiblePeptidepayOnramps(): PeptidepayOnrampOption[] {
   return PEPTIDEPAY_ONRAMPS
 }
 
-export function listEligiblePeptidepayOnramps(amountUsd: number, ipCountry?: string | null) {
+export function listEligiblePeptidepayOnramps(
+  amountUsd: number,
+  ipCountry?: string | null,
+  liveIds?: Set<PeptidepayOnrampId> | null
+) {
   return PEPTIDEPAY_ONRAMPS.filter(
     (option) =>
-      peptidepayOnrampEligible(option, amountUsd) && peptidepayOnrampAvailableForIp(option, ipCountry)
+      peptidepayOnrampEligible(option, amountUsd) &&
+      peptidepayOnrampAvailableForIp(option, ipCountry) &&
+      (!liveIds || liveIds.has(option.id))
   )
 }
 
 export function defaultPeptidepayOnramp(
   country: string,
   amountUsd: number,
-  ipCountry?: string | null
+  ipCountry?: string | null,
+  liveIds?: Set<PeptidepayOnrampId> | null
 ): PeptidepayOnrampId | null {
-  const eligible = listEligiblePeptidepayOnramps(amountUsd, ipCountry)
+  const eligible = listEligiblePeptidepayOnramps(amountUsd, ipCountry, liveIds)
   if (!eligible.length) return null
   if (isUsShippingCountry(country)) {
     return (
@@ -149,12 +156,16 @@ export function defaultPeptidepayOnramp(
     )
   }
   return (
-    eligible.find((option) => option.id === "transak")?.id ||
-    eligible.find((option) => option.id === "topper")?.id ||
     eligible.find((option) => option.id === "banxa")?.id ||
+    eligible.find((option) => option.id === "topper")?.id ||
+    eligible.find((option) => option.id === "transak")?.id ||
     eligible.find((option) => option.id === "stripe")?.id ||
     eligible[0].id
   )
+}
+
+export function peptidepayOnrampOfflineError(option: PeptidepayOnrampOption): string {
+  return `${option.label} is temporarily unavailable. Choose another card processor.`
 }
 
 export function resolvePeptidepayOnramp(input: {
@@ -162,6 +173,7 @@ export function resolvePeptidepayOnramp(input: {
   country: string
   amountUsd: number
   ipCountry?: string | null
+  liveIds?: Set<PeptidepayOnrampId> | null
 }): { ok: true; provider: PeptidepayOnrampId } | { ok: false; error: string } {
   const requested = input.requested?.trim().toLowerCase() || ""
   if (requested) {
@@ -175,6 +187,9 @@ export function resolvePeptidepayOnramp(input: {
     if (!peptidepayOnrampAvailableForIp(option, input.ipCountry)) {
       return { ok: false, error: peptidepayOnrampLocationError(option) }
     }
+    if (input.liveIds && !input.liveIds.has(requested)) {
+      return { ok: false, error: peptidepayOnrampOfflineError(option) }
+    }
     if (!peptidepayOnrampEligible(option, input.amountUsd)) {
       return {
         ok: false,
@@ -184,7 +199,12 @@ export function resolvePeptidepayOnramp(input: {
     return { ok: true, provider: requested }
   }
 
-  const fallback = defaultPeptidepayOnramp(input.country, input.amountUsd, input.ipCountry)
+  const fallback = defaultPeptidepayOnramp(
+    input.country,
+    input.amountUsd,
+    input.ipCountry,
+    input.liveIds
+  )
   if (!fallback) {
     return {
       ok: false,

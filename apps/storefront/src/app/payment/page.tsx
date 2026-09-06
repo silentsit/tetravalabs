@@ -79,6 +79,11 @@ const paymentFaqs = [
   {
     question: "Where do I get help if payment fails?",
     answer: "Contact support with your order ID. You can also revisit checkout to retry payment."
+  },
+  {
+    question: "Can I pay with Wise?",
+    answer:
+      "Yes. Choose Pay instantly with Wise at checkout. The amount shown is USD, with no Wise discount. After the order is recorded, send that same USD total through Wise and message us on WhatsApp with your order number."
   }
 ]
 
@@ -95,10 +100,10 @@ export default function PaymentGuidePage() {
             </div>
             <span className="section-label">Secure Payments</span>
           </div>
-          <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">How to Pay</h1>
+          <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">How to pay</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#475569]">
-            Pay by credit or debit card at checkout, or choose cryptocurrency. USDT, ETH, SOL, and other
-            supported assets are available depending on your selection.
+            How to pay at Tetrava Labs: use a credit or debit card at checkout, or choose cryptocurrency.
+            USDT, ETH, SOL, and other supported assets are available depending on your selection.
           </p>
         </div>
       </section>

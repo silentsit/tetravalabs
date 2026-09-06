@@ -21,6 +21,7 @@ import {
   bindCheckoutCustomerOnMedusa,
   transferCartToAuthenticatedCustomer
 } from "@/lib/checkout-customer-bind"
+import { resolveCheckoutPaymentMethod } from "@/lib/checkout-payment-method"
 
 export const maxDuration = 60
 
@@ -47,7 +48,7 @@ type CheckoutBody = {
   phone?: string
   country?: string
   orderNotes?: string
-  payment_method?: "card" | "crypto"
+  payment_method?: "card" | "crypto" | "wise"
   crypto_asset?: string
   peptidepay_provider?: string
   customer_id?: string
@@ -100,7 +101,7 @@ export async function POST(req: Request) {
       req.headers.get("x-vercel-ip-country") ||
       req.headers.get("x-country-code")
   )
-  const intendedPaymentMethod = body.payment_method === "crypto" ? "crypto" : "card"
+  const intendedPaymentMethod = resolveCheckoutPaymentMethod(body.payment_method)
   const cardLiveIds =
     intendedPaymentMethod === "card"
       ? peptidepayLiveIdSet(await loadPeptidepayLiveOnrampStatuses())
@@ -277,7 +278,7 @@ export async function POST(req: Request) {
         }
       })
 
-    const paymentMethod = body.payment_method === "crypto" ? "crypto" : "card"
+    const paymentMethod = resolveCheckoutPaymentMethod(body.payment_method)
     const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "USDT"
     const cardOnramp =
       paymentMethod === "card"
@@ -305,6 +306,8 @@ export async function POST(req: Request) {
         // Avoids blocking checkout on an external API round-trip (often 3–15s+).
         paymentProvider = "peptidepay"
       }
+    } else if (paymentMethod === "wise") {
+      paymentProvider = "wise"
     } else {
       const intent = await createCryptoPaymentIntent({
         orderId: order.id,

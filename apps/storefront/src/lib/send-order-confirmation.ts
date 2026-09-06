@@ -13,7 +13,7 @@ export type SendOrderConfirmationInput = {
   displayId?: number
   total: number
   paymentUrl?: string | null
-  paymentMethod?: "crypto" | "card"
+  paymentMethod?: "crypto" | "card" | "wise"
   items?: OrderEmailItem[]
 }
 

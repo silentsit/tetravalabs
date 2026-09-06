@@ -30,7 +30,7 @@ export type OrderEmailItem = {
   productId?: string
 }
 
-export type PaymentMethod = "crypto" | "card"
+export type PaymentMethod = "crypto" | "card" | "wise"
 
 type ReminderEmailInput = {
   orderLabel: string
@@ -84,6 +84,12 @@ function paymentCopy(paymentMethod: PaymentMethod) {
     return {
       intro: "Use the secure link below to finish card payment and confirm your order.",
       button: "Complete card payment"
+    }
+  }
+  if (paymentMethod === "wise") {
+    return {
+      intro: "Pay the USD order total through Wise, then message us on WhatsApp with your order number.",
+      button: "Open Wise payment page"
     }
   }
 

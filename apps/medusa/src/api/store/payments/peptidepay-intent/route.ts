@@ -1,7 +1,7 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
 import { createPeptidepayCheckoutSession, isPeptidepayConfigured } from "../../../../lib/peptidepay"
-import { peptidepayBuyerIpCountry, isPeptidepayOnrampId, resolvePeptidepayOnramp } from "../../../../lib/peptidepay-onramps"
+import { peptidepayBuyerIpCountry, resolvePeptidepayOnrampOrFallback } from "../../../../lib/peptidepay-onramps"
 
 type Body = {
   order_id?: string
@@ -25,6 +25,25 @@ async function loadIntent(orderId: string) {
       return result.rows[0] || null
     },
     async () => null
+  )
+}
+
+async function loadOrderEmail(orderId: string) {
+  return withDb(
+    async (db) => {
+      const result = await db.query<{ email: string | null }>(
+        `
+        SELECT email
+        FROM "order"
+        WHERE id = $1
+          AND deleted_at IS NULL
+        LIMIT 1
+        `,
+        [orderId]
+      )
+      return result.rows[0]?.email?.trim() || ""
+    },
+    async () => ""
   )
 }
 
@@ -95,7 +114,17 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
 export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   const orderId = req.body?.order_id?.trim()
   const existing = orderId ? await loadIntent(orderId) : null
-  const email = (req.body?.email || existing?.email || "").trim()
+  if (
+    existing &&
+    (existing.status === "paid" || existing.status === "completed" || existing.status === "settled")
+  ) {
+    return res.status(409).json({
+      ok: false,
+      message: "This order is already paid.",
+      status: existing.status
+    })
+  }
+  const email = (req.body?.email || existing?.email || (orderId ? await loadOrderEmail(orderId) : "")).trim()
   const amountUsd = Number(req.body?.amount_usd || existing?.amount_usd || 0)
   const currency = (req.body?.currency || existing?.currency || "USD").toUpperCase()
   const productName = req.body?.product_name?.trim()
@@ -112,7 +141,7 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     })
   }
 
-  const onramp = resolvePeptidepayOnramp({
+  const onramp = resolvePeptidepayOnrampOrFallback({
     requested: req.body?.provider,
     country,
     amountUsd,
@@ -137,18 +166,6 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
 
   const { session } = sessionResult
   const sessionOnramp = session.provider?.trim().toLowerCase() || ""
-  if (
-    sessionOnramp &&
-    sessionOnramp !== onramp.provider &&
-    (sessionOnramp === "gateway" || isPeptidepayOnrampId(sessionOnramp))
-  ) {
-    return res.status(502).json({
-      ok: false,
-      message: `Peptide Pay assigned ${sessionOnramp} instead of ${onramp.provider}. Try again or choose ${sessionOnramp} at checkout.`,
-      session_onramp: sessionOnramp,
-      requested_onramp: onramp.provider
-    })
-  }
 
   await saveIntent(orderId, email, amountUsd, currency, session.url, session.id)
 

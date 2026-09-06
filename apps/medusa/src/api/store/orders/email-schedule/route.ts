@@ -37,7 +37,12 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   const email = req.body?.email?.trim()
   const displayId = req.body?.display_id
   const totalUsd = Number(req.body?.total_usd || 0)
-  const paymentMethod = req.body?.payment_method === "card" ? "card" : "crypto"
+  const paymentMethod =
+    req.body?.payment_method === "card"
+      ? "card"
+      : req.body?.payment_method === "wise"
+        ? "wise"
+        : "crypto"
   const items = normalizeItems(req.body?.items)
 
   if (!orderId || !email || totalUsd <= 0) {

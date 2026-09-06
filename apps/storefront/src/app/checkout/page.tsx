@@ -25,7 +25,8 @@ export default async function CheckoutPage({ searchParams }: PageProps) {
         <span className="section-label">Order</span>
         <h1 className="mt-2 font-serif text-3xl text-[#0F172A] sm:text-4xl">Checkout</h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#475569]">
-          Pay by card or cryptocurrency. All orders require RUO acknowledgment before fulfillment.{" "}
+          Pay by card, Wise, or cryptocurrency. All orders require RUO acknowledgment before
+          fulfillment.{" "}
           <Link href="/payment" className="text-[#0D9488] hover:underline">
             Payment guide
           </Link>

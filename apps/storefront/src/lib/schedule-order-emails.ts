@@ -14,7 +14,7 @@ export async function scheduleOrderEmails(input: {
   email: string
   displayId?: number
   totalUsd: number
-  paymentMethod: "card" | "crypto"
+  paymentMethod: "card" | "crypto" | "wise"
   items: OrderEmailItem[]
 }) {
   if (!PUBLISHABLE_KEY) {

@@ -29,7 +29,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
   {
     id: "banxa",
     label: "Banxa",
-    minUsd: 10,
+    minUsd: 11,
     description: "Via Peptide Pay → Banxa · First time: a quick ID check. Sometimes a short wait."
   },
   {
@@ -148,4 +148,19 @@ export function resolvePeptidepayOnramp(input: {
     }
   }
   return { ok: true, provider: fallback }
+}
+
+export function resolvePeptidepayOnrampOrFallback(input: {
+  requested?: string | null
+  country: string
+  amountUsd: number
+  ipCountry?: string | null
+}): { ok: true; provider: PeptidepayOnrampId } | { ok: false; error: string } {
+  const requested = resolvePeptidepayOnramp(input)
+  if (requested.ok) return requested
+  return resolvePeptidepayOnramp({
+    country: input.country,
+    amountUsd: input.amountUsd,
+    ipCountry: input.ipCountry
+  })
 }

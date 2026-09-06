@@ -50,12 +50,17 @@ import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
 import { storeCardOnramp, storePaymentUrl } from "@/components/payment-confirmation"
 import { storeCardHandoffContext } from "@/lib/card-handoff-context"
+import { mintCardCheckoutSession } from "@/lib/mint-card-checkout"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import type { ParsedAddress } from "@/lib/google-places"
 import {
   cancelCheckoutAbandonIntent,
   scheduleCheckoutAbandonIntent
 } from "@/lib/checkout-abandon"
+import { CheckoutPaymentHelp } from "@/components/checkout-payment-help"
+import { CheckoutWiseInfo } from "@/components/checkout-wise-info"
+import { WiseMark } from "@/components/wise-mark"
+import { storeCheckoutPaymentMethod } from "@/lib/checkout-payment-method"
 
 type CheckoutOrder = {
   id: string
@@ -72,7 +77,7 @@ type CheckoutOrder = {
   }>
 }
 
-type PaymentMethod = "card" | "crypto"
+type PaymentMethod = "card" | "crypto" | "wise"
 
 const ORDERS_KEY = "tetrava_orders_v1"
 const CHECKOUT_RETURN_PATH = "/checkout"
@@ -1117,9 +1122,11 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
 
   const submitLabel = useMemo(() => {
     if (loading) {
-      return paymentMethod === "card" ? "Creating your order…" : "Processing…"
+      if (paymentMethod === "card") return "Opening secure payment…"
+      return paymentMethod === "crypto" ? "Processing…" : "Creating your order…"
     }
     if (paymentMethod === "card") return "Continue to card payment"
+    if (paymentMethod === "wise") return "Continue to Wise payment"
     return "Continue to crypto payment"
   }, [loading, paymentMethod])
 
@@ -1340,7 +1347,11 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
       if (checkoutJson.payment_provider) {
         paymentProvider = checkoutJson.payment_provider
       }
-      if (checkoutJson.payment_method === "crypto" || checkoutJson.payment_method === "card") {
+      if (
+        checkoutJson.payment_method === "crypto" ||
+        checkoutJson.payment_method === "card" ||
+        checkoutJson.payment_method === "wise"
+      ) {
         resolvedPaymentMethod = checkoutJson.payment_method
       }
       if (checkoutJson.payment_error && !checkoutJson.payment_url) {
@@ -1409,8 +1420,22 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
       return
     }
 
+    if (resolvedPaymentMethod === "wise") {
+      storeCheckoutPaymentMethod(orderId, "wise")
+      const params = new URLSearchParams({
+        order_id: orderId,
+        total: orderTotal.toFixed(2),
+        method: "wise"
+      })
+      if (displayId) params.set("display_id", String(displayId))
+      setLoading(false)
+      router.push(`/checkout/payment?${params.toString()}`)
+      return
+    }
+
     if (resolvedPaymentMethod === "card" || paymentProvider === "peptidepay") {
       if (paymentUrl) storePaymentUrl(orderId, paymentUrl)
+      storeCheckoutPaymentMethod(orderId, "card")
       if (resolvedCardOnramp && isPeptidepayOnrampId(resolvedCardOnramp)) {
         storeCardHandoffContext(orderId, {
           email,
@@ -1418,16 +1443,32 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
           amountUsd: orderTotal,
           provider: resolvedCardOnramp
         })
+        storeCardOnramp(orderId, resolvedCardOnramp)
+      }
+      const hostedUrl =
+        paymentUrl && !paymentUrl.includes("example.com")
+          ? paymentUrl
+          : await mintCardCheckoutSession({
+              orderId,
+              provider: resolvedCardOnramp || undefined,
+              email,
+              amountUsd: orderTotal,
+              country: shippingAddress.country
+            })
+      if (hostedUrl) {
+        storePaymentUrl(orderId, hostedUrl)
+        window.location.assign(hostedUrl)
+        return
       }
       const params = new URLSearchParams({
         order_id: orderId,
-        total: orderTotal.toFixed(2)
+        total: orderTotal.toFixed(2),
+        method: "card"
       })
       if (displayId) params.set("display_id", String(displayId))
-      if (resolvedCardOnramp) {
-        params.set("onramp", resolvedCardOnramp)
-        storeCardOnramp(orderId, resolvedCardOnramp)
-      }
+      if (email) params.set("email", email)
+      if (shippingAddress.country) params.set("country", shippingAddress.country)
+      if (resolvedCardOnramp) params.set("onramp", resolvedCardOnramp)
       setLoading(false)
       router.push(`/checkout/payment?${params.toString()}`)
       return
@@ -1564,6 +1605,8 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
 
               <section id="checkout-payment" className="card bg-[#F0FDFA] p-5 sm:p-6">
                 <h2 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h2>
+                <CheckoutPaymentHelp />
+                {paymentMethod === "wise" ? <CheckoutWiseInfo amountUsd={estimatedTotal} /> : null}
 
                 <label
                   className={`${methodCardClass(paymentMethod === "card")} ${paymentOptionsLoaded && !cardAvailable ? "opacity-70" : ""}`}
@@ -1592,6 +1635,27 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                         Card gateway did not respond — refresh the page or use cryptocurrency below.
                       </span>
                     ) : null}
+                  </span>
+                </label>
+
+                <label className={`${methodCardClass(paymentMethod === "wise")} mt-3`}>
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="wise"
+                    checked={paymentMethod === "wise"}
+                    onChange={() => setPaymentMethod("wise")}
+                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+                  />
+                  <span className="flex min-w-0 flex-1 flex-col gap-1">
+                    <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
+                      <WiseMark />
+                      Pay instantly with Wise
+                    </span>
+                    <span className="text-xs leading-relaxed text-[#64748B]">
+                      Pay the order total in USD through Wise. Same amount recorded on the order. If
+                      you don&apos;t have Wise, setup takes about 5 minutes.
+                    </span>
                   </span>
                 </label>
 
@@ -1723,6 +1787,15 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                       (Banxa can take a little longer).
                     </li>
                     <li>Once payment is confirmed, you return here and fulfillment begins.</li>
+                  </ul>
+                </div>
+              ) : paymentMethod === "wise" ? (
+                <div className="space-y-3 text-sm leading-relaxed text-[#64748B]">
+                  <h3 className="font-serif text-lg text-[#0F172A]">What happens next</h3>
+                  <ul className="list-disc space-y-1 pl-4">
+                    <li>Tetrava records the order at the USD total shown above.</li>
+                    <li>You send that same USD amount through Wise.</li>
+                    <li>Message us on WhatsApp with your order number once the transfer is sent.</li>
                   </ul>
                 </div>
               ) : null}

@@ -41,7 +41,7 @@ export const PEPTIDEPAY_ONRAMPS: PeptidepayOnrampOption[] = [
   {
     id: "banxa",
     label: "Banxa",
-    minUsd: 10,
+    minUsd: 11,
     description: "Worldwide card rail. Recommended default outside the US.",
     methods: ["visa", "mastercard", "applepay"],
     idCheck: "standard",
@@ -213,4 +213,28 @@ export function resolvePeptidepayOnramp(input: {
     }
   }
   return { ok: true, provider: fallback }
+}
+
+/** Never fail the shopper if any live rail can take the order. */
+export function resolvePeptidepayOnrampOrFallback(input: {
+  requested?: string | null
+  country: string
+  amountUsd: number
+  ipCountry?: string | null
+  liveIds?: Set<PeptidepayOnrampId> | null
+}): { ok: true; provider: PeptidepayOnrampId } | { ok: false; error: string } {
+  const requested = resolvePeptidepayOnramp(input)
+  if (requested.ok) return requested
+  const anyLive = resolvePeptidepayOnramp({
+    country: input.country,
+    amountUsd: input.amountUsd,
+    ipCountry: input.ipCountry,
+    liveIds: input.liveIds
+  })
+  if (anyLive.ok) return anyLive
+  return resolvePeptidepayOnramp({
+    country: input.country,
+    amountUsd: input.amountUsd,
+    ipCountry: input.ipCountry
+  })
 }

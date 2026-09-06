@@ -10,7 +10,7 @@ type OrderEmailInput = {
   total: number
   paymentUrl: string
   paymentPageUrl: string
-  paymentMethod?: "crypto" | "card"
+  paymentMethod?: "crypto" | "card" | "wise"
   items?: OrderItem[]
 }
 
@@ -27,11 +27,17 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#39;")
 }
 
-function paymentCopy(paymentMethod: "crypto" | "card") {
+function paymentCopy(paymentMethod: "crypto" | "card" | "wise") {
   if (paymentMethod === "card") {
     return {
       intro: "Use the secure link below to finish card payment and confirm your order.",
       button: "Complete card payment"
+    }
+  }
+  if (paymentMethod === "wise") {
+    return {
+      intro: "Pay the USD order total through Wise, then message us on WhatsApp with your order number.",
+      button: "Open Wise payment page"
     }
   }
 

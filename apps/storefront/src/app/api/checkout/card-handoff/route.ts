@@ -7,7 +7,7 @@ import {
 import {
   isPeptidepayOnrampId,
   peptidepayBuyerIpCountry,
-  resolvePeptidepayOnramp
+  resolvePeptidepayOnrampOrFallback
 } from "@/lib/peptidepay-onramps"
 
 const MEDUSA_URL = (process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000").replace(/\/$/, "")
@@ -40,6 +40,8 @@ async function loadIntent(orderId: string) {
     amount_usd: number
     currency?: string
     status?: string
+    provider_url?: string
+    provider?: string
   }
 }
 
@@ -58,14 +60,16 @@ export async function POST(req: Request) {
   if (!orderId) {
     return NextResponse.json({ ok: false, message: "order_id is required." }, { status: 400 })
   }
-  if (!isPeptidepayOnrampId(provider)) {
-    return NextResponse.json({ ok: false, message: "Choose a supported card processor." }, { status: 400 })
-  }
 
   const intent = await loadIntent(orderId)
   if (intent?.status === "paid" || intent?.status === "completed" || intent?.status === "settled") {
     return NextResponse.json({ ok: false, message: "This order is already paid." }, { status: 409 })
   }
+
+  const existingUrl = intent?.provider_url?.trim() || ""
+  const existingOnramp =
+    (intent?.provider && isPeptidepayOnrampId(intent.provider) && intent.provider) ||
+    (isPeptidepayOnrampId(provider) ? provider : "banxa")
 
   const amountFromBody = Number(body.amount_usd)
   const amountUsd = Number.isFinite(amountFromBody) && amountFromBody > 0
@@ -74,14 +78,17 @@ export async function POST(req: Request) {
   const email = body.email?.trim() || ""
 
   if (!Number.isFinite(amountUsd) || amountUsd <= 0) {
+    if (existingUrl && !existingUrl.includes("example.com")) {
+      return NextResponse.json({
+        ok: true,
+        order_id: orderId,
+        provider_url: existingUrl,
+        card_onramp: existingOnramp,
+        session_onramp: existingOnramp,
+        requested_onramp: isPeptidepayOnrampId(provider) ? provider : existingOnramp
+      })
+    }
     return NextResponse.json({ ok: false, message: "Order total is invalid." }, { status: 400 })
-  }
-
-  if (!intent && !email) {
-    return NextResponse.json(
-      { ok: false, message: "Order payment record not found. Return to checkout and try again." },
-      { status: 404 }
-    )
   }
 
   const ipCountry = peptidepayBuyerIpCountry(
@@ -91,8 +98,8 @@ export async function POST(req: Request) {
   )
 
   const liveIds = peptidepayLiveIdSet(await loadPeptidepayLiveOnrampStatuses())
-  const onramp = resolvePeptidepayOnramp({
-    requested: provider,
+  const onramp = resolvePeptidepayOnrampOrFallback({
+    requested: isPeptidepayOnrampId(provider) ? provider : undefined,
     country,
     amountUsd,
     ipCountry,
@@ -119,29 +126,24 @@ export async function POST(req: Request) {
     session = await mintSession()
   }
 
-  if (!session || session.ok === false) {
+  if (!session || session.ok === false || !session.provider_url) {
+    if (existingUrl && !existingUrl.includes("example.com")) {
+      return NextResponse.json({
+        ok: true,
+        order_id: orderId,
+        provider_url: existingUrl,
+        card_onramp: existingOnramp,
+        session_onramp: existingOnramp,
+        requested_onramp: onramp.provider
+      })
+    }
     return NextResponse.json(
-      { ok: false, message: session?.message || "Could not open card checkout. Try again in a moment." },
+      { ok: false, message: session?.message || "Payment page is still starting." },
       { status: 502 }
     )
   }
 
   const sessionOnramp = session.session_onramp?.trim().toLowerCase() || ""
-  if (
-    sessionOnramp &&
-    sessionOnramp !== onramp.provider &&
-    (sessionOnramp === "gateway" || isPeptidepayOnrampId(sessionOnramp))
-  ) {
-    return NextResponse.json(
-      {
-        ok: false,
-        message: `Peptide Pay assigned ${sessionOnramp} instead of ${onramp.provider}. Try Pay Now again or choose ${sessionOnramp} at checkout.`,
-        session_onramp: sessionOnramp,
-        requested_onramp: onramp.provider
-      },
-      { status: 502 }
-    )
-  }
 
   return NextResponse.json({
     ok: true,
@@ -150,7 +152,6 @@ export async function POST(req: Request) {
     session_id: session.session_id,
     card_onramp: onramp.provider,
     session_onramp: sessionOnramp || onramp.provider,
-    requested_onramp: onramp.provider,
-    used_fallback: false
+    requested_onramp: onramp.provider
   })
 }

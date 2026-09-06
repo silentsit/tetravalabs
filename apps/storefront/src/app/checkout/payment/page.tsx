@@ -16,6 +16,9 @@ type PageProps = {
     display_id?: string
     total?: string
     onramp?: string
+    method?: string
+    email?: string
+    country?: string
   }>
 }
 
@@ -28,6 +31,9 @@ export default async function CheckoutPaymentPage({ searchParams }: PageProps) {
       displayId={params.display_id ?? ""}
       total={params.total ?? ""}
       onrampFromUrl={params.onramp ?? ""}
+      methodFromUrl={params.method ?? ""}
+      emailFromUrl={params.email ?? ""}
+      countryFromUrl={params.country ?? ""}
     />
   )
 }

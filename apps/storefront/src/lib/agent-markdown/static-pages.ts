@@ -29,6 +29,7 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
         [
           mdLink("Shop catalog", "/shop"),
           mdLink("COA Library", "/coa-library"),
+          mdLink("Peptide identity index", "/tools/peptide-identity"),
           mdLink("Research Hub (blog)", "/blog"),
           mdLink("FAQ", "/faq"),
           mdLink("Shipping", "/shipping"),
@@ -191,6 +192,27 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       path: "/refund",
       body:
         "Due to the nature of research compounds, opened or used products cannot be returned. Unopened products may qualify for store credit within 14 days of delivery. Contact support to initiate a return review. See the canonical URL above for the complete policy."
+    })
+  }),
+
+  "/tools/peptide-identity": () => ({
+    title: "Peptide identity index",
+    description:
+      "Peptide identity index for research peptides: sequence, CAS, mass, and expected MS ions. Compare two names to see if they are the same molecule. RUO.",
+    body: wrapAgentMarkdown({
+      title: "Peptide identity index",
+      description:
+        "Peptide identity index for research peptides: sequence, CAS, mass, and expected MS ions. Compare two names to see if they are the same molecule. RUO.",
+      path: "/tools/peptide-identity",
+      body: [
+        "The peptide identity index tells you whether two names used for research peptides refer to the same molecule.",
+        "Look up a catalog name, CAS number, or alias. Compare a second name when a vial, paper, or COA uses a different label.",
+        "Catalog CAS, formula, and sequence come from Tetrava lot identity tables. Monoisotopic mass and expected ions are calculated only when the sequence parses as standard residues.",
+        "TB-500 is listed as the Ac-LKKTETQ fragment. Full-length thymosin beta-4 is a separate reference identity (~4,963 Da, CAS 77591-33-4).",
+        "Research use only. Not for human or veterinary consumption.",
+        "## Related",
+        [`- ${mdLink("COA library", "/coa-library")}`, `- ${mdLink("Shop catalog", "/shop")}`].join("\n")
+      ].join("\n\n")
     })
   }),
 

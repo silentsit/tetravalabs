@@ -32,6 +32,7 @@ const PAGE_LINKS: HtmlSitemapLink[] = [
   { href: "/categories", label: "Categories" },
   { href: "/blog", label: "Research Hub" },
   { href: "/coa-library", label: "COA library" },
+  { href: "/tools/peptide-identity", label: "Peptide identity index" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/faq", label: "FAQ" },

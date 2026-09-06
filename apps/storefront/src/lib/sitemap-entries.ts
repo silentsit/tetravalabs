@@ -43,6 +43,7 @@ const STATIC_PAGE_ROUTES: Array<{
   { path: "/categories", changeFrequency: "weekly", priority: 0.7 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
   { path: "/coa-library", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/tools/peptide-identity", changeFrequency: "weekly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.6 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.6 },

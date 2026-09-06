@@ -53,6 +53,11 @@ export const faqItems: FaqItem[] = [
       "Due to the nature of research compounds, we cannot accept returns on opened or used products. Unopened products may qualify for store credit within 14 days of delivery. Contact support to initiate a return review."
   },
   {
+    question: "How do I tell if two peptide names are the same molecule?",
+    answer:
+      "Use the peptide identity index to compare sequence, CAS, and mass. TB-500 is not full-length thymosin beta-4, Semax is not Adamax, and a blend is not a single peptide. The index is for identity checks against a COA or paper, not for dosing."
+  },
+  {
     question: "How do I verify the purity of my order?",
     answer:
       "Each product batch can include a Certificate of Analysis (COA) from an independent laboratory. COA documents include HPLC data, purity percentages, and molecular weight confirmation where applicable."

@@ -217,7 +217,8 @@ const RESERVED_TOP_LEVEL = new Set([
   "shipping-restricted",
   "shop",
   "sitemap",
-  "terms"
+  "terms",
+  "tools"
 ])
 
 registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {

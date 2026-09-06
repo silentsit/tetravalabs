@@ -18,7 +18,8 @@ const STATIC_MARKDOWN_PATHS = new Set([
   "/privacy",
   "/refund",
   "/ruo",
-  "/sitemap"
+  "/sitemap",
+  "/tools/peptide-identity"
 ])
 
 const EXCLUDED_PREFIXES = [

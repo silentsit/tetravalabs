@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import Link from "next/link"
 import { Search } from "lucide-react"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { CoaLibraryProductCard } from "@/components/coa-library-product-card"
@@ -32,6 +33,11 @@ export function CoaLibraryList({ products }: Props) {
         <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">COA Library</h1>
         <p className="mt-4 max-w-2xl text-[#475569]">
           The COA library lists lot-linked Certificates of Analysis by product, Novagen verified.
+          If two names on a report might not be the same molecule, check them in the{" "}
+          <Link href="/tools/peptide-identity" className="text-[#0D9488] hover:text-[#0F766E]">
+            peptide identity index
+          </Link>
+          .
         </p>
       </div>
 

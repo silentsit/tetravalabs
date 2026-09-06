@@ -1,6 +1,6 @@
 # Tetrava Labs — AI & search context
 # https://tetravalabs.com
-# Last updated: 2026-08-12
+# Last updated: 2026-09-07
 
 > Research-use-only (RUO) peptide supplier for qualified laboratories.
 > Products are NOT for human consumption, clinical use, or veterinary use.
@@ -53,6 +53,7 @@ Research-grade peptides and lab supplies with:
 - Shop catalog: https://tetravalabs.com/shop
 - Categories index: https://tetravalabs.com/categories
 - COA Library: https://tetravalabs.com/coa-library
+- Peptide identity index: https://tetravalabs.com/tools/peptide-identity
 - Research Hub (blog): https://tetravalabs.com/blog
 - Payment guide: https://tetravalabs.com/payment
 - Shipping: https://tetravalabs.com/shipping

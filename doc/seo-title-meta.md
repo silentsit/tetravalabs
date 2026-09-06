@@ -31,6 +31,7 @@ Product, article, and category cards include the page title, RUO eyebrow, and a 
 | `/blog` | Research Hub — articles & protocols \| Tetrava Labs | Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers. |
 | `/blog/{slug}` | {post.title} \| Tetrava Labs | {post.excerpt} or “Research article from Tetrava Labs.” |
 | `/coa-library` | COA library — batch certificates \| Tetrava Labs | Search lot-linked Certificates of Analysis (COA) for Tetrava Labs research peptides. |
+| `/tools/peptide-identity` | Peptide identity index \| Tetrava | Peptide identity index for research peptides: sequence, CAS, mass, and expected MS ions. Compare two names to see if they are the same molecule. RUO. |
 | `/coa-library/{handle}` | {displayName} — COA documents \| Tetrava Labs | Lot-linked Certificates of Analysis for {displayName}. {N} research document(s) available. |
 | `/about` | About Tetrava Labs \| Verified Research-Use-Only Peptides | Tetrava Labs supplies HPLC-MS verified, COA-documented research peptides with cold-chain shipping to qualified labs. Verified. Documented. Delivered. RUO. |
 | `/faq` | FAQ — ordering, shipping & COAs \| Tetrava Labs | Answers about research-use peptides, HPLC verification, certificates of analysis, shipping, and payment. |

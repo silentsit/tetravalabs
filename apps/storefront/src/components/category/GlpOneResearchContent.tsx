@@ -417,7 +417,12 @@ export function GlpOneResearchContent() {
             >
               PubChem
             </a>{" "}
-            for molecular weight, structure, and synonyms when you write a materials section.
+            for molecular weight, structure, and synonyms when you write a materials section. Tetrava's{" "}
+            <Link href="/tools/peptide-identity" className="text-[#0D9488] hover:underline">
+              peptide identity index
+            </Link>{" "}
+            does the same job for catalog names: sequence, CAS, and whether two labels are the same
+            molecule.
           </li>
           <li className="leading-relaxed">
             A molarity calculator that converts mg of lyophilized peptide into molar stock for in-vitro

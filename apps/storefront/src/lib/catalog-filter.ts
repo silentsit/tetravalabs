@@ -39,6 +39,10 @@ export function isCatalogProductHandle(handle: string): boolean {
   return CATALOG_HANDLES.has(handle)
 }
 
+export function getCatalogCompoundTitle(handle: string): string | null {
+  return COMPOUND_TITLES.get(handle) || null
+}
+
 function getCompoundParentHandle(handle: string): string | null {
   if (COMPOUND_PARENTS.has(handle)) return handle
   return LEGACY_TO_PARENT.get(handle) || null

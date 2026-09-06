@@ -32,10 +32,9 @@ export const AUTHORS: Record<AuthorId, AuthorProfile> = {
     name: "Tetrava Labs Editorial Team",
     title: "Editorial Team, Tetrava Labs",
     bio: [
-      "Content published by Tetrava Labs is authored and reviewed by an interdisciplinary panel of biochemists, analytical chemists, and lab technicians.",
-      "Our team synthesizes peer-reviewed findings from PubMed, ScienceDirect, and international peptide research journals to ensure technical accuracy and rigorous quality control standards across all product documentation and testing reports."
+      "Content published by Tetrava Labs is compiled and fact-checked using peer-reviewed scientific literature, HPLC-MS Certificates of Analysis (COA), and primary biochemical data. Research use only."
     ],
-    image: "/authors/tetrava-editorial-team.jpg",
+    image: "/brand/tetravalabs-icon.png",
     url: "/about"
   }
 }

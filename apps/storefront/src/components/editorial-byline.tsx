@@ -30,7 +30,7 @@ export function EditorialByline({
   const updated = formatDate(updatedAt)
   const showUpdated = Boolean(updated && updated !== published)
   const aboutHref = author.url || "/about"
-  const photo = author.image || "/authors/tetrava-editorial-team.jpg"
+  const photo = author.image || "/brand/tetravalabs-icon.png"
 
   if (variant === "compact") {
     return (
@@ -62,14 +62,17 @@ export function EditorialByline({
 
   return (
     <div className="flex gap-4 rounded-xl border border-[#E2E8F0] bg-white p-4">
-      <Link href={aboutHref} className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-[#F8FAFC]">
+      <Link
+        href={aboutHref}
+        className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-[#E2E8F0] bg-white"
+      >
         <Image
           src={photo}
-          alt={author.name}
+          alt="Tetrava Labs logo"
           fill
           sizes="56px"
           {...localImageProps(photo)}
-          className="object-cover"
+          className="object-contain p-1.5"
         />
       </Link>
       <div className="min-w-0">
@@ -79,9 +82,7 @@ export function EditorialByline({
           </Link>
         </p>
         <p className="mt-0.5 text-xs text-[#64748B]">{author.title}</p>
-        <p className="mt-2 text-xs leading-relaxed text-[#475569]">
-          {author.bio[0]} Claims cite primary literature. Research use only.
-        </p>
+        <p className="mt-2 text-xs leading-relaxed text-[#475569]">{author.bio[0]}</p>
         <p className="mt-2 text-xs text-[#94A3B8]">
           {published ? <time dateTime={publishedAt || undefined}>Published {published}</time> : null}
           {published && showUpdated ? " · " : null}

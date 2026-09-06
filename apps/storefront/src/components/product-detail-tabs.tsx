@@ -310,7 +310,7 @@ export function ProductDetailTabs({
                         quality={90}
                         {...localImageProps(author.image)}
                         sizes="112px"
-                        className="h-[112px] w-[112px] shrink-0 rounded-full border border-[#E2E8F0] object-cover object-top"
+                        className="h-[112px] w-[112px] shrink-0 rounded-xl border border-[#E2E8F0] bg-white object-contain p-3"
                       />
                     ) : null}
                     <div>

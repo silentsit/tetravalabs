@@ -21,9 +21,9 @@ export default function FaqPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} />
       <div>
         <span className="section-label">Support</span>
-        <h1 className="mt-4 font-serif text-3xl text-[#0F172A] sm:text-4xl">Frequently asked questions</h1>
+        <h1 className="mt-4 font-serif text-3xl text-[#0F172A] sm:text-4xl">FAQ</h1>
         <p className="mt-4 text-[#475569]">
-          Answers about research compounds, ordering, shipping, and analytical documentation.
+          FAQ answers cover research compounds, ordering, shipping, and analytical documentation.
         </p>
       </div>
       <FaqAccordion items={faqItems} />

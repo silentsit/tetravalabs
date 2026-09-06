@@ -2,7 +2,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Clock } from "lucide-react"
 import type { BlogPost } from "@/lib/sanity"
-import { blogImageForPost, formatReadTime } from "@/lib/blog-utils"
+import {
+  blogImageForPost,
+  formatBlogCardDate,
+  formatReadTime,
+  isMeaningfullyUpdated,
+  postLastModifiedAt
+} from "@/lib/blog-utils"
 import { localImageProps } from "@/lib/local-image"
 import { getAuthor } from "@/lib/authors"
 
@@ -13,6 +19,9 @@ type Props = {
 
 export function BlogPostCard({ post, compact = false }: Props) {
   const image = blogImageForPost(post)
+  const displayDate = postLastModifiedAt(post)
+  const formattedDate = formatBlogCardDate(displayDate)
+  const showUpdated = isMeaningfullyUpdated(post.publishedAt, post.updatedAt)
 
   return (
     <Link
@@ -46,8 +55,10 @@ export function BlogPostCard({ post, compact = false }: Props) {
         <p className="mt-2 line-clamp-2 text-sm text-[#94A3B8]">{post.excerpt || "Research article"}</p>
         <div className="mt-auto flex flex-wrap items-center gap-3 pt-4 text-xs text-[#94A3B8]">
           <span className="font-medium text-[#0F172A]">{getAuthor("editorial-team").name}</span>
-          {post.publishedAt ? (
-            <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+          {formattedDate && displayDate ? (
+            <time dateTime={displayDate}>
+              {showUpdated ? `Updated ${formattedDate}` : formattedDate}
+            </time>
           ) : null}
           <span className="flex items-center gap-1">
             <Clock className="h-3 w-3" aria-hidden />

@@ -85,8 +85,8 @@ export default function AboutPage() {
 
       <div className="space-y-6 text-base leading-relaxed text-[#475569]">
         <p>
-          Tetrava Labs is a research-use-only (RUO) peptide supplier built for people who read the
-          Certificate of Analysis before they read the price. We supply qualified laboratories and
+          About Tetrava Labs: we are a research-use-only (RUO) peptide supplier built for people who
+          read the Certificate of Analysis before they read the price. We supply qualified laboratories and
           independent researchers with high-purity peptides, blends, and ancillary lab materials — every
           lot verified, every batch documented, every order handled like the data depends on it. Because
           it does.

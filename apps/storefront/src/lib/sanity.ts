@@ -104,7 +104,7 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   {
     categorySlug: "tissue-repair",
     introCopy:
-      "BPC-157, TB-500, GHK-Cu, and related tissue-repair research peptides for in-vitro and animal model studies.",
+      "Tissue repair research peptides in this category include BPC-157, TB-500, and GHK-Cu for in-vitro and animal model studies.",
     supportingCopy:
       "Batch purity is verified by HPLC-MS. Cross-reference the COA Library before starting any experiment."
   },
@@ -118,14 +118,14 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   {
     categorySlug: "longevity-neuropeptides",
     introCopy:
-      "Longevity and neuropeptide research compounds including epithalon, selank, semax, and thymic peptides.",
+      "Longevity neuropeptides in this catalog include epithalon, selank, semax, and thymic peptides for qualified laboratory research.",
     supportingCopy:
       "Lot-linked analytical documentation supports reproducible experimental design."
   },
   {
     categorySlug: "metabolic-mitochondrial",
     introCopy:
-      "Mitochondrial and metabolic research peptides including MOTS-c, NAD+, glutathione, and related cofactors.",
+      "Metabolic and mitochondrial research peptides here include MOTS-c, NAD+, glutathione, and related cofactors for bench and in-vivo models.",
     supportingCopy:
       "Verify storage requirements on each product specification tab before use."
   },
@@ -142,7 +142,7 @@ const fallbackCategorySeo: CategorySeoBlock[] = [
   {
     categorySlug: "lab-supplies",
     introCopy:
-      "BAC water, acetic acid, and reconstitution supplies required for peptide preparation in the lab.",
+      "Lab supplies for peptide reconstitution here include bacteriostatic water, acetic acid, and documented reconstitution materials for research workflows.",
     supportingCopy:
       "Pair with your peptide order to streamline reconstitution workflows."
   }
@@ -255,8 +255,34 @@ function resolveBlogImage(cmsImage?: string | null, fallbackImage?: string | nul
   return fallback || undefined
 }
 
+function dateTime(value?: string) {
+  const time = value ? new Date(value).getTime() : Number.NaN
+  return Number.isFinite(time) ? time : 0
+}
+
+function latestIsoDate(...values: (string | undefined)[]) {
+  let best: string | undefined
+  let bestTime = -1
+  for (const value of values) {
+    const time = dateTime(value)
+    if (time > bestTime) {
+      best = value
+      bestTime = time
+    }
+  }
+  return best
+}
+
+function sortPostsByLastModified(posts: BlogPost[]) {
+  return [...posts].sort((a, b) => {
+    const updated = dateTime(b.updatedAt || b.publishedAt) - dateTime(a.updatedAt || a.publishedAt)
+    if (updated !== 0) return updated
+    return dateTime(b.publishedAt) - dateTime(a.publishedAt)
+  })
+}
+
 function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
-  if (!posts?.length) return fallbackPosts
+  if (!posts?.length) return sortPostsByLastModified(fallbackPosts)
 
   const fallbackBySlug = new Map(fallbackPosts.map((post) => [post.slug, post]))
   const merged: BlogPost[] = posts.map((post) => {
@@ -271,7 +297,7 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
       seoTitle: post.seoTitle || fallback?.seoTitle,
       seoDescription: post.seoDescription || fallback?.seoDescription,
       keywords: post.keywords?.length ? post.keywords : fallback?.keywords,
-      updatedAt: post.updatedAt || fallback?.updatedAt || post.publishedAt
+      updatedAt: latestIsoDate(post.updatedAt, fallback?.updatedAt, post.publishedAt)
     }
   })
 
@@ -280,15 +306,8 @@ function normalizePosts(posts: BlogPost[] | null): BlogPost[] {
   for (const fallback of fallbackPosts) {
     if (!slugs.has(fallback.slug)) merged.push(fallback)
   }
-  if (merged.length !== posts.length) {
-    merged.sort(
-      (a, b) =>
-        new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime()
-    )
-  }
-
   const keep = new Set<string>(KEPT_BLOG_SLUGS)
-  return merged.filter((post) => keep.has(post.slug))
+  return sortPostsByLastModified(merged.filter((post) => keep.has(post.slug)))
 }
 
 export async function listBlogPosts(): Promise<BlogPost[]> {
@@ -315,7 +334,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     seoTitle: post.seoTitle || fallback?.seoTitle,
     seoDescription: post.seoDescription || fallback?.seoDescription,
     keywords: post.keywords?.length ? post.keywords : fallback?.keywords,
-    updatedAt: post.updatedAt || fallback?.updatedAt || post.publishedAt
+    updatedAt: latestIsoDate(post.updatedAt, fallback?.updatedAt, post.publishedAt)
   }
 }
 
@@ -329,8 +348,15 @@ export async function getCategorySeoBlock(slug: string): Promise<CategorySeoBloc
     categorySlug, introCopy, supportingCopy, seoTitle, seoDescription
   }`
   const block = await fetchSanity<CategorySeoBlock>(query, [`sanity:category:${normalized}`])
-  if (block) return block
-  return fallbackCategorySeo.find((item) => item.categorySlug === normalized) || null
+  const fallback = fallbackCategorySeo.find((item) => item.categorySlug === normalized) || null
+  if (!block && !fallback) return null
+  return {
+    categorySlug: normalized,
+    introCopy: block?.introCopy || fallback?.introCopy || "",
+    supportingCopy: block?.supportingCopy || fallback?.supportingCopy || "",
+    seoTitle: block?.seoTitle || fallback?.seoTitle,
+    seoDescription: block?.seoDescription || fallback?.seoDescription
+  }
 }
 
 const legalPaths: Record<string, string> = {

@@ -15,6 +15,9 @@ import {
 } from "@/lib/shop-filters"
 import { parseProductSort, sortProducts } from "@/lib/sort-products"
 
+const SHOP_INTRO =
+  "Research peptides for sale with lot-linked COAs and HPLC-MS verification. Browse the full Tetrava Labs catalog below."
+
 function parseCents(value?: string | null) {
   if (!value?.trim()) return undefined
   const dollars = Number(value)
@@ -45,6 +48,7 @@ function ShopCatalogView({
           <div>
             <span className="section-label">Catalog</span>
             <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Research Peptides for Sale</h1>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#475569]">{SHOP_INTRO}</p>
             <p className="mt-2 text-sm text-[#64748B]">
               {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
               {sortKey !== "featured" ? ` · sorted by ${sortKey.replace("-", " ")}` : ""}
@@ -85,6 +89,7 @@ export function ShopCatalogFallback({ products }: { products: StoreProduct[] }) 
       <div className="border-b border-[#E2E8F0] pb-6">
         <span className="section-label">Catalog</span>
         <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Research Peptides for Sale</h1>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#475569]">{SHOP_INTRO}</p>
         <p className="mt-2 text-sm text-[#64748B]">
           {displayProducts.length} product{displayProducts.length === 1 ? "" : "s"}
         </p>

@@ -15,14 +15,14 @@ function categoryListMarkdown(): string {
 
 const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
   "/": () => ({
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: "Buy Peptides Online",
     description: siteConfig.description,
     body: wrapAgentMarkdown({
-      title: siteConfig.name,
+      title: "Buy Peptides Online",
       description: siteConfig.description,
       path: "/",
       body: [
-        `${siteConfig.name} supplies research-grade peptides and lab supplies with HPLC-MS purity verification, lot-linked Certificates of Analysis (COA), and cold-chain shipping for qualified laboratories.`,
+        `Buy peptides online from ${siteConfig.name} for qualified laboratories. Research-use only, with HPLC-MS purity verification, lot-linked Certificates of Analysis (COA), and cold-chain shipping.`,
         "## Product Categories",
         categoryListMarkdown(),
         "## Key Pages",
@@ -42,14 +42,14 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
   }),
 
   "/shop": () => ({
-    title: "Shop Research Peptides",
+    title: "Research Peptides for Sale",
     description: "Browse the full Tetrava Labs catalog of research peptides and lab supplies by category.",
     body: wrapAgentMarkdown({
-      title: "Shop Research Peptides",
+      title: "Research Peptides for Sale",
       description: "Browse the full Tetrava Labs catalog of research peptides and lab supplies by category.",
       path: "/shop",
       body: [
-        "The shop lists every active catalog product, each with HPLC-MS purity data, strength/pack options, and a lot-linked Certificate of Analysis when published.",
+        "Research peptides for sale here include every active catalog product, each with HPLC-MS purity data, strength/pack options, and a lot-linked Certificate of Analysis when published.",
         "## Categories",
         categoryListMarkdown()
       ].join("\n\n")
@@ -57,13 +57,17 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
   }),
 
   "/categories": () => ({
-    title: "Research Peptide Categories",
+    title: "Product categories",
     description: "All Tetrava Labs research peptide categories with links to each category page.",
     body: wrapAgentMarkdown({
-      title: "Research Peptide Categories",
+      title: "Product categories",
       description: "All Tetrava Labs research peptide categories with links to each category page.",
       path: "/categories",
-      body: ["## Categories", categoryListMarkdown()].join("\n\n")
+      body: [
+        "Product categories in the Tetrava Labs catalog group compounds by class and application area.",
+        "## Categories",
+        categoryListMarkdown()
+      ].join("\n\n")
     })
   }),
 
@@ -75,7 +79,7 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       description: "Tetrava Labs research articles on peptide handling, analytical verification, and compliance.",
       path: "/blog",
       body:
-        "Long-form articles covering reconstitution protocols, COA/HPLC interpretation, and RUO compliance, authored and reviewed by the Tetrava Labs scientific editorial team. Individual posts negotiate markdown at their own canonical URL (`/blog/{slug}`)."
+        "The Research Hub collects long-form articles on peptide handling, COA/HPLC interpretation, and RUO compliance, authored by the Tetrava Labs Editorial Team. Individual posts negotiate markdown at their own canonical URL (`/blog/{slug}`)."
     })
   }),
 
@@ -87,7 +91,7 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       description: "Search lot-linked Certificates of Analysis (COA) for Tetrava Labs research peptide batches.",
       path: "/coa-library",
       body:
-        "Every published COA documents independent third-party HPLC-MS purity, identity, and batch data for a specific lot. Match the batch number on your vial to the COA before starting comparative research work."
+        "The COA library lists lot-linked Certificates of Analysis with independent third-party HPLC-MS purity, identity, and batch data for a specific lot. Match the batch number on your vial to the COA before starting comparative research work."
     })
   }),
 
@@ -99,7 +103,7 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       description: siteConfig.description,
       path: "/about",
       body: [
-        `${siteConfig.name} ("${siteConfig.tagline}") supplies research-grade peptides and lab supplies to qualified laboratories, with every batch backed by independent third-party HPLC-MS purity verification.`,
+        `About Tetrava Labs: ${siteConfig.name} ("${siteConfig.tagline}") supplies research-grade peptides and lab supplies to qualified laboratories, with every batch backed by independent third-party HPLC-MS purity verification.`,
         `Contact: ${siteConfig.contactEmail}`
       ].join("\n\n")
     })
@@ -112,18 +116,18 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       title: `Contact ${siteConfig.name}`,
       description: `How to reach the ${siteConfig.name} research support team.`,
       path: "/contact",
-      body: `For order, COA, or institutional-account questions, contact ${siteConfig.contactEmail}.`
+      body: `Contact Tetrava Labs about order, COA, or institutional-account questions at ${siteConfig.contactEmail}.`
     })
   }),
 
   "/faq": () => ({
-    title: "Frequently Asked Questions",
+    title: "FAQ",
     description: "Answers about RUO compliance, purity verification, shipping, storage, and returns.",
     body: wrapAgentMarkdown({
-      title: "Frequently Asked Questions",
+      title: "FAQ",
       description: "Answers about RUO compliance, purity verification, shipping, storage, and returns.",
       path: "/faq",
-      body: renderQaSection("FAQ", faqItems)
+      body: ["FAQ answers cover RUO compliance, purity verification, shipping, storage, and returns.", renderQaSection("FAQ", faqItems)].join("\n\n")
     })
   }),
 
@@ -135,7 +139,7 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       description: "Tetrava Labs shipping methods, delivery windows, and tracking guidance.",
       path: "/shipping",
       body: [
-        "Orders are processed within 12 hours and ship with temperature-controlled, discreet packaging where appropriate for lyophilized peptides.",
+        "Shipping information for Tetrava Labs orders: processing starts within 12 hours, with temperature-controlled, discreet packaging where appropriate for lyophilized peptides.",
         "Shipping is free on all orders worldwide. Typical delivery windows: 2–7 business days (USA, Canada, Australia, UK); 2–4 business days (South-East Asia); 5–11 business days (rest of world). Customs fees and import duties are the recipient's responsibility.",
         "Tracking is emailed after dispatch — use Post Track or 17 Track for the most accurate updates."
       ].join("\n\n")
@@ -143,14 +147,14 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
   }),
 
   "/payment": () => ({
-    title: "Payment",
+    title: "How to pay",
     description: "Payment options for qualified Tetrava Labs research buyers.",
     body: wrapAgentMarkdown({
-      title: "Payment",
+      title: "How to pay",
       description: "Payment options for qualified Tetrava Labs research buyers.",
       path: "/payment",
       body:
-        "Tetrava Labs accepts crypto and card payment options for qualified buyers. Payment instructions are provided after checkout — see the full guide at the canonical URL above for current methods and steps."
+        "How to pay at Tetrava Labs: card checkout is the default, with cryptocurrency as the other path. Payment instructions are provided after checkout. See the full guide at the canonical URL above for current methods and steps."
     })
   }),
 

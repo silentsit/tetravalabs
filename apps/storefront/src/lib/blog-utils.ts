@@ -38,6 +38,17 @@ export function isMeaningfullyUpdated(publishedAt?: string, updatedAt?: string):
   return updated - published > 24 * 60 * 60 * 1000
 }
 
+export function postLastModifiedAt(post: Pick<BlogPost, "publishedAt" | "updatedAt">) {
+  return post.updatedAt || post.publishedAt
+}
+
+export function formatBlogCardDate(value?: string) {
+  if (!value) return null
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return null
+  return date.toLocaleDateString("en-US", { timeZone: "UTC" })
+}
+
 export function getRelatedBlogPosts(posts: BlogPost[], current: BlogPost, limit = 3) {
   return posts
     .filter(

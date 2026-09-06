@@ -31,7 +31,7 @@ export const categoryArt: CategoryArt[] = [
     slug: "longevity-neuropeptides",
     name: "Longevity & Neuropeptides",
     description:
-      "Shop longevity and neuropeptide research compounds including Epithalon, Selank, and Semax. Verified purity with lot-linked COAs. RUO.",
+      "Shop longevity neuropeptides including Epithalon, Selank, and Semax. Verified purity with lot-linked COAs. RUO.",
     image: "/v2/cat-longevity-neuropeptides.jpg"
   },
   {
@@ -52,7 +52,7 @@ export const categoryArt: CategoryArt[] = [
     slug: "lab-supplies",
     name: "Lab Supplies",
     description:
-      "Shop bacteriostatic water, reconstitution supplies, and laboratory materials for research peptide workflows. Documented lots. Research use only.",
+      "Shop lab supplies including bacteriostatic water, reconstitution materials, and laboratory reagents for research peptide workflows. Documented lots. Research use only.",
     image: "/v2/cat-lab-supplies.jpg"
   }
 ]

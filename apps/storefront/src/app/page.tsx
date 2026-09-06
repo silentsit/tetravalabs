@@ -81,7 +81,8 @@ export default async function HomePage() {
               </span>
             </h1>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-[#475569]">
-              Research-use only. Cold-chain shipping to qualified labs.
+              Buy peptides online from Tetrava Labs for qualified laboratories. Research-use only, with
+              cold-chain shipping.
             </p>
             <div className="mt-6 flex flex-row flex-wrap items-center gap-3 lg:flex-col lg:items-start lg:gap-5">
               <Link

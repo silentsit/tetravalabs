@@ -33,7 +33,7 @@ export default async function CategoriesPage() {
         <span className="section-label">Browse</span>
         <h1 className="mt-4 font-serif text-3xl text-[#0F172A] sm:text-4xl">Product categories</h1>
         <p className="mt-4 max-w-2xl text-[#475569]">
-          Explore the live catalog grouped by compound class and application area.
+          Product categories in the Tetrava Labs catalog group compounds by class and application area.
         </p>
       </div>
       {categories.length === 0 ? (

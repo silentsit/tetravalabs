@@ -31,7 +31,7 @@ export function CoaLibraryList({ products }: Props) {
         <span className="section-label">Quality</span>
         <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">COA Library</h1>
         <p className="mt-4 max-w-2xl text-[#475569]">
-          Browse lot-linked Certificates of Analysis by product — Novagen verified.
+          The COA library lists lot-linked Certificates of Analysis by product, Novagen verified.
         </p>
       </div>
 

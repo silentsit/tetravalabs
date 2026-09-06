@@ -26,7 +26,7 @@
           {
             "_type": "span",
             "_key": "sp7",
-            "text": "Retatrutide benefits reported since 2023 touch five systems beyond the scale: liver fat, knee pain, blood lipids, kidney markers, and (in animals only) the brain. Retatrutide is Eli Lilly's investigational GIP/GLP-1/glucagon triple agonist. It has no FDA, EMA, or other approval. You cannot get it by prescription. The only legal access is through registered clinical trials.",
+            "text": "Retatrutide benefits beyond weight loss have been reported since 2023 across five systems: liver fat, knee pain, blood lipids, kidney markers, and (in animals only) the brain. Retatrutide is Eli Lilly's investigational GIP/GLP-1/glucagon triple agonist. It has no FDA, EMA, or other approval. You cannot get it by prescription. The only legal access is through registered clinical trials.",
             "marks": []
           }
         ]
@@ -1049,7 +1049,7 @@
         "url": "https://www.youtube.com/watch?v=3U7ZBe9WeXo"
       }
     ],
-    "updatedAt": "2026-08-14T00:00:00.000Z"
+    "updatedAt": "2026-09-06T00:00:00.000Z"
   },
   {
     "title": "BPC-157 vs TB-500: The Hidden Truth About What's in the Vial",
@@ -1131,7 +1131,7 @@
     "category": "Protocols",
     "readTimeMinutes": 10,
     "publishedAt": "2026-08-15T03:14:39.383Z",
-    "updatedAt": "2026-08-15T04:02:11.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "body": [
       {
         "_type": "block",
@@ -1142,7 +1142,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "Ipamorelin and sermorelin get sold as two flavors of the same idea: a shot that nudges your pituitary to release more growth hormone. They are not that. They bind different receptors, run through different signaling pathways inside the same cell, and carry regulatory histories that point in opposite directions. One of them was, for eleven years, an FDA-approved prescription drug. The other has never been approved anywhere, and the one advisory committee that reviewed it for lawful compounding voted against it.",
+            "text": "Ipamorelin vs sermorelin is often sold as two flavors of the same idea: a compound that nudges pituitary growth-hormone release in research models. They are not that. They bind different receptors, run through different signaling pathways inside the same cell, and carry regulatory histories that point in opposite directions. One of them was, for eleven years, an FDA-approved prescription drug. The other has never been approved anywhere, and the one advisory committee that reviewed it for lawful compounding voted against it.",
             "marks": []
           }
         ]
@@ -1927,7 +1927,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-15T08:11:28.490Z",
-    "updatedAt": "2026-08-21T04:20:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "body": [
       {
         "_type": "block",
@@ -1946,6 +1946,12 @@
           }
         ],
         "children": [
+          {
+            "_type": "span",
+            "_key": "sp2lead",
+            "text": "Tesamorelin vs sermorelin starts with a regulatory paradox. ",
+            "marks": []
+          },
           {
             "_type": "span",
             "_key": "sp2a",
@@ -2779,6 +2785,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-18T07:00:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/tirzepatide-cold-chain-verification.webp",
     "references": [
       {
@@ -2813,7 +2820,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "Tirzepatide is not one product with one supply chain. It is a single molecule sitting inside two different regulatory categories at once: an FDA-approved prescription drug sold as Zepbound and Mounjaro, and an unapproved bulk research compound sold by dozens of peptide suppliers to laboratories studying GIP/GLP-1 dual-receptor signaling. Most people who search \"where to buy tirzepatide\" in 2026 get routed toward the second category without being told that's what happened. This guide is about that second category. How research-grade tirzepatide is actually supplied, what documentation separates a real analytical-grade vendor from a repackaging operation, and how today's suppliers compare on the facts that matter: testing, batch records, shipping.",
+            "text": "Where to buy tirzepatide in 2026 is a two-supply-chain problem. Tirzepatide is not one product with one path to the vial. It is a single molecule sitting inside two different regulatory categories at once: an FDA-approved prescription drug sold as Zepbound and Mounjaro, and an unapproved bulk research compound sold by dozens of peptide suppliers to laboratories studying GIP/GLP-1 dual-receptor signaling. Most people who search that phrase get routed toward the second category without being told that's what happened. This guide is about that second category. How research-grade tirzepatide is actually supplied, what documentation separates a real analytical-grade vendor from a repackaging operation, and how today's suppliers compare on the facts that matter: testing, batch records, shipping.",
             "marks": []
           }
         ]
@@ -3415,6 +3422,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-18T07:05:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/semaglutide-molecular-identity-scan.webp",
     "references": [
       {
@@ -3442,7 +3450,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "Semaglutide is the most heavily counterfeited peptide on the research market, for a simple reason: it's also one of the best-selling prescription drugs in the world, sold as Ozempic and Wegovy, and that name recognition drags enormous search volume toward unrelated bulk research listings. Search \"where to buy semaglutide\" and you land on pharmacy telehealth funnels, gray-market compounding operations, and dozens of peptide-supplier storefronts selling unformulated lyophilized powder for laboratory work, often on the same results page, with no clear indication which is which. This guide covers the third category. How research-grade semaglutide is actually supplied, what a real certificate of analysis looks like, and how today's suppliers compare on documentation, price, and shipping.",
+            "text": "Where to buy semaglutide in 2026 usually means sorting three markets on one results page. Semaglutide is the most heavily counterfeited peptide on the research market, for a simple reason: it's also one of the best-selling prescription drugs in the world, sold as Ozempic and Wegovy, and that name recognition drags enormous search volume toward unrelated bulk research listings. Search that phrase and you land on pharmacy telehealth funnels, gray-market compounding operations, and dozens of peptide-supplier storefronts selling unformulated lyophilized powder for laboratory work, often on the same results page, with no clear indication which is which. This guide covers the third category. How research-grade semaglutide is actually supplied, what a real certificate of analysis looks like, and how today's suppliers compare on documentation, price, and shipping.",
             "marks": []
           }
         ]
@@ -4056,6 +4064,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-18T07:10:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/hgh191aa-recombinant-vs-fragment-display.webp",
     "references": [
       {
@@ -4090,7 +4099,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "HGH 191aa refers to the full 191-amino-acid sequence of recombinant human growth hormone, somatropin, the same sequence used in approved pharmaceutical products like Genotropin and Humatrope. That \"191aa\" label matters more than it looks. It's how the research market distinguishes full-length recombinant GH from GH fragments, like Fragment 176-191, which are shorter, cheaper, and biologically distinct molecules frequently confused with the real thing. Sourcing HGH 191aa for laboratory research also runs into a problem shorter synthetic peptides don't have: full-length GH is produced by recombinant DNA expression in living cells, not solid-phase peptide synthesis. That changes the supplier landscape, the documentation standards, and the counterfeit risk compared with a peptide like BPC-157. This guide covers which suppliers realistically carry the real molecule, what a legitimate certificate of analysis needs to show for a full protein rather than a short peptide, and where the documented counterfeit risk in this category tends to concentrate.",
+            "text": "Where to buy HGH 191aa in 2026 starts with confirming you want the full 191-amino-acid somatropin sequence, not a fragment. HGH 191aa refers to recombinant human growth hormone, the same sequence used in approved pharmaceutical products like Genotropin and Humatrope. That \"191aa\" label matters more than it looks. It's how the research market distinguishes full-length recombinant GH from GH fragments, like Fragment 176-191, which are shorter, cheaper, and biologically distinct molecules frequently confused with the real thing. Sourcing HGH 191aa for laboratory research also runs into a problem shorter synthetic peptides don't have: full-length GH is produced by recombinant DNA expression in living cells, not solid-phase peptide synthesis. That changes the supplier landscape, the documentation standards, and the counterfeit risk compared with a peptide like BPC-157. This guide covers which suppliers realistically carry the real molecule, what a legitimate certificate of analysis needs to show for a full protein rather than a short peptide, and where the documented counterfeit risk in this category tends to concentrate.",
             "marks": []
           }
         ]
@@ -4641,6 +4650,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-18T07:15:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/nad-precursor-pathway-diagram.webp",
     "references": [
       {
@@ -4675,7 +4685,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "NAD+ sits at the center of one of the more misunderstood product categories in the research-compound market, and the confusion starts with a basic pharmacology fact most listings skip entirely: intact NAD+ has essentially no oral bioavailability and breaks down before it can cross into most cells intact. That's why the actual research and commercial landscape around \"boosting NAD+\" runs mostly through precursor molecules, nicotinamide mononucleotide (NMN) and nicotinamide riboside (NR), which are cell-permeable and get converted to NAD+ intracellularly through the salvage pathway. Injectable NAD+ itself is a separate, IV-administered category with a much thinner human evidence base than its precursors. Sourcing \"NAD+\" without understanding which of these three you're actually looking at is the single most common mistake in this category, and it's worth sorting out before comparing suppliers.",
+            "text": "Where to buy NAD+ in 2026 is a three-molecule problem before it is a supplier problem. NAD+ sits at the center of one of the more misunderstood product categories in the research-compound market, and the confusion starts with a basic pharmacology fact most listings skip entirely: intact NAD+ has essentially no oral bioavailability and breaks down before it can cross into most cells intact. That's why the actual research and commercial landscape around \"boosting NAD+\" runs mostly through precursor molecules, nicotinamide mononucleotide (NMN) and nicotinamide riboside (NR), which are cell-permeable and get converted to NAD+ intracellularly through the salvage pathway. Injectable NAD+ itself is a separate, IV-administered category with a much thinner human evidence base than its precursors. Sourcing \"NAD+\" without understanding which of these three you're actually looking at is the single most common mistake in this category, and it's worth sorting out before comparing suppliers.",
             "marks": []
           }
         ]
@@ -5291,6 +5301,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-18T07:20:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/bpc157-regulatory-status-board.webp",
     "references": [
       {
@@ -5331,7 +5342,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "BPC-157 is one of the most searched research peptides on the market, and also one where the gap between marketing claims and the published evidence is widest. It's a pentadecapeptide, a 15-amino-acid fragment derived from a larger protective protein found in human gastric juice, and nearly everything known about its biological activity comes from animal-model research, not human clinical trials. That's not a minor caveat. As of this writing, there's no published, completed human randomized controlled trial establishing BPC-157's safety or efficacy for any condition, a gap the ",
+            "text": "Where to buy BPC-157 in 2026 is a documentation problem more than an availability problem. BPC-157 is one of the most searched research peptides on the market, and also one where the gap between marketing claims and the published evidence is widest. It's a pentadecapeptide, a 15-amino-acid fragment derived from a larger protective protein found in human gastric juice, and nearly everything known about its biological activity comes from animal-model research, not human clinical trials. That's not a minor caveat. As of this writing, there's no published, completed human randomized controlled trial establishing BPC-157's safety or efficacy for any condition, a gap the ",
             "marks": []
           },
           {
@@ -5928,6 +5939,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-18T07:25:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/ghkcu-plasma-decline-graph-scene.webp",
     "references": [
       {
@@ -5962,7 +5974,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "GHK-Cu occupies an unusual position in the research-peptide market. It's one of the only compounds in this category that's also a mainstream, widely sold cosmetic ingredient, showing up by name in retail serums and creams alongside its parallel life as a research-grade tripeptide sold for laboratory use. That dual identity is worth understanding before sourcing it, because the evidence base, the manufacturing standards, and the buyer expectations differ meaningfully between a $40 drugstore serum and a research-grade vial, even when the molecule is chemically identical. This guide covers what actually distinguishes a well-documented research-grade GHK-Cu source from one riding the compound's cosmetic-market popularity without the manufacturing rigor to back it up.",
+            "text": "Where to buy GHK-Cu in 2026 means separating cosmetic-grade copper peptide from research-grade vials. GHK-Cu occupies an unusual position in the research-peptide market. It's one of the only compounds in this category that's also a mainstream, widely sold cosmetic ingredient, showing up by name in retail serums and creams alongside its parallel life as a research-grade tripeptide sold for laboratory use. That dual identity is worth understanding before sourcing it, because the evidence base, the manufacturing standards, and the buyer expectations differ meaningfully between a $40 drugstore serum and a research-grade vial, even when the molecule is chemically identical. This guide covers what actually distinguishes a well-documented research-grade GHK-Cu source from one riding the compound's cosmetic-market popularity without the manufacturing rigor to back it up.",
             "marks": []
           }
         ]
@@ -6538,6 +6550,7 @@
     "category": "Protocols",
     "readTimeMinutes": 9,
     "publishedAt": "2026-08-18T07:30:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/mt2-mechanism-receptor-illustration.webp",
     "references": [
       {
@@ -6579,7 +6592,7 @@
           {
             "_type": "span",
             "_key": "sp1",
-            "text": "Melanotan 2 is a research compound with an unusually well-documented adverse-event record for a substance still widely sold online, and that record is the most important thing to understand before evaluating any sourcing question about it. It's a synthetic analog of alpha-melanocyte-stimulating hormone that activates melanocortin receptors, the same receptor family involved in skin pigmentation, and its pigmentation-inducing mechanism is well characterized in the pharmacology literature. What's just as well documented, and far less discussed in retail marketing, is a specific, named set of serious adverse events reported in peer-reviewed case literature and by the UK's own medicines regulator. This guide covers both sides of that record.",
+            "text": "Where to buy Melanotan 2 in 2026 should start with the adverse-event record, not a supplier list. Melanotan 2 is a research compound with an unusually well-documented adverse-event record for a substance still widely sold online, and that record is the most important thing to understand before evaluating any sourcing question about it. It's a synthetic analog of alpha-melanocyte-stimulating hormone that activates melanocortin receptors, the same receptor family involved in skin pigmentation, and its pigmentation-inducing mechanism is well characterized in the pharmacology literature. What's just as well documented, and far less discussed in retail marketing, is a specific, named set of serious adverse events reported in peer-reviewed case literature and by the UK's own medicines regulator. This guide covers both sides of that record.",
             "marks": []
           }
         ]
@@ -7174,6 +7187,7 @@
     "category": "Analytical",
     "readTimeMinutes": 11,
     "publishedAt": "2026-08-23T00:00:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/selank-research-1.jpg",
     "body": [
       {
@@ -8456,6 +8470,7 @@
     "category": "Analytical",
     "readTimeMinutes": 10,
     "publishedAt": "2026-08-23T00:00:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/tudca-research-1.jpg",
     "body": [
       {
@@ -9517,6 +9532,7 @@
     "category": "Compliance",
     "readTimeMinutes": 11,
     "publishedAt": "2026-08-23T00:00:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "image": "/images/blog/manufacturing-verification-1.jpg",
     "body": [
       {
@@ -10532,7 +10548,7 @@
     "title": "Follistatin 315 Research Peptide: Protein Identity, Isoforms, and COA Verification",
     "slug": "follistatin-315-research-peptide",
     "excerpt": "Follistatin 315 is a 315-amino-acid secreted glycoprotein, not an undefined short peptide fragment. Learn how FST315 differs from FST288 and FST344, how follistatin sequesters activin and myostatin, and what analytical evidence a defensible COA must provide.",
-    "seoTitle": "Follistatin 315: Protein Identity and COA Verification",
+    "seoTitle": "Follistatin 315 Research Peptide: Protein Identity and COA Verification",
     "seoDescription": "What is Follistatin 315? Compare FST315, FST288, and FST344, examine ligand sequestration, and learn what a research COA must prove.",
     "keywords": [
       "Follistatin 315 research peptide",
@@ -10547,6 +10563,7 @@
     "readTimeMinutes": 10,
     "publishedAt": "2026-08-23T00:00:00.000Z",
     "image": "/images/blog/follistatin-315-research-1.jpg",
+    "updatedAt": "2026-09-06T00:00:00.000Z",
     "body": [
       {
         "_type": "block",

@@ -15,8 +15,8 @@ export default function ShippingPage() {
     <LegalPageShell title="Shipping Information" pathname="/shipping">
       <div className="space-y-6 text-sm leading-relaxed text-[#475569]">
         <p>
-          Orders begin processing after payment is confirmed. Lyophilized peptides are packed with
-          cold packs when required and shipped in discreet, unmarked packaging.
+          Shipping information for Tetrava Labs orders starts after payment is confirmed. Lyophilized
+          peptides are packed with cold packs when required and shipped in discreet, unmarked packaging.
         </p>
         <p>
           Shipping timeframes are estimates and may change due to weather, carrier volume, holidays,

@@ -20,9 +20,9 @@ export default function ContactPage() {
       <PageJsonLd pathname="/contact" />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
       <div>
-        <h1 className="font-serif text-3xl text-[#0F172A] sm:text-4xl">Contact us</h1>
+        <h1 className="font-serif text-3xl text-[#0F172A] sm:text-4xl">Contact Tetrava Labs</h1>
         <p className="mt-4 text-[#475569]">
-          Reach our research support team about products, orders, COA documents, or compliance questions.
+          Contact Tetrava Labs about products, orders, COA documents, or compliance questions.
         </p>
       </div>
       <div className="grid gap-10 lg:grid-cols-[1fr_280px]">

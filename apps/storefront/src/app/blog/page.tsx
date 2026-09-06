@@ -33,7 +33,8 @@ export default async function BlogPage() {
             <span className="section-label mt-6 inline-block">Knowledge Base</span>
             <h1 className="mt-3 font-serif text-4xl text-[#0F172A] md:text-5xl">Research Hub</h1>
             <p className="mt-4 max-w-xl text-[#475569]">
-              Protocols, analytical methods, and compliance guidance for qualified research buyers.
+              The Research Hub collects protocols, analytical methods, and compliance guidance for
+              qualified research buyers.
             </p>
           </div>
           <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-[#E2E8F0] shadow-sm">

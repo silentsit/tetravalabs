@@ -64,6 +64,9 @@ export function formatCoaSearchText(doc: StoreCoaDocument): string {
     .join(" ")
 }
 
+/** PDF proxy links stay crawlable for humans, not for Search. */
+export const COA_FILE_LINK_REL = "noopener noreferrer nofollow"
+
 export function isCoaPdfPreviewUrl(url: string) {
   return (
     /\.pdf(\?|$)/i.test(url) ||

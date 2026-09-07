@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Download, FileText } from "lucide-react"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
 import {
+  COA_FILE_LINK_REL,
   formatCoaCompound,
   formatCoaStrength,
   getCoaCardPreviewUrl,
@@ -67,7 +68,7 @@ export function CoaLibraryCard({ document }: Props) {
           href={pdfUrl}
           prefetch={false}
           target="_blank"
-          rel="noreferrer"
+          rel={COA_FILE_LINK_REL}
           className="relative block aspect-[4/5] max-h-[200px] overflow-hidden bg-[#F8FAFC]"
           aria-label={`Open COA PDF for ${compound} batch ${document.batch_number}`}
         >
@@ -102,7 +103,7 @@ export function CoaLibraryCard({ document }: Props) {
             href={pdfUrl}
             prefetch={false}
             target="_blank"
-            rel="noreferrer"
+            rel={COA_FILE_LINK_REL}
             className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium text-[#0D9488] hover:text-[#0F766E]"
           >
             <Download className="h-3.5 w-3.5" />

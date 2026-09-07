@@ -50,15 +50,34 @@ const RESERVED_SEGMENTS = new Set([
   "terms"
 ])
 
+function segmentLookupKeys(segment: string): string[] {
+  let decoded = segment
+  try {
+    decoded = decodeURIComponent(segment)
+  } catch {
+    decoded = segment
+  }
+  const lower = decoded.trim().toLowerCase()
+  return [...new Set([
+    segment,
+    decoded,
+    lower,
+    lower.replace(/\+/g, "-plus").replace(/\s+/g, "-"),
+    lower.replace(/[+\s]/g, "")
+  ])].filter(Boolean)
+}
+
 /** Map any known product URL segment to the canonical public slug. */
 export function publicProductSegment(segment: string): string | null {
   if (!segment) return null
-  if (PRODUCT_URL_TO_HANDLE[segment]) return segment
-  const prettyLegacy = LEGACY_PRETTY_URL_REDIRECTS[segment]
-  if (prettyLegacy) return prettyLegacy
-  if (PRODUCT_HANDLE_TO_URL[segment]) return PRODUCT_HANDLE_TO_URL[segment]
-  const parent = LEGACY_STRENGTH_TO_PARENT[segment]?.parent
-  if (parent) return PRODUCT_HANDLE_TO_URL[parent] || parent
+  for (const key of segmentLookupKeys(segment)) {
+    if (PRODUCT_URL_TO_HANDLE[key]) return key
+    const prettyLegacy = LEGACY_PRETTY_URL_REDIRECTS[key]
+    if (prettyLegacy) return prettyLegacy
+    if (PRODUCT_HANDLE_TO_URL[key]) return PRODUCT_HANDLE_TO_URL[key]
+    const parent = LEGACY_STRENGTH_TO_PARENT[key]?.parent
+    if (parent) return PRODUCT_HANDLE_TO_URL[parent] || parent
+  }
   return null
 }
 

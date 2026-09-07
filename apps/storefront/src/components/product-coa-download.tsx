@@ -2,7 +2,7 @@
 
 import { Download } from "lucide-react"
 import type { StoreCoaDocument } from "@/lib/medusa"
-import { formatCoaStrength } from "@/lib/coa-display"
+import { COA_FILE_LINK_REL, formatCoaStrength } from "@/lib/coa-display"
 
 type Props = {
   coas: StoreCoaDocument[]
@@ -29,7 +29,7 @@ export function ProductCoaDownload({ coas }: Props) {
       <a
         href={primary.document_url}
         target="_blank"
-        rel="noreferrer"
+        rel={COA_FILE_LINK_REL}
         className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-2.5 text-sm font-medium text-[#0F172A] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
       >
         <Download className="h-4 w-4 shrink-0" aria-hidden />
@@ -53,7 +53,7 @@ export function ProductCoaDownload({ coas }: Props) {
                 <a
                   href={doc.document_url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel={COA_FILE_LINK_REL}
                   className="shrink-0 text-[#0D9488] hover:underline"
                 >
                   Download

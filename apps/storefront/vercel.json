@@ -15,6 +15,31 @@
       "has": [{ "type": "host", "value": "www.tetravalabs.com" }],
       "destination": "https://tetravalabs.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/nad-plus",
+      "destination": "/buy-nad-online",
+      "statusCode": 301
+    },
+    {
+      "source": "/nad%2B",
+      "destination": "/buy-nad-online",
+      "statusCode": 301
+    },
+    {
+      "source": "/nadplus",
+      "destination": "/buy-nad-online",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/nad-plus",
+      "destination": "/buy-nad-online",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/nad-plus",
+      "destination": "/buy-nad-online",
+      "statusCode": 301
     }
   ],
   "headers": [
@@ -32,6 +57,14 @@
           "value": "</.well-known/api-catalog>; rel=\"api-catalog\", </openapi.json>; rel=\"service-desc\"; type=\"application/openapi+json\", </auth.md>; rel=\"describedby\"; type=\"text/markdown\", </sitemap_index.xml>; rel=\"sitemap\", </llms.txt>; rel=\"alternate\"; type=\"text/plain\""
         }
       ]
+    },
+    {
+      "source": "/auth.md",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
+    },
+    {
+      "source": "/openapi.json",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
     }
   ]
 }

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { FileText } from "lucide-react"
 import { CoaPdfPreview } from "@/components/coa-pdf-preview"
 import {
+  COA_FILE_LINK_REL,
   formatCoaCompound,
   formatCoaStrength,
   getCoaCardPreviewUrl,
@@ -71,7 +72,7 @@ export function CoaDocumentPreview({ document, compact = false }: Props) {
           <Link
             href={pdfUrl}
             target="_blank"
-            rel="noreferrer"
+            rel={COA_FILE_LINK_REL}
             className="inline-flex text-sm text-[#0D9488] hover:underline"
           >
             Open full document

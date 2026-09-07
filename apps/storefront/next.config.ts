@@ -29,6 +29,13 @@ const nextConfig: NextConfig = {
         hostname: "cdn.sanity.io"
       }
     ]
+  },
+  async headers() {
+    const noindex = [{ key: "X-Robots-Tag", value: "noindex, follow" }]
+    return [
+      { source: "/auth.md", headers: noindex },
+      { source: "/openapi.json", headers: noindex }
+    ]
   }
 }
 

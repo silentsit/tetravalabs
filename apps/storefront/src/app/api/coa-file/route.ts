@@ -33,7 +33,8 @@ export async function GET(req: Request) {
     status: 200,
     headers: {
       "Content-Type": contentType,
-      "Cache-Control": "public, max-age=3600"
+      "Cache-Control": "public, max-age=3600",
+      "X-Robots-Tag": "noindex, nofollow"
     }
   })
 }

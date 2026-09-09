@@ -14,8 +14,11 @@ import {
   OG_IMAGE_WIDTH
 } from "@/lib/og"
 import {
+  ORGANIZATION_ID,
+  WEBSITE_ID,
+  merchantOfferFields,
   merchantReturnPolicyJsonLd,
-  offerShippingDetailsJsonLd
+  shippingServiceJsonLd
 } from "@/lib/merchant-listing-schema"
 import { resolveSocialProfileUrls } from "@/lib/social-profiles"
 
@@ -334,12 +337,15 @@ export function breadcrumbJsonLd(items: Array<{ label: string; href?: string }>)
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.label,
-      ...(item.href ? { item: pageUrl(item.href) } : {})
-    }))
+    itemListElement: items.map((item, index) => {
+      const isLast = index === items.length - 1
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.label,
+        ...(item.href && !isLast ? { item: pageUrl(item.href) } : {})
+      }
+    })
   }
 }
 
@@ -348,7 +354,8 @@ export function personJsonLd(author: SchemaPersonInput) {
   const graph: JsonLdGraph = {
     "@type": "Person",
     name: author.name,
-    url: schemaPersonUrl(author.url)
+    url: schemaPersonUrl(author.url),
+    worksFor: { "@id": ORGANIZATION_ID }
   }
   if (author.jobTitle) graph.jobTitle = author.jobTitle
   if (author.description) graph.description = author.description
@@ -359,22 +366,29 @@ export function personJsonLd(author: SchemaPersonInput) {
   return graph
 }
 
+function organizationLogoJsonLd() {
+  return {
+    "@type": "ImageObject",
+    url: pageUrl(siteConfig.logo),
+    contentUrl: pageUrl(siteConfig.logo)
+  }
+}
+
 /** Organization publisher block (name + logo) — required by most Article SEO checkers. */
 export function publisherJsonLd() {
   return {
+    "@id": ORGANIZATION_ID,
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: {
-      "@type": "ImageObject",
-      url: pageUrl(siteConfig.logo)
-    }
+    logo: organizationLogoJsonLd()
   }
 }
 
 /** Fallback author when a page has no named byline (still satisfies Author schema checks). */
 export function defaultPageAuthorJsonLd() {
   return {
+    "@id": ORGANIZATION_ID,
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url
@@ -388,21 +402,41 @@ export function webPageJsonLd(input: {
   type?: "WebPage" | "CollectionPage" | "AboutPage" | "ContactPage"
   /** Byline author, when the page has curated editorial/research content. */
   author?: SchemaPersonInput
+  /** Primary entity this page is about (Organization, Product, Article). */
+  mainEntity?: JsonLdGraph
 }) {
-  return {
+  const url = pageUrl(input.path)
+  const pageType = input.type || "WebPage"
+  const graph: JsonLdGraph = {
     "@context": "https://schema.org",
-    "@type": input.type || "WebPage",
+    "@type": pageType,
+    "@id": url,
     name: input.title,
     description: input.description || siteConfig.description,
-    url: pageUrl(input.path),
-    isPartOf: {
-      "@type": "WebSite",
-      name: siteConfig.name,
-      url: siteConfig.url
-    },
+    url,
+    inLanguage: "en-US",
+    isPartOf: { "@id": WEBSITE_ID },
     publisher: publisherJsonLd(),
     author: input.author ? personJsonLd(input.author) : defaultPageAuthorJsonLd()
   }
+
+  if (input.mainEntity) {
+    graph.mainEntity = input.mainEntity
+  } else if (pageType === "AboutPage" || input.path === "/") {
+    graph.mainEntity = { "@id": ORGANIZATION_ID }
+    graph.about = { "@id": ORGANIZATION_ID }
+  } else if (pageType === "ContactPage") {
+    graph.mainEntity = {
+      "@type": "ContactPoint",
+      name: siteConfig.contactName,
+      contactType: "customer support",
+      email: siteConfig.contactEmail,
+      telephone: siteConfig.contactPhone,
+      availableLanguage: siteConfig.contactLanguages
+    }
+  }
+
+  return graph
 }
 
 type ProductLike = {
@@ -475,13 +509,6 @@ function offerSizeLabel(input: ProductOfferVariantInput) {
   return parts.length > 1 ? parts.slice(1).join(" · ") : input.name
 }
 
-function merchantOfferFields() {
-  return {
-    shippingDetails: offerShippingDetailsJsonLd(),
-    hasMerchantReturnPolicy: merchantReturnPolicyJsonLd()
-  }
-}
-
 function schemaOfferNode(input: ProductOfferVariantInput, productUrl: string) {
   return {
     "@type": "Offer",
@@ -492,6 +519,7 @@ function schemaOfferNode(input: ProductOfferVariantInput, productUrl: string) {
     availability: offerAvailability(input.inStock),
     itemCondition: "https://schema.org/NewCondition",
     seller: {
+      "@id": ORGANIZATION_ID,
       "@type": "Organization",
       name: siteConfig.name
     },
@@ -595,32 +623,39 @@ export function productJsonLd(
       `${displayTitle} — research-use only (RUO) peptide with HPLC-MS verification.`
   )
   const productUrl = pageUrl(productPath(handle))
+  const productId = `${productUrl}#product`
   const pricedOffers = (variantOffers || []).filter((offer) => offer.priceUsd > 0)
   const brand = { "@type": "Brand", name: "Tetrava Labs" }
+  const images = [imageUrl]
 
   if (pricedOffers.length > 1) {
     return attachProductReviews(
       {
         "@context": "https://schema.org/",
         "@type": "ProductGroup",
+        "@id": productId,
         name: displayTitle,
         description,
-        image: imageUrl,
+        url: productUrl,
+        image: images,
         category: categoryLabel,
         brand,
         productGroupID: handle,
         variesBy: ["https://schema.org/size"],
         hasVariant: pricedOffers.map((offer) => {
           const size = offerSizeLabel(offer)
+          const skuValue = offer.sku || undefined
           return {
             "@type": "Product",
+            ...(skuValue ? { "@id": `${productUrl}#${skuValue}` } : {}),
             name: offer.name,
             description,
-            image: imageUrl,
+            url: productUrl,
+            image: images,
             brand,
             size,
             inProductGroupWithID: handle,
-            ...(offer.sku ? { sku: offer.sku } : {}),
+            ...(skuValue ? { sku: skuValue, mpn: skuValue } : {}),
             offers: schemaOfferNode(offer, productUrl)
           }
         })
@@ -633,10 +668,13 @@ export function productJsonLd(
   const graph: JsonLdGraph = {
     "@context": "https://schema.org/",
     "@type": "Product",
+    "@id": productId,
     name: displayTitle,
     description,
-    image: imageUrl,
+    url: productUrl,
+    image: images,
     sku,
+    ...(sku ? { mpn: sku } : {}),
     ...(size ? { size } : {}),
     category: categoryLabel,
     brand,
@@ -663,18 +701,24 @@ export function articleJsonLd(post: {
   })
   const datePublished = toSchemaDateTime(post.publishedAt)
   const dateModified = toSchemaDateTime(post.updatedAt || post.publishedAt)
+  const url = pageUrl(`/blog/${post.slug}`)
+  const imageUrl = imagePath.startsWith("http") ? imagePath : pageUrl(imagePath)
 
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${url}#article`,
     headline: post.title,
     description: post.seoDescription || post.excerpt,
+    url,
+    inLanguage: "en-US",
+    ...(post.category ? { articleSection: post.category } : {}),
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
-    image: imagePath.startsWith("http") ? imagePath : pageUrl(imagePath),
+    image: [imageUrl],
     author: post.author ? personJsonLd(post.author) : defaultPageAuthorJsonLd(),
     publisher: publisherJsonLd(),
-    mainEntityOfPage: pageUrl(`/blog/${post.slug}`)
+    mainEntityOfPage: { "@type": "WebPage", "@id": url }
   }
 }
 
@@ -726,15 +770,19 @@ export function productResearchArticleJsonLd(input: {
 }) {
   const datePublished = toSchemaDateTime(input.datePublished)
   const dateModified = toSchemaDateTime(input.dateModified)
+  const url = pageUrl(input.path)
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${url}#article`,
     headline: input.headline,
     description: input.description,
-    url: pageUrl(input.path),
-    mainEntityOfPage: pageUrl(input.path),
+    url,
+    inLanguage: "en-US",
+    articleSection: "Research",
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
     ...(input.image
-      ? { image: input.image.startsWith("http") ? input.image : pageUrl(input.image) }
+      ? { image: [input.image.startsWith("http") ? input.image : pageUrl(input.image)] }
       : {}),
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
@@ -766,14 +814,17 @@ export function organizationJsonLd() {
   const sameAs = resolveSocialProfileUrls()
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": `${siteConfig.url}#organization`,
+    "@type": "OnlineStore",
+    "@id": ORGANIZATION_ID,
     name: siteConfig.name,
+    alternateName: siteConfig.titleBrand,
+    legalName: siteConfig.legalName,
     url: siteConfig.url,
-    logo: pageUrl(siteConfig.logo),
+    logo: organizationLogoJsonLd(),
     email: siteConfig.contactEmail,
     telephone: siteConfig.contactPhone,
     description: siteConfig.description,
+    areaServed: "Worldwide",
     address: [
       postalAddressJsonLd(siteConfig.address),
       ...siteConfig.regionalOffices.map(postalAddressJsonLd)
@@ -784,9 +835,11 @@ export function organizationJsonLd() {
       contactType: "customer support",
       email: siteConfig.contactEmail,
       telephone: siteConfig.contactPhone,
-      availableLanguage: siteConfig.contactLanguages
+      availableLanguage: siteConfig.contactLanguages,
+      areaServed: "Worldwide"
     },
     hasMerchantReturnPolicy: merchantReturnPolicyJsonLd(),
+    hasShippingService: shippingServiceJsonLd(),
     ...(sameAs.length ? { sameAs } : {})
   }
 }
@@ -795,12 +848,19 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_ID,
     name: siteConfig.name,
+    alternateName: siteConfig.titleBrand,
     url: siteConfig.url,
     description: siteConfig.description,
+    inLanguage: "en-US",
+    publisher: { "@id": ORGANIZATION_ID },
     potentialAction: {
       "@type": "SearchAction",
-      target: `${siteConfig.url}/search?q={search_term_string}`,
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`
+      },
       "query-input": "required name=search_term_string"
     }
   }

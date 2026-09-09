@@ -11,11 +11,11 @@ import { registerDynamicJsonLd } from "@/lib/json-ld-store"
 import { blogImageForPost } from "@/lib/blog-utils"
 import {
   articleJsonLd,
+  pageUrl,
   productJsonLd,
   productResearchArticleJsonLd,
   stripBrandTitleSuffix,
   webPageJsonLd,
-  type JsonLdGraph,
   type ProductOfferVariantInput,
   type ProductReviewSchemaInput
 } from "@/lib/seo"
@@ -278,7 +278,8 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         title: pageTitle,
         description: pageDescription,
         path,
-        author: pageAuthor
+        author: pageAuthor,
+        mainEntity: { "@id": `${pageUrl(path)}#product` }
       }),
       productResearchArticleJsonLd({
         headline: pageTitle,
@@ -315,7 +316,8 @@ registerDynamicJsonLd(/^\/([^/]+)$/, async (match) => {
         strengthLabels: []
       }),
       path,
-      author: authorPersonFields(editorialAuthor)
+      author: authorPersonFields(editorialAuthor),
+      mainEntity: { "@id": `${pageUrl(path)}#product` }
     })
   ]
 })
@@ -337,7 +339,8 @@ registerDynamicJsonLd(/^\/blog\/([^/]+)$/, async (match) => {
       title: post.seoTitle || post.title,
       description,
       path,
-      author: pageAuthor
+      author: pageAuthor,
+      mainEntity: { "@id": `${pageUrl(path)}#article` }
     })
   ]
 })

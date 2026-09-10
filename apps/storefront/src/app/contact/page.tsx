@@ -3,7 +3,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 import { PageJsonLd } from "@/components/page-json-ld"
 import { ContactForm } from "@/components/contact-form"
 import { SocialProfileLinks } from "@/components/social-profile-links"
-import { buildPageMetadata } from "@/lib/seo"
+import { buildPageMetadata, siteConfig } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact Tetrava Labs",
@@ -28,6 +28,16 @@ export default function ContactPage() {
       <div className="grid gap-10 lg:grid-cols-[1fr_280px]">
         <ContactForm />
         <aside className="space-y-4 text-sm text-[#475569]">
+          <div className="card p-4">
+            <p className="font-medium text-[#0F172A]">Email</p>
+            <a
+              href={`mailto:${siteConfig.contactEmail}`}
+              className="mt-2 inline-block font-medium text-[#0D9488] hover:underline"
+            >
+              {siteConfig.contactEmail}
+            </a>
+            <p className="mt-2">For orders, COAs, and compliance questions.</p>
+          </div>
           <div className="card p-4">
             <p className="font-medium text-[#0F172A]">Research support</p>
             <p className="mt-2">Typical response within 1–2 business days.</p>

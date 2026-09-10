@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { FooterAcceptedPayments } from "@/components/footer-accepted-payments"
 import { SiteLogo } from "@/components/site-logo"
+import { siteConfig } from "@/lib/seo"
 
 const shopLinks = [
   { label: "All Products", href: "/shop" },
@@ -11,6 +12,7 @@ const shopLinks = [
 ]
 
 const helpLinks = [
+  { label: "Contact", href: "/contact" },
   { label: "How to Pay", href: "/payment" },
   { label: "FAQ", href: "/faq" },
   { label: "Refund & Delivery", href: "/refund" }
@@ -42,6 +44,23 @@ export function SiteFooter() {
             <p className="mt-4 text-sm leading-relaxed text-[#94A3B8]">
               Research-grade peptides and compounds for qualified laboratory professionals.
             </p>
+            <div className="mt-5 space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#64748B]">
+                Contact
+              </p>
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="block text-sm text-[#94A3B8] transition-colors hover:text-white"
+              >
+                {siteConfig.contactEmail}
+              </a>
+              <Link
+                href="/contact"
+                className="block text-sm text-[#94A3B8] transition-colors hover:text-white"
+              >
+                Contact form
+              </Link>
+            </div>
             <FooterAcceptedPayments />
           </div>
           {columns.map((column) => (

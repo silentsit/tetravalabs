@@ -76,9 +76,9 @@ export function SiteHeader() {
           scrolled ? "border-slate-200 shadow-sm" : "border-slate-200/60"
         }`}
       >
-        <div className="page-container flex h-full items-center justify-between">
-          <Link href="/" className="flex shrink-0 items-center">
-            <SiteLogo className="shrink-0" />
+        <div className="page-container flex h-full min-w-0 items-center justify-between gap-2">
+          <Link href="/" className="flex min-w-0 items-center">
+            <SiteLogo />
           </Link>
 
           <nav className="hidden items-center gap-5 lg:flex xl:gap-8">
@@ -107,7 +107,7 @@ export function SiteHeader() {
             <PreferredSourcesButton />
           </nav>
 
-          <div className="flex min-w-0 shrink-0 items-center gap-0.5 sm:gap-2">
+          <div className="flex shrink-0 items-center gap-0.5 sm:gap-2">
             <button
               type="button"
               onClick={() => setSearchOpen(true)}

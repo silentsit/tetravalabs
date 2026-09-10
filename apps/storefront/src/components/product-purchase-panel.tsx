@@ -81,7 +81,7 @@ export function ProductPurchasePanel({
                   type="button"
                   onClick={() => onStrengthChange(strength.strengthKey)}
                   aria-pressed={active}
-                  className={`rounded-lg border px-3 py-2 font-mono text-xs font-medium transition ${
+                  className={`min-h-11 rounded-lg border px-3 py-2.5 font-mono text-xs font-medium transition ${
                     active
                       ? "border-[color:var(--color-teal)] bg-[#CCFBF1] text-[#0F766E]"
                       : "border-[color:var(--color-border)] text-[color:var(--color-text-secondary)] hover:border-[color:var(--color-teal)]"

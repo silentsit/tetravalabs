@@ -23,7 +23,7 @@ export function SiteLogo({
   showWordmark = true
 }: SiteLogoProps) {
   const sizeClass = showWordmark
-    ? "h-7 w-auto max-w-[140px] object-contain sm:h-8 sm:max-w-[216px]"
+    ? "h-7 w-auto max-w-[108px] min-w-0 object-contain sm:h-8 sm:max-w-[140px] lg:max-w-[216px]"
     : "h-6 w-auto max-w-[165px] object-contain"
   const variantClass = variant === "footer" ? "opacity-95" : ""
   const src = variant === "footer" ? FOOTER_LOGO_SRC : LOGO_SRC

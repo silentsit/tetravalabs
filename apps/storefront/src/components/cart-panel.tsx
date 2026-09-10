@@ -9,6 +9,9 @@ import { getProductHref } from "@/lib/compound-product"
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
 
+const qtyBtn =
+  "inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[#E2E8F0] text-[#475569] transition-colors hover:border-[#0D9488] hover:text-[#0D9488]"
+
 export function CartPanel() {
   const { items, subtotal, totalItems, removeItem, updateQty } = useCart()
   const shippingUsd = resolveShippingUsd(subtotal)
@@ -50,7 +53,7 @@ export function CartPanel() {
                         <button
                           type="button"
                           onClick={() => removeItem(item.id)}
-                          className="text-xs text-red-500 hover:text-red-600"
+                          className="inline-flex min-h-11 shrink-0 items-center px-2 text-xs text-red-500 hover:text-red-600"
                         >
                           Remove
                         </button>
@@ -58,16 +61,18 @@ export function CartPanel() {
                       <div className="mt-2 flex items-center gap-2">
                         <button
                           type="button"
-                          className="flex h-7 w-7 items-center justify-center rounded border border-[#E2E8F0]"
+                          className={qtyBtn}
                           onClick={() => updateQty(item.id, item.quantity - 1)}
+                          aria-label="Decrease quantity"
                         >
                           -
                         </button>
-                        <span className="text-sm">{item.quantity}</span>
+                        <span className="min-w-8 text-center text-sm tabular-nums">{item.quantity}</span>
                         <button
                           type="button"
-                          className="flex h-7 w-7 items-center justify-center rounded border border-[#E2E8F0]"
+                          className={qtyBtn}
                           onClick={() => updateQty(item.id, item.quantity + 1)}
+                          aria-label="Increase quantity"
                         >
                           +
                         </button>
@@ -91,11 +96,11 @@ export function CartPanel() {
               <span>Total</span>
               <span className="tabular-nums">${estimatedTotal.toFixed(2)}</span>
             </div>
-            <div className="mt-3 flex gap-2">
-              <Link href="/cart" className="btn-secondary px-3 py-2 text-xs">
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Link href="/cart" className="btn-secondary min-h-11 px-3 py-2 text-xs">
                 View cart
               </Link>
-              <Link href="/checkout" className="btn-primary px-3 py-2 text-xs">
+              <Link href="/checkout" className="btn-primary min-h-11 px-3 py-2 text-xs">
                 Checkout
               </Link>
             </div>

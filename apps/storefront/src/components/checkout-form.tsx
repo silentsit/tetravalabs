@@ -344,7 +344,7 @@ function QtyControl({
     <div className="mt-2 inline-flex items-center rounded-lg border border-[#E2E8F0]">
       <button
         type="button"
-        className="flex h-8 w-8 items-center justify-center text-[#475569] hover:text-[#0F172A]"
+        className="flex h-11 w-11 items-center justify-center text-[#475569] hover:text-[#0F172A]"
         onClick={() => onChange(quantity - 1)}
         aria-label="Decrease quantity"
       >
@@ -353,7 +353,7 @@ function QtyControl({
       <span className="min-w-[1.5rem] text-center text-sm tabular-nums text-[#0F172A]">{quantity}</span>
       <button
         type="button"
-        className="flex h-8 w-8 items-center justify-center text-[#475569] hover:text-[#0F172A]"
+        className="flex h-11 w-11 items-center justify-center text-[#475569] hover:text-[#0F172A]"
         onClick={() => onChange(quantity + 1)}
         aria-label="Increase quantity"
       >
@@ -376,7 +376,7 @@ function CheckoutTrustRow() {
       {items.map((item) => (
         <li
           key={item.label}
-          className="flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-2.5 py-2 text-[11px] leading-tight text-[#475569]"
+          className="flex min-h-11 items-center gap-2 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-2.5 py-2 text-xs leading-tight text-[#475569]"
         >
           <item.icon className="h-3.5 w-3.5 shrink-0 text-[#0D9488]" aria-hidden />
           {item.label}

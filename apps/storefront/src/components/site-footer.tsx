@@ -94,7 +94,7 @@ export function SiteFooter() {
               Privacy Policy
             </Link>
           </p>
-          <p className="max-w-2xl text-center text-[11px] leading-relaxed text-[#D97706]/80 sm:text-right">
+          <p className="max-w-2xl text-center text-xs leading-relaxed text-[#D97706]/80 sm:text-right">
             FDA Disclaimer: These statements have not been evaluated by the Food and Drug
             Administration (or HSA in Singapore). These products are not intended to diagnose,
             treat, cure, or prevent any disease. Always consult with a qualified healthcare

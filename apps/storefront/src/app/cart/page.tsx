@@ -19,7 +19,7 @@ export default function CartPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cart" }]} includeSchema={false} />
       <div>
         <span className="section-label">Order</span>
-        <h1 className="mt-2 font-serif text-4xl text-[#0F172A]">Cart</h1>
+        <h1 className="mt-2 font-serif text-3xl text-[#0F172A] sm:text-4xl">Cart</h1>
         <p className="mt-3 text-sm text-[#475569]">Review your selected research compounds before checkout.</p>
       </div>
       <CartPanel />

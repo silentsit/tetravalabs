@@ -3,10 +3,13 @@ export const CARDTOUSDT_PROVIDER = "cardtousdt" as const
 export const CARD_CHECKOUT_TITLE = "Credit/debit cards (Visa, Mastercard, Amex, Discover)"
 
 export const CARD_CHECKOUT_DESCRIPTION_LINES = [
-  '1. Click "Place order". Card checkout opens in a new tab.',
-  "2. Pick a payment option for your country and pay on that provider's page.",
-  "3. You pay the same total shown in your cart. We do not collect card numbers here.",
-  "4. The provider may ask for ID verification. Never send card or ID details to Tetrava support."
+  '1. Click "Place Order" to open secure checkout.',
+  "2. Choose a payment provider from the options available in your country.",
+  "3. Do a one-time signup (may require basic identity verification ~ 2min).",
+  "4. Fill in credit/debit card details & Submit",
+  "",
+  "Payment complete.",
+  "You will receive an email of your order confirmation. We will provide you with your tracking number within 1 - 2 business days."
 ] as const
 
 const CARD_CHECKOUT_TAB = "tetrava-card-checkout"

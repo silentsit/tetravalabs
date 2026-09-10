@@ -6,7 +6,7 @@ Source: `apps/storefront` metadata + JSON-LD registry (Sep 2026).
 - Title template: `%s | Tetrava Labs`
 - Default title: `Tetrava Labs — Verified. Documented. Delivered.`
 - Default description: Research-use peptides with HPLC-MS verification, lot-linked COAs, and cold-chain shipping for qualified laboratories.
-- Always inject: `OnlineStore` (`@id` `#organization`; `alternateName` Tetrava; `PostalAddress` array: primary 580 California Street, San Francisco, CA 94104, US; plus London GB, Singapore SG, Bangkok TH regional offices; `hasMerchantReturnPolicy` → `/refund#policy` with `returnPolicyCountry` US; `hasShippingService` → `/shipping#policy`, free worldwide with /shipping transit windows), `WebSite` (`@id` `#website`; SearchAction `EntryPoint` → `/search?q={search_term_string}`)
+- Always inject: `OnlineStore` (`@id` `#organization`; `alternateName` Tetrava; email `info@tetravalabs.com`; no street address or phone in schema unless those appear on-page; `hasMerchantReturnPolicy` → `/refund#policy` with `returnPolicyCountry` US; `hasShippingService` → `/shipping#policy`, free worldwide with /shipping transit windows), `WebSite` (`@id` `#website`; SearchAction `EntryPoint` → `/search?q={search_term_string}`)
 - Social cards: 1200×630 PNG via `/og` (not the brand icon). Per-page title, eyebrow, and optional catalog photo.
 
 ## Indexable pages

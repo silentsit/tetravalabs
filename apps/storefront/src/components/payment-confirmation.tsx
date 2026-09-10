@@ -199,12 +199,19 @@ export function PaymentConfirmation({
           {isPaid
             ? "Your payment is confirmed. Fulfillment will begin shortly."
             : isCard
-              ? "Pay in the card checkout tab. If a popup was blocked, use the button below."
+              ? "Pay in the card checkout tab. The amount should match your order total. If a popup was blocked, use the button below."
               : "Pay with crypto to confirm fulfillment."}
         </p>
       </div>
       <div className="card space-y-4 p-6">
-        {amount ? <p className="text-lg text-[#0F172A]">Amount due: ${Number(amount).toFixed(2)} USD</p> : null}
+        {amount ? (
+          <p className="text-lg text-[#0F172A]">Order total: ${Number(amount).toFixed(2)} USD</p>
+        ) : null}
+        {isCard && !isPaid ? (
+          <p className="text-sm text-[#64748B]">
+            Your Tetrava order is recorded at the total above. The CardToUSDT tab should show the same USD amount.
+          </p>
+        ) : null}
         {paymentStatus?.status ? (
           <p className="text-sm text-[#475569]">
             Payment status: <span className="font-medium text-[#0F172A]">{paymentStatus.status}</span>

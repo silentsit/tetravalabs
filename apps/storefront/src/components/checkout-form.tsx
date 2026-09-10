@@ -26,7 +26,10 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { ShippingCharge } from "@/components/shipping-charge"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
+  CARD_CHECKOUT_ACTION_NOTE,
   CARD_CHECKOUT_DESCRIPTION_LINES,
+  CARD_CHECKOUT_FEE_NOTE,
+  CARD_CHECKOUT_KYC_NOTE,
   CARD_CHECKOUT_TITLE,
   assignCardCheckoutTab,
   closeCardCheckoutTab,
@@ -1556,11 +1559,19 @@ export function CheckoutForm() {
                         : CARD_CHECKOUT_DESCRIPTION_LINES
                       ).join("\n")}
                     </span>
-                    <span className="text-xs leading-relaxed text-[#0F766E]">
-                      {cardUsesInvoice
-                        ? "Place order does not charge your card. We email a PayPal invoice next."
-                        : "Place order opens card checkout in a new tab. We do not collect card numbers here."}
-                    </span>
+                    {!cardUsesInvoice ? (
+                      <>
+                        <span className="text-xs leading-relaxed text-[#0F766E]">
+                          {CARD_CHECKOUT_ACTION_NOTE}
+                        </span>
+                        <span className="text-xs leading-relaxed text-[#92400E]">{CARD_CHECKOUT_FEE_NOTE}</span>
+                        <span className="text-xs leading-relaxed text-[#64748B]">{CARD_CHECKOUT_KYC_NOTE}</span>
+                      </>
+                    ) : (
+                      <span className="text-xs leading-relaxed text-[#0F766E]">
+                        Place order does not charge your card. We email a PayPal invoice next.
+                      </span>
+                    )}
                   </span>
                 </label>
 

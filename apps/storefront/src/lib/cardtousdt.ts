@@ -1,12 +1,23 @@
 export const CARDTOUSDT_PROVIDER = "cardtousdt" as const
 
-export const CARD_CHECKOUT_TITLE = "Credit/Debit Cards (Visa/MasterCard/Amex/Discover)"
+export const CARD_CHECKOUT_TITLE = "Credit/debit cards (Visa, Mastercard, Amex, Discover)"
 
 export const CARD_CHECKOUT_DESCRIPTION_LINES = [
-  '1. Click on "Place order".',
-  "2. Card checkout opens in a new tab.",
-  "3. Pay with Visa, Mastercard, Amex, or Discover. We do not collect card numbers on this site."
+  '1. Click "Place order".',
+  "2. Licensed card checkout opens in a new tab (Stripe, Coinbase, PayPal, and other providers vary by country).",
+  "3. Complete payment on the provider's secure page. We do not collect card numbers, CVV, OTP, or ID documents here."
 ] as const
+
+/** Shown under the card radio when CardToUSDT is live (not manual invoice). */
+export const CARD_CHECKOUT_FEE_NOTE =
+  "The card checkout total matches your order total here. If secure checkout cannot open, we fall back to a PayPal invoice."
+
+/** Shown under the card radio when CardToUSDT is live (not manual invoice). */
+export const CARD_CHECKOUT_KYC_NOTE =
+  "Providers may require identity verification (KYC) on their own domain. Never send card details or ID to Tetrava support. Bank statements may list the processor name, not Tetrava Labs."
+
+export const CARD_CHECKOUT_ACTION_NOTE =
+  "Place order opens card checkout in a new tab. We do not collect card numbers on this site."
 
 const CARD_CHECKOUT_TAB = "tetrava-card-checkout"
 

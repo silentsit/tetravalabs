@@ -2,7 +2,7 @@
 
 Hosted card checkout. The buyer pays USD with a card on CardToUSDT. Settlement lands in your self-custodial `0x` wallet. There is no API key.
 
-Unwhitelisted calls work the same as production and carry a 25% fee. Telegram (`@Card_to_usdt`) is only for a production rate.
+Unwhitelisted wallets get a test-rate checkout where the hosted page total can exceed the cart (often ~25% on top). **Modempic whitelists the payout wallet with `@Card_to_usdt` so `amount`, `amount_usd`, and the hosted page all match the order total.** Tetrava uses the same rule: we reject create responses where those fields do not match the cart and fall back to the manual PayPal invoice path until the wallet is whitelisted.
 
 ## Customer path
 

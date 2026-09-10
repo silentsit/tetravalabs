@@ -170,13 +170,37 @@ function createErrorMessage(json: Record<string, unknown>, fallback: string) {
   return fallback
 }
 
+/** Match Modempic: round to cents before POST so create response can be validated. */
+export function cardToUsdtChargeAmount(amountUsd: number): number {
+  return Number(Number(amountUsd).toFixed(2))
+}
+
+function sameMoneyAmount(a: number, b: number): boolean {
+  return Math.abs(a - b) < 0.005
+}
+
+/** Hosted checkout pages we send shoppers to. Do not rewrite the URL. */
+export function isSafeCardToUsdtCheckoutUrl(value: string): boolean {
+  try {
+    const url = new URL(value)
+    if (url.protocol !== "https:") return false
+    if (url.username || url.password) return false
+    const host = url.hostname.toLowerCase()
+    if (host === "localhost" || host.endsWith(".localhost")) return false
+    if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(host)) return false
+    return Boolean(host)
+  } catch {
+    return false
+  }
+}
+
 export async function cardToUsdtCreateCheckout(
   input: CardToUsdtCreateInput
 ): Promise<CardToUsdtCreateResult> {
   const payoutAddress = getCardToUsdtPayoutAddress()
   const orderId = input.orderId.trim()
   const email = input.email.trim()
-  const amount = Number(input.amount)
+  const amount = cardToUsdtChargeAmount(Number(input.amount))
   const currency = (input.currency || "USD").trim().toUpperCase() || "USD"
 
   if (!payoutAddress) {
@@ -226,7 +250,7 @@ export async function cardToUsdtCreateCheckout(
   }
 
   const checkoutUrl = typeof result.json.checkout_url === "string" ? result.json.checkout_url.trim() : ""
-  if (!checkoutUrl) {
+  if (!checkoutUrl || !isSafeCardToUsdtCheckoutUrl(checkoutUrl)) {
     return {
       ok: false,
       message: "CardToUSDT returned no checkout_url",
@@ -234,11 +258,27 @@ export async function cardToUsdtCreateCheckout(
     }
   }
 
+  const responseAmount = Number(result.json.amount)
   const amountUsd = Number(result.json.amount_usd)
-  if (!Number.isFinite(amountUsd) || amountUsd <= 0) {
+  const responseCurrency =
+    typeof result.json.currency === "string" ? result.json.currency.trim().toUpperCase() : currency
+  const responseOrderId =
+    typeof result.json.order_id === "string" ? result.json.order_id.trim() : orderId
+
+  if (
+    !Number.isFinite(responseAmount) ||
+    !Number.isFinite(amountUsd) ||
+    amountUsd <= 0 ||
+    responseCurrency !== currency ||
+    responseOrderId !== orderId ||
+    !sameMoneyAmount(responseAmount, amount) ||
+    (currency === "USD" && !sameMoneyAmount(amountUsd, amount))
+  ) {
     return {
       ok: false,
-      message: "CardToUSDT returned no amount_usd",
+      code: "amount_mismatch",
+      message:
+        "CardToUSDT returned a checkout total that does not match the order. Whitelist the payout wallet with @Card_to_usdt on Telegram for production rates (same pattern as Modempic).",
       request_id: result.requestId
     }
   }
@@ -255,10 +295,10 @@ export async function cardToUsdtCreateCheckout(
       typeof result.json.deposit_address === "string" && result.json.deposit_address.trim()
         ? result.json.deposit_address.trim()
         : null,
-    amount: Number(result.json.amount) || amount,
-    currency: typeof result.json.currency === "string" ? result.json.currency : currency,
+    amount: responseAmount,
+    currency: responseCurrency,
     amount_usd: amountUsd,
-    order_id: typeof result.json.order_id === "string" ? result.json.order_id : orderId,
+    order_id: responseOrderId,
     webhook_secret: webhookSecret,
     created_at: typeof result.json.created_at === "string" ? result.json.created_at : new Date().toISOString(),
     request_id: result.requestId,

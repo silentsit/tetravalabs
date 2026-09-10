@@ -11,7 +11,7 @@ import { buildReorderCartItems } from "@/lib/reorder-cart"
 import { formatClientError } from "@/lib/format-client-error"
 
 const CHAT_LOGO_SRC = "/brand/tetravalabs-icon.png"
-const WHATSAPP_BADGE_SRC = "/chat/whatsapp-badge.svg"
+const WHATSAPP_BADGE_SRC = "/chat/whatsapp-badge.png"
 
 function SupportActionLabel({ children }: { children: string }) {
   return (
@@ -64,7 +64,7 @@ function ChatSupportActions({
           type="button"
           aria-label="Open research support chat"
           onClick={onOpenChat}
-          className={`flex shrink-0 overflow-hidden rounded-full bg-[#CCFBF1] ring-2 ring-white ${iconClass}`}
+          className={`flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#CCFBF1] p-[18%] ring-2 ring-white ${iconClass}`}
           style={{ width: iconSize, height: iconSize }}
         >
           <Image
@@ -73,7 +73,7 @@ function ChatSupportActions({
             width={iconSize}
             height={iconSize}
             unoptimized
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
           />
         </button>
       </div>
@@ -165,7 +165,7 @@ export function AiChatWidget() {
               <button
                 type="button"
                 onClick={openChat}
-                className="flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#CCFBF1] ring-2 ring-white transition hover:scale-[1.02]"
+                className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#CCFBF1] p-[18%] ring-2 ring-white transition hover:scale-[1.02]"
                 aria-label="Open research support chat"
               >
                 <Image
@@ -174,7 +174,7 @@ export function AiChatWidget() {
                   width={40}
                   height={40}
                   unoptimized
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </button>
               <button

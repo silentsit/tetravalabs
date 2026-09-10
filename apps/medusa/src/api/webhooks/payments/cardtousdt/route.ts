@@ -47,6 +47,14 @@ async function handleWebhook(req: MedusaRequest, res: MedusaResponse) {
   // Their first call is GET to webhook_url (already has order_id/secret, no txid). 4xx here
   // looks dead. Only signature failures should be 4xx after settlement fields arrive.
   if (!fields.txid_out || !fields.value_coin || !fields.coin) {
+    if (fields.txid_out || fields.value_coin || fields.coin) {
+      console.error("[cardtousdt] incomplete settlement, not fulfilled:", {
+        order_id: fields.order_id,
+        txid_out: fields.txid_out,
+        value_coin: fields.value_coin,
+        coin: fields.coin
+      })
+    }
     return res.status(200).json({
       ok: true,
       provider: CARDTOUSDT_PROVIDER,

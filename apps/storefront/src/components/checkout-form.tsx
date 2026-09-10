@@ -30,7 +30,8 @@ import {
   CARD_CHECKOUT_TITLE,
   assignCardCheckoutTab,
   closeCardCheckoutTab,
-  openCardCheckoutPlaceholder
+  openCardCheckoutPlaceholder,
+  showCardCheckoutError
 } from "@/lib/cardtousdt"
 import {
   MANUAL_CARD_INVOICE_DESCRIPTION_LINES,
@@ -1262,11 +1263,16 @@ export function CheckoutForm() {
             productId: item.productId
           }))
         }),
-        signal: AbortSignal.timeout(45000)
+        signal: AbortSignal.timeout(58000)
       })
       const checkoutJson = await checkoutResponse.json()
       if (!checkoutJson?.ok) {
-        closeCardCheckoutTab(cardTab)
+        if (cardTab) {
+          showCardCheckoutError(
+            cardTab,
+            checkoutJson?.message || "Checkout failed. Return to Tetrava and try again."
+          )
+        }
         if (checkoutJson?.code === "shipping_restricted") {
           router.push("/shipping-restricted")
           setLoading(false)
@@ -1292,16 +1298,15 @@ export function CheckoutForm() {
         setStatus(checkoutJson.payment_error)
       }
     } catch (error) {
-      closeCardCheckoutTab(cardTab)
       const timedOut =
         error instanceof DOMException
           ? error.name === "TimeoutError" || error.name === "AbortError"
           : error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")
-      setError(
-        timedOut
-          ? "Checkout is taking too long. Wait a moment and try again."
-          : "Could not reach checkout API."
-      )
+      const message = timedOut
+        ? "Checkout is taking too long. Wait a moment and try again."
+        : "Could not reach checkout API."
+      if (cardTab) showCardCheckoutError(cardTab, message)
+      setError(message)
       setLoading(false)
       return
     }

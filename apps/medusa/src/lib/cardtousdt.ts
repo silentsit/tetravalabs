@@ -15,7 +15,7 @@ export const CARDTOUSDT_USD_STABLES = [
 const PAYOUT_RE = /^0x[0-9a-fA-F]{40}$/
 const ORDER_ID_RE = /^[^\x00-\x1F\x7F]{1,128}$/
 const COIN_RE = /^[a-z0-9]+(?:_[a-z0-9]+)*$/i
-const DEFAULT_BAND = 0.8
+const DEFAULT_BAND = 0.95
 
 export type CardToUsdtCreateInput = {
   orderId: string

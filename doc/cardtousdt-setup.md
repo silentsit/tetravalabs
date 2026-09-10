@@ -10,7 +10,7 @@ Unwhitelisted wallets get a test-rate checkout where the hosted page total can e
 2. Place order. Medusa `POST`s `https://api.cardtousdt.to/v2/checkout`.
 3. Storefront opens `checkout_url` in a **new tab** (do not embed or same-tab redirect).
 4. Buyer pays on CardToUSDT. Tetrava stays on `/checkout/payment`.
-5. Webhook settles the order when paid USD is at least 80% of stored `amount_usd`.
+5. Webhook settles the order when paid USD is at least 95% of stored `amount_usd`.
 
 If create fails or CardToUSDT is not configured, checkout falls back to the manual PayPal invoice path.
 
@@ -21,14 +21,14 @@ If create fails or CardToUSDT is not configured, checkout falls back to the manu
 | `CARDTOUSDT_PAYOUT_ADDRESS` | Yes | Tetrava Labs Polygon wallet: `0x7c19774b353707c39A16F650B6c93E2172d6Dd45`. Same `0x` key exists on every EVM chain. Tokens do not auto-bridge: Polygon USDC is not Ethereum USDT. Non-EVM (Solana, TRON) cannot land here. Settlement chain is the webhook `coin` field, not chosen at create. |
 | `MEDUSA_PUBLIC_URL` | Yes in production | Public `https://` origin. Webhook is `{MEDUSA_PUBLIC_URL}/webhooks/payments/cardtousdt`. Localhost is rejected. |
 | `CARDTOUSDT_WEBHOOK_BASE_URL` | No | Full webhook URL override (ngrok / tunnel). Must be public HTTPS. |
-| `CARDTOUSDT_FULFILL_BAND` | No | Default `0.80`. |
+| `CARDTOUSDT_FULFILL_BAND` | No | Default `0.95`. |
 
 Apply schema: `npm run db:lab-schema` (`016_cardtousdt_checkouts.sql`).
 
 ## Four rules (from their docs)
 
 1. Store `amount_usd` from create. Compare the webhook to that figure, not `amount`.
-2. Fulfil at or above 80% of stored `amount_usd`. USD stables (`polygon_usdc`, `erc20_usdc`, `erc20_usdt`, `erc20_pyusd`) already report `value_coin` in USD.
+2. Fulfil at or above 95% of stored `amount_usd`. USD stables (`polygon_usdc`, `erc20_usdc`, `erc20_usdt`, `erc20_pyusd`) already report `value_coin` in USD.
 3. Native / unknown `coin`: replace `_` with `/`, then `GET https://api.cardtousdt.to/crypto/{coin}/info.php`. Multiply `value_coin` by `prices.USD`. If that fails, hold.
 4. Do not redirect the webhook. Fields live on the query string (`txid_out`, `value_coin`, `coin`, `c2t_ts`, `c2t_sig`). CardToUSDT tries GET first; POST is only a retry when GET returns `405`, with an empty body and `Content-Type: application/x-www-form-urlencoded`. We return `200` on GET (probe and settlement), so POST is unlikely in practice. Medusa sets `bodyParser: false` on this route because we never read the body — default `express.json()` would reject a malformed JSON body before our handler runs.
 

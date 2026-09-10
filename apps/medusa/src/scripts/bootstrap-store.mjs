@@ -346,8 +346,25 @@ const ensureShippingOption = async (token, region, stockLocationId) => {
     `/admin/shipping-options?service_zone_id=${serviceZone.id}&limit=20`
   )
   if (options.shipping_options?.length) {
-    console.log(`Shipping options ready (${options.shipping_options.length})`)
-    return options.shipping_options[0]
+    const updatedOptions = []
+    for (const shippingOption of options.shipping_options) {
+      const updated = await request(
+        token,
+        "POST",
+        `/admin/shipping-options/${shippingOption.id}`,
+        {
+          name: "Free Research Shipping",
+          price_type: "flat",
+          prices: [
+            { currency_code: "usd", amount: 0 },
+            { region_id: region.id, amount: 0 }
+          ]
+        }
+      )
+      updatedOptions.push(updated.shipping_option)
+    }
+    console.log(`Shipping options set to free (${updatedOptions.length})`)
+    return updatedOptions[0]
   }
 
   const profiles = await request(token, "GET", "/admin/shipping-profiles?limit=20")
@@ -357,19 +374,19 @@ const ensureShippingOption = async (token, region, stockLocationId) => {
   }
 
   const createdOption = await request(token, "POST", "/admin/shipping-options", {
-    name: "Standard Research Shipping",
+    name: "Free Research Shipping",
     price_type: "flat",
     provider_id: "manual_manual",
     service_zone_id: serviceZone.id,
     shipping_profile_id: profile.id,
     type: {
-      label: "Standard",
-      description: "Flat-rate research material shipping",
-      code: "standard"
+      label: "Free Shipping",
+      description: "Free research material shipping",
+      code: "free"
     },
     prices: [
-      { currency_code: "usd", amount: 1500 },
-      { region_id: region.id, amount: 1500 }
+      { currency_code: "usd", amount: 0 },
+      { region_id: region.id, amount: 0 }
     ]
   })
 

@@ -191,11 +191,19 @@ export async function POST(req: Request) {
       orderId: order.id,
       authToken
     })
-    const medusaSubtotalCents =
-      typeof order.subtotal === "number"
-        ? order.subtotal
-        : typeof order.item_total === "number"
-          ? order.item_total
+    // Medusa `subtotal` can include the selected shipping method. The storefront
+    // promises free shipping, so payment providers must receive merchandise only.
+    const medusaItemTotalCents =
+      typeof order.item_total === "number"
+        ? order.item_total
+        : Array.isArray(order.items)
+          ? order.items.reduce((sum, line) => {
+              const unitPrice = Number(line?.unit_price)
+              const quantity = Number(line?.quantity)
+              return Number.isFinite(unitPrice) && Number.isFinite(quantity)
+                ? sum + unitPrice * quantity
+                : sum
+            }, 0)
           : 0
 
     const catalogUnitUsdByVariant = new Map<string, number>()
@@ -218,7 +226,7 @@ export async function POST(req: Request) {
       }
     }
 
-    const subtotalUsd = medusaSubtotalCents / 100
+    const subtotalUsd = medusaItemTotalCents / 100
     const shippingUsd = resolveShippingUsd(subtotalUsd)
     const totalUsd = subtotalUsd + shippingUsd
 

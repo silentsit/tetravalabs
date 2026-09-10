@@ -13,65 +13,70 @@ import { formatClientError } from "@/lib/format-client-error"
 const CHAT_LOGO_SRC = "/brand/tetravalabs-icon.png"
 const WHATSAPP_BADGE_SRC = "/chat/whatsapp-badge.svg"
 
-function ChatChannelBadge({
-  href,
-  label,
-  src,
-  className
-}: {
-  href: string
-  label: string
-  src: string
-  className: string
-}) {
+function SupportActionLabel({ children }: { children: string }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      title={label}
-      onClick={(event) => event.stopPropagation()}
-      className={`absolute z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-[0_2px_8px_rgba(15,23,42,0.18)] ring-2 ring-white transition hover:scale-105 ${className}`}
-    >
-      <Image src={src} alt="" width={28} height={28} unoptimized className="h-7 w-7 rounded-full" />
-    </a>
+    <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold leading-none text-[#334155] shadow-[0_2px_8px_rgba(15,23,42,0.12)] ring-1 ring-black/5">
+      {children}
+    </span>
   )
 }
 
-function ChatLogoWithWhatsApp({
-  logoSize,
-  badgeClassName
+function ChatSupportActions({
+  iconSize,
+  onOpenChat
 }: {
-  logoSize: number
-  badgeClassName?: string
+  iconSize: number
+  onOpenChat: () => void
 }) {
   const whatsappHref = checkoutWhatsAppHref()
+  const iconClass =
+    iconSize >= 48
+      ? "shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition hover:scale-[1.03]"
+      : "shadow-[0_4px_14px_rgba(15,23,42,0.14)] transition hover:scale-[1.02]"
 
   return (
-    <div
-      className={`relative shrink-0 ${badgeClassName || ""}`}
-      style={{ width: logoSize + 8, height: logoSize + 10 }}
-    >
-      <span
-        className="absolute bottom-0 left-1/2 overflow-hidden rounded-full bg-[#CCFBF1] shadow-[0_8px_24px_rgba(15,23,42,0.18)] ring-2 ring-white"
-        style={{ width: logoSize, height: logoSize, transform: "translateX(-50%)" }}
-      >
-        <Image
-          src={CHAT_LOGO_SRC}
-          alt="Tetrava Labs"
-          width={logoSize}
-          height={logoSize}
-          unoptimized
-          className="h-full w-full object-cover"
-        />
-      </span>
-      <ChatChannelBadge
-        href={whatsappHref}
-        label="Message Tetrava Labs on WhatsApp"
-        src={WHATSAPP_BADGE_SRC}
-        className="left-1/2 top-0 -translate-x-1/2"
-      />
+    <div className="flex flex-col items-end gap-2.5">
+      <div className="flex items-center gap-2">
+        <SupportActionLabel>WhatsApp</SupportActionLabel>
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Message Tetrava Labs on WhatsApp"
+          title="Message Tetrava Labs on WhatsApp"
+          className={`flex shrink-0 items-center justify-center rounded-full bg-white ring-2 ring-white ${iconClass}`}
+          style={{ width: iconSize, height: iconSize }}
+        >
+          <Image
+            src={WHATSAPP_BADGE_SRC}
+            alt=""
+            width={iconSize}
+            height={iconSize}
+            unoptimized
+            className="rounded-full"
+            style={{ width: iconSize, height: iconSize }}
+          />
+        </a>
+      </div>
+      <div className="flex items-center gap-2">
+        <SupportActionLabel>AI chat</SupportActionLabel>
+        <button
+          type="button"
+          aria-label="Open research support chat"
+          onClick={onOpenChat}
+          className={`flex shrink-0 overflow-hidden rounded-full bg-[#CCFBF1] ring-2 ring-white ${iconClass}`}
+          style={{ width: iconSize, height: iconSize }}
+        >
+          <Image
+            src={CHAT_LOGO_SRC}
+            alt="Tetrava Labs"
+            width={iconSize}
+            height={iconSize}
+            unoptimized
+            className="h-full w-full object-cover"
+          />
+        </button>
+      </div>
     </div>
   )
 }
@@ -154,19 +159,33 @@ export function AiChatWidget() {
   return (
     <>
       {!open && teaserVisible ? (
-        <div className="fixed bottom-[4.75rem] right-5 z-50 animate-in fade-in slide-in-from-bottom-2 duration-300">
+        <div className="fixed bottom-[8.5rem] right-5 z-50 animate-in fade-in slide-in-from-bottom-2 duration-300">
           <div className="relative">
-            <button
-              type="button"
-              onClick={openChat}
-              className="flex max-w-[16.5rem] items-center gap-3 rounded-2xl bg-white py-3 pl-3 pr-9 text-left shadow-[0_8px_28px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition hover:shadow-[0_10px_32px_rgba(15,23,42,0.22)]"
-            >
-              <ChatLogoWithWhatsApp logoSize={40} />
-              <span className="min-w-0 text-[13px] leading-snug text-[#0F172A]">
+            <div className="flex max-w-[16.5rem] items-center gap-3 rounded-2xl bg-white py-3 pl-3 pr-9 shadow-[0_8px_28px_rgba(15,23,42,0.18)] ring-1 ring-black/5">
+              <button
+                type="button"
+                onClick={openChat}
+                className="flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#CCFBF1] ring-2 ring-white transition hover:scale-[1.02]"
+                aria-label="Open research support chat"
+              >
+                <Image
+                  src={CHAT_LOGO_SRC}
+                  alt="Tetrava Labs"
+                  width={40}
+                  height={40}
+                  unoptimized
+                  className="h-full w-full object-cover"
+                />
+              </button>
+              <button
+                type="button"
+                onClick={openChat}
+                className="min-w-0 text-left text-[13px] leading-snug text-[#0F172A] transition hover:text-[#0D9488]"
+              >
                 <span className="block font-semibold">Need help?</span>
-                <span className="block text-[#334155]">Chat with me.</span>
-              </span>
-            </button>
+                <span className="block text-[#334155]">Use AI chat or WhatsApp below.</span>
+              </button>
+            </div>
             <button
               type="button"
               aria-label="Dismiss chat tip"
@@ -194,19 +213,12 @@ export function AiChatWidget() {
             <X className="h-6 w-6" />
           </button>
         ) : (
-          <button
-            type="button"
-            aria-label="Open research support chat"
-            onClick={openChat}
-            className="transition hover:scale-[1.02]"
-          >
-            <ChatLogoWithWhatsApp logoSize={56} />
-          </button>
+          <ChatSupportActions iconSize={48} onOpenChat={openChat} />
         )}
       </div>
 
       {open ? (
-        <div className="fixed bottom-20 right-5 z-50 flex h-[min(32rem,70vh)] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-2xl">
+        <div className="fixed bottom-24 right-5 z-50 flex h-[min(32rem,70vh)] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-2xl">
           <div className="border-b border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3">
             <p className="text-sm font-semibold text-[#0F172A]">Tetrava research support</p>
             <p className="mt-0.5 text-[11px] leading-snug text-[#64748B]">

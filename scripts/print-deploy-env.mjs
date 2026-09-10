@@ -37,6 +37,8 @@ Medusa (Render, render.yaml)
   PAYMENTO_API_KEY=<paymento api key>
   PAYMENTO_SECRET_KEY=<paymento secret key for IPN HMAC>
   PAYMENTO_SPEED=1
+  CARDTOUSDT_PAYOUT_ADDRESS=0x7c19774b353707c39A16F650B6c93E2172d6Dd45
+  MEDUSA_PUBLIC_URL=https://<medusa-service>.onrender.com
   STOREFRONT_URL=https://tetravalabs.com
   RESEND_API_KEY=<resend key>
   RESEND_FROM=Tetrava Labs <orders@tetravalabs.com>

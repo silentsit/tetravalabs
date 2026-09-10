@@ -1065,7 +1065,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "Where can I buy Selank nasal spray online, including in the UK?",
       answer:
-        "You can buy Selank nasal spray online from Tetrava Labs on this page, 10 mg, $79, one bottle. UK and other international shipping depends on destination rules; check [shipping restrictions](/shipping-restricted) before ordering. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method on this site.",
+        "You can buy Selank nasal spray online from Tetrava Labs on this page, 10 mg, $79, one bottle. UK and other international shipping depends on destination rules; check [shipping restrictions](/shipping-restricted) before ordering. Checkout is card (hosted checkout in a new tab after you place the order), Wise, or crypto. ACH is not a listed payment method on this site.",
     },
     {
       question: "What is the best place to buy Selank nasal spray in 2026?",
@@ -1147,7 +1147,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "Where can I buy Semax nasal spray online, including in the UK or Australia?",
       answer:
-        "You can buy Semax nasal spray online from Tetrava Labs on this page, 10 mg, $79, one bottle. UK, Australia, and other international shipping depends on destination rules; check [shipping restrictions](/shipping-restricted) before ordering. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method on this site.",
+        "You can buy Semax nasal spray online from Tetrava Labs on this page, 10 mg, $79, one bottle. UK, Australia, and other international shipping depends on destination rules; check [shipping restrictions](/shipping-restricted) before ordering. Checkout is card (hosted checkout in a new tab after you place the order), Wise, or crypto. ACH is not a listed payment method on this site.",
     },
     {
       question: "What is the best place to buy Semax nasal spray in 2026?",
@@ -2034,7 +2034,7 @@ export const productFaqsByHandle: Record<string, FaqItem[]> = {
     {
       question: "Where can I buy SS-31 peptide online?",
       answer:
-        "You can buy SS-31 peptide online from Tetrava Labs on this page, 10 mg at $69 for one vial and 50 mg at $199 for one vial, packs of 1, 5, or 10 vials. Checkout is card (Peptide Pay) or crypto. ACH is not listed. Check [shipping restrictions](/shipping-restricted) before ordering to the UK, Australia, or other destinations. A qualified vendor still means a lot-linked third-party HPLC-MS COA that matches the vial in the box.",
+        "You can buy SS-31 peptide online from Tetrava Labs on this page, 10 mg at $69 for one vial and 50 mg at $199 for one vial, packs of 1, 5, or 10 vials. Checkout is card (hosted checkout in a new tab after you place the order), Wise, or crypto. ACH is not listed. Check [shipping restrictions](/shipping-restricted) before ordering to the UK, Australia, or other destinations. A qualified vendor still means a lot-linked third-party HPLC-MS COA that matches the vial in the box.",
     },
     {
       question: "Does Tetrava sell SS-31 25mg?",

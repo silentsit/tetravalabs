@@ -10,7 +10,7 @@ type OrderEmailInput = {
   total: number
   paymentUrl: string
   paymentPageUrl: string
-  paymentMethod?: "crypto" | "card" | "wise"
+  paymentMethod?: "crypto" | "card" | "cardtousdt" | "wise" | "manual_card_invoice"
   items?: OrderItem[]
 }
 
@@ -27,11 +27,17 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#39;")
 }
 
-function paymentCopy(paymentMethod: "crypto" | "card" | "wise") {
-  if (paymentMethod === "card") {
+function paymentCopy(paymentMethod: "crypto" | "card" | "cardtousdt" | "wise" | "manual_card_invoice") {
+  if (paymentMethod === "cardtousdt" || paymentMethod === "card") {
     return {
-      intro: "Use the secure link below to finish card payment and confirm your order.",
-      button: "Complete card payment"
+      intro: "Finish card payment in the checkout tab that opened after you placed the order. We do not collect card numbers on Tetrava Labs.",
+      button: "Open card checkout"
+    }
+  }
+  if (paymentMethod === "manual_card_invoice") {
+    return {
+      intro: "We will send a PayPal invoice to this email so you can pay by credit or debit card.",
+      button: "View order details"
     }
   }
   if (paymentMethod === "wise") {

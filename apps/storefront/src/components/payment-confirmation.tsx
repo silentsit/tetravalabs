@@ -1,21 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { Lock } from "lucide-react"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import { CheckoutHandoffShell } from "@/components/checkout-handoff-shell"
-import { SiteLogo } from "@/components/site-logo"
-import {
-  getPeptidepayOnramp,
-  isPeptidepayOnrampId,
-  type PeptidepayOnrampId,
-  type PeptidepayOnrampMethod,
-  type PeptidepayOnrampOption
-} from "@/lib/peptidepay-onramps"
-import { readCardHandoffContext, storeCardHandoffContext } from "@/lib/card-handoff-context"
-import { mintCardCheckoutSession } from "@/lib/mint-card-checkout"
 import { CheckoutWiseInfo } from "@/components/checkout-wise-info"
 import { checkoutWhatsAppHref, formatCheckoutUsd } from "@/lib/checkout-support"
 import {
@@ -25,8 +13,6 @@ import {
 } from "@/lib/checkout-payment-method"
 
 const payUrlKey = (orderId: string) => `tetrava_pay_${orderId}`
-const handoffKey = (orderId: string) => `tetrava_handoff_${orderId}`
-const onrampKey = (orderId: string) => `tetrava_onramp_${orderId}`
 const POLL_MS = 12_000
 
 type PaymentStatus = {
@@ -36,27 +22,8 @@ type PaymentStatus = {
   amount_usd?: number
 }
 
-const METHOD_MARKS: Record<
-  PeptidepayOnrampMethod,
-  { src: string; label: string; width: number; height: number }
-> = {
-  visa: { src: "/payments/visa.png", label: "Visa", width: 48, height: 30 },
-  mastercard: { src: "/payments/mastercard.svg", label: "Mastercard", width: 28, height: 18 },
-  applepay: { src: "/payments/apple-pay.png", label: "Apple Pay", width: 44, height: 18 }
-}
-
 function isPaidStatus(status?: string) {
   return status === "paid" || status === "settled" || status === "completed"
-}
-
-function readStoredHandoff(orderId: string) {
-  if (typeof window === "undefined" || !orderId) return false
-  return sessionStorage.getItem(handoffKey(orderId)) === "1"
-}
-
-function readStoredOnramp(orderId: string) {
-  if (typeof window === "undefined" || !orderId) return ""
-  return sessionStorage.getItem(onrampKey(orderId)) || ""
 }
 
 function readStoredPayUrl(orderId: string) {
@@ -64,110 +31,44 @@ function readStoredPayUrl(orderId: string) {
   return sessionStorage.getItem(payUrlKey(orderId)) || ""
 }
 
-function resolveOnrampId(orderId: string, onrampFromUrl: string) {
-  if (onrampFromUrl && isPeptidepayOnrampId(onrampFromUrl)) return onrampFromUrl
-  const handoffContext = readCardHandoffContext(orderId)
-  if (handoffContext?.provider) return handoffContext.provider
-  const stored = readStoredOnramp(orderId)
-  if (stored && isPeptidepayOnrampId(stored)) return stored
-  return ""
-}
-
-function resolveRequestedProvider(orderId: string, onrampId: string): PeptidepayOnrampId | "" {
-  const handoffContext = readCardHandoffContext(orderId)
-  if (handoffContext?.provider) return handoffContext.provider
-  if (isPeptidepayOnrampId(onrampId)) return onrampId
-  return ""
-}
-
 export type PaymentConfirmationProps = {
   orderId?: string
   displayId?: string
   total?: string
-  onrampFromUrl?: string
   methodFromUrl?: string
-  emailFromUrl?: string
-  countryFromUrl?: string
 }
 
 function resolvePaymentMethod(orderId: string, methodFromUrl: string): CheckoutPaymentMethod | "" {
+  if (
+    methodFromUrl === "card" ||
+    methodFromUrl === "cardtousdt" ||
+    methodFromUrl === "cheque" ||
+    methodFromUrl === "manual_card_invoice"
+  ) {
+    return "card"
+  }
   if (isCheckoutPaymentMethod(methodFromUrl)) return methodFromUrl
   return readCheckoutPaymentMethod(orderId)
-}
-
-function ProcessorMarks({ methods }: { methods: PeptidepayOnrampMethod[] }) {
-  if (!methods.length) return null
-  return (
-    <ul className="flex flex-wrap items-center gap-2" aria-label="Accepted cards">
-      {methods.map((method) => {
-        const mark = METHOD_MARKS[method]
-        return (
-          <li key={method} className="flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={mark.src}
-              alt={mark.label}
-              width={mark.width}
-              height={mark.height}
-              className="block shrink-0 object-contain"
-              style={{ width: mark.width, height: mark.height }}
-            />
-          </li>
-        )
-      })}
-    </ul>
-  )
 }
 
 export function PaymentConfirmation({
   orderId = "",
   displayId = "",
   total = "",
-  onrampFromUrl = "",
-  methodFromUrl = "",
-  emailFromUrl = "",
-  countryFromUrl = ""
+  methodFromUrl = ""
 }: PaymentConfirmationProps) {
   const router = useRouter()
   const [payUrl, setPayUrl] = useState(() => readStoredPayUrl(orderId))
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus | null>(null)
   const [polling, setPolling] = useState(false)
-  const [onrampId, setOnrampId] = useState(() => resolveOnrampId(orderId, onrampFromUrl))
-  const [opening, setOpening] = useState(true)
-  const handoffStarted = useRef(false)
-  const handoffInFlight = useRef(false)
-  const handoffAttempts = useRef(0)
 
   useEffect(() => {
-    const resolved = resolveOnrampId(orderId, onrampFromUrl)
-    if (resolved) {
-      setOnrampId(resolved)
-      if (orderId) sessionStorage.setItem(onrampKey(orderId), resolved)
-    }
     const storedPayUrl = readStoredPayUrl(orderId)
     if (storedPayUrl) setPayUrl(storedPayUrl)
-
-    const existingContext = readCardHandoffContext(orderId)
-    const email = emailFromUrl.trim() || existingContext?.email || ""
-    const country = countryFromUrl.trim().toUpperCase() || existingContext?.country || ""
-    const provider = resolveRequestedProvider(orderId, resolved)
-    const amountFromTotal = total && !Number.isNaN(Number(total)) ? Number(total) : 0
-    const amountUsd = existingContext?.amountUsd || amountFromTotal
-    if (orderId && email && provider && amountUsd > 0) {
-      storeCardHandoffContext(orderId, {
-        email,
-        country: country || "US",
-        amountUsd,
-        provider,
-        fallbackUrl: existingContext?.fallbackUrl
-      })
-    }
-  }, [orderId, onrampFromUrl, emailFromUrl, countryFromUrl, total])
+  }, [orderId])
 
   useEffect(() => {
-    if (!orderId) {
-      return
-    }
+    if (!orderId) return
 
     let active = true
     const storedPayUrl = readStoredPayUrl(orderId)
@@ -188,7 +89,7 @@ export function PaymentConfirmation({
 
         if (active) {
           setPaymentStatus(nextStatus)
-          if (data.provider_url && !storedPayUrl && readStoredHandoff(orderId)) {
+          if (data.provider_url && !storedPayUrl) {
             setPayUrl(data.provider_url)
             sessionStorage.setItem(payUrlKey(orderId), data.provider_url)
           }
@@ -232,86 +133,26 @@ export function PaymentConfirmation({
   const isPaid = isPaidStatus(paymentStatus?.status)
   const isProcessing = paymentStatus?.status === "processing"
   const provider = paymentStatus?.provider || ""
-  const onramp = getPeptidepayOnramp(onrampId)
   const checkoutMethod = resolvePaymentMethod(orderId, methodFromUrl)
   const isWise = checkoutMethod === "wise" || provider === "wise"
-  const isCard =
-    checkoutMethod === "card" ||
-    isPeptidepayOnrampId(onrampId) ||
-    provider === "peptidepay" ||
-    Boolean(onramp)
+  const isCard = checkoutMethod === "card" || provider === "cardtousdt"
+  const isInvoiceFallback = isCard && provider === "manual_card_invoice"
   const canOpenPayUrl = Boolean(resolvedUrl && !resolvedUrl.includes("example.com"))
-  const processorName = onramp?.label || "your card processor"
-  const amountUsd = amount && !Number.isNaN(Number(amount)) ? Number(amount) : 0
-  const canStartHandoff = Boolean(orderId && amountUsd > 0)
-
-  const openPaymentUrl = useCallback(
-    (url: string, providerId?: string) => {
-      if (!url || url.includes("example.com") || handoffStarted.current) return
-      handoffStarted.current = true
-      if (orderId) {
-        sessionStorage.setItem(handoffKey(orderId), "1")
-        sessionStorage.setItem(payUrlKey(orderId), url)
-        if (providerId && isPeptidepayOnrampId(providerId)) {
-          sessionStorage.setItem(onrampKey(orderId), providerId)
-          setOnrampId(providerId)
-        }
-      }
-      setPayUrl(url)
-      window.location.assign(url)
-    },
-    [orderId]
-  )
-
-  const beginHandoff = useCallback(async () => {
-    if (!canStartHandoff || handoffStarted.current || handoffInFlight.current) return
-    const existing = readStoredPayUrl(orderId)
-    if (existing && !existing.includes("example.com")) {
-      openPaymentUrl(existing, onrampId)
-      return
-    }
-
-    handoffInFlight.current = true
-    setOpening(true)
-    const handoffContext = readCardHandoffContext(orderId)
-    const requestedProvider = resolveRequestedProvider(orderId, onrampId)
-    try {
-      const url = await mintCardCheckoutSession({
-        orderId,
-        provider: requestedProvider || undefined,
-        email: handoffContext?.email || emailFromUrl || undefined,
-        amountUsd: handoffContext?.amountUsd ?? amountUsd,
-        country: handoffContext?.country || countryFromUrl || undefined
-      })
-      if (url) {
-        openPaymentUrl(url, requestedProvider || undefined)
-        return
-      }
-    } finally {
-      handoffInFlight.current = false
-      if (!handoffStarted.current) setOpening(true)
-    }
-  }, [amountUsd, canStartHandoff, countryFromUrl, emailFromUrl, onrampId, openPaymentUrl, orderId])
 
   useEffect(() => {
-    if (!canStartHandoff || isWise || isPaid || !isCard) return
-    let cancelled = false
-    let delay = 400
-    const tick = async () => {
-      if (cancelled || handoffStarted.current || handoffAttempts.current >= 8) return
-      handoffAttempts.current += 1
-      await beginHandoff()
-      if (cancelled || handoffStarted.current || handoffAttempts.current >= 8) return
-      window.setTimeout(() => {
-        void tick()
-      }, delay)
-      delay = Math.min(delay + 1400, 5000)
-    }
-    void tick()
-    return () => {
-      cancelled = true
-    }
-  }, [beginHandoff, canStartHandoff, isCard, isPaid, isWise])
+    if (!isInvoiceFallback) return
+    const params = new URLSearchParams()
+    if (orderId) params.set("order_id", orderId)
+    if (displayId) params.set("display_id", displayId)
+    if (total) params.set("total", total)
+    router.replace(`/checkout/thank-you?${params.toString()}`)
+  }, [displayId, isInvoiceFallback, orderId, router, total])
+
+  if (isInvoiceFallback) {
+    return (
+      <p className="page-container py-12 text-center text-sm text-[#475569]">Opening order receipt…</p>
+    )
+  }
 
   if (isWise && !isPaid) {
     return (
@@ -325,30 +166,14 @@ export function PaymentConfirmation({
     )
   }
 
-  if (isCard && !isPaid) {
-    return (
-      <CheckoutHandoffShell>
-        <CardHandoff
-          amount={amount}
-          beginHandoff={beginHandoff}
-          canOpenPayUrl={canOpenPayUrl}
-          onramp={onramp}
-          opening={opening}
-          processorName={processorName}
-          resolvedUrl={resolvedUrl}
-        />
-      </CheckoutHandoffShell>
-    )
-  }
-
-  const payButtonLabel =
-    provider === "peptidepay"
-      ? "Complete card payment"
-      : provider === "paymento"
-        ? "Open Paymento checkout"
-        : provider === "btcpay"
-          ? "Pay with Bitcoin (BTCPay)"
-          : "Pay with Crypto"
+  const isHeld = paymentStatus?.status === "held"
+  const payButtonLabel = isCard
+    ? "Open card checkout"
+    : provider === "paymento"
+      ? "Open Paymento checkout"
+      : provider === "btcpay"
+        ? "Pay with Bitcoin (BTCPay)"
+        : "Pay with Crypto"
 
   return (
     <section className="page-container mx-auto max-w-xl space-y-6 py-8">
@@ -363,13 +188,19 @@ export function PaymentConfirmation({
       <div>
         <span className="section-label">Payment</span>
         <h1 className="mt-4 font-serif text-3xl text-[#0F172A]">
-          {isPaid ? "Payment received" : "Complete crypto payment"}
+          {isPaid
+            ? "Payment received"
+            : isCard
+              ? "Complete card payment"
+              : "Complete crypto payment"}
         </h1>
         <p className="mt-3 text-sm text-[#475569]">
           {label ? `${label} was created.` : "Your order was created."}{" "}
           {isPaid
             ? "Your payment is confirmed. Fulfillment will begin shortly."
-            : "Pay with crypto to confirm fulfillment."}
+            : isCard
+              ? "Pay in the card checkout tab. If a popup was blocked, use the button below."
+              : "Pay with crypto to confirm fulfillment."}
         </p>
       </div>
       <div className="card space-y-4 p-6">
@@ -377,6 +208,12 @@ export function PaymentConfirmation({
         {paymentStatus?.status ? (
           <p className="text-sm text-[#475569]">
             Payment status: <span className="font-medium text-[#0F172A]">{paymentStatus.status}</span>
+          </p>
+        ) : null}
+        {isHeld ? (
+          <p className="text-sm text-amber-600">
+            Settlement arrived below the accepted amount or could not be priced. We will review before
+            fulfillment.
           </p>
         ) : null}
         {isProcessing ? (
@@ -388,13 +225,19 @@ export function PaymentConfirmation({
           <p className="text-xs text-[#94A3B8]">Checking payment status every few seconds…</p>
         ) : null}
         {!isPaid && canOpenPayUrl ? (
-          <a href={resolvedUrl} className="btn-primary block w-full py-3 text-center">
+          <a
+            href={resolvedUrl}
+            target={isCard ? "_blank" : undefined}
+            rel={isCard ? "noopener noreferrer" : undefined}
+            className="btn-primary block w-full py-3 text-center"
+          >
             {payButtonLabel}
           </a>
         ) : !isPaid ? (
           <p className="text-sm text-amber-600">
-            Crypto checkout is not fully configured yet. Your order is recorded; payment instructions will
-            follow by email.
+            {isCard
+              ? "Card checkout is not ready. Your order is recorded; payment instructions will follow by email."
+              : "Crypto checkout is not fully configured yet. Your order is recorded; payment instructions will follow by email."}
           </p>
         ) : null}
         <Link href="/orders" className="block text-center text-sm text-[#0D9488] hover:underline">
@@ -405,98 +248,11 @@ export function PaymentConfirmation({
         </Link>
       </div>
       <p className="text-xs text-[#94A3B8]">
-        After payment confirms on-chain, fulfillment begins. Research Use Only — not for human consumption.
+        {isCard
+          ? "After the card checkout settles, fulfillment begins. Research Use Only — not for human consumption."
+          : "After payment confirms on-chain, fulfillment begins. Research Use Only — not for human consumption."}
       </p>
     </section>
-  )
-}
-
-function HandoffProcessorSummary({
-  onramp,
-  processorName
-}: {
-  onramp?: PeptidepayOnrampOption
-  processorName: string
-}) {
-  return (
-    <div className="handoff-provider-tile" aria-label={`Payment via ${processorName}`}>
-      <p className="handoff-provider-tile__name">{processorName}</p>
-      {onramp?.eta ? <p className="handoff-provider-tile__eta">{onramp.eta}</p> : null}
-      <div className="handoff-provider-tile__marks">
-        {onramp?.id === "paypal" ? (
-          <span className="handoff-provider-tile__paypal">PayPal</span>
-        ) : (
-          <ProcessorMarks methods={onramp?.methods || []} />
-        )}
-      </div>
-    </div>
-  )
-}
-
-function CardHandoff({
-  amount,
-  beginHandoff,
-  canOpenPayUrl,
-  onramp,
-  opening,
-  processorName,
-  resolvedUrl
-}: {
-  amount: string
-  beginHandoff: () => void | Promise<void>
-  canOpenPayUrl: boolean
-  onramp?: PeptidepayOnrampOption
-  opening: boolean
-  processorName: string
-  resolvedUrl: string
-}) {
-  const formattedAmount =
-    amount && !Number.isNaN(Number(amount)) ? Number(amount).toFixed(2) : ""
-
-  return (
-    <div className="handoff-page">
-      <div className="handoff-card">
-        <div className="handoff-card__header">
-          <SiteLogo className="mx-auto h-10 sm:h-11" />
-          <h1 className="handoff-card__title">Opening secure payment</h1>
-          <p className="handoff-card__secure">
-            <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden />
-            Encrypted card checkout
-          </p>
-        </div>
-
-        <p className="handoff-card__notice">
-          Stay on this page. We are taking you to {processorName} to finish the {formattedAmount || ""} USD
-          payment.
-        </p>
-
-        <HandoffProcessorSummary onramp={onramp} processorName={processorName} />
-
-        {formattedAmount ? (
-          <div className="handoff-total-bar">
-            <p className="handoff-total-bar__label">Total amount</p>
-            <p className="handoff-total-bar__amount">{formattedAmount} USD</p>
-          </div>
-        ) : null}
-
-        {canOpenPayUrl ? (
-          <a href={resolvedUrl} className="handoff-btn handoff-btn--primary">
-            Continue to payment
-          </a>
-        ) : (
-          <button
-            type="button"
-            className="handoff-btn handoff-btn--primary"
-            onClick={() => void beginHandoff()}
-            disabled={opening}
-          >
-            Continue to payment
-          </button>
-        )}
-      </div>
-
-      <p className="handoff-ruo">Research Use Only. Not for human consumption.</p>
-    </div>
   )
 }
 
@@ -566,9 +322,4 @@ function WisePayment({
 export function storePaymentUrl(orderId: string, url: string) {
   if (typeof window === "undefined") return
   sessionStorage.setItem(payUrlKey(orderId), url)
-}
-
-export function storeCardOnramp(orderId: string, onramp: string) {
-  if (typeof window === "undefined" || !onramp) return
-  sessionStorage.setItem(onrampKey(orderId), onramp)
 }

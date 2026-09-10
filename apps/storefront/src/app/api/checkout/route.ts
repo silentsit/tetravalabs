@@ -3,19 +3,8 @@ import Medusa from "@medusajs/js-sdk"
 import { isCheckoutCountry } from "@/lib/checkout-countries"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import { createCryptoPaymentIntent } from "@/lib/medusa-crypto-checkout"
-import {
-  loadPeptidepayLiveOnrampStatuses,
-  peptidepayLiveIdSet
-} from "@/lib/peptidepay-live-providers"
-import {
-  isPeptidepayOnrampId,
-  peptidepayBuyerIpCountry,
-  PEPTIDEPAY_ONRAMPS,
-  peptidepayOnrampAvailableForIp,
-  peptidepayOnrampLocationError,
-  peptidepayOnrampOfflineError,
-  resolvePeptidepayOnramp
-} from "@/lib/peptidepay-onramps"
+import { createCardToUsdtPaymentIntent } from "@/lib/medusa-cardtousdt-checkout"
+import { recordManualCardInvoice } from "@/lib/record-manual-card-invoice"
 import { scheduleOrderEmails } from "@/lib/schedule-order-emails"
 import {
   bindCheckoutCustomerOnMedusa,
@@ -48,9 +37,8 @@ type CheckoutBody = {
   phone?: string
   country?: string
   orderNotes?: string
-  payment_method?: "card" | "crypto" | "wise"
+  payment_method?: string
   crypto_asset?: string
-  peptidepay_provider?: string
   customer_id?: string
   items?: CheckoutItem[]
 }
@@ -96,35 +84,7 @@ export async function POST(req: Request) {
     )
   }
 
-  const ipCountry = peptidepayBuyerIpCountry(
-    req.headers.get("cf-ipcountry") ||
-      req.headers.get("x-vercel-ip-country") ||
-      req.headers.get("x-country-code")
-  )
   const intendedPaymentMethod = resolveCheckoutPaymentMethod(body.payment_method)
-  const cardLiveIds =
-    intendedPaymentMethod === "card"
-      ? peptidepayLiveIdSet(await loadPeptidepayLiveOnrampStatuses())
-      : null
-  if (intendedPaymentMethod === "card") {
-    const requestedOnramp = body.peptidepay_provider?.trim().toLowerCase()
-    if (requestedOnramp && !isPeptidepayOnrampId(requestedOnramp)) {
-      return NextResponse.json({ ok: false, message: "Choose a supported card processor." }, { status: 400 })
-    }
-    const requestedOption = PEPTIDEPAY_ONRAMPS.find((option) => option.id === requestedOnramp)
-    if (requestedOption && !peptidepayOnrampAvailableForIp(requestedOption, ipCountry)) {
-      return NextResponse.json(
-        { ok: false, message: peptidepayOnrampLocationError(requestedOption) },
-        { status: 400 }
-      )
-    }
-    if (requestedOption && cardLiveIds && !cardLiveIds.has(requestedOption.id)) {
-      return NextResponse.json(
-        { ok: false, message: peptidepayOnrampOfflineError(requestedOption) },
-        { status: 400 }
-      )
-    }
-  }
 
   try {
     const sdk = createSdk(authToken)
@@ -238,7 +198,6 @@ export async function POST(req: Request) {
           ? order.item_total
           : 0
 
-    // Prefer Medusa catalog unit prices (cents → USD) over client-supplied cart prices.
     const catalogUnitUsdByVariant = new Map<string, number>()
     const orderItems = Array.isArray(order.items) ? order.items : []
     for (const line of orderItems) {
@@ -278,36 +237,74 @@ export async function POST(req: Request) {
         }
       })
 
-    const paymentMethod = resolveCheckoutPaymentMethod(body.payment_method)
+    const paymentMethod = intendedPaymentMethod
     const cryptoAsset = body.crypto_asset?.trim().toUpperCase() || "USDT"
-    const cardOnramp =
-      paymentMethod === "card"
-        ? resolvePeptidepayOnramp({
-            requested: body.peptidepay_provider,
-            country,
-            amountUsd: totalUsd,
-            ipCountry,
-            liveIds: cardLiveIds
-          })
-        : null
-
-    const peptidepayProvider = cardOnramp?.ok ? cardOnramp.provider : null
 
     let paymentUrl: string | null = null
     let paymentProvider: string | null = null
     let paymentError: string | null = null
 
     if (paymentMethod === "card") {
-      if (!peptidepayProvider) {
-        paymentError =
-          cardOnramp && !cardOnramp.ok ? cardOnramp.error : "Choose a card processor."
+      const cardIntent = await createCardToUsdtPaymentIntent({
+        orderId: order.id,
+        email,
+        amountUsd: totalUsd
+      })
+
+      if (cardIntent?.ok && cardIntent.provider_url) {
+        paymentUrl = cardIntent.provider_url
+        paymentProvider = "cardtousdt"
+        void scheduleOrderEmails({
+          orderId: order.id,
+          email,
+          displayId: order.display_id,
+          totalUsd,
+          paymentMethod: "cardtousdt",
+          items: emailItems
+        }).catch(() => {
+          // Email scheduling failure must not block checkout.
+        })
       } else {
-        // Peptide Pay session is minted on the handoff page (Pay Now), not here.
-        // Avoids blocking checkout on an external API round-trip (often 3–15s+).
-        paymentProvider = "peptidepay"
+        paymentProvider = "manual_card_invoice"
+        const createMessage = cardIntent?.message || ""
+        const createFailed = Boolean(createMessage) && !/not configured/i.test(createMessage)
+        paymentError = createFailed ? createMessage : null
+        void recordManualCardInvoice({
+          orderId: order.id,
+          email,
+          displayId: order.display_id,
+          firstName,
+          lastName,
+          totalUsd,
+          items: emailItems,
+          shipping: {
+            firstName,
+            lastName,
+            company,
+            address1,
+            address2,
+            city,
+            province,
+            postalCode,
+            phone,
+            country
+          }
+        }).catch(() => {
+          // Receipt / ops email failure must not block checkout.
+        })
       }
     } else if (paymentMethod === "wise") {
       paymentProvider = "wise"
+      void scheduleOrderEmails({
+        orderId: order.id,
+        email,
+        displayId: order.display_id,
+        totalUsd,
+        paymentMethod,
+        items: emailItems
+      }).catch(() => {
+        // Email scheduling failure must not block checkout.
+      })
     } else {
       const intent = await createCryptoPaymentIntent({
         orderId: order.id,
@@ -318,18 +315,17 @@ export async function POST(req: Request) {
       paymentUrl = intent?.ok === false ? null : intent?.provider_url || null
       paymentProvider = intent?.ok === false ? null : intent?.provider || null
       paymentError = intent?.ok === false ? intent.message || "Crypto payment setup failed" : null
+      void scheduleOrderEmails({
+        orderId: order.id,
+        email,
+        displayId: order.display_id,
+        totalUsd,
+        paymentMethod,
+        items: emailItems
+      }).catch(() => {
+        // Email scheduling failure must not block checkout.
+      })
     }
-
-    void scheduleOrderEmails({
-      orderId: order.id,
-      email,
-      displayId: order.display_id,
-      totalUsd,
-      paymentMethod,
-      items: emailItems
-    }).catch(() => {
-      // Email scheduling failure must not block checkout.
-    })
 
     return NextResponse.json({
       ok: true,
@@ -343,7 +339,6 @@ export async function POST(req: Request) {
       payment_provider: paymentProvider,
       payment_method: paymentMethod,
       payment_error: paymentError,
-      card_onramp: paymentMethod === "card" ? peptidepayProvider : null,
       crypto_asset: paymentMethod === "crypto" ? cryptoAsset : null
     })
   } catch (error) {

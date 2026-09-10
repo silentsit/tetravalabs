@@ -231,6 +231,7 @@ async function listDueSchedules(limit = 50) {
         FROM order_email_schedules s
         LEFT JOIN crypto_payment_intents p ON p.order_id = s.order_id
         WHERE s.cancelled_at IS NULL
+          AND s.payment_method NOT IN ('manual_card_invoice')
           AND COALESCE(p.status, 'pending') <> 'completed'
           AND (
             (s.confirmation_sent_at IS NULL AND s.confirmation_due_at <= NOW())

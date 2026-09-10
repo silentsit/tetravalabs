@@ -14,7 +14,7 @@ Product help:
 - addToCart only proposes one-time cart lines.
 
 Payments:
-- Card via Peptide Pay hosted checkout; cryptocurrency available for one-time carts.
+- Card: place the order first, then pay in the card checkout tab that opens (Visa, Mastercard, Amex, Discover). Crypto and Wise charge immediately on their own pages.
 - Guests can look up orders with email + order number.
 
 When unsure, say so and point to /faq, /shipping, /coa-library, /account, or /contact.

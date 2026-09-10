@@ -26,17 +26,16 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { ShippingCharge } from "@/components/shipping-charge"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
-  defaultPeptidepayOnramp,
-  isPeptidepayOnrampId,
-  peptidepayOnrampAvailableForIp,
-  peptidepayOnrampEligible,
-  peptidepayOnrampPickerFacts,
-  resolvePeptidepayOnramp,
-  visiblePeptidepayOnramps,
-  type PeptidepayOnrampId
-} from "@/lib/peptidepay-onramps"
-import type { PeptidepayLiveOnrampStatus } from "@/lib/peptidepay-live-providers"
-import { peptidepayLiveIdSet } from "@/lib/peptidepay-live-providers"
+  CARD_CHECKOUT_DESCRIPTION_LINES,
+  CARD_CHECKOUT_TITLE,
+  assignCardCheckoutTab,
+  closeCardCheckoutTab,
+  openCardCheckoutPlaceholder
+} from "@/lib/cardtousdt"
+import {
+  MANUAL_CARD_INVOICE_DESCRIPTION_LINES,
+  MANUAL_CARD_INVOICE_TITLE
+} from "@/lib/manual-card-invoice"
 import {
   getCheckoutSubdivisions,
   getPostalLabel,
@@ -48,9 +47,12 @@ import {
 } from "@/lib/checkout-subdivisions"
 import { getProductImage } from "@/lib/product-image-map"
 import { localImageProps } from "@/lib/local-image"
-import { storeCardOnramp, storePaymentUrl } from "@/components/payment-confirmation"
-import { storeCardHandoffContext } from "@/lib/card-handoff-context"
-import { mintCardCheckoutSession } from "@/lib/mint-card-checkout"
+import { storePaymentUrl } from "@/components/payment-confirmation"
+import {
+  resolveCheckoutPaymentMethod,
+  storeCheckoutPaymentMethod,
+  type CheckoutPaymentMethod
+} from "@/lib/checkout-payment-method"
 import { AddressAutocompleteInput } from "@/components/address-autocomplete-input"
 import type { ParsedAddress } from "@/lib/google-places"
 import {
@@ -60,7 +62,6 @@ import {
 import { CheckoutPaymentHelp } from "@/components/checkout-payment-help"
 import { CheckoutWiseInfo } from "@/components/checkout-wise-info"
 import { WiseMark } from "@/components/wise-mark"
-import { storeCheckoutPaymentMethod } from "@/lib/checkout-payment-method"
 
 type CheckoutOrder = {
   id: string
@@ -77,7 +78,7 @@ type CheckoutOrder = {
   }>
 }
 
-type PaymentMethod = "card" | "crypto" | "wise"
+type PaymentMethod = CheckoutPaymentMethod
 
 const ORDERS_KEY = "tetrava_orders_v1"
 const CHECKOUT_RETURN_PATH = "/checkout"
@@ -226,15 +227,21 @@ function methodCardClass(selected: boolean) {
   ].join(" ")
 }
 
-function onrampCardClass(selected: boolean, disabled: boolean) {
-  return [
-    "relative flex w-full items-start gap-3 rounded-lg border p-2.5 text-left transition-all",
-    disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer",
-    selected && !disabled
-      ? "border-[#0D9488] bg-white shadow-[0_0_0_1px_#0D9488]"
-      : "border-[#E2E8F0] bg-white",
-    !disabled && !selected ? "hover:border-[#CBD5E1]" : ""
-  ].join(" ")
+function CardBrandMarks() {
+  return (
+    <span className="flex items-center gap-1.5" aria-label="Visa, Mastercard, Amex, Discover">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/payments/visa.png" alt="" width={36} height={22} className="h-[14px] w-auto object-contain" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/payments/mastercard.svg"
+        alt=""
+        width={22}
+        height={14}
+        className="h-[14px] w-auto object-contain"
+      />
+    </span>
+  )
 }
 
 function FieldLabel({
@@ -855,7 +862,7 @@ function AddressFields({
   )
 }
 
-export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string }) {
+export function CheckoutForm() {
   const router = useRouter()
   const { items, subtotal, clear, updateQty } = useCart()
   const [email, setEmail] = useState("")
@@ -890,14 +897,10 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
   const [attemptedSubmit, setAttemptedSubmit] = useState(false)
   const [ruoError, setRuoError] = useState("")
   const [loading, setLoading] = useState(false)
-  const [cardAvailable, setCardAvailable] = useState(false)
-  const [paymentOptionsLoaded, setPaymentOptionsLoaded] = useState(false)
   const [cryptoLive, setCryptoLive] = useState(false)
   const [cryptoOptions, setCryptoOptions] = useState<CheckoutCryptoOption[]>(CHECKOUT_CRYPTO_CATALOG)
+  const [cardUsesInvoice, setCardUsesInvoice] = useState(true)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card")
-  const [cardOnramp, setCardOnramp] = useState<PeptidepayOnrampId>("stripe")
-  const [cardOnrampStatus, setCardOnrampStatus] = useState<PeptidepayLiveOnrampStatus[]>([])
-  const [buyerIpCountry, setBuyerIpCountry] = useState<string | null>(null)
   const [selectedAsset, setSelectedAsset] = useState("USDT")
   const [loggedIn, setLoggedIn] = useState(false)
   const [summaryOpen, setSummaryOpen] = useState(false)
@@ -1015,12 +1018,9 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
       .then((data) => {
         if (!data?.ok) return
 
-        setCardAvailable(Boolean(data.cardAvailable))
         setCryptoLive(Boolean(data.cryptoLive))
         setCryptoOptions(Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG)
-        if (Array.isArray(data.cardOnrampStatus)) {
-          setCardOnrampStatus(data.cardOnrampStatus)
-        }
+        setCardUsesInvoice(data.cardProvider !== "cardtousdt")
 
         const options = Array.isArray(data.cryptoOptions) ? data.cryptoOptions : CHECKOUT_CRYPTO_CATALOG
         const preferred =
@@ -1028,38 +1028,11 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
           options.find((item: CheckoutCryptoOption) => item.asset === "USDT_TRC20")
         if (preferred) setSelectedAsset(preferred.asset)
         else if (options[0]?.asset) setSelectedAsset(options[0].asset)
-
-        if (!data.cardAvailable && data.cryptoLive) {
-          setPaymentMethod("crypto")
-        }
       })
       .catch(() => {
-        // Keep card visible; submit handler still validates availability.
-      })
-      .finally(() => {
-        setPaymentOptionsLoaded(true)
+        setCardUsesInvoice(true)
       })
   }, [])
-
-  useEffect(() => {
-    void fetch("/api/geo", { cache: "no-store" })
-      .then((response) => (response.ok ? response.json() : null))
-      .then((data) => {
-        const code =
-          typeof data?.country === "string" && data.country.trim() ? data.country.trim().toUpperCase() : null
-        if (code && code !== "XX" && code !== "T1") setBuyerIpCountry(code)
-      })
-      .catch(() => undefined)
-  }, [])
-
-  useEffect(() => {
-    if (!initialCardOnramp || !isPeptidepayOnrampId(initialCardOnramp)) return
-    setCardOnramp(initialCardOnramp)
-    setPaymentMethod("card")
-    window.requestAnimationFrame(() => {
-      document.getElementById("checkout-card-onramp")?.scrollIntoView({ behavior: "smooth", block: "center" })
-    })
-  }, [initialCardOnramp])
 
   const loadCustomerSession = useCallback(async () => {
     try {
@@ -1122,12 +1095,9 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
 
   const submitLabel = useMemo(() => {
     if (loading) {
-      if (paymentMethod === "card") return "Opening secure payment…"
-      return paymentMethod === "crypto" ? "Processing…" : "Creating your order…"
+      return paymentMethod === "crypto" ? "Processing…" : "Placing your order…"
     }
-    if (paymentMethod === "card") return "Continue to card payment"
-    if (paymentMethod === "wise") return "Continue to Wise payment"
-    return "Continue to crypto payment"
+    return "Place order"
   }, [loading, paymentMethod])
 
   const shippingAddress = useMemo(() => {
@@ -1181,27 +1151,6 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
     shipCountry
   ])
 
-  const cardOnrampOptions = useMemo(() => visiblePeptidepayOnramps(), [])
-  const liveOnrampIds = useMemo(() => peptidepayLiveIdSet(cardOnrampStatus), [cardOnrampStatus])
-
-  const defaultCardOnramp = useMemo(
-    () => defaultPeptidepayOnramp(shippingAddress.country, estimatedTotal, buyerIpCountry, liveOnrampIds),
-    [buyerIpCountry, liveOnrampIds, shippingAddress.country, estimatedTotal]
-  )
-
-  useEffect(() => {
-    const selected = cardOnrampOptions.find((option) => option.id === cardOnramp)
-    const stillEligible = Boolean(
-      selected &&
-        peptidepayOnrampEligible(selected, estimatedTotal) &&
-        peptidepayOnrampAvailableForIp(selected, buyerIpCountry) &&
-        (!liveOnrampIds || liveOnrampIds.has(selected.id))
-    )
-    if (!stillEligible && defaultCardOnramp) {
-      setCardOnramp(defaultCardOnramp)
-    }
-  }, [buyerIpCountry, cardOnramp, cardOnrampOptions, defaultCardOnramp, estimatedTotal, liveOnrampIds])
-
   const persistLocalOrder = (order: CheckoutOrder) => {
     const raw = window.localStorage.getItem(ORDERS_KEY)
     let parsed: CheckoutOrder[] = []
@@ -1253,30 +1202,9 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
       setError("Cart is empty.")
       return
     }
-    if (paymentMethod === "card" && paymentOptionsLoaded && !cardAvailable) {
-      setError("Card checkout is temporarily unavailable. Please pay with cryptocurrency.")
-      return
-    }
-
-    if (paymentMethod === "card") {
-      const onramp = resolvePeptidepayOnramp({
-        requested: cardOnramp,
-        country: shippingAddress.country,
-        amountUsd: estimatedTotal,
-        ipCountry: buyerIpCountry,
-        liveIds: liveOnrampIds
-      })
-      if (!onramp.ok) {
-        setError(onramp.error)
-        window.requestAnimationFrame(() => {
-          document.getElementById("checkout-card-onramp")?.focus()
-        })
-        return
-      }
-    }
     if (paymentMethod === "crypto" && !cryptoLive) {
       setError(
-        "Cryptocurrency checkout is not available right now. Use card payment, or try again once Paymento is configured on the server."
+        "Cryptocurrency checkout is not available right now. Choose credit/debit cards or Wise, or try again once Paymento is configured on the server."
       )
       return
     }
@@ -1288,7 +1216,8 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
     let paymentUrl: string | null = null
     let paymentProvider: string | null = null
     let resolvedPaymentMethod: PaymentMethod = paymentMethod
-    let resolvedCardOnramp: string = cardOnramp
+    const cardTab =
+      paymentMethod === "card" && !cardUsesInvoice ? openCardCheckoutPlaceholder() : null
 
     try {
       const authToken = readAuthToken()
@@ -1311,7 +1240,6 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
           phone: shippingAddress.phone,
           country: shippingAddress.country,
           payment_method: paymentMethod,
-          peptidepay_provider: paymentMethod === "card" ? cardOnramp : undefined,
           crypto_asset: selectedAsset,
           items: items.map((item) => ({
             variantId: item.variantId,
@@ -1327,6 +1255,7 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
       })
       const checkoutJson = await checkoutResponse.json()
       if (!checkoutJson?.ok) {
+        closeCardCheckoutTab(cardTab)
         if (checkoutJson?.code === "shipping_restricted") {
           router.push("/shipping-restricted")
           setLoading(false)
@@ -1347,20 +1276,12 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
       if (checkoutJson.payment_provider) {
         paymentProvider = checkoutJson.payment_provider
       }
-      if (
-        checkoutJson.payment_method === "crypto" ||
-        checkoutJson.payment_method === "card" ||
-        checkoutJson.payment_method === "wise"
-      ) {
-        resolvedPaymentMethod = checkoutJson.payment_method
-      }
+      resolvedPaymentMethod = resolveCheckoutPaymentMethod(checkoutJson.payment_method)
       if (checkoutJson.payment_error && !checkoutJson.payment_url) {
         setStatus(checkoutJson.payment_error)
       }
-      if (typeof checkoutJson.card_onramp === "string" && checkoutJson.card_onramp) {
-        resolvedCardOnramp = checkoutJson.card_onramp
-      }
     } catch (error) {
+      closeCardCheckoutTab(cardTab)
       const timedOut =
         error instanceof DOMException
           ? error.name === "TimeoutError" || error.name === "AbortError"
@@ -1389,7 +1310,7 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
         signal: AbortSignal.timeout(4000)
       }
     ).catch(() => {
-      // Must not delay redirect to Peptide Pay.
+      // Must not delay redirect to thank-you / payment.
     })
 
     const order: CheckoutOrder = {
@@ -1414,9 +1335,39 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
     clear()
 
     if (paymentUrl && paymentProvider === "paymento") {
+      closeCardCheckoutTab(cardTab)
       storePaymentUrl(orderId, paymentUrl)
       setLoading(false)
       window.location.assign(paymentUrl)
+      return
+    }
+
+    if (resolvedPaymentMethod === "card" && paymentProvider === "cardtousdt" && paymentUrl) {
+      storeCheckoutPaymentMethod(orderId, "card")
+      storePaymentUrl(orderId, paymentUrl)
+      assignCardCheckoutTab(cardTab, paymentUrl)
+      const params = new URLSearchParams({
+        order_id: orderId,
+        total: orderTotal.toFixed(2),
+        method: "card"
+      })
+      if (displayId) params.set("display_id", String(displayId))
+      setLoading(false)
+      router.push(`/checkout/payment?${params.toString()}`)
+      return
+    }
+
+    closeCardCheckoutTab(cardTab)
+
+    if (resolvedPaymentMethod === "card") {
+      storeCheckoutPaymentMethod(orderId, "card")
+      const params = new URLSearchParams({
+        order_id: orderId,
+        total: orderTotal.toFixed(2)
+      })
+      if (displayId) params.set("display_id", String(displayId))
+      setLoading(false)
+      router.push(`/checkout/thank-you?${params.toString()}`)
       return
     }
 
@@ -1433,47 +1384,7 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
       return
     }
 
-    if (resolvedPaymentMethod === "card" || paymentProvider === "peptidepay") {
-      if (paymentUrl) storePaymentUrl(orderId, paymentUrl)
-      storeCheckoutPaymentMethod(orderId, "card")
-      if (resolvedCardOnramp && isPeptidepayOnrampId(resolvedCardOnramp)) {
-        storeCardHandoffContext(orderId, {
-          email,
-          country: shippingAddress.country,
-          amountUsd: orderTotal,
-          provider: resolvedCardOnramp
-        })
-        storeCardOnramp(orderId, resolvedCardOnramp)
-      }
-      const hostedUrl =
-        paymentUrl && !paymentUrl.includes("example.com")
-          ? paymentUrl
-          : await mintCardCheckoutSession({
-              orderId,
-              provider: resolvedCardOnramp || undefined,
-              email,
-              amountUsd: orderTotal,
-              country: shippingAddress.country
-            })
-      if (hostedUrl) {
-        storePaymentUrl(orderId, hostedUrl)
-        window.location.assign(hostedUrl)
-        return
-      }
-      const params = new URLSearchParams({
-        order_id: orderId,
-        total: orderTotal.toFixed(2),
-        method: "card"
-      })
-      if (displayId) params.set("display_id", String(displayId))
-      if (email) params.set("email", email)
-      if (shippingAddress.country) params.set("country", shippingAddress.country)
-      if (resolvedCardOnramp) params.set("onramp", resolvedCardOnramp)
-      setLoading(false)
-      router.push(`/checkout/payment?${params.toString()}`)
-      return
-    }
-
+    storeCheckoutPaymentMethod(orderId, "crypto")
     setLoading(false)
 
     if (paymentUrl) {
@@ -1608,33 +1519,32 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                 <CheckoutPaymentHelp />
                 {paymentMethod === "wise" ? <CheckoutWiseInfo amountUsd={estimatedTotal} /> : null}
 
-                <label
-                  className={`${methodCardClass(paymentMethod === "card")} ${paymentOptionsLoaded && !cardAvailable ? "opacity-70" : ""}`}
-                >
+                <label className={methodCardClass(paymentMethod === "card")}>
                   <input
                     type="radio"
                     name="payment_method"
                     value="card"
                     checked={paymentMethod === "card"}
                     onChange={() => setPaymentMethod("card")}
-                    disabled={paymentOptionsLoaded && !cardAvailable}
-                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
+                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
                   />
                   <span className="flex min-w-0 flex-1 flex-col gap-1">
                     <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
                       <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
-                      Credit / debit card
+                      {cardUsesInvoice ? MANUAL_CARD_INVOICE_TITLE : CARD_CHECKOUT_TITLE}
+                      <CardBrandMarks />
                     </span>
-                    <span className="text-xs leading-relaxed text-[#64748B]">
-                      Visa, Mastercard, Amex, Apple Pay &amp; Google Pay via secure hosted checkout.
+                    <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
+                      {(cardUsesInvoice
+                        ? MANUAL_CARD_INVOICE_DESCRIPTION_LINES
+                        : CARD_CHECKOUT_DESCRIPTION_LINES
+                      ).join("\n")}
                     </span>
-                    {!paymentOptionsLoaded ? (
-                      <span className="text-xs text-[#64748B]">Checking card availability…</span>
-                    ) : !cardAvailable ? (
-                      <span className="text-xs text-amber-700">
-                        Card gateway did not respond — refresh the page or use cryptocurrency below.
-                      </span>
-                    ) : null}
+                    <span className="text-xs leading-relaxed text-[#0F766E]">
+                      {cardUsesInvoice
+                        ? "Place order does not charge your card. We email a PayPal invoice next."
+                        : "Place order opens card checkout in a new tab. We do not collect card numbers here."}
+                    </span>
                   </span>
                 </label>
 
@@ -1705,91 +1615,10 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
                       </p>
                     ) : null}
                   </div>
-                ) : paymentMethod === "card" ? (
-                  <fieldset
-                    id="checkout-card-onramp"
-                    tabIndex={-1}
-                    className="mt-4 rounded-lg border border-[#E2E8F0] bg-white p-4"
-                  >
-                    <legend className="px-1 text-sm font-medium text-[#0F172A]">Card processor</legend>
-                    {buyerIpCountry && buyerIpCountry !== "US" ? (
-                      <p className="mb-3 text-xs font-semibold leading-relaxed text-[#475569]">
-                        Stripe and PayPal need a US connection.
-                      </p>
-                    ) : null}
-                    <div className="flex flex-col gap-2">
-                      {cardOnrampOptions.map((option) => {
-                        const eligible = peptidepayOnrampEligible(option, estimatedTotal)
-                        const inLocation = peptidepayOnrampAvailableForIp(option, buyerIpCountry)
-                        const live = !liveOnrampIds || liveOnrampIds.has(option.id)
-                        const selectable = eligible && inLocation && live
-                        const selected = cardOnramp === option.id
-                        return (
-                          <label key={option.id} className={onrampCardClass(selected, !selectable)}>
-                            <input
-                              type="radio"
-                              name="card_onramp"
-                              value={option.id}
-                              checked={selected}
-                              disabled={!selectable}
-                              onChange={() => setCardOnramp(option.id)}
-                              className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488] disabled:cursor-not-allowed"
-                            />
-                            <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                              <span className="text-sm font-medium text-[#0F172A]">
-                                {option.label}
-                                {selectable && option.id === defaultCardOnramp ? (
-                                  <span className="ml-1.5 text-[11px] font-normal text-[#0D9488]">
-                                    Recommended
-                                  </span>
-                                ) : null}
-                              </span>
-                              <span className="text-xs leading-relaxed text-[#64748B]">
-                                {option.description}
-                              </span>
-                              <span className="text-[11px] leading-relaxed text-[#94A3B8]">
-                                {peptidepayOnrampPickerFacts(option).join(" · ")}
-                              </span>
-                              {!live ? (
-                                <span className="text-xs text-amber-700">
-                                  Temporarily unavailable. Peptide Pay is routing other processors instead.
-                                </span>
-                              ) : !inLocation ? (
-                                <span className="text-xs text-amber-700">Not available from your location.</span>
-                              ) : !eligible ? (
-                                <span className="text-xs text-amber-700">
-                                  Available from ${option.minUsd.toFixed(0)}.
-                                </span>
-                              ) : null}
-                            </span>
-                          </label>
-                        )
-                      })}
-                    </div>
-                    {!defaultCardOnramp ? (
-                      <p className="mt-3 text-xs text-amber-700">
-                        No card processor is available for this total. Pay with cryptocurrency.
-                      </p>
-                    ) : null}
-                  </fieldset>
                 ) : null}
               </section>
 
-              {paymentMethod === "card" ? (
-                <div className="space-y-3 text-sm leading-relaxed text-[#64748B]">
-                  <h3 className="font-serif text-lg text-[#0F172A]">What happens next</h3>
-                  <ul className="list-disc space-y-1 pl-4">
-                    <li>
-                      Tetrava confirms the order, then you finish on your selected processor's secure page.
-                    </li>
-                    <li>
-                      First time with Transak, Topper, or Banxa? A quick ID check, usually under two minutes
-                      (Banxa can take a little longer).
-                    </li>
-                    <li>Once payment is confirmed, you return here and fulfillment begins.</li>
-                  </ul>
-                </div>
-              ) : paymentMethod === "wise" ? (
+              {paymentMethod === "wise" ? (
                 <div className="space-y-3 text-sm leading-relaxed text-[#64748B]">
                   <h3 className="font-serif text-lg text-[#0F172A]">What happens next</h3>
                   <ul className="list-disc space-y-1 pl-4">
@@ -1851,7 +1680,8 @@ export function CheckoutForm({ initialCardOnramp }: { initialCardOnramp?: string
 
           <p className="flex items-center gap-2 text-xs text-[#94A3B8]">
             <Lock className="h-3.5 w-3.5" aria-hidden />
-            Payments run on a hosted, encrypted checkout. We do not store card numbers.
+            Card checkout opens in a new tab. Crypto and Wise charge on their own pages. We do not
+            collect card numbers.
           </p>
         </div>
 

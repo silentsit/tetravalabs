@@ -38,6 +38,8 @@ Create separate env sets for:
 - `COOKIE_SECRET`
 - `CRYPTO_PROVIDER`
 - `CRYPTO_WEBHOOK_SECRET`
+- `CARDTOUSDT_PAYOUT_ADDRESS`
+- `MEDUSA_PUBLIC_URL` (public HTTPS origin for CardToUSDT webhooks)
 - `R2_*` or S3 credentials
 - `RESEND_API_KEY`
 - `TYPESENSE_PROTOCOL=https`
@@ -58,7 +60,7 @@ Create separate env sets for:
 7. Enable payment webhook and revalidation webhook.
 8. Put Cloudflare in front and verify WAF + bot rules.
 
-When a push changes **Medusa payment routes** (`peptidepay-intent`, webhooks), wait for Render `tetrava-medusa` to finish deploy (`GET /health` → 200) before treating a matching Vercel storefront deploy as fully live. The storefront handoff falls back to the checkout Peptide Pay URL if mint fails, but fresh processor pinning needs Medusa up to date.
+When a push changes **Medusa payment routes** (crypto intent, CardToUSDT intent, invoice-order, webhooks), wait for Render `tetrava-medusa` to finish deploy (`GET /health` → 200) before treating a matching Vercel storefront deploy as fully live. Card checkout mints a CardToUSDT session on Medusa and opens `checkout_url` in a new tab; invoice fallback is used only when CardToUSDT is not configured. Crypto still needs Medusa up to date to mint Paymento/BTCPay intents.
 
 ## Vercel (Storefront)
 

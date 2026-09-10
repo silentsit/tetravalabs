@@ -9,7 +9,6 @@ type CatalogSkuPayload = {
 const PAYLOAD = catalogSkus as CatalogSkuPayload
 const SKU_BY_KEY: Record<string, string> = PAYLOAD.skus ?? {}
 const PRODUCT_CODES = PAYLOAD.productCodes || {}
-const PRODUCT_NAME_MAX = 80
 
 export type SkuLookupItem = {
   handle?: string
@@ -77,30 +76,4 @@ export function resolveStrengthPackSku(input: SkuLookupItem & {
   }
 
   return resolveProductSku(input)
-}
-
-/**
- * Peptide Pay `product_name` — opaque SKU codes only (no human product titles).
- * Single-item carts send one SKU; multi-item carts join with "+" (max 80 chars).
- */
-export function buildPeptidepayProductName(items: SkuLookupItem[]): string {
-  const skus = items
-    .map((item) => resolveProductSku(item))
-    .filter((sku): sku is string => Boolean(sku))
-
-  const unique: string[] = []
-  for (const sku of skus) {
-    if (!unique.includes(sku)) unique.push(sku)
-  }
-
-  if (!unique.length) return "TV-ORDER"
-
-  if (unique.length === 1) return unique[0].slice(0, PRODUCT_NAME_MAX)
-
-  const joined = unique.join("+")
-  if (joined.length <= PRODUCT_NAME_MAX) return joined
-
-  const head = unique[0]
-  const suffix = `+${unique.length - 1}`
-  return `${head.slice(0, PRODUCT_NAME_MAX - suffix.length)}${suffix}`
 }

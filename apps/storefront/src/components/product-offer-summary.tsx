@@ -11,7 +11,7 @@ type Props = {
 const BENEFITS: Array<{ lead: string; rest: string }> = [
   { lead: "FREE", rest: " express shipping on all orders" },
   { lead: "Guaranteed", rest: " delivery worldwide" },
-  { lead: "Secure", rest: " payment via credit card or crypto" },
+  { lead: "Secure", rest: " payment via card, Wise, or crypto" },
   { lead: "Save", rest: " up to 20% on bulk orders" }
 ]
 

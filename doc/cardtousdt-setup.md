@@ -1,0 +1,42 @@
+# CardToUSDT card checkout
+
+Hosted card checkout. The buyer pays USD with a card on CardToUSDT. Settlement lands in your self-custodial `0x` wallet. There is no API key.
+
+Unwhitelisted calls work the same as production and carry a 25% fee. Telegram (`@Card_to_usdt`) is only for a production rate.
+
+## Customer path
+
+1. Select Credit/Debit Cards.
+2. Place order. Medusa `POST`s `https://api.cardtousdt.to/v2/checkout`.
+3. Storefront opens `checkout_url` in a **new tab** (do not embed or same-tab redirect).
+4. Buyer pays on CardToUSDT. Tetrava stays on `/checkout/payment`.
+5. Webhook settles the order when paid USD is at least 80% of stored `amount_usd`.
+
+If create fails or CardToUSDT is not configured, checkout falls back to the manual PayPal invoice path.
+
+## Medusa env
+
+| Variable | Required | Notes |
+|---|---|---|
+| `CARDTOUSDT_PAYOUT_ADDRESS` | Yes | Tetrava Labs Polygon wallet: `0x7c19774b353707c39A16F650B6c93E2172d6Dd45`. Same `0x` key exists on every EVM chain. Tokens do not auto-bridge: Polygon USDC is not Ethereum USDT. Non-EVM (Solana, TRON) cannot land here. Settlement chain is the webhook `coin` field, not chosen at create. |
+| `MEDUSA_PUBLIC_URL` | Yes in production | Public `https://` origin. Webhook is `{MEDUSA_PUBLIC_URL}/webhooks/payments/cardtousdt`. Localhost is rejected. |
+| `CARDTOUSDT_WEBHOOK_BASE_URL` | No | Full webhook URL override (ngrok / tunnel). Must be public HTTPS. |
+| `CARDTOUSDT_FULFILL_BAND` | No | Default `0.80`. |
+
+Apply schema: `npm run db:lab-schema` (`016_cardtousdt_checkouts.sql`).
+
+## Four rules (from their docs)
+
+1. Store `amount_usd` from create. Compare the webhook to that figure, not `amount`.
+2. Fulfil at or above 80% of stored `amount_usd`. USD stables (`polygon_usdc`, `erc20_usdc`, `erc20_usdt`, `erc20_pyusd`) already report `value_coin` in USD.
+3. Native / unknown `coin`: replace `_` with `/`, then `GET https://api.cardtousdt.to/crypto/{coin}/info.php`. Multiply `value_coin` by `prices.USD`. If that fails, hold.
+4. Do not redirect the webhook. Fields live on the query string (`txid_out`, `value_coin`, `coin`, `c2t_ts`, `c2t_sig`). GET first; POST is only a 405 retry. Read the query, not the body.
+
+`order_id` is on `webhook_url` (we also put a per-checkout `secret=`). If create returns `webhook_secret`, we store it and verify HMAC. Never send `webhook_secret` to the browser.
+
+## Routes
+
+- `POST /store/payments/cardtousdt-intent` — create or reuse the pending checkout.
+- `GET|POST /webhooks/payments/cardtousdt` — settlement. No publishable key. Do not add a redirect in front of this path.
+
+Every create response includes `X-Request-Id`. Quote that header if you write to CardToUSDT about a call. Do not retry a create that already returned 200; `conversion_failed` is the only safe identical retry.

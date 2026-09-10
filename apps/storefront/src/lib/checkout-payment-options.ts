@@ -16,8 +16,12 @@ export const CHECKOUT_CRYPTO_CATALOG: CheckoutCryptoOption[] = [
   { asset: "TRX", label: "TRON (TRX)", provider: "paymento" }
 ]
 
+export type CardCheckoutProvider = "cardtousdt" | "manual_card_invoice"
+
 export type LoadedCheckoutOptions = {
   cardAvailable: boolean
+  cardProvider: CardCheckoutProvider
+  cardOpenInNewTab: boolean
   cryptoLive: boolean
   cryptoOptions: CheckoutCryptoOption[]
 }
@@ -29,6 +33,8 @@ export async function loadCheckoutPaymentOptions(
 ): Promise<LoadedCheckoutOptions> {
   const fallback: LoadedCheckoutOptions = {
     cardAvailable: false,
+    cardProvider: "manual_card_invoice",
+    cardOpenInNewTab: false,
     cryptoLive: false,
     cryptoOptions: CHECKOUT_CRYPTO_CATALOG
   }
@@ -43,6 +49,8 @@ export async function loadCheckoutPaymentOptions(
         const liveAssets = Array.isArray(data.crypto?.assets) ? data.crypto.assets : []
         return {
           cardAvailable: Boolean(data.card?.available),
+          cardProvider: data.card?.provider === "cardtousdt" ? "cardtousdt" : "manual_card_invoice",
+          cardOpenInNewTab: Boolean(data.card?.open_in_new_tab),
           cryptoLive: liveAssets.length > 0,
           cryptoOptions: liveAssets.length > 0 ? liveAssets : CHECKOUT_CRYPTO_CATALOG
         }
@@ -55,12 +63,18 @@ export async function loadCheckoutPaymentOptions(
       const liveAssets = Array.isArray(data?.assets) ? data.assets : []
       const retry = await fetchFn(`${medusaUrl}/store/payments/checkout-options`, fetchOptions)
       let cardAvailable = false
+      let cardProvider: CardCheckoutProvider = "manual_card_invoice"
+      let cardOpenInNewTab = false
       if (retry.ok) {
         const retryData = await retry.json()
         cardAvailable = Boolean(retryData?.card?.available)
+        cardProvider = retryData?.card?.provider === "cardtousdt" ? "cardtousdt" : "manual_card_invoice"
+        cardOpenInNewTab = Boolean(retryData?.card?.open_in_new_tab)
       }
       return {
         cardAvailable,
+        cardProvider,
+        cardOpenInNewTab,
         cryptoLive: liveAssets.length > 0,
         cryptoOptions: liveAssets.length > 0 ? liveAssets : CHECKOUT_CRYPTO_CATALOG
       }

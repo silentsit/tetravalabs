@@ -21,6 +21,8 @@ const recommendedProduction = [
   { key: "BTCPAY_STORE_ID", file: "medusa", label: "BTCPay store ID" },
   { key: "PAYMENTO_API_KEY", file: "medusa", label: "Paymento API key (USDT, ETH, etc.)" },
   { key: "PAYMENTO_SECRET_KEY", file: "medusa", label: "Paymento secret key (IPN HMAC)" },
+  { key: "CARDTOUSDT_PAYOUT_ADDRESS", file: "medusa", label: "CardToUSDT 0x payout wallet (card checkout)" },
+  { key: "MEDUSA_PUBLIC_URL", file: "medusa", label: "Public HTTPS Medusa URL for CardToUSDT webhooks" },
   { key: "STOREFRONT_URL", file: "medusa", label: "Public storefront URL for payment redirects" },
   { key: "RESEND_API_KEY", file: "medusa", label: "Resend API key (payment received emails)" },
   { key: "RESEND_FROM", file: "medusa", label: "Verified Resend sender (Medusa webhooks)" },

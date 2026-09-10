@@ -38,11 +38,15 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   const displayId = req.body?.display_id
   const totalUsd = Number(req.body?.total_usd || 0)
   const paymentMethod =
-    req.body?.payment_method === "card"
-      ? "card"
-      : req.body?.payment_method === "wise"
-        ? "wise"
-        : "crypto"
+    req.body?.payment_method === "manual_card_invoice"
+      ? "manual_card_invoice"
+      : req.body?.payment_method === "cardtousdt"
+        ? "cardtousdt"
+        : req.body?.payment_method === "card"
+          ? "cardtousdt"
+          : req.body?.payment_method === "wise"
+            ? "wise"
+            : "crypto"
   const items = normalizeItems(req.body?.items)
 
   if (!orderId || !email || totalUsd <= 0) {

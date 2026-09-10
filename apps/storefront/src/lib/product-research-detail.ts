@@ -1379,7 +1379,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Where to buy Selank nasal spray",
         paragraphs: [
-          "You can buy Selank nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Shipping is free on all orders. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method.",
+          "You can buy Selank nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Shipping is free on all orders. Checkout is card (hosted checkout in a new tab after you place the order), Wise, or crypto. ACH is not a listed payment method.",
           "UK and other international orders depend on destination rules that change. Check [shipping restrictions](/shipping-restricted) before you order. Tetrava Labs does not tell you how any country classifies this peptide.",
           "\"Best place to buy Selank nasal spray 2026\" is a slogan unless the listing can show paperwork. Same test for the Semax-plus-Selank version of that query. Tetrava does not sell a combo spray.",
         ],
@@ -1560,7 +1560,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Where to buy Semax nasal spray",
         paragraphs: [
-          "You can buy Semax nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Semax nasal spray for sale here means that SKU, not a 5-pack and not a mixed Selank bottle. Shipping is free on all orders. Checkout is card (Peptide Pay) or crypto. ACH is not a listed payment method.",
+          "You can buy Semax nasal spray online from Tetrava Labs on this page: 10 mg, one bottle, $79. Semax nasal spray for sale here means that SKU, not a 5-pack and not a mixed Selank bottle. Shipping is free on all orders. Checkout is card (hosted checkout in a new tab after you place the order), Wise, or crypto. ACH is not a listed payment method.",
           "Where to buy Semax nasal spray in the UK, Australia, or elsewhere depends on destination rules. Check [shipping restrictions](/shipping-restricted) before you order. Tetrava Labs does not tell you how any country classifies this peptide.",
           "\"Best place to buy Semax nasal spray 2026\" is a slogan unless the listing can show paperwork. Same test for the Semax-plus-Selank version of that query. Tetrava does not sell a combo spray. A reputable vendor for this format publishes a lot-linked COA, states that the bottle is unmodified Semax rather than N-Acetyl Semax, and states 2-8°C storage.",
         ],
@@ -2306,7 +2306,7 @@ const PRODUCT_RESEARCH_DETAIL: Record<string, ProductResearchDetail> = {
       {
         heading: "Where to buy SS-31 peptide online",
         paragraphs: [
-          "You can buy SS-31 peptide online from Tetrava Labs on this page. 10 mg is $69 for one vial. 50 mg is $199 for one vial. Packs of 1, 5, and 10. Checkout is card (Peptide Pay) or crypto. ACH is not listed.",
+          "You can buy SS-31 peptide online from Tetrava Labs on this page. 10 mg is $69 for one vial. 50 mg is $199 for one vial. Packs of 1, 5, and 10. Checkout is card (hosted checkout in a new tab after you place the order), Wise, or crypto. ACH is not listed.",
           "\"Best place to buy\" is a documentation check, not a ranking. Lot number on the COA has to match the vial. The COA should be third-party HPLC-MS, identity plus purity. Cold-chain notes should match a lyophilized peptide. If a vendor will not produce the chromatogram for the batch in the box, the price is irrelevant.",
           "UK, Australia, and other destinations follow [shipping restrictions](/shipping-restricted). Tetrava does not publish a country-by-country legal status for elamipretide. That sits with the buyer's institution and regulator.",
         ],

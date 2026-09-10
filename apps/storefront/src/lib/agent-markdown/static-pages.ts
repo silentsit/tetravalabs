@@ -155,7 +155,7 @@ const STATIC_PAGE_BUILDERS: Record<string, StaticPageBuilder> = {
       description: "Payment options for qualified Tetrava Labs research buyers.",
       path: "/payment",
       body:
-        "How to pay at Tetrava Labs: card checkout is the default, with cryptocurrency as the other path. Payment instructions are provided after checkout. See the full guide at the canonical URL above for current methods and steps."
+        "How to pay at Tetrava Labs: card is the default (place the order first, then pay in the card checkout tab that opens). Wise and cryptocurrency charge immediately on their own pages. See the full guide at the canonical URL above for current methods and steps."
     })
   }),
 

@@ -36,7 +36,7 @@ Product, article, and category cards include the page title, RUO eyebrow, and a 
 | `/about` | About Tetrava Labs \| Verified Research-Use-Only Peptides | Tetrava Labs supplies HPLC-MS verified, COA-documented research peptides with cold-chain shipping to qualified labs. Verified. Documented. Delivered. RUO. |
 | `/faq` | FAQ — ordering, shipping & COAs \| Tetrava Labs | Answers about research-use peptides, HPLC verification, certificates of analysis, shipping, and payment. |
 | `/contact` | Contact Tetrava Labs \| Customer & Technical Support | Contact Tetrava Labs for research support, order questions, COA documents, and compliance inquiries. |
-| `/payment` | How to pay — card & crypto checkout \| Tetrava Labs | Step-by-step payment guide for Tetrava Labs orders using credit card, Apple Pay, BTC, USDT, ETH, and other supported assets. |
+| `/payment` | How to pay — card, Wise & crypto \| Tetrava Labs | How to pay at Tetrava Labs: place the order, then pay by card in a new checkout tab. Wise and crypto charge on their own pages. |
 | `/shipping` | Shipping Information \| Tetrava Labs | Tetrava Labs international delivery times, fulfillment, cold-chain packaging, tracking guidance, and customs information for research peptide orders. |
 | `/privacy` | Privacy Policy \| Tetrava Labs | How Tetrava Labs collects, uses, stores, and protects personal information for research-use customers on tetravalabs.com. |
 | `/terms` | Terms of Service \| Tetrava Labs | Terms governing Tetrava Labs website use and research-compound purchases, including RUO requirements, orders, shipping, quality, and liability. |
@@ -53,7 +53,10 @@ Product, article, and category cards include the page title, RUO eyebrow, and a 
 | `/orders` | Order history \| Tetrava Labs | View past orders or look up a guest checkout with your email and order number. |
 | `/checkout` | Checkout \| Tetrava Labs | Complete your Tetrava Labs research order. |
 | `/checkout/payment` | Payment \| Tetrava Labs | Complete payment for your Tetrava Labs order. |
-| `/checkout/success` | Order confirmed \| Tetrava Labs | Your Tetrava Labs order confirmation. |
+| `/checkout/success` | Order received \| Tetrava Labs | Your Tetrava Labs order confirmation. |
+| `/checkout/thank-you` | Order received \| Tetrava Labs | Your Tetrava Labs order is recorded. Check email for the receipt and PayPal invoice. |
+| `/account/invoices` | Invoice orders \| Tetrava Labs | Review on-hold card invoice orders and mark PayPal invoices as paid. |
+| `/account/indexing` | Indexing \| Tetrava Labs | Submit Tetrava Labs sitemap URLs to search engines via IndexNow. |
 | `/shipping-restricted` | Shipping Restricted \| Tetrava Labs | Checkout is unavailable for your location due to Tetrava Labs shipping compliance restrictions. |
 | `/account` | Account \| Tetrava Labs | Manage your Tetrava Labs research account. |
 | `/account/details` | Account details \| Tetrava Labs | Edit your Tetrava Labs account profile and password settings. |

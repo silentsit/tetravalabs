@@ -30,7 +30,7 @@ export type OrderEmailItem = {
   productId?: string
 }
 
-export type PaymentMethod = "crypto" | "card" | "wise"
+export type PaymentMethod = "crypto" | "card" | "cardtousdt" | "wise" | "manual_card_invoice"
 
 type ReminderEmailInput = {
   orderLabel: string
@@ -80,10 +80,16 @@ function escapeHtml(value: string) {
 }
 
 function paymentCopy(paymentMethod: PaymentMethod) {
-  if (paymentMethod === "card") {
+  if (paymentMethod === "cardtousdt" || paymentMethod === "card") {
     return {
-      intro: "Use the secure link below to finish card payment and confirm your order.",
-      button: "Complete card payment"
+      intro: "Finish card payment in the checkout tab that opened after you placed the order. We do not collect card numbers on Tetrava Labs.",
+      button: "Open card checkout"
+    }
+  }
+  if (paymentMethod === "manual_card_invoice") {
+    return {
+      intro: "We will send a PayPal invoice to this email so you can pay by credit or debit card.",
+      button: "View order details"
     }
   }
   if (paymentMethod === "wise") {
@@ -270,6 +276,149 @@ export function buildPaymentFollowupEmail(input: ReminderEmailInput) {
 
   return {
     subject: `Need a hand with ${orderLabel}?`,
+    html
+  }
+}
+
+type InvoiceReceiptInput = {
+  firstName: string
+  orderLabel: string
+  total: number
+  items?: OrderEmailItem[]
+  contactUrl: string
+  brandShort?: string
+}
+
+type MerchantNewOrderInput = {
+  orderLabel: string
+  orderId: string
+  email: string
+  firstName?: string
+  lastName?: string
+  total: number
+  paymentMethodTitle: string
+  items?: OrderEmailItem[]
+  shippingLines?: string[]
+}
+
+/** Immediate invoice-method receipt: order recorded, PayPal invoice comes next. */
+export function buildInvoiceOrderReceiptEmail(input: InvoiceReceiptInput) {
+  const firstName = (input.firstName || "").trim() || "there"
+  const brand = (input.brandShort || "Tetrava").trim() || "Tetrava"
+  const { orderLabel, total, items = [], contactUrl } = input
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 8px;color:#E8E8F0;font-size:24px;font-weight:600;">Thank you for confirming your order!</h1>
+      <p style="margin:0 0 16px;color:#5EEAD4;font-size:14px;line-height:1.5;">
+        We will send an invoice to your email.
+      </p>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)},
+      </p>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Your order status is currently: <strong style="color:#E8E8F0;">On-Hold</strong>.
+      </p>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Once we confirm that payment has been received, we will proceed to pack and send your order out.
+      </p>
+      <p style="margin:0 0 8px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Your order details are shown below for your reference:
+      </p>
+      <p style="margin:0 0 8px;color:#E8E8F0;font-size:14px;">
+        ${escapeHtml(orderLabel)}
+      </p>
+      ${renderItems(items)}
+      <p style="margin:0 0 20px;color:#E8E8F0;font-size:16px;">
+        Order total: <strong>${formatMoney(total)}</strong>
+      </p>
+      <p style="margin:0 0 8px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        We look forward to fulfilling your order soon.
+      </p>
+      ${ruoFooter(contactUrl)}
+  `)
+
+  return {
+    subject: `[${brand}] Order Receipt`,
+    html
+  }
+}
+
+/** Staff cue to send the PayPal invoice by hand. */
+export function buildMerchantNewOrderEmail(input: MerchantNewOrderInput) {
+  const name = [input.firstName, input.lastName].filter(Boolean).join(" ").trim() || "—"
+  const shipping = (input.shippingLines || []).filter(Boolean)
+  const shippingHtml = shipping.length
+    ? `<p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">${shipping
+        .map((line) => escapeHtml(line))
+        .join("<br />")}</p>`
+    : ""
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">New order — send PayPal invoice</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        ${escapeHtml(input.orderLabel)} is on hold, awaiting invoice payment.
+        Create a PayPal invoice to the customer email for the order total, then mark payment received in the store admin.
+      </p>
+      <p style="margin:0 0 8px;color:#E8E8F0;font-size:14px;line-height:1.5;">
+        Order id: <strong>${escapeHtml(input.orderId)}</strong>
+      </p>
+      <p style="margin:0 0 8px;color:#E8E8F0;font-size:14px;line-height:1.5;">
+        Customer: ${escapeHtml(name)} &lt;${escapeHtml(input.email)}&gt;
+      </p>
+      <p style="margin:0 0 16px;color:#E8E8F0;font-size:14px;line-height:1.5;">
+        Payment method: ${escapeHtml(input.paymentMethodTitle)}
+      </p>
+      ${shippingHtml}
+      ${renderItems(input.items || [])}
+      <p style="margin:0 0 8px;color:#E8E8F0;font-size:16px;">
+        Total: <strong>${formatMoney(input.total)}</strong>
+      </p>
+  `)
+
+  return {
+    subject: `New order ${input.orderLabel} — awaiting invoice payment`,
+    html
+  }
+}
+
+type InvoicePaidInput = {
+  firstName: string
+  orderLabel: string
+  total: number
+  items?: OrderEmailItem[]
+  ordersUrl: string
+  contactUrl: string
+}
+
+/** Staff marked the PayPal invoice paid — processing / payment received. */
+export function buildInvoicePaymentReceivedEmail(input: InvoicePaidInput) {
+  const firstName = (input.firstName || "").trim() || "there"
+  const { orderLabel, total, items = [], ordersUrl, contactUrl } = input
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Payment received</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        Hi ${escapeHtml(firstName)},
+      </p>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        We have received your payment in good order. And your order is now being processed. Here are your order details for reference:
+      </p>
+      <p style="margin:0 0 8px;color:#E8E8F0;font-size:14px;">
+        ${escapeHtml(orderLabel)}
+      </p>
+      ${renderItems(items)}
+      <p style="margin:0 0 20px;color:#E8E8F0;font-size:16px;">
+        Total paid: <strong>${formatMoney(total)}</strong>
+      </p>
+      <a href="${escapeHtml(ordersUrl)}"
+         style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">
+        View order history
+      </a>
+      ${ruoFooter(contactUrl)}
+  `)
+
+  return {
+    subject: `Payment received: ${orderLabel}`,
     html
   }
 }
@@ -625,7 +774,7 @@ export function buildWelcomeEmail(input: WelcomeEmailInput) {
       <ul style="margin:0 0 20px;padding-left:18px;color:#8A8AA0;font-size:14px;line-height:1.6;">
         <li>Browse the catalog by research category</li>
         <li>Open any product page for purity specs and available COA documents</li>
-        <li>Checkout with crypto or card when your lab is ready to order</li>
+        <li>Checkout with a card, Wise, or crypto when your lab is ready to order</li>
       </ul>
       <a href="${escapeHtml(input.shopUrl)}"
          style="display:inline-block;background:#5EEAD4;color:#050508;text-decoration:none;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;">

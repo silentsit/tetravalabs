@@ -37,6 +37,20 @@ export default defineMiddlewares({
       middlewares: [authenticate("customer", ["session", "bearer"])]
     },
     {
+      method: ["GET"],
+      matcher: "/store/admin/invoices",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
+    {
+      method: ["POST"],
+      matcher: "/store/admin/invoices/mark-paid",
+      middlewares: [authenticate("customer", ["session", "bearer"])]
+    },
+    {
+      method: ["GET", "POST"],
+      matcher: "/webhooks/payments/cardtousdt"
+    },
+    {
       method: ["POST"],
       matcher: "/webhooks/payments/paymento",
       bodyParser: { preserveRawBody: true }
@@ -44,11 +58,6 @@ export default defineMiddlewares({
     {
       method: ["POST"],
       matcher: "/webhooks/payments/btcpay",
-      bodyParser: { preserveRawBody: true }
-    },
-    {
-      method: ["POST"],
-      matcher: "/webhooks/payments/peptidepay",
       bodyParser: { preserveRawBody: true }
     }
   ]

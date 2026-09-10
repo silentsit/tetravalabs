@@ -123,15 +123,15 @@ export default async function HomePage() {
           <div className="mb-10 text-center">
             <span className="section-label">How to Pay</span>
             <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Simple Payment System</h2>
-            <p className="mt-2 text-[#475569]">Card or crypto at checkout. Your choice.</p>
+            <p className="mt-2 text-[#475569]">Card, Wise, or crypto at checkout. Your choice.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="card p-8">
               <CreditCard className="mb-4 h-10 w-10 text-[#2563EB]" />
               <h3 className="font-serif text-xl text-[#0F172A]">Credit &amp; Debit Cards</h3>
               <p className="mt-4 text-sm text-[#475569]">
-                Pay with Visa, Mastercard, Amex, Apple Pay, or Google Pay through our secure hosted
-                checkout page.
+                Place the order, then pay with Visa, Mastercard, Amex, or Discover in a new
+                checkout tab. We do not collect card numbers on this site.
               </p>
               <Link href="/payment" className="mt-4 inline-flex text-sm font-medium text-[#0D9488]">
                 View payment guide →

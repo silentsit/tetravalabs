@@ -121,9 +121,10 @@ export default function TermsPage() {
           <h2 className="text-base font-medium text-[#0F172A]">4. Orders, pricing, and payment</h2>
           <p>
             Prices are listed in <strong>USD</strong> unless otherwise stated. We accept payment
-            methods displayed at checkout (including card via Peptide Pay hosted checkout and
-            supported cryptocurrency options for eligible one-time carts). An order is confirmed
-            only after payment is successfully received and verified.
+            methods displayed at checkout (including credit/debit card via hosted checkout after
+            order create, Wise, and supported cryptocurrency options for eligible one-time carts).
+            Card checkout opens in a new tab. We do not collect card numbers on Tetrava Labs.
+            Crypto and Wise charge on their own rails. Fulfillment starts after payment is received.
           </p>
           <p>
             We may correct pricing or catalog errors and cancel affected orders. If payment has

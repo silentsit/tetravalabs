@@ -1,4 +1,4 @@
--- Lab Restock (Subscribe & Save) — hybrid scheduled restock (Peptide Pay per cycle)
+-- Lab Restock (Subscribe & Save) — hybrid scheduled restock
 CREATE TABLE IF NOT EXISTS lab_restocks (
   id TEXT PRIMARY KEY,
   customer_id TEXT,

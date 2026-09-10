@@ -57,10 +57,11 @@ export default function PrivacyPage() {
           </ul>
           <p className="font-medium text-[#0F172A]">Payment information</p>
           <p>
-            Card payments are processed through Peptide Pay&apos;s hosted checkout. Cryptocurrency
-            payments are processed through our configured crypto payment providers. We receive
-            payment status, references, and limited transaction metadata needed to fulfill your
-            order. We do <strong>not</strong> store full card numbers on Tetrava Labs servers.
+            Card orders are recorded on Tetrava Labs first. Card numbers are entered on the hosted
+            card checkout that opens in a new tab, not on tetravalabs.com. Cryptocurrency payments
+            are processed through our configured crypto payment providers. We receive payment
+            status, references, and limited transaction metadata needed to fulfill your order. We
+            do <strong>not</strong> store full card numbers on Tetrava Labs servers.
           </p>
           <p className="font-medium text-[#0F172A]">Technical and usage information</p>
           <ul className="list-disc space-y-2 pl-5">
@@ -168,8 +169,8 @@ export default function PrivacyPage() {
               products, carts, customers, and orders
             </li>
             <li>
-              <strong>Payment processors</strong> — Peptide Pay (cards) and crypto payment providers
-              to collect and confirm payment
+              <strong>Payment processors</strong> — PayPal invoicing (cards, after order create) and
+              crypto payment providers to collect and confirm payment
             </li>
             <li>
               <strong>Email delivery</strong> — Resend (or similar) to send transactional and

@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
-import { CheckoutSuccessContent } from "@/components/checkout-success"
+import { CheckoutThankYouContent } from "@/components/checkout-thank-you"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Order confirmed",
+  title: "Order received",
   description: "Your Tetrava Labs order confirmation.",
   path: "/checkout/success",
   noIndex: true,
@@ -18,7 +18,7 @@ export default function CheckoutSuccessPage() {
         <p className="page-container py-12 text-center text-sm text-[#475569]">Loading confirmation…</p>
       }
     >
-      <CheckoutSuccessContent />
+      <CheckoutThankYouContent />
     </Suspense>
   )
 }

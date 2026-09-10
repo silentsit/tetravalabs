@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react"
 import {
+  CreditCard,
   Download,
   LayoutDashboard,
   LogOut,
@@ -25,6 +26,7 @@ export const ACCOUNT_NAV_ITEMS: AccountNavItem[] = [
 ]
 
 export const ACCOUNT_ADMIN_NAV_ITEMS: AccountNavItem[] = [
+  { href: "/account/invoices", label: "Invoice orders", icon: CreditCard },
   { href: "/account/indexing", label: "Indexing", icon: Search }
 ]
 

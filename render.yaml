@@ -59,6 +59,10 @@ services:
         sync: false
       - key: PAYMENTO_SPEED
         sync: false
+      - key: MEDUSA_PUBLIC_URL
+        value: https://tetrava-medusa-i44n.onrender.com
+      - key: CARDTOUSDT_PAYOUT_ADDRESS
+        value: "0x7c19774b353707c39A16F650B6c93E2172d6Dd45"
       - key: STOREFRONT_URL
         value: https://tetravalabs.com
       - key: RESEND_API_KEY

@@ -17,9 +17,9 @@ import { TrustBadgesRow } from "@/components/trust-badges"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "How to pay — card & crypto checkout",
+  title: "How to pay — card, Wise & crypto",
   description:
-    "Step-by-step payment guide for Tetrava Labs orders using credit card, Apple Pay, USDT, ETH, SOL, and other supported assets.",
+    "How to pay at Tetrava Labs: place the order, then pay by card in a new checkout tab. Wise and crypto charge on their own pages.",
   path: "/payment"
 })
 
@@ -27,29 +27,29 @@ const steps = [
   {
     num: "01",
     icon: CreditCard,
-    title: "Place Your Order",
-    desc: "Add research compounds to your cart and proceed to checkout with your shipping details.",
+    title: "Place your order",
+    desc: "Add research compounds to your cart and complete checkout with shipping details.",
     color: "#0D9488"
   },
   {
     num: "02",
     icon: CreditCard,
-    title: "Select Payment Method",
-    desc: "Pay by card (recommended) or choose cryptocurrency.",
+    title: "Choose how to pay",
+    desc: "Card opens a hosted checkout tab. Wise and crypto charge on their own pages.",
     color: "#2563EB"
   },
   {
     num: "03",
     icon: Bitcoin,
-    title: "Complete Payment",
-    desc: "Card payments use secure hosted checkout. Crypto orders show a Paymento wallet / checkout page.",
+    title: "Pay the processor",
+    desc: "Card buyers pay Visa, Mastercard, Amex, or Discover in the new tab. Crypto opens Paymento. Wise sends the USD total.",
     color: "#D97706"
   },
   {
     num: "04",
     icon: CheckCircle,
-    title: "Order Confirmed",
-    desc: "Once payment is confirmed, your order is marked paid and prepared for shipment.",
+    title: "We pack after payment",
+    desc: "Once payment is confirmed, the order moves to processing and ships with tracking.",
     color: "#059669"
   }
 ]
@@ -64,7 +64,7 @@ const paymentFaqs = [
   {
     question: "Can I pay with a credit or debit card?",
     answer:
-      "Yes. Card checkout (Visa, Mastercard, Amex, Apple Pay, Google Pay) is the default option at checkout via our secure payment partner."
+      "Yes. Choose Credit/Debit Cards at checkout, then click Place order. Card checkout opens in a new tab. Pay with Visa, Mastercard, Amex, or Discover there. We do not collect card numbers on Tetrava Labs."
   },
   {
     question: "Which cryptocurrencies are supported?",
@@ -74,11 +74,11 @@ const paymentFaqs = [
   {
     question: "How long does confirmation take?",
     answer:
-      "Card payments usually confirm within a minute. USDT, ETH, and SOL usually confirm within a few minutes."
+      "Card settlement usually confirms after the hosted checkout finishes. USDT, ETH, and SOL usually confirm within a few minutes."
   },
   {
     question: "Where do I get help if payment fails?",
-    answer: "Contact support with your order ID. You can also revisit checkout to retry payment."
+    answer: "Contact support with your order ID. You can also revisit checkout to retry crypto or Wise."
   },
   {
     question: "Can I pay with Wise?",
@@ -102,14 +102,15 @@ export default function PaymentGuidePage() {
           </div>
           <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">How to pay</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#475569]">
-            How to pay at Tetrava Labs: use a credit or debit card at checkout, or choose cryptocurrency.
-            USDT, ETH, SOL, and other supported assets are available depending on your selection.
+            How to pay at Tetrava Labs: place the order, then pay by card in a new checkout tab
+            with Visa, Mastercard, Amex, or Discover. Wise and crypto charge immediately on their
+            own pages.
           </p>
         </div>
       </section>
 
       <section className="page-container py-16">
-        <h2 className="mb-10 text-center font-serif text-2xl text-[#0F172A]">The Payment Process</h2>
+        <h2 className="mb-10 text-center font-serif text-2xl text-[#0F172A]">The payment process</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <div
@@ -132,15 +133,16 @@ export default function PaymentGuidePage() {
 
       <section className="border-y border-[#E2E8F0] bg-white py-16">
         <div className="page-container">
-          <h2 className="mb-6 text-center font-serif text-2xl text-[#0F172A]">Default Payment Method</h2>
+          <h2 className="mb-6 text-center font-serif text-2xl text-[#0F172A]">Default payment method</h2>
           <div className="mx-auto max-w-xl rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
             <div className="mb-4 flex items-center gap-3">
               <CreditCard className="h-6 w-6 text-[#0D9488]" />
               <h3 className="font-serif text-lg text-[#0F172A]">Credit &amp; debit cards</h3>
             </div>
             <p className="text-sm leading-relaxed text-[#475569]">
-              The fastest option at checkout. You will be redirected to a secure hosted payment page to
-              complete your purchase with Visa, Mastercard, Amex, Apple Pay, or Google Pay.
+              Place order records the order, then opens card checkout in a new tab. Pay the USD
+              total with Visa, Mastercard, Amex, or Discover on that page. We do not collect card
+              numbers here.
             </p>
           </div>
 
@@ -181,18 +183,18 @@ export default function PaymentGuidePage() {
               </div>
               <h2 className="font-serif text-2xl text-[#0F172A]">Your payment is protected</h2>
               <p className="mt-4 text-sm leading-relaxed text-[#475569]">
-                Payments are verified via signed webhooks from our payment partners before orders are marked
-                paid.
+                Card and crypto payments are verified with signed webhooks before those orders are
+                marked paid. We do not store full card numbers on Tetrava Labs servers.
               </p>
             </div>
             <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
-              <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Transaction timeline</h3>
+              <h3 className="mb-4 font-serif text-lg text-[#0F172A]">Card checkout timeline</h3>
               <div className="space-y-4">
                 {[
-                  { time: "0 min", label: "Payment sent", desc: "You send crypto from your wallet" },
-                  { time: "1–10 min", label: "Confirmation", desc: "Network confirms the transaction" },
-                  { time: "10 min", label: "Order confirmed", desc: "Order status updates to paid" },
-                  { time: "24h", label: "Order ships", desc: "Fulfillment begins after payment" }
+                  { time: "0 min", label: "Order placed", desc: "Receipt recorded; card tab opens" },
+                  { time: "Same session", label: "Card paid", desc: "Hosted checkout settles the charge" },
+                  { time: "After pay", label: "Processing", desc: "We pack once the webhook confirms" },
+                  { time: "48h", label: "Tracking", desc: "Tracking email after shipment" }
                 ].map((step) => (
                   <div key={step.label} className="flex items-start gap-4">
                     <div className="flex h-10 w-14 shrink-0 items-center justify-center rounded-lg border border-[#E2E8F0] bg-white">

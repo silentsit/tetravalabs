@@ -1,3 +1,4 @@
+import { completeManualCardInvoiceOnShip } from "./manual-card-invoice"
 import { withDb } from "./db"
 import {
   buildCoaTrustEmail,
@@ -271,6 +272,7 @@ export async function recordOrderShipmentAndNotify(input: {
       },
       async () => undefined
     )
+    await completeManualCardInvoiceOnShip(input.orderId)
     return { ok: true as const, emailed: false, reason: "already_sent" as const }
   }
 
@@ -313,6 +315,8 @@ export async function recordOrderShipmentAndNotify(input: {
     },
     async () => undefined
   )
+
+  await completeManualCardInvoiceOnShip(input.orderId)
 
   return { ok: true as const, emailed: true }
 }

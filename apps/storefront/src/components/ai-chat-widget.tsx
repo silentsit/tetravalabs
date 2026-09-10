@@ -4,10 +4,77 @@ import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
-import { MessageCircle, X } from "lucide-react"
+import { X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
+import { checkoutWhatsAppHref } from "@/lib/checkout-support"
 import { buildReorderCartItems } from "@/lib/reorder-cart"
 import { formatClientError } from "@/lib/format-client-error"
+
+const CHAT_LOGO_SRC = "/brand/tetravalabs-icon.png"
+const WHATSAPP_BADGE_SRC = "/chat/whatsapp-badge.svg"
+
+function ChatChannelBadge({
+  href,
+  label,
+  src,
+  className
+}: {
+  href: string
+  label: string
+  src: string
+  className: string
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      title={label}
+      onClick={(event) => event.stopPropagation()}
+      className={`absolute z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-[0_2px_8px_rgba(15,23,42,0.18)] ring-2 ring-white transition hover:scale-105 ${className}`}
+    >
+      <Image src={src} alt="" width={28} height={28} unoptimized className="h-7 w-7 rounded-full" />
+    </a>
+  )
+}
+
+function ChatLogoWithWhatsApp({
+  logoSize,
+  badgeClassName
+}: {
+  logoSize: number
+  badgeClassName?: string
+}) {
+  const whatsappHref = checkoutWhatsAppHref()
+
+  return (
+    <div
+      className={`relative shrink-0 ${badgeClassName || ""}`}
+      style={{ width: logoSize + 8, height: logoSize + 10 }}
+    >
+      <span
+        className="absolute bottom-0 left-1/2 overflow-hidden rounded-full bg-[#CCFBF1] shadow-[0_8px_24px_rgba(15,23,42,0.18)] ring-2 ring-white"
+        style={{ width: logoSize, height: logoSize, transform: "translateX(-50%)" }}
+      >
+        <Image
+          src={CHAT_LOGO_SRC}
+          alt="Tetrava Labs"
+          width={logoSize}
+          height={logoSize}
+          unoptimized
+          className="h-full w-full object-cover"
+        />
+      </span>
+      <ChatChannelBadge
+        href={whatsappHref}
+        label="Message Tetrava Labs on WhatsApp"
+        src={WHATSAPP_BADGE_SRC}
+        className="left-1/2 top-0 -translate-x-1/2"
+      />
+    </div>
+  )
+}
 
 const TEASER_STORAGE_KEY = "tetrava-chat-teaser-dismissed"
 
@@ -94,16 +161,7 @@ export function AiChatWidget() {
               onClick={openChat}
               className="flex max-w-[16.5rem] items-center gap-3 rounded-2xl bg-white py-3 pl-3 pr-9 text-left shadow-[0_8px_28px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition hover:shadow-[0_10px_32px_rgba(15,23,42,0.22)]"
             >
-              <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#CCFBF1] ring-2 ring-white">
-                <Image
-                  src="/brand/tetravalabs-icon.png"
-                  alt="Tetrava Labs"
-                  width={40}
-                  height={40}
-                  unoptimized
-                  className="h-full w-full object-cover"
-                />
-              </span>
+              <ChatLogoWithWhatsApp logoSize={40} />
               <span className="min-w-0 text-[13px] leading-snug text-[#0F172A]">
                 <span className="block font-semibold">Need help?</span>
                 <span className="block text-[#334155]">Chat with me.</span>
@@ -125,20 +183,27 @@ export function AiChatWidget() {
         </div>
       ) : null}
 
-      <button
-        type="button"
-        aria-label={open ? "Close chat" : "Open research support chat"}
-        onClick={() => {
-          if (open) {
-            setOpen(false)
-          } else {
-            openChat()
-          }
-        }}
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#0D9488] text-white shadow-lg transition hover:bg-[#0F766E]"
-      >
-        {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" strokeWidth={1.75} />}
-      </button>
+      <div className="fixed bottom-5 right-5 z-50">
+        {open ? (
+          <button
+            type="button"
+            aria-label="Close chat"
+            onClick={() => setOpen(false)}
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0D9488] text-white shadow-lg transition hover:bg-[#0F766E]"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        ) : (
+          <button
+            type="button"
+            aria-label="Open research support chat"
+            onClick={openChat}
+            className="transition hover:scale-[1.02]"
+          >
+            <ChatLogoWithWhatsApp logoSize={56} />
+          </button>
+        )}
+      </div>
 
       {open ? (
         <div className="fixed bottom-20 right-5 z-50 flex h-[min(32rem,70vh)] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-2xl">

@@ -48,7 +48,11 @@ export default defineMiddlewares({
     },
     {
       method: ["GET", "POST"],
-      matcher: "/webhooks/payments/cardtousdt"
+      matcher: "/webhooks/payments/cardtousdt",
+      // Settlement fields live on the query string. CardToUSDT POST retry is empty
+      // application/x-www-form-urlencoded, but default express.json() would 400 before
+      // our handler if a proxy rewrote Content-Type to application/json.
+      bodyParser: false
     },
     {
       method: ["POST"],

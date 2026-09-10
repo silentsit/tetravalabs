@@ -229,16 +229,27 @@ function methodCardClass(selected: boolean) {
 
 function CardBrandMarks() {
   return (
-    <span className="flex items-center gap-1.5" aria-label="Visa, Mastercard, Amex, Discover">
+    <span
+      className="inline-flex shrink-0 items-center gap-1.5"
+      aria-label="Visa, Mastercard, Amex, Discover"
+    >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/payments/visa.png" alt="" width={36} height={22} className="h-[14px] w-auto object-contain" />
+      <img
+        src="/payments/visa.png"
+        alt=""
+        width={28}
+        height={14}
+        className="block shrink-0 object-contain"
+        style={{ width: 28, height: 14, maxWidth: 28, maxHeight: 14 }}
+      />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/payments/mastercard.svg"
         alt=""
         width={22}
         height={14}
-        className="h-[14px] w-auto object-contain"
+        className="block shrink-0 object-contain"
+        style={{ width: 22, height: 14, maxWidth: 22, maxHeight: 14 }}
       />
     </span>
   )

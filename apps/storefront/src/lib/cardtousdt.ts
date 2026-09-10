@@ -3,21 +3,11 @@ export const CARDTOUSDT_PROVIDER = "cardtousdt" as const
 export const CARD_CHECKOUT_TITLE = "Credit/debit cards (Visa, Mastercard, Amex, Discover)"
 
 export const CARD_CHECKOUT_DESCRIPTION_LINES = [
-  '1. Click "Place order".',
-  "2. Licensed card checkout opens in a new tab (Stripe, Coinbase, PayPal, and other providers vary by country).",
-  "3. Complete payment on the provider's secure page. We do not collect card numbers, CVV, OTP, or ID documents here."
+  '1. Click "Place order". Card checkout opens in a new tab.',
+  "2. Pick a payment option for your country and pay on that provider's page.",
+  "3. You pay the same total shown in your cart. We do not collect card numbers here.",
+  "4. The provider may ask for ID verification. Never send card or ID details to Tetrava support."
 ] as const
-
-/** Shown under the card radio when CardToUSDT is live (not manual invoice). */
-export const CARD_CHECKOUT_FEE_NOTE =
-  "The card checkout total matches your order total here. If secure checkout cannot open, we fall back to a PayPal invoice."
-
-/** Shown under the card radio when CardToUSDT is live (not manual invoice). */
-export const CARD_CHECKOUT_KYC_NOTE =
-  "Providers may require identity verification (KYC) on their own domain. Never send card details or ID to Tetrava support. Bank statements may list the processor name, not Tetrava Labs."
-
-export const CARD_CHECKOUT_ACTION_NOTE =
-  "Place order opens card checkout in a new tab. We do not collect card numbers on this site."
 
 const CARD_CHECKOUT_TAB = "tetrava-card-checkout"
 
@@ -59,7 +49,7 @@ const CARD_CHECKOUT_LOADING_HTML = `<!DOCTYPE html>
   <div class="box">
     <div class="spinner" aria-hidden="true"></div>
     <h1>Preparing card checkout</h1>
-    <p>Your order is being created. Secure payment opens here in a moment. If this tab stays blank, return to Tetrava and use <strong>Open card checkout</strong> on the payment page.</p>
+    <p>Your order is being created. Do not leave this page. Secure payment opens here in a moment.</p>
   </div>
 </body>
 </html>`

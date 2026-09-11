@@ -16,6 +16,7 @@ export async function scheduleOrderEmails(input: {
   totalUsd: number
   paymentMethod: "manual_card_invoice" | "cardtousdt" | "crypto" | "wise"
   items: OrderEmailItem[]
+  deferConfirmationUntilPaid?: boolean
 }) {
   if (!PUBLISHABLE_KEY) {
     return { ok: false as const, reason: "NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY not configured" }
@@ -34,7 +35,8 @@ export async function scheduleOrderEmails(input: {
         display_id: input.displayId,
         total_usd: input.totalUsd,
         payment_method: input.paymentMethod,
-        items: input.items
+        items: input.items,
+        defer_confirmation_until_paid: Boolean(input.deferConfirmationUntilPaid)
       }),
       cache: "no-store"
     })

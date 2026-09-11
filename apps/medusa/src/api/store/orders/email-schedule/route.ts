@@ -9,6 +9,7 @@ type Body = {
   total_usd?: number
   payment_method?: PaymentMethod
   items?: OrderEmailItem[]
+  defer_confirmation_until_paid?: boolean
 }
 
 function normalizeItems(items: Body["items"]) {
@@ -30,7 +31,7 @@ function normalizeItems(items: Body["items"]) {
 
 /**
  * POST /store/orders/email-schedule
- * Queues delayed order confirmation (+ follow-up) emails after checkout.
+ * Queues unpaid payment reminders, or stores checkout context when confirmation is deferred.
  */
 export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   const orderId = req.body?.order_id?.trim()
@@ -59,7 +60,8 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     displayId,
     totalUsd,
     paymentMethod,
-    items
+    items,
+    deferConfirmationUntilPaid: Boolean(req.body?.defer_confirmation_until_paid)
   })
 
   if (!result.ok) {

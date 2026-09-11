@@ -423,6 +423,50 @@ export function buildInvoicePaymentReceivedEmail(input: InvoicePaidInput) {
   }
 }
 
+type MerchantPaidConfirmationInput = {
+  orderLabel: string
+  orderId: string
+  email: string
+  total: number
+  paymentMethod: PaymentMethod
+  provider?: string | null
+  items?: OrderEmailItem[]
+}
+
+function paidOrderPaymentLabel(paymentMethod: PaymentMethod, provider?: string | null) {
+  if (paymentMethod === "cardtousdt" || paymentMethod === "card") return "CardToUSDT"
+  if (provider === "paymento") return "Paymento"
+  if (paymentMethod === "crypto") return "Crypto checkout"
+  return paymentMethod
+}
+
+/** Ops copy when CardToUSDT or Paymento payment is confirmed. */
+export function buildMerchantPaidOrderConfirmationEmail(input: MerchantPaidConfirmationInput) {
+  const paymentLabel = paidOrderPaymentLabel(input.paymentMethod, input.provider)
+
+  const html = emailShell(`
+      <h1 style="margin:0 0 12px;color:#E8E8F0;font-size:24px;font-weight:600;">Order confirmed — payment received</h1>
+      <p style="margin:0 0 16px;color:#8A8AA0;font-size:14px;line-height:1.5;">
+        ${escapeHtml(input.orderLabel)} paid via ${escapeHtml(paymentLabel)}. Fulfillment can proceed.
+      </p>
+      <p style="margin:0 0 8px;color:#E8E8F0;font-size:14px;line-height:1.5;">
+        Order id: <strong>${escapeHtml(input.orderId)}</strong>
+      </p>
+      <p style="margin:0 0 16px;color:#E8E8F0;font-size:14px;line-height:1.5;">
+        Customer: &lt;${escapeHtml(input.email)}&gt;
+      </p>
+      ${renderItems(input.items || [])}
+      <p style="margin:0 0 8px;color:#E8E8F0;font-size:16px;">
+        Total paid: <strong>${formatMoney(input.total)}</strong>
+      </p>
+  `)
+
+  return {
+    subject: `Order confirmed ${input.orderLabel} — ${paymentLabel} payment received`,
+    html
+  }
+}
+
 /** T1 — paid order confirmation (immediate on payment). */
 export function buildPaidOrderConfirmationEmail(input: PaidConfirmationInput) {
   const { orderLabel, total, items = [], ordersUrl, contactUrl } = input

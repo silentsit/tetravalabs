@@ -9,7 +9,9 @@ import {
   processDueTrackingSlaEmails,
   scheduleTrackingSlaEmail
 } from "./order-fulfillment-emails"
+import { opsNewOrderEmail } from "./manual-card-invoice-config"
 import {
+  buildMerchantPaidOrderConfirmationEmail,
   buildPaidOrderConfirmationEmail,
   buildPaymentFollowupEmail,
   buildPaymentReminderEmail,
@@ -32,6 +34,8 @@ type ScheduleInput = {
   totalUsd: number
   paymentMethod: PaymentMethod
   items: OrderEmailItem[]
+  /** Store checkout context only; T1 + ops email fire on payment webhook. */
+  deferConfirmationUntilPaid?: boolean
 }
 
 type ScheduleRow = {
@@ -94,6 +98,26 @@ async function loadPaymentIntent(orderId: string) {
   )
 }
 
+async function loadPaymentProvider(orderId: string) {
+  return withDb(
+    async (db) => {
+      const result = await db.query<{ provider: string | null }>(
+        `SELECT provider FROM crypto_payment_intents WHERE order_id = $1 LIMIT 1`,
+        [orderId]
+      )
+      return result.rows[0]?.provider?.trim() || null
+    },
+    async () => null
+  )
+}
+
+function shouldNotifyOpsOnPaidConfirmation(
+  paymentMethod: PaymentMethod | undefined,
+  provider: string | null
+) {
+  return paymentMethod === "cardtousdt" || provider === "paymento"
+}
+
 type ScheduleResult = { ok: true } | { ok: false; reason: string }
 type CancelResult = { ok: true } | { ok: false }
 
@@ -112,7 +136,19 @@ export async function scheduleOrderEmails(input: ScheduleInput) {
           checkout_at,
           confirmation_due_at
         )
-        VALUES ($1, $2, $3, $4, $5, $6::jsonb, NOW(), NOW() + ($7 || ' minutes')::interval)
+        VALUES (
+          $1,
+          $2,
+          $3,
+          $4,
+          $5,
+          $6::jsonb,
+          NOW(),
+          CASE
+            WHEN $8::boolean THEN NULL
+            ELSE NOW() + ($7 || ' minutes')::interval
+          END
+        )
         ON CONFLICT (order_id) DO UPDATE SET
           email = EXCLUDED.email,
           display_id = EXCLUDED.display_id,
@@ -134,7 +170,8 @@ export async function scheduleOrderEmails(input: ScheduleInput) {
           input.totalUsd,
           input.paymentMethod,
           JSON.stringify(input.items),
-          String(PAYMENT_REMINDER_DELAY_MINUTES)
+          String(PAYMENT_REMINDER_DELAY_MINUTES),
+          Boolean(input.deferConfirmationUntilPaid)
         ]
       )
 
@@ -231,10 +268,11 @@ async function listDueSchedules(limit = 50) {
         FROM order_email_schedules s
         LEFT JOIN crypto_payment_intents p ON p.order_id = s.order_id
         WHERE s.cancelled_at IS NULL
-          AND s.payment_method NOT IN ('manual_card_invoice')
+          AND s.payment_method NOT IN ('manual_card_invoice', 'cardtousdt')
+          AND COALESCE(p.provider, '') <> 'paymento'
           AND COALESCE(p.status, 'pending') <> 'completed'
           AND (
-            (s.confirmation_sent_at IS NULL AND s.confirmation_due_at <= NOW())
+            (s.confirmation_sent_at IS NULL AND s.confirmation_due_at IS NOT NULL AND s.confirmation_due_at <= NOW())
             OR (
               s.confirmation_sent_at IS NOT NULL
               AND s.followup_sent_at IS NULL
@@ -318,6 +356,25 @@ export async function sendPaidOrderConfirmationEmail(input: {
     subject,
     html
   })
+
+  const provider = await loadPaymentProvider(input.orderId)
+  const paymentMethod = schedule?.payment_method
+  if (shouldNotifyOpsOnPaidConfirmation(paymentMethod, provider)) {
+    const merchantEmail = buildMerchantPaidOrderConfirmationEmail({
+      orderLabel,
+      orderId: input.orderId,
+      email: input.email,
+      total,
+      paymentMethod: paymentMethod || (provider === "paymento" ? "crypto" : "cardtousdt"),
+      provider,
+      items
+    })
+    await sendHtmlEmail({
+      to: opsNewOrderEmail(),
+      subject: merchantEmail.subject,
+      html: merchantEmail.html
+    })
+  }
 
   await cancelOrderEmailSchedule(input.orderId)
   await scheduleTrackingSlaEmail({

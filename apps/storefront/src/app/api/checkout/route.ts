@@ -268,7 +268,8 @@ export async function POST(req: Request) {
           displayId: order.display_id,
           totalUsd,
           paymentMethod: "cardtousdt",
-          items: emailItems
+          items: emailItems,
+          deferConfirmationUntilPaid: true
         }).catch(() => {
           // Email scheduling failure must not block checkout.
         })
@@ -329,7 +330,8 @@ export async function POST(req: Request) {
         displayId: order.display_id,
         totalUsd,
         paymentMethod,
-        items: emailItems
+        items: emailItems,
+        deferConfirmationUntilPaid: paymentProvider === "paymento"
       }).catch(() => {
         // Email scheduling failure must not block checkout.
       })

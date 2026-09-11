@@ -1,7 +1,11 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { type PackTier } from "@/lib/pack-pricing"
+import {
+  formatPackTierSavingsLabel,
+  packTierSavingsUsd,
+  type PackTier
+} from "@/lib/pack-pricing"
 
 type Props = {
   tiers: PackTier[]
@@ -49,7 +53,7 @@ export function PackSizeSelector({
     onChange?.(tier)
   }
 
-  const selectedSavings = selected.savingsUsd ?? 0
+  const selectedSavings = packTierSavingsUsd(selected)
   const selectedCompareAt =
     showCompareAtPricing &&
     selected.compareAtPerUnit != null &&
@@ -74,15 +78,14 @@ export function PackSizeSelector({
       <div className="space-y-3">
         {displayTiers.map((tier) => {
           const active = selected.qty === tier.qty
-          const savingsLabel =
-            tier.savingsPct > 0 ? `save ${Math.round(tier.savingsPct * 100)}%` : null
+          const savingsLabel = formatPackTierSavingsLabel(tier)
           const showCardCompare =
             showCompareAtPricing &&
             tier.compareAtPerUnit != null &&
             tier.compareAtPerUnit > tier.perUnit
           const showPackCompare =
             showCompareAtPricing &&
-            (tier.savingsUsd ?? 0) > 0 &&
+            packTierSavingsUsd(tier) > 0 &&
             tier.compareAtPack != null
 
           return (

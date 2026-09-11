@@ -1,4 +1,9 @@
 import type { CompoundStrengthOption } from "@/lib/compound-product"
+import {
+  maxPackTierSavingsPct,
+  maxPackTierSavingsUsd,
+  packUsesAbsoluteSavings
+} from "@/lib/pack-pricing"
 import { getVariantPriceCents } from "@/lib/product-price"
 
 type Props = {
@@ -8,12 +13,31 @@ type Props = {
   selectedStrength: CompoundStrengthOption
 }
 
-const BENEFITS: Array<{ lead: string; rest: string }> = [
+const STATIC_BENEFITS: Array<{ lead: string; rest: string }> = [
   { lead: "FREE", rest: " express shipping on all orders" },
   { lead: "Guaranteed", rest: " delivery worldwide" },
-  { lead: "Secure", rest: " payment via card, Wise, or crypto" },
-  { lead: "Save", rest: " up to 20% on bulk orders" }
+  { lead: "Secure", rest: " payment via card, Wise, or crypto" }
 ]
+
+function bulkSavingsBenefit(strength: CompoundStrengthOption): { lead: string; rest: string } {
+  const hasAbsolutePacks = strength.packTiers.some(packUsesAbsoluteSavings)
+  const qualifyingTiers = strength.packTiers.filter(packUsesAbsoluteSavings)
+  const maxUsd = maxPackTierSavingsUsd(qualifyingTiers)
+
+  if (hasAbsolutePacks && maxUsd > 0) {
+    const amount = maxUsd % 1 === 0 ? maxUsd.toFixed(0) : maxUsd.toFixed(2)
+    return { lead: "Save", rest: ` up to $${amount} on bulk orders` }
+  }
+
+  if (!hasAbsolutePacks) {
+    const maxPct = maxPackTierSavingsPct(strength.packTiers)
+    if (maxPct > 0) {
+      return { lead: "Save", rest: ` up to ${Math.round(maxPct * 100)}% on bulk orders` }
+    }
+  }
+
+  return { lead: "Save", rest: " on multi-vial packs" }
+}
 
 function pricesForStrength(strength: CompoundStrengthOption): number[] {
   if (strength.packTiers.length) {
@@ -64,6 +88,7 @@ export function ProductOfferSummary({
 }: Props) {
   const priceLabel = formatUsdRange(pricesForStrength(selectedStrength))
   const writeup = shortProductWriteup(researchSummary, displayName, categoryLabel)
+  const benefits = [...STATIC_BENEFITS, bulkSavingsBenefit(selectedStrength)]
 
   return (
     <div className="space-y-4">
@@ -76,8 +101,8 @@ export function ProductOfferSummary({
       <p className="max-w-xl text-[16px] leading-relaxed text-[#475569]">{writeup}</p>
 
       <ul className="space-y-1.5 text-[16px] leading-snug text-[#334155]">
-        {BENEFITS.map((item) => (
-          <li key={item.lead}>
+        {benefits.map((item) => (
+          <li key={`${item.lead}${item.rest}`}>
             <span className="text-[#94A3B8]" aria-hidden>
               —{" "}
             </span>

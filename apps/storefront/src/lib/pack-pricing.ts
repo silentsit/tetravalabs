@@ -2,6 +2,9 @@ import type { StoreProduct } from "@/lib/medusa"
 import type { StoreVariant } from "@/lib/product-price"
 import { getProductPriceCents, getVariantPriceCents } from "@/lib/product-price"
 
+/** Pack totals at or above this use dollar savings labels instead of percent. */
+export const PACK_ABSOLUTE_SAVINGS_MIN_USD = 100
+
 export type PackTier = {
   tier: string
   qty: number
@@ -19,6 +22,62 @@ export type PackTier = {
 
 /** Handles that show Loti-style compare-at strikethrough (design preview). */
 export const COMPARE_AT_PREVIEW_HANDLES = new Set(["cagrilintide"])
+
+export function packUsesAbsoluteSavings(tier: PackTier): boolean {
+  return tier.price >= PACK_ABSOLUTE_SAVINGS_MIN_USD
+}
+
+export function packTierSavingsUsd(tier: PackTier): number {
+  if (tier.savingsUsd != null && tier.savingsUsd > 0) {
+    return tier.savingsUsd
+  }
+  if (tier.savingsPct <= 0 || tier.savingsPct >= 1 || tier.perUnit <= 0 || tier.qty <= 0) {
+    return 0
+  }
+  const listPack = (tier.perUnit / (1 - tier.savingsPct)) * tier.qty
+  return Number(Math.max(0, listPack - tier.price).toFixed(2))
+}
+
+function formatSavingsUsdLabel(savingsUsd: number): string {
+  const rounded =
+    savingsUsd % 1 === 0 ? savingsUsd.toFixed(0) : savingsUsd.toFixed(2)
+  return `save $${rounded}`
+}
+
+export function formatPackTierSavingsLabel(tier: PackTier): string | null {
+  const savingsUsd = packTierSavingsUsd(tier)
+  const hasPctSavings = tier.savingsPct > 0 && tier.savingsPct < 1
+  if (savingsUsd <= 0 && !hasPctSavings) return null
+
+  // From $100 pack total upward: always dollars, never percent.
+  if (packUsesAbsoluteSavings(tier)) {
+    return savingsUsd > 0 ? formatSavingsUsdLabel(savingsUsd) : null
+  }
+
+  if (hasPctSavings) {
+    return `save ${Math.round(tier.savingsPct * 100)}%`
+  }
+
+  return null
+}
+
+export function maxPackTierSavingsUsd(tiers: PackTier[]): number {
+  return tiers.reduce((max, tier) => Math.max(max, packTierSavingsUsd(tier)), 0)
+}
+
+export function maxPackTierSavingsPct(tiers: PackTier[]): number {
+  return tiers.reduce((max, tier) => Math.max(max, tier.savingsPct), 0)
+}
+
+export function shouldShowCompareAtPricing(
+  handle: string | null | undefined,
+  tiers: PackTier[]
+): boolean {
+  if (showCompareAtPricingForHandle(handle)) return true
+  return tiers.some(
+    (tier) => packUsesAbsoluteSavings(tier) && packTierSavingsUsd(tier) > 0
+  )
+}
 
 export function showCompareAtPricingForHandle(handle: string | null | undefined): boolean {
   if (!handle) return false

@@ -10,7 +10,7 @@ import {
 } from "@/lib/compound-product"
 import { getVariantPriceCents } from "@/lib/product-price"
 import type { PackTier } from "@/lib/pack-pricing"
-import { showCompareAtPricingForHandle } from "@/lib/pack-pricing"
+import { shouldShowCompareAtPricing } from "@/lib/pack-pricing"
 import { cartLineId } from "@/lib/cart-line-id"
 
 type Props = {
@@ -101,7 +101,10 @@ export function ProductPurchasePanel({
           tiers={packTiers}
           value={selectedTier?.qty}
           onChange={onPackChange}
-          showCompareAtPricing={showCompareAtPricingForHandle(selectedStrength.handle)}
+          showCompareAtPricing={shouldShowCompareAtPricing(
+            selectedStrength.handle,
+            packTiers
+          )}
         />
       ) : (
         <div>

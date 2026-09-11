@@ -1,12 +1,13 @@
 export const MANUAL_CARD_INVOICE_ID = "manual_card_invoice" as const
 
-export const MANUAL_CARD_INVOICE_TITLE =
-  "Credit/Debit Cards (Visa/MasterCard/Amex/Discover)"
+export const MANUAL_CARD_INVOICE_TITLE = "Credit/Debit Cards (Visa/MasterCard)"
 
 export const MANUAL_CARD_INVOICE_DESCRIPTION_LINES = [
-  '1. Click on "Place order".',
-  "2. You will receive an email with instructions on how to make payment via credit/debit card.",
-  "3. Once payment is complete, we will update you with your tracking number within 48 hours."
+  '1. Click on "Pay with card" to checkout.',
+  "2. You will receive an email with a payment link within 2 hours.",
+  "3. Click on the payment link and complete the payment via your credit/debit card.",
+  "",
+  "You will receive your tracking number within 1 - 2 business days."
 ] as const
 
 export const MANUAL_CARD_INVOICE_DESCRIPTION =
@@ -15,7 +16,7 @@ export const MANUAL_CARD_INVOICE_DESCRIPTION =
 export const MANUAL_CARD_INVOICE_INTERNAL_NOTE = "Awaiting invoice payment"
 
 export const MANUAL_CARD_INVOICE_THANK_YOU =
-  "We've received your order. Check your email for the receipt. We'll send a PayPal invoice next so you can pay by card."
+  "We've received your order. Watch your inbox for a payment link within 2 hours, then pay by credit or debit card."
 
 export const manualCardInvoiceConfig = {
   id: MANUAL_CARD_INVOICE_ID,

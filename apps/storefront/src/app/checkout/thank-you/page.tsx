@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Order received",
-  description: "Your Tetrava Labs order is recorded. Check email for the receipt and PayPal invoice.",
+  description: "Your Tetrava Labs order is recorded. Check email for your payment link.",
   path: "/checkout/thank-you",
   noIndex: true,
   registerWebPage: false

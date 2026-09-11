@@ -1109,8 +1109,11 @@ export function CheckoutForm() {
     if (loading) {
       return paymentMethod === "crypto" ? "Processing…" : "Placing your order…"
     }
+    if (paymentMethod === "card" && cardUsesInvoice) {
+      return "Pay with card"
+    }
     return "Place order"
-  }, [loading, paymentMethod])
+  }, [loading, paymentMethod, cardUsesInvoice])
 
   const shippingAddress = useMemo(() => {
     if (!shipToDifferent) {
@@ -1556,11 +1559,6 @@ export function CheckoutForm() {
                         : CARD_CHECKOUT_DESCRIPTION_LINES
                       ).join("\n")}
                     </span>
-                    {cardUsesInvoice ? (
-                      <span className="text-xs leading-relaxed text-[#0F766E]">
-                        Place order does not charge your card. We email a PayPal invoice next.
-                      </span>
-                    ) : null}
                   </span>
                 </label>
 

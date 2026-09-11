@@ -105,8 +105,7 @@ export function CheckoutThankYouContent() {
             </ul>
           ) : null}
           <p className="text-xs leading-relaxed text-[#64748B]">
-            Place order did not charge a card. Check your inbox for the receipt. The PayPal invoice
-            is the card-pay step.
+            Pay with card does not charge you at checkout. Your payment link arrives by email.
           </p>
           {orderId ? (
             <p className="text-xs text-[#94A3B8]">

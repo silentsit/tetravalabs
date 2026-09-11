@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Invoice orders",
-  description: "Review on-hold card invoice orders and mark PayPal invoices as paid.",
+  description: "Review on-hold card orders and mark payment received after the customer pays.",
   path: "/account/invoices",
   noIndex: true
 })
@@ -15,7 +15,7 @@ export default function AccountInvoicesPage() {
     <>
       <AccountPageHeader
         title="Invoice orders"
-        description="Awaiting invoice payment: send the PayPal invoice from PayPal, then mark payment received here. That moves the order to processing and emails the customer."
+        description="Awaiting card payment: send the customer their payment link, then mark payment received here. That moves the order to processing and emails the customer."
       />
       <InvoiceOrdersPanel />
     </>

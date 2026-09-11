@@ -302,6 +302,31 @@ export async function POST(req: Request) {
           // Receipt / ops email failure must not block checkout.
         })
       }
+    } else if (paymentMethod === "manual_card_invoice") {
+      paymentProvider = "manual_card_invoice"
+      void recordManualCardInvoice({
+        orderId: order.id,
+        email,
+        displayId: order.display_id,
+        firstName,
+        lastName,
+        totalUsd,
+        items: emailItems,
+        shipping: {
+          firstName,
+          lastName,
+          company,
+          address1,
+          address2,
+          city,
+          province,
+          postalCode,
+          phone,
+          country
+        }
+      }).catch(() => {
+        // Receipt / ops email failure must not block checkout.
+      })
     } else if (paymentMethod === "wise") {
       paymentProvider = "wise"
       void scheduleOrderEmails({

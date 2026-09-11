@@ -61,8 +61,6 @@ import {
   scheduleCheckoutAbandonIntent
 } from "@/lib/checkout-abandon"
 import { CheckoutPaymentHelp } from "@/components/checkout-payment-help"
-import { CheckoutWiseInfo } from "@/components/checkout-wise-info"
-import { WiseMark } from "@/components/wise-mark"
 
 type CheckoutOrder = {
   id: string
@@ -1046,6 +1044,12 @@ export function CheckoutForm() {
       })
   }, [])
 
+  useEffect(() => {
+    if (cardUsesInvoice && paymentMethod === "manual_card_invoice") {
+      setPaymentMethod("card")
+    }
+  }, [cardUsesInvoice, paymentMethod])
+
   const loadCustomerSession = useCallback(async () => {
     try {
       const hasToken = Boolean(readAuthToken())
@@ -1109,7 +1113,7 @@ export function CheckoutForm() {
     if (loading) {
       return paymentMethod === "crypto" ? "Processing…" : "Placing your order…"
     }
-    if (paymentMethod === "card" && cardUsesInvoice) {
+    if (paymentMethod === "manual_card_invoice" || (paymentMethod === "card" && cardUsesInvoice)) {
       return "Pay with card"
     }
     return "Place order"
@@ -1219,7 +1223,7 @@ export function CheckoutForm() {
     }
     if (paymentMethod === "crypto" && !cryptoLive) {
       setError(
-        "Cryptocurrency checkout is not available right now. Choose credit/debit cards or Wise, or try again once Paymento is configured on the server."
+        "Cryptocurrency checkout is not available right now. Choose credit/debit cards, or try again once Paymento is configured on the server."
       )
       return
     }
@@ -1378,8 +1382,8 @@ export function CheckoutForm() {
 
     closeCardCheckoutTab(cardTab)
 
-    if (resolvedPaymentMethod === "card") {
-      storeCheckoutPaymentMethod(orderId, "card")
+    if (resolvedPaymentMethod === "card" || resolvedPaymentMethod === "manual_card_invoice") {
+      storeCheckoutPaymentMethod(orderId, resolvedPaymentMethod)
       const params = new URLSearchParams({
         order_id: orderId,
         total: orderTotal.toFixed(2)
@@ -1536,8 +1540,6 @@ export function CheckoutForm() {
               <section id="checkout-payment" className="card bg-[#F0FDFA] p-5 sm:p-6">
                 <h2 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h2>
                 <CheckoutPaymentHelp />
-                {paymentMethod === "wise" ? <CheckoutWiseInfo amountUsd={estimatedTotal} /> : null}
-
                 <label className={methodCardClass(paymentMethod === "card")}>
                   <input
                     type="radio"
@@ -1562,26 +1564,27 @@ export function CheckoutForm() {
                   </span>
                 </label>
 
-                <label className={`${methodCardClass(paymentMethod === "wise")} mt-3`}>
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    value="wise"
-                    checked={paymentMethod === "wise"}
-                    onChange={() => setPaymentMethod("wise")}
-                    className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
-                  />
-                  <span className="flex min-w-0 flex-1 flex-col gap-1">
-                    <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                      <WiseMark />
-                      Pay instantly with Wise
+                {!cardUsesInvoice ? (
+                  <label className={`${methodCardClass(paymentMethod === "manual_card_invoice")} mt-3`}>
+                    <input
+                      type="radio"
+                      name="payment_method"
+                      value="manual_card_invoice"
+                      checked={paymentMethod === "manual_card_invoice"}
+                      onChange={() => setPaymentMethod("manual_card_invoice")}
+                      className="mt-1 h-4 w-4 shrink-0 accent-[#0D9488]"
+                    />
+                    <span className="flex min-w-0 flex-1 flex-col gap-1">
+                      <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
+                        <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                        {MANUAL_CARD_INVOICE_TITLE}
+                      </span>
+                      <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
+                        {MANUAL_CARD_INVOICE_DESCRIPTION_LINES.join("\n")}
+                      </span>
                     </span>
-                    <span className="text-xs leading-relaxed text-[#64748B]">
-                      Pay the order total in USD through Wise. Same amount recorded on the order. If
-                      you don&apos;t have Wise, setup takes about 5 minutes.
-                    </span>
-                  </span>
-                </label>
+                  </label>
+                ) : null}
 
                 <label className={`${methodCardClass(paymentMethod === "crypto")} mt-3`}>
                   <input
@@ -1631,17 +1634,6 @@ export function CheckoutForm() {
                   </div>
                 ) : null}
               </section>
-
-              {paymentMethod === "wise" ? (
-                <div className="space-y-3 text-sm leading-relaxed text-[#64748B]">
-                  <h3 className="font-serif text-lg text-[#0F172A]">What happens next</h3>
-                  <ul className="list-disc space-y-1 pl-4">
-                    <li>Tetrava records the order at the USD total shown above.</li>
-                    <li>You send that same USD amount through Wise.</li>
-                    <li>Message us on WhatsApp with your order number once the transfer is sent.</li>
-                  </ul>
-                </div>
-              ) : null}
 
               <label
                 className={`flex items-start gap-3 rounded-xl border bg-[#FFFBEB]/60 p-4 text-sm leading-relaxed text-[#475569] ${
@@ -1694,7 +1686,7 @@ export function CheckoutForm() {
 
           <p className="flex items-center gap-2 text-xs text-[#94A3B8]">
             <Lock className="h-3.5 w-3.5" aria-hidden />
-            Card checkout opens in a new tab. Crypto and Wise charge on their own pages. We do not
+            Instant card checkout opens in a new tab. Crypto charges on its own page. We do not
             collect card numbers.
           </p>
         </div>

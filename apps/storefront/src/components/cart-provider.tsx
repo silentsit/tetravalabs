@@ -6,7 +6,8 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState
+  useState,
+  type Context
 } from "react"
 
 export type CartItem = {
@@ -32,8 +33,22 @@ type CartContextValue = {
   setIsOpen: (open: boolean) => void
 }
 
-const CartContext = createContext<CartContextValue | null>(null)
 const STORAGE_KEY = "tetrava_cart_v1"
+
+/**
+ * Keep one Context object across Fast Refresh. A second module copy of this
+ * file makes useCart read a different context than CartProvider writes.
+ */
+const cartContextKey = "__tetravaCartContext"
+const CartContext = (() => {
+  const g = globalThis as typeof globalThis & {
+    [cartContextKey]?: Context<CartContextValue | null>
+  }
+  if (!g[cartContextKey]) {
+    g[cartContextKey] = createContext<CartContextValue | null>(null)
+  }
+  return g[cartContextKey]
+})()
 
 function normalizeItem(raw: Partial<CartItem>): CartItem | null {
   if (!raw.id || !raw.productId || !raw.variantId || !raw.handle || !raw.title) return null
@@ -53,25 +68,31 @@ function normalizeItem(raw: Partial<CartItem>): CartItem | null {
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
   const [isOpen, setIsOpen] = useState(false)
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
     const raw = window.localStorage.getItem(STORAGE_KEY)
-    if (!raw) return
+    if (!raw) {
+      setHydrated(true)
+      return
+    }
     try {
       const parsed = JSON.parse(raw) as unknown
       if (!Array.isArray(parsed)) {
         setItems([])
-        return
+      } else {
+        setItems(parsed.map(normalizeItem).filter((item): item is CartItem => item != null))
       }
-      setItems(parsed.map(normalizeItem).filter((item): item is CartItem => item != null))
     } catch {
       setItems([])
     }
+    setHydrated(true)
   }, [])
 
   useEffect(() => {
+    if (!hydrated) return
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
-  }, [items])
+  }, [hydrated, items])
 
   const addItem = useCallback((item: Omit<CartItem, "quantity">, quantity = 1) => {
     setItems((prev) => {

@@ -4,8 +4,8 @@ import { JetBrains_Mono, Jost, Lora } from "next/font/google"
 import "./globals.css"
 import "@/lib/json-ld-registry"
 import { AnnouncementBar } from "@/components/announcement-bar"
+import { AppProviders } from "@/components/app-providers"
 import { CartDrawer } from "@/components/cart-drawer"
-import { CartProvider } from "@/components/cart-provider"
 import { DeferredChrome } from "@/components/deferred-chrome"
 import { JsonLd } from "@/components/json-ld"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
   }
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
@@ -128,7 +128,7 @@ export default async function RootLayout({
       <body
         className={`${jost.variable} ${lora.variable} ${jetbrainsMono.variable} min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0F172A]`}
       >
-        <CartProvider>
+        <AppProviders>
           <AnnouncementBar />
           <SiteHeader />
           <main>{children}</main>
@@ -136,7 +136,7 @@ export default async function RootLayout({
           <CartDrawer />
           <DeferredChrome />
           <ScrollToTop />
-        </CartProvider>
+        </AppProviders>
         {plausibleDomain ? (
           <Script
             defer

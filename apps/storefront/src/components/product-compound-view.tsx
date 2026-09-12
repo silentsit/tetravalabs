@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { StoreCoaDocument } from "@/lib/medusa";
 import { emptyProductReviews, type ProductReviewsResponse } from "@/lib/reviews";
 import type { FaqItem } from "@/lib/faq-content";
-import type { ProductResearchDetail, ResearchReference } from "@/lib/product-research-detail";
+import type { ProductResearchDetail, ResearchReference } from "@/lib/product-research-types";
 import {
   buildCompoundProductPath,
   compoundSeoName,

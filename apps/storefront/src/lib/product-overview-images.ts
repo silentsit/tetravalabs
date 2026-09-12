@@ -137,6 +137,106 @@ const PEOPLE_ILLUSTRATION_ALT_OVERRIDES: Record<string, Record<number, string>> 
     1: "Two lab researchers comparing an MMPOWER-3 six-minute-walk chart that missed its endpoints with a Barth syndrome knee-extensor strength chart beside SS-31 RUO vials and a Forzinity carton",
     2: "Two researchers comparing a MOTS-c AMPK nuclear-signaling diagram with an SS-31 cardiolipin inner-membrane diagram beside both research vials and a 96-well assay plate",
   },
+  "ghk-cu": {
+    0: "Scientist reviewing a GHK-Cu copper-tripeptide binding diagram beside a GHK-Cu peptide vial for sale",
+    1: "Two lab researchers comparing topical GHK-Cu serum notes with a lyophilized GHK-Cu research vial and HPLC chromatogram",
+    2: "Gloved researcher matching a GHK-Cu Certificate of Analysis to the vial before a buy GHK-Cu online inventory check",
+  },
+  tb500: {
+    0: "Scientist pointing to the Ac-LKKTETQ fragment on a TB-500 peptide structure diagram beside a TB-500 vial for sale",
+    1: "Two researchers comparing a full-length thymosin beta-4 model with a TB-500 research vial and mass-spec printout",
+    2: "Gloved hand placing a TB-500 peptide for sale vial onto a COA sheet next to a BPC-157 comparator vial",
+  },
+  ipamorelin: {
+    0: "Scientist reviewing an ipamorelin GHS-R1a receptor diagram beside an ipamorelin peptide vial",
+    1: "Two lab researchers comparing ipamorelin vs sermorelin pathway sketches on a whiteboard beside both research vials",
+    2: "Gloved researcher checking an ipamorelin Certificate of Analysis before a buy ipamorelin online lot release",
+  },
+  tesamorelin: {
+    0: "Scientist pointing to a tesamorelin GHRH analog diagram beside a tesamorelin peptide vial for sale",
+    1: "Two researchers reviewing a tesamorelin visceral-adipose imaging chart next to a tesamorelin 10mg research vial",
+    2: "Gloved hand matching tesamorelin 10mg for sale paperwork to the lyophilized vial and HPLC trace",
+  },
+  "hgh-191aa": {
+    0: "Scientist comparing a 191-amino-acid somatropin ribbon diagram with an HGH 191aa research vial",
+    1: "Two lab researchers reviewing HGH 191aa vs fragment 176-191 sequences on a monitor beside both vials",
+    2: "Gloved researcher aligning an HGH 191aa for sale vial with its lot-linked Certificate of Analysis",
+  },
+  "igf-1-lr3": {
+    0: "Scientist pointing to the Arg3 substitution on an IGF-1 LR3 peptide diagram beside an IGF-1 LR3 vial for sale",
+    1: "Two researchers comparing IGF-1 LR3 vs native IGF-1 binding notes beside a buy IGF-1 LR3 inventory tray",
+    2: "Gloved hand placing an IGF-1 LR3 research vial onto an HPLC-MS purity chromatogram",
+  },
+  "cjc-1295-without-dac": {
+    0: "Scientist reviewing a CJC-1295 without DAC GHRH(1-29) analog diagram beside the research vial",
+    1: "Two lab researchers comparing CJC-1295 with DAC vs without DAC half-life sketches on a whiteboard",
+    2: "Gloved researcher checking a buy CJC-1295 no DAC Certificate of Analysis against the lyophilized vial",
+  },
+  "cjc-1295-with-dac": {
+    0: "Scientist pointing to the Drug Affinity Complex albumin-binding tail on a CJC-1295 with DAC diagram",
+    1: "Two researchers reviewing a CJC-1295 with DAC GH and IGF-1 time-course chart beside the 10mg vial",
+    2: "Gloved hand matching a CJC-1295 with DAC research vial to its lot-linked HPLC chromatogram",
+  },
+  kpv: {
+    0: "Scientist reviewing a KPV peptide Lys-Pro-Val structure diagram beside a KPV peptide vial for sale",
+    1: "Two lab researchers comparing KPV peptide oral vs injection notes for a mucosal-transport assay",
+    2: "Gloved researcher placing a buy KPV peptide vial onto its Certificate of Analysis",
+  },
+  epithalon: {
+    0: "Scientist comparing epitalon vs epithalon Ala-Glu-Asp-Gly sequence cards beside an epithalon research vial",
+    1: "Two researchers reviewing pineal tetrapeptide literature next to an epithalon 50mg vial for sale",
+    2: "Gloved hand aligning a buy epithalon lot label with the HPLC purity chromatogram",
+  },
+  "bpc-157-tb500-blend": {
+    0: "Scientist comparing BPC-157 and TB-500 structures on one Wolverine blend vial for sale",
+    1: "Two lab researchers reviewing where to buy BPC-157 and TB-500 blend notes beside the dual-peptide vial",
+    2: "Gloved researcher matching a BPC-157 TB-500 peptide for sale COA to the labeled blend vial",
+  },
+  "glow-bpc-157-tb500-ghk-cu": {
+    0: "Scientist reviewing a GLOW peptide three-component map, BPC-157, TB-500, and GHK-Cu, beside the blend vial",
+    1: "Two researchers comparing a GLOW blend peptide vial with separate component vials and an HPLC overlay",
+    2: "Gloved hand placing a glow peptide buy online vial onto its Certificate of Analysis",
+  },
+  "melanotan-2-10mg": {
+    0: "Scientist pointing to a Melanotan 2 cyclic heptapeptide diagram beside a Melanotan 2 vial for sale",
+    1: "Two lab researchers comparing Melanotan 2 vs 1 receptor-selectivity notes on a whiteboard",
+    2: "Gloved researcher checking where to buy Melanotan 2 lot paperwork against the lyophilized vial",
+  },
+  "mk-677-5mg": {
+    0: "Scientist reviewing an ibutamoren MK-677 ghrelin-receptor diagram beside an MK-677 for sale vial",
+    1: "Two researchers comparing oral MK-677 vs injectable GHRP notes next to the research vial",
+    2: "Gloved hand matching a buy MK-677 Certificate of Analysis to the labeled 5mg vial",
+  },
+  "hexarelin-acetate": {
+    0: "Scientist pointing to a hexarelin GHS-R1a hexapeptide diagram beside a hexarelin peptide vial",
+    1: "Two lab researchers comparing hexarelin vs ipamorelin receptor notes on a lab monitor",
+    2: "Gloved researcher aligning a buy hexarelin online COA with the hexarelin acetate vial",
+  },
+  "thymosin-alpha-1": {
+    0: "Scientist reviewing a thymosin alpha-1 28-residue diagram beside a thymosin alpha-1 10mg vial for sale",
+    1: "Two researchers checking immune-modulatory assay plates next to a buy thymosin alpha-1 inventory box",
+    2: "Gloved hand placing a thymosin alpha-1 peptide buy online vial onto its HPLC chromatogram",
+  },
+  "kisspeptin-10": {
+    0: "Scientist pointing to a kisspeptin-10 KISS1R diagram beside a kisspeptin-10 vial for sale",
+    1: "Two lab researchers reviewing kisspeptin-10 for men vs women study notes beside the research vial",
+    2: "Gloved researcher matching a buy kisspeptin-10 Certificate of Analysis to the 5mg vial",
+  },
+  "cagrilintide-semaglutide": {
+    0: "Scientist comparing a cagrilintide semaglutide dual-vial layout with amylin and GLP-1 receptor diagrams",
+    1: "Two researchers reviewing cagrilintide vs tirzepatide pathway cards beside the blend research vials",
+    2: "Gloved hand aligning a cagrilintide-semaglutide blend COA with both lyophilized vials",
+  },
+  hcg: {
+    0: "Scientist reviewing an HCG peptide heterodimer diagram beside an HCG peptide for sale vial",
+    1: "Two lab researchers comparing HCG 5000 IU and 10000 IU research vials on a documented lot tray",
+    2: "Gloved researcher matching a buy HCG peptide Certificate of Analysis to the lyophilized vial",
+  },
+  "aicar-50mg": {
+    0: "Scientist pointing to an AICAR peptide AMPK activation diagram beside an AICAR 50mg vial for sale",
+    1: "Two researchers comparing AICAR vs MOTS-c metabolic-pathway notes beside both research vials",
+    2: "Gloved hand placing a buy AICAR vial onto its lot-linked HPLC chromatogram",
+  },
 }
 
 /** SEO-focused alt text for overview article images — unique wording per slot. */

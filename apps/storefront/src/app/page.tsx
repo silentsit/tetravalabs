@@ -27,6 +27,7 @@ import { CoaDocumentPreview } from "@/components/coa-document-preview"
 import { buildPageMetadata } from "@/lib/seo"
 import { getProductHref } from "@/lib/compound-product"
 import { PageJsonLd } from "@/components/page-json-ld"
+import { CHECKOUT_CRYPTO_NAMES } from "@/lib/checkout-payment-options"
 
 const LiveVisitorCounter = dynamic(
   () => import("@/components/social-proof-widget").then((mod) => mod.LiveVisitorCounter),
@@ -141,7 +142,7 @@ export default async function HomePage() {
               <Wallet className="mb-4 h-10 w-10 text-[#0D9488]" />
               <h3 className="font-serif text-xl text-[#0F172A]">Cryptocurrency</h3>
               <p className="mt-4 text-sm text-[#475569]">
-                Prefer crypto? Pay with BTC, USDT, ETH, SOL, and other supported assets at checkout.
+                Prefer crypto? Pay with {CHECKOUT_CRYPTO_NAMES} at checkout.
               </p>
             </div>
           </div>

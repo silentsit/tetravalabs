@@ -15,6 +15,7 @@ import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
 import { buildPageMetadata } from "@/lib/seo"
+import { CHECKOUT_CRYPTO_CATALOG, CHECKOUT_CRYPTO_NAMES } from "@/lib/checkout-payment-options"
 
 export const metadata: Metadata = buildPageMetadata({
   title: "How to pay — card, Wise & crypto",
@@ -54,13 +55,6 @@ const steps = [
   }
 ]
 
-const cryptoOptions = [
-  { name: "Bitcoin", ticker: "BTC", confirm: "~10 min", fee: "Medium", icon: "B" },
-  { name: "USDT", ticker: "USDT", confirm: "~2 min", fee: "Medium", icon: "T" },
-  { name: "Ethereum", ticker: "ETH", confirm: "~2 min", fee: "Medium", icon: "E" },
-  { name: "Solana", ticker: "SOL", confirm: "~1 min", fee: "Low", icon: "S" }
-]
-
 const paymentFaqs = [
   {
     question: "Can I pay with a credit or debit card?",
@@ -70,12 +64,12 @@ const paymentFaqs = [
   {
     question: "Which cryptocurrencies are supported?",
     answer:
-      "BTC, USDT, ETH, SOL, USDC, BNB, TRX, and PAXG are available at checkout through Paymento."
+      `${CHECKOUT_CRYPTO_NAMES} are available at checkout through Paymento.`
   },
   {
     question: "How long does confirmation take?",
     answer:
-      "Card settlement usually confirms after the hosted checkout finishes. USDT, ETH, and SOL usually confirm within a few minutes. BTC usually takes longer."
+      "Card settlement usually confirms after the hosted checkout finishes. USDT, ETH, and SOL usually confirm within a few minutes."
   },
   {
     question: "Where do I get help if payment fails?",
@@ -148,26 +142,21 @@ export default function PaymentGuidePage() {
 
           <h2 className="mb-3 mt-12 text-center font-serif text-2xl text-[#0F172A]">Cryptocurrency</h2>
           <p className="mx-auto mb-10 max-w-xl text-center text-sm text-[#64748B]">
-            Prefer crypto? Pay with BTC, USDT, ETH, SOL, and other supported assets at checkout.
+            Prefer crypto? Pay with {CHECKOUT_CRYPTO_NAMES} at checkout.
           </p>
           <div className="mx-auto max-w-xl space-y-3">
-            {cryptoOptions.map((opt) => (
+            {CHECKOUT_CRYPTO_CATALOG.map((opt) => (
               <div
-                key={opt.ticker}
+                key={opt.asset}
                 className="flex items-center justify-between rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0F172A] font-mono text-xs font-bold text-white">
-                    {opt.icon}
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0F172A] font-mono text-[10px] font-bold text-white">
+                    {opt.asset === "USDT_TRC20" ? "TRC" : opt.asset.slice(0, 4)}
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-[#0F172A]">{opt.name}</p>
-                    <p className="text-xs text-[#94A3B8]">{opt.confirm} confirmation</p>
-                  </div>
+                  <p className="text-sm font-medium text-[#0F172A]">{opt.label}</p>
                 </div>
-                <span className="rounded-full bg-[#CCFBF1] px-2.5 py-1 font-mono text-[10px] text-[#0D9488]">
-                  {opt.fee} fee
-                </span>
+                <span className="font-mono text-[10px] text-[#64748B]">Paymento</span>
               </div>
             ))}
           </div>

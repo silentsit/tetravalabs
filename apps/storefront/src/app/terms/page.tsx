@@ -44,7 +44,7 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-base font-medium text-[#0F172A]">1. Eligibility</h2>
           <p>
-            You must be at least <strong>18 years of age</strong> and authorized to purchase on
+            You must be at least <strong>21 years of age</strong> and authorized to purchase on
             behalf of a legitimate research institution, laboratory, or qualified professional
             entity. By ordering, you represent that you meet these requirements and that you will
             use products only for lawful laboratory research.
@@ -308,7 +308,7 @@ export default function TermsPage() {
           </p>
         </section>
 
-        <p className="text-xs text-[#94A3B8]">Last updated: July 28, 2026</p>
+        <p className="text-xs text-[#94A3B8]">Last updated: September 13, 2026</p>
       </div>
     </LegalPageShell>
   )

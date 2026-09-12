@@ -22,7 +22,7 @@ export default function RuoGatePage() {
         <section className="space-y-3">
           <h2 className="text-base font-medium text-[#0F172A]">Purchaser obligations</h2>
           <ul className="list-disc space-y-2 pl-5">
-            <li>You are 18 years of age or older and purchasing on behalf of a legitimate research entity.</li>
+            <li>You are 21 years of age or older and purchasing on behalf of a legitimate research entity.</li>
             <li>You will use products only in controlled laboratory settings with appropriate safety protocols.</li>
             <li>You will not resell, relabel, or represent products as suitable for human or animal use.</li>
             <li>You accept full responsibility for handling, storage, and disposal per institutional guidelines.</li>

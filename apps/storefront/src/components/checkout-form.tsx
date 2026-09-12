@@ -20,6 +20,7 @@ import { useCart, type CartItem } from "@/components/cart-provider"
 import { readAuthToken, retrieveCustomer, AUTH_SESSION_CHANGED_EVENT } from "@/lib/medusa-auth"
 import {
   CHECKOUT_CRYPTO_CATALOG,
+  formatCheckoutCryptoSummary,
   type CheckoutCryptoOption
 } from "@/lib/checkout-payment-options"
 import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
@@ -64,7 +65,7 @@ import {
   cancelCheckoutAbandonIntent,
   scheduleCheckoutAbandonIntent
 } from "@/lib/checkout-abandon"
-import { CheckoutPaymentHelp } from "@/components/checkout-payment-help"
+import { checkoutWhatsAppHref } from "@/lib/checkout-support"
 
 type CheckoutOrder = {
   id: string
@@ -446,15 +447,29 @@ function CheckoutTrustRow() {
 
 function CheckoutHelpBanner() {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white px-4 py-3 text-sm text-[#475569]">
+    <div className="flex items-start gap-3 rounded-xl border border-[#99F6E4] bg-[#ECFDF5] px-4 py-3">
       <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#0D9488]" aria-hidden />
-      <p>
-        Need help? Email{" "}
-        <a href="mailto:info@tetravalabs.com" className="font-medium text-[#0D9488] hover:underline">
-          info@tetravalabs.com
-        </a>
-        .
-      </p>
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="text-sm font-medium leading-snug text-[#0F172A]">
+            Need help with payments? Message us.
+          </p>
+          <a
+            href={checkoutWhatsAppHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-8 shrink-0 items-center justify-center rounded-full bg-[#D97706] px-3 text-[11px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#B45309]"
+          >
+            WhatsApp
+          </a>
+        </div>
+        <p className="mt-1 text-sm leading-snug text-[#475569]">
+          Or drop us an email:{" "}
+          <a href="mailto:info@tetravalabs.com" className="font-medium text-[#0D9488] hover:underline">
+            info@tetravalabs.com
+          </a>
+        </p>
+      </div>
     </div>
   )
 }
@@ -1595,7 +1610,6 @@ export function CheckoutForm() {
 
               <section id="checkout-payment" className="card bg-[#F0FDFA] p-5 sm:p-6">
                 <h2 className="mb-4 font-serif text-lg text-[#0F172A]">Payment</h2>
-                <CheckoutPaymentHelp />
                 <label className={methodCardClass(paymentMethod === "card")}>
                   <input
                     type="radio"
@@ -1655,7 +1669,7 @@ export function CheckoutForm() {
                       Cryptocurrency
                     </span>
                     <span className="text-xs leading-relaxed text-[#64748B]">
-                      BTC, USDT, ETH, SOL, and other assets via Paymento.
+                      {formatCheckoutCryptoSummary(cryptoOptions)}
                     </span>
                   </span>
                 </label>

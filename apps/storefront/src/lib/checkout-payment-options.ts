@@ -17,6 +17,26 @@ export const CHECKOUT_CRYPTO_CATALOG: CheckoutCryptoOption[] = [
   { asset: "PAXG", label: "PAX Gold (PAXG)", provider: "paymento" }
 ]
 
+export function formatCheckoutCryptoNames(options: CheckoutCryptoOption[]): string {
+  const names = options.map((option) => {
+    if (option.asset === "USDT") return "USDT (ERC-20)"
+    if (option.asset === "USDT_TRC20") return "USDT (TRX)"
+    const match = option.label?.match(/\(([^)]+)\)\s*$/)
+    return match?.[1] ?? option.asset
+  })
+  if (!names.length) return ""
+  if (names.length === 1) return names[0]
+  if (names.length === 2) return `${names[0]} and ${names[1]}`
+  return `${names.slice(0, -1).join(", ")}, and ${names[names.length - 1]}`
+}
+
+export function formatCheckoutCryptoSummary(options: CheckoutCryptoOption[]): string {
+  const names = formatCheckoutCryptoNames(options)
+  return names ? `${names} via Paymento.` : "via Paymento."
+}
+
+export const CHECKOUT_CRYPTO_NAMES = formatCheckoutCryptoNames(CHECKOUT_CRYPTO_CATALOG)
+
 export type CardCheckoutProvider = "cardtousdt" | "manual_card_invoice"
 
 export type LoadedCheckoutOptions = {

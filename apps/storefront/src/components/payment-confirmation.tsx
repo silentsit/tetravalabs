@@ -198,7 +198,7 @@ export function PaymentConfirmation({
             ? "Your payment is confirmed. Fulfillment will begin shortly."
             : isCard
               ? "Pay in the card checkout tab. The amount should match your order total. If a popup was blocked, use the button below."
-              : "Pay with crypto to confirm fulfillment."}
+              : "Pay with crypto to confirm fulfillment. Your order confirmation email is sent only after Paymento marks the transaction complete."}
         </p>
       </div>
       <div className="card space-y-4 p-6">
@@ -223,7 +223,13 @@ export function PaymentConfirmation({
         ) : null}
         {isProcessing ? (
           <p className="text-sm text-amber-600">
-            Payment detected and processing on-chain. This page will update automatically.
+            Payment detected and processing on-chain. This page will update automatically. Your
+            confirmation email sends once settlement finishes.
+          </p>
+        ) : null}
+        {!isCard && !isPaid && !isProcessing ? (
+          <p className="text-sm text-[#64748B]">
+            No order confirmation email is sent until crypto payment is fully confirmed.
           </p>
         ) : null}
         {polling && !isPaid ? (

@@ -356,7 +356,7 @@ export async function POST(req: Request) {
         totalUsd,
         paymentMethod,
         items: emailItems,
-        deferConfirmationUntilPaid: paymentProvider === "paymento"
+        deferConfirmationUntilPaid: true
       }).catch(() => {
         // Email scheduling failure must not block checkout.
       })

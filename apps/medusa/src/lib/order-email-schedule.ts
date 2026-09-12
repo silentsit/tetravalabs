@@ -268,8 +268,7 @@ async function listDueSchedules(limit = 50) {
         FROM order_email_schedules s
         LEFT JOIN crypto_payment_intents p ON p.order_id = s.order_id
         WHERE s.cancelled_at IS NULL
-          AND s.payment_method NOT IN ('manual_card_invoice', 'cardtousdt')
-          AND COALESCE(p.provider, '') <> 'paymento'
+          AND s.payment_method NOT IN ('manual_card_invoice', 'cardtousdt', 'crypto')
           AND COALESCE(p.status, 'pending') <> 'completed'
           AND (
             (s.confirmation_sent_at IS NULL AND s.confirmation_due_at IS NOT NULL AND s.confirmation_due_at <= NOW())
@@ -331,11 +330,48 @@ async function sendScheduledEmail(
  * Immediate post-payment order confirmation (also acts as payment confirmation).
  * Cancels any pending unpaid reminder / follow-up emails for the order.
  */
+async function paidOrderConfirmationAlreadySent(orderId: string) {
+  return withDb(
+    async (db) => {
+      const existing = await db.query(
+        `
+        SELECT id
+        FROM payment_webhook_events
+        WHERE payment_id = $1
+        LIMIT 1
+      `,
+        [`paid_confirmation:${orderId}`]
+      )
+      return Boolean(existing.rows[0])
+    },
+    async () => false
+  )
+}
+
+async function recordPaidOrderConfirmationEmail(orderId: string) {
+  return withDb(
+    async (db) => {
+      await db.query(
+        `
+        INSERT INTO payment_webhook_events (event_name, mapped_status, order_id, payment_id, payload)
+        VALUES ('order.confirmation_email', 'sent', $1, $2, '{}'::jsonb)
+      `,
+        [orderId, `paid_confirmation:${orderId}`]
+      )
+    },
+    async () => undefined
+  )
+}
+
 export async function sendPaidOrderConfirmationEmail(input: {
   orderId: string
   email: string
   amountUsd: number
 }) {
+  if (await paidOrderConfirmationAlreadySent(input.orderId)) {
+    return { sent: false, reason: "paid confirmation already sent" }
+  }
+
   const schedule = await loadScheduleRow(input.orderId)
   const orderLabel = schedule
     ? orderLabelFor(schedule)
@@ -356,6 +392,12 @@ export async function sendPaidOrderConfirmationEmail(input: {
     subject,
     html
   })
+
+  if (!result.sent) {
+    return result
+  }
+
+  await recordPaidOrderConfirmationEmail(input.orderId)
 
   const provider = await loadPaymentProvider(input.orderId)
   const paymentMethod = schedule?.payment_method

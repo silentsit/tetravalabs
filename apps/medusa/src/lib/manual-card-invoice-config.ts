@@ -1,6 +1,6 @@
 export const MANUAL_CARD_INVOICE_ID = "manual_card_invoice" as const
 
-export const MANUAL_CARD_INVOICE_TITLE = "Credit/Debit Cards (Visa/MasterCard)"
+export const MANUAL_CARD_INVOICE_TITLE = "Pay by Card — Email Link"
 
 export const MANUAL_CARD_INVOICE_INTERNAL_NOTE = "Awaiting invoice payment"
 

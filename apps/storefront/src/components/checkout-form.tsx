@@ -36,7 +36,9 @@ import {
   showCardCheckoutError
 } from "@/lib/cardtousdt"
 import {
-  MANUAL_CARD_INVOICE_DESCRIPTION_LINES,
+  MANUAL_CARD_INVOICE_FOLLOWUP,
+  MANUAL_CARD_INVOICE_SIGNUP_NOTE,
+  MANUAL_CARD_INVOICE_STEPS,
   MANUAL_CARD_INVOICE_TITLE
 } from "@/lib/manual-card-invoice"
 import {
@@ -263,6 +265,22 @@ function CardCheckoutDetails() {
       </ol>
       <p className="italic text-[#475569]">{CARD_CHECKOUT_PARTNER_NOTE}</p>
       <p>{CARD_CHECKOUT_FOLLOWUP}</p>
+    </span>
+  )
+}
+
+function ManualCardInvoiceDetails() {
+  return (
+    <span className="flex flex-col gap-2 text-xs leading-relaxed text-[#64748B]">
+      <ol className="list-none space-y-0.5">
+        {MANUAL_CARD_INVOICE_STEPS.map((step, index) => (
+          <li key={step}>
+            {index + 1}. {step}
+          </li>
+        ))}
+      </ol>
+      <p className="italic text-[#475569]">{MANUAL_CARD_INVOICE_SIGNUP_NOTE}</p>
+      <p>{MANUAL_CARD_INVOICE_FOLLOWUP}</p>
     </span>
   )
 }
@@ -1590,21 +1608,15 @@ export function CheckoutForm() {
                   <span className="flex min-w-0 flex-1 flex-col gap-1">
                     <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
                       {cardUsesInvoice ? (
-                        <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                        <span aria-hidden>📧</span>
                       ) : (
                         <span aria-hidden>💳</span>
                       )}
                       {cardUsesInvoice ? MANUAL_CARD_INVOICE_TITLE : CARD_CHECKOUT_TITLE}
                       {!cardUsesInvoice ? <CardBrandMarks /> : null}
-                      <CheckoutMethodBadge kind={cardUsesInvoice ? "email" : "recommended"} />
+                      {!cardUsesInvoice ? <CheckoutMethodBadge kind="recommended" /> : null}
                     </span>
-                    {cardUsesInvoice ? (
-                      <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
-                        {MANUAL_CARD_INVOICE_DESCRIPTION_LINES.join("\n")}
-                      </span>
-                    ) : (
-                      <CardCheckoutDetails />
-                    )}
+                    {cardUsesInvoice ? <ManualCardInvoiceDetails /> : <CardCheckoutDetails />}
                   </span>
                 </label>
 
@@ -1620,13 +1632,10 @@ export function CheckoutForm() {
                     />
                     <span className="flex min-w-0 flex-1 flex-col gap-1">
                       <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                        <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                        <span aria-hidden>📧</span>
                         {MANUAL_CARD_INVOICE_TITLE}
-                        <CheckoutMethodBadge kind="email" />
                       </span>
-                      <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
-                        {MANUAL_CARD_INVOICE_DESCRIPTION_LINES.join("\n")}
-                      </span>
+                      <ManualCardInvoiceDetails />
                     </span>
                   </label>
                 ) : null}

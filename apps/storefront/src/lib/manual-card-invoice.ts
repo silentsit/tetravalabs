@@ -1,17 +1,26 @@
 export const MANUAL_CARD_INVOICE_ID = "manual_card_invoice" as const
 
-export const MANUAL_CARD_INVOICE_TITLE = "Credit/Debit Cards (Visa/MasterCard)"
+export const MANUAL_CARD_INVOICE_TITLE = "Pay by Card — 📩 Email Link"
 
-export const MANUAL_CARD_INVOICE_DESCRIPTION_LINES = [
-  '1. Click "Place Order" to checkout.',
-  "2. You will receive an email with a payment link within 2 hours.",
-  "3. Click on the payment link and complete the payment via your credit/debit card.",
-  "",
-  "You will receive your tracking number within 1 - 2 business days."
+export const MANUAL_CARD_INVOICE_STEPS = [
+  'Click "Place Order" to checkout',
+  "Receive a secure payment link by email within 2 hours",
+  "Complete payment via your credit/debit card through the link"
 ] as const
 
-export const MANUAL_CARD_INVOICE_DESCRIPTION =
-  MANUAL_CARD_INVOICE_DESCRIPTION_LINES.join("\n")
+export const MANUAL_CARD_INVOICE_SIGNUP_NOTE =
+  "No account signup or identity verification required."
+
+export const MANUAL_CARD_INVOICE_FOLLOWUP =
+  "You'll receive your tracking number within 1–2 business days."
+
+export const MANUAL_CARD_INVOICE_DESCRIPTION = [
+  ...MANUAL_CARD_INVOICE_STEPS.map((step, index) => `${index + 1}. ${step}`),
+  "",
+  MANUAL_CARD_INVOICE_SIGNUP_NOTE,
+  "",
+  MANUAL_CARD_INVOICE_FOLLOWUP
+].join("\n")
 
 export const MANUAL_CARD_INVOICE_INTERNAL_NOTE = "Awaiting invoice payment"
 

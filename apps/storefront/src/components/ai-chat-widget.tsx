@@ -4,13 +4,12 @@ import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
-import { X } from "lucide-react"
+import { MessageCircle, X } from "lucide-react"
 import { useCart } from "@/components/cart-provider"
 import { checkoutWhatsAppHref } from "@/lib/checkout-support"
 import { buildReorderCartItems } from "@/lib/reorder-cart"
 import { formatClientError } from "@/lib/format-client-error"
 
-const CHAT_LOGO_SRC = "/brand/tetravalabs-icon.png"
 const WHATSAPP_BADGE_SRC = "/chat/whatsapp-badge.png"
 
 function SupportActionLabel({ children }: { children: string }) {
@@ -64,17 +63,10 @@ function ChatSupportActions({
           type="button"
           aria-label="Open research support chat"
           onClick={onOpenChat}
-          className={`flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#CCFBF1] p-[18%] ring-2 ring-white ${iconClass}`}
+          className={`flex shrink-0 items-center justify-center rounded-full bg-[#0D9488] text-white ring-2 ring-white ${iconClass}`}
           style={{ width: iconSize, height: iconSize }}
         >
-          <Image
-            src={CHAT_LOGO_SRC}
-            alt="Tetrava Labs"
-            width={iconSize}
-            height={iconSize}
-            unoptimized
-            className="h-full w-full object-contain"
-          />
+          <MessageCircle className="h-[54%] w-[54%]" strokeWidth={2.25} aria-hidden />
         </button>
       </div>
     </div>

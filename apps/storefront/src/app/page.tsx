@@ -130,7 +130,7 @@ export default async function HomePage() {
               <CreditCard className="mb-4 h-10 w-10 text-[#2563EB]" />
               <h3 className="font-serif text-xl text-[#0F172A]">Credit &amp; Debit Cards</h3>
               <p className="mt-4 text-sm text-[#475569]">
-                Place the order, then pay with Visa, Mastercard, Amex, or Discover in a new
+                Place the order, then pay with Visa or Mastercard in a new
                 checkout tab. We do not collect card numbers on this site.
               </p>
               <Link href="/payment" className="mt-4 inline-flex text-sm font-medium text-[#0D9488]">
@@ -141,7 +141,7 @@ export default async function HomePage() {
               <Wallet className="mb-4 h-10 w-10 text-[#0D9488]" />
               <h3 className="font-serif text-xl text-[#0F172A]">Cryptocurrency</h3>
               <p className="mt-4 text-sm text-[#475569]">
-                Prefer crypto? Pay with USDT, ETH, SOL, and other supported assets at checkout.
+                Prefer crypto? Pay with BTC, USDT, ETH, SOL, and other supported assets at checkout.
               </p>
             </div>
           </div>

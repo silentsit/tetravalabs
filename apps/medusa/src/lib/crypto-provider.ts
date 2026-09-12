@@ -3,6 +3,7 @@ import { isPaymentoConfigured } from "./paymento"
 export type CryptoCheckoutProvider = "paymento"
 
 export const ACCEPTED_CRYPTO_ASSETS = [
+  "BTC",
   "USDT",
   "USDT_TRC20",
   "USDC",
@@ -16,6 +17,7 @@ export const ACCEPTED_CRYPTO_ASSETS = [
 export type CryptoAsset = (typeof ACCEPTED_CRYPTO_ASSETS)[number]
 
 export const CRYPTO_ASSET_LABELS: Record<CryptoAsset, string> = {
+  BTC: "Bitcoin (BTC)",
   USDT: "USDT (ERC-20)",
   USDT_TRC20: "USDT (TRX)",
   USDC: "USD Coin (USDC)",

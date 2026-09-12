@@ -1,13 +1,13 @@
 # Paymento setup for Tetrava Labs
 
-Tetrava uses **Paymento** for crypto checkout (USDT, ETH, SOL, etc.).
+Tetrava uses **Paymento** for crypto checkout (BTC, USDT, ETH, SOL, etc.).
 
 ## Architecture
 
 ```
 Customer selects crypto asset at checkout
          │
-         └─ USDT, ETH, SOL, … ──→ Paymento hosted gateway
+         └─ BTC, USDT, ETH, SOL, … ──→ Paymento hosted gateway
                     │
                     ├─ POST /store/payments/crypto-intent (Medusa on Render)
                     └─ IPN webhook → /webhooks/payments/paymento

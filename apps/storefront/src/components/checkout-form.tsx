@@ -1655,7 +1655,7 @@ export function CheckoutForm() {
                       Cryptocurrency
                     </span>
                     <span className="text-xs leading-relaxed text-[#64748B]">
-                      USDT, ETH, SOL, and other assets via Paymento.
+                      BTC, USDT, ETH, SOL, and other assets via Paymento.
                     </span>
                   </span>
                 </label>

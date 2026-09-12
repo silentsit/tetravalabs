@@ -55,6 +55,7 @@ const steps = [
 ]
 
 const cryptoOptions = [
+  { name: "Bitcoin", ticker: "BTC", confirm: "~10 min", fee: "Medium", icon: "B" },
   { name: "USDT", ticker: "USDT", confirm: "~2 min", fee: "Medium", icon: "T" },
   { name: "Ethereum", ticker: "ETH", confirm: "~2 min", fee: "Medium", icon: "E" },
   { name: "Solana", ticker: "SOL", confirm: "~1 min", fee: "Low", icon: "S" }
@@ -69,12 +70,12 @@ const paymentFaqs = [
   {
     question: "Which cryptocurrencies are supported?",
     answer:
-      "USDT, ETH, SOL, USDC, BNB, TRX, and PAXG are available at checkout through Paymento."
+      "BTC, USDT, ETH, SOL, USDC, BNB, TRX, and PAXG are available at checkout through Paymento."
   },
   {
     question: "How long does confirmation take?",
     answer:
-      "Card settlement usually confirms after the hosted checkout finishes. USDT, ETH, and SOL usually confirm within a few minutes."
+      "Card settlement usually confirms after the hosted checkout finishes. USDT, ETH, and SOL usually confirm within a few minutes. BTC usually takes longer."
   },
   {
     question: "Where do I get help if payment fails?",
@@ -147,7 +148,7 @@ export default function PaymentGuidePage() {
 
           <h2 className="mb-3 mt-12 text-center font-serif text-2xl text-[#0F172A]">Cryptocurrency</h2>
           <p className="mx-auto mb-10 max-w-xl text-center text-sm text-[#64748B]">
-            Prefer crypto? Pay with USDT, ETH, SOL, and other supported assets at checkout.
+            Prefer crypto? Pay with BTC, USDT, ETH, SOL, and other supported assets at checkout.
           </p>
           <div className="mx-auto max-w-xl space-y-3">
             {cryptoOptions.map((opt) => (

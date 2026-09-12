@@ -6,13 +6,15 @@ export type CheckoutCryptoOption = {
 
 /** Shown in UI when Medusa gateways are not yet reachable — Paymento catalog fallback. */
 export const CHECKOUT_CRYPTO_CATALOG: CheckoutCryptoOption[] = [
+  { asset: "BTC", label: "Bitcoin (BTC)", provider: "paymento" },
   { asset: "USDT", label: "USDT (ERC-20)", provider: "paymento" },
   { asset: "USDT_TRC20", label: "USDT (TRX)", provider: "paymento" },
   { asset: "USDC", label: "USD Coin (USDC)", provider: "paymento" },
   { asset: "ETH", label: "Ethereum (ETH)", provider: "paymento" },
   { asset: "SOL", label: "Solana (SOL)", provider: "paymento" },
   { asset: "BNB", label: "BNB", provider: "paymento" },
-  { asset: "TRX", label: "TRON (TRX)", provider: "paymento" }
+  { asset: "TRX", label: "TRON (TRX)", provider: "paymento" },
+  { asset: "PAXG", label: "PAX Gold (PAXG)", provider: "paymento" }
 ]
 
 export type CardCheckoutProvider = "cardtousdt" | "manual_card_invoice"

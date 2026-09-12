@@ -1,6 +1,6 @@
 export const CARDTOUSDT_PROVIDER = "cardtousdt" as const
 
-export const CARD_CHECKOUT_TITLE = "Pay by Card — ⚡ Instant"
+export const CARD_CHECKOUT_TITLE = "Credit/debit cards (Visa, Mastercard)"
 
 export const CARD_CHECKOUT_STEPS = [
   'Click "Place Order" to open secure checkout',

@@ -6,7 +6,7 @@ Card checkout is **order-first, pay-later**. Place order does not open PayPal, S
 
 **Method id:** `manual_card_invoice`  
 **Legacy Woo mapping:** `cheque`  
-**Customer title:** `Credit/Debit Cards (Visa/MasterCard/Amex/Discover)`
+**Customer title:** `Credit/Debit Cards (Visa/MasterCard)`
 
 ## Customer path
 

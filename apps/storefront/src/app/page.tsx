@@ -123,7 +123,7 @@ export default async function HomePage() {
           <div className="mb-10 text-center">
             <span className="section-label">How to Pay</span>
             <h2 className="mt-2 font-serif text-3xl text-[#0F172A]">Simple Payment System</h2>
-            <p className="mt-2 text-[#475569]">Card, Wise, or crypto at checkout. Your choice.</p>
+            <p className="mt-2 text-[#475569]">Card or crypto at checkout.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="card p-8">
@@ -148,7 +148,7 @@ export default async function HomePage() {
           <div className="mt-6 flex items-center gap-3 rounded-xl border border-[#FDE68A] bg-[#FEF3C7] p-4">
             <Copy className="h-5 w-5 shrink-0 text-[#D97706]" />
             <p className="text-sm text-[#D97706]/80">
-              For crypto orders, paste our wallet address exactly as shown at checkout.
+              Crypto checkout opens on Paymento. Pick the same asset you chose at checkout.
             </p>
           </div>
         </div>

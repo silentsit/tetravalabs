@@ -3,7 +3,7 @@ export const MANUAL_CARD_INVOICE_ID = "manual_card_invoice" as const
 export const MANUAL_CARD_INVOICE_TITLE = "Credit/Debit Cards (Visa/MasterCard)"
 
 export const MANUAL_CARD_INVOICE_DESCRIPTION_LINES = [
-  '1. Click on "Pay with card" to checkout.',
+  '1. Click "Place Order" to checkout.',
   "2. You will receive an email with a payment link within 2 hours.",
   "3. Click on the payment link and complete the payment via your credit/debit card.",
   "",

@@ -226,6 +226,21 @@ function methodCardClass(selected: boolean) {
   ].join(" ")
 }
 
+function CheckoutMethodBadge({ kind }: { kind: "instant" | "email" }) {
+  const isInstant = kind === "instant"
+  return (
+    <span
+      className={`rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide ${
+        isInstant
+          ? "bg-[#FEF3C7] text-[#B45309]"
+          : "bg-[#E0F2FE] text-[#0369A1]"
+      }`}
+    >
+      {isInstant ? "⚡ Instant checkout" : "📩 Payment link by email"}
+    </span>
+  )
+}
+
 function CardBrandMarks() {
   return (
     <span
@@ -1113,11 +1128,8 @@ export function CheckoutForm() {
     if (loading) {
       return paymentMethod === "crypto" ? "Processing…" : "Placing your order…"
     }
-    if (paymentMethod === "manual_card_invoice" || (paymentMethod === "card" && cardUsesInvoice)) {
-      return "Pay with card"
-    }
     return "Place order"
-  }, [loading, paymentMethod, cardUsesInvoice])
+  }, [loading, paymentMethod])
 
   const shippingAddress = useMemo(() => {
     if (!shipToDifferent) {
@@ -1553,6 +1565,7 @@ export function CheckoutForm() {
                     <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
                       <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
                       {cardUsesInvoice ? MANUAL_CARD_INVOICE_TITLE : CARD_CHECKOUT_TITLE}
+                      <CheckoutMethodBadge kind={cardUsesInvoice ? "email" : "instant"} />
                       <CardBrandMarks />
                     </span>
                     <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
@@ -1578,6 +1591,7 @@ export function CheckoutForm() {
                       <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
                         <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
                         {MANUAL_CARD_INVOICE_TITLE}
+                        <CheckoutMethodBadge kind="email" />
                       </span>
                       <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
                         {MANUAL_CARD_INVOICE_DESCRIPTION_LINES.join("\n")}

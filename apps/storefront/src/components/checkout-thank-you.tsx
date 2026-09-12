@@ -105,7 +105,7 @@ export function CheckoutThankYouContent() {
             </ul>
           ) : null}
           <p className="text-xs leading-relaxed text-[#64748B]">
-            Pay with card does not charge you at checkout. Your payment link arrives by email.
+            Place order does not charge you at checkout. Your payment link arrives by email.
           </p>
           {orderId ? (
             <p className="text-xs text-[#94A3B8]">

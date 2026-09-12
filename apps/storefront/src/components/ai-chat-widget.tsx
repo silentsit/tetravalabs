@@ -81,8 +81,6 @@ function ChatSupportActions({
   )
 }
 
-const TEASER_STORAGE_KEY = "tetrava-chat-teaser-dismissed"
-
 function textFromParts(parts: Array<{ type: string; text?: string }> | undefined) {
   if (!parts?.length) return ""
   return parts
@@ -93,19 +91,11 @@ function textFromParts(parts: Array<{ type: string; text?: string }> | undefined
 
 export function AiChatWidget() {
   const [open, setOpen] = useState(false)
-  const [teaserVisible, setTeaserVisible] = useState(false)
   const [input, setInput] = useState("")
   const { addItem, setIsOpen } = useCart()
   const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), [])
   const { messages, sendMessage, status, error } = useChat({ transport })
   const busy = status === "submitted" || status === "streaming"
-
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    if (sessionStorage.getItem(TEASER_STORAGE_KEY)) return
-    const timer = window.setTimeout(() => setTeaserVisible(true), 1400)
-    return () => window.clearTimeout(timer)
-  }, [])
 
   useEffect(() => {
     for (const message of messages) {
@@ -144,64 +134,10 @@ export function AiChatWidget() {
     }
   }, [addItem, messages, setIsOpen])
 
-  const dismissTeaser = () => {
-    setTeaserVisible(false)
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem(TEASER_STORAGE_KEY, "1")
-    }
-  }
-
-  const openChat = () => {
-    setTeaserVisible(false)
-    setOpen(true)
-  }
+  const openChat = () => setOpen(true)
 
   return (
     <>
-      {!open && teaserVisible ? (
-        <div className="fixed bottom-[8.5rem] right-5 z-50 animate-in fade-in slide-in-from-bottom-2 duration-300">
-          <div className="relative">
-            <div className="flex max-w-[16.5rem] items-center gap-3 rounded-2xl bg-white py-3 pl-3 pr-9 shadow-[0_8px_28px_rgba(15,23,42,0.18)] ring-1 ring-black/5">
-              <button
-                type="button"
-                onClick={openChat}
-                className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#CCFBF1] p-[18%] ring-2 ring-white transition hover:scale-[1.02]"
-                aria-label="Open research support chat"
-              >
-                <Image
-                  src={CHAT_LOGO_SRC}
-                  alt="Tetrava Labs"
-                  width={40}
-                  height={40}
-                  unoptimized
-                  className="h-full w-full object-contain"
-                />
-              </button>
-              <button
-                type="button"
-                onClick={openChat}
-                className="min-w-0 text-left text-[13px] leading-snug text-[#0F172A] transition hover:text-[#0D9488]"
-              >
-                <span className="block font-semibold">Need help?</span>
-                <span className="block text-[#334155]">Use AI chat or WhatsApp below.</span>
-              </button>
-            </div>
-            <button
-              type="button"
-              aria-label="Dismiss chat tip"
-              onClick={dismissTeaser}
-              className="absolute right-1.5 top-1.5 flex h-6 w-6 items-center justify-center rounded-full text-[#94A3B8] transition hover:bg-[#F1F5F9] hover:text-[#64748B]"
-            >
-              <X className="h-3.5 w-3.5" strokeWidth={2} />
-            </button>
-            <span
-              aria-hidden
-              className="absolute -bottom-1.5 right-6 h-3 w-3 rotate-45 bg-white shadow-[2px_2px_4px_rgba(15,23,42,0.06)] ring-1 ring-black/5"
-            />
-          </div>
-        </div>
-      ) : null}
-
       <div className="fixed bottom-5 right-5 z-50">
         {open ? (
           <button

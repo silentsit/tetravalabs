@@ -5,8 +5,8 @@ import type { ProductResearchDetail } from "@/lib/product-research-types";
 export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
   "bpc-157-tb500-blend": {
     shortDescription: [
-      "The BPC-157 + TB-500 blend is two research peptides lyophilized into one vial: the gastric pentadecapeptide BPC-157 and the N-terminal acetylated 17-23 fragment sold as TB-500.[1][2] Forum copy calls that pairing a Wolverine peptide stack. The name is branding. It does not create a third chain.",
-      "Tetrava Labs lists the blend with its other [research peptides](/) as a Research Use Only reagent. Labs asking where to buy BPC-157 and TB-500 as one documented lot can start here. This page is the lyophilized blend, not a capsule SKU, and it is not for human or veterinary consumption.",
+      "The BPC-157 and TB-500 blend is two research peptides in one vial: the gastric pentadecapeptide BPC-157 and the N-acetylated 17-23 fragment sold as TB-500.[1][2] Forum copy calls that pairing a Wolverine peptide stack. The name is branding. It does not create a third chain.",
+      "Tetrava Labs lists the blend with its other [research peptides](/) as a Research Use Only reagent. Labs asking where to buy BPC-157 and TB-500 as one documented lot can start here. Lyophilized blend, not a capsule SKU. Not for human or veterinary consumption.",
     ],
     otherKnownTitles: [
       "Wolverine blend",
@@ -18,19 +18,15 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "How BPC-157 and TB-500 are studied as separate molecules",
         paragraphs: [
-          "BPC-157 is a synthetic 15-residue peptide drawn from a gastroprotective protein first worked up at the University of Zagreb. Preclinical reviews place it in gastrointestinal mucosal-protection models and in tissue-repair and angiogenesis readouts in animals.[1] That is BPC-157's literature. It is not the TB-500 literature.",
-          "TB-500, as sold, is a fragment. Anti-doping chemists synthesized and characterized the N-terminal acetylated 17-23 stretch of thymosin beta-4 and matched it to material labeled TB-500.[2] Full-length thymosin beta-4 is a 43-residue actin-sequestering protein with its own wound-repair and cardioprotection reviews.[3] A lab that treats the fragment as interchangeable with Tβ4 is reading the wrong molecule.",
+          "BPC-157 is a synthetic 15-residue peptide drawn from a gastroprotective protein first worked up at the University of Zagreb. Preclinical reviews place it in gastrointestinal mucosal-protection models and in tissue-repair and angiogenesis readouts in animals.[1] That is BPC-157's literature.",
+          "TB-500, as sold, is a fragment. Anti-doping chemists synthesized the N-terminal acetylated 17-23 stretch of thymosin beta-4 and matched it to material labeled TB-500.[2] Full-length thymosin beta-4 is a 43-residue actin-sequestering protein with its own wound-repair and cardioprotection reviews.[3] A lab that treats the fragment as interchangeable with Tβ4 is reading the wrong molecule.",
         ],
       },
       {
-        heading: "A Wolverine blend is two sequences, not a new peptide",
+        heading: "A Wolverine blend is two sequences",
         paragraphs: [
           "The vial holds BPC-157 and the TB-500 fragment. Two identities. Two chromatogram peaks. Marketing language does not fuse them into a third peptide.",
-        ],
-        bullets: [
-          "BPC-157 TB-500 capsules are a different format. This catalog page is the lyophilized blend.",
-          "BPC-157 TB-500 oral vs injection searches mix dosage folklore with product form. Tetrava does not publish a human route or a capsule protocol for this SKU.",
-          "TB-500 in the blend is still the fragment identified in the 2012 characterization paper, not full thymosin beta-4.[2][3]",
+          "BPC-157 TB-500 capsules are a different format. Oral vs injection searches mix folklore with product form. Tetrava does not publish a human route for this SKU. TB-500 in the blend is still the fragment from the 2012 characterization paper, not full thymosin beta-4.[2][3]",
         ],
       },
       {
@@ -48,17 +44,16 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "BPC-157 TB-500 peptide for sale: what the COA has to show",
+        heading: "BPC-157 TB-500 peptide for sale",
         paragraphs: [
-          "BPC-157 TB-500 peptide for sale is a paperwork check. One purity percentage on a two-component blend is not enough. The lot [Certificate of Analysis](/coa-library) has to resolve two identities, BPC-157 and the TB-500 fragment, on the same chromatogram.",
-          "The FDA listed BPC-157 and the thymosin beta-4 fragment used as TB-500 among bulk substances that may present significant compounding safety risks.[4] That listing is why this SKU stays Research Use Only. A Wolverine peptide stack buy online query that skips the lot match is shopping a label.",
+          "One purity percentage on a two-component blend is not enough. The lot [Certificate of Analysis](/coa-library) has to resolve BPC-157 and the TB-500 fragment on the same chromatogram. Tetrava lists 10 mg and 20 mg blend vials.",
+          "The FDA listed BPC-157 and the thymosin beta-4 fragment used as TB-500 among bulk substances that may present significant compounding safety risks.[4] That listing is why this SKU stays Research Use Only. A two-peak blend COA is also a different identity check from the three-peak [GLOW](/glow-bpc-157-tb-500-ghk-cu) vial that adds GHK-Cu.",
         ],
       },
       {
-        heading: "Laboratory handling for a two-component lyophilized blend",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "The blend ships lyophilized. Store sealed vials at -20°C. Skip repeated freeze-thaw. Reconstitute under sterile technique with the diluent the SOP names, right before use.",
-          "Log diluent lot, target concentration, date, and operator in the ELN so the prep still matches the batch [Certificate of Analysis](/coa-library). This is laboratory preparation. It is not a dosing or injection protocol.",
+          "The blend ships lyophilized. Store sealed vials at -20 C. Log diluent lot, target concentration, date, and operator so the prep still matches the batch COA.",
         ],
       },
     ],
@@ -89,11 +84,11 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "glow-bpc-157-tb500-ghk-cu": {
     shortDescription: [
-      "GLOW peptide is a marketing name for three lyophilized research peptides in one vial: BPC-157, the TB-500 fragment, and GHK-Cu.[1][2][3] The initials were borrowed. They do not name a receptor, a pathway, or a skin outcome.",
+      "GLOW peptide is a marketing name for three lyophilized research peptides in one vial: BPC-157, the TB-500 fragment, and GHK-Cu.[1][2][3] The initials were borrowed. They do not name a receptor or a skin outcome.",
       "Tetrava Labs supplies this GLOW blend peptide with its other [research peptides](/) for laboratory research only. Glow peptide where to buy should resolve to a three-peak, lot-linked COA. Research use only. Not for human or veterinary consumption.",
     ],
     otherKnownTitles: [
@@ -108,21 +103,21 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         heading: "What GLOW peptide contains, and why the name is not a mechanism",
         paragraphs: [
           "Three molecules. BPC-157 is the Zagreb pentadecapeptide studied in gastrointestinal and tissue-repair models.[1] TB-500 is the N-terminal acetylated 17-23 fragment of thymosin beta-4, not the full 43-residue protein.[2][4] GHK-Cu is the copper-binding tripeptide glycyl-L-histidyl-L-lysine, reviewed against fibroblast gene-expression datasets.[3]",
-          "GLOW peptides, as a search phrase, collapse those three literatures into one brand. A protocol still has to pick a readout that belongs to one of them: mucosal or angiogenic signaling, actin-fragment identity, or copper-peptide gene modulation. The blend does not invent a fourth pathway.",
+          "GLOW peptides, as a search phrase, collapse those three literatures into one brand. A protocol still has to pick a readout that belongs to one of them. The blend does not invent a fourth pathway.",
         ],
       },
       {
-        heading: "Is GLOW peptide safe? There is no human label",
+        heading: "Is GLOW peptide safe?",
         paragraphs: [
-          "Is GLOW peptide safe has no package-insert answer. This listing is Research Use Only. It is not an approved drug, and it carries no human safety label.",
-          "The FDA listed BPC-157 and the thymosin beta-4 fragment sold as TB-500 among bulk substances that may present significant compounding safety risks.[5] GHK-Cu sits in a different paper trail, gene-expression reviews rather than that compounding docket.[3] None of that becomes a consumer glow claim. Preclinical work on the three components does not license a skin-outcome sentence on this page.",
+          "This listing is Research Use Only. It carries no human safety label.",
+          "The FDA listed BPC-157 and the thymosin beta-4 fragment sold as TB-500 among bulk substances that may present significant compounding safety risks.[5] GHK-Cu sits in gene-expression reviews rather than that compounding docket.[3] Preclinical work on the three components does not license a skin-outcome sentence here.",
         ],
       },
       {
         heading: "The 2018 GHK-Cu gene-expression review behind the third component",
         paragraphs: [
           "Pickart and Margolina gathered microarray and related gene-expression data on GHK-Cu and mapped the copper tripeptide against collagen, antioxidant, and anti-inflammatory gene sets.[3] That paper is a synthesis of genomic readouts, not a cosmetic trial and not a blend study.",
-          'It is the published reason GHK-Cu is the third component people reach for when a two-peptide tissue-repair pair is not the question. The assay still has to name a gene or protein endpoint. "Glow" is not one.',
+          "It is the published reason GHK-Cu is the third component people reach for when a two-peptide tissue-repair pair is not the question. The assay still has to name a gene or protein endpoint. Glow is not one.",
         ],
       },
       {
@@ -133,17 +128,16 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "Glow peptide buy online: three identities on one lot",
+        heading: "Glow peptide buy online",
         paragraphs: [
-          "Glow peptide buy online is a documentation query. Confirm BPC-157, the TB-500 fragment, and GHK-Cu on the same lot [Certificate of Analysis](/coa-library). Three names on a carton without three matched peaks is catalog copy.",
+          "Confirm BPC-157, the TB-500 fragment, and GHK-Cu on the same lot [Certificate of Analysis](/coa-library). Three names on a carton without three matched peaks is catalog copy. Tetrava lists 30 mg, 70 mg, and 85 mg blend vials.",
           "Glow peptide price is a vendor field. Identity is a chromatogram. The compounding-risk listing on two of the three components is another reason this SKU stays RUO.[5]",
         ],
       },
       {
-        heading: "Laboratory handling for a three-component blend",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "GLOW ships lyophilized. Store sealed vials at -20°C. Avoid repeated freeze-thaw. Reconstitute under sterile technique with the diluent the multi-peptide SOP names, immediately before use.",
-          "Record diluent lot, concentration targets, date, and operator so the prep remains auditable against the batch [Certificate of Analysis](/coa-library). Laboratory preparation only. No human handling schedule belongs on this page.",
+          "GLOW ships lyophilized. Store sealed vials at -20 C. Record diluent lot, concentration targets, date, and operator against the batch COA.",
         ],
       },
     ],
@@ -180,12 +174,12 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "melanotan-2-10mg": {
     shortDescription: [
       "Melanotan 2 is a cyclic alpha-MSH analog, a lactam-bridged heptapeptide of the Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-NH2 style.[1] Melanotan 1 is a linear analog of the same hormone family. The two are not interchangeable reagents.",
-      "Tetrava Labs lists Melanotan 2 with its [research peptides](/) as a Research Use Only vial. Melanotan 2 for sale on this page is a documented laboratory reagent. It is not an approved tanning product, and it is not for human or veterinary consumption.",
+      "Tetrava Labs lists Melanotan 2 with its [research peptides](/) as a Research Use Only vial. Melanotan 2 for sale on this page is a documented laboratory reagent. Not an approved tanning product. Not for human or veterinary consumption.",
     ],
     otherKnownTitles: ["MT-2", "Melanotan II", "Melanotan-II", "MT-II"],
     sections: [
@@ -199,15 +193,15 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "An unapproved tanning peptide is not a catalog outcome",
         paragraphs: [
-          "Melanotan 2 vs 1 traffic often wants a verdict on which analog tans better. That is consumer advice. This listing will not give it. The difference that belongs here is structure: cyclic heptapeptide versus linear analog.",
-          "The FDA has warned about unapproved melanotan products.[2] A Research Use Only vial is not an Amazon tan shot, not a compounded cosmetic, and not a substitute for an approved melanocortin drug. Clinical trials have explored melanotan-II in small clinic pilots. Those pilots do not travel with this SKU as a use label.",
+          "Melanotan 2 vs 1 traffic often wants a verdict on which analog tans better. This listing will not give it. The difference that belongs here is structure: cyclic heptapeptide versus linear analog.",
+          "The FDA has warned about unapproved melanotan products.[2] Clinical trials have explored melanotan-II in small clinic pilots. Those pilots do not travel with this SKU as a use label.",
         ],
       },
       {
         heading: "The 1996 pilot phase I study of melanotan-II",
         paragraphs: [
           "Dorr, Lines, Levine, and colleagues ran a pilot phase I evaluation of melanotan-II at the University of Arizona.[1] Design: three healthy male volunteers, single-blind, alternating-day saline or melanotan-II, clinic-administered. The paper is a first-in-human tolerability look at the cyclic analog, not a catalog protocol.",
-          "Cite that study for what it is. Small n. Alternating-day placebo control. A cyclic melanotropic peptide in a supervised setting. It does not set a laboratory reconstitution recipe, and it does not make this vial a tanning product.[1]",
+          "Cite that study for what it is. Three healthy male volunteers. Alternating-day saline or melanotan-II. A cyclic melanotropic peptide in a supervised University of Arizona setting. It does not set a laboratory reconstitution recipe, and it does not make this 10 mg vial a tanning product.[1]",
         ],
       },
       {
@@ -218,17 +212,15 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "Where to buy Melanotan 2 as a documented research vial",
+        heading: "Where to buy Melanotan 2",
         paragraphs: [
-          "Where to buy Melanotan 2 is a lot-match question. The vial label and the [Certificate of Analysis](/coa-library) have to name the same batch. A purity percentage with no chromatogram is a sentence, not a result.",
-          "Melanotan 2 price is a vendor field. It does not settle identity, and it does not override the FDA's unapproved-product warnings.[2] This catalog lists a lyophilized research vial. It does not list a finished injection.",
+          "The vial label and the [Certificate of Analysis](/coa-library) have to name the same batch. This catalog lists a 10 mg lyophilized research vial. Melanotan 2 price is a vendor field. It does not override the FDA's unapproved-product warnings.[2]",
         ],
       },
       {
-        heading: "Laboratory handling for lyophilized Melanotan 2",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "Melanotan 2 ships lyophilized. Store sealed vials at -20°C. Avoid repeated freeze-thaw. Reconstitute under sterile technique with the diluent the SOP names, right before use.",
-          "Log diluent lot, concentration, date, and operator against the batch [Certificate of Analysis](/coa-library). Laboratory preparation only. This page does not publish a tanning schedule or an administration route.",
+          "Melanotan 2 ships lyophilized. Store sealed vials at -20 C. Log diluent lot, concentration, date, and operator against the batch COA.",
         ],
       },
     ],
@@ -247,7 +239,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "mk-677-5mg": {
     shortDescription: [
@@ -269,13 +261,10 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "Is MK-677 a SARM, a steroid, or a testosterone suppressor?",
+        heading: "Is MK-677 a SARM?",
         paragraphs: [
-          "Is MK-677 a SARM? No. SARMs bind the androgen receptor. MK-677 is a ghrelin-receptor agonist.[5] Is MK-677 a steroid? No. It is a nonpeptide secretagogue.",
-        ],
-        bullets: [
-          "Does MK-677 suppress testosterone is a different question. Nass, Svensson, Murphy, and Sevigny measured GH, IGF-1, body composition, glucose and insulin, or Alzheimer clinical scales.[1][2][3][4] Those trials were not designed to answer testosterone suppression.",
-          "Glucose and insulin shifts in Svensson and Nass are the safety-signal literature worth reading before a protocol that already stresses glycemic endpoints.[1][2] They are not a consumer side-effect blog.",
+          "No. SARMs bind the androgen receptor. MK-677 is a ghrelin-receptor agonist.[5] It is a nonpeptide secretagogue, not a steroid scaffold.",
+          "Nass, Svensson, Murphy, and Sevigny measured GH, IGF-1, body composition, glucose and insulin, or Alzheimer clinical scales.[1][2][3][4] Those trials were not designed to answer testosterone suppression. Glucose and insulin shifts in Svensson and Nass are the safety-signal literature worth reading before a protocol that already stresses glycemic endpoints.[1][2]",
         ],
       },
       {
@@ -293,17 +282,15 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "MK-677 for sale: lot paperwork, not a gym claim",
+        heading: "MK-677 for sale",
         paragraphs: [
-          "MK-677 for sale on this page is the research reagent. Where to buy MK-677 should mean a lot number on the vial that matches the [Certificate of Analysis](/coa-library). A purity claim with no batch trace is advertising.",
-          "This catalog lists MK-677 as a Research Use Only item. The published human work is trial material under a protocol. It is not a use label for this SKU.",
+          "Where to buy MK-677 should mean a lot number on the vial that matches the [Certificate of Analysis](/coa-library). This catalog lists a 5 mg research vial. Nass ran a year. Svensson ran two months. Sevigny raised IGF-1 and missed the Alzheimer clinical scales.[1][2][4] Those clocks and endpoints stay in those papers.",
         ],
       },
       {
-        heading: "Laboratory handling for MK-677",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "Store sealed vials at the temperature the spec sheet names, typically -20°C for this catalog's lyophilized reagents. Keep the container dry. Prepare working solutions under the SOP, and skip needless freeze-thaw of aliquots.",
-          "Record solvent or diluent lot, concentration, date, and operator so the prep still matches the batch [Certificate of Analysis](/coa-library). Laboratory documentation only. This page does not publish a daily milligram chart.",
+          "Store sealed vials at the temperature the spec sheet names, typically -20 C for this catalog's lyophilized reagents. Keep the container dry. Record solvent or diluent lot, concentration, date, and operator.",
         ],
       },
     ],
@@ -340,7 +327,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "hexarelin-acetate": {
     shortDescription: [
@@ -357,15 +344,14 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Hexarelin is a hexapeptide growth-hormone secretagogue",
         paragraphs: [
-          "Hexarelin is six amino acids. It is a GHRP-class ligand at GHS-R1a, the ghrelin receptor.[1] Research suggests it releases GH, and the same review record shows ACTH, cortisol, and prolactin moving with it. That broader pituitary footprint is the pharmacological fact that shows up when people compare it with cleaner GHS peptides.",
-          "Is hexarelin a steroid? No. A hexapeptide is not an androgen scaffold. Classing it with steroids confuses a secretagogue with a hormone backbone it does not have.",
+          "Hexarelin is six amino acids. It is a GHRP-class ligand at GHS-R1a, the ghrelin receptor.[1] Research suggests it releases GH, and the same review record shows ACTH, cortisol, and prolactin moving with it. That broader pituitary footprint is the fact that shows up when people compare it with cleaner GHS peptides.",
+          "A hexapeptide is not an androgen scaffold. Classing hexarelin with steroids confuses a secretagogue with a hormone backbone it does not have.",
         ],
       },
       {
-        heading: "Hexarelin is not a steroid, and it is less selective than ipamorelin",
+        heading: "Less selective than ipamorelin",
         paragraphs: [
           "The GHS safety review treats hexarelin as dirtier on ACTH, cortisol, and prolactin than ipamorelin.[1] Ipamorelin is the GH-selective comparison in that literature. Hexarelin is the ligand you pick when the protocol needs that wider pituitary readout, or when a historical GHRP comparator is required.",
-          "None of that is a gym ranking. It is receptor-selectivity language from review papers. A catalog vial does not inherit a human hormone schedule from those tables.",
         ],
       },
       {
@@ -383,17 +369,15 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "Buy hexarelin online as a lot-linked reagent",
+        heading: "Buy hexarelin online",
         paragraphs: [
-          "Hexarelin buy traffic should end at a [Certificate of Analysis](/coa-library) whose lot number matches the vial. Sequence identity and HPLC purity for that batch are the spec. A generic purity PDF reused across products is not.",
-          "This catalog lists hexarelin acetate as Research Use Only. The Frieboes sleep study and the GHS review describe clinic or volunteer work.[1][2] They do not label this SKU for human use.",
+          "Hexarelin buy traffic should end at a [Certificate of Analysis](/coa-library) whose lot number matches the vial. Tetrava lists 2 mg and 5 mg lyophilized vials. Frieboes brought seven healthy men into a sleep lab one week apart, scored stage 4 sleep in the first half of the night, and sampled GH, ACTH, cortisol, and prolactin through the night.[2] Volunteer design. Not a training protocol.",
         ],
       },
       {
-        heading: "Laboratory handling for hexarelin acetate",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "Hexarelin ships lyophilized. Store sealed vials at -20°C. Avoid repeated freeze-thaw. Reconstitute under sterile technique with the diluent the SOP names, immediately before use.",
-          "Log diluent lot, concentration, date, and operator so the prep still matches the batch [Certificate of Analysis](/coa-library). Laboratory preparation only. No injection protocol belongs on this page.",
+          "Hexarelin ships lyophilized. Store sealed vials at -20 C. Log diluent lot, concentration, date, and operator.",
         ],
       },
     ],
@@ -412,7 +396,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "thymosin-alpha-1": {
     shortDescription: [
@@ -436,7 +420,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Zadaxin is not this vial",
         paragraphs: [
-          'Searches for "thymosin alpha 1 peptide fda approved" are usually looking for Zadaxin, the branded thymalfasin product that some countries have licensed as an immune biologic.[1] That license, where it exists, belongs to a finished drug with its own manufacturer, label, and supply chain.',
+          "Searches for thymosin alpha 1 peptide fda approved are usually looking for Zadaxin, the branded thymalfasin product that some countries have licensed as an immune biologic.[1] That license, where it exists, belongs to a finished drug with its own manufacturer, label, and supply chain.",
           "Tetrava's listing is a Research Use Only powder. It is not Zadaxin. It is not thymalfasin as a dispensed medicine. An approval story about a branded immune biologic does not make a catalog vial an approved drug in the United States or anywhere else.",
         ],
       },
@@ -457,20 +441,14 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Buying thymosin alpha-1 10mg for research",
         paragraphs: [
-          'A thymosin alpha-1 peptide buy online is a documentation question before it is a price question. "Thymosin alpha 1 price" searches often want a pharmacy number. This page shows a research SKU, including a 10mg vial, not a formulary product.',
-        ],
-        bullets: [
-          "Lot match: the lot on the vial should match the lot on the [Certificate of Analysis](/coa-library).",
-          "Identity plus purity: a percent line with no lot-linked HPLC or MS record is catalog copy.",
-          "Framing: the listing should describe a laboratory reagent, not a substitute for Zadaxin.",
-          "Storage language: sealed lyophilized storage and how the vial ships should be stated, not implied.",
+          "A thymosin alpha-1 peptide buy online is a documentation question before it is a price question. Thymosin alpha 1 price searches often want a pharmacy number. This page shows a research SKU, including 5 mg and 10 mg vials, not a formulary product.",
+          "Lot on the vial should match the lot on the [Certificate of Analysis](/coa-library). A percent line with no lot-linked HPLC or MS record is catalog copy. The listing should describe a laboratory reagent, not a substitute for Zadaxin.",
         ],
       },
       {
-        heading: "Laboratory handling and lot documentation",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "Thymosin alpha-1 ships lyophilized. Store sealed vials at -20 C. Skip repeat freeze-thaw. Reconstitute under sterile technique with the diluent your SOP names, right before the assay.",
-          "Log diluent lot, concentration, date, and operator in the ELN so the prep still matches the batch [Certificate of Analysis](/coa-library) when someone audits the run. This page does not publish a human schedule, an injection method, or a clinical reconstitution recipe.",
+          "Thymosin alpha-1 ships lyophilized. Store sealed vials at -20 C. Log diluent lot, concentration, date, and operator so the prep still matches the batch COA.",
         ],
       },
     ],
@@ -483,7 +461,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "kisspeptin-10": {
     shortDescription: [
@@ -507,8 +485,8 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Kisspeptin-10 is not sex-specific, and kp-10 is not kp-54",
         paragraphs: [
-          '"Is kisspeptin for men or women" is the wrong split. KISS1R is a hypothalamic receptor in both sexes.[2] The ligand does not become a male product or a female product because a search query added those words.',
-          '"Kisspeptin-10 for men" and "does kisspeptin increase estrogen in men" are outcome questions this page will not answer. Tetrava does not claim testosterone or estrogen results for this reagent. Dhillo\'s human work used kisspeptin-54, not the catalog decapeptide, and even that paper is a supervised endocrine study, not a result you can hang on an RUO vial.[1]',
+          "Is kisspeptin for men or women is the wrong split. KISS1R is a hypothalamic receptor in both sexes.[2] The ligand does not become a male product or a female product because a search query added those words.",
+          "Kisspeptin-10 for men and does kisspeptin increase estrogen in men are outcome questions this page will not answer. Tetrava does not claim testosterone or estrogen results for this reagent. Dhillo's human work used kisspeptin-54, not the catalog decapeptide, and even that paper is a supervised endocrine study.[1]",
         ],
       },
       {
@@ -526,22 +504,15 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         ],
       },
       {
-        heading: "Kisspeptin-10 for sale: what a research buy checks",
+        heading: "Kisspeptin-10 for sale",
         paragraphs: [
-          'Buy kisspeptin-10 the same way you buy any short neuropeptide: lot, identity, then price. A listing that leads with "for men" or an estrogen claim is telling you who it thinks the buyer is.',
-        ],
-        bullets: [
-          "Lot match between vial and [Certificate of Analysis](/coa-library).",
-          'Identity for the decapeptide, not a generic "kisspeptin" peak.',
-          "No kp-54 methods pasted onto a kp-10 label.",
-          "RUO framing. No clinic or hormone-outcome copy.",
+          "Buy kisspeptin-10 the same way you buy any short neuropeptide: lot, identity, then price. Tetrava lists 5 mg and 10 mg lyophilized vials. Identity for the decapeptide, not a generic kisspeptin peak. Lot on the vial has to match the [Certificate of Analysis](/coa-library).",
         ],
       },
       {
-        heading: "Laboratory handling and lot documentation",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "Kisspeptin-10 ships lyophilized. Store sealed vials at -20 C. Avoid repeat freeze-thaw. Reconstitute under sterile technique with the diluent the assay SOP names.",
-          "Record diluent lot, concentration, date, and operator against the batch [Certificate of Analysis](/coa-library). This page does not publish a fertility schedule, a sex-specific dose, or an injection method.",
+          "Kisspeptin-10 ships lyophilized. Store sealed vials at -20 C. Record diluent lot, concentration, date, and operator against the batch COA.",
         ],
       },
     ],
@@ -560,7 +531,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "cagrilintide-semaglutide": {
     shortDescription: [
@@ -584,8 +555,8 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Cagrilintide is not a GLP, and the blend is not tirzepatide",
         paragraphs: [
-          '"Is cagrilintide a GLP" has a short answer. No. Cagrilintide is an amylin analogue. Semaglutide is the GLP-1 component. Calling the blend "a GLP" erases half the mechanism.',
-          '"Is cagrilintide FDA approved" is also no. CagriSema is an investigational Novo combination name, not an approved finished drug, and not this catalog blend. The blend is also not Ozempic. Ozempic is a branded semaglutide product. Two powders in one RUO vial are not a pen, and they are not [tirzepatide](/buy-tirzepatide-online), which is one GIP/GLP-1 molecule.',
+          "Is cagrilintide a GLP? No. Cagrilintide is an amylin analogue. Semaglutide is the GLP-1 component. Calling the blend a GLP erases half the mechanism.",
+          "Is cagrilintide FDA approved? Also no. CagriSema is an investigational Novo combination name, not an approved finished drug, and not this catalog blend. Ozempic is a branded semaglutide product. Two powders in one RUO vial are not a pen, and they are not [tirzepatide](/buy-tirzepatide-online), which is one GIP/GLP-1 molecule.",
         ],
       },
       {
@@ -605,20 +576,14 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Buying a cagrilintide-semaglutide blend with a COA",
         paragraphs: [
-          'A cagrilintide--semaglutide blend needs two identities on one chromatogram. One purity number for "the vial" is not enough if the method cannot resolve both peaks.',
-        ],
-        bullets: [
-          "Two confirmed identities: cagrilintide and semaglutide on the same lot [Certificate of Analysis](/coa-library).",
-          "Lot on the vial matches lot on the PDF.",
-          "No CagriSema, Ozempic, or tirzepatide branding on an RUO blend.",
-          "No human weight-loss schedule attached to the listing.",
+          "A cagrilintide-semaglutide blend needs two identities on one chromatogram. One purity number for the vial is not enough if the method cannot resolve both peaks. Tetrava lists 5 mg and 10 mg blend vials.",
+          "Confirm cagrilintide and semaglutide on the same lot [Certificate of Analysis](/coa-library). Lot on the vial matches lot on the PDF. No CagriSema, Ozempic, or tirzepatide branding on an RUO blend.",
         ],
       },
       {
-        heading: "Laboratory handling and lot documentation",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "The blend ships lyophilized. Store sealed vials at -20 C. Skip repeat freeze-thaw. Reconstitute under sterile technique with the diluent your SOP names.",
-          "Because two peptides share the vial, log both identities, the diluent lot, concentration, date, and operator against the batch [Certificate of Analysis](/coa-library). This page does not publish a CagriSema dose chart or an injection method.",
+          "The blend ships lyophilized. Store sealed vials at -20 C. Log both identities, the diluent lot, concentration, date, and operator against the batch COA.",
         ],
       },
     ],
@@ -631,7 +596,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "hcg": {
     shortDescription: [
@@ -649,13 +614,13 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         heading: "HCG is a glycoprotein hormone, not a short peptide",
         paragraphs: [
           "Intact HCG is two subunits, alpha and beta, assembled as a glycosylated heterodimer.[1][2] The alpha subunit is shared with other glycoprotein hormones. The beta subunit is what makes the molecule HCG. That is a different object from a 10- or 28-residue research peptide.",
-          'Labs use it when the assay is LHCGR (the LH/hCG receptor), subunit identity, or glycoprotein-hormone immunoassays. "HCG peptide for men" is search slang sitting on top of that biochemistry. It does not turn the heterodimer into a short peptide, and it does not make this listing a men\'s-health product.',
+          "Labs use it when the assay is LHCGR (the LH/hCG receptor), subunit identity, or glycoprotein-hormone immunoassays. HCG peptide for men is search slang sitting on top of that biochemistry. It does not turn the heterodimer into a short peptide.",
         ],
       },
       {
         heading: "The diet-drop mix-up, and why this vial is not that product",
         paragraphs: [
-          'HCG diet drops, pellets, and "homeopathic HCG" were marketed as weight-loss products. FDA has said those HCG diet products are illegal.[3] That warning is a regulatory fact about a consumer scam category. It is not a use instruction, and it is not a research finding about the glycoprotein.',
+          "HCG diet drops, pellets, and homeopathic HCG were marketed as weight-loss products. FDA has said those HCG diet products are illegal.[3] That warning is a regulatory fact about a consumer scam category.",
           "Tetrava does not sell a diet drop. This page is a laboratory glycoprotein-hormone reagent. It is also not interchangeable with [HGH 191aa](/buy-hgh-191aa-online). Those are different hormones, different receptors, different assays.",
         ],
       },
@@ -663,7 +628,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         heading: "What Stenman's review actually covers",
         paragraphs: [
           "Stenman, Alfthan, and Hotakainen reviewed HCG as a glycoprotein used in analytical chemistry, with intact hormone versus free-beta and other forms treated as distinct species.[1] The paper is about what the molecule is and how assays tell those forms apart, including in tumor-marker work.",
-          'That is the useful lab takeaway. If your method needs intact heterodimer, say so on the plate map and check the COA against that identity. A "peptide" label in a search box does not tell you which form arrived.',
+          "If your method needs intact heterodimer, say so on the plate map and check the COA against that identity. A peptide label in a search box does not tell you which form arrived.",
         ],
       },
       {
@@ -676,20 +641,13 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Where to buy HCG 5000 IU or 10000 IU for research",
         paragraphs: [
-          "HCG peptide for sale on this catalog means buy HCG 5000 IU online or buy HCG 10000 IU online as labeled research strengths. Those are vial listings, not a clinic menu and not a diet kit.",
-        ],
-        bullets: [
-          "Lot on the vial matches the [Certificate of Analysis](/coa-library).",
-          'Identity language should say glycoprotein hormone / heterodimer, not "short peptide."',
-          "No diet-drop, pharmacy-fulfillment, or insurance framing.",
-          "No IU-to-milligram conversion table presented as a use guide.",
+          "HCG peptide for sale on this catalog means buy HCG 5000 IU online or buy HCG 10000 IU online as labeled research strengths. Lot on the vial matches the [Certificate of Analysis](/coa-library). Identity language should say glycoprotein hormone / heterodimer, not short peptide.",
         ],
       },
       {
-        heading: "Laboratory handling and lot documentation",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "HCG ships lyophilized. Store sealed vials at -20 C. Avoid repeat freeze-thaw. Reconstitute under sterile technique with the diluent your SOP names.",
-          "Log strength (5000 IU or 10000 IU as labeled), diluent lot, date, and operator against the batch [Certificate of Analysis](/coa-library). This page does not publish clinic protocols, diet instructions, or an injection method.",
+          "HCG ships lyophilized. Store sealed vials at -20 C. Log strength (5000 IU or 10000 IU as labeled), diluent lot, date, and operator against the batch COA.",
         ],
       },
     ],
@@ -714,7 +672,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
   "aicar-50mg": {
     shortDescription: [
@@ -732,7 +690,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
         heading: "How AICAR becomes ZMP and turns on AMPK",
         paragraphs: [
           "Corton, Gillespie, Hawley, and Hardie established AICAR as a practical way to activate AMP-activated protein kinase in intact cells.[1] The nucleoside is taken up and phosphorylated to ZMP. ZMP mimics AMP at AMPK, so the kinase turns on without the cell having to drain ATP first.",
-          'That is a pharmacological AMPK switch, useful in glucose-uptake, fatty-acid oxidation, and energy-sensing plates. It is not an amino-acid peptide mechanism. If the notebook says "peptide," the identity section should still say nucleoside analogue.',
+          "That is a pharmacological AMPK switch, useful in glucose-uptake, fatty-acid oxidation, and energy-sensing plates. If the notebook says peptide, the identity section should still say nucleoside analogue.",
         ],
       },
       {
@@ -745,7 +703,7 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "The Corton 1995 AMPK-activation paper",
         paragraphs: [
-          'The Hardie-lab paper is the method reference most AMPK groups still mean when they say they "used AICAR."[1] They showed that AICAR raises the AMPK-activating nucleotide in intact cells and turns the kinase on with a defined chemical handle.',
+          "The Hardie-lab paper is the method reference most AMPK groups still mean when they say they used AICAR.[1] They showed that AICAR raises the AMPK-activating nucleotide in intact cells and turns the kinase on with a defined chemical handle.",
           "Use that paper to set why AICAR is in the well. Do not turn a cell-method concentration into a body protocol. The 1995 work is an intact-cell biochemistry method, not a human study.",
         ],
       },
@@ -759,20 +717,13 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       {
         heading: "Buying AICAR 50mg for research",
         paragraphs: [
-          "AICAR for sale on this page is the 50mg research vial. Buy AICAR when the AMPK method needs a lot-linked nucleoside, not a nameless powder with a peptide story attached.",
-        ],
-        bullets: [
-          "Lot match between vial and [Certificate of Analysis](/coa-library).",
-          "Identity as AICAR / acadesine, not as a peptide sequence.",
-          "No performance or training copy attached to the WADA listing.",
-          "Strength on the label matches the 50mg catalog listing you ordered.",
+          "AICAR for sale on this page is the 50 mg research vial. Buy AICAR when the AMPK method needs a lot-linked nucleoside. Lot on the vial matches the [Certificate of Analysis](/coa-library). Identity as AICAR / acadesine, not as a peptide sequence.",
         ],
       },
       {
-        heading: "Laboratory handling and lot documentation",
+        heading: "Storage and lot notes",
         paragraphs: [
-          "AICAR 50mg ships lyophilized. Store sealed vials at -20 C. Avoid repeat freeze-thaw. Reconstitute under sterile technique with the diluent the AMPK SOP names.",
-          "Log diluent lot, concentration, date, and operator against the batch [Certificate of Analysis](/coa-library). This page does not publish a training protocol, a doping schedule, or an injection method.",
+          "AICAR 50mg ships lyophilized. Store sealed vials at -20 C. Log diluent lot, concentration, date, and operator against the batch COA.",
         ],
       },
     ],
@@ -790,6 +741,6 @@ export const BATCH1B_RESEARCH: Record<string, ProductResearchDetail> = {
       },
     ],
     authorId: "editorial-team",
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
   },
 };

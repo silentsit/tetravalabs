@@ -60,7 +60,7 @@ Create separate env sets for:
 7. Enable payment webhook and revalidation webhook.
 8. Put Cloudflare in front and verify WAF + bot rules.
 
-When a push changes **Medusa payment routes** (crypto intent, CardToUSDT intent, invoice-order, webhooks), wait for Render `tetrava-medusa` to finish deploy (`GET /health` → 200) before treating a matching Vercel storefront deploy as fully live. Card checkout mints a CardToUSDT session on Medusa and opens `checkout_url` in a new tab; invoice fallback is used only when CardToUSDT is not configured. Crypto still needs Medusa up to date to mint Paymento/BTCPay intents.
+When a push changes **Medusa payment routes** (crypto intent, CardToUSDT intent, invoice-order, webhooks), wait for Render `tetrava-medusa` to finish deploy (`GET /health` → 200) before treating a matching Vercel storefront deploy as fully live. Card checkout mints a CardToUSDT session on Medusa and opens `checkout_url` in a new tab; invoice fallback is used only when CardToUSDT is not configured. Crypto still needs Medusa up to date to mint Paymento intents.
 
 ## Vercel (Storefront)
 

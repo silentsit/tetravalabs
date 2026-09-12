@@ -1,13 +1,11 @@
 # Paymento setup for Tetrava Labs
 
-Tetrava uses **Paymento** for multi-coin crypto checkout (USDT, ETH, SOL, etc.) alongside **BTCPay** for Bitcoin. The same dual-provider pattern as [Modempic](https://github.com/silentsit/modempic).
+Tetrava uses **Paymento** for crypto checkout (USDT, ETH, SOL, etc.).
 
 ## Architecture
 
 ```
 Customer selects crypto asset at checkout
-         │
-         ├─ BTC ──→ BTCPay invoice (on-chain / Lightning)
          │
          └─ USDT, ETH, SOL, … ──→ Paymento hosted gateway
                     │
@@ -15,26 +13,9 @@ Customer selects crypto asset at checkout
                     └─ IPN webhook → /webhooks/payments/paymento
 ```
 
-Both providers write to the same `crypto_payment_intents` table and send confirmation email on `completed`.
+Paymento writes to `crypto_payment_intents` and sends confirmation email on `completed`.
 
-## How BTCPay and Paymento interact (Modempic pattern)
-
-| Rule | Behavior |
-|------|----------|
-| Asset routing | **BTC** → BTCPay; all other accepted assets → Paymento |
-| Override | `CRYPTO_PROVIDER=btcpay` or `paymento` forces one gateway for all assets (debug) |
-| Availability | Storefront only shows assets whose gateway is configured |
-| Webhooks | Separate endpoints; each updates order payment state independently |
-| No cross-talk | BTCPay never handles USDT; Paymento never handles BTC (unless override) |
-
-Modempic reference files:
-
-- `web/src/lib/payments/crypto-provider.ts` — routing logic
-- `web/src/lib/checkout/checkout-payment-sessions.ts` — creates BTCPay invoice or Paymento request
-- `web/src/lib/actions/checkout.ts` — dispatches by resolved provider
-- `web/src/app/api/webhooks/paymento/route.ts` — IPN with HMAC verify + `paymentoVerifyToken`
-
-Tetrava ports this into Medusa:
+## Medusa routes
 
 - `apps/medusa/src/lib/crypto-provider.ts`
 - `apps/medusa/src/lib/paymento.ts`
@@ -73,16 +54,6 @@ Optional overrides:
 ```
 PAYMENTO_API_BASE=https://api.paymento.io
 PAYMENTO_GATEWAY_BASE=https://app.paymento.io/gateway
-CRYPTO_PROVIDER=paymento
-```
-
-Keep existing BTCPay vars for Bitcoin:
-
-```
-BTCPAY_URL=https://btcpay.modempic.com
-BTCPAY_API_KEY=...
-BTCPAY_STORE_ID=...
-BTCPAY_WEBHOOK_SECRET=...
 ```
 
 Save → redeploy Medusa.
@@ -90,14 +61,13 @@ Save → redeploy Medusa.
 ## Step 4 — Verify
 
 ```powershell
-cd C:\Users\daryl\Downloads\Tetravalabs
+cd C:\Users\user\Downloads\Tetravalabs
 npm run paymento:setup -- --test
 ```
 
-Checkout smoke test with a non-BTC asset (once storefront asset picker is live):
+Checkout smoke test:
 
 ```powershell
-# BTC still uses BTCPay
 npm run smoke:checkout
 ```
 
@@ -114,10 +84,7 @@ npm run smoke:checkout
 
 - Checkout loads available assets from `GET /store/payments/crypto-options`.
 - Customer picks asset → `POST /store/payments/crypto-intent` with `crypto_asset`.
-- **BTC**: redirect to BTCPay checkout URL.
-- **Other**: redirect to Paymento gateway URL (`app.paymento.io/gateway?token=…`).
-
-See also: [doc/btcpay-setup.md](./btcpay-setup.md) for Bitcoin-specific setup.
+- Redirect to Paymento gateway URL (`app.paymento.io/gateway?token=…`).
 
 ## Troubleshooting "Test link" in Paymento dashboard
 
@@ -135,4 +102,4 @@ Quick check after deploy:
 Invoke-WebRequest -Uri "https://tetrava-medusa.onrender.com/webhooks/payments/paymento" -UseBasicParsing
 ```
 
-Should return **200** with `"provider":"paymento"`. Compare: BTCPay webhook returns **401** on unsigned POST (also correct).
+Should return **200** with `"provider":"paymento"`.

@@ -245,7 +245,7 @@ function CardBrandMarks() {
   return (
     <span
       className="inline-flex shrink-0 items-center gap-1.5"
-      aria-label="Visa, Mastercard, Amex, Discover"
+      aria-label="Visa, Mastercard"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -1632,11 +1632,6 @@ export function CheckoutForm() {
                       {cryptoOptions.map((option) => (
                         <option key={option.asset} value={option.asset}>
                           {option.label}
-                          {option.provider === "btcpay"
-                            ? " · BTCPay"
-                            : option.provider === "paymento"
-                              ? " · Paymento"
-                              : ""}
                         </option>
                       ))}
                     </select>

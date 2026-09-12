@@ -4,14 +4,13 @@ export type CheckoutCryptoOption = {
   provider: string
 }
 
-/** Shown in UI when Medusa gateways are not yet reachable — Paymento assets only (BTCPay disabled). */
+/** Shown in UI when Medusa gateways are not yet reachable — Paymento catalog fallback. */
 export const CHECKOUT_CRYPTO_CATALOG: CheckoutCryptoOption[] = [
   { asset: "USDT", label: "USDT (ERC-20)", provider: "paymento" },
   { asset: "USDT_TRC20", label: "USDT (TRX)", provider: "paymento" },
   { asset: "USDC", label: "USD Coin (USDC)", provider: "paymento" },
   { asset: "ETH", label: "Ethereum (ETH)", provider: "paymento" },
   { asset: "SOL", label: "Solana (SOL)", provider: "paymento" },
-  { asset: "LTC", label: "Litecoin (LTC)", provider: "paymento" },
   { asset: "BNB", label: "BNB", provider: "paymento" },
   { asset: "TRX", label: "TRON (TRX)", provider: "paymento" }
 ]

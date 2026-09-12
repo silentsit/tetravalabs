@@ -42,7 +42,7 @@ const steps = [
     num: "03",
     icon: Bitcoin,
     title: "Pay the processor",
-    desc: "Card buyers pay Visa, Mastercard, Amex, or Discover in the new tab. Crypto opens Paymento. Wise sends the USD total.",
+    desc: "Card buyers pay Visa or Mastercard in the new tab. Crypto opens Paymento.",
     color: "#D97706"
   },
   {
@@ -64,12 +64,12 @@ const paymentFaqs = [
   {
     question: "Can I pay with a credit or debit card?",
     answer:
-      "Yes. Choose Credit/Debit Cards at checkout, then click Place order. Card checkout opens in a new tab. Pay with Visa, Mastercard, Amex, or Discover there. We do not collect card numbers on Tetrava Labs."
+      "Yes. Choose Credit/Debit Cards at checkout, then click Place order. Card checkout opens in a new tab. Pay with Visa or Mastercard there. We do not collect card numbers on Tetrava Labs."
   },
   {
     question: "Which cryptocurrencies are supported?",
     answer:
-      "USDT, ETH, SOL, and other Paymento-supported assets are available at checkout. Bitcoin (BTCPay) is currently disabled."
+      "USDT, ETH, SOL, USDC, BNB, TRX, and PAXG are available at checkout through Paymento."
   },
   {
     question: "How long does confirmation take?",
@@ -103,8 +103,7 @@ export default function PaymentGuidePage() {
           <h1 className="mt-4 font-serif text-4xl text-[#0F172A] md:text-5xl">How to pay</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#475569]">
             How to pay at Tetrava Labs: place the order, then pay by card in a new checkout tab
-            with Visa, Mastercard, Amex, or Discover. Wise and crypto charge immediately on their
-            own pages.
+            with Visa or Mastercard. Crypto charges immediately on its own page.
           </p>
         </div>
       </section>
@@ -141,7 +140,7 @@ export default function PaymentGuidePage() {
             </div>
             <p className="text-sm leading-relaxed text-[#475569]">
               Place order records the order, then opens card checkout in a new tab. Pay the USD
-              total with Visa, Mastercard, Amex, or Discover on that page. We do not collect card
+              total with Visa or Mastercard on that page. We do not collect card
               numbers here.
             </p>
           </div>

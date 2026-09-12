@@ -328,8 +328,8 @@ export function GuidedWalletModal({
                     <QRCodeSVG value={qrPayload} size={192} level="M" includeMargin />
                     <p className="mt-3 text-center text-xs text-[#64748B]">
                       Scan with your mobile wallet — opens{" "}
-                      {provider === "btcpay" ? "BTCPay" : provider === "paymento" ? "Paymento" : "checkout"}{" "}
-                      with amount pre-filled where supported (BIP21 / EIP-681).
+                      {provider === "paymento" ? "Paymento" : "checkout"} with amount pre-filled where
+                      supported (EIP-681).
                     </p>
                   </div>
                   <a
@@ -338,11 +338,7 @@ export function GuidedWalletModal({
                     rel="noreferrer"
                     className="btn-primary flex w-full items-center justify-center gap-2 py-3"
                   >
-                    {provider === "btcpay"
-                      ? "Open BTCPay checkout"
-                      : provider === "paymento"
-                        ? "Open Paymento checkout"
-                        : "Open crypto checkout"}
+                    {provider === "paymento" ? "Open Paymento checkout" : "Open crypto checkout"}
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </>

@@ -37,10 +37,8 @@ for (const [key, value] of Object.entries(vars)) {
   console.log(`  ${key}=${display}`)
 }
 
-console.log("\nDual-provider routing (same as Modempic):")
-console.log("  BTC  → BTCPay (when BTCPAY_* configured)")
-console.log("  USDT, USDC, ETH, etc. → Paymento (when PAYMENTO_* configured)")
-console.log("  Optional override: CRYPTO_PROVIDER=btcpay|paymento (debug only)")
+console.log("\nCrypto routing:")
+console.log("  USDT, USDC, ETH, SOL, etc. → Paymento (when PAYMENTO_* configured)")
 
 console.log(`\nIPN webhook URL: ${medusaUrl}/webhooks/payments/paymento`)
 console.log(`Return URL after payment: ${vars.STOREFRONT_URL}/orders?payment=complete`)

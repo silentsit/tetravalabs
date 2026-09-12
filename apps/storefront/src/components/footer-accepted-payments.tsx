@@ -12,7 +12,6 @@ type PaymentLogo = {
 const PAYMENT_LOGOS: PaymentLogo[] = [
   { id: "visa", label: "Visa", src: "/payments/visa.png", width: 48, height: 30 },
   { id: "mastercard", label: "Mastercard", src: "/payments/mastercard.svg", width: 28, height: 18 },
-  { id: "btc", label: "Bitcoin", src: "/payments/btc.svg", width: 22, height: 22 },
   { id: "eth", label: "Ethereum", src: "/payments/eth.svg", width: 22, height: 22 },
   { id: "usdt", label: "Tether USDT", src: "/payments/usdt.svg", width: 22, height: 22 }
 ]

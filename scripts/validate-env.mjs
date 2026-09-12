@@ -16,9 +16,6 @@ const required = {
 }
 
 const recommendedProduction = [
-  { key: "BTCPAY_URL", file: "medusa", label: "BTCPay Server URL (crypto payments)" },
-  { key: "BTCPAY_API_KEY", file: "medusa", label: "BTCPay API key" },
-  { key: "BTCPAY_STORE_ID", file: "medusa", label: "BTCPay store ID" },
   { key: "PAYMENTO_API_KEY", file: "medusa", label: "Paymento API key (USDT, ETH, etc.)" },
   { key: "PAYMENTO_SECRET_KEY", file: "medusa", label: "Paymento secret key (IPN HMAC)" },
   { key: "CARDTOUSDT_PAYOUT_ADDRESS", file: "medusa", label: "CardToUSDT 0x payout wallet (card checkout)" },

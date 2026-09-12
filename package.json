@@ -45,7 +45,6 @@
     "smoke:medusa-health": "node scripts/smoke-medusa-health.mjs",
     "audit:sitemap": "node scripts/audit-sitemap-url-quality.mjs",
     "smoke:checkout": "node scripts/smoke-checkout-production.mjs",
-    "btcpay:setup": "node scripts/btcpay-setup.mjs",
     "paymento:setup": "node scripts/paymento-setup.mjs",
     "env:validate": "node scripts/validate-env.mjs",
     "indexnow:top": "npm --prefix apps/storefront run indexnow:top",

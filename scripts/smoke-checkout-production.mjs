@@ -22,7 +22,7 @@ const publishableKey =
   process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY ||
   storefront.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY ||
   ""
-const cryptoAsset = (process.env.SMOKE_CRYPTO_ASSET || "BTC").trim().toUpperCase()
+const cryptoAsset = (process.env.SMOKE_CRYPTO_ASSET || "USDT").trim().toUpperCase()
 
 if (!publishableKey) {
   console.error("Set SMOKE_MEDUSA_PUBLISHABLE_KEY or NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY")
@@ -105,13 +105,12 @@ if (!providerUrl) {
   console.log(`[ok] Checkout returned payment_url (${provider})`)
 }
 
-const expectedProvider = cryptoAsset === "BTC" ? "btcpay" : "paymento"
-if (provider !== expectedProvider) {
-  console.error(`[fail] Expected provider ${expectedProvider}, got ${provider}`)
+if (provider !== "paymento") {
+  console.error(`[fail] Expected provider paymento, got ${provider}`)
   process.exit(1)
 }
 
-if (expectedProvider === "paymento" && providerUrl && !providerUrl.includes("paymento")) {
+if (providerUrl && !providerUrl.includes("paymento")) {
   console.error(`[fail] Paymento URL expected, got ${providerUrl}`)
   process.exit(1)
 }

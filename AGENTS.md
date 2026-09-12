@@ -44,7 +44,7 @@ Node `22.x`. npm workspaces. Do not revive gitignored prototypes (`/app/`, `/rev
 - Server-only data modules stay `import "server-only"`.
 - Do not invent env vars. Use `npm run env:validate` / `doc/deployment-plan.md`.
 - Keep RUO cookie / compliance paths intact (`apps/storefront/src/lib/compliance.ts`).
-- Crypto is one-time checkout only via Paymento (and optional BTCPay for BTC).
+- Crypto is one-time checkout only via Paymento.
 - Retired Research Hub slugs 404; do not 308 them back. Live slugs: `apps/storefront/src/lib/retired-blog-slugs.ts`.
 - Product URLs: one canonical compound URL; aliases in `product-url-aliases.ts`. Prefer 404 over redirect chains for dead pages.
 

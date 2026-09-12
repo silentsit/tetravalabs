@@ -1,9 +1,7 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { isBtcpayConfigured } from "../../../../lib/btcpay"
 import {
   CRYPTO_ASSET_LABELS,
   getAvailableCheckoutCryptoAssets,
-  isBtcpayCheckoutEnabled,
   resolveCryptoCheckoutProviderForAsset
 } from "../../../../lib/crypto-provider"
 import { isPaymentoConfigured } from "../../../../lib/paymento"
@@ -13,8 +11,6 @@ export const GET = async (_req: MedusaRequest, res: MedusaResponse) => {
 
   return res.json({
     ok: true,
-    btcpay_configured: isBtcpayCheckoutEnabled() && isBtcpayConfigured(),
-    btcpay_enabled: isBtcpayCheckoutEnabled(),
     paymento_configured: isPaymentoConfigured(),
     assets: assets.map((asset) => ({
       asset,

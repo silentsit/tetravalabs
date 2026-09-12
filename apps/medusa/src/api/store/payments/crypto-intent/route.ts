@@ -1,11 +1,8 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { withDb } from "../../../../lib/db"
-import { createBtcpayInvoice, isBtcpayConfigured } from "../../../../lib/btcpay"
 import {
   cryptoCheckoutMisconfigMessageForAsset,
-  getAvailableCheckoutCryptoAssets,
   isAcceptedCryptoAsset,
-  isBtcpayCheckoutEnabled,
   resolveCryptoCheckoutProviderForAsset,
   type CryptoAsset
 } from "../../../../lib/crypto-provider"
@@ -115,7 +112,7 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
   }
 
   const provider = resolveCryptoCheckoutProviderForAsset(asset)
-  if (!provider) {
+  if (!provider || !isPaymentoConfigured()) {
     return res.status(503).json({
       ok: false,
       message: cryptoCheckoutMisconfigMessageForAsset(asset),
@@ -123,69 +120,35 @@ export const POST = async (req: MedusaRequest<Body>, res: MedusaResponse) => {
     })
   }
 
-  if (provider === "btcpay" && isBtcpayCheckoutEnabled() && isBtcpayConfigured()) {
-    try {
-      const invoice = await createBtcpayInvoice({
-        orderId,
-        email,
-        amountUsd,
-        currency
-      })
+  try {
+    const paymentRequest = await paymentoCreatePaymentRequest({
+      fiatAmount: amountUsd.toFixed(2),
+      fiatCurrency: currency,
+      orderId,
+      returnUrl: getReturnUrl(),
+      speed: getPaymentoSpeedFromEnv(),
+      emailAddress: email
+    })
 
-      await saveIntent(orderId, email, amountUsd, currency, invoice.checkoutUrl, "btcpay", invoice.invoiceId)
-
-      return res.json({
-        ok: true,
-        order_id: orderId,
-        provider: "btcpay",
-        crypto_asset: asset,
-        provider_url: invoice.checkoutUrl,
-        invoice_id: invoice.invoiceId,
-        message: "BTCPay invoice created"
-      })
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "BTCPay invoice failed"
-      return res.status(502).json({ ok: false, message })
+    if (!paymentRequest.success) {
+      return res.status(502).json({ ok: false, message: `Paymento: ${paymentRequest.error}` })
     }
+
+    const gatewayUrl = paymentoGatewayUrl(paymentRequest.token)
+    await saveIntent(orderId, email, amountUsd, currency, gatewayUrl, "paymento", paymentRequest.token)
+
+    return res.json({
+      ok: true,
+      order_id: orderId,
+      provider: "paymento",
+      crypto_asset: asset,
+      provider_url: gatewayUrl,
+      payment_token: paymentRequest.token,
+      message: "Paymento payment request created"
+    })
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Paymento payment request failed"
+    console.error("[crypto-intent] Paymento failed:", error)
+    return res.status(502).json({ ok: false, message: `Paymento: ${message}` })
   }
-
-  if (provider === "paymento" && isPaymentoConfigured()) {
-    try {
-      const paymentRequest = await paymentoCreatePaymentRequest({
-        fiatAmount: amountUsd.toFixed(2),
-        fiatCurrency: currency,
-        orderId,
-        returnUrl: getReturnUrl(),
-        speed: getPaymentoSpeedFromEnv(),
-        emailAddress: email
-      })
-
-      if (!paymentRequest.success) {
-        return res.status(502).json({ ok: false, message: `Paymento: ${paymentRequest.error}` })
-      }
-
-      const gatewayUrl = paymentoGatewayUrl(paymentRequest.token)
-      await saveIntent(orderId, email, amountUsd, currency, gatewayUrl, "paymento", paymentRequest.token)
-
-      return res.json({
-        ok: true,
-        order_id: orderId,
-        provider: "paymento",
-        crypto_asset: asset,
-        provider_url: gatewayUrl,
-        payment_token: paymentRequest.token,
-        message: "Paymento payment request created"
-      })
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Paymento payment request failed"
-      console.error("[crypto-intent] Paymento failed:", error)
-      return res.status(502).json({ ok: false, message: `Paymento: ${message}` })
-    }
-  }
-
-  return res.status(503).json({
-    ok: false,
-    message: cryptoCheckoutMisconfigMessageForAsset(asset),
-    available_assets: getAvailableCheckoutCryptoAssets()
-  })
 }

@@ -171,9 +171,7 @@ export function PaymentConfirmation({
     ? "Open card checkout"
     : provider === "paymento"
       ? "Open Paymento checkout"
-      : provider === "btcpay"
-        ? "Pay with Bitcoin (BTCPay)"
-        : "Pay with Crypto"
+      : "Pay with Crypto"
 
   return (
     <section className="page-container mx-auto max-w-xl space-y-6 py-8">

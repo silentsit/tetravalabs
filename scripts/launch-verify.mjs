@@ -1,5 +1,5 @@
 /**
- * One-shot launch verification: production smoke + BTC/USDT checkout + webhooks + COA API.
+ * One-shot launch verification: production smoke + USDT checkout + webhooks + COA API.
  *
  * Usage:
  *   npm run launch:verify
@@ -52,23 +52,17 @@ await check("Medusa products", async () =>
   (await fetch(`${medusaUrl}/store/products?limit=1`, { headers: medusaHeaders })).ok
 )
 
-await check("BTCPay webhook reachable", async () => {
-  const r = await fetch(`${medusaUrl}/webhooks/payments/btcpay`)
-  const d = await r.json()
-  return r.ok && d.provider === "btcpay"
-})
-
 await check("Paymento webhook reachable", async () => {
   const r = await fetch(`${medusaUrl}/webhooks/payments/paymento`)
   const d = await r.json()
   return r.ok && d.provider === "paymento"
 })
 
-await check("Crypto options (BTC + USDT)", async () => {
+await check("Crypto options (USDT via Paymento)", async () => {
   const r = await fetch(`${medusaUrl}/store/payments/crypto-options`, { headers: medusaHeaders })
   const d = await r.json()
   const assets = (d.assets || []).map((a) => a.asset)
-  return r.ok && d.btcpay_configured && d.paymento_configured && assets.includes("BTC") && assets.includes("USDT")
+  return r.ok && d.paymento_configured && assets.includes("USDT")
 })
 
 await check("COA API + R2 (200+ docs)", async () => {
@@ -137,15 +131,13 @@ async function smokeCheckout(asset) {
     })
   })
   const checkoutData = await checkoutRes.json()
-  const expectedProvider = asset === "BTC" ? "btcpay" : "paymento"
   return (
     checkoutRes.ok &&
     checkoutData.payment_url &&
-    checkoutData.payment_provider === expectedProvider
+    checkoutData.payment_provider === "paymento"
   )
 }
 
-await check("Checkout BTC (BTCPay)", () => smokeCheckout("BTC"))
 await check("Checkout USDT (Paymento)", () => smokeCheckout("USDT"))
 
 console.log("")

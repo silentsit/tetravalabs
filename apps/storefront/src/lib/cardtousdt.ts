@@ -1,16 +1,19 @@
 export const CARDTOUSDT_PROVIDER = "cardtousdt" as const
 
-export const CARD_CHECKOUT_TITLE = "Credit/debit cards (Visa, Mastercard, Amex, Discover)"
+export const CARD_CHECKOUT_TITLE = "Pay by Card — ⚡ Instant"
 
-export const CARD_CHECKOUT_DESCRIPTION_LINES = [
-  '1. Click "Place Order" to open secure checkout.',
-  "2. Choose a payment provider from the options available in your country.",
-  "3. Do a one-time signup (may require basic identity verification ~ 2min).",
-  "4. Fill in credit/debit card details & Submit",
-  "",
-  "Payment complete.",
-  "You will receive an email of your order confirmation. We will provide you with your tracking number within 1 - 2 business days."
+export const CARD_CHECKOUT_STEPS = [
+  'Click "Place Order" to open secure checkout',
+  "Choose your card payment option",
+  "Enter your card details and confirm (one-time verification, ~2 min)",
+  "Submit — that's it"
 ] as const
+
+export const CARD_CHECKOUT_PARTNER_NOTE =
+  "Your card payment is securely processed through our payment partner. You won't need a crypto wallet or any crypto experience — just your card details."
+
+export const CARD_CHECKOUT_FOLLOWUP =
+  "You'll receive an order confirmation email and tracking number within 1–2 business days."
 
 const CARD_CHECKOUT_TAB = "tetrava-card-checkout"
 

@@ -26,7 +26,9 @@ import { CHECKOUT_COUNTRIES } from "@/lib/checkout-countries"
 import { ShippingCharge } from "@/components/shipping-charge"
 import { resolveShippingUsd } from "@/lib/checkout-shipping"
 import {
-  CARD_CHECKOUT_DESCRIPTION_LINES,
+  CARD_CHECKOUT_FOLLOWUP,
+  CARD_CHECKOUT_PARTNER_NOTE,
+  CARD_CHECKOUT_STEPS,
   CARD_CHECKOUT_TITLE,
   assignCardCheckoutTab,
   closeCardCheckoutTab,
@@ -226,7 +228,15 @@ function methodCardClass(selected: boolean) {
   ].join(" ")
 }
 
-function CheckoutMethodBadge({ kind }: { kind: "instant" | "email" }) {
+function CheckoutMethodBadge({ kind }: { kind: "instant" | "email" | "recommended" }) {
+  if (kind === "recommended") {
+    return (
+      <span className="rounded-full bg-[#CCFBF1] px-2 py-0.5 text-[10px] font-semibold tracking-wide text-[#0F766E]">
+        Recommended
+      </span>
+    )
+  }
+
   const isInstant = kind === "instant"
   return (
     <span
@@ -237,6 +247,22 @@ function CheckoutMethodBadge({ kind }: { kind: "instant" | "email" }) {
       }`}
     >
       {isInstant ? "⚡ Instant checkout" : "📩 Payment link by email"}
+    </span>
+  )
+}
+
+function CardCheckoutDetails() {
+  return (
+    <span className="flex flex-col gap-2 text-xs leading-relaxed text-[#64748B]">
+      <ol className="list-none space-y-0.5">
+        {CARD_CHECKOUT_STEPS.map((step, index) => (
+          <li key={step}>
+            {index + 1}. {step}
+          </li>
+        ))}
+      </ol>
+      <p className="italic text-[#475569]">{CARD_CHECKOUT_PARTNER_NOTE}</p>
+      <p>{CARD_CHECKOUT_FOLLOWUP}</p>
     </span>
   )
 }
@@ -1563,17 +1589,22 @@ export function CheckoutForm() {
                   />
                   <span className="flex min-w-0 flex-1 flex-col gap-1">
                     <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#0F172A]">
-                      <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                      {cardUsesInvoice ? (
+                        <CreditCard className="h-4 w-4 text-[#0D9488]" aria-hidden />
+                      ) : (
+                        <span aria-hidden>💳</span>
+                      )}
                       {cardUsesInvoice ? MANUAL_CARD_INVOICE_TITLE : CARD_CHECKOUT_TITLE}
-                      <CheckoutMethodBadge kind={cardUsesInvoice ? "email" : "instant"} />
-                      <CardBrandMarks />
+                      {!cardUsesInvoice ? <CardBrandMarks /> : null}
+                      <CheckoutMethodBadge kind={cardUsesInvoice ? "email" : "recommended"} />
                     </span>
-                    <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
-                      {(cardUsesInvoice
-                        ? MANUAL_CARD_INVOICE_DESCRIPTION_LINES
-                        : CARD_CHECKOUT_DESCRIPTION_LINES
-                      ).join("\n")}
-                    </span>
+                    {cardUsesInvoice ? (
+                      <span className="whitespace-pre-line text-xs leading-relaxed text-[#64748B]">
+                        {MANUAL_CARD_INVOICE_DESCRIPTION_LINES.join("\n")}
+                      </span>
+                    ) : (
+                      <CardCheckoutDetails />
+                    )}
                   </span>
                 </label>
 

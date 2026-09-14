@@ -78,12 +78,14 @@ const OVERVIEWS = {
     "Supplied as lyophilized powder with third-party analytical testing where COAs are published. For research use only. Not for human or veterinary consumption."
   ],
   "bpc-157-5mg-tb500-5mg-10mg": [
-    "Buy {productName} online from Tetrava Labs. This BPC-157 + TB-500 blend combines two widely studied tissue-repair research peptides in a single vial for co-administration study designs.",
+    "BPC-157 (5mg) + TB-500 (5mg) | BPC-157 (10mg) + TB-500 (10mg)",
+    "Buy the Wolverine Stack Peptide online at Tetrava Labs. The BPC-157 + TB-500 Wolverine blend combines widely studied tissue-repair research peptides in a single vial for synergistic cellular recovery, collagen synthesis, and systemic tissue regeneration research.",
     "Researchers often choose this stack when protocols compare dual-pathway repair signaling—angiogenesis and cytoskeletal remodeling—versus single-compound controls.",
     "Supplied as lyophilized blend powder. For research use only. Not for human or veterinary consumption."
   ],
   "bpc-157-5mg-tb500-5mg-20mg": [
-    "Buy {productName} online from Tetrava Labs. This higher-strength BPC-157 + TB-500 research blend is formulated for labs running denser dual-peptide tissue-repair assays.",
+    "BPC-157 (5mg) + TB-500 (5mg) | BPC-157 (10mg) + TB-500 (10mg)",
+    "Buy the Wolverine Stack Peptide online at Tetrava Labs. The BPC-157 + TB-500 Wolverine blend combines widely studied tissue-repair research peptides in a single vial for synergistic cellular recovery, collagen synthesis, and systemic tissue regeneration research.",
     "It is commonly used when study designs require matched BPC-157 and TB-500 exposure in the same vial to reduce reconstitution variables across replicates.",
     "Supplied as lyophilized blend powder. For research use only. Not for human or veterinary consumption."
   ],

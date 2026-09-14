@@ -157,10 +157,10 @@ const PRODUCT_SEO_OVERRIDES: Record<string, ProductSeoOverride> = {
     imageAlt: "Buy epithalon peptide for sale in research vial",
   },
   "bpc-157-tb500-blend": {
-    absoluteTitle: "Buy BPC-157 and TB-500 Blend | Wolverine Stack | Tetrava",
+    absoluteTitle: "Buy Wolverine Stack Peptide (BPC-157 + TB-500) | Tetrava",
     description:
-      "Where to buy BPC-157 and TB-500? Wolverine peptide stack for sale in 10mg and 20mg blend vials. 99%+ HPLC-MS, lot-linked COA. Research use only.",
-    imageAlt: "Buy BPC-157 and TB-500 blend for sale in research vial",
+      "Buy Wolverine Stack Peptide (BPC-157 + TB-500) online at Tetrava Labs. Available in 10mg and 20mg vial strengths with >99% laboratory purity.",
+    imageAlt: "Buy Wolverine Stack Peptide (BPC-157 + TB-500) for sale in research vial",
   },
   "glow-bpc-157-tb500-ghk-cu": {
     absoluteTitle: "Buy GLOW Peptide Online | GLOW Blend for Sale | Tetrava",

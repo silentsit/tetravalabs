@@ -1,9 +1,4 @@
 import type { CompoundStrengthOption } from "@/lib/compound-product"
-import {
-  maxPackTierSavingsPct,
-  maxPackTierSavingsUsd,
-  packUsesAbsoluteSavings
-} from "@/lib/pack-pricing"
 import { getVariantPriceCents } from "@/lib/product-price"
 
 type Props = {
@@ -13,31 +8,12 @@ type Props = {
   selectedStrength: CompoundStrengthOption
 }
 
-const STATIC_BENEFITS: Array<{ lead: string; rest: string }> = [
-  { lead: "FREE", rest: " express shipping on all orders" },
-  { lead: "Guaranteed", rest: " delivery worldwide" },
-  { lead: "Secure", rest: " payment via card, Wise, or crypto" }
+const PRODUCT_BENEFITS: Array<{ lead: string; rest: string }> = [
+  { lead: "FREE", rest: " shipping on all orders" },
+  { lead: "Guaranteed", rest: " delivery to your doorstep" },
+  { lead: "Secure", rest: " payment with card or crypto" },
+  { lead: "Enjoy", rest: " discounts with every purchase" }
 ]
-
-function bulkSavingsBenefit(strength: CompoundStrengthOption): { lead: string; rest: string } {
-  const hasAbsolutePacks = strength.packTiers.some(packUsesAbsoluteSavings)
-  const qualifyingTiers = strength.packTiers.filter(packUsesAbsoluteSavings)
-  const maxUsd = maxPackTierSavingsUsd(qualifyingTiers)
-
-  if (hasAbsolutePacks && maxUsd > 0) {
-    const amount = maxUsd % 1 === 0 ? maxUsd.toFixed(0) : maxUsd.toFixed(2)
-    return { lead: "Save", rest: ` up to $${amount} on bulk orders` }
-  }
-
-  if (!hasAbsolutePacks) {
-    const maxPct = maxPackTierSavingsPct(strength.packTiers)
-    if (maxPct > 0) {
-      return { lead: "Save", rest: ` up to ${Math.round(maxPct * 100)}% on bulk orders` }
-    }
-  }
-
-  return { lead: "Save", rest: " on multi-vial packs" }
-}
 
 function pricesForStrength(strength: CompoundStrengthOption): number[] {
   if (strength.packTiers.length) {
@@ -64,17 +40,30 @@ export function shortProductWriteup(
   displayName: string,
   categoryLabel: string
 ): string {
-  const firstBlock = String(researchSummary || "")
-    .split(/\n\n/)[0]
-    ?.trim()
+  const blocks = String(researchSummary || "")
+    .split(/\n\n/)
+    .map((block) => block.trim())
+    .filter(Boolean)
 
-  if (firstBlock) {
-    const sentences = firstBlock.match(/[^.!?]+[.!?]+/g)
-    if (sentences?.length) {
-      return sentences.slice(0, 2).join(" ").trim()
+  if (blocks.length) {
+    const first = blocks[0]
+    const firstHasSentence = /[.!?]/.test(first)
+    const prose = firstHasSentence ? first : blocks[1] || ""
+    const lead = firstHasSentence ? "" : first
+    let body = prose
+
+    if (prose) {
+      const sentences = prose.match(/[^.!?]+[.!?]+/g)
+      if (sentences?.length) {
+        body = sentences.slice(0, 2).join(" ").trim()
+      } else if (prose.length > 220) {
+        body = `${prose.slice(0, 217).trim()}…`
+      }
     }
-    if (firstBlock.length <= 220) return firstBlock
-    return `${firstBlock.slice(0, 217).trim()}…`
+
+    if (lead && body) return `${lead}\n\n${body}`
+    if (lead) return lead
+    if (body) return body
   }
 
   return `${displayName} is a research-grade compound in the ${categoryLabel} category, supplied for laboratory use with lot-linked documentation when available.`
@@ -88,7 +77,6 @@ export function ProductOfferSummary({
 }: Props) {
   const priceLabel = formatUsdRange(pricesForStrength(selectedStrength))
   const writeup = shortProductWriteup(researchSummary, displayName, categoryLabel)
-  const benefits = [...STATIC_BENEFITS, bulkSavingsBenefit(selectedStrength)]
 
   return (
     <div className="space-y-4">
@@ -98,10 +86,12 @@ export function ProductOfferSummary({
         </p>
       ) : null}
 
-      <p className="max-w-xl text-[16px] leading-relaxed text-[#475569]">{writeup}</p>
+      <p className="max-w-xl whitespace-pre-line text-[16px] leading-relaxed text-[#475569]">
+        {writeup}
+      </p>
 
       <ul className="space-y-1.5 text-[16px] leading-snug text-[#334155]">
-        {benefits.map((item) => (
+        {PRODUCT_BENEFITS.map((item) => (
           <li key={`${item.lead}${item.rest}`}>
             <span className="text-[#94A3B8]" aria-hidden>
               —{" "}
@@ -112,9 +102,7 @@ export function ProductOfferSummary({
         ))}
       </ul>
 
-      <p className="text-sm italic text-[#94A3B8]">
-        24-hour customer support via email &amp; Telegram
-      </p>
+      <p className="text-sm italic text-[#94A3B8]">24/7 support — Email or WhatsApp</p>
     </div>
   )
 }

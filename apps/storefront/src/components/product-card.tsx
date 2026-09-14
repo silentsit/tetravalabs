@@ -11,7 +11,6 @@ import {
   getProductDisplaySubtitle,
   getProductPrice,
   isBlendProduct,
-  isCapsuleProduct,
   KLOW_BLEND_HANDLE
 } from "@/lib/revamp/product-visual"
 import {
@@ -43,7 +42,8 @@ export function ProductCard({
   const { addItem } = useCart()
   const variantRow = getPrimaryVariant(product)
   const displayName = getShelfProductLabel(product)
-  const capsuleSubtitle = isCapsuleProduct(product) ? getProductDisplaySubtitle(product) : null
+  const displaySubtitle =
+    product.handle === KLOW_BLEND_HANDLE ? null : getProductDisplaySubtitle(product)
   const packTiers = packTiersFromVariants(product.variants || [])
   const cartPackTier = packTiers[0] ?? null
   const fallbackCartPrice = getProductPrice(product)
@@ -103,8 +103,8 @@ export function ProductCard({
             <h3 className="product-card-title text-[15px] leading-snug text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
               {displayName}
             </h3>
-            {capsuleSubtitle ? (
-              <p className="mt-0.5 text-xs leading-snug text-[#64748B]">{capsuleSubtitle}</p>
+            {displaySubtitle ? (
+              <p className="mt-0.5 text-xs leading-snug text-[#64748B]">{displaySubtitle}</p>
             ) : null}
           </Link>
           <div className="mt-auto flex items-end justify-between gap-2 pt-3">
@@ -148,13 +148,13 @@ export function ProductCard({
         <div className="flex flex-col px-3.5 pb-2 pt-1">
           <TitleTag
             className={`product-card-title ${titleLineClamp} text-base font-bold leading-[1.25] text-[#0F172A] transition-colors group-hover:text-[#0D9488] ${
-              capsuleSubtitle ? "" : "min-[480px]:min-h-[2.5em]"
+              displaySubtitle ? "" : "min-[480px]:min-h-[2.5em]"
             }`}
           >
             {displayName}
           </TitleTag>
-          {capsuleSubtitle ? (
-            <p className="mt-0.5 text-sm leading-snug text-[#64748B]">{capsuleSubtitle}</p>
+          {displaySubtitle ? (
+            <p className="mt-0.5 text-sm leading-snug text-[#64748B]">{displaySubtitle}</p>
           ) : null}
           <ShelfPriceLabel shelf={shelfPrice} variant="shop" />
         </div>

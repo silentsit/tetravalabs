@@ -9,6 +9,7 @@ import { filterProductsByCategorySlug } from "@/lib/categories"
 import type { StoreProduct } from "@/lib/medusa"
 import { getDisplaySortPriceCents } from "@/lib/pack-pricing"
 import { getShelfProductLabel } from "@/lib/compound-product"
+import { getProductDisplaySubtitle } from "@/lib/revamp/product-visual"
 import {
   filterByPill,
   normalizeShopCategoryPill
@@ -26,7 +27,8 @@ function parseCents(value?: string | null) {
 }
 
 function productMatchesQuery(product: StoreProduct, query: string) {
-  const haystack = `${product.title} ${product.handle} ${getShelfProductLabel(product)}`.toLowerCase()
+  const haystack =
+    `${product.title} ${product.handle} ${getShelfProductLabel(product)} ${getProductDisplaySubtitle(product) || ""}`.toLowerCase()
   return haystack.includes(query.toLowerCase())
 }
 

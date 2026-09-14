@@ -379,12 +379,16 @@ export function isGlowBlendProduct(product: StoreProduct) {
   return GLOW_BLEND_HANDLES.has(product.handle) || product.handle.startsWith("glow-blend-")
 }
 
-const BPC_TB500_BLEND_NAMES: Record<string, string> = {
-  "bpc-157-tb500-blend": "BPC-157 + TB-500 (Wolverine Blend)",
-  "bpc-157-5mg-tb500-5mg-10mg": "BPC-157 + TB-500 (Wolverine Blend)",
-  "bpc-157-5mg-tb500-5mg-20mg": "BPC-157 + TB-500 (Wolverine Blend)",
-  "bpc-157-5mg-tb-500-5mg-10mg": "BPC-157 + TB-500 (Wolverine Blend)",
-  "bpc-157-10mg-tb-500-10mg-20mg": "BPC-157 + TB-500 (Wolverine Blend)"
+const WOLVERINE_STACK_HANDLES = new Set([
+  "bpc-157-tb500-blend",
+  "bpc-157-5mg-tb500-5mg-10mg",
+  "bpc-157-5mg-tb500-5mg-20mg",
+  "bpc-157-5mg-tb-500-5mg-10mg",
+  "bpc-157-10mg-tb-500-10mg-20mg"
+])
+
+export function isWolverineStackProduct(product: { handle: string }) {
+  return WOLVERINE_STACK_HANDLES.has(product.handle)
 }
 
 export const KLOW_BLEND_HANDLE = "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg"
@@ -437,8 +441,7 @@ export function getProductDisplayName(product: StoreProduct) {
   const specialName = SPECIAL_DISPLAY_NAMES[product.handle]
   if (specialName) return specialName
   if (isGlowBlendProduct(product)) return "Glow Blend"
-  const bpcTb500Name = BPC_TB500_BLEND_NAMES[product.handle]
-  if (bpcTb500Name) return bpcTb500Name
+  if (isWolverineStackProduct(product)) return "Wolverine Stack"
   const capsuleCopy = CAPSULE_CARD_COPY[product.handle]
   if (capsuleCopy) return capsuleCopy.name
   return normalizeTb500DisplayText(product.title)
@@ -446,6 +449,7 @@ export function getProductDisplayName(product: StoreProduct) {
 
 export function getProductDisplaySubtitle(product: StoreProduct) {
   if (isGlowBlendProduct(product)) return "BPC-157 + TB-500 + GHK-Cu"
+  if (isWolverineStackProduct(product)) return "BPC-157 + TB-500"
   if (product.handle === KLOW_BLEND_HANDLE) {
     return KLOW_BLEND_COMPONENT_LABEL
   }

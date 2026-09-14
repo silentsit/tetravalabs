@@ -36,7 +36,7 @@ export const DISPLAY_NAMES: Record<string, string> = {
   nad: "NAD+",
   "hgh-191aa": "HGH 191aa",
   "5-amino-1mq": "5-Amino-1MQ",
-  "bpc-157-tb500-blend": "BPC-157 + TB-500 blend",
+  "bpc-157-tb500-blend": "Wolverine Stack",
   "glow-bpc-157-tb500-ghk-cu": "Glow blend",
   "cjc-1295-with-dac": "CJC-1295 with DAC",
   "cjc-1295-without-dac": "CJC-1295 without DAC",
@@ -171,7 +171,7 @@ export const EXTRA_ALIASES: Record<string, string[]> = {
   "mk-677-5mg": ["ibutamoren"],
   "glow-bpc-157-tb500-ghk-cu": ["GLOW", "BPC GHK TB"],
   "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": ["KLOW", "Klow"],
-  "bpc-157-tb500-blend": ["wolverine blend", "BPC TB-500"]
+  "bpc-157-tb500-blend": ["wolverine stack", "wolverine blend", "BPC-157 + TB-500", "BPC TB-500"]
 }
 
 export const CONFUSION_PAIRS: ConfusionPair[] = [

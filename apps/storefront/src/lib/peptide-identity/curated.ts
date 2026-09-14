@@ -37,7 +37,7 @@ export const DISPLAY_NAMES: Record<string, string> = {
   "hgh-191aa": "HGH 191aa",
   "5-amino-1mq": "5-Amino-1MQ",
   "bpc-157-tb500-blend": "Wolverine Stack",
-  "glow-bpc-157-tb500-ghk-cu": "Glow blend",
+  "glow-bpc-157-tb500-ghk-cu": "Glow",
   "cjc-1295-with-dac": "CJC-1295 with DAC",
   "cjc-1295-without-dac": "CJC-1295 without DAC",
   "cjc-1295-without-dac-ipamorelin-blend-10mg": "CJC-1295 no DAC + ipamorelin",
@@ -169,7 +169,7 @@ export const EXTRA_ALIASES: Record<string, string[]> = {
   "ll-37-5mg": ["cathelicidin LL-37"],
   "foxo4-dri-10mg": ["FOXO4 DRI"],
   "mk-677-5mg": ["ibutamoren"],
-  "glow-bpc-157-tb500-ghk-cu": ["GLOW", "BPC GHK TB"],
+  "glow-bpc-157-tb500-ghk-cu": ["GLOW", "glow blend", "BPC-157 + TB-500 + GHK-Cu", "BPC GHK TB"],
   "cu-50mg-tb500-10mg-bpc-157-10mg-kpv-10mg-80mg": ["KLOW", "Klow"],
   "bpc-157-tb500-blend": ["wolverine stack", "wolverine blend", "BPC-157 + TB-500", "BPC TB-500"]
 }

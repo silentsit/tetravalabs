@@ -70,6 +70,8 @@ const BLEND_PRODUCTS = new Set([
   "Wolverine Stack",
   "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
   "Glow BPC-157 + TB500 + GHK-Cu",
+  "Glow Blend",
+  "Glow",
   "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg",
   "CJC-1295 without DAC / Ipamorelin Blend",
   "CJC-1295 without DAC / Sermorelin / Ipamorelin Blend",

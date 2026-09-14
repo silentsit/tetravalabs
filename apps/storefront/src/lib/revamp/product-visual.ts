@@ -371,6 +371,8 @@ const GLOW_BLEND_HANDLES = new Set([
   "glow-blend-30mg",
   "glow-blend-85mg",
   "glow-bpc-157-tb500-ghk-cu",
+  "glow-bpc-157-tb500-ghk-cu-30mg",
+  "glow-bpc-157-tb500-ghk-cu-85mg",
   "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg",
   "glow-tb500-10mg-bpc-157-10mg-ghk-cu-50mg-70mg"
 ])
@@ -440,7 +442,7 @@ export function normalizeTb500DisplayText(text: string): string {
 export function getProductDisplayName(product: StoreProduct) {
   const specialName = SPECIAL_DISPLAY_NAMES[product.handle]
   if (specialName) return specialName
-  if (isGlowBlendProduct(product)) return "Glow Blend"
+  if (isGlowBlendProduct(product)) return "Glow"
   if (isWolverineStackProduct(product)) return "Wolverine Stack"
   const capsuleCopy = CAPSULE_CARD_COPY[product.handle]
   if (capsuleCopy) return capsuleCopy.name

@@ -18,6 +18,7 @@ import { ComplianceNotice } from "@/components/compliance-notice"
 import { FaqAccordion } from "@/components/faq-accordion"
 import { TrustBadgesRow } from "@/components/trust-badges"
 import { categoryArt } from "@/lib/revamp/category-art"
+import { homepageCategoryTitle } from "@/lib/category-labels"
 import { localImageProps } from "@/lib/local-image"
 import { groupProductsByCategory } from "@/lib/categories"
 import { faqItems } from "@/lib/faq-content"
@@ -33,6 +34,26 @@ const LiveVisitorCounter = dynamic(
   () => import("@/components/social-proof-widget").then((mod) => mod.LiveVisitorCounter),
   { loading: () => <span className="inline-block h-5 w-40 animate-pulse rounded bg-[#E2E8F0]" /> }
 )
+
+function HomepageCategoryHeading({ slug, title }: { slug: string; title: string }) {
+  if (slug !== "longevity-neuropeptides") return title
+  const [before, after] = title.split("Cognitive")
+  if (after === undefined) return title
+  return (
+    <>
+      {before}
+      <a
+        href="https://modempic.com"
+        target="_blank"
+        rel="noopener"
+        className="relative z-10 text-inherit underline decoration-[#0D9488]/40 underline-offset-4 hover:decoration-[#0D9488]"
+      >
+        Cognitive
+      </a>
+      {after}
+    </>
+  )
+}
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Buy Peptides Online | USA Research Peptides for Sale | Tetrava",
@@ -224,34 +245,42 @@ export default async function HomePage() {
             <p className="mt-2 text-[#475569]">Specialized compounds organized by application</p>
           </div>
           <div className="product-card-grid">
-            {homepageCategories.slice(0, 6).map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/category/${cat.slug}`}
-                className="card card-hover group flex flex-col overflow-hidden"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-white">
-                  <Image
-                    src={cat.image}
-                    alt={cat.name}
-                    fill
-                    loading="lazy"
-                    {...localImageProps(cat.image)}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
+            {homepageCategories.slice(0, 6).map((cat) => {
+              const title = homepageCategoryTitle(cat.slug)
+              return (
+                <div
+                  key={cat.slug}
+                  className="card card-hover group relative flex flex-col overflow-hidden"
+                >
+                  <Link
+                    href={`/category/${cat.slug}`}
+                    className="absolute inset-0 z-0"
+                    aria-label={title}
                   />
+                  <div className="relative aspect-[16/10] overflow-hidden bg-white">
+                    <Image
+                      src={cat.image}
+                      alt={title}
+                      fill
+                      loading="lazy"
+                      {...localImageProps(cat.image)}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                      className="object-cover opacity-80 transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="relative flex flex-1 flex-col p-5">
+                    <h3 className="font-serif text-xl text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
+                      <HomepageCategoryHeading slug={cat.slug} title={title} />
+                    </h3>
+                    <p className="mt-2 line-clamp-2 text-sm text-[#94A3B8]">{cat.description}</p>
+                    <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-[#0D9488]">
+                      Explore{" "}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-serif text-xl text-[#0F172A] transition-colors group-hover:text-[#0D9488]">
-                    {cat.name}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-sm text-[#94A3B8]">{cat.description}</p>
-                  <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-[#0D9488]">
-                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>

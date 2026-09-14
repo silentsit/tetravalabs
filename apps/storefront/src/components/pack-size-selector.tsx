@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react"
 import {
   formatPackTierSavingsLabel,
+  formatPackTierYouSave,
   packTierSavingsUsd,
   type PackTier
 } from "@/lib/pack-pricing"
@@ -175,7 +176,7 @@ export function PackSizeSelector({
         </p>
         {showCompareAtPricing && selectedSavings > 0 ? (
           <p className="mt-1 text-sm font-medium text-[#0D9488]">
-            You save ${selectedSavings.toFixed(2)}
+            {formatPackTierYouSave(selected) || `You save $${selectedSavings.toFixed(2)}`}
           </p>
         ) : null}
       </div>

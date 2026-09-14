@@ -23,8 +23,13 @@ export type PackTier = {
 /** Handles that show Loti-style compare-at strikethrough (design preview). */
 export const COMPARE_AT_PREVIEW_HANDLES = new Set(["cagrilintide"])
 
+/** Paid pack total in USD. Never the per-vial price. */
+export function packTotalUsd(tier: PackTier): number {
+  return Number(tier.price) || 0
+}
+
 export function packUsesAbsoluteSavings(tier: PackTier): boolean {
-  return tier.price >= PACK_ABSOLUTE_SAVINGS_MIN_USD
+  return packTotalUsd(tier) >= PACK_ABSOLUTE_SAVINGS_MIN_USD
 }
 
 export function packTierSavingsUsd(tier: PackTier): number {
@@ -35,7 +40,26 @@ export function packTierSavingsUsd(tier: PackTier): number {
     return 0
   }
   const listPack = (tier.perUnit / (1 - tier.savingsPct)) * tier.qty
-  return Number(Math.max(0, listPack - tier.price).toFixed(2))
+  return Number(Math.max(0, listPack - packTotalUsd(tier)).toFixed(2))
+}
+
+function packListTotalUsd(tier: PackTier): number {
+  if (tier.compareAtPack != null && tier.compareAtPack > 0) return tier.compareAtPack
+  const savingsUsd = packTierSavingsUsd(tier)
+  if (savingsUsd > 0) return Number((packTotalUsd(tier) + savingsUsd).toFixed(2))
+  if (tier.savingsPct > 0 && tier.savingsPct < 1 && tier.qty > 0) {
+    return Number(((tier.perUnit / (1 - tier.savingsPct)) * tier.qty).toFixed(2))
+  }
+  return packTotalUsd(tier)
+}
+
+/** Fraction off the package list total (0–1). */
+export function packTierSavingsFraction(tier: PackTier): number {
+  const list = packListTotalUsd(tier)
+  const paid = packTotalUsd(tier)
+  if (list > 0 && paid > 0 && paid < list) return (list - paid) / list
+  if (tier.savingsPct > 0 && tier.savingsPct < 1) return tier.savingsPct
+  return 0
 }
 
 function formatSavingsUsdLabel(savingsUsd: number): string {
@@ -45,20 +69,25 @@ function formatSavingsUsdLabel(savingsUsd: number): string {
 }
 
 export function formatPackTierSavingsLabel(tier: PackTier): string | null {
+  const packTotal = packTotalUsd(tier)
   const savingsUsd = packTierSavingsUsd(tier)
-  const hasPctSavings = tier.savingsPct > 0 && tier.savingsPct < 1
-  if (savingsUsd <= 0 && !hasPctSavings) return null
+  const fraction = packTierSavingsFraction(tier)
+  if (savingsUsd <= 0 && fraction <= 0) return null
 
-  // From $100 pack total upward: always dollars, never percent.
-  if (packUsesAbsoluteSavings(tier)) {
-    return savingsUsd > 0 ? formatSavingsUsdLabel(savingsUsd) : null
+  if (packTotal >= PACK_ABSOLUTE_SAVINGS_MIN_USD) {
+    const usd =
+      savingsUsd > 0 ? savingsUsd : Number((packListTotalUsd(tier) * fraction).toFixed(2))
+    return usd > 0 ? formatSavingsUsdLabel(usd) : null
   }
 
-  if (hasPctSavings) {
-    return `save ${Math.round(tier.savingsPct * 100)}%`
-  }
+  const pct = Math.round(fraction * 100)
+  return pct > 0 ? `save ${pct}%` : null
+}
 
-  return null
+export function formatPackTierYouSave(tier: PackTier): string | null {
+  const label = formatPackTierSavingsLabel(tier)
+  if (!label) return null
+  return `You ${label}`
 }
 
 export function maxPackTierSavingsUsd(tiers: PackTier[]): number {
@@ -66,7 +95,7 @@ export function maxPackTierSavingsUsd(tiers: PackTier[]): number {
 }
 
 export function maxPackTierSavingsPct(tiers: PackTier[]): number {
-  return tiers.reduce((max, tier) => Math.max(max, tier.savingsPct), 0)
+  return tiers.reduce((max, tier) => Math.max(max, packTierSavingsFraction(tier)), 0)
 }
 
 export function shouldShowCompareAtPricing(

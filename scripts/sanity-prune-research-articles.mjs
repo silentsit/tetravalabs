@@ -27,7 +27,8 @@ const KEPT_BLOG_SLUGS = [
   "where-to-buy-nad-2026",
   "where-to-buy-bpc-157-2026",
   "where-to-buy-ghk-cu-2026",
-  "where-to-buy-melanotan-2-2026"
+  "where-to-buy-melanotan-2-2026",
+  "peptides-on-social-media"
 ]
 
 const __filename = fileURLToPath(import.meta.url)

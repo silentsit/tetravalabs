@@ -50,6 +50,7 @@ Product, article, and category cards include the page title, RUO eyebrow, and a 
 | `/categories` | Product categories \| Tetrava Labs | Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies. |
 | `/blog` | Research Hub — articles & protocols \| Tetrava Labs | Protocol notes, peptide handling guidance, and analytical documentation for qualified research buyers. |
 | `/blog/{slug}` | {post.title} \| Tetrava Labs | {post.excerpt} or “Research article from Tetrava Labs.” |
+| `/blog/peptides-on-social-media` | Peptides on social media: four markets, one hashtag | Peptides on social media mix four product classes. A TGA vial labelled retatrutide held ~8x undeclared semaglutide, not the named peptide. |
 | `/coa-library` | COA library — batch certificates \| Tetrava Labs | Search lot-linked Certificates of Analysis (COA) for Tetrava Labs research peptides. |
 | `/tools/peptide-identity` | Peptide identity index \| Tetrava | Peptide identity index for research peptides: sequence, CAS, mass, and expected MS ions. Compare two names to see if they are the same molecule. RUO. |
 | `/coa-library/{handle}` | {displayName} — COA documents \| Tetrava Labs | Lot-linked Certificates of Analysis for {displayName}. {N} research document(s) available. |

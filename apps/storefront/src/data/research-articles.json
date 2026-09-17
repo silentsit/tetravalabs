@@ -12515,5 +12515,847 @@
         "url": "https://pubmed.ncbi.nlm.nih.gov/28321024/"
       }
     ]
+  },
+  {
+    "title": "Peptides on social media are not one product class",
+    "slug": "peptides-on-social-media",
+    "excerpt": "Peptides on social media mix four product classes in one hashtag. A TGA-tested vial labelled retatrutide held undeclared high-dose semaglutide. Identity testing is the missing layer.",
+    "seoTitle": "Peptides on social media: four markets, one hashtag",
+    "seoDescription": "Peptides on social media mix four product classes. A TGA vial labelled retatrutide held ~8x undeclared semaglutide, not the named peptide.",
+    "keywords": [
+      "peptides on social media",
+      "social media peptides",
+      "unapproved peptides",
+      "peptide identity testing",
+      "research peptides",
+      "lot-linked COA",
+      "RUO peptide labeling"
+    ],
+    "category": "Compliance",
+    "readTimeMinutes": 9,
+    "publishedAt": "2026-09-17T00:00:00.000Z",
+    "image": "/images/blog/peptides-on-social-media-feed-vs-coa.webp",
+    "references": [
+      {
+        "title": "Illicit Injectable Peptides and Regulatory Gaps",
+        "publication": "JAMA",
+        "year": "2026",
+        "url": "https://doi.org/10.1001/jama.2026.10690"
+      },
+      {
+        "title": "Patient suffers torn oesophagus after using unapproved peptide, prompting fresh warnings",
+        "authors": "Carbonell R",
+        "publication": "ABC News",
+        "year": "2026",
+        "url": "https://www.abc.net.au/news/2026-09-14/tga-peptide-warning-retatrutide-torn-oesophagus/107143510"
+      },
+      {
+        "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+        "publication": "U.S. Food and Drug Administration",
+        "year": "2026",
+        "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+      },
+      {
+        "title": "Import Alert 66-80 (GLP-1 APIs)",
+        "publication": "U.S. Food and Drug Administration",
+        "year": "2026",
+        "url": "https://www.accessdata.fda.gov/CMS_IA/importalert_1186.html"
+      },
+      {
+        "title": "TikTokfluence: The rise of GLP-1 receptor agonists in the age of social media health trends",
+        "authors": "Günaltay MM, Kartal N",
+        "publication": "Journal of the American Pharmacists Association",
+        "year": "2026",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41866128"
+      },
+      {
+        "title": "Independent testing of unregulated peptide products (DOI 10.1111/dar.70231)",
+        "publication": "Drug and Alcohol Review",
+        "year": "2026",
+        "url": "https://doi.org/10.1111/dar.70231"
+      },
+      {
+        "title": "Certain Bulk Drug Substances for Use in Compounding That May Present Significant Safety Risks",
+        "publication": "FDA",
+        "year": "2023",
+        "url": "https://www.fda.gov/drugs/human-drug-compounding"
+      },
+      {
+        "title": "2026 Prohibited List",
+        "publication": "World Anti-Doping Agency",
+        "year": "2026",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      },
+      {
+        "title": "Synthesis and characterization of the N-terminal acetylated 17-23 fragment of thymosin beta 4 identified in TB-500",
+        "authors": "Esposito S et al.",
+        "publication": "Drug Testing and Analysis",
+        "year": "2012",
+        "url": "https://doi.org/10.1002/dta.1402"
+      },
+      {
+        "title": "Peptides are spreading on social media. Here's how platforms can better protect public health",
+        "authors": "Piatkowski T, Puljevic C, Cox L, Cornell S",
+        "publication": "The Conversation",
+        "year": "2026",
+        "url": "https://theconversation.com/peptides-are-spreading-on-social-media-heres-how-platforms-can-better-protect-public-health-291447"
+      }
+    ],
+    "body": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk-jama",
+            "_type": "link",
+            "href": "https://doi.org/10.1001/jama.2026.10690"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p1a",
+            "text": "Peptides on social media now sit in the same feed as cooking videos, and the hashtag treats four different product classes as if they were one substance. A ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "p1b",
+            "text": "JAMA Viewpoint",
+            "marks": [
+              "lnk-jama"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "p1c",
+            "text": " counted more than 130,000 Instagram posts and over 230 million TikTok views of peptide-related content as of May 2026. That is a public market, not a back-room one.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p2",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk-abc",
+            "_type": "link",
+            "href": "https://www.abc.net.au/news/2026-09-14/tga-peptide-warning-retatrutide-torn-oesophagus/107143510"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p2a",
+            "text": "In mid-September 2026, Australia's Therapeutic Goods Administration described a person who used an unapproved vial labelled retatrutide, then needed hospital care for a torn esophagus after uncontrolled vomiting. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "p2b",
+            "text": "ABC News reported the laboratory result",
+            "marks": [
+              "lnk-abc"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "p2c",
+            "text": ": the vial contained no retatrutide. It held undeclared semaglutide at about eight times the level found in TGA-assessed semaglutide products on the Australian Register of Therapeutic Goods.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p3a",
+            "text": "The public-health problem is identity failure. The hashtag, the label, and the molecule can be three different things. Platform warning screens can slow a curious click. They cannot tell you which of those three you actually have.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "blogImage",
+        "_key": "img1",
+        "src": "/images/blog/peptides-on-social-media-feed-vs-coa.webp",
+        "alt": "Phone on a lab bench next to a peptide COA chromatogram, showing how peptides on social media skip lot identity",
+        "caption": "A social feed can name a peptide. A lot-linked chromatogram is what names the lot."
+      },
+      {
+        "_type": "block",
+        "_key": "h-lanes",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "h-lanes-s",
+            "text": "Four markets share one hashtag",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p4a",
+            "text": "A 15-second clip does not disclose which market it is in. The same vial-shaped prop can stand for an FDA-reviewed pen, a compounded copy, a documented research reagent, or an unlabeled gray-market bottle. The algorithm scores watch time. It does not score CAS numbers.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "tableBlock",
+        "_key": "tbl-lanes",
+        "caption": "Four product classes flattened by one hashtag",
+        "hasHeaderRow": true,
+        "rows": [
+          {
+            "_key": "tbl-lanes-r0",
+            "cells": [
+              "Class",
+              "What it is",
+              "What identity looks like",
+              "What the feed usually shows"
+            ]
+          },
+          {
+            "_key": "tbl-lanes-r1",
+            "cells": [
+              "Approved medicine",
+              "FDA-reviewed drug and device (Ozempic, Wegovy, Mounjaro, Zepbound)",
+              "NDC, branded presentation, prescribing information",
+              "Before/after clips, shortage talk, brand names"
+            ]
+          },
+          {
+            "_key": "tbl-lanes-r2",
+            "cells": [
+              "Compounded copy",
+              "Pharmacy-made product, not FDA-approved",
+              "Pharmacy label, often a multi-dose vial",
+              "The same clip, framed as a cheaper alternative"
+            ]
+          },
+          {
+            "_key": "tbl-lanes-r3",
+            "cells": [
+              "RUO reagent",
+              "Named laboratory chemical with a use restriction",
+              "Lot code, sequence or CAS, lot-linked HPLC-MS COA",
+              "The same clip, with \"research\" in small type"
+            ]
+          },
+          {
+            "_key": "tbl-lanes-r4",
+            "cells": [
+              "Gray-market vial",
+              "Unregistered product, sometimes unmarked",
+              "Nothing a second lab can audit",
+              "The same clip, no lot, no method, no manufacturer you can name"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p5a",
+            "text": "Approved GLP-1 medicines went through FDA review for named indications. They have a defined strength, a defined presentation, and a pharmacovigilance system. That is a different object from a lyophilized research vial, even when both bottles contain a chain that can be called semaglutide.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p6",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk-fda",
+            "_type": "link",
+            "href": "https://www.fda.gov/drugs/drug-alerts-and-statements/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p6a",
+            "text": "Compounded copies filled a legal gap during shortages. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "p6b",
+            "text": "FDA's unapproved GLP-1 statement",
+            "marks": [
+              "lnk-fda"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "p6c",
+            "text": " now lists the failure modes that statement was written to catch: products labelled as compounded that named pharmacies which did not exist; salt forms (semaglutide sodium, semaglutide acetate) used in place of the approved active ingredient; multi-dose vials that invite measurement errors; shipments that arrived warm. Retatrutide and cagrilintide cannot be used in compounding under federal law. They are not components of any approved drug. FDA also posted import alert 66-80, a green list meant to stop GLP-1 active pharmaceutical ingredients with quality problems at the border. The Conversation essay, written for an Australian audience, did not mention that US control. The feed does not mention it either.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p7",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p7a",
+            "text": "A research-use-only reagent is a third class. Laboratories buy named peptides for in-vitro and in-vivo work. A defensible reagent has a sequence or a CAS number, a lot code, and a certificate of analysis tied to that lot. The RUO line is a use restriction. It is not a consumer warranty and it is not an FDA approval.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p8",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p8a",
+            "text": "Gray-market vials are the fourth. The TGA case sat in this class: no ARTG entry, no lot a second laboratory could pull, and a name on the glass that did not match the contents. A platform takedown treats all four classes as one post. A chromatogram does not.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "blogImage",
+        "_key": "img2",
+        "src": "/images/blog/peptides-on-social-media-four-lanes.webp",
+        "alt": "Four peptide product types that social media treats as one: approved pen, compounded vial, documented RUO vial, unlabeled vial",
+        "caption": "Left to right, four different objects. The hashtag has one word for all of them."
+      },
+      {
+        "_type": "block",
+        "_key": "h-tga",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "h-tga-s",
+            "text": "What the TGA vial actually contained",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p9",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p9a",
+            "text": "The Conversation essay used the torn-esophagus case as proof that unapproved peptides can harm people. The laboratory finding is narrower, and worse.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p10",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p10a",
+            "text": "The product was sold as retatrutide. Retatrutide is Eli Lilly's investigational GIP/GLP-1/glucagon triple agonist. It has no FDA approval and no TGA approval. You cannot get it by prescription. FDA has also said it cannot be compounded. Testing found none of it.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p11",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p11a",
+            "text": "The vial held semaglutide, undeclared, at roughly eight times the amount in products the TGA has assessed. That is a substitution plus a load the labelled product was never designed to deliver. Uncontrolled vomiting is a known effect of GLP-1 receptor agonists at high exposure. A Mallory-Weiss tear, or a full-thickness esophageal tear, can follow retching. The Conversation headline still read as a \"peptide\" injury. The assay said otherwise.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p12",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p12a",
+            "text": "Independent testing in Drug and Alcohol Review (DOI 10.1111/dar.70231) found other unregulated vials sold as retatrutide ranging from 51% to 190% of labelled amount. In wider steroid and peptide testing by the same groups, some samples contained none of the named ingredient. Some contained a different substance. A 51% vial and a 190% vial can share a label and a hashtag and still be two different products. So can a vial that holds a different chain entirely, which is what the TGA sample was.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p13",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p13a",
+            "text": "A warning screen that says peptides can be risky does not capture this. The person thought they had one investigational molecule. They received another. Identity testing is the missing layer, not another slogan about \"doing your own research.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "blogImage",
+        "_key": "img3",
+        "src": "/images/blog/peptides-on-social-media-mismatched-peaks.webp",
+        "alt": "HPLC traces on a lab monitor where the labelled peptide and the detected peak do not match",
+        "caption": "If the labelled peak and the sample peak do not share a retention time, the name on the vial is a rumor."
+      },
+      {
+        "_type": "block",
+        "_key": "h-coa",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "h-coa-s",
+            "text": "Research without a chromatogram",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p14",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p14a",
+            "text": "A 2026 Journal of the American Pharmacists Association study scored the top 400 TikTok videos tagged #Ozempic, #Semaglutide, #Mounjaro, and #Tirzepatide. Ninety-eight percent came from individual users or influencers. Their reliability score was 34.53 against 52.31 for clinician accounts, using JAMA internet-information criteria and DISCERN. Views and likes did not track quality. The feed rewards watch time. It does not reward a methods section.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p15",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p15a",
+            "text": "\"I did my own research\" in that environment often means watching other customers. It does not mean matching a lot number to an HPLC trace and a mass spectrum. Volume statistics from Instagram and TikTok tell you the market is visible. They do not tell you which of the four classes any given video is actually moving.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p16",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk-mfg",
+            "_type": "link",
+            "href": "/blog/why-manufacturing-source-and-verification-matter-in-research-peptide-quality"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p16a",
+            "text": "A lot-linked certificate of analysis can show identity and area-percent purity for a named lot. It cannot show that a vial is safe for human use. It cannot show sterility for clinical administration unless that test is on the sheet. It cannot show that a research reagent is the same product as a branded pen. Those are different claims, and collapsing them is how the hashtag does its damage. ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "p16b",
+            "text": "How manufacturing source and verification actually work",
+            "marks": [
+              "lnk-mfg"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "p16c",
+            "text": " is a 12-point audit of what the paper has to contain before it is worth believing: lot match, method, chromatogram, mass, contamination tests, custody.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p17",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk-coa",
+            "_type": "link",
+            "href": "/coa-library"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p17a",
+            "text": "On 17 September 2026 we counted Tetrava's normalized catalog and COA inventory as they sit in the repository. The catalog holds 77 compound products (generated 19 August 2026). The lot-linked COA inventory holds 271 documents across 83 product handles. Every catalog compound is marked research-use only. That is a documentation layer you can inspect in the ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "p17b",
+            "text": "lot-linked COA library",
+            "marks": [
+              "lnk-coa"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "p17c",
+            "text": ". It is not a medicine approval, and it does not travel with a TikTok sound.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "h-ruo",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "h-ruo-s",
+            "text": "The RUO sticker is not a magic word",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p18",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p18a",
+            "text": "FDA has warned companies that sold unapproved drugs containing semaglutide, tirzepatide, retatrutide, survodutide, or mazdutide labelled \"for research purposes\" or \"not for human consumption\" while also selling them to consumers with use instructions. Under the Food, Drug, and Cosmetic Act, intended use is read from the whole operation: website copy, supplies sold as a kit, structure/function claims, discount codes aimed at gym clients. A sticker is one exhibit. The rest of the page is the others.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p19",
+        "style": "normal",
+        "markDefs": [
+          {
+            "_key": "lnk-home",
+            "_type": "link",
+            "href": "/"
+          }
+        ],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p19a",
+            "text": "A research-use-only policy is real only if the surrounding conduct matches it. Tetrava Labs sells ",
+            "marks": []
+          },
+          {
+            "_type": "span",
+            "_key": "p19b",
+            "text": "research peptides",
+            "marks": [
+              "lnk-home"
+            ]
+          },
+          {
+            "_type": "span",
+            "_key": "p19c",
+            "text": " for qualified laboratory work. The compounds are not for human consumption, diagnosis, or therapy. If a site's product pages read like a wellness protocol, the sticker will not save the listing. FDA has already written that letter, more than once, including to firms whose entire catalog was labelled RUO.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p20",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p20a",
+            "text": "Deleting the public Reel does not close the market. After takedowns, listings move into private messages and encrypted apps. The Conversation authors asked platforms for ongoing data-sharing with regulators so the next injury is not the first data point. That would help surveillance. It would not, by itself, tell a buyer what is in a vial that never had a lot number.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p21",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p21a",
+            "text": "Illicit vape content on TikTok followed a similar path: slick videos, almost no risk information, then unexpected contents, including a Melbourne vape found in June 2026 to contain etomidate. Peptide clips are using the same grammar. Meeting that grammar with a static warning is the smallest possible reply. Meeting it with a chromatogram is a different job, and it belongs to laboratories and regulators, not to a For You page.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "h-nine",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "h-nine-s",
+            "text": "Nine names that dominate the feed",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p22",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p22a",
+            "text": "We took nine names that recur in peptide-related social posts and checked them against FDA or TGA status, Tetrava's catalog, and the lot-linked COA inventory. The point is not that a catalog listing makes a compound a medicine. The point is that the feed uses one word, peptides, for molecules that do not share a regulatory class.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "tableBlock",
+        "_key": "tbl-nine",
+        "caption": "Trending names vs approval status, catalog CAS, and lot-linked COA (Tetrava files, 17 Sep 2026)",
+        "hasHeaderRow": true,
+        "rows": [
+          {
+            "_key": "tbl-nine-r0",
+            "cells": [
+              "Name in the feed",
+              "Regulator status",
+              "Catalog CAS",
+              "Lot-linked COA on file"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r1",
+            "cells": [
+              "Semaglutide",
+              "FDA-approved as Ozempic, Wegovy, Rybelsus; also compounded and gray-market",
+              "910463-68-2",
+              "Yes (5 mg, 10 mg)"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r2",
+            "cells": [
+              "Tirzepatide",
+              "FDA-approved as Mounjaro, Zepbound",
+              "2023788-19-2",
+              "Yes"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r3",
+            "cells": [
+              "Retatrutide",
+              "Not approved; FDA: cannot be compounded",
+              "2381089-83-2",
+              "Yes"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r4",
+            "cells": [
+              "BPC-157",
+              "Not approved; FDA Category 2 compounding risk list (2023); WADA S0",
+              "137525-51-0",
+              "Yes"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r5",
+            "cells": [
+              "TB-500",
+              "Not approved; research-market identity is often a fragment, not full thymosin beta-4",
+              "77591-33-4 (parent protein CAS on file)",
+              "Yes (tb500 5 mg / 10 mg)"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r6",
+            "cells": [
+              "GHK-Cu",
+              "Not an FDA-approved systemic drug",
+              "89030-95-5",
+              "Yes (50 mg, 100 mg)"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r7",
+            "cells": [
+              "Melanotan II",
+              "Not approved; TGA has issued warnings",
+              "121062-08-6",
+              "Yes"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r8",
+            "cells": [
+              "CJC-1295",
+              "Not approved; two analogs (with DAC / without DAC)",
+              "863288-34-0 / 446262-90-4",
+              "Yes"
+            ]
+          },
+          {
+            "_key": "tbl-nine-r9",
+            "cells": [
+              "Ipamorelin",
+              "Not approved",
+              "170851-70-4",
+              "Yes (5 mg, 10 mg)"
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p23",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p23a",
+            "text": "TB-500 is the identity trap inside the identity trap. Tetrava's catalog sequence for tb500 is the acetylated 17-23 fragment, Ac-Leu-Lys-Lys-Thr-Glu-Thr-Gln. The CAS on that same record, 77591-33-4, is the identifier for full-length thymosin beta-4, a 43-residue protein of about 4,963 daltons. Mass-spectrometry work on research-market TB-500 vials has identified the seven-residue fragment (about 888 daltons), not the intact protein. If a video cites a cardiac or wound trial of recombinant thymosin beta-4 as proof for TB-500, it is citing a different molecule. The catalog's own CAS/sequence split is a small instance of the same mess the feed runs at scale.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p24",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p24a",
+            "text": "BPC-157 is a defined 15-residue chain (CAS 137525-51-0) with a large animal literature and almost no controlled human efficacy data. FDA placed it, and the thymosin beta-4 fragment LKKTETQ, on the Category 2 significant-safety-risk list for compounding in 2023. WADA bans both at all times in 2026. None of that status information appears in a recovery montage.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "h-close",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "h-close-s",
+            "text": "What a documented research reagent can show",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p25",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p25a",
+            "text": "If you work in a laboratory, the useful question is still the dull one: does this lot match the name, the sequence, and the chromatogram?",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p26",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p26a",
+            "text": "Ask for the lot on the vial and the lot on the COA. Ask whether HPLC and mass spectrometry were run on that lot. Ask whether the sequence or CAS is printed, not just a trade nickname. If the CAS and the sequence disagree, as they do on TB-500 in our own catalog record, treat the trade name as a prompt for more work, not as the answer. Then stop. That is the documentation a research buyer can demand. It is not a treatment plan. It does not convert a reagent into Ozempic. It does not tell a teenager in a comment thread what to do with a clear liquid.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "p27",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "p27a",
+            "text": "Platforms can add interstitial warnings the way they already do for suicide-related searches and crash-diet queries. Regulators can seize unlabeled vials. Public-health teams can keep scoring TikTok the way the JAPhA group did. Those steps shrink exposure. They do not replace a matched lot and a peak that belongs to the named chain. Until the feed learns to tell those four markets apart, the chromatogram remains the only sentence in the conversation that has to be true.",
+            "marks": []
+          }
+        ]
+      }
+    ]
   }
 ]

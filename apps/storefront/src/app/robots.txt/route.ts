@@ -9,9 +9,24 @@ const DISALLOW_PATHS = [
   "/cart",
   "/login",
   "/register",
-  "/search",
   "/api/",
   "/reorder"
+]
+
+/**
+ * COA PDF/preview proxies. GSC lists https://tetravalabs.com/api/coa-file?id=...
+ * as "Blocked by robots.txt" because Disallow: /api/ is a prefix match.
+ * Google matches path + query; longest rule wins. The `?` and `*` forms cover
+ * `/api/coa-file?id=` so X-Robots-Tag: noindex can apply after crawl.
+ */
+const ALLOW_PATHS = [
+  "/_next/",
+  "/api/coa-file",
+  "/api/coa-file?",
+  "/api/coa-file*",
+  "/api/coa-preview",
+  "/api/coa-preview?",
+  "/api/coa-preview*"
 ]
 
 /**
@@ -23,6 +38,7 @@ const DISALLOW_PATHS = [
  * robots API has no field for the `Content-Signal` directive — see contentsignals.org.
  */
 function buildRobotsTxt(): string {
+  const allow = ALLOW_PATHS.map((path) => `Allow: ${path}`).join("\n")
   const disallow = DISALLOW_PATHS.map((path) => `Disallow: ${path}`).join("\n")
 
   return `# As a condition of accessing this website, you agree to
@@ -48,7 +64,7 @@ function buildRobotsTxt(): string {
 User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
-Allow: /_next/
+${allow}
 ${disallow}
 
 Sitemap: ${baseUrl}/sitemap_index.xml
@@ -60,7 +76,7 @@ export function GET() {
   return new NextResponse(buildRobotsTxt(), {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
-      "Cache-Control": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
+      "Cache-Control": "public, max-age=0, s-maxage=60, must-revalidate"
     }
   })
 }

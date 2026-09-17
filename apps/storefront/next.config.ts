@@ -32,9 +32,13 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     const noindex = [{ key: "X-Robots-Tag", value: "noindex, follow" }]
+    const noindexNofollow = [{ key: "X-Robots-Tag", value: "noindex, nofollow" }]
     return [
       { source: "/auth.md", headers: noindex },
-      { source: "/openapi.json", headers: noindex }
+      { source: "/openapi.json", headers: noindex },
+      { source: "/api/coa-file", headers: noindexNofollow },
+      { source: "/api/coa-preview", headers: noindexNofollow },
+      { source: "/api/geo", headers: noindexNofollow }
     ]
   }
 }

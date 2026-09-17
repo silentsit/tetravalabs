@@ -3,45 +3,6 @@
   "framework": "nextjs",
   "installCommand": "cd ../.. && corepack enable && npm ci",
   "buildCommand": "npm run build",
-  "redirects": [
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "www.tetravalabs.com" }],
-      "destination": "https://tetravalabs.com/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.tetravalabs.com" }],
-      "destination": "https://tetravalabs.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/nad-plus",
-      "destination": "/buy-nad-online",
-      "statusCode": 301
-    },
-    {
-      "source": "/nad%2B",
-      "destination": "/buy-nad-online",
-      "statusCode": 301
-    },
-    {
-      "source": "/nadplus",
-      "destination": "/buy-nad-online",
-      "statusCode": 301
-    },
-    {
-      "source": "/product/nad-plus",
-      "destination": "/buy-nad-online",
-      "statusCode": 301
-    },
-    {
-      "source": "/products/nad-plus",
-      "destination": "/buy-nad-online",
-      "statusCode": 301
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -65,6 +26,18 @@
     {
       "source": "/openapi.json",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
+    },
+    {
+      "source": "/api/coa-file",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/api/coa-preview",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/api/geo",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
 }

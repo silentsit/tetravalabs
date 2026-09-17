@@ -7,8 +7,16 @@ export async function GET(req: Request) {
     req.headers.get("x-country-code") ||
     null
 
-  return NextResponse.json({
-    ok: true,
-    country: country?.toUpperCase() || null
-  })
+  return NextResponse.json(
+    {
+      ok: true,
+      country: country?.toUpperCase() || null
+    },
+    {
+      headers: {
+        "Cache-Control": "public, max-age=60",
+        "X-Robots-Tag": "noindex, nofollow"
+      }
+    }
+  )
 }

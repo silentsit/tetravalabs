@@ -12,7 +12,10 @@ const COA_ID_PATTERN = /^[a-zA-Z0-9_-]+$/
 export async function GET(req: Request) {
   const id = new URL(req.url).searchParams.get("id")?.trim()
   if (!id || !COA_ID_PATTERN.test(id)) {
-    return NextResponse.json({ message: "Document id is required" }, { status: 400 })
+    return NextResponse.json(
+      { message: "Document id is required" },
+      { status: 400, headers: { "X-Robots-Tag": "noindex, nofollow" } }
+    )
   }
 
   const upstream = await fetch(`${MEDUSA_URL}/store/coas/${encodeURIComponent(id)}/file`, {
@@ -23,7 +26,10 @@ export async function GET(req: Request) {
   if (!upstream.ok) {
     const detail = await upstream.text().catch(() => "")
     console.error("[coa-file] upstream failed", upstream.status, MEDUSA_URL, id, detail.slice(0, 200))
-    return NextResponse.json({ message: "COA file not found" }, { status: upstream.status })
+    return NextResponse.json(
+      { message: "COA file not found" },
+      { status: upstream.status, headers: { "X-Robots-Tag": "noindex, nofollow" } }
+    )
   }
 
   const body = await upstream.arrayBuffer()

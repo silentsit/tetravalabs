@@ -76,10 +76,21 @@ function redirect301(
   hostname?: string
 ) {
   const url = new URL(request.url)
+  const requestHost = url.hostname.toLowerCase()
+  const isLocal = requestHost === "localhost" || requestHost === "127.0.0.1"
   if (hostname) url.hostname = hostname
-  const host = url.hostname.toLowerCase()
-  if (host !== "localhost" && host !== "127.0.0.1") {
-    url.protocol = "https:"
+  if (!isLocal) url.protocol = "https:"
+  // Host-change (www → apex): build Location from the public site origin so
+  // Googlebot does not stay on www when Vercel relativizes same-deployment URLs.
+  if (hostname && !isLocal) {
+    try {
+      const site = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://tetravalabs.com")
+      url.protocol = site.protocol
+      url.hostname = site.hostname
+      url.port = site.port
+    } catch {
+      /* keep the request-derived URL */
+    }
   }
   url.pathname = pathname
   url.search = searchParams.toString() ? `?${searchParams.toString()}` : ""
@@ -138,6 +149,10 @@ function canonicalRedirect(request: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/shipping/") && pathname !== "/shipping-restricted") {
+    pathname = "/shipping"
+  }
+
   const aliased = canonicalPathname(pathname)
   if (aliased) pathname = aliased
 
@@ -177,7 +192,8 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip static asset extensions (incl. .md/.json so /auth.md and /openapi.json are not rewritten).
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|js|css|mjs|pdf|md|json)$).*)"
+    // Skip hashed static assets. Run on .txt/.xml so www robots and sitemaps
+    // canonicalise in the same hop as HTML (Vercel host redirects cannot).
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|js|css|mjs|pdf|md|json)$).*)"
   ]
 }

@@ -1,12 +1,14 @@
 import Link from "next/link"
+import { CategoryDisplayName } from "@/components/category-display-name"
 import { FooterAcceptedPayments } from "@/components/footer-accepted-payments"
 import { SiteLogo } from "@/components/site-logo"
+import { CATEGORY_DISPLAY_NAME_BY_SLUG } from "@/lib/category-labels"
 import { siteConfig } from "@/lib/seo"
 
 const shopLinks = [
   { label: "All Products", href: "/shop" },
-  { label: "GLP-1 Research", href: "/category/glp-1-research" },
-  { label: "Tissue Repair", href: "/category/tissue-repair" },
+  { label: CATEGORY_DISPLAY_NAME_BY_SLUG["glp-1-research"], href: "/category/glp-1-research" },
+  { label: CATEGORY_DISPLAY_NAME_BY_SLUG["tissue-repair"], href: "/category/tissue-repair" },
   { label: "Lab Supplies", href: "/category/lab-supplies" },
   { label: "My Account", href: "/account" }
 ]
@@ -75,7 +77,10 @@ export function SiteFooter() {
                       href={link.href}
                       className="text-sm text-[#94A3B8] transition-colors hover:text-white"
                     >
-                      {link.label}
+                      <CategoryDisplayName
+                        name={link.label}
+                        consumerClassName="font-sans text-[0.85em] font-normal tracking-normal text-[#64748B]"
+                      />
                     </Link>
                   </li>
                 ))}

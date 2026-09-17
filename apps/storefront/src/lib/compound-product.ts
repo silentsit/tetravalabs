@@ -28,6 +28,7 @@ import { getProductGalleryImages } from "@/lib/product-image-map"
 import {
   groupVariantsByStrength,
   packTiersFromVariants,
+  pickPreferredPackQty,
   type PackTier
 } from "@/lib/pack-pricing"
 import type { StoreVariant } from "@/lib/product-price"
@@ -412,13 +413,11 @@ function buildCompoundView(
     parentHandle,
     displayName,
     displaySubtitle: getProductDisplaySubtitle(primary),
-    categoryLabel:
-      enrichment.category ||
-      storefrontCategoryLabelForProduct(
-        parentHandle,
-        displayName,
-        String(primary.metadata?.source_category || "")
-      ),
+    categoryLabel: storefrontCategoryLabelForProduct(
+      parentHandle,
+      displayName,
+      String(primary.metadata?.source_category || "")
+    ),
     isCompound: strengths.length > 1,
     strengths,
     casNumber: pickMeta(meta, enrichment, "cas_number", "N/A"),
@@ -488,7 +487,7 @@ export function pickDefaultPackQty(
   if (!strength?.packTiers.length) return null
   const qty = requested ? Number(requested) : NaN
   if (Number.isFinite(qty) && strength.packTiers.some((t) => t.qty === qty)) return qty
-  return strength.packTiers[0]?.qty ?? null
+  return pickPreferredPackQty(strength.packTiers)
 }
 
 export function isVariantInStock(variant: StoreVariant | undefined): boolean {
@@ -524,13 +523,11 @@ export async function getCompoundProductView(
     parentHandle: handle,
     displayName,
     displaySubtitle: getProductDisplaySubtitle(product),
-    categoryLabel:
-      enrichment.category ||
-      storefrontCategoryLabelForProduct(
-        handle,
-        displayName,
-        String(product.metadata?.source_category || "")
-      ),
+    categoryLabel: storefrontCategoryLabelForProduct(
+      handle,
+      displayName,
+      String(product.metadata?.source_category || "")
+    ),
     isCompound: false,
     strengths: [strength],
     casNumber: pickMeta(meta, enrichment, "cas_number", "N/A"),

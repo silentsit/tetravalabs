@@ -2,14 +2,14 @@ import "server-only"
 
 import { faqItems } from "@/lib/faq-content"
 import { siteConfig } from "@/lib/seo"
-import { STOREFRONT_CATEGORY_SLUGS, CATEGORY_NAME_BY_SLUG } from "@/lib/categories"
+import { STOREFRONT_CATEGORY_SLUGS, CATEGORY_DISPLAY_NAME_BY_SLUG } from "@/lib/categories"
 import { type AgentMarkdownPage, mdLink, renderQaSection, wrapAgentMarkdown } from "@/lib/agent-markdown/shared"
 
 type StaticPageBuilder = () => AgentMarkdownPage
 
 function categoryListMarkdown(): string {
   return STOREFRONT_CATEGORY_SLUGS.map(
-    (slug) => `- ${mdLink(CATEGORY_NAME_BY_SLUG[slug], `/category/${slug}`)}`
+    (slug) => `- ${mdLink(CATEGORY_DISPLAY_NAME_BY_SLUG[slug], `/category/${slug}`)}`
   ).join("\n")
 }
 

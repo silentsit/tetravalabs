@@ -5,6 +5,8 @@ import {
   formatPackTierSavingsLabel,
   formatPackTierYouSave,
   packTierSavingsUsd,
+  packTotalUsd,
+  pickPreferredPackQty,
   type PackTier
 } from "@/lib/pack-pricing"
 
@@ -18,6 +20,10 @@ type Props = {
   showCompareAtPricing?: boolean
 }
 
+function money(amount: number): string {
+  return `$${amount.toFixed(2)}`
+}
+
 export function PackSizeSelector({
   tiers,
   unitLabel = "vial",
@@ -27,7 +33,9 @@ export function PackSizeSelector({
 }: Props) {
   const displayTiers = tiers
 
-  const [internalQty, setInternalQty] = useState(value ?? displayTiers[0]?.qty ?? 5)
+  const [internalQty, setInternalQty] = useState(
+    value ?? pickPreferredPackQty(displayTiers) ?? 5
+  )
 
   useEffect(() => {
     if (value != null) setInternalQty(value)
@@ -43,11 +51,6 @@ export function PackSizeSelector({
 
   const unitSuffix = unitLabel === "vial" ? "/vial" : "/unit"
   const unitWord = unitLabel === "vial" ? "vial" : "unit"
-  const perUnits = displayTiers.map((tier) => tier.perUnit)
-  const perUnitRange =
-    perUnits.length > 1 && Math.min(...perUnits) !== Math.max(...perUnits)
-      ? `$${Math.min(...perUnits).toFixed(2)} – $${Math.max(...perUnits).toFixed(2)}`
-      : `$${selected.perUnit.toFixed(2)}`
 
   const pickTier = (tier: PackTier) => {
     if (value == null) setInternalQty(tier.qty)
@@ -55,24 +58,21 @@ export function PackSizeSelector({
   }
 
   const selectedSavings = packTierSavingsUsd(selected)
-  const selectedCompareAt =
+  const selectedPackTotal = packTotalUsd(selected)
+  const selectedCompareAtPack =
     showCompareAtPricing &&
-    selected.compareAtPerUnit != null &&
-    selected.compareAtPerUnit > selected.perUnit
+    selected.compareAtPack != null &&
+    selected.compareAtPack > selectedPackTotal
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <span className="mb-2 block text-sm font-medium text-[#475569]">Choose pack size</span>
-          <p className="text-xs text-[#94A3B8]">
-            {displayTiers.map((tier) => tier.qty).join(" / ")} {unitWord}
-            {displayTiers.length === 1 && displayTiers[0]?.qty === 1 ? "" : "s"}
-          </p>
-        </div>
-        <p className="text-sm font-medium tabular-nums text-[#475569]">
-          {perUnitRange}
-          {unitSuffix}
+      <div>
+        <span className="mb-2 block text-sm font-medium text-[#475569]">Choose pack size</span>
+        <p className="text-xs text-[#94A3B8]">
+          {displayTiers.map((tier) => tier.qty).join(" / ")}{" "}
+          {displayTiers.length === 1 && displayTiers[0]?.qty === 1
+            ? unitWord
+            : `${unitWord}s`}
         </p>
       </div>
 
@@ -80,6 +80,7 @@ export function PackSizeSelector({
         {displayTiers.map((tier) => {
           const active = selected.qty === tier.qty
           const savingsLabel = formatPackTierSavingsLabel(tier)
+          const packTotal = packTotalUsd(tier)
           const showCardCompare =
             showCompareAtPricing &&
             tier.compareAtPerUnit != null &&
@@ -87,21 +88,24 @@ export function PackSizeSelector({
           const showPackCompare =
             showCompareAtPricing &&
             packTierSavingsUsd(tier) > 0 &&
-            tier.compareAtPack != null
+            tier.compareAtPack != null &&
+            tier.compareAtPack > packTotal
 
           return (
             <button
               key={tier.qty}
               type="button"
               onClick={() => pickTier(tier)}
-              className={`flex w-full flex-col gap-3 rounded-xl border px-4 py-4 text-left transition sm:flex-row sm:items-center sm:gap-4 ${
+              aria-pressed={active}
+              aria-label={`${tier.tier}, ${money(packTotal)} pack total, ${money(tier.perUnit)}${unitSuffix}`}
+              className={`flex w-full items-start gap-3 rounded-xl border px-4 py-4 text-left transition sm:gap-4 ${
                 active
                   ? "border-[#0D9488] bg-[#F0FDFA] shadow-[0_0_0_1px_#0D9488]"
                   : "border-[#E2E8F0] bg-white hover:border-[#CBD5E1]"
               }`}
             >
               <span
-                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
+                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
                   active ? "border-[#0D9488]" : "border-[#CBD5E1]"
                 }`}
               >
@@ -109,49 +113,51 @@ export function PackSizeSelector({
                   className={`h-2.5 w-2.5 rounded-full ${active ? "bg-[#0D9488]" : "bg-transparent"}`}
                 />
               </span>
-              <div className="min-w-0 flex-1 self-stretch sm:self-auto">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-medium text-[#0F172A]">{tier.tier}</span>
-                  {tier.qty === 5 ? (
-                    <span className="rounded-full bg-[#E2E8F0] px-2 py-0.5 font-mono text-[10px] font-semibold text-[#475569]">
-                      Best fit
-                    </span>
-                  ) : null}
-                  {tier.qty === 10 ? (
-                    <span className="rounded-full bg-[#6366F1] px-2 py-0.5 font-mono text-[10px] font-semibold text-white">
-                      Most Popular
-                    </span>
-                  ) : null}
-                  {savingsLabel ? (
-                    <span className="rounded-full bg-[#CCFBF1] px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-[#0F766E]">
-                      {savingsLabel}
-                    </span>
-                  ) : null}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-medium text-[#0F172A]">{tier.tier}</span>
+                      {tier.qty === 5 ? (
+                        <span className="rounded-full bg-[#E2E8F0] px-2 py-0.5 font-mono text-[10px] font-semibold text-[#475569]">
+                          Best fit
+                        </span>
+                      ) : null}
+                      {tier.qty === 10 ? (
+                        <span className="rounded-full bg-[#6366F1] px-2 py-0.5 font-mono text-[10px] font-semibold text-white">
+                          Most Popular
+                        </span>
+                      ) : null}
+                      {savingsLabel ? (
+                        <span className="rounded-full bg-[#CCFBF1] px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-[#0F766E]">
+                          {savingsLabel}
+                        </span>
+                      ) : null}
+                    </div>
+                    <p className="mt-1 font-mono text-xs tabular-nums whitespace-nowrap text-[#64748B]">
+                      {showCardCompare ? (
+                        <>
+                          <span className="text-[#94A3B8] line-through">
+                            {money(tier.compareAtPerUnit!)}
+                            {unitSuffix}
+                          </span>{" "}
+                        </>
+                      ) : null}
+                      {money(tier.perUnit)}
+                      {unitSuffix}
+                    </p>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    {showPackCompare ? (
+                      <p className="font-mono text-xs tabular-nums text-[#94A3B8] line-through">
+                        {money(tier.compareAtPack!)}
+                      </p>
+                    ) : null}
+                    <p className="text-xl font-bold tabular-nums leading-tight text-[#0F172A]">
+                      {money(packTotal)}
+                    </p>
+                  </div>
                 </div>
-                <p className="mt-1 font-mono text-xs text-[#64748B]">
-                  {showPackCompare ? (
-                    <>
-                      <span className="mr-1.5 text-[#94A3B8] line-through">
-                        ${tier.compareAtPack!.toFixed(2)}
-                      </span>
-                      ${tier.price.toFixed(2)} pack total
-                    </>
-                  ) : (
-                    <>${tier.price.toFixed(2)} pack total</>
-                  )}
-                </p>
-              </div>
-              <div className="shrink-0 text-left sm:text-right">
-                {showCardCompare ? (
-                  <p className="font-mono text-xs tabular-nums text-[#94A3B8] line-through">
-                    ${tier.compareAtPerUnit!.toFixed(2)}
-                    {unitSuffix}
-                  </p>
-                ) : null}
-                <p className="text-lg font-bold tabular-nums text-[#0F172A]">
-                  ${tier.perUnit.toFixed(2)}
-                  <span className="text-xs font-semibold text-[#64748B]">{unitSuffix}</span>
-                </p>
               </div>
             </button>
           )
@@ -161,22 +167,21 @@ export function PackSizeSelector({
       <div>
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <p className="text-2xl font-bold tabular-nums text-[#0F172A]">
-            ${selected.perUnit.toFixed(2)}
-            <span className="text-base font-semibold text-[#64748B]">{unitSuffix}</span>
+            {money(selectedPackTotal)}
           </p>
-          {selectedCompareAt ? (
+          {selectedCompareAtPack ? (
             <p className="text-base tabular-nums text-[#94A3B8] line-through">
-              ${selected.compareAtPerUnit!.toFixed(2)}
-              {unitSuffix}
+              {money(selected.compareAtPack!)}
             </p>
           ) : null}
         </div>
         <p className="mt-1 text-sm text-[#64748B]">
-          ${selected.price.toFixed(2)} pack total · {selected.tier}
+          {selected.tier} · {money(selected.perUnit)}
+          {unitSuffix}
         </p>
         {showCompareAtPricing && selectedSavings > 0 ? (
           <p className="mt-1 text-sm font-medium text-[#0D9488]">
-            {formatPackTierYouSave(selected) || `You save $${selectedSavings.toFixed(2)}`}
+            {formatPackTierYouSave(selected) || `You save ${money(selectedSavings)}`}
           </p>
         ) : null}
       </div>

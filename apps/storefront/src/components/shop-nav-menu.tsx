@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
 import { ChevronDown } from "lucide-react"
+import { CategoryDisplayName } from "@/components/category-display-name"
 import { resolveActiveShopPill, shopNavLabel, shopNavLinks } from "@/lib/shop-filters"
 
 function cn(...classes: Array<string | false | undefined>) {
@@ -54,7 +55,10 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
                   )}
                   onClick={onNavigate}
                 >
-                  {link.label}
+                  <CategoryDisplayName
+                    name={link.label}
+                    consumerClassName="font-sans text-[0.85em] font-normal tracking-normal text-[#94A3B8]"
+                  />
                 </Link>
               </li>
             )
@@ -79,7 +83,7 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
         <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
       </Link>
 
-      <div className="invisible absolute left-0 top-full z-50 min-w-[220px] pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <div className="invisible absolute left-0 top-full z-50 min-w-[20rem] pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         <ul
           role="menu"
           aria-label={`${shopNavLabel} categories`}
@@ -100,7 +104,10 @@ export function ShopNavMenu({ variant, onNavigate }: Props) {
                     isActive ? "bg-[#F0FDFA] font-medium text-[#0D9488]" : "text-[#475569]"
                   )}
                 >
-                  {link.label}
+                  <CategoryDisplayName
+                    name={link.label}
+                    consumerClassName="font-sans text-[0.85em] font-normal tracking-normal text-[#94A3B8]"
+                  />
                 </Link>
               </li>
             )

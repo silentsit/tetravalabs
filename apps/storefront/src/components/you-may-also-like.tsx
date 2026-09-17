@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import type { StoreProduct } from "@/lib/medusa"
+import { CategoryDisplayName } from "@/components/category-display-name"
 import { ProductCard } from "@/components/product-card"
 
 type Props = {
@@ -28,7 +29,7 @@ export function YouMayAlsoLike({ products, categoryHref, categoryLabel }: Props)
           href={categoryHref}
           className="hidden shrink-0 items-center gap-1 text-sm font-medium text-[#0D9488] hover:text-[#0F766E] sm:flex"
         >
-          {categoryLabel} <ArrowRight className="h-4 w-4" />
+          <CategoryDisplayName name={categoryLabel} /> <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

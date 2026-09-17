@@ -10,7 +10,7 @@ import {
 } from "@/lib/compound-product"
 import { getVariantPriceCents } from "@/lib/product-price"
 import type { PackTier } from "@/lib/pack-pricing"
-import { shouldShowCompareAtPricing } from "@/lib/pack-pricing"
+import { pickPreferredPackTier, shouldShowCompareAtPricing } from "@/lib/pack-pricing"
 import { cartLineId } from "@/lib/cart-line-id"
 
 type Props = {
@@ -40,7 +40,10 @@ export function ProductPurchasePanel({
 
   const selectedTier = useMemo(() => {
     if (!packTiers.length) return null
-    return packTiers.find((tier) => tier.qty === selectedPackQty) || packTiers[0]
+    return (
+      packTiers.find((tier) => tier.qty === selectedPackQty) ||
+      pickPreferredPackTier(packTiers)
+    )
   }, [packTiers, selectedPackQty])
 
   const selectedVariant = useMemo(() => {

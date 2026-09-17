@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { listProducts } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { CategoryDisplayName } from "@/components/category-display-name"
 import { ProductCard } from "@/components/product-card"
 import {
   CATEGORY_NAME_BY_SLUG,
@@ -10,8 +11,7 @@ import {
   filterProductsByCategorySlug,
   isStorefrontCategorySlug,
   normalizeCategorySlug,
-  STOREFRONT_CATEGORY_SLUGS,
-  type StorefrontCategorySlug
+  STOREFRONT_CATEGORY_SLUGS
 } from "@/lib/categories"
 import { getCategorySeoBlock } from "@/lib/sanity"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
@@ -48,8 +48,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const label = categoryLabelFromSlug(normalized, products)
   const seo = await getCategorySeoBlock(normalized)
   const art = categoryArtForSlug(normalized, label)
+  const titleLabel = CATEGORY_NAME_BY_SLUG[normalized]
   return buildPageMetadata({
-    title: seo?.seoTitle || `${label} | research peptides`,
+    title: seo?.seoTitle || `${titleLabel} | research peptides`,
     description:
       seo?.seoDescription ||
       art.description ||
@@ -73,9 +74,7 @@ export default async function CategoryPage({ params }: Props) {
 
   const products = await listProducts()
   const filtered = sortProducts(filterProductsByCategorySlug(products, normalized), "featured")
-  const label =
-    CATEGORY_NAME_BY_SLUG[normalized as StorefrontCategorySlug] ||
-    categoryLabelFromSlug(normalized, products)
+  const label = categoryLabelFromSlug(normalized, products)
   const seo = await getCategorySeoBlock(normalized)
   const art = categoryArtForSlug(normalized, label)
   const intro =
@@ -95,7 +94,9 @@ export default async function CategoryPage({ params }: Props) {
       />
       <div>
         <span className="section-label">Category</span>
-        <h1 className="mt-2 break-words font-serif text-3xl text-[#0F172A] sm:text-4xl">{label}</h1>
+        <h1 className="mt-2 break-words font-serif text-3xl text-[#0F172A] sm:text-4xl">
+          <CategoryDisplayName name={label} />
+        </h1>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#475569]">{intro}</p>
         {!seo?.introCopy ? (
           <p className="mt-2 text-sm text-[#64748B]">

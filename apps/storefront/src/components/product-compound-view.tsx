@@ -14,6 +14,7 @@ import {
 } from "@/lib/compound-product";
 import { getProductSeoOverride } from "@/lib/product-seo-overrides";
 import { publicCatalogHandle } from "@/lib/revamp/product-visual";
+import { CategoryDisplayName } from "@/components/category-display-name";
 import { ProductImageGallery } from "@/components/product-image-gallery";
 import { ProductPurchasePanel } from "@/components/product-purchase-panel";
 import {
@@ -172,7 +173,12 @@ export function ProductCompoundView({
 
         <div className="space-y-5">
           <header>
-            <span className="section-label">{view.categoryLabel}</span>
+            <span className="section-label">
+              <CategoryDisplayName
+                name={view.categoryLabel}
+                consumerClassName="font-sans text-[0.85em] font-medium tracking-wider text-[#94A3B8]"
+              />
+            </span>
             <h1 className="product-card-title mt-2 break-words text-3xl text-[color:var(--color-text)] sm:text-4xl">
               {headingName}
             </h1>

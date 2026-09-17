@@ -127,6 +127,22 @@ const PACK_TITLE_RE = /^\d+\s+vials?$/i
 /** Storefront pack sizes offered at checkout (exclude legacy 20-vial SKUs). */
 export const STOREFRONT_PACK_QTYS = new Set([1, 5, 10])
 
+/** Prefer 10-vial (Most Popular) on first load. Then 5, then the smallest listed pack. */
+const DEFAULT_PACK_QTY_PREFERENCE = [10, 5, 1] as const
+
+export function pickPreferredPackTier(tiers: PackTier[]): PackTier | null {
+  if (!tiers.length) return null
+  for (const qty of DEFAULT_PACK_QTY_PREFERENCE) {
+    const match = tiers.find((tier) => tier.qty === qty)
+    if (match) return match
+  }
+  return tiers[0]
+}
+
+export function pickPreferredPackQty(tiers: PackTier[]): number | null {
+  return pickPreferredPackTier(tiers)?.qty ?? null
+}
+
 export function isPackTierVariant(variant: StoreVariant): boolean {
   const packQty = variant.metadata?.pack_qty
   if (packQty != null && Number(packQty) >= 1) return true
@@ -334,27 +350,25 @@ export function formatShelfPrice(
 ): ShelfPriceDisplay {
   const unitSuffix = unitLabel === "vial" ? "/vial" : "/unit"
   const unitWord = unitLabel === "vial" ? "vial" : "unit"
+  const preferred = pickPreferredPackTier(tiers)
 
-  if (!tiers.length) {
+  if (!preferred) {
     return { unitAmount: "", unitSuffix, detail: null, isPackProduct: false }
   }
 
-  const moq = tiers[0]
-  const perUnits = tiers.map((tier) => tier.perUnit)
-  const minPerUnit = Math.min(...perUnits)
-  const maxPerUnit = Math.max(...perUnits)
-  const unitAmount =
-    minPerUnit !== maxPerUnit
-      ? `$${minPerUnit.toFixed(2)} – $${maxPerUnit.toFixed(2)}`
-      : `$${moq.perUnit.toFixed(2)}`
-
-  const packLabel = `packs from $${Math.min(...tiers.map((tier) => tier.price)).toFixed(2)}`
+  const packName =
+    preferred.qty === 1 ? `1 ${unitWord}` : `${preferred.qty} ${unitWord}s`
   const detail =
-    moq.qty <= 1
-      ? `from $${minPerUnit.toFixed(2)}${unitSuffix} · ${packLabel}`
-      : `${moq.qty}-${unitWord} minimum · ${packLabel}`
+    tiers.length > 1
+      ? `${packName} · $${preferred.perUnit.toFixed(2)}${unitSuffix}`
+      : null
 
-  return { unitAmount, unitSuffix, detail, isPackProduct: true }
+  return {
+    unitAmount: `$${preferred.price.toFixed(2)}`,
+    unitSuffix: "",
+    detail,
+    isPackProduct: true
+  }
 }
 
 export function formatShelfPriceFromUnitCents(input: {

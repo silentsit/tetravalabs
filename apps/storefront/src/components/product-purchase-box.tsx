@@ -7,6 +7,7 @@ import type { StoreVariant } from "@/lib/product-price"
 import { getVariantPriceCents } from "@/lib/product-price"
 import {
   getVariantStrengthKey,
+  pickPreferredPackTier,
   resolveProductPurchaseLayout,
   showCompareAtPricingForHandle,
   type PackTier
@@ -68,10 +69,10 @@ export function ProductPurchaseBox({ productId, handle, title, variants }: Props
   )
 
   const [selectedPackTier, setSelectedPackTier] = useState<PackTier | null>(() => {
-    if (layout.mode === "pack-only") return layout.packTiers[0] || null
+    if (layout.mode === "pack-only") return pickPreferredPackTier(layout.packTiers)
     if (layout.mode === "strength-and-pack") {
       const key = getVariantStrengthKey(layout.strengthVariants[0])
-      return layout.packTiersByStrength.get(key)?.[0] || null
+      return pickPreferredPackTier(layout.packTiersByStrength.get(key) || [])
     }
     return null
   })
@@ -119,8 +120,11 @@ export function ProductPurchaseBox({ productId, handle, title, variants }: Props
       return
     }
     if (layout.mode === "strength-and-pack") {
-      const tiers = layout.packTiersByStrength.get(key)
-      setSelectedPackTier(tiers?.[0] || null)
+      const tiers = layout.packTiersByStrength.get(key) || []
+      const keepQty = selectedPackTier
+        ? tiers.find((tier) => tier.qty === selectedPackTier.qty)
+        : null
+      setSelectedPackTier(keepQty || pickPreferredPackTier(tiers))
     }
   }
 

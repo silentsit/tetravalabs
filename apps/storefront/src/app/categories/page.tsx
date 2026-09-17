@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { listProducts } from "@/lib/medusa"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { CategoryDisplayName } from "@/components/category-display-name"
 import { PageJsonLd } from "@/components/page-json-ld"
 import { groupProductsByCategory } from "@/lib/categories"
 import { categoryArtForSlug } from "@/lib/revamp/category-art"
@@ -13,7 +14,7 @@ export const revalidate = 300
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Product categories",
-  description: "Browse research peptides by category — GLP-1, tissue repair, growth hormone axis, longevity, metabolic, blends, and lab supplies.",
+  description: "Browse research peptides by category — GLP-1 (weight loss and metabolic), tissue repair, growth hormone secretagogues, longevity, cognitive and sleep research, blends, and lab supplies.",
   path: "/categories",
   pageType: "CollectionPage",
   ogTitle: "Research peptide categories",
@@ -61,7 +62,7 @@ export default async function CategoriesPage() {
                 <div className="p-6">
                   <p className="font-mono text-xs text-[#0D9488]">{category.count} products</p>
                   <h2 className="mt-2 font-serif text-2xl text-[#0F172A] group-hover:text-[#0D9488]">
-                    {category.name}
+                    <CategoryDisplayName name={category.name} />
                   </h2>
                 </div>
               </Link>

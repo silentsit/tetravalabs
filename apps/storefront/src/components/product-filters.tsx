@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CategoryDisplayName } from "@/components/category-display-name"
 import {
   filterByPill,
   storefrontPills,
@@ -36,13 +37,20 @@ export function ProductFilters({ products, activePill = "all" }: ProductFiltersP
             key={pill.key}
             href={href}
             className={cn(
-              "relative min-h-11 flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-200",
+              "relative min-h-11 max-w-[16rem] flex-shrink-0 whitespace-normal rounded-full px-4 py-2.5 text-center text-sm font-medium leading-snug transition-all duration-200",
               isActive
                 ? "bg-[#0F172A] text-white shadow-sm"
                 : "bg-[#F8FAFC] text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
             )}
           >
-            {pill.label}
+            <CategoryDisplayName
+              name={pill.label}
+              consumerClassName={
+                isActive
+                  ? "font-sans text-[0.85em] font-medium tracking-normal text-[#CBD5E1]"
+                  : "font-sans text-[0.85em] font-medium tracking-normal text-[#94A3B8]"
+              }
+            />
             <span
               className={cn(
                 "ml-1.5 text-xs",

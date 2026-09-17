@@ -16,6 +16,7 @@ import {
 import {
   formatShelfPriceFromProduct,
   packTiersFromVariants,
+  pickPreferredPackTier,
   resolveProductPurchaseLayout
 } from "@/lib/pack-pricing"
 import { getProductHref, getShelfProductLabel } from "@/lib/compound-product"
@@ -45,7 +46,7 @@ export function ProductCard({
   const displaySubtitle =
     product.handle === KLOW_BLEND_HANDLE ? null : getProductDisplaySubtitle(product)
   const packTiers = packTiersFromVariants(product.variants || [])
-  const cartPackTier = packTiers[0] ?? null
+  const cartPackTier = pickPreferredPackTier(packTiers)
   const fallbackCartPrice = getProductPrice(product)
   const inStock = Boolean(cartPackTier?.variantId || variantRow?.id)
   const imageUrl =

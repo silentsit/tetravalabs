@@ -5,6 +5,11 @@ import {
   STOREFRONT_CATEGORY_SLUGS,
   type StorefrontCategorySlug
 } from "@/lib/category-url"
+import {
+  CATEGORY_DISPLAY_NAME_BY_SLUG,
+  categoryDisplayName,
+  stripCategoryConsumerSuffix
+} from "@/lib/category-labels"
 import { categoryArt } from "@/lib/revamp/category-art"
 import { sortProducts, type ProductSort } from "@/lib/sort-products"
 
@@ -15,15 +20,14 @@ export {
   type StorefrontCategorySlug
 } from "@/lib/category-url"
 
-export const CATEGORY_NAME_BY_SLUG: Record<StorefrontCategorySlug, string> = {
-  "glp-1-research": "GLP-1 Research",
-  "tissue-repair": "Tissue Repair",
-  "growth-hormone-axis": "Growth Hormone Axis",
-  "longevity-neuropeptides": "Longevity & Neuropeptides",
-  "metabolic-mitochondrial": "Metabolic & Mitochondrial",
-  "research-blends": "Research Blends",
-  "lab-supplies": "Lab Supplies"
-}
+export {
+  CATEGORY_CONSUMER_LABEL_BY_SLUG,
+  CATEGORY_DISPLAY_NAME_BY_SLUG,
+  CATEGORY_NAME_BY_SLUG,
+  categoryDisplayName,
+  homepageCategoryTitle,
+  stripCategoryConsumerSuffix
+} from "@/lib/category-labels"
 
 const LEGACY_STOREFRONT_TO_SHEET: Record<string, string> = {
   "GLP-1 Research": "GLP-1 / Incretin",
@@ -50,6 +54,7 @@ const BLEND_PRODUCTS = new Set([
   "BPC-157 + TB500 Blend",
   "BPC-157 + TB-500 Blend",
   "BPC-157 + TB-500 (Wolverine Blend)",
+  "Wolverine Stack",
   "CU 50mg + TB500 10mg + BPC-157 10mg + KPV 10mg",
   "CU 50mg + TB-500 10mg + BPC-157 10mg + KPV 10mg",
   "KLOW Blend",
@@ -58,6 +63,8 @@ const BLEND_PRODUCTS = new Set([
   "Klow Blend (80mg)",
   "Glow BPC-157 + TB500 + GHK-Cu",
   "Glow BPC-157 + TB-500 + GHK-Cu",
+  "Glow Blend",
+  "Glow",
   "Glow TB500 10mg + BPC-157 10mg + GHK-Cu 50mg",
   "Glow TB-500 10mg + BPC-157 10mg + GHK-Cu 50mg",
   "CJC-1295 without DAC / Ipamorelin Blend",
@@ -106,7 +113,7 @@ export function normalizeCategorySlug(slug: string): StorefrontCategorySlug | st
 }
 
 export function categorySlugFromLabel(label: string) {
-  const slug = slugifyCategory(label)
+  const slug = slugifyCategory(stripCategoryConsumerSuffix(label))
   const normalized = normalizeCategorySlug(slug)
   if (STOREFRONT_CATEGORY_SLUGS.includes(normalized as StorefrontCategorySlug)) {
     return normalized
@@ -116,8 +123,8 @@ export function categorySlugFromLabel(label: string) {
 
 export function categoryLabelFromSlug(slug: string, products: StoreProduct[]) {
   const normalized = normalizeCategorySlug(slug)
-  if (typeof normalized === "string" && normalized in CATEGORY_NAME_BY_SLUG) {
-    return CATEGORY_NAME_BY_SLUG[normalized as StorefrontCategorySlug]
+  if (typeof normalized === "string" && normalized in CATEGORY_DISPLAY_NAME_BY_SLUG) {
+    return CATEGORY_DISPLAY_NAME_BY_SLUG[normalized as StorefrontCategorySlug]
   }
 
   for (const product of products) {
@@ -180,12 +187,12 @@ export function storefrontCategoryLabelForProduct(
   sourceCategory?: string
 ): string {
   const fromCatalog = catalogSlugMap[handle]
-  if (fromCatalog && fromCatalog in CATEGORY_NAME_BY_SLUG) {
-    return CATEGORY_NAME_BY_SLUG[fromCatalog as StorefrontCategorySlug]
+  if (fromCatalog) {
+    return categoryDisplayName(fromCatalog)
   }
   if (name) {
     const slug = resolveStorefrontCategorySlug(name, normalizeSourceCategory(sourceCategory || ""))
-    return CATEGORY_NAME_BY_SLUG[slug]
+    return categoryDisplayName(slug)
   }
   return "Research Product"
 }
@@ -202,7 +209,7 @@ export function groupProductsByCategory(products: StoreProduct[]) {
 
   return [...groups.entries()]
     .map(([slug, items]) => ({
-      name: CATEGORY_NAME_BY_SLUG[slug as StorefrontCategorySlug] || slug,
+      name: categoryDisplayName(slug),
       slug,
       count: items.length,
       products: items

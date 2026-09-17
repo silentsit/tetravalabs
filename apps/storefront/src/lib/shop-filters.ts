@@ -1,15 +1,16 @@
 import { canonicalizeCategorySlug, resolveProductCategorySlug } from "@/lib/categories"
+import { CATEGORY_DISPLAY_NAME_BY_SLUG } from "@/lib/category-labels"
 import type { StoreProduct } from "@/lib/medusa"
 
 export const storefrontPills = [
   { key: "all", label: "All Products" },
-  { key: "glp-1-research", label: "GLP-1 Research" },
-  { key: "tissue-repair", label: "Tissue Repair" },
-  { key: "growth-hormone-axis", label: "Growth Hormone Axis" },
-  { key: "longevity-neuropeptides", label: "Longevity & Neuropeptides" },
-  { key: "metabolic-mitochondrial", label: "Metabolic & Mitochondrial" },
-  { key: "research-blends", label: "Research Blends" },
-  { key: "lab-supplies", label: "Lab Supplies" }
+  { key: "glp-1-research", label: CATEGORY_DISPLAY_NAME_BY_SLUG["glp-1-research"] },
+  { key: "tissue-repair", label: CATEGORY_DISPLAY_NAME_BY_SLUG["tissue-repair"] },
+  { key: "growth-hormone-axis", label: CATEGORY_DISPLAY_NAME_BY_SLUG["growth-hormone-axis"] },
+  { key: "longevity-neuropeptides", label: CATEGORY_DISPLAY_NAME_BY_SLUG["longevity-neuropeptides"] },
+  { key: "metabolic-mitochondrial", label: CATEGORY_DISPLAY_NAME_BY_SLUG["metabolic-mitochondrial"] },
+  { key: "research-blends", label: CATEGORY_DISPLAY_NAME_BY_SLUG["research-blends"] },
+  { key: "lab-supplies", label: CATEGORY_DISPLAY_NAME_BY_SLUG["lab-supplies"] }
 ] as const
 
 export const shopNavLabel = "Buy Peptides"

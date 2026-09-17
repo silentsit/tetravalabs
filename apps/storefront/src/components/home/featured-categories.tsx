@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CategoryDisplayName } from "@/components/category-display-name"
 import { groupProductsByCategory } from "@/lib/categories"
 import { listProducts } from "@/lib/medusa"
 
@@ -27,7 +28,12 @@ export async function FeaturedCategories() {
             href={`/category/${category.slug}`}
             className="group rounded-xl border border-white/[0.06] bg-[#0A0A10] p-5 transition hover:border-[#5EEAD4]/30"
           >
-            <p className="font-medium text-[#E8E8F0] group-hover:text-[#5EEAD4]">{category.name}</p>
+            <p className="font-medium text-[#E8E8F0] group-hover:text-[#5EEAD4]">
+              <CategoryDisplayName
+                name={category.name}
+                consumerClassName="font-sans text-[0.72em] font-medium tracking-normal text-[#8A8AA0]"
+              />
+            </p>
             <p className="mt-2 text-sm text-[#8A8AA0]">
               {category.count} {category.count === 1 ? "product" : "products"}
             </p>
